@@ -3,25 +3,25 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import { VitePWA, VitePWAOptions } from "vite-plugin-pwa";
 
-const manifestForPlugIn: Partial<VitePWAOptions> = {
-  registerType: 'prompt', // Make sure this is 'prompt' or 'autoUpdate'
+const manifestForPlugin: Partial<VitePWAOptions> = {
+  registerType: 'autoUpdate',
   includeAssets: ['favicon.ico', "apple-touch-icon.png", "masked-icon.svg"],
   manifest: {
-    name: "React-vite-app",
-    short_name: "react-vite-app",
-    description: "I am a simple vite app",
+    name: "ClassEdgee",
+    short_name: "classedge",
+    description: "my name is classedgee",
     icons: [
       {
         src: '/android-chrome-192x192.png',
         sizes: '192x192',
         type: 'image/png',
-        purpose: 'favicon'
+        purpose: 'any'
       },
       {
         src: '/android-chrome-512x512.png',
         sizes: '512x512',
         type: 'image/png',
-        purpose: 'favicon'
+        purpose: 'any'
       },
       {
         src: '/apple-touch-icon.png',
@@ -33,7 +33,7 @@ const manifestForPlugIn: Partial<VitePWAOptions> = {
         src: '/maskable_icon.png',
         sizes: '512x512',
         type: 'image/png',
-        purpose: 'any maskable',
+        purpose: 'maskable',
       }
     ],
     theme_color: '#171717',
@@ -46,7 +46,7 @@ const manifestForPlugIn: Partial<VitePWAOptions> = {
 };
 
 export default defineConfig({
-  plugins: [react(), VitePWA(manifestForPlugIn)],
+  plugins: [react(), VitePWA(manifestForPlugin)],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
