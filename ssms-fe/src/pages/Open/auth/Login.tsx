@@ -12,7 +12,7 @@ const LoginPage: React.FC = () => {
   useEffect(() => {
     console.log("LoginPage - User:", user);
     if(!isLoading && user){
-      navigate("/dashboard");
+      navigate("/p/");
     }
   },[user,isLoading])
   const navigate = useNavigate();
@@ -51,7 +51,7 @@ const LoginPage: React.FC = () => {
         enhancedLocalStorage.setItem('accessToken', response.data.accessToken);
         enhancedLocalStorage.setItem('refreshToken', response.data.refreshToken);
         console.log(`Logging in as: ${response.data.user.role}`);
-        navigate("/dashboard");
+        navigate("/p/");
       }
     } catch (error: any) {
       if (axios.isAxiosError(error)) {
@@ -73,7 +73,7 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="login-container bg-black">
+    <div className="login-container ">
       <div className="login-box">
         <h2>Login</h2>
         <form className="login-form" onSubmit={handleLogin}>

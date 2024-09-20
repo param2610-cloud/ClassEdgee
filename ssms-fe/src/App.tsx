@@ -23,7 +23,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/auth/signin" element={<LoginPage />} />
-        <Route path="/dashboard/*" element={<ProtectedRoute />} />
+        <Route path="/p/*" element={<ProtectedRoute />} />
         {/* Add other public routes here */}
       </Routes>
     </Router>
