@@ -5,11 +5,12 @@ import { domain } from '@/lib/constant';
 import axios from 'axios';
 import { useAtom } from 'jotai';
 import { roleAtom } from '@/store/atom';
-import { useAuth } from '@/services/AuthContext';
+import { enhancedLocalStorage, useAuth } from '@/services/AuthContext';
 
 const LoginPage: React.FC = () => {
   const { user,isLoading} = useAuth()
   useEffect(() => {
+    console.log("LoginPage - User:", user);
     if(!isLoading && user){
       navigate("/dashboard");
     }
@@ -47,8 +48,8 @@ const LoginPage: React.FC = () => {
         setRoleAtom(role);
         console.log(response.data);
         
-        localStorage.setItem('accessToken', response.data.accessToken);
-        localStorage.setItem('refreshToken', response.data.refreshToken);
+        enhancedLocalStorage.setItem('accessToken', response.data.accessToken);
+        enhancedLocalStorage.setItem('refreshToken', response.data.refreshToken);
         console.log(`Logging in as: ${response.data.user.role}`);
         navigate("/dashboard");
       }
@@ -72,7 +73,7 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="login-container">
+    <div className="login-container bg-black">
       <div className="login-box">
         <h2>Login</h2>
         <form className="login-form" onSubmit={handleLogin}>

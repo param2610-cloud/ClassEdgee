@@ -29,6 +29,15 @@ connectDB()
 import supremeRouter from "./src/Router/supreme.router.js"
 import principalRouter from './src/Router/principal.router.js'
 import generalRouter from './src/Router/general.router.js'
+import logger from "./src/middlewares/logger.js";
+
+//print route
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.originalUrl}`);
+    next();
+  });
+app.use(logger)
+
 
 //router declaration 
 app.use('/api/v1/supreme',supremeRouter)
