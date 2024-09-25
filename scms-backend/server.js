@@ -1,29 +1,35 @@
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-require('dotenv').config();
-
+import cookieParser from "cookie-parser";
+import { configDotenv } from "dotenv";
+import express from "express";
+import cors from "cors";
+import { corsOptions } from "./src/config/corsOptions.js";
+import path from "path";
+import { fileURLToPath } from "url";
+configDotenv();
 const app = express();
-const PORT = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 
-app.use(cors());
+// engine init time program
+app.use(cors(corsOptions));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+//
+const filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(filename);
+app.use('/',express.static(path.join(__dirname,'public')));
+//
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-const connection = mongoose.connection;
-connection.once('open', () => {
-  console.log("MongoDB database connection established successfully");
-});
 
-// Routes will be added here
-const authRouter = require('./routes/auth');
-const attendanceRouter = require('./routes/attendance');
-const resourceRouter = require('./routes/resource');
 
-app.use('/api/resource', resourceRouter);
-app.use('/api/auth', authRouter);
-app.use('/api/attendance', attendanceRouter);
+//router import 
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port: ${PORT}`);
-});
+
+
+//router declaration 
+app.get("/", (req, res) => {
+    res.sendFile("interface.html", { root: path.join(__dirname,'public') });
+})
+
+
+app.listen(port, () => console.log(`The App is Listening on port ${port}`));
