@@ -1,6 +1,7 @@
+import connectDB from "./src/db/connect.js";
 import cookieParser from "cookie-parser";
 import { configDotenv } from "dotenv";
-import express from "express";
+import express, { Router } from "express";
 import cors from "cors";
 import { corsOptions } from "./src/config/corsOptions.js";
 import path from "path";
@@ -14,19 +15,28 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-//
+
 const filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(filename);
 app.use('/',express.static(path.join(__dirname,'public')));
-//
 
+
+//database connection
+connectDB()
 
 
 //router import 
-
-
+import supremeRouter from "./src/Router/supreme.router.js"
+import principalRouter from './src/Router/principal.router.js'
 
 //router declaration 
+app.use('/api/v1/supreme',supremeRouter)
+app.use('/api/v1/principal',principalRouter)
+//princiipal form data register 
+//principal login
+
+
+
 app.get("/", (req, res) => {
     res.sendFile("interface.html", { root: path.join(__dirname,'public') });
 })
