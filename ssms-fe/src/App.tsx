@@ -7,18 +7,21 @@ import AlertSystem from './components/AlertSystem';
 import InteractiveQuiz from './components/InteractiveQuiz';
 import AnalyticsDashboard from './components/AnalyticsDashboard';
 import Chatbot from './components/Chatbot';
+import Login from './components/auth/Login';
 
 const App: React.FC = () => {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/attendance" element={<AttendanceMarking />} />
+        <Route path='/auth/signin' element={<Login/>}/>
+        
+        {/* <Route path="/attendance" element={<AttendanceMarking />} />
         <Route path="/resources" element={<ResourceManagement />} />
         <Route path="/alerts" element={<AlertSystem />} />
         <Route path="/quiz" element={<InteractiveQuiz />} />
         <Route path="/analytics" element={<AnalyticsDashboard />} />
-        <Route path="/chatbot" element={<Chatbot />} />
+        <Route path="/chatbot" element={<Chatbot />} /> */}
       </Routes>
     </Router>
   );

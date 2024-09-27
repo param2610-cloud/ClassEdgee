@@ -27,7 +27,7 @@ const loginsupreme = async (req, res) => {
     try {
         const { userid, password } = req.body;
         if(!userid || !password){
-            return res.status(400).json({
+            return res.status(401).json({
                 message: "userid and password are required"
             })
         }
@@ -35,6 +35,11 @@ const loginsupreme = async (req, res) => {
             userid:userid,
             password:password
         })
+        if(!checkUser){
+            return res.status(401).json({
+                message: "user not found"
+            })
+        }
         return res.status(200).json({
             message: "user logged in successfully",checkUser
         })
