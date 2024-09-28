@@ -3,6 +3,8 @@ import '../../style/login.css';
 import { useNavigate } from 'react-router-dom';
 import { domain } from '@/lib/constant';
 import axios from 'axios';
+import { useAtom } from 'jotai';
+import { roleAtom } from '@/store/atom';
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
@@ -10,6 +12,7 @@ const LoginPage: React.FC = () => {
   const [password, setPassword] = useState<string>(''); 
   const [role, setRole] = useState<'principal' | 'admin' | 'student'>('student'); 
   const [message, setMessage] = useState<string>("");
+  const [,setroleAtom]=useAtom(roleAtom);
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,18 +23,34 @@ const LoginPage: React.FC = () => {
     }
 
     try {
+      let response = null;
       if (role === "admin") {
-        const response = await axios.post(`${domain}/api/v1/supreme/login`, {
+        response = await axios.post(`${domain}/api/v1/supreme/login`, {
           userid: Userid,
           password: password,
         });
 
         console.log(response);
 
-        if (response.status === 200) {
-          console.log(`Logging in as: ${response.data}`);
-          navigate("/dashboard");
+      }else if (role === "principal") {
+        response = await axios.post(`${domain}/api/v1/principal/login`, {
+          userid: Userid,
+          password: password,
+        });
+        if(response.status==200){
+          localStorage.setItem('accessToken',response.data.accessToken);
+          localStorage.setItem('refreshToken',response.data.refreshToken);
         }
+      } else {
+        response = await axios.post(`${domain}/api/v1/student/login`, {
+          userid: Userid,
+          password: password,
+        });
+      }
+      if (response.status === 200) {
+        setroleAtom(role)
+        console.log(`Logging in as: ${response.data}`);
+        navigate("/dashboard");
       }
     } catch (error: any) {
       if (error.response) {

@@ -28,10 +28,12 @@ connectDB()
 //router import 
 import supremeRouter from "./src/Router/supreme.router.js"
 import principalRouter from './src/Router/principal.router.js'
+import generalRouter from './src/Router/general.router.js'
 
 //router declaration 
 app.use('/api/v1/supreme',supremeRouter)
 app.use('/api/v1/principal',principalRouter)
+app.use('/api/v1/general',generalRouter)
 //princiipal form data register 
 //principal login
 
