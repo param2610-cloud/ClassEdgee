@@ -15,6 +15,10 @@ const principalschema = new mongoose.Schema({
     },
     refreshToken:{
         type:String
+    },
+    role:{
+        type:String,
+        default:"principal"
     }
 })
 export const principalModel = mongoose.model("principalprofile",principalschema)

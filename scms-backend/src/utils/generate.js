@@ -21,19 +21,24 @@ const generatePassword = (length) => {
 
 
 function generateTokens(userId, accessTokenExpiry, refreshTokenExpiry) {
-  const accessToken = jwt.sign(
-    { userId: userId },
-    process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: accessTokenExpiry }
-  );
-
-  const refreshToken = jwt.sign(
-    { userId: userId },
-    process.env.REFRESH_TOKEN_SECRET,
-    { expiresIn: refreshTokenExpiry }
-  );
-
-  return { accessToken, refreshToken };
+  try {
+    const accessToken = jwt.sign(
+      { userId: userId },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: accessTokenExpiry }
+    );
+  
+    const refreshToken = jwt.sign(
+      { userId: userId },
+      process.env.REFRESH_TOKEN_SECRET,
+      { expiresIn: refreshTokenExpiry }
+    );
+  
+    return { accessToken, refreshToken };
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
 }
 
 

@@ -38,7 +38,7 @@ const principallogin = async (req, res) => {
             '15m',  
             '7d'   
         );
-
+        const UpdatedUser = await principalModel.findOneAndUpdate({ userid:userid }, { refreshToken:refreshToken }, { new: true });
         // Set HTTP-only cookies
         res.cookie("refreshToken", refreshToken, { 
             httpOnly: true, 
@@ -46,7 +46,7 @@ const principallogin = async (req, res) => {
             sameSite: 'strict'
         });
         
-        res.cookie("accessToken", accessToken, { 
+        res.cookie("accessToken", accessToken, {    
             httpOnly: true, 
             secure: process.env.NODE_ENV === 'production', 
             sameSite: 'strict'
@@ -58,7 +58,9 @@ const principallogin = async (req, res) => {
             user: {
                 userid: user.userid,
                 // Include other non-sensitive user data here
-            }
+            },
+            refreshToken,
+            accessToken
         });
 
     } catch (error) {
@@ -69,4 +71,7 @@ const principallogin = async (req, res) => {
 
 
   
+
+
+
 export { principallogin }

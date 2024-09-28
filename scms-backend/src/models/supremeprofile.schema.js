@@ -9,5 +9,12 @@ const supremeschema = new mongoose.Schema({
         type:String,
         required:true
     },
+    refreshToken:{
+        type:String
+    },
+    role:{
+        type:String,
+        default:"supreme"
+    }
 })
 export const supremeModel = mongoose.model("supremeprofile",supremeschema)

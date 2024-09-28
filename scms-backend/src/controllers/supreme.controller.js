@@ -1,6 +1,6 @@
 import { principalModel } from "../models/principalprofile.schema.js";
 import { supremeModel } from "../models/supremeprofile.schema.js";
-import { generatePassword, generateUserId } from "../utils/generate.js";
+import { generatePassword, generateTokens, generateUserId } from "../utils/generate.js";
 import bcrypt from "bcrypt";
 
 const registersupreme = async (req, res) => {
@@ -12,9 +12,10 @@ const registersupreme = async (req, res) => {
             })
         }
         console.log("reached")
+        const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = await supremeModel.create({
             userid:userid,
-            password:password
+            password:hashedPassword
         })
         res.status(200).json({
             message: "user created successfully",newUser
@@ -60,7 +61,7 @@ const loginsupreme = async (req, res) => {
             '15m',  
             '7d'   
         );
-
+        const UpdatedUser = await supremeModel.findOneAndUpdate({ userid: userid }, { refreshToken: refreshToken }, { new: true });
         // Set HTTP-only cookies
         res.cookie("refreshToken", refreshToken, { 
             httpOnly: true, 
@@ -79,8 +80,11 @@ const loginsupreme = async (req, res) => {
             message: "User logged in successfully",
             user: {
                 userid: user.userid,
+                role: user.role,
                 // Include other non-sensitive user data here
-            }
+            },
+            refreshToken,
+            accessToken
         });
 
     } catch (error) {
@@ -91,33 +95,38 @@ const loginsupreme = async (req, res) => {
 const principalcreate = async (req, res) => {
     try {
         const { email } = req.body;
-        if(!email){
+        console.log(email);
+        
+        if (!email) {
             return res.status(400).json({
-                message: "email is required"
-            })
+                message: "Email is required"
+            });
         }
-        const checkUser = await principalModel.findOne({
-            email:email
-        })
-        if(checkUser){
+        
+        const checkUser = await principalModel.findOne({ email });
+        if (checkUser) {
             return res.status(400).json({
-                message: "principal already exists"
-            })
+                message: "Principal already exists"
+            });
         }
-        const userid = generateUserId(8)
-        const password = generateUserId(16)
+        
+        const userid = generateUserId(8);
+        const password = generatePassword(16);
         const newUser = await principalModel.create({
-            email:email,
+            email,
             userid,
             password: await bcrypt.hash(password, 10)
-        })
-        res.status(200).json({
-            message: "user created successfully",userid,password
-        })
-}catch(error){
-    console.log(error)
-    res.send(500, error)
-}
-}
+        });
+        
+        res.status(201).json({
+            message: "User created successfully",
+            userid,
+            password
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+};
 
 export { registersupreme,loginsupreme,principalcreate }
