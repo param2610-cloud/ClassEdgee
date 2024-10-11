@@ -419,3 +419,1083 @@
   Response Data: {"message":"Token is valid","user":{"_id":"66f85593218aa34773698ac5","userid":"8420282255","password":"$2b$10$pU9CtYLx.l0.xlIUPVoT3uAcyybi5Bn79SIk.KpS.elRvsWXbu6Gi","role":"supreme","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NDIwMjgyMjU1IiwiaWF0IjoxNzI4MjQ0OTY3LCJleHAiOjE3Mjg4NDk3Njd9.j48IoVceF7UTU9pBWR8jHk4EBNx7bD96thAYztodxu4"}}
   -------------------------
   
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:07:11.033Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NDIwMjgyMjU1IiwiaWF0IjoxNzI4MjQ0OTY3LCJleHAiOjE3MjgyNDU4Njd9.P-S8wLZIyFhUEkWWjRk5Cglu1DJ8lRsrFOnIwnxDGTE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:07:11.038Z
+  Response Data: {"message":"Invalid token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:07:11.057Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NDIwMjgyMjU1IiwiaWF0IjoxNzI4MjQ0OTY3LCJleHAiOjE3MjgyNDU4Njd9.P-S8wLZIyFhUEkWWjRk5Cglu1DJ8lRsrFOnIwnxDGTE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:07:11.059Z
+  Response Data: {"message":"Invalid token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:07:11.068Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NDIwMjgyMjU1IiwiaWF0IjoxNzI4MjQ0OTY3LCJleHAiOjE3MjgyNDU4Njd9.P-S8wLZIyFhUEkWWjRk5Cglu1DJ8lRsrFOnIwnxDGTE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:07:11.069Z
+  Response Data: {"message":"Invalid token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:07:11.073Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NDIwMjgyMjU1IiwiaWF0IjoxNzI4MjQ0OTY3LCJleHAiOjE3MjgyNDU4Njd9.P-S8wLZIyFhUEkWWjRk5Cglu1DJ8lRsrFOnIwnxDGTE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:07:11.074Z
+  Response Data: {"message":"Invalid token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:07:11.220Z
+  Method: POST
+  URL: /api/v1/general/refresh-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NDIwMjgyMjU1IiwiaWF0IjoxNzI4MjQ0OTY3LCJleHAiOjE3MjgyNDU4Njd9.P-S8wLZIyFhUEkWWjRk5Cglu1DJ8lRsrFOnIwnxDGTE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:07:11.222Z
+  Response Data: {"message":"Invalid refresh token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:07:11.225Z
+  Method: POST
+  URL: /api/v1/general/refresh-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NDIwMjgyMjU1IiwiaWF0IjoxNzI4MjQ0OTY3LCJleHAiOjE3MjgyNDU4Njd9.P-S8wLZIyFhUEkWWjRk5Cglu1DJ8lRsrFOnIwnxDGTE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:07:11.227Z
+  Response Data: {"message":"Invalid refresh token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:07:11.230Z
+  Method: POST
+  URL: /api/v1/general/refresh-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NDIwMjgyMjU1IiwiaWF0IjoxNzI4MjQ0OTY3LCJleHAiOjE3MjgyNDU4Njd9.P-S8wLZIyFhUEkWWjRk5Cglu1DJ8lRsrFOnIwnxDGTE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:07:11.234Z
+  Response Data: {"message":"Invalid refresh token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:07:11.238Z
+  Method: POST
+  URL: /api/v1/general/refresh-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NDIwMjgyMjU1IiwiaWF0IjoxNzI4MjQ0OTY3LCJleHAiOjE3MjgyNDU4Njd9.P-S8wLZIyFhUEkWWjRk5Cglu1DJ8lRsrFOnIwnxDGTE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:07:11.240Z
+  Response Data: {"message":"Invalid refresh token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:07:11.247Z
+  Method: POST
+  URL: /api/v1/general/logout
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NDIwMjgyMjU1IiwiaWF0IjoxNzI4MjQ0OTY3LCJleHAiOjE3MjgyNDU4Njd9.P-S8wLZIyFhUEkWWjRk5Cglu1DJ8lRsrFOnIwnxDGTE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:07:11.251Z
+  Response Data: {"message":"Invalid refresh token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:07:11.254Z
+  Method: POST
+  URL: /api/v1/general/logout
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NDIwMjgyMjU1IiwiaWF0IjoxNzI4MjQ0OTY3LCJleHAiOjE3MjgyNDU4Njd9.P-S8wLZIyFhUEkWWjRk5Cglu1DJ8lRsrFOnIwnxDGTE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:07:11.256Z
+  Response Data: {"message":"Invalid refresh token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:07:11.258Z
+  Method: POST
+  URL: /api/v1/general/logout
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NDIwMjgyMjU1IiwiaWF0IjoxNzI4MjQ0OTY3LCJleHAiOjE3MjgyNDU4Njd9.P-S8wLZIyFhUEkWWjRk5Cglu1DJ8lRsrFOnIwnxDGTE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:07:11.260Z
+  Response Data: {"message":"Invalid refresh token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:07:11.263Z
+  Method: POST
+  URL: /api/v1/general/logout
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NDIwMjgyMjU1IiwiaWF0IjoxNzI4MjQ0OTY3LCJleHAiOjE3MjgyNDU4Njd9.P-S8wLZIyFhUEkWWjRk5Cglu1DJ8lRsrFOnIwnxDGTE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:07:11.267Z
+  Response Data: {"message":"Invalid refresh token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:07:19.894Z
+  Method: POST
+  URL: /api/v1/principal/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"userid":"8420282255","password":"gpampa123param"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"51","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NDIwMjgyMjU1IiwiaWF0IjoxNzI4MjQ0OTY3LCJleHAiOjE3MjgyNDU4Njd9.P-S8wLZIyFhUEkWWjRk5Cglu1DJ8lRsrFOnIwnxDGTE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:07:19.946Z
+  Response Data: {"message":"Invalid credentials"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:09:32.354Z
+  Method: POST
+  URL: /api/v1/principal/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"userid":"7f543b85","password":"406ae0c3faf9ca73"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"51","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NDIwMjgyMjU1IiwiaWF0IjoxNzI4MjQ0OTY3LCJleHAiOjE3MjgyNDU4Njd9.P-S8wLZIyFhUEkWWjRk5Cglu1DJ8lRsrFOnIwnxDGTE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:09:32.391Z
+  Response Data: {"message":"Invalid credentials"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:09:50.810Z
+  Method: POST
+  URL: /api/v1/principal/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"userid":"7f543b85","password":"406ae0c3faf9ca73"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"51","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NDIwMjgyMjU1IiwiaWF0IjoxNzI4MjQ0OTY3LCJleHAiOjE3MjgyNDU4Njd9.P-S8wLZIyFhUEkWWjRk5Cglu1DJ8lRsrFOnIwnxDGTE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:09:50.845Z
+  Response Data: {"message":"Invalid credentials"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:09:58.196Z
+  Method: POST
+  URL: /api/v1/principal/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"userid":"7f543b85","password":"406ae0c3faf9ca73"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"51","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NDIwMjgyMjU1IiwiaWF0IjoxNzI4MjQ0OTY3LCJleHAiOjE3MjgyNDU4Njd9.P-S8wLZIyFhUEkWWjRk5Cglu1DJ8lRsrFOnIwnxDGTE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:09:58.232Z
+  Response Data: {"message":"Invalid credentials"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:10:29.762Z
+  Method: POST
+  URL: /api/v1/principal/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"userid":"7f543b85","password":"406ae0c3faf9ca73"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"51","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NDIwMjgyMjU1IiwiaWF0IjoxNzI4MjQ0OTY3LCJleHAiOjE3MjgyNDU4Njd9.P-S8wLZIyFhUEkWWjRk5Cglu1DJ8lRsrFOnIwnxDGTE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:10:29.796Z
+  Response Data: {"message":"Invalid credentials"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:10:34.357Z
+  Method: POST
+  URL: /api/v1/principal/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"userid":"7f543b85","password":"406ae0c3faf9ca73"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"51","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NDIwMjgyMjU1IiwiaWF0IjoxNzI4MjQ0OTY3LCJleHAiOjE3MjgyNDU4Njd9.P-S8wLZIyFhUEkWWjRk5Cglu1DJ8lRsrFOnIwnxDGTE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:10:34.392Z
+  Response Data: {"message":"Invalid credentials"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:16:19.657Z
+  Method: POST
+  URL: /api/v1/principal/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"userid":"1a1b0318","password":"principallogin"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"49","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NDIwMjgyMjU1IiwiaWF0IjoxNzI4MjQ0OTY3LCJleHAiOjE3MjgyNDU4Njd9.P-S8wLZIyFhUEkWWjRk5Cglu1DJ8lRsrFOnIwnxDGTE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:16:19.918Z
+  Response Data: {"message":"User logged in successfully","user":{"userid":"1a1b0318"},"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:16:20.111Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:16:20.219Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:16:20.270Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","if-none-match":"W/\"192-1UqWWYZNZcbpIj7wWO+5t3q34m4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:16:20.365Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:16:20.373Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","if-none-match":"W/\"192-1UqWWYZNZcbpIj7wWO+5t3q34m4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:16:20.462Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:16:20.470Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","if-none-match":"W/\"192-1UqWWYZNZcbpIj7wWO+5t3q34m4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:16:20.565Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:20:24.273Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","if-none-match":"W/\"192-1UqWWYZNZcbpIj7wWO+5t3q34m4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:20:24.360Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:20:24.403Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","if-none-match":"W/\"192-1UqWWYZNZcbpIj7wWO+5t3q34m4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:20:24.488Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:20:24.494Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","if-none-match":"W/\"192-1UqWWYZNZcbpIj7wWO+5t3q34m4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:20:24.585Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:20:24.609Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","if-none-match":"W/\"192-1UqWWYZNZcbpIj7wWO+5t3q34m4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:20:24.708Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:28:12.897Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","if-none-match":"W/\"192-1UqWWYZNZcbpIj7wWO+5t3q34m4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:28:12.993Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:28:13.589Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","if-none-match":"W/\"192-1UqWWYZNZcbpIj7wWO+5t3q34m4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:28:13.679Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:28:13.683Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","if-none-match":"W/\"192-1UqWWYZNZcbpIj7wWO+5t3q34m4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:28:13.777Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:28:13.791Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","if-none-match":"W/\"192-1UqWWYZNZcbpIj7wWO+5t3q34m4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:28:13.888Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:29:20.314Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","if-none-match":"W/\"192-1UqWWYZNZcbpIj7wWO+5t3q34m4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:29:20.403Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:29:20.413Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","if-none-match":"W/\"192-1UqWWYZNZcbpIj7wWO+5t3q34m4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:29:20.501Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:29:20.525Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","if-none-match":"W/\"192-1UqWWYZNZcbpIj7wWO+5t3q34m4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:29:20.629Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:29:20.726Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","if-none-match":"W/\"192-1UqWWYZNZcbpIj7wWO+5t3q34m4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:29:20.818Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:29:48.388Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","if-none-match":"W/\"192-1UqWWYZNZcbpIj7wWO+5t3q34m4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:29:48.473Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:29:48.479Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","if-none-match":"W/\"192-1UqWWYZNZcbpIj7wWO+5t3q34m4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:29:48.562Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:29:48.568Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","if-none-match":"W/\"192-1UqWWYZNZcbpIj7wWO+5t3q34m4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:29:48.660Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:29:48.668Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","if-none-match":"W/\"192-1UqWWYZNZcbpIj7wWO+5t3q34m4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:29:48.761Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:39:21.024Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","if-none-match":"W/\"192-1UqWWYZNZcbpIj7wWO+5t3q34m4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:39:21.026Z
+  Response Data: {"message":"Invalid token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:39:21.075Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:39:21.077Z
+  Response Data: {"message":"Invalid token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:39:21.109Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:39:21.110Z
+  Response Data: {"message":"Invalid token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:39:21.119Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:39:21.121Z
+  Response Data: {"message":"Invalid token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:39:21.089Z
+  Method: POST
+  URL: /api/v1/general/refresh-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:39:21.331Z
+  Response Data: {"message":"Access Token Refreshed Successfully","refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTE2MSwiZXhwIjoxNzI5MjgzOTYxfQ.7RvFIUikId64cGfwO5uu9k6Ydw81WT3QYJpr4dVTwT0","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTE2MSwiZXhwIjoxNzI4NjgwMDYxfQ._Xc2ZjLd7OmPPrh8HLppEbFcT0jp9E-Wi3KvSiX_bzM"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:39:21.112Z
+  Method: POST
+  URL: /api/v1/general/refresh-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:39:21.375Z
+  Response Data: {"message":"Access Token Refreshed Successfully","refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTE2MSwiZXhwIjoxNzI5MjgzOTYxfQ.7RvFIUikId64cGfwO5uu9k6Ydw81WT3QYJpr4dVTwT0","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTE2MSwiZXhwIjoxNzI4NjgwMDYxfQ._Xc2ZjLd7OmPPrh8HLppEbFcT0jp9E-Wi3KvSiX_bzM"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:39:21.125Z
+  Method: POST
+  URL: /api/v1/general/refresh-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:39:21.571Z
+  Response Data: {"message":"Access denied. Invalid Token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:39:21.136Z
+  Method: POST
+  URL: /api/v1/general/refresh-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI5MjgyNTc5fQ.uIsv0UFWKC0_dClHW1BefjnBhYKeSFWEveI4LpbZsCE; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:39:21.573Z
+  Response Data: {"message":"Access denied. Invalid Token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:39:21.366Z
+  Method: POST
+  URL: /api/v1/general/logout
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTE2MSwiZXhwIjoxNzI5MjgzOTYxfQ.7RvFIUikId64cGfwO5uu9k6Ydw81WT3QYJpr4dVTwT0; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTE2MSwiZXhwIjoxNzI4NjgwMDYxfQ._Xc2ZjLd7OmPPrh8HLppEbFcT0jp9E-Wi3KvSiX_bzM"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:39:21.593Z
+  Response Data: {"message":"Logged out successfully"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:39:21.384Z
+  Method: POST
+  URL: /api/v1/general/logout
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTE2MSwiZXhwIjoxNzI5MjgzOTYxfQ.7RvFIUikId64cGfwO5uu9k6Ydw81WT3QYJpr4dVTwT0; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTE2MSwiZXhwIjoxNzI4NjgwMDYxfQ._Xc2ZjLd7OmPPrh8HLppEbFcT0jp9E-Wi3KvSiX_bzM"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:39:21.606Z
+  Response Data: {"message":"Logged out successfully"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:39:21.585Z
+  Method: POST
+  URL: /api/v1/general/logout
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTE2MSwiZXhwIjoxNzI5MjgzOTYxfQ.7RvFIUikId64cGfwO5uu9k6Ydw81WT3QYJpr4dVTwT0; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTE2MSwiZXhwIjoxNzI4NjgwMDYxfQ._Xc2ZjLd7OmPPrh8HLppEbFcT0jp9E-Wi3KvSiX_bzM"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:39:21.679Z
+  Response Data: {"message":"Access denied. Invalid Token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:39:21.582Z
+  Method: POST
+  URL: /api/v1/general/logout
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3Nzc3OSwiZXhwIjoxNzI4Njc4Njc5fQ.a-TO0jnWTy3sX7Z11ZjaMyN0pAAAd1h_HtWBpxfWboM","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTE2MSwiZXhwIjoxNzI5MjgzOTYxfQ.7RvFIUikId64cGfwO5uu9k6Ydw81WT3QYJpr4dVTwT0; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTE2MSwiZXhwIjoxNzI4NjgwMDYxfQ._Xc2ZjLd7OmPPrh8HLppEbFcT0jp9E-Wi3KvSiX_bzM"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:39:21.681Z
+  Response Data: {"message":"Access denied. Invalid Token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:40:43.018Z
+  Method: POST
+  URL: /api/v1/principal/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"userid":"1a1b0318","password":"principallogin"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"49","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:40:43.185Z
+  Response Data: {"message":"User logged in successfully","user":{"userid":"1a1b0318"},"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:40:43.260Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:40:43.358Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:40:43.410Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","if-none-match":"W/\"192-KbNxsn/FEZy2FWuZrV8tZCVEBbA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:40:43.498Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:40:43.512Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","if-none-match":"W/\"192-KbNxsn/FEZy2FWuZrV8tZCVEBbA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:40:43.606Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:40:43.637Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","if-none-match":"W/\"192-KbNxsn/FEZy2FWuZrV8tZCVEBbA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:40:43.728Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:41:31.312Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","if-none-match":"W/\"192-KbNxsn/FEZy2FWuZrV8tZCVEBbA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:41:31.398Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:41:31.402Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","if-none-match":"W/\"192-KbNxsn/FEZy2FWuZrV8tZCVEBbA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:41:31.486Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:41:31.491Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","if-none-match":"W/\"192-KbNxsn/FEZy2FWuZrV8tZCVEBbA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:41:31.588Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:41:31.592Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","if-none-match":"W/\"192-KbNxsn/FEZy2FWuZrV8tZCVEBbA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:41:31.677Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:41:33.262Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","if-none-match":"W/\"192-KbNxsn/FEZy2FWuZrV8tZCVEBbA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:41:33.345Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:41:33.349Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","if-none-match":"W/\"192-KbNxsn/FEZy2FWuZrV8tZCVEBbA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:41:33.453Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:41:33.469Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","if-none-match":"W/\"192-KbNxsn/FEZy2FWuZrV8tZCVEBbA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:41:33.556Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:41:33.566Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","if-none-match":"W/\"192-KbNxsn/FEZy2FWuZrV8tZCVEBbA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:41:33.662Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:41:38.314Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","if-none-match":"W/\"192-KbNxsn/FEZy2FWuZrV8tZCVEBbA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:41:38.402Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:41:38.406Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","if-none-match":"W/\"192-KbNxsn/FEZy2FWuZrV8tZCVEBbA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:41:38.494Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:41:38.552Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","if-none-match":"W/\"192-KbNxsn/FEZy2FWuZrV8tZCVEBbA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:41:38.646Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:41:38.652Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","if-none-match":"W/\"192-KbNxsn/FEZy2FWuZrV8tZCVEBbA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:41:38.745Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:51:02.127Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","if-none-match":"W/\"192-KbNxsn/FEZy2FWuZrV8tZCVEBbA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:51:02.228Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:51:02.234Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","if-none-match":"W/\"192-KbNxsn/FEZy2FWuZrV8tZCVEBbA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:51:02.318Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:51:02.323Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","if-none-match":"W/\"192-KbNxsn/FEZy2FWuZrV8tZCVEBbA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:51:02.415Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-11T20:51:02.460Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI4NjgwMTQzfQ.P9YjVB8pMd1acNoK8sgAIPwzDv4vbI6OXFpECYBhKOQ","if-none-match":"W/\"192-KbNxsn/FEZy2FWuZrV8tZCVEBbA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-11T20:51:02.544Z
+  Response Data: {"message":"Token is valid","user":{"_id":"66f876cef018e54bb56dac04","userid":"1a1b0318","password":"$2a$10$v3pekFhIDKZurb77DD2DWeWQRlu2gTGWAwbwCqluKnFJ9DqLUZE5W","email":"parambrataghosh26@gmail.com","role":"principal","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYTFiMDMxOCIsImlhdCI6MTcyODY3OTI0MywiZXhwIjoxNzI5Mjg0MDQzfQ.Yytp8_3zPPD0puRr4Q6T1vsyUprxFZAruBkkxQnYmco"}}
+  -------------------------
+  
