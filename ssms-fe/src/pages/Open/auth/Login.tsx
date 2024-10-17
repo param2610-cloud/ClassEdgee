@@ -9,14 +9,14 @@ import { enhancedLocalStorage, useAuth } from '@/services/AuthContext';
 
 const LoginPage: React.FC = () => {
   const { user,isLoading} = useAuth()
+  const navigate = useNavigate();
   useEffect(() => {
     console.log("LoginPage - User:", user);
     if(!isLoading && user){
-      navigate("/p/");
+      navigate("/p/", { replace: true });
     }
-  },[user,isLoading])
-  const navigate = useNavigate();
-  const [userid, setUserid] = useState<string>('');
+  },[user,isLoading,navigate])
+  const [username, setusername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [role, setRole] = useState<'principal' | 'admin' | 'student'>('student');
   const [message, setMessage] = useState<string>('');
@@ -25,7 +25,7 @@ const LoginPage: React.FC = () => {
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!userid || !password) {
+    if (!username || !password) {
       setMessage("User ID and password are required");
       return;
     }
@@ -38,7 +38,7 @@ const LoginPage: React.FC = () => {
           : `${domain}/api/v1/student/login`;
 
       const response = await axios.post(endpoint, {
-        userid,
+        username: username,
         password
       }, {
         withCredentials: true
@@ -89,8 +89,8 @@ const LoginPage: React.FC = () => {
           <input
             type="text"
             placeholder="User ID"
-            value={userid}
-            onChange={(e) => setUserid(e.target.value)}
+            value={username}
+            onChange={(e) => setusername(e.target.value)}
             required
           />
           <input

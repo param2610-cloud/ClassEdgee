@@ -27,7 +27,7 @@ function validateToken(req, res, next) {
 
 
 router.get("/validate-token", validateToken,async (req, res) => {
-    const data = await findUserById(req.user.userId);
+    const data = await findUserById(req.user.username);
     res.status(200).json({ message: "Token is valid", user: data });
 });
 
@@ -55,7 +55,7 @@ router.post("/refresh-token", async (req, res) => {
         );
 
         
-        const user = await findUserById(decodedToken.userId);
+        const user = await findUserById(decodedToken.username);
         if (!user || user.refreshToken !== incomingRefreshToken) {
             return res
                 .status(403)
@@ -65,7 +65,7 @@ router.post("/refresh-token", async (req, res) => {
         console.log(user);
         
         const tokens = generateTokens(
-            user.userid, 
+            user.username, 
             "15m", 
             "7d"   
         );
@@ -75,7 +75,7 @@ router.post("/refresh-token", async (req, res) => {
         console.log(newaccessToken, newrefreshToken);
         
         
-        await updateUser(user.userid, { refreshToken: newrefreshToken });
+        await updateUser(user.username, { refreshToken: newrefreshToken });
 
         
         res.cookie("refreshToken", newrefreshToken, {
@@ -123,14 +123,14 @@ router.post("/logout", async (req, res) => {
             process.env.REFRESH_TOKEN_SECRET
         );
 
-        const user = await findUserById(decodedToken.userId);
+        const user = await findUserById(decodedToken.username);
         if (!user || user.refreshToken !== incomingRefreshToken) {
             return res
                 .status(403)
                 .json({ message: "Access denied. Invalid Token." });
         }
 
-        await updateUser(user.userid, { refreshToken: null });
+        await updateUser(user.username, { refreshToken: null });
 
         res.clearCookie("refreshToken");
         res.clearCookie("accessToken");

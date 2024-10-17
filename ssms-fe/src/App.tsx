@@ -15,6 +15,8 @@ import StudentLayout from './pages/Protected/student/StudentLayout';
 import Dashboard from './pages/Protected/Dashboard';
 import Idgenerate from './pages/Protected/supreme/generator/Idgenerate';
 import SupremeDashboard from './pages/Protected/supreme/dashboard/SupremeDashboard';
+import PrincipalDashboard from './pages/Protected/principal/dashboard/PrincipalDashboard';
+import CreateCoordinatorForm from './pages/Protected/principal/createCoordinator/CreateCoordinator';
 
 const App: React.FC = () => {
   return (
@@ -94,7 +96,8 @@ const StaffRoutes: React.FC = () => (
 const PrincipalRoutes: React.FC = () => (
   <PrincipalLayout>
     <Routes>
-      <Route path="/" element={<Dashboard />} />
+      <Route path="/" element={<PrincipalDashboard />} />
+      <Route path="/idgenerate" element={<CreateCoordinatorForm />} />
       {/* Add principal-specific routes here */}
     </Routes>
   </PrincipalLayout>

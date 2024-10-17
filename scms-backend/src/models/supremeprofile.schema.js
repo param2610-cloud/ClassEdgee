@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const supremeschema = new mongoose.Schema({
-    userid:{
+    username:{
         type:String,
         required:true
     },

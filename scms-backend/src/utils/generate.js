@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 
 
 // Generate a random user ID (e.g., 8 characters long, alphanumeric)
-const generateUserId = (length) => {
+const generateusername = (length) => {
   return crypto.randomBytes(length).toString('hex').slice(0, length);
 };
 
@@ -20,16 +20,16 @@ const generatePassword = (length) => {
 
 
 
-function generateTokens(userId, accessTokenExpiry, refreshTokenExpiry) {
+function generateTokens(username, accessTokenExpiry, refreshTokenExpiry) {
   try {
     const accessToken = jwt.sign(
-      { userId: userId },
+      { username: username },
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: accessTokenExpiry }
     );
   
     const refreshToken = jwt.sign(
-      { userId: userId },
+      { username: username },
       process.env.REFRESH_TOKEN_SECRET,
       { expiresIn: refreshTokenExpiry }
     );
@@ -42,4 +42,4 @@ function generateTokens(userId, accessTokenExpiry, refreshTokenExpiry) {
 }
 
 
-export { generateUserId, generatePassword,generateTokens };
+export { generateusername, generatePassword,generateTokens };

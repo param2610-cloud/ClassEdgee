@@ -3,7 +3,7 @@ import axios, { AxiosError } from "axios";
 import React, { createContext, useState, useContext, useEffect } from "react";
 
 interface User {
-    userid: string;
+    username: string;
     role: 'supreme' | 'staff' | 'principal' | 'faculty' | 'student';
 }
 
@@ -39,12 +39,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     const [isLoading, setIsLoading] = useState(true);
 
     const initializeAuth = async () => {
-        const token = enhancedLocalStorage.getItem("accessToken") || '';
+        const token = enhancedLocalStorage.getItem("accessToken");
         if (token) {
             console.log("AuthProvider - Token found, validating...");
             await validateToken(token);
         } else {
-            console.log("AuthProvider - No token found", token);
+            console.log("AuthProvider - No token found");
             setIsLoading(false);
         }
     };
@@ -52,7 +52,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     useEffect(() => {
         initializeAuth();
 
-        // Set up event listener for revalidation
         const handleRevalidate = () => {
             console.log("AuthProvider - Revalidation triggered");
             initializeAuth();
@@ -60,19 +59,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
         window.addEventListener(AUTH_REVALIDATE_EVENT, handleRevalidate);
 
-        // Set up axios interceptor to include the token in all requests
-        const interceptor = axios.interceptors.request.use((config) => {
-            const token = enhancedLocalStorage.getItem("accessToken");
-            if (token) {
-                config.headers["Authorization"] = `Bearer ${token}`;
-            }
-            return config;
-        });
-
-        // Cleanup function
         return () => {
             window.removeEventListener(AUTH_REVALIDATE_EVENT, handleRevalidate);
-            axios.interceptors.request.eject(interceptor);
         };
     }, []);
 

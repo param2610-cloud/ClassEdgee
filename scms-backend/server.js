@@ -30,6 +30,7 @@ import supremeRouter from "./src/Router/supreme.router.js"
 import principalRouter from './src/Router/principal.router.js'
 import generalRouter from './src/Router/general.router.js'
 import logger from "./src/middlewares/logger.js";
+import coordinatorRouter from './src/Router/coordinator.router.js'
 
 //print route
 app.use((req, res, next) => {
@@ -43,6 +44,7 @@ app.use(logger)
 app.use('/api/v1/supreme',supremeRouter)
 app.use('/api/v1/principal',principalRouter)
 app.use('/api/v1/general',generalRouter)
+app.use("/api/v1/coordinator",coordinatorRouter)
 //princiipal form data register 
 //principal login
 

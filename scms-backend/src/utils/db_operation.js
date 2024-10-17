@@ -4,13 +4,13 @@ import { supremeModel } from "../models/supremeprofile.schema.js";
 
 const findUserById = async (id) => {
     
-    let user = await supremeModel.findOne({ userid: id });
+    let user = await supremeModel.findOne({ username: id });
     if (user) {
         return user;  
     }
     
     
-    user = await principalModel.findOne({ userid: id });
+    user = await principalModel.findOne({ username: id });
     if (user) {
         return user;  
     }
