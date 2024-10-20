@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { coordinatorModel } from "../models/coordinatorprofile.schema.js";
-import { principalModel } from "../models/principalprofile.schema.js";
+import { coordinatorModel } from "../models/principalprofile.schema.js";
 import bcrypt from "bcrypt"
 const createCoordinator = async (req, res) => {
     try {
@@ -58,7 +58,7 @@ const createCoordinator = async (req, res) => {
         }
 
         // Verify if the reportingTo principal exists
-        const reportingPrincipal = await principalModel.findById(
+        const reportingPrincipal = await coordinatorModel.findById(
             coordinatorData.reportingTo
         );
         if (!reportingPrincipal) {
@@ -123,5 +123,77 @@ const createCoordinator = async (req, res) => {
     }
 };
 
+const loginCoordinator = async (req, res) => {
+    try {
+        const { username, password } = req.body;
 
-export { createCoordinator }
+        // Input validation
+        if (!username || !password) {
+            return res.status(400).json({
+                message: "username and password are required",
+            });
+        }
+
+        // Find user by username only
+        const user = await coordinatorModel.findOne({ username: username });
+
+        if (!user) {
+            // Use a generic message to prevent user enumeration
+            return res.status(401).json({
+                message: "Invalid credentials",
+            });
+        }
+
+        // Compare password using bcrypt
+        const isMatch = await bcrypt.compare(password, user.password);
+
+        if (!isMatch) {
+            return res.status(401).json({
+                message: "Invalid credentials",
+            });
+        }
+
+        // Generate tokens
+        const { accessToken, refreshToken } = generateTokens(
+            username,
+            "15m",
+            "7d"
+        );
+        const UpdatedUser = await coordinatorModel.findOneAndUpdate(
+            { username: username },
+            { refreshToken: refreshToken },
+            { new: true }
+        );
+        // Set HTTP-only cookies
+        res.cookie("refreshToken", refreshToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict",
+        });
+
+        res.cookie("accessToken", accessToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict",
+        });
+
+        // Send response
+        return res.status(200).json({
+            message: "User logged in successfully",
+            user: {
+                username: user.username,
+                role: user.role,
+                // Include other non-sensitive user data here
+            },
+            refreshToken,
+            accessToken,
+        });
+    } catch (error) {
+        console.error("Login error:", error);
+        res.status(500).json({ message: "An error occurred during login" });
+    }
+
+}
+
+
+export { createCoordinator,loginCoordinator }

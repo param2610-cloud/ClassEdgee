@@ -1,4 +1,5 @@
 import { principalModel } from "../models/principalprofile.schema.js";
+import { studentModel } from "../models/studentprofile.schema.js";
 import { supremeModel } from "../models/supremeprofile.schema.js";
 
 
@@ -15,6 +16,12 @@ const findUserById = async (id) => {
         return user;  
     }
 
+    user = await studentModel.findOne({ username: id});
+    if(user) {
+        return user;
+    }
+
+    
     return null;  
 };
 
