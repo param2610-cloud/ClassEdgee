@@ -18,7 +18,7 @@ const LoginPage: React.FC = () => {
   },[user,isLoading,navigate])
   const [username, setusername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [role, setRole] = useState<'principal' | 'admin' | 'student'>('student');
+  const [role, setRole] = useState<'principal' | 'admin' | 'student'| 'co-ordinator'>('student');
   const [message, setMessage] = useState<string>('');
   const [, setRoleAtom] = useAtom(roleAtom);
 
@@ -35,7 +35,7 @@ const LoginPage: React.FC = () => {
         ? `${domain}/api/v1/supreme/login`
         : role === 'principal'
           ? `${domain}/api/v1/principal/login`
-          : `${domain}/api/v1/student/login`;
+          : role === 'co-ordinator' ? `${domain}/api/v1/coordinator/login`:`${domain}/api/v1/student/login`;
 
       const response = await axios.post(endpoint, {
         username: username,
@@ -79,16 +79,17 @@ const LoginPage: React.FC = () => {
         <form className="login-form" onSubmit={handleLogin}>
           <select 
             value={role} 
-            onChange={(e) => setRole(e.target.value as 'principal' | 'admin' | 'student')} 
+            onChange={(e) => setRole(e.target.value as 'principal' | 'admin' | 'student'| 'co-ordinator')} 
             required
           >
             <option value="principal">Principal</option>
             <option value="admin">Admin</option>
             <option value="student">Student</option>
+            <option value="co-ordinator">Co-ordinator</option>
           </select>
           <input
             type="text"
-            placeholder="User ID"
+            placeholder="Username"
             value={username}
             onChange={(e) => setusername(e.target.value)}
             required

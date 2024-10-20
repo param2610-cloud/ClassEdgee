@@ -329,3 +329,363 @@
   Response Data: {"message":"Coordinator created successfully","coordinatorId":"67117ed528150d1ae68ef7af"}
   -------------------------
   
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T03:14:52.935Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T03:14:52.940Z
+  Response Data: {"message":"Invalid token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T03:14:52.958Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T03:14:52.960Z
+  Response Data: {"message":"Invalid token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T03:14:53.226Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T03:14:53.228Z
+  Response Data: {"message":"Invalid token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T03:14:53.278Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T03:14:53.279Z
+  Response Data: {"message":"Invalid token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T03:14:53.132Z
+  Method: POST
+  URL: /api/v1/general/refresh-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T03:14:53.515Z
+  Response Data: {"message":"Access Token Refreshed Successfully","refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3Mjk5OTg4OTN9.5cHea2e3vJTb-f6WvAfYIHDHarrZD8L80FDa02K2NBw","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3MjkzOTQ5OTN9.un1UZX0QjPEjcSuMT9uxF88KjbRn6PZcXxSY0lOX5-k"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T03:14:53.152Z
+  Method: POST
+  URL: /api/v1/general/refresh-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T03:14:53.525Z
+  Response Data: {"message":"Access Token Refreshed Successfully","refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3Mjk5OTg4OTN9.5cHea2e3vJTb-f6WvAfYIHDHarrZD8L80FDa02K2NBw","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3MjkzOTQ5OTN9.un1UZX0QjPEjcSuMT9uxF88KjbRn6PZcXxSY0lOX5-k"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T03:14:53.268Z
+  Method: POST
+  URL: /api/v1/general/refresh-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T03:14:53.570Z
+  Response Data: {"message":"Access Token Refreshed Successfully","refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3Mjk5OTg4OTN9.5cHea2e3vJTb-f6WvAfYIHDHarrZD8L80FDa02K2NBw","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3MjkzOTQ5OTN9.un1UZX0QjPEjcSuMT9uxF88KjbRn6PZcXxSY0lOX5-k"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T03:14:53.289Z
+  Method: POST
+  URL: /api/v1/general/refresh-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T03:14:53.748Z
+  Response Data: {"message":"Access denied. Invalid Token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T03:14:53.544Z
+  Method: POST
+  URL: /api/v1/general/logout
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3Mjk5OTg4OTN9.5cHea2e3vJTb-f6WvAfYIHDHarrZD8L80FDa02K2NBw; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3MjkzOTQ5OTN9.un1UZX0QjPEjcSuMT9uxF88KjbRn6PZcXxSY0lOX5-k"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T03:14:53.760Z
+  Response Data: {"message":"Logged out successfully"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T03:14:53.548Z
+  Method: POST
+  URL: /api/v1/general/logout
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3Mjk5OTg4OTN9.5cHea2e3vJTb-f6WvAfYIHDHarrZD8L80FDa02K2NBw; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3MjkzOTQ5OTN9.un1UZX0QjPEjcSuMT9uxF88KjbRn6PZcXxSY0lOX5-k"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T03:14:53.764Z
+  Response Data: {"message":"Logged out successfully"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T03:14:53.581Z
+  Method: POST
+  URL: /api/v1/general/logout
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3Mjk5OTg4OTN9.5cHea2e3vJTb-f6WvAfYIHDHarrZD8L80FDa02K2NBw; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3MjkzOTQ5OTN9.un1UZX0QjPEjcSuMT9uxF88KjbRn6PZcXxSY0lOX5-k"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T03:14:53.788Z
+  Response Data: {"message":"Logged out successfully"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T03:14:53.754Z
+  Method: POST
+  URL: /api/v1/general/logout
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3Mjk5OTg4OTN9.5cHea2e3vJTb-f6WvAfYIHDHarrZD8L80FDa02K2NBw; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3MjkzOTQ5OTN9.un1UZX0QjPEjcSuMT9uxF88KjbRn6PZcXxSY0lOX5-k"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T03:14:53.838Z
+  Response Data: {"message":"Access denied. Invalid Token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T03:16:00.573Z
+  Method: POST
+  URL: /api/v1/principal/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"username":"DSC/P/01","password":"classedgee"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"47","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T03:16:00.613Z
+  Response Data: {"message":"Invalid credentials"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T03:18:04.623Z
+  Method: POST
+  URL: /api/v1/principal/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"username":"abhayroy","password":"classedgee"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"47","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T03:18:04.786Z
+  Response Data: {"message":"Invalid credentials"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T03:18:06.371Z
+  Method: POST
+  URL: /api/v1/principal/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"username":"abhayroy","password":"classedgee"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"47","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T03:18:06.486Z
+  Response Data: {"message":"Invalid credentials"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T03:18:30.447Z
+  Method: POST
+  URL: /api/v1/principal/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"username":"abhayroy","password":"classedge"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"46","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T03:18:30.566Z
+  Response Data: {"message":"Invalid credentials"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T03:18:31.941Z
+  Method: POST
+  URL: /api/v1/principal/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"username":"abhayroy","password":"classedge"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"46","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T03:18:32.064Z
+  Response Data: {"message":"Invalid credentials"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T03:18:40.524Z
+  Method: POST
+  URL: /api/v1/principal/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"username":"abhayroy","password":"classedgee"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"47","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T03:18:40.643Z
+  Response Data: {"message":"Invalid credentials"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T03:18:55.742Z
+  Method: POST
+  URL: /api/v1/principal/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"username":"abhayroy","password":"DSC/p/01"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"45","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T03:18:55.860Z
+  Response Data: {"message":"Invalid credentials"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T03:19:43.981Z
+  Method: POST
+  URL: /api/v1/principal/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"username":"abhayroy","password":"dsec@501"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"45","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T03:19:44.165Z
+  Response Data: {"message":"User logged in successfully","user":{"username":"abhayroy","role":"principal"},"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3Mjk5OTkxODR9.7PkyWsbVlLOZ1ItGMXs0ajN6Uc7FkbJCkXLUxuxjV-o","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3MjkzOTUyODR9.t8ZNdTZkwzGS504zmAtCL0Lpp_xJn72CZrx65N1-ilU"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T03:19:44.217Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3MjkzOTUyODR9.t8ZNdTZkwzGS504zmAtCL0Lpp_xJn72CZrx65N1-ilU","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3Mjk5OTkxODR9.7PkyWsbVlLOZ1ItGMXs0ajN6Uc7FkbJCkXLUxuxjV-o; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3MjkzOTUyODR9.t8ZNdTZkwzGS504zmAtCL0Lpp_xJn72CZrx65N1-ilU"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T03:19:44.301Z
+  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"8295626702","email":"roy.abhay98@gmail.com"},"_id":"671166048c263d74319abd2b","fullName":"Avay Roy","dateOfBirth":"1989-03-20T00:00:00.000Z","gender":"male","address":"8no. Deshbondhu colony ,Howrah","employeeId":"DSC/P/01","educationalQualifications":"PhD in Sociology","yearsOfExperience":3,"previousPositions":[],"dateOfJoining":"2023-03-02T00:00:00.000Z","username":"abhayroy","password":"$2b$10$T/OsHCmMsaJQDZzRNxA/LO66XmXjXWC/wid3NQgVx26JTE3Z3tGuC","accessLevel":"principal","accountCreationDate":"2024-10-17T19:31:16.953Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3Mjk5OTkxODR9.7PkyWsbVlLOZ1ItGMXs0ajN6Uc7FkbJCkXLUxuxjV-o","role":"principal"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T03:19:44.307Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3MjkzOTUyODR9.t8ZNdTZkwzGS504zmAtCL0Lpp_xJn72CZrx65N1-ilU","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3Mjk5OTkxODR9.7PkyWsbVlLOZ1ItGMXs0ajN6Uc7FkbJCkXLUxuxjV-o; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3MjkzOTUyODR9.t8ZNdTZkwzGS504zmAtCL0Lpp_xJn72CZrx65N1-ilU","if-none-match":"W/\"319-XQhln5at9h3ARlIq6VSBctPmbs4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T03:19:44.389Z
+  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"8295626702","email":"roy.abhay98@gmail.com"},"_id":"671166048c263d74319abd2b","fullName":"Avay Roy","dateOfBirth":"1989-03-20T00:00:00.000Z","gender":"male","address":"8no. Deshbondhu colony ,Howrah","employeeId":"DSC/P/01","educationalQualifications":"PhD in Sociology","yearsOfExperience":3,"previousPositions":[],"dateOfJoining":"2023-03-02T00:00:00.000Z","username":"abhayroy","password":"$2b$10$T/OsHCmMsaJQDZzRNxA/LO66XmXjXWC/wid3NQgVx26JTE3Z3tGuC","accessLevel":"principal","accountCreationDate":"2024-10-17T19:31:16.953Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3Mjk5OTkxODR9.7PkyWsbVlLOZ1ItGMXs0ajN6Uc7FkbJCkXLUxuxjV-o","role":"principal"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T03:19:44.398Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3MjkzOTUyODR9.t8ZNdTZkwzGS504zmAtCL0Lpp_xJn72CZrx65N1-ilU","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3Mjk5OTkxODR9.7PkyWsbVlLOZ1ItGMXs0ajN6Uc7FkbJCkXLUxuxjV-o; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3MjkzOTUyODR9.t8ZNdTZkwzGS504zmAtCL0Lpp_xJn72CZrx65N1-ilU","if-none-match":"W/\"319-XQhln5at9h3ARlIq6VSBctPmbs4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T03:19:44.478Z
+  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"8295626702","email":"roy.abhay98@gmail.com"},"_id":"671166048c263d74319abd2b","fullName":"Avay Roy","dateOfBirth":"1989-03-20T00:00:00.000Z","gender":"male","address":"8no. Deshbondhu colony ,Howrah","employeeId":"DSC/P/01","educationalQualifications":"PhD in Sociology","yearsOfExperience":3,"previousPositions":[],"dateOfJoining":"2023-03-02T00:00:00.000Z","username":"abhayroy","password":"$2b$10$T/OsHCmMsaJQDZzRNxA/LO66XmXjXWC/wid3NQgVx26JTE3Z3tGuC","accessLevel":"principal","accountCreationDate":"2024-10-17T19:31:16.953Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3Mjk5OTkxODR9.7PkyWsbVlLOZ1ItGMXs0ajN6Uc7FkbJCkXLUxuxjV-o","role":"principal"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T03:19:44.484Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3MjkzOTUyODR9.t8ZNdTZkwzGS504zmAtCL0Lpp_xJn72CZrx65N1-ilU","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3Mjk5OTkxODR9.7PkyWsbVlLOZ1ItGMXs0ajN6Uc7FkbJCkXLUxuxjV-o; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3MjkzOTUyODR9.t8ZNdTZkwzGS504zmAtCL0Lpp_xJn72CZrx65N1-ilU","if-none-match":"W/\"319-XQhln5at9h3ARlIq6VSBctPmbs4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T03:19:44.563Z
+  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"8295626702","email":"roy.abhay98@gmail.com"},"_id":"671166048c263d74319abd2b","fullName":"Avay Roy","dateOfBirth":"1989-03-20T00:00:00.000Z","gender":"male","address":"8no. Deshbondhu colony ,Howrah","employeeId":"DSC/P/01","educationalQualifications":"PhD in Sociology","yearsOfExperience":3,"previousPositions":[],"dateOfJoining":"2023-03-02T00:00:00.000Z","username":"abhayroy","password":"$2b$10$T/OsHCmMsaJQDZzRNxA/LO66XmXjXWC/wid3NQgVx26JTE3Z3tGuC","accessLevel":"principal","accountCreationDate":"2024-10-17T19:31:16.953Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3Mjk5OTkxODR9.7PkyWsbVlLOZ1ItGMXs0ajN6Uc7FkbJCkXLUxuxjV-o","role":"principal"}}
+  -------------------------
+  
