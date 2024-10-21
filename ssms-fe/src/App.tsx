@@ -17,6 +17,9 @@ import Idgenerate from './pages/Protected/supreme/generator/Idgenerate';
 import SupremeDashboard from './pages/Protected/supreme/dashboard/SupremeDashboard';
 import PrincipalDashboard from './pages/Protected/principal/dashboard/PrincipalDashboard';
 import CreateCoordinatorForm from './pages/Protected/principal/createCoordinator/CreateCoordinator';
+import CoordinatorLayout from './pages/Protected/coordinator/CoordinatorLayout';
+import CoordinatorDashboard from './pages/Protected/coordinator/dashaboard/CoordinatorDashboard';
+import CreateStudent from './pages/Protected/coordinator/student/create/CreateStudent';
 
 const App: React.FC = () => {
   return (
@@ -68,6 +71,8 @@ const ProtectedRoute: React.FC = () => {
       return <FacultyRoutes />;
     case 'student':
       return <StudentRoutes />;
+    case 'coordinator':
+      return <CoordinatorRoutes />;
     default:
       console.log("ProtectedRoute - Invalid role:", user.role);
       return <Navigate to="/auth/signin" replace />;
@@ -119,6 +124,15 @@ const StudentRoutes: React.FC = () => (
       {/* Add student-specific routes here */}
     </Routes>
   </StudentLayout>
+);
+const CoordinatorRoutes: React.FC = () => (
+  <CoordinatorLayout>
+    <Routes>
+      <Route path="/" element={<CoordinatorDashboard />} />
+      <Route path="/student" element={<CoordinatorDashboard />} />
+      <Route path="/student/create" element={<CreateStudent />} />
+    </Routes>
+  </CoordinatorLayout>
 );
 
 export default App;

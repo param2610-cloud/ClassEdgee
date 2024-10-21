@@ -1,7 +1,5 @@
 import e from "express";
-//import { createStudent, loginStudent } from "../controllers/student.controller";
-
-import { createStudent, loginStudent } from "../controllers/student.controller.js";
+import { createStudent, loginStudent } from "../controllers/student.controller";
 const router = e.Router();
 router.post("/createstudent",createStudent);
 router.post("/studentlogin",loginStudent);

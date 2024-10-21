@@ -1,692 +1,272 @@
 
   --- Incoming Request ---
-  Timestamp: 2024-10-17T20:56:29.268Z
+  Timestamp: 2024-10-21T10:39:40.840Z
+  Method: POST
+  URL: /api/v1/coordinator/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"username":"rajesh.kumar","password":"classedgee"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"51","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE1OSwiZXhwIjoxNzMwMTExOTU5fQ.EoE1hXpDZUft4G5VYDR8ZgI4W_YvZpageF0Vq8Coob4; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE1OSwiZXhwIjoxNzI5NTA4MDU5fQ.LVMoK9et4T7TxQrhSZgueNux50aE5ak9baYMY7EcKcI"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-21T10:39:41.005Z
+  Response Data: {"message":"User logged in successfully","user":{"username":"rajesh.kumar","role":"coordinator"},"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-21T10:39:41.056Z
   Method: GET
   URL: /api/v1/general/validate-token
   Query Params: {}
   URL Params: {}
   Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk3NjQ0LCJleHAiOjE3MjkxOTg1NDR9.v--8mD2V5fRCVn_7Qg0ZOLG6UnmVBuBNkatxD5bwTJs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk3NjQ0LCJleHAiOjE3Mjk4MDI0NDR9.o5mhnEt1xmAEhsS-7G0z-_fijG6Mg4LyZ55QBIjl07s; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk3NjQ0LCJleHAiOjE3MjkxOTg1NDR9.v--8mD2V5fRCVn_7Qg0ZOLG6UnmVBuBNkatxD5bwTJs","if-none-match":"W/\"319-1rNfquNQ9B5HinHeNxknDeIVcWA\""}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs","if-none-match":"W/\"373-N+NSQbo3bY9wL54ILnbhHSncRQo\""}
   -------------------------
   
   --- Outgoing Response ---
-  Timestamp: 2024-10-17T20:56:29.275Z
-  Response Data: {"message":"Invalid token."}
+  Timestamp: 2024-10-21T10:39:41.221Z
+  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"9876543210","email":"rajesh.kumar@example.com"},"_id":"67117ed528150d1ae68ef7af","fullName":"Rajesh Kumar","dateOfBirth":"1985-05-14T18:30:00.000Z","gender":"male","address":"12, MG Road, Bengaluru, Karnataka","employeeId":"DSC/C/01","educationalQualifications":"Bachelor of Engineering","yearsOfExperience":9,"previousPositions":[],"dateOfJoining":"2020-10-05T18:30:00.000Z","department":"IT","username":"rajesh.kumar","password":"$2a$10$KFpyvbU4Kj/wFN6C8l4VYeXHazCx47fVIqfC/7llpX/5H8LCfuNQ.","accessLevel":"coordinator","reportingTo":"671166048c263d74319abd2b","role":"coordinator","accountCreationDate":"2024-10-17T21:17:09.419Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q"}}
   -------------------------
   
   --- Incoming Request ---
-  Timestamp: 2024-10-17T20:56:29.282Z
+  Timestamp: 2024-10-21T10:39:41.437Z
   Method: GET
   URL: /api/v1/general/validate-token
   Query Params: {}
   URL Params: {}
   Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk3NjQ0LCJleHAiOjE3MjkxOTg1NDR9.v--8mD2V5fRCVn_7Qg0ZOLG6UnmVBuBNkatxD5bwTJs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk3NjQ0LCJleHAiOjE3Mjk4MDI0NDR9.o5mhnEt1xmAEhsS-7G0z-_fijG6Mg4LyZ55QBIjl07s; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk3NjQ0LCJleHAiOjE3MjkxOTg1NDR9.v--8mD2V5fRCVn_7Qg0ZOLG6UnmVBuBNkatxD5bwTJs"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs","if-none-match":"W/\"373-ARz3z1RYyL3ywaJ0aeuZtb8YXBw\""}
   -------------------------
   
   --- Outgoing Response ---
-  Timestamp: 2024-10-17T20:56:29.284Z
-  Response Data: {"message":"Invalid token."}
+  Timestamp: 2024-10-21T10:39:41.637Z
+  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"9876543210","email":"rajesh.kumar@example.com"},"_id":"67117ed528150d1ae68ef7af","fullName":"Rajesh Kumar","dateOfBirth":"1985-05-14T18:30:00.000Z","gender":"male","address":"12, MG Road, Bengaluru, Karnataka","employeeId":"DSC/C/01","educationalQualifications":"Bachelor of Engineering","yearsOfExperience":9,"previousPositions":[],"dateOfJoining":"2020-10-05T18:30:00.000Z","department":"IT","username":"rajesh.kumar","password":"$2a$10$KFpyvbU4Kj/wFN6C8l4VYeXHazCx47fVIqfC/7llpX/5H8LCfuNQ.","accessLevel":"coordinator","reportingTo":"671166048c263d74319abd2b","role":"coordinator","accountCreationDate":"2024-10-17T21:17:09.419Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q"}}
   -------------------------
   
   --- Incoming Request ---
-  Timestamp: 2024-10-17T20:56:29.295Z
+  Timestamp: 2024-10-21T10:39:41.642Z
   Method: GET
   URL: /api/v1/general/validate-token
   Query Params: {}
   URL Params: {}
   Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk3NjQ0LCJleHAiOjE3MjkxOTg1NDR9.v--8mD2V5fRCVn_7Qg0ZOLG6UnmVBuBNkatxD5bwTJs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk3NjQ0LCJleHAiOjE3Mjk4MDI0NDR9.o5mhnEt1xmAEhsS-7G0z-_fijG6Mg4LyZ55QBIjl07s; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk3NjQ0LCJleHAiOjE3MjkxOTg1NDR9.v--8mD2V5fRCVn_7Qg0ZOLG6UnmVBuBNkatxD5bwTJs"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs","if-none-match":"W/\"373-ARz3z1RYyL3ywaJ0aeuZtb8YXBw\""}
   -------------------------
   
   --- Outgoing Response ---
-  Timestamp: 2024-10-17T20:56:29.297Z
-  Response Data: {"message":"Invalid token."}
+  Timestamp: 2024-10-21T10:39:41.804Z
+  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"9876543210","email":"rajesh.kumar@example.com"},"_id":"67117ed528150d1ae68ef7af","fullName":"Rajesh Kumar","dateOfBirth":"1985-05-14T18:30:00.000Z","gender":"male","address":"12, MG Road, Bengaluru, Karnataka","employeeId":"DSC/C/01","educationalQualifications":"Bachelor of Engineering","yearsOfExperience":9,"previousPositions":[],"dateOfJoining":"2020-10-05T18:30:00.000Z","department":"IT","username":"rajesh.kumar","password":"$2a$10$KFpyvbU4Kj/wFN6C8l4VYeXHazCx47fVIqfC/7llpX/5H8LCfuNQ.","accessLevel":"coordinator","reportingTo":"671166048c263d74319abd2b","role":"coordinator","accountCreationDate":"2024-10-17T21:17:09.419Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q"}}
   -------------------------
   
   --- Incoming Request ---
-  Timestamp: 2024-10-17T20:56:29.352Z
+  Timestamp: 2024-10-21T10:39:41.808Z
   Method: GET
   URL: /api/v1/general/validate-token
   Query Params: {}
   URL Params: {}
   Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk3NjQ0LCJleHAiOjE3MjkxOTg1NDR9.v--8mD2V5fRCVn_7Qg0ZOLG6UnmVBuBNkatxD5bwTJs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk3NjQ0LCJleHAiOjE3Mjk4MDI0NDR9.o5mhnEt1xmAEhsS-7G0z-_fijG6Mg4LyZ55QBIjl07s; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk3NjQ0LCJleHAiOjE3MjkxOTg1NDR9.v--8mD2V5fRCVn_7Qg0ZOLG6UnmVBuBNkatxD5bwTJs"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs","if-none-match":"W/\"373-ARz3z1RYyL3ywaJ0aeuZtb8YXBw\""}
   -------------------------
   
   --- Outgoing Response ---
-  Timestamp: 2024-10-17T20:56:29.355Z
-  Response Data: {"message":"Invalid token."}
+  Timestamp: 2024-10-21T10:39:41.972Z
+  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"9876543210","email":"rajesh.kumar@example.com"},"_id":"67117ed528150d1ae68ef7af","fullName":"Rajesh Kumar","dateOfBirth":"1985-05-14T18:30:00.000Z","gender":"male","address":"12, MG Road, Bengaluru, Karnataka","employeeId":"DSC/C/01","educationalQualifications":"Bachelor of Engineering","yearsOfExperience":9,"previousPositions":[],"dateOfJoining":"2020-10-05T18:30:00.000Z","department":"IT","username":"rajesh.kumar","password":"$2a$10$KFpyvbU4Kj/wFN6C8l4VYeXHazCx47fVIqfC/7llpX/5H8LCfuNQ.","accessLevel":"coordinator","reportingTo":"671166048c263d74319abd2b","role":"coordinator","accountCreationDate":"2024-10-17T21:17:09.419Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q"}}
   -------------------------
   
   --- Incoming Request ---
-  Timestamp: 2024-10-17T20:56:29.327Z
-  Method: POST
-  URL: /api/v1/general/refresh-token
-  Query Params: {}
-  URL Params: {}
-  Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk3NjQ0LCJleHAiOjE3Mjk4MDI0NDR9.o5mhnEt1xmAEhsS-7G0z-_fijG6Mg4LyZ55QBIjl07s","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk3NjQ0LCJleHAiOjE3Mjk4MDI0NDR9.o5mhnEt1xmAEhsS-7G0z-_fijG6Mg4LyZ55QBIjl07s; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk3NjQ0LCJleHAiOjE3MjkxOTg1NDR9.v--8mD2V5fRCVn_7Qg0ZOLG6UnmVBuBNkatxD5bwTJs"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-17T20:56:29.550Z
-  Response Data: {"message":"Access Token Refreshed Successfully","refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NTg5LCJleHAiOjE3Mjk4MDMzODl9.Xb0ILAqfeysw2CeIRcklfZKJubun9z1vFFGapyyohTg","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NTg5LCJleHAiOjE3MjkxOTk0ODl9.omkbfLP0Wkl47Ay0vgR6WxSg5ldEN4A889264-KAzb4"}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-17T20:56:29.343Z
-  Method: POST
-  URL: /api/v1/general/refresh-token
-  Query Params: {}
-  URL Params: {}
-  Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk3NjQ0LCJleHAiOjE3Mjk4MDI0NDR9.o5mhnEt1xmAEhsS-7G0z-_fijG6Mg4LyZ55QBIjl07s","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk3NjQ0LCJleHAiOjE3Mjk4MDI0NDR9.o5mhnEt1xmAEhsS-7G0z-_fijG6Mg4LyZ55QBIjl07s; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk3NjQ0LCJleHAiOjE3MjkxOTg1NDR9.v--8mD2V5fRCVn_7Qg0ZOLG6UnmVBuBNkatxD5bwTJs"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-17T20:56:29.568Z
-  Response Data: {"message":"Access Token Refreshed Successfully","refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NTg5LCJleHAiOjE3Mjk4MDMzODl9.Xb0ILAqfeysw2CeIRcklfZKJubun9z1vFFGapyyohTg","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NTg5LCJleHAiOjE3MjkxOTk0ODl9.omkbfLP0Wkl47Ay0vgR6WxSg5ldEN4A889264-KAzb4"}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-17T20:56:29.349Z
-  Method: POST
-  URL: /api/v1/general/refresh-token
-  Query Params: {}
-  URL Params: {}
-  Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk3NjQ0LCJleHAiOjE3Mjk4MDI0NDR9.o5mhnEt1xmAEhsS-7G0z-_fijG6Mg4LyZ55QBIjl07s","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk3NjQ0LCJleHAiOjE3Mjk4MDI0NDR9.o5mhnEt1xmAEhsS-7G0z-_fijG6Mg4LyZ55QBIjl07s; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk3NjQ0LCJleHAiOjE3MjkxOTg1NDR9.v--8mD2V5fRCVn_7Qg0ZOLG6UnmVBuBNkatxD5bwTJs"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-17T20:56:29.583Z
-  Response Data: {"message":"Access Token Refreshed Successfully","refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NTg5LCJleHAiOjE3Mjk4MDMzODl9.Xb0ILAqfeysw2CeIRcklfZKJubun9z1vFFGapyyohTg","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NTg5LCJleHAiOjE3MjkxOTk0ODl9.omkbfLP0Wkl47Ay0vgR6WxSg5ldEN4A889264-KAzb4"}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-17T20:56:29.365Z
-  Method: POST
-  URL: /api/v1/general/refresh-token
-  Query Params: {}
-  URL Params: {}
-  Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk3NjQ0LCJleHAiOjE3Mjk4MDI0NDR9.o5mhnEt1xmAEhsS-7G0z-_fijG6Mg4LyZ55QBIjl07s","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk3NjQ0LCJleHAiOjE3Mjk4MDI0NDR9.o5mhnEt1xmAEhsS-7G0z-_fijG6Mg4LyZ55QBIjl07s; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk3NjQ0LCJleHAiOjE3MjkxOTg1NDR9.v--8mD2V5fRCVn_7Qg0ZOLG6UnmVBuBNkatxD5bwTJs"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-17T20:56:29.698Z
-  Response Data: {"message":"Access denied. Invalid Token."}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-17T20:56:29.564Z
-  Method: POST
-  URL: /api/v1/general/logout
-  Query Params: {}
-  URL Params: {}
-  Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NTg5LCJleHAiOjE3Mjk4MDMzODl9.Xb0ILAqfeysw2CeIRcklfZKJubun9z1vFFGapyyohTg; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NTg5LCJleHAiOjE3MjkxOTk0ODl9.omkbfLP0Wkl47Ay0vgR6WxSg5ldEN4A889264-KAzb4"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-17T20:56:29.757Z
-  Response Data: {"message":"Logged out successfully"}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-17T20:56:29.579Z
-  Method: POST
-  URL: /api/v1/general/logout
-  Query Params: {}
-  URL Params: {}
-  Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NTg5LCJleHAiOjE3Mjk4MDMzODl9.Xb0ILAqfeysw2CeIRcklfZKJubun9z1vFFGapyyohTg; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NTg5LCJleHAiOjE3MjkxOTk0ODl9.omkbfLP0Wkl47Ay0vgR6WxSg5ldEN4A889264-KAzb4"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-17T20:56:29.793Z
-  Response Data: {"message":"Logged out successfully"}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-17T20:56:29.598Z
-  Method: POST
-  URL: /api/v1/general/logout
-  Query Params: {}
-  URL Params: {}
-  Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NTg5LCJleHAiOjE3Mjk4MDMzODl9.Xb0ILAqfeysw2CeIRcklfZKJubun9z1vFFGapyyohTg; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NTg5LCJleHAiOjE3MjkxOTk0ODl9.omkbfLP0Wkl47Ay0vgR6WxSg5ldEN4A889264-KAzb4"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-17T20:56:29.809Z
-  Response Data: {"message":"Logged out successfully"}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-17T20:56:29.836Z
-  Method: POST
-  URL: /api/v1/general/logout
-  Query Params: {}
-  URL Params: {}
-  Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-17T20:56:29.836Z
-  Response Data: {"message":"Access denied. No token provided."}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-17T20:56:43.375Z
-  Method: POST
-  URL: /api/v1/principal/login
-  Query Params: {}
-  URL Params: {}
-  Body: {"username":"abhayroy","password":"dsec@501"}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"45","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-17T20:56:43.589Z
-  Response Data: {"message":"User logged in successfully","user":{"username":"abhayroy","role":"principal"},"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs"}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-17T20:56:43.650Z
+  Timestamp: 2024-10-21T10:43:33.652Z
   Method: GET
   URL: /api/v1/general/validate-token
   Query Params: {}
   URL Params: {}
   Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs","if-none-match":"W/\"373-ARz3z1RYyL3ywaJ0aeuZtb8YXBw\""}
   -------------------------
   
   --- Outgoing Response ---
-  Timestamp: 2024-10-17T20:56:43.741Z
-  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"8295626702","email":"roy.abhay98@gmail.com"},"_id":"671166048c263d74319abd2b","fullName":"Avay Roy","dateOfBirth":"1989-03-20T00:00:00.000Z","gender":"male","address":"8no. Deshbondhu colony ,Howrah","employeeId":"DSC/P/01","educationalQualifications":"PhD in Sociology","yearsOfExperience":3,"previousPositions":[],"dateOfJoining":"2023-03-02T00:00:00.000Z","username":"abhayroy","password":"$2b$10$T/OsHCmMsaJQDZzRNxA/LO66XmXjXWC/wid3NQgVx26JTE3Z3tGuC","accessLevel":"principal","accountCreationDate":"2024-10-17T19:31:16.953Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws","role":"principal"}}
+  Timestamp: 2024-10-21T10:43:33.818Z
+  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"9876543210","email":"rajesh.kumar@example.com"},"_id":"67117ed528150d1ae68ef7af","fullName":"Rajesh Kumar","dateOfBirth":"1985-05-14T18:30:00.000Z","gender":"male","address":"12, MG Road, Bengaluru, Karnataka","employeeId":"DSC/C/01","educationalQualifications":"Bachelor of Engineering","yearsOfExperience":9,"previousPositions":[],"dateOfJoining":"2020-10-05T18:30:00.000Z","department":"IT","username":"rajesh.kumar","password":"$2a$10$KFpyvbU4Kj/wFN6C8l4VYeXHazCx47fVIqfC/7llpX/5H8LCfuNQ.","accessLevel":"coordinator","reportingTo":"671166048c263d74319abd2b","role":"coordinator","accountCreationDate":"2024-10-17T21:17:09.419Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q"}}
   -------------------------
   
   --- Incoming Request ---
-  Timestamp: 2024-10-17T20:56:43.744Z
+  Timestamp: 2024-10-21T10:43:33.823Z
   Method: GET
   URL: /api/v1/general/validate-token
   Query Params: {}
   URL Params: {}
   Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs","if-none-match":"W/\"319-m6eliP20bzkkM7GCsMUyHwaa3xQ\""}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs","if-none-match":"W/\"373-ARz3z1RYyL3ywaJ0aeuZtb8YXBw\""}
   -------------------------
   
   --- Outgoing Response ---
-  Timestamp: 2024-10-17T20:56:43.830Z
-  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"8295626702","email":"roy.abhay98@gmail.com"},"_id":"671166048c263d74319abd2b","fullName":"Avay Roy","dateOfBirth":"1989-03-20T00:00:00.000Z","gender":"male","address":"8no. Deshbondhu colony ,Howrah","employeeId":"DSC/P/01","educationalQualifications":"PhD in Sociology","yearsOfExperience":3,"previousPositions":[],"dateOfJoining":"2023-03-02T00:00:00.000Z","username":"abhayroy","password":"$2b$10$T/OsHCmMsaJQDZzRNxA/LO66XmXjXWC/wid3NQgVx26JTE3Z3tGuC","accessLevel":"principal","accountCreationDate":"2024-10-17T19:31:16.953Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws","role":"principal"}}
+  Timestamp: 2024-10-21T10:43:33.987Z
+  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"9876543210","email":"rajesh.kumar@example.com"},"_id":"67117ed528150d1ae68ef7af","fullName":"Rajesh Kumar","dateOfBirth":"1985-05-14T18:30:00.000Z","gender":"male","address":"12, MG Road, Bengaluru, Karnataka","employeeId":"DSC/C/01","educationalQualifications":"Bachelor of Engineering","yearsOfExperience":9,"previousPositions":[],"dateOfJoining":"2020-10-05T18:30:00.000Z","department":"IT","username":"rajesh.kumar","password":"$2a$10$KFpyvbU4Kj/wFN6C8l4VYeXHazCx47fVIqfC/7llpX/5H8LCfuNQ.","accessLevel":"coordinator","reportingTo":"671166048c263d74319abd2b","role":"coordinator","accountCreationDate":"2024-10-17T21:17:09.419Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q"}}
   -------------------------
   
   --- Incoming Request ---
-  Timestamp: 2024-10-17T20:56:43.835Z
+  Timestamp: 2024-10-21T10:43:33.999Z
   Method: GET
   URL: /api/v1/general/validate-token
   Query Params: {}
   URL Params: {}
   Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs","if-none-match":"W/\"319-m6eliP20bzkkM7GCsMUyHwaa3xQ\""}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs","if-none-match":"W/\"373-ARz3z1RYyL3ywaJ0aeuZtb8YXBw\""}
   -------------------------
   
   --- Outgoing Response ---
-  Timestamp: 2024-10-17T20:56:43.920Z
-  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"8295626702","email":"roy.abhay98@gmail.com"},"_id":"671166048c263d74319abd2b","fullName":"Avay Roy","dateOfBirth":"1989-03-20T00:00:00.000Z","gender":"male","address":"8no. Deshbondhu colony ,Howrah","employeeId":"DSC/P/01","educationalQualifications":"PhD in Sociology","yearsOfExperience":3,"previousPositions":[],"dateOfJoining":"2023-03-02T00:00:00.000Z","username":"abhayroy","password":"$2b$10$T/OsHCmMsaJQDZzRNxA/LO66XmXjXWC/wid3NQgVx26JTE3Z3tGuC","accessLevel":"principal","accountCreationDate":"2024-10-17T19:31:16.953Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws","role":"principal"}}
+  Timestamp: 2024-10-21T10:43:34.163Z
+  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"9876543210","email":"rajesh.kumar@example.com"},"_id":"67117ed528150d1ae68ef7af","fullName":"Rajesh Kumar","dateOfBirth":"1985-05-14T18:30:00.000Z","gender":"male","address":"12, MG Road, Bengaluru, Karnataka","employeeId":"DSC/C/01","educationalQualifications":"Bachelor of Engineering","yearsOfExperience":9,"previousPositions":[],"dateOfJoining":"2020-10-05T18:30:00.000Z","department":"IT","username":"rajesh.kumar","password":"$2a$10$KFpyvbU4Kj/wFN6C8l4VYeXHazCx47fVIqfC/7llpX/5H8LCfuNQ.","accessLevel":"coordinator","reportingTo":"671166048c263d74319abd2b","role":"coordinator","accountCreationDate":"2024-10-17T21:17:09.419Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q"}}
   -------------------------
   
   --- Incoming Request ---
-  Timestamp: 2024-10-17T20:56:43.925Z
+  Timestamp: 2024-10-21T10:43:34.275Z
   Method: GET
   URL: /api/v1/general/validate-token
   Query Params: {}
   URL Params: {}
   Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs","if-none-match":"W/\"319-m6eliP20bzkkM7GCsMUyHwaa3xQ\""}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs","if-none-match":"W/\"373-ARz3z1RYyL3ywaJ0aeuZtb8YXBw\""}
   -------------------------
   
   --- Outgoing Response ---
-  Timestamp: 2024-10-17T20:56:44.007Z
-  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"8295626702","email":"roy.abhay98@gmail.com"},"_id":"671166048c263d74319abd2b","fullName":"Avay Roy","dateOfBirth":"1989-03-20T00:00:00.000Z","gender":"male","address":"8no. Deshbondhu colony ,Howrah","employeeId":"DSC/P/01","educationalQualifications":"PhD in Sociology","yearsOfExperience":3,"previousPositions":[],"dateOfJoining":"2023-03-02T00:00:00.000Z","username":"abhayroy","password":"$2b$10$T/OsHCmMsaJQDZzRNxA/LO66XmXjXWC/wid3NQgVx26JTE3Z3tGuC","accessLevel":"principal","accountCreationDate":"2024-10-17T19:31:16.953Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws","role":"principal"}}
+  Timestamp: 2024-10-21T10:43:34.438Z
+  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"9876543210","email":"rajesh.kumar@example.com"},"_id":"67117ed528150d1ae68ef7af","fullName":"Rajesh Kumar","dateOfBirth":"1985-05-14T18:30:00.000Z","gender":"male","address":"12, MG Road, Bengaluru, Karnataka","employeeId":"DSC/C/01","educationalQualifications":"Bachelor of Engineering","yearsOfExperience":9,"previousPositions":[],"dateOfJoining":"2020-10-05T18:30:00.000Z","department":"IT","username":"rajesh.kumar","password":"$2a$10$KFpyvbU4Kj/wFN6C8l4VYeXHazCx47fVIqfC/7llpX/5H8LCfuNQ.","accessLevel":"coordinator","reportingTo":"671166048c263d74319abd2b","role":"coordinator","accountCreationDate":"2024-10-17T21:17:09.419Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q"}}
   -------------------------
   
   --- Incoming Request ---
-  Timestamp: 2024-10-17T21:07:51.303Z
+  Timestamp: 2024-10-21T10:44:00.807Z
   Method: GET
   URL: /api/v1/general/validate-token
   Query Params: {}
   URL Params: {}
   Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs","if-none-match":"W/\"319-m6eliP20bzkkM7GCsMUyHwaa3xQ\""}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs","if-none-match":"W/\"373-ARz3z1RYyL3ywaJ0aeuZtb8YXBw\""}
   -------------------------
   
   --- Outgoing Response ---
-  Timestamp: 2024-10-17T21:07:51.389Z
-  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"8295626702","email":"roy.abhay98@gmail.com"},"_id":"671166048c263d74319abd2b","fullName":"Avay Roy","dateOfBirth":"1989-03-20T00:00:00.000Z","gender":"male","address":"8no. Deshbondhu colony ,Howrah","employeeId":"DSC/P/01","educationalQualifications":"PhD in Sociology","yearsOfExperience":3,"previousPositions":[],"dateOfJoining":"2023-03-02T00:00:00.000Z","username":"abhayroy","password":"$2b$10$T/OsHCmMsaJQDZzRNxA/LO66XmXjXWC/wid3NQgVx26JTE3Z3tGuC","accessLevel":"principal","accountCreationDate":"2024-10-17T19:31:16.953Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws","role":"principal"}}
+  Timestamp: 2024-10-21T10:44:00.970Z
+  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"9876543210","email":"rajesh.kumar@example.com"},"_id":"67117ed528150d1ae68ef7af","fullName":"Rajesh Kumar","dateOfBirth":"1985-05-14T18:30:00.000Z","gender":"male","address":"12, MG Road, Bengaluru, Karnataka","employeeId":"DSC/C/01","educationalQualifications":"Bachelor of Engineering","yearsOfExperience":9,"previousPositions":[],"dateOfJoining":"2020-10-05T18:30:00.000Z","department":"IT","username":"rajesh.kumar","password":"$2a$10$KFpyvbU4Kj/wFN6C8l4VYeXHazCx47fVIqfC/7llpX/5H8LCfuNQ.","accessLevel":"coordinator","reportingTo":"671166048c263d74319abd2b","role":"coordinator","accountCreationDate":"2024-10-17T21:17:09.419Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q"}}
   -------------------------
   
   --- Incoming Request ---
-  Timestamp: 2024-10-17T21:07:51.394Z
+  Timestamp: 2024-10-21T10:44:00.973Z
   Method: GET
   URL: /api/v1/general/validate-token
   Query Params: {}
   URL Params: {}
   Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs","if-none-match":"W/\"319-m6eliP20bzkkM7GCsMUyHwaa3xQ\""}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs","if-none-match":"W/\"373-ARz3z1RYyL3ywaJ0aeuZtb8YXBw\""}
   -------------------------
   
   --- Outgoing Response ---
-  Timestamp: 2024-10-17T21:07:51.492Z
-  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"8295626702","email":"roy.abhay98@gmail.com"},"_id":"671166048c263d74319abd2b","fullName":"Avay Roy","dateOfBirth":"1989-03-20T00:00:00.000Z","gender":"male","address":"8no. Deshbondhu colony ,Howrah","employeeId":"DSC/P/01","educationalQualifications":"PhD in Sociology","yearsOfExperience":3,"previousPositions":[],"dateOfJoining":"2023-03-02T00:00:00.000Z","username":"abhayroy","password":"$2b$10$T/OsHCmMsaJQDZzRNxA/LO66XmXjXWC/wid3NQgVx26JTE3Z3tGuC","accessLevel":"principal","accountCreationDate":"2024-10-17T19:31:16.953Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws","role":"principal"}}
+  Timestamp: 2024-10-21T10:44:01.137Z
+  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"9876543210","email":"rajesh.kumar@example.com"},"_id":"67117ed528150d1ae68ef7af","fullName":"Rajesh Kumar","dateOfBirth":"1985-05-14T18:30:00.000Z","gender":"male","address":"12, MG Road, Bengaluru, Karnataka","employeeId":"DSC/C/01","educationalQualifications":"Bachelor of Engineering","yearsOfExperience":9,"previousPositions":[],"dateOfJoining":"2020-10-05T18:30:00.000Z","department":"IT","username":"rajesh.kumar","password":"$2a$10$KFpyvbU4Kj/wFN6C8l4VYeXHazCx47fVIqfC/7llpX/5H8LCfuNQ.","accessLevel":"coordinator","reportingTo":"671166048c263d74319abd2b","role":"coordinator","accountCreationDate":"2024-10-17T21:17:09.419Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q"}}
   -------------------------
   
   --- Incoming Request ---
-  Timestamp: 2024-10-17T21:07:51.501Z
+  Timestamp: 2024-10-21T10:44:01.140Z
   Method: GET
   URL: /api/v1/general/validate-token
   Query Params: {}
   URL Params: {}
   Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs","if-none-match":"W/\"319-m6eliP20bzkkM7GCsMUyHwaa3xQ\""}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs","if-none-match":"W/\"373-ARz3z1RYyL3ywaJ0aeuZtb8YXBw\""}
   -------------------------
   
   --- Outgoing Response ---
-  Timestamp: 2024-10-17T21:07:51.602Z
-  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"8295626702","email":"roy.abhay98@gmail.com"},"_id":"671166048c263d74319abd2b","fullName":"Avay Roy","dateOfBirth":"1989-03-20T00:00:00.000Z","gender":"male","address":"8no. Deshbondhu colony ,Howrah","employeeId":"DSC/P/01","educationalQualifications":"PhD in Sociology","yearsOfExperience":3,"previousPositions":[],"dateOfJoining":"2023-03-02T00:00:00.000Z","username":"abhayroy","password":"$2b$10$T/OsHCmMsaJQDZzRNxA/LO66XmXjXWC/wid3NQgVx26JTE3Z3tGuC","accessLevel":"principal","accountCreationDate":"2024-10-17T19:31:16.953Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws","role":"principal"}}
+  Timestamp: 2024-10-21T10:44:01.304Z
+  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"9876543210","email":"rajesh.kumar@example.com"},"_id":"67117ed528150d1ae68ef7af","fullName":"Rajesh Kumar","dateOfBirth":"1985-05-14T18:30:00.000Z","gender":"male","address":"12, MG Road, Bengaluru, Karnataka","employeeId":"DSC/C/01","educationalQualifications":"Bachelor of Engineering","yearsOfExperience":9,"previousPositions":[],"dateOfJoining":"2020-10-05T18:30:00.000Z","department":"IT","username":"rajesh.kumar","password":"$2a$10$KFpyvbU4Kj/wFN6C8l4VYeXHazCx47fVIqfC/7llpX/5H8LCfuNQ.","accessLevel":"coordinator","reportingTo":"671166048c263d74319abd2b","role":"coordinator","accountCreationDate":"2024-10-17T21:17:09.419Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q"}}
   -------------------------
   
   --- Incoming Request ---
-  Timestamp: 2024-10-17T21:07:51.617Z
+  Timestamp: 2024-10-21T10:44:01.307Z
   Method: GET
   URL: /api/v1/general/validate-token
   Query Params: {}
   URL Params: {}
   Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs","if-none-match":"W/\"319-m6eliP20bzkkM7GCsMUyHwaa3xQ\""}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzI5NTA4MDgwfQ.CQY9GCPhN6y7JQSqT4t1PSFsHcXs5FPD-hYK3etUyOs","if-none-match":"W/\"373-ARz3z1RYyL3ywaJ0aeuZtb8YXBw\""}
   -------------------------
   
   --- Outgoing Response ---
-  Timestamp: 2024-10-17T21:07:51.699Z
-  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"8295626702","email":"roy.abhay98@gmail.com"},"_id":"671166048c263d74319abd2b","fullName":"Avay Roy","dateOfBirth":"1989-03-20T00:00:00.000Z","gender":"male","address":"8no. Deshbondhu colony ,Howrah","employeeId":"DSC/P/01","educationalQualifications":"PhD in Sociology","yearsOfExperience":3,"previousPositions":[],"dateOfJoining":"2023-03-02T00:00:00.000Z","username":"abhayroy","password":"$2b$10$T/OsHCmMsaJQDZzRNxA/LO66XmXjXWC/wid3NQgVx26JTE3Z3tGuC","accessLevel":"principal","accountCreationDate":"2024-10-17T19:31:16.953Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws","role":"principal"}}
+  Timestamp: 2024-10-21T10:44:01.508Z
+  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"9876543210","email":"rajesh.kumar@example.com"},"_id":"67117ed528150d1ae68ef7af","fullName":"Rajesh Kumar","dateOfBirth":"1985-05-14T18:30:00.000Z","gender":"male","address":"12, MG Road, Bengaluru, Karnataka","employeeId":"DSC/C/01","educationalQualifications":"Bachelor of Engineering","yearsOfExperience":9,"previousPositions":[],"dateOfJoining":"2020-10-05T18:30:00.000Z","department":"IT","username":"rajesh.kumar","password":"$2a$10$KFpyvbU4Kj/wFN6C8l4VYeXHazCx47fVIqfC/7llpX/5H8LCfuNQ.","accessLevel":"coordinator","reportingTo":"671166048c263d74319abd2b","role":"coordinator","accountCreationDate":"2024-10-17T21:17:09.419Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzE4MCwiZXhwIjoxNzMwMTExOTgwfQ.G85i_dc0y1FukGcjfsBg9Uh8VvZuf-yXodSQ9SGot4Q"}}
   -------------------------
   
   --- Incoming Request ---
-  Timestamp: 2024-10-17T21:17:09.222Z
+  Timestamp: 2024-10-21T10:44:26.748Z
   Method: POST
-  URL: /api/v1/coordinator/createcoordinator
+  URL: /api/v1/coordinator/login
   Query Params: {}
   URL Params: {}
-  Body: {"fullName":"Rajesh Kumar","dateOfBirth":"1985-05-14T18:30:00.000Z","gender":"male","contactInfo":{"email":"rajesh.kumar@example.com","phone":"9876543210"},"address":"12, MG Road, Bengaluru, Karnataka","employeeId":"DSC/C/01","educationalQualifications":"Bachelor of Engineering","yearsOfExperience":9,"dateOfJoining":"2020-10-05T18:30:00.000Z","username":"rajesh.kumar","password":"securepassword123","department":"IT","reportingTo":"671166048c263d74319abd2b"}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"461","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  Body: {"username":"rajesh.kumar","password":"classedgee"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"51","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
   -------------------------
   
   --- Outgoing Response ---
-  Timestamp: 2024-10-17T21:17:09.473Z
-  Response Data: {"message":"Coordinator created successfully","coordinatorId":"67117ed528150d1ae68ef7af"}
+  Timestamp: 2024-10-21T10:44:26.927Z
+  Response Data: {"message":"User logged in successfully","user":{"username":"rajesh.kumar","role":"coordinator"},"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzQ2NiwiZXhwIjoxNzMwMTEyMjY2fQ.eR-_BIVcb6Dare8dahaOtO4Nmyonga_84JGaRJrsdTY","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzQ2NiwiZXhwIjoxNzI5NTA4MzY2fQ.MqXd50mpo9tW4kESBBBJFaTnYIM7etOjysXv2otkitQ"}
   -------------------------
   
   --- Incoming Request ---
-  Timestamp: 2024-10-20T03:14:52.935Z
+  Timestamp: 2024-10-21T10:44:26.991Z
   Method: GET
   URL: /api/v1/general/validate-token
   Query Params: {}
   URL Params: {}
   Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzQ2NiwiZXhwIjoxNzI5NTA4MzY2fQ.MqXd50mpo9tW4kESBBBJFaTnYIM7etOjysXv2otkitQ","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzQ2NiwiZXhwIjoxNzMwMTEyMjY2fQ.eR-_BIVcb6Dare8dahaOtO4Nmyonga_84JGaRJrsdTY; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzQ2NiwiZXhwIjoxNzI5NTA4MzY2fQ.MqXd50mpo9tW4kESBBBJFaTnYIM7etOjysXv2otkitQ","if-none-match":"W/\"373-ARz3z1RYyL3ywaJ0aeuZtb8YXBw\""}
   -------------------------
   
   --- Outgoing Response ---
-  Timestamp: 2024-10-20T03:14:52.940Z
-  Response Data: {"message":"Invalid token."}
+  Timestamp: 2024-10-21T10:44:27.171Z
+  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"9876543210","email":"rajesh.kumar@example.com"},"_id":"67117ed528150d1ae68ef7af","fullName":"Rajesh Kumar","dateOfBirth":"1985-05-14T18:30:00.000Z","gender":"male","address":"12, MG Road, Bengaluru, Karnataka","employeeId":"DSC/C/01","educationalQualifications":"Bachelor of Engineering","yearsOfExperience":9,"previousPositions":[],"dateOfJoining":"2020-10-05T18:30:00.000Z","department":"IT","username":"rajesh.kumar","password":"$2a$10$KFpyvbU4Kj/wFN6C8l4VYeXHazCx47fVIqfC/7llpX/5H8LCfuNQ.","accessLevel":"coordinator","reportingTo":"671166048c263d74319abd2b","role":"coordinator","accountCreationDate":"2024-10-17T21:17:09.419Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzQ2NiwiZXhwIjoxNzMwMTEyMjY2fQ.eR-_BIVcb6Dare8dahaOtO4Nmyonga_84JGaRJrsdTY"}}
   -------------------------
   
   --- Incoming Request ---
-  Timestamp: 2024-10-20T03:14:52.958Z
+  Timestamp: 2024-10-21T10:44:27.184Z
   Method: GET
   URL: /api/v1/general/validate-token
   Query Params: {}
   URL Params: {}
   Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzQ2NiwiZXhwIjoxNzI5NTA4MzY2fQ.MqXd50mpo9tW4kESBBBJFaTnYIM7etOjysXv2otkitQ","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzQ2NiwiZXhwIjoxNzMwMTEyMjY2fQ.eR-_BIVcb6Dare8dahaOtO4Nmyonga_84JGaRJrsdTY; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzQ2NiwiZXhwIjoxNzI5NTA4MzY2fQ.MqXd50mpo9tW4kESBBBJFaTnYIM7etOjysXv2otkitQ","if-none-match":"W/\"373-HZqE3Fw6Pa8suK1jcGzSw4QDppE\""}
   -------------------------
   
   --- Outgoing Response ---
-  Timestamp: 2024-10-20T03:14:52.960Z
-  Response Data: {"message":"Invalid token."}
+  Timestamp: 2024-10-21T10:44:27.368Z
+  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"9876543210","email":"rajesh.kumar@example.com"},"_id":"67117ed528150d1ae68ef7af","fullName":"Rajesh Kumar","dateOfBirth":"1985-05-14T18:30:00.000Z","gender":"male","address":"12, MG Road, Bengaluru, Karnataka","employeeId":"DSC/C/01","educationalQualifications":"Bachelor of Engineering","yearsOfExperience":9,"previousPositions":[],"dateOfJoining":"2020-10-05T18:30:00.000Z","department":"IT","username":"rajesh.kumar","password":"$2a$10$KFpyvbU4Kj/wFN6C8l4VYeXHazCx47fVIqfC/7llpX/5H8LCfuNQ.","accessLevel":"coordinator","reportingTo":"671166048c263d74319abd2b","role":"coordinator","accountCreationDate":"2024-10-17T21:17:09.419Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzQ2NiwiZXhwIjoxNzMwMTEyMjY2fQ.eR-_BIVcb6Dare8dahaOtO4Nmyonga_84JGaRJrsdTY"}}
   -------------------------
   
   --- Incoming Request ---
-  Timestamp: 2024-10-20T03:14:53.226Z
+  Timestamp: 2024-10-21T10:44:27.373Z
   Method: GET
   URL: /api/v1/general/validate-token
   Query Params: {}
   URL Params: {}
   Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzQ2NiwiZXhwIjoxNzI5NTA4MzY2fQ.MqXd50mpo9tW4kESBBBJFaTnYIM7etOjysXv2otkitQ","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzQ2NiwiZXhwIjoxNzMwMTEyMjY2fQ.eR-_BIVcb6Dare8dahaOtO4Nmyonga_84JGaRJrsdTY; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzQ2NiwiZXhwIjoxNzI5NTA4MzY2fQ.MqXd50mpo9tW4kESBBBJFaTnYIM7etOjysXv2otkitQ","if-none-match":"W/\"373-HZqE3Fw6Pa8suK1jcGzSw4QDppE\""}
   -------------------------
   
   --- Outgoing Response ---
-  Timestamp: 2024-10-20T03:14:53.228Z
-  Response Data: {"message":"Invalid token."}
+  Timestamp: 2024-10-21T10:44:27.543Z
+  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"9876543210","email":"rajesh.kumar@example.com"},"_id":"67117ed528150d1ae68ef7af","fullName":"Rajesh Kumar","dateOfBirth":"1985-05-14T18:30:00.000Z","gender":"male","address":"12, MG Road, Bengaluru, Karnataka","employeeId":"DSC/C/01","educationalQualifications":"Bachelor of Engineering","yearsOfExperience":9,"previousPositions":[],"dateOfJoining":"2020-10-05T18:30:00.000Z","department":"IT","username":"rajesh.kumar","password":"$2a$10$KFpyvbU4Kj/wFN6C8l4VYeXHazCx47fVIqfC/7llpX/5H8LCfuNQ.","accessLevel":"coordinator","reportingTo":"671166048c263d74319abd2b","role":"coordinator","accountCreationDate":"2024-10-17T21:17:09.419Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzQ2NiwiZXhwIjoxNzMwMTEyMjY2fQ.eR-_BIVcb6Dare8dahaOtO4Nmyonga_84JGaRJrsdTY"}}
   -------------------------
   
   --- Incoming Request ---
-  Timestamp: 2024-10-20T03:14:53.278Z
+  Timestamp: 2024-10-21T10:44:27.553Z
   Method: GET
   URL: /api/v1/general/validate-token
   Query Params: {}
   URL Params: {}
   Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3MjkxOTk1MDN9.Ug7PI87hv6JXZiyaDoXaZmA2mf12JrbKsZ6lindJrAs","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzQ2NiwiZXhwIjoxNzI5NTA4MzY2fQ.MqXd50mpo9tW4kESBBBJFaTnYIM7etOjysXv2otkitQ","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzQ2NiwiZXhwIjoxNzMwMTEyMjY2fQ.eR-_BIVcb6Dare8dahaOtO4Nmyonga_84JGaRJrsdTY; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzQ2NiwiZXhwIjoxNzI5NTA4MzY2fQ.MqXd50mpo9tW4kESBBBJFaTnYIM7etOjysXv2otkitQ","if-none-match":"W/\"373-HZqE3Fw6Pa8suK1jcGzSw4QDppE\""}
   -------------------------
   
   --- Outgoing Response ---
-  Timestamp: 2024-10-20T03:14:53.279Z
-  Response Data: {"message":"Invalid token."}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-20T03:14:53.132Z
-  Method: POST
-  URL: /api/v1/general/refresh-token
-  Query Params: {}
-  URL Params: {}
-  Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-20T03:14:53.515Z
-  Response Data: {"message":"Access Token Refreshed Successfully","refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3Mjk5OTg4OTN9.5cHea2e3vJTb-f6WvAfYIHDHarrZD8L80FDa02K2NBw","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3MjkzOTQ5OTN9.un1UZX0QjPEjcSuMT9uxF88KjbRn6PZcXxSY0lOX5-k"}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-20T03:14:53.152Z
-  Method: POST
-  URL: /api/v1/general/refresh-token
-  Query Params: {}
-  URL Params: {}
-  Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-20T03:14:53.525Z
-  Response Data: {"message":"Access Token Refreshed Successfully","refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3Mjk5OTg4OTN9.5cHea2e3vJTb-f6WvAfYIHDHarrZD8L80FDa02K2NBw","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3MjkzOTQ5OTN9.un1UZX0QjPEjcSuMT9uxF88KjbRn6PZcXxSY0lOX5-k"}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-20T03:14:53.268Z
-  Method: POST
-  URL: /api/v1/general/refresh-token
-  Query Params: {}
-  URL Params: {}
-  Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-20T03:14:53.570Z
-  Response Data: {"message":"Access Token Refreshed Successfully","refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3Mjk5OTg4OTN9.5cHea2e3vJTb-f6WvAfYIHDHarrZD8L80FDa02K2NBw","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3MjkzOTQ5OTN9.un1UZX0QjPEjcSuMT9uxF88KjbRn6PZcXxSY0lOX5-k"}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-20T03:14:53.289Z
-  Method: POST
-  URL: /api/v1/general/refresh-token
-  Query Params: {}
-  URL Params: {}
-  Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5MTk4NjAzLCJleHAiOjE3Mjk4MDM0MDN9.Sk4qoqCipbjbMAeGEoV8abMDw-Vm6Rc57J-f6XXY-Ws","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-20T03:14:53.748Z
-  Response Data: {"message":"Access denied. Invalid Token."}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-20T03:14:53.544Z
-  Method: POST
-  URL: /api/v1/general/logout
-  Query Params: {}
-  URL Params: {}
-  Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3Mjk5OTg4OTN9.5cHea2e3vJTb-f6WvAfYIHDHarrZD8L80FDa02K2NBw; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3MjkzOTQ5OTN9.un1UZX0QjPEjcSuMT9uxF88KjbRn6PZcXxSY0lOX5-k"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-20T03:14:53.760Z
-  Response Data: {"message":"Logged out successfully"}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-20T03:14:53.548Z
-  Method: POST
-  URL: /api/v1/general/logout
-  Query Params: {}
-  URL Params: {}
-  Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3Mjk5OTg4OTN9.5cHea2e3vJTb-f6WvAfYIHDHarrZD8L80FDa02K2NBw; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3MjkzOTQ5OTN9.un1UZX0QjPEjcSuMT9uxF88KjbRn6PZcXxSY0lOX5-k"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-20T03:14:53.764Z
-  Response Data: {"message":"Logged out successfully"}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-20T03:14:53.581Z
-  Method: POST
-  URL: /api/v1/general/logout
-  Query Params: {}
-  URL Params: {}
-  Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3Mjk5OTg4OTN9.5cHea2e3vJTb-f6WvAfYIHDHarrZD8L80FDa02K2NBw; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3MjkzOTQ5OTN9.un1UZX0QjPEjcSuMT9uxF88KjbRn6PZcXxSY0lOX5-k"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-20T03:14:53.788Z
-  Response Data: {"message":"Logged out successfully"}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-20T03:14:53.754Z
-  Method: POST
-  URL: /api/v1/general/logout
-  Query Params: {}
-  URL Params: {}
-  Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3Mjk5OTg4OTN9.5cHea2e3vJTb-f6WvAfYIHDHarrZD8L80FDa02K2NBw; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0MDkzLCJleHAiOjE3MjkzOTQ5OTN9.un1UZX0QjPEjcSuMT9uxF88KjbRn6PZcXxSY0lOX5-k"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-20T03:14:53.838Z
-  Response Data: {"message":"Access denied. Invalid Token."}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-20T03:16:00.573Z
-  Method: POST
-  URL: /api/v1/principal/login
-  Query Params: {}
-  URL Params: {}
-  Body: {"username":"DSC/P/01","password":"classedgee"}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"47","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-20T03:16:00.613Z
-  Response Data: {"message":"Invalid credentials"}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-20T03:18:04.623Z
-  Method: POST
-  URL: /api/v1/principal/login
-  Query Params: {}
-  URL Params: {}
-  Body: {"username":"abhayroy","password":"classedgee"}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"47","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-20T03:18:04.786Z
-  Response Data: {"message":"Invalid credentials"}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-20T03:18:06.371Z
-  Method: POST
-  URL: /api/v1/principal/login
-  Query Params: {}
-  URL Params: {}
-  Body: {"username":"abhayroy","password":"classedgee"}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"47","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-20T03:18:06.486Z
-  Response Data: {"message":"Invalid credentials"}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-20T03:18:30.447Z
-  Method: POST
-  URL: /api/v1/principal/login
-  Query Params: {}
-  URL Params: {}
-  Body: {"username":"abhayroy","password":"classedge"}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"46","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-20T03:18:30.566Z
-  Response Data: {"message":"Invalid credentials"}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-20T03:18:31.941Z
-  Method: POST
-  URL: /api/v1/principal/login
-  Query Params: {}
-  URL Params: {}
-  Body: {"username":"abhayroy","password":"classedge"}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"46","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-20T03:18:32.064Z
-  Response Data: {"message":"Invalid credentials"}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-20T03:18:40.524Z
-  Method: POST
-  URL: /api/v1/principal/login
-  Query Params: {}
-  URL Params: {}
-  Body: {"username":"abhayroy","password":"classedgee"}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"47","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-20T03:18:40.643Z
-  Response Data: {"message":"Invalid credentials"}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-20T03:18:55.742Z
-  Method: POST
-  URL: /api/v1/principal/login
-  Query Params: {}
-  URL Params: {}
-  Body: {"username":"abhayroy","password":"DSC/p/01"}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"45","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-20T03:18:55.860Z
-  Response Data: {"message":"Invalid credentials"}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-20T03:19:43.981Z
-  Method: POST
-  URL: /api/v1/principal/login
-  Query Params: {}
-  URL Params: {}
-  Body: {"username":"abhayroy","password":"dsec@501"}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"45","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-20T03:19:44.165Z
-  Response Data: {"message":"User logged in successfully","user":{"username":"abhayroy","role":"principal"},"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3Mjk5OTkxODR9.7PkyWsbVlLOZ1ItGMXs0ajN6Uc7FkbJCkXLUxuxjV-o","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3MjkzOTUyODR9.t8ZNdTZkwzGS504zmAtCL0Lpp_xJn72CZrx65N1-ilU"}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-20T03:19:44.217Z
-  Method: GET
-  URL: /api/v1/general/validate-token
-  Query Params: {}
-  URL Params: {}
-  Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3MjkzOTUyODR9.t8ZNdTZkwzGS504zmAtCL0Lpp_xJn72CZrx65N1-ilU","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3Mjk5OTkxODR9.7PkyWsbVlLOZ1ItGMXs0ajN6Uc7FkbJCkXLUxuxjV-o; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3MjkzOTUyODR9.t8ZNdTZkwzGS504zmAtCL0Lpp_xJn72CZrx65N1-ilU"}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-20T03:19:44.301Z
-  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"8295626702","email":"roy.abhay98@gmail.com"},"_id":"671166048c263d74319abd2b","fullName":"Avay Roy","dateOfBirth":"1989-03-20T00:00:00.000Z","gender":"male","address":"8no. Deshbondhu colony ,Howrah","employeeId":"DSC/P/01","educationalQualifications":"PhD in Sociology","yearsOfExperience":3,"previousPositions":[],"dateOfJoining":"2023-03-02T00:00:00.000Z","username":"abhayroy","password":"$2b$10$T/OsHCmMsaJQDZzRNxA/LO66XmXjXWC/wid3NQgVx26JTE3Z3tGuC","accessLevel":"principal","accountCreationDate":"2024-10-17T19:31:16.953Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3Mjk5OTkxODR9.7PkyWsbVlLOZ1ItGMXs0ajN6Uc7FkbJCkXLUxuxjV-o","role":"principal"}}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-20T03:19:44.307Z
-  Method: GET
-  URL: /api/v1/general/validate-token
-  Query Params: {}
-  URL Params: {}
-  Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3MjkzOTUyODR9.t8ZNdTZkwzGS504zmAtCL0Lpp_xJn72CZrx65N1-ilU","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3Mjk5OTkxODR9.7PkyWsbVlLOZ1ItGMXs0ajN6Uc7FkbJCkXLUxuxjV-o; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3MjkzOTUyODR9.t8ZNdTZkwzGS504zmAtCL0Lpp_xJn72CZrx65N1-ilU","if-none-match":"W/\"319-XQhln5at9h3ARlIq6VSBctPmbs4\""}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-20T03:19:44.389Z
-  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"8295626702","email":"roy.abhay98@gmail.com"},"_id":"671166048c263d74319abd2b","fullName":"Avay Roy","dateOfBirth":"1989-03-20T00:00:00.000Z","gender":"male","address":"8no. Deshbondhu colony ,Howrah","employeeId":"DSC/P/01","educationalQualifications":"PhD in Sociology","yearsOfExperience":3,"previousPositions":[],"dateOfJoining":"2023-03-02T00:00:00.000Z","username":"abhayroy","password":"$2b$10$T/OsHCmMsaJQDZzRNxA/LO66XmXjXWC/wid3NQgVx26JTE3Z3tGuC","accessLevel":"principal","accountCreationDate":"2024-10-17T19:31:16.953Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3Mjk5OTkxODR9.7PkyWsbVlLOZ1ItGMXs0ajN6Uc7FkbJCkXLUxuxjV-o","role":"principal"}}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-20T03:19:44.398Z
-  Method: GET
-  URL: /api/v1/general/validate-token
-  Query Params: {}
-  URL Params: {}
-  Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3MjkzOTUyODR9.t8ZNdTZkwzGS504zmAtCL0Lpp_xJn72CZrx65N1-ilU","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3Mjk5OTkxODR9.7PkyWsbVlLOZ1ItGMXs0ajN6Uc7FkbJCkXLUxuxjV-o; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3MjkzOTUyODR9.t8ZNdTZkwzGS504zmAtCL0Lpp_xJn72CZrx65N1-ilU","if-none-match":"W/\"319-XQhln5at9h3ARlIq6VSBctPmbs4\""}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-20T03:19:44.478Z
-  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"8295626702","email":"roy.abhay98@gmail.com"},"_id":"671166048c263d74319abd2b","fullName":"Avay Roy","dateOfBirth":"1989-03-20T00:00:00.000Z","gender":"male","address":"8no. Deshbondhu colony ,Howrah","employeeId":"DSC/P/01","educationalQualifications":"PhD in Sociology","yearsOfExperience":3,"previousPositions":[],"dateOfJoining":"2023-03-02T00:00:00.000Z","username":"abhayroy","password":"$2b$10$T/OsHCmMsaJQDZzRNxA/LO66XmXjXWC/wid3NQgVx26JTE3Z3tGuC","accessLevel":"principal","accountCreationDate":"2024-10-17T19:31:16.953Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3Mjk5OTkxODR9.7PkyWsbVlLOZ1ItGMXs0ajN6Uc7FkbJCkXLUxuxjV-o","role":"principal"}}
-  -------------------------
-  
-  --- Incoming Request ---
-  Timestamp: 2024-10-20T03:19:44.484Z
-  Method: GET
-  URL: /api/v1/general/validate-token
-  Query Params: {}
-  URL Params: {}
-  Body: {}
-  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3MjkzOTUyODR9.t8ZNdTZkwzGS504zmAtCL0Lpp_xJn72CZrx65N1-ilU","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3Mjk5OTkxODR9.7PkyWsbVlLOZ1ItGMXs0ajN6Uc7FkbJCkXLUxuxjV-o; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3MjkzOTUyODR9.t8ZNdTZkwzGS504zmAtCL0Lpp_xJn72CZrx65N1-ilU","if-none-match":"W/\"319-XQhln5at9h3ARlIq6VSBctPmbs4\""}
-  -------------------------
-  
-  --- Outgoing Response ---
-  Timestamp: 2024-10-20T03:19:44.563Z
-  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"8295626702","email":"roy.abhay98@gmail.com"},"_id":"671166048c263d74319abd2b","fullName":"Avay Roy","dateOfBirth":"1989-03-20T00:00:00.000Z","gender":"male","address":"8no. Deshbondhu colony ,Howrah","employeeId":"DSC/P/01","educationalQualifications":"PhD in Sociology","yearsOfExperience":3,"previousPositions":[],"dateOfJoining":"2023-03-02T00:00:00.000Z","username":"abhayroy","password":"$2b$10$T/OsHCmMsaJQDZzRNxA/LO66XmXjXWC/wid3NQgVx26JTE3Z3tGuC","accessLevel":"principal","accountCreationDate":"2024-10-17T19:31:16.953Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3Mjk5OTkxODR9.7PkyWsbVlLOZ1ItGMXs0ajN6Uc7FkbJCkXLUxuxjV-o","role":"principal"}}
+  Timestamp: 2024-10-21T10:44:27.724Z
+  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"9876543210","email":"rajesh.kumar@example.com"},"_id":"67117ed528150d1ae68ef7af","fullName":"Rajesh Kumar","dateOfBirth":"1985-05-14T18:30:00.000Z","gender":"male","address":"12, MG Road, Bengaluru, Karnataka","employeeId":"DSC/C/01","educationalQualifications":"Bachelor of Engineering","yearsOfExperience":9,"previousPositions":[],"dateOfJoining":"2020-10-05T18:30:00.000Z","department":"IT","username":"rajesh.kumar","password":"$2a$10$KFpyvbU4Kj/wFN6C8l4VYeXHazCx47fVIqfC/7llpX/5H8LCfuNQ.","accessLevel":"coordinator","reportingTo":"671166048c263d74319abd2b","role":"coordinator","accountCreationDate":"2024-10-17T21:17:09.419Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhamVzaC5rdW1hciIsImlhdCI6MTcyOTUwNzQ2NiwiZXhwIjoxNzMwMTEyMjY2fQ.eR-_BIVcb6Dare8dahaOtO4Nmyonga_84JGaRJrsdTY"}}
   -------------------------
   
   --- Incoming Request ---
