@@ -1,3 +1,4 @@
+import { coordinatorModel } from "../models/coordinatorprofile.schema.js";
 import { principalModel } from "../models/principalprofile.schema.js";
 import { studentModel } from "../models/studentprofile.schema.js";
 import { supremeModel } from "../models/supremeprofile.schema.js";
@@ -17,6 +18,10 @@ const findUserById = async (id) => {
     }
 
     user = await studentModel.findOne({ username: id});
+    if(user) {
+        return user;
+    }
+    user = await coordinatorModel.findOne({ username: id});
     if(user) {
         return user;
     }

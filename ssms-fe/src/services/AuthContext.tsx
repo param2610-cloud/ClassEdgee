@@ -4,7 +4,7 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 
 interface User {
     username: string;
-    role: 'supreme' | 'staff' | 'principal' | 'faculty' | 'student';
+    role: 'supreme' | 'staff' | 'principal' | 'faculty' | 'student' | 'coordinator';
 }
 
 interface AuthContextType {
@@ -65,67 +65,68 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     }, []);
 
     const logout = async () => {
-        try {
-            await axios.post(`${domain}/api/v1/general/logout`, null, {
-                withCredentials: true
-            });
-            setUser(null);
-            enhancedLocalStorage.removeItem("accessToken");
-            enhancedLocalStorage.removeItem("refreshToken");
-            setIsLoading(false);
-        } catch (error) {
-            console.error("AuthProvider - Logout error:", error);
+        const accessToken = enhancedLocalStorage.getItem("accessToken");
+        if (accessToken) {
+            try {
+                await axios.post(`${domain}/api/v1/general/logout`, null, {
+                    headers: { Authorization: `Bearer ${accessToken}` },
+                    withCredentials: true
+                });
+            } catch (error) {
+                console.error("Logout error:", error);
+            }
         }
+        setUser(null);
+        enhancedLocalStorage.removeItem("accessToken");
+        enhancedLocalStorage.removeItem("refreshToken");
+        setIsLoading(false);
     };
-
     const validateToken = async (token: string) => {
         try {
-            console.log("AuthProvider - Validating token...");
             const response = await axios.get(`${domain}/api/v1/general/validate-token`, {
                 headers: { Authorization: `Bearer ${token}` },
                 withCredentials: true
             });
-            console.log("AuthProvider - Token validation response:", response);
             
             if (response.status === 200 && response.data.user) {
-                console.log("AuthProvider - Token validated successfully");
                 setUser(response.data.user);
                 setIsLoading(false);
             } else {
-                console.log("AuthProvider - Invalid token response, attempting refresh");
-                await refreshToken();
+                throw new Error("Invalid token response");
             }
         } catch (error) {
-            console.error("AuthProvider - Token validation error:", error);
-            await refreshToken();
+            if (axios.isAxiosError(error) && error.response?.status === 401) {
+                await refreshToken();
+            } else {
+                console.error("Token validation error:", error);
+                logout();
+            }
         }
     };
 
     const refreshToken = async () => {
-        const refreshToken = enhancedLocalStorage.getItem("refreshToken") || '';
+        const refreshToken = enhancedLocalStorage.getItem("refreshToken");
         if (!refreshToken) {
             logout();
             return;
         }
-
+    
         try {
             const response = await axios.post(`${domain}/api/v1/general/refresh-token`, null, {
                 headers: { Authorization: `Bearer ${refreshToken}` },
                 withCredentials: true
             });
             
-            if (response.status === 200 && response.data.newaccessToken && response.data.newrefreshToken) {
-                enhancedLocalStorage.setItem("accessToken", response.data.newaccessToken);
-                enhancedLocalStorage.setItem("refreshToken", response.data.newrefreshToken);
-                setUser(response.data.user);
+            if (response.status === 200 && response.data.accessToken && response.data.refreshToken) {
+                enhancedLocalStorage.setItem("accessToken", response.data.accessToken);
+                enhancedLocalStorage.setItem("refreshToken", response.data.refreshToken);
+                await validateToken(response.data.accessToken);
             } else {
                 throw new Error("Invalid refresh token response");
             }
         } catch (error) {
             console.error("Token refresh error:", error);
             logout();
-        } finally {
-            setIsLoading(false);
         }
     };
 
