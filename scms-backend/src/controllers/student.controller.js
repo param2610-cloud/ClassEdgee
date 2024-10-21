@@ -1,4 +1,6 @@
-import {studentModel} from '../models/studentprofile.schema.js'
+//import {studentModel} from '../models/studentprofile.schema.js'
+
+import{studentModel} from "../models/studentprofile.schema.js"
 import bcrypt from "bcrypt";
 import { generateTokens } from "../utils/generate.js";
 

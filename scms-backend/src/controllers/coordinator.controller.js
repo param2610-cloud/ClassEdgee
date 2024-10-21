@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import { coordinatorModel } from "../models/coordinatorprofile.schema.js";
-import { coordinatorModel } from "../models/principalprofile.schema.js";
+//import { coordinatorModel } from "../models/coordinatorprofile.schema.js";
+import {coordinatorModel} from "../models/coordinatorprofile.schema.js"
 import bcrypt from "bcrypt"
 const createCoordinator = async (req, res) => {
     try {
