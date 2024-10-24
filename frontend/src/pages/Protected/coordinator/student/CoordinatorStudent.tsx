@@ -8,7 +8,7 @@ const CoordinatorStudent = () => {
   return (
     <div>
       List of Students
-      <Button onClick={() => navigate('/p/coordinator/student/create')}>
+      <Button onClick={() => navigate('/p/student/create')}>
         Create Student
       </Button>
     </div>

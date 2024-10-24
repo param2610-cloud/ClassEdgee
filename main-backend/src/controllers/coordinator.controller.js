@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import { coordinatorModel } from "../models/coordinatorprofile.schema.js";
-import { coordinatorModel } from "../models/principalprofile.schema.js";
 import bcrypt from "bcrypt"
 import { generateTokens } from "../utils/generate.js";
 const createCoordinator = async (req, res) => {

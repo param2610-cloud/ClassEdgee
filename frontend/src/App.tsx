@@ -20,6 +20,7 @@ import CreateCoordinatorForm from './pages/Protected/principal/createCoordinator
 import CoordinatorLayout from './pages/Protected/coordinator/CoordinatorLayout';
 import CoordinatorDashboard from './pages/Protected/coordinator/dashaboard/CoordinatorDashboard';
 import CreateStudent from './pages/Protected/coordinator/student/create/CreateStudent';
+import CoordinatorStudent from './pages/Protected/coordinator/student/CoordinatorStudent';
 
 const App: React.FC = () => {
   return (
@@ -129,7 +130,7 @@ const CoordinatorRoutes: React.FC = () => (
   <CoordinatorLayout>
     <Routes>
       <Route path="/" element={<CoordinatorDashboard />} />
-      <Route path="/student" element={<CoordinatorDashboard />} />
+      <Route path="/student" element={<CoordinatorStudent />} />
       <Route path="/student/create" element={<CreateStudent />} />
     </Routes>
   </CoordinatorLayout>
