@@ -365,14 +365,14 @@ const StudentEditProfile: React.FC = () => {
                                 value={formData.firstName}
                                 onChange={handleChange}
                                 placeholder="First Name"
-                                required
+                                
                             />
                             <Input
                                 name="lastName"
                                 value={formData.lastName}
                                 onChange={handleChange}
                                 placeholder="Last Name"
-                                required
+                                
                             />
                             <Input
                                 name="email"
@@ -380,7 +380,7 @@ const StudentEditProfile: React.FC = () => {
                                 onChange={handleChange}
                                 placeholder="Email"
                                 type="email"
-                                required
+                                
                             />
                             <Input
                                 name="phoneNumber"
@@ -389,7 +389,7 @@ const StudentEditProfile: React.FC = () => {
                                 placeholder="Phone Number"
                                 pattern="\d{10}"
                                 title="Please enter a valid 10-digit phone number"
-                                required
+                                
                             />
                             <Select
                                 value={formData.gender}
@@ -415,7 +415,7 @@ const StudentEditProfile: React.FC = () => {
                                 value={formData.bloodGroup}
                                 onChange={handleChange}
                                 placeholder="Blood Group"
-                                required
+                                
                             />
 
                             {/* Address Fields */}
@@ -424,35 +424,35 @@ const StudentEditProfile: React.FC = () => {
                                 value={formData.address.street}
                                 onChange={handleChange}
                                 placeholder="Street"
-                                required
+                                
                             />
                             <Input
                                 name="address.city"
                                 value={formData.address.city}
                                 onChange={handleChange}
                                 placeholder="City"
-                                required
+                                
                             />
                             <Input
                                 name="address.state"
                                 value={formData.address.state}
                                 onChange={handleChange}
                                 placeholder="State"
-                                required
+                                
                             />
                             <Input
                                 name="address.postalCode"
                                 value={formData.address.postalCode}
                                 onChange={handleChange}
                                 placeholder="Postal Code"
-                                required
+                                
                             />
                             <Input
                                 name="address.country"
                                 value={formData.address.country}
                                 onChange={handleChange}
                                 placeholder="Country"
-                                required
+                                
                             />
 
                             {/* Guardian Fields */}
@@ -461,14 +461,14 @@ const StudentEditProfile: React.FC = () => {
                                 value={formData.guardianName}
                                 onChange={handleChange}
                                 placeholder="Guardian Name"
-                                required
+                                
                             />
                             <Input
                                 name="guardianRelation"
                                 value={formData.guardianRelation}
                                 onChange={handleChange}
                                 placeholder="Guardian Relation"
-                                required
+                                
                             />
                             <Input
                                 name="guardianContact"
@@ -477,7 +477,7 @@ const StudentEditProfile: React.FC = () => {
                                 placeholder="Guardian Contact"
                                 pattern="\d{10}"
                                 title="Please enter a valid 10-digit contact number"
-                                required
+                                
                             />
                         </div>
 

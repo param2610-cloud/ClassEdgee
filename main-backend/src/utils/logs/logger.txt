@@ -5909,3 +5909,33 @@
   Response Data: {"success":true,"message":"Student found successfully","data":{"address":{"street":"789 Pine Road"},"emergencyContact":{"name":"Sunita","relation":"Mother","phone":"9876543217"},"medicalConditions":[],"_id":"671b73468688023f9caf4213","firstName":"Harsh","middleName":null,"lastName":"Sharma","dateOfBirth":"2003-12-15T00:00:00.000Z","gender":"M","bloodGroup":"A+","email":"harshsharma03@gmail.com","phoneNumber":"9876543215","studentId":"10003","enrollmentDate":"2020-08-07T00:00:00.000Z","grade":"11","section":"A","previousSchool":"Hilltop School","guardianName":"Veer Sharma","guardianRelation":"Father","guardianContact":"9876543216","createdAt":"2024-10-25T10:30:30.645Z","updatedAt":"2024-10-25T10:30:30.645Z"}}
   -------------------------
   
+  --- Incoming Request ---
+  Timestamp: 2024-10-25T13:17:30.253Z
+  Method: GET
+  URL: /api/v1/student/get-student/671b73468688023f9caf4213
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"2cd-KqxT+OHxGOcditDT04iGncV/UOU\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-25T13:17:30.296Z
+  Response Data: {"success":true,"message":"Student found successfully","data":{"address":{"street":"789 Pine Road"},"emergencyContact":{"name":"Sunita","relation":"Mother","phone":"9876543217"},"medicalConditions":[],"_id":"671b73468688023f9caf4213","firstName":"Harsh","middleName":null,"lastName":"Sharma","dateOfBirth":"2003-12-15T00:00:00.000Z","gender":"M","bloodGroup":"A+","email":"harshsharma03@gmail.com","phoneNumber":"9876543215","studentId":"10003","enrollmentDate":"2020-08-07T00:00:00.000Z","grade":"11","section":"A","previousSchool":"Hilltop School","guardianName":"Veer Sharma","guardianRelation":"Father","guardianContact":"9876543216","createdAt":"2024-10-25T10:30:30.645Z","updatedAt":"2024-10-25T10:30:30.645Z"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-25T13:17:32.032Z
+  Method: GET
+  URL: /api/v1/student/get-student/671b73468688023f9caf4213
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"2cd-KqxT+OHxGOcditDT04iGncV/UOU\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-25T13:17:32.081Z
+  Response Data: {"success":true,"message":"Student found successfully","data":{"address":{"street":"789 Pine Road"},"emergencyContact":{"name":"Sunita","relation":"Mother","phone":"9876543217"},"medicalConditions":[],"_id":"671b73468688023f9caf4213","firstName":"Harsh","middleName":null,"lastName":"Sharma","dateOfBirth":"2003-12-15T00:00:00.000Z","gender":"M","bloodGroup":"A+","email":"harshsharma03@gmail.com","phoneNumber":"9876543215","studentId":"10003","enrollmentDate":"2020-08-07T00:00:00.000Z","grade":"11","section":"A","previousSchool":"Hilltop School","guardianName":"Veer Sharma","guardianRelation":"Father","guardianContact":"9876543216","createdAt":"2024-10-25T10:30:30.645Z","updatedAt":"2024-10-25T10:30:30.645Z"}}
+  -------------------------
+  
