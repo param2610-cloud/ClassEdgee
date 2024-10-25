@@ -32,11 +32,7 @@ const studentSchema  = new mongoose.Schema({
     guardianContact: { type: String, required: true },
   
     // Face Recognition Data
-    faceImage: {
-      data: { type: Buffer, required: true },
-      contentType: { type: String, required: true },
-      uploadDate: { type: Date, default: Date.now }
-    },
+    profile_image_link: { type: String, required: true },
   
     // Additional Information
     medicalConditions: [String],
