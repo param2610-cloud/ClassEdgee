@@ -28,6 +28,7 @@ database_uri = os.getenv('DATABASE_URI')
 client = MongoClient(database_uri)
 db = client['classedgee']
 students_collection = db['students']
+faculty_collection = db['faculty']
 
 class Student(BaseModel):
     firstName: str
@@ -248,6 +249,181 @@ async def process_excel(file: UploadFile):
             except Exception as e:
                 failed_entries.append({
                     'row': index + 2,  # Excel rows start at 1, and header is row 1
+                    'error': str(e)
+                })
+        
+        return {
+            'status': 'completed',
+            'successful_entries': successful_entries,
+            'failed_entries': failed_entries,
+            'total_processed': len(successful_entries) + len(failed_entries),
+            'total_successful': len(successful_entries),
+            'total_failed': len(failed_entries)
+        }
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# Column mapping dictionary for faculty with nested structure
+FACULTY_COLUMN_MAPPINGS = {
+    'personalInformation.fullName': ['full name', 'faculty name', 'name'],
+    'personalInformation.dateOfBirth': ['dob', 'date of birth', 'birth date', 'birthdate'],
+    'personalInformation.gender': ['gender', 'sex'],
+    'personalInformation.contactNumber': ['contact number', 'phone number', 'mobile'],
+    'personalInformation.email': ['email', 'email address'],
+    'qualification.highestDegree': ['highest degree', 'degree'],
+    'qualification.specialization': ['specialization', 'major'],
+    'qualification.universityInstitute': ['university', 'institute', 'college','University/Institute'],
+    'qualification.yearOfPassing': ['year of passing', 'graduation year'],
+    'professionalExperience.totalYearsOfExperience': ['years of experience', 'total experience',"Total Years of Experience"],
+    'professionalExperience.previousJobTitle': ['previous job title', 'job title'],
+    'professionalExperience.previousOrganization': ['previous organization', 'last company'],
+    'professionalExperience.duration.startDate': ['job start date', 'duration start', 'start date'],
+    'professionalExperience.duration.endDate': ['job end date', 'duration end', 'end date'],
+    'subjectExpertise.primarySubject': ['primary subject', 'main subject'],
+    'subjectExpertise.secondarySubjects': ['secondary subjects', 'other subjects'],
+    'additionalInformation.address': ['address', 'location'],
+}
+
+def set_nested_value(dictionary: dict, path: str, value) -> None:
+    """Set a value in a nested dictionary using a dot-notated path."""
+    keys = path.split('.')
+    for key in keys[:-1]:
+        dictionary = dictionary.setdefault(key, {})
+    dictionary[keys[-1]] = value
+
+def validate_faculty_data(data: dict) -> bool:
+    """Validate faculty data against required fields and data types."""
+    required_fields = [
+        'personalInformation.fullName',
+        'personalInformation.dateOfBirth',
+        'personalInformation.gender',
+        'personalInformation.contactNumber',
+        'personalInformation.email',
+        'qualification.highestDegree',
+        'qualification.specialization',
+        'qualification.universityInstitute',
+        'qualification.yearOfPassing',
+        'professionalExperience.totalYearsOfExperience',
+        'professionalExperience.previousJobTitle',
+        'professionalExperience.previousOrganization',
+        'professionalExperience.duration.startDate',
+        'professionalExperience.duration.endDate',
+        'subjectExpertise.primarySubject',
+        'additionalInformation.address'
+    ]
+
+    def get_nested_value(d, path):
+        """Get a value from a nested dictionary using a dot-notated path."""
+        keys = path.split('.')
+        current = d
+        for key in keys:
+            if not isinstance(current, dict) or key not in current:
+                return None
+            current = current[key]
+        return current
+
+    for field in required_fields:
+        value = get_nested_value(data, field)
+        if value is None or pd.isna(value) or value == '':
+            raise ValueError(f"Missing required field: {field}")
+
+    # Validate email format
+    email = get_nested_value(data, 'personalInformation.email')
+    if not '@' in str(email):
+        raise ValueError("Invalid email format")
+
+    # Validate gender
+    gender = get_nested_value(data, 'personalInformation.gender')
+    valid_genders = ['Male', 'Female', 'Other', 'M', 'F']
+    if str(gender).strip() not in valid_genders:
+        raise ValueError("Invalid gender value")
+
+    return True
+
+@app.post("/process-faculty-excel")
+async def process_faculty_excel(file: UploadFile):
+    if not file.filename.endswith(('.xls', '.xlsx')):
+        raise HTTPException(status_code=400, detail="Invalid file format")
+    
+    try:
+        # Read the Excel file
+        contents = await file.read()
+        df = pd.read_excel(io.BytesIO(contents))
+        
+        # Map columns to standardized fields
+        column_mapping = {}
+        for field, possible_names in FACULTY_COLUMN_MAPPINGS.items():
+            matched_col = None
+            for name in possible_names:
+                if name.lower() in [col.lower() for col in df.columns]:
+                    matched_col = next(col for col in df.columns if col.lower() == name.lower())
+                    break
+            if matched_col:
+                column_mapping[field] = matched_col
+        
+        successful_entries = []
+        failed_entries = []
+        
+        for index, row in df.iterrows():
+            try:
+                # Initialize nested faculty data structure
+                faculty_data = {
+                    'personalInformation': {},
+                    'qualification': {},
+                    'professionalExperience': {
+                        'duration': {}
+                    },
+                    'subjectExpertise': {},
+                    'additionalInformation': {}
+                }
+
+                # Map values to nested structure
+                for field, excel_col in column_mapping.items():
+                    value = row[excel_col]
+                    # Handle date fields
+                    if 'date' in field.lower() or 'dob' in field.lower():
+                        if pd.notna(value):
+                            value = pd.to_datetime(value).strftime('%Y-%m-%d')
+                    # Handle numerical fields
+                    elif 'yearOfPassing' in field or 'totalYearsOfExperience' in field:
+                        if pd.notna(value):
+                            value = int(float(value))
+                    # Handle gender standardization
+                    elif 'gender' in field.lower():
+                        if pd.notna(value):
+                            value = 'Female' if str(value).strip().upper() in ['F', 'FEMALE'] else 'Male' if str(value).strip().upper() in ['M', 'MALE'] else str(value)
+                    
+                    if pd.notna(value):
+                        set_nested_value(faculty_data, field, value)
+
+                # Validate data
+                validate_faculty_data(faculty_data)
+                
+                # Check for existing faculty member
+                existing_faculty = faculty_collection.find_one({
+                    'personalInformation.email': faculty_data['personalInformation']['email']
+                })
+                
+                if existing_faculty:
+                    raise ValueError(f"Faculty with email {faculty_data['personalInformation']['email']} already exists")
+                
+                # Add metadata
+                faculty_data['createdAt'] = datetime.utcnow()
+                faculty_data['updatedAt'] = datetime.utcnow()
+                
+                # Insert into database
+                result = faculty_collection.insert_one(faculty_data)
+                
+                successful_entries.append({
+                    'email': faculty_data['personalInformation']['email'],
+                    'name': faculty_data['personalInformation']['fullName']
+                })
+                
+            except Exception as e:
+                failed_entries.append({
+                    'row': index + 2,  # Excel rows start at 1, header is row 1
                     'error': str(e)
                 })
         
