@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios, { AxiosError } from "axios";
 import { Camera, Save, X } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import CryptoJS from "crypto-js";
 import {
     Select,
     SelectContent,
@@ -81,9 +82,13 @@ const StudentEditProfile: React.FC = () => {
         if (!public_id) return;
 
         try {
-            const timestamp = Math.round(
-                new Date().getTime() / 1000
-            ).toString();
+            const generateSignature = (public_id:any, timestamp:any, api_secret:any) => {
+                const stringToSign = `public_id=${public_id}&timestamp=${timestamp}${api_secret}`;
+                return CryptoJS.createHash("sha1").update(stringToSign).digest("hex");
+            };
+            
+            const timestamp = Math.round(new Date().getTime() / 1000).toString();
+            const signature = generateSignature(public_id, timestamp, process.env.CLOUDINARY_API_SECRET);
             const formData = new FormData();
             formData.append("public_id", public_id);
             formData.append("api_key", CLOUDINARY_API_KEY);
@@ -179,30 +184,29 @@ const StudentEditProfile: React.FC = () => {
         }
     };
 
-    useEffect(() => {
-        const fetchStudent = async () => {
-            try {
-                const response = await axios.get<{ data: Student }>(
-                    `${domain}/api/v1/student/get-student/${id}`
-                );
-                setStudent(response.data.data);
-                setFormData(response.data.data);
-                setProfileImagePreview(response.data.data.profile_image_link);
-                setLoading(false);
-            } catch (err) {
-                const error = err as AxiosError;
-                setError(
-                    error.response?.data?.message ||
-                        "Failed to fetch student data"
-                );
-                setLoading(false);
-            }
-        };
+    const fetchStudent = useCallback(async () => {
+        try {
+            const response = await axios.get<{ data: Student }>(
+                `${domain}/api/v1/student/get-student/${id}`
+            );
+            setStudent(response.data.data);
+            setFormData(response.data.data);
+            setProfileImagePreview(response.data.data.profile_image_link);
+            setLoading(false);
+        } catch (err) {
+            const error = err as AxiosError;
+            setError(
+                error.response?.data?.message || "Failed to fetch student data"
+            );
+            setLoading(false);
+        }
+    }, [id]);
 
+    useEffect(() => {
         if (id) {
             fetchStudent();
         }
-    }, [id]);
+    }, [id, fetchStudent]);
 
     const handleChange = (
         e:
@@ -275,6 +279,8 @@ const StudentEditProfile: React.FC = () => {
             );
 
             setStudent(response.data.data);
+            setFormData(response.data.data);
+            setProfileImagePreview(response.data.data.profile_image_link);
             setIsChanged(false);
             setSuccess("Profile updated successfully!");
 
@@ -365,14 +371,12 @@ const StudentEditProfile: React.FC = () => {
                                 value={formData.firstName}
                                 onChange={handleChange}
                                 placeholder="First Name"
-                                
                             />
                             <Input
                                 name="lastName"
                                 value={formData.lastName}
                                 onChange={handleChange}
                                 placeholder="Last Name"
-                                
                             />
                             <Input
                                 name="email"
@@ -380,7 +384,6 @@ const StudentEditProfile: React.FC = () => {
                                 onChange={handleChange}
                                 placeholder="Email"
                                 type="email"
-                                
                             />
                             <Input
                                 name="phoneNumber"
@@ -389,7 +392,6 @@ const StudentEditProfile: React.FC = () => {
                                 placeholder="Phone Number"
                                 pattern="\d{10}"
                                 title="Please enter a valid 10-digit phone number"
-                                
                             />
                             <Select
                                 value={formData.gender}
@@ -415,7 +417,6 @@ const StudentEditProfile: React.FC = () => {
                                 value={formData.bloodGroup}
                                 onChange={handleChange}
                                 placeholder="Blood Group"
-                                
                             />
 
                             {/* Address Fields */}
@@ -424,35 +425,30 @@ const StudentEditProfile: React.FC = () => {
                                 value={formData.address.street}
                                 onChange={handleChange}
                                 placeholder="Street"
-                                
                             />
                             <Input
                                 name="address.city"
                                 value={formData.address.city}
                                 onChange={handleChange}
                                 placeholder="City"
-                                
                             />
                             <Input
                                 name="address.state"
                                 value={formData.address.state}
                                 onChange={handleChange}
                                 placeholder="State"
-                                
                             />
                             <Input
                                 name="address.postalCode"
                                 value={formData.address.postalCode}
                                 onChange={handleChange}
                                 placeholder="Postal Code"
-                                
                             />
                             <Input
                                 name="address.country"
                                 value={formData.address.country}
                                 onChange={handleChange}
                                 placeholder="Country"
-                                
                             />
 
                             {/* Guardian Fields */}
@@ -461,14 +457,12 @@ const StudentEditProfile: React.FC = () => {
                                 value={formData.guardianName}
                                 onChange={handleChange}
                                 placeholder="Guardian Name"
-                                
                             />
                             <Input
                                 name="guardianRelation"
                                 value={formData.guardianRelation}
                                 onChange={handleChange}
                                 placeholder="Guardian Relation"
-                                
                             />
                             <Input
                                 name="guardianContact"
@@ -477,7 +471,6 @@ const StudentEditProfile: React.FC = () => {
                                 placeholder="Guardian Contact"
                                 pattern="\d{10}"
                                 title="Please enter a valid 10-digit contact number"
-                                
                             />
                         </div>
 

@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { CalendarDays, Mail, Phone, MapPin, AlertCircle, Pencil, Loader2 } from 'lucide-react';
+import { CalendarDays, Mail, Phone, MapPin, AlertCircle, Pencil, Loader2, Delete, DeleteIcon, Trash } from 'lucide-react';
 import {
   Table,
   TableBody,
@@ -150,6 +150,24 @@ const CoordinatorStudent = () => {
                     onClick={() => navigate(`/p/student/edit/${student._id}`)}
                   >
                     <Pencil className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => {
+                      try {
+                        const response = fetch(`${domain}/api/v1/student/delete-student/${student._id}`, {
+                          method: 'DELETE',
+                        })
+                        console.log(response);
+                        fetchStudents()
+                        
+                      } catch (error) {
+                        console.log(error)
+                      }
+                    }}
+                  >
+                    <Trash color='red' className="h-4 w-4" />
                   </Button>
                 </TableCell>
               </TableRow>

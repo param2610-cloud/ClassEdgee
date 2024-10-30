@@ -1,6 +1,6 @@
-//import {studentModel} from '../models/studentprofile.schema.js'
+//import {facultyprofileSchema} from '../models/facultyprofile.schema.js'
 
-import { studentModel } from "../models/studentprofile.schema.js";
+import facultyprofileSchema from "../models/facultyprofile.schema.js";
 import bcrypt from "bcrypt";
 import { generateTokens } from "../utils/generate.js";
 import { fastapidomain } from "../lib/domain.js";
@@ -9,33 +9,47 @@ import fs from "fs";
 import axios from "axios"; 
 import FormData from "form-data";
 
-// Register a new student
-const createStudent = async (req, res) => {
+// Register a new faculty
+const createfaculty = async (req, res) => {
     try {
-        let { password, ...studentData } = req.body;
-        console.log(studentData);
+        let { password, ...facultyData } = req.body;
+        console.log(facultyData);
+        const getNestedValue = (obj, path) => {
+            return path.split('.').reduce((o, key) => (o ? o[key] : undefined), obj);
+        };
         
         // Validate required fields
         const requiredFields = [
-            "firstName",
-            "lastName",
-            "dateOfBirth",
-            "gender",
-            "email",
-            "phoneNumber",
-            "address",
-            "studentId",
-            "enrollmentDate",
-            "grade",
-            "guardianName",
-            "guardianRelation",
-            "guardianContact",
-            "emergencyContact",
-            "profile_image_link"
+            // Personal Information
+            'personalInformation.fullName',
+            'personalInformation.dateOfBirth',
+            'personalInformation.gender',
+            'personalInformation.contactNumber',
+            'personalInformation.email',
+            
+            // Qualification
+            'qualification.highestDegree',
+            'qualification.specialization',
+            'qualification.universityInstitute',
+            'qualification.yearOfPassing',
+            
+            // Professional Experience
+            'professionalExperience.totalYearsOfExperience',
+            'professionalExperience.previousJobTitle',
+            'professionalExperience.previousOrganization',
+            'professionalExperience.duration.startDate',
+            'professionalExperience.duration.endDate',
+            
+            // Subject Expertise
+            'subjectExpertise.primarySubject',
+            
+            // Additional Information
+            'additionalInformation.address'
         ];
+        
 
         for (const field of requiredFields) {
-            if (!studentData[field]) {
+            if (!getNestedValue(facultyData, field)) {
                 return res
                     .status(400)
                     .json({ message: `Missing required field: ${field}` });
@@ -44,7 +58,7 @@ const createStudent = async (req, res) => {
 
         // Validate email format
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(studentData.email)) {
+        if (!emailRegex.test(facultyData.personalInformation.email)) {
             return res.status(400).json({ message: "Invalid email format" });
         }
         password = "classedgee" // For testing purposes
@@ -57,33 +71,33 @@ const createStudent = async (req, res) => {
                 });
         }
 
-        // Check if student ID or email already exists
-        const existingStudent = await studentModel.findOne({
+        // Check if faculty ID or email already exists
+        const existingfaculty = await facultyprofileSchema.findOne({
             $or: [
-                { studentId: studentData.studentId },
-                { email: studentData.email },
+                { facultyId: facultyData.facultyId },
+                { email: facultyData.email },
             ],
         });
-        if (existingStudent) {
+        if (existingfaculty) {
             return res
                 .status(409)
-                .json({ message: "Student ID or email already exists" });
+                .json({ message: "faculty ID or email already exists" });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const newStudent = new studentModel({
-            ...studentData,
+        const newfaculty = new facultyprofileSchema({
+            ...facultyData,
             password: hashedPassword,
         });
 
-        await newStudent.save();
+        await newfaculty.save();
         res.status(201).json({
-            message: "Student created successfully",
-            studentId: newStudent.studentId,
+            message: "faculty created successfully",
+            facultyId: newfaculty.facultyId,
         });
     } catch (error) {
-        console.error("Error in createStudent:", error);
+        console.error("Error in createfaculty:", error);
 
         if (error instanceof mongoose.Error.ValidationError) {
             // Handle Mongoose validation errors
@@ -104,7 +118,7 @@ const createStudent = async (req, res) => {
                 .status(409)
                 .json({
                     message:
-                        "Duplicate key error. A student with this unique field already exists.",
+                        "Duplicate key error. A faculty with this unique field already exists.",
                 });
         }
 
@@ -114,51 +128,92 @@ const createStudent = async (req, res) => {
         });
     }
 };
-const studentblukupload = async (req, res) => {
+const facultyblukupload = async (req, res) => {
     try {
         if (!req.file) {
             return res.status(400).json({ message: 'No file uploaded' });
         }
 
-        // Send file to FastAPI server
+        // Log the FastAPI domain and file details for debugging
+        console.log('FastAPI Domain:', fastapidomain);
+        console.log('File details:', {
+            path: req.file.path,
+            originalname: req.file.originalname,
+            mimetype: req.file.mimetype
+        });
+
+        // Create form data
         const form = new FormData();
         form.append('file', fs.createReadStream(req.file.path), {
             filename: req.file.originalname,
             contentType: req.file.mimetype
         });
 
+        // Add timeout and better error handling
         const response = await axios.post(
-            `${fastapidomain}/process-excel`,  // FastAPI endpoint
+            `${fastapidomain}/process-faculty-excel`,
             form,
             {
                 headers: {
                     ...form.getHeaders(),
-                }
+                },
+                timeout: 30000, // 30 second timeout
+                validateStatus: false // Don't throw error on non-2xx status
             }
         );
-        console.log(response.data);
-        
-        // Clean up - delete the temporary file
-        fs.unlinkSync(req.file.path);
 
-        // Return the response from FastAPI
+        // Clean up the temporary file
+        if (fs.existsSync(req.file.path)) {
+            fs.unlinkSync(req.file.path);
+        }
+
+        // Handle non-200 responses from FastAPI
+        if (response.status !== 200) {
+            console.error('FastAPI Error:', response.data);
+            return res.status(response.status).json({
+                message: 'Error from processing server',
+                error: response.data
+            });
+        }
+
         return res.status(200).json(response.data);
 
     } catch (error) {
         // Clean up on error
-        if (req.file) {
+        if (req.file && fs.existsSync(req.file.path)) {
             fs.unlinkSync(req.file.path);
         }
 
-        console.error('Error in bulk upload:', error);
+        // Better error logging
+        console.error('Error in bulk upload:', {
+            message: error.message,
+            code: error.code,
+            response: error.response?.data,
+        });
+
+        // Handle different types of errors
+        if (error.code === 'ECONNREFUSED') {
+            return res.status(503).json({
+                message: 'Processing server is not available',
+                error: 'Connection refused'
+            });
+        }
+
+        if (error.code === 'ETIMEDOUT') {
+            return res.status(504).json({
+                message: 'Processing server timed out',
+                error: 'Request timeout'
+            });
+        }
+
         return res.status(500).json({
             message: 'Error processing file',
             error: error.message
         });
     }
 };
-// Log in a student
-const loginStudent = async (req, res) => {
+// Log in a faculty
+const loginfaculty = async (req, res) => {
     try {
         const { email, password } = req.body;
 
@@ -169,28 +224,28 @@ const loginStudent = async (req, res) => {
                 .json({ message: "Email and password are required" });
         }
 
-        // Find student by email
-        const student = await studentModel.findOne({ email });
-        if (!student) {
+        // Find faculty by email
+        const faculty = await facultyprofileSchema.findOne({ email });
+        if (!faculty) {
             return res.status(401).json({ message: "Invalid credentials" });
         }
 
         // Compare password using bcrypt
-        const isMatch = await bcrypt.compare(password, student.password);
+        const isMatch = await bcrypt.compare(password, faculty.password);
         if (!isMatch) {
             return res.status(401).json({ message: "Invalid credentials" });
         }
 
         // Generate JWT tokens
         const { accessToken, refreshToken } = generateTokens(
-            student.email,
+            faculty.email,
             "15m",
             "7d"
         );
 
-        // Update the student's refresh token
-        await studentModel.findOneAndUpdate(
-            { email: student.email },
+        // Update the faculty's refresh token
+        await facultyprofileSchema.findOneAndUpdate(
+            { email: faculty.email },
             { refreshToken: refreshToken },
             { new: true }
         );
@@ -212,11 +267,11 @@ const loginStudent = async (req, res) => {
         return res.status(200).json({
             message: "User logged in successfully",
             user: {
-                id: student._id,
-                firstName: student.firstName,
-                lastName: student.lastName,
-                email: student.email,
-                studentId: student.studentId,
+                id: faculty._id,
+                firstName: faculty.firstName,
+                lastName: faculty.lastName,
+                email: faculty.email,
+                facultyId: faculty.facultyId,
             },
             accessToken,
         });
@@ -225,28 +280,28 @@ const loginStudent = async (req, res) => {
         res.status(500).json({ message: "An error occurred during login" });
     }
 };
-const listofstudent = async (req,res)=>{
+const listoffaculty = async (req,res)=>{
     try {
-        const students = await studentModel.find();
-        res.status(200).json(students);
+        const facultys = await facultyprofileSchema.find();
+        res.status(200).json(facultys);
     } catch (error) {
-        console.error("Error retrieving students:", error);
-        res.status(500).json({ error: "Failed to retrieve students" });
+        console.error("Error retrieving facultys:", error);
+        res.status(500).json({ error: "Failed to retrieve facultys" });
     }
 }
 
-const editStudent = async (req, res) => {
+const editfaculty = async (req, res) => {
     try {
         
-        const studentId = req.params.id;
-        console.log(studentId);
+        const facultyId = req.params.id;
+        console.log(facultyId);
         console.log("adas");
         const updateData = req.body;
         console.log(updateData);
         
         // Remove fields that shouldn't be updated directly
         delete updateData.createdAt;
-        delete updateData.studentId; // Prevent studentId modification
+        delete updateData.facultyId; // Prevent facultyId modification
         
         // Add updatedAt timestamp
         updateData.updatedAt = new Date();
@@ -255,9 +310,9 @@ const editStudent = async (req, res) => {
         }else if(updateData.gender=='M'){
             updateData.gender='Male';
         }
-        // Find and update the student
-        const updatedStudent = await studentModel.findOneAndUpdate(
-            { _id: studentId },
+        // Find and update the faculty
+        const updatedfaculty = await facultyprofileSchema.findOneAndUpdate(
+            { _id: facultyId },
             { $set: updateData },
             { 
                 new: true, // Return the updated document
@@ -265,18 +320,18 @@ const editStudent = async (req, res) => {
             }
         );
 
-        // Check if student exists
-        if (!updatedStudent) {
+        // Check if faculty exists
+        if (!updatedfaculty) {
             return res.status(404).json({
                 success: false,
-                message: 'Student not found'
+                message: 'faculty not found'
             });
         }
 
         return res.status(200).json({
             success: true,
-            message: 'Student updated successfully',
-            data: updatedStudent
+            message: 'faculty updated successfully',
+            data: updatedfaculty
         });
     } catch (error) {
         if (error.name === 'ValidationError') {
@@ -299,63 +354,63 @@ const editStudent = async (req, res) => {
         // Handle other errors
         return res.status(500).json({
             success: false,
-            message: 'Error updating student',
+            message: 'Error updating faculty',
             error: error.message
         });
     }
 }
-const uniquestudent = async(req,res)=>{
+const uniquefaculty = async(req,res)=>{
     try {
         console.log("adsfad");
         
-        const studentId = req.params.id;
-        console.log(studentId);
+        const facultyId = req.params.id;
+        console.log(facultyId);
         
-        const student = await studentModel.findOne({ _id: studentId });
-        console.log(student);
+        const faculty = await facultyprofileSchema.findOne({ _id: facultyId });
+        console.log(faculty);
         
-        if (!student) {
+        if (!faculty) {
             return res.status(404).json({
                 success: false,
-                message: 'Student not found'
+                message: 'faculty not found'
             });
         }
         return res.status(200).json({
             success: true,
-            message: 'Student found successfully',
-            data: student
+            message: 'faculty found successfully',
+            data: faculty
         });
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: 'Error finding student',
+            message: 'Error finding faculty',
             error: error.message
         });
     }
 }
 
-const deletestudent = async(req,res)=>{
+const deletefaculty = async(req,res)=>{
     try {
-        const studentId = req.params.id;
-        const deletedStudent = await studentModel.findByIdAndDelete(studentId);
-        if (!deletedStudent) {
+        const facultyId = req.params.id;
+        const deletedfaculty = await facultyprofileSchema.findByIdAndDelete(facultyId);
+        if (!deletedfaculty) {
             return res.status(404).json({
                 success: false,
-                message: 'Student not found'
+                message: 'faculty not found'
             });
         }
         return res.status(200).json({
             success: true,
-            message: 'Student deleted successfully',
-            data: deletedStudent
+            message: 'faculty deleted successfully',
+            data: deletedfaculty
         });
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: 'Error deleting student',
+            message: 'Error deleting faculty',
             error: error.message
         });
     }
 }
 
-export { createStudent, loginStudent, studentblukupload,listofstudent,editStudent,uniquestudent,deletestudent };
+export { createfaculty, loginfaculty, facultyblukupload,listoffaculty,editfaculty,uniquefaculty,deletefaculty };

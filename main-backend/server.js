@@ -32,6 +32,7 @@ import generalRouter from './src/Router/general.router.js'
 import logger from "./src/middlewares/logger.js";
 import coordinatorRouter from './src/Router/coordinator.router.js'
 import studentRouter from './src/Router/student.route.js'
+import facultyRouter from './src/Router/faculty.router.js'
 
 //print route
 app.use((req, res, next) => {
@@ -47,6 +48,7 @@ app.use('/api/v1/principal',principalRouter)
 app.use('/api/v1/general',generalRouter)
 app.use("/api/v1/coordinator",coordinatorRouter)
 app.use("/api/v1/student",studentRouter)
+app.use("/api/v1/faculty",facultyRouter)
 //princiipal form data register 
 //principal login
 

@@ -1,45 +1,45 @@
 import mongoose from "mongoose";
 
 const studentSchema  = new mongoose.Schema({
-    firstName: { type: String, required: true },
+    firstName: { type: String, required: false },
     middleName: { type: String },
-    lastName: { type: String, required: true },
-    dateOfBirth: { type: Date, required: true },
-    gender: { type: String, required: true, enum: ['Male', 'Female', 'Other'] },
+    lastName: { type: String, required: false },
+    dateOfBirth: { type: Date, required: false },
+    gender: { type: String, required: false, enum: ['Male', 'Female', 'Other'] },
     bloodGroup: { type: String },
   
     // Contact Information
-    email: { type: String, required: true, unique: true },
-    phoneNumber: { type: String, required: true },
+    email: { type: String, required: false, unique: true },
+    phoneNumber: { type: String, required: false },
     address: {
-      street: { type: String, required: true },
-      city: { type: String, required: true },
-      state: { type: String, required: true },
-      postalCode: { type: String, required: true },
-      country: { type: String, required: true }
+      street: { type: String, required: false },
+      city: { type: String, required: false },
+      state: { type: String, required: false },
+      postalCode: { type: String, required: false },
+      country: { type: String, required: false }
     },
   
     // Academic Information
     studentId: { type: String, required: true, unique: true },
-    enrollmentDate: { type: Date, required: true },
-    grade: { type: String, required: true },
+    enrollmentDate: { type: Date, required: false },
+    grade: { type: String, required: false },
     section: { type: String },
     previousSchool: { type: String },
   
     // Parent/Guardian Information
-    guardianName: { type: String, required: true },
-    guardianRelation: { type: String, required: true },
-    guardianContact: { type: String, required: true },
+    guardianName: { type: String, required: false },
+    guardianRelation: { type: String, required: false },
+    guardianContact: { type: String, required:false },
   
     // Face Recognition Data
-    profile_image_link: { type: String, required: true },
+    profile_image_link: { type: String, required: false },
   
     // Additional Information
     medicalConditions: [String],
     emergencyContact: {
-      name: { type: String, required: true },
-      relation: { type: String, required: true },
-      phone: { type: String, required: true }
+      name: { type: String, required: false },
+      relation: { type: String, required: false },
+      phone: { type: String, required: false }
     },
   
     // System Metadata
