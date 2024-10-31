@@ -689,3 +689,78 @@
   Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"8295626702","email":"roy.abhay98@gmail.com"},"_id":"671166048c263d74319abd2b","fullName":"Avay Roy","dateOfBirth":"1989-03-20T00:00:00.000Z","gender":"male","address":"8no. Deshbondhu colony ,Howrah","employeeId":"DSC/P/01","educationalQualifications":"PhD in Sociology","yearsOfExperience":3,"previousPositions":[],"dateOfJoining":"2023-03-02T00:00:00.000Z","username":"abhayroy","password":"$2b$10$T/OsHCmMsaJQDZzRNxA/LO66XmXjXWC/wid3NQgVx26JTE3Z3tGuC","accessLevel":"principal","accountCreationDate":"2024-10-17T19:31:16.953Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5Mzk0Mzg0LCJleHAiOjE3Mjk5OTkxODR9.7PkyWsbVlLOZ1ItGMXs0ajN6Uc7FkbJCkXLUxuxjV-o","role":"principal"}}
   -------------------------
   
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T08:31:30.238Z
+  Method: POST
+  URL: /api/v1/principal/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"username":"abhayroy","password":"dsec@501"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"45","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","content-type":"application/json","dnt":"1","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-IN,en;q=0.9,bn-IN;q=0.8,bn;q=0.7,en-GB;q=0.6,en-US;q=0.5,hi;q=0.4"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T08:31:30.482Z
+  Response Data: {"message":"User logged in successfully","user":{"username":"abhayroy","role":"principal"},"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5NDEzMDkwLCJleHAiOjE3MzAwMTc4OTB9._KmbSOtBCsAKC4JcKlSdwVt-gx1Exy43ynreQj_DMBo","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5NDEzMDkwLCJleHAiOjE3Mjk0MTM5OTB9.TfsgodwU8-brjh2Wb8e4ciBiS5ugx50DppCrFlh1YP4"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T08:31:30.502Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5NDEzMDkwLCJleHAiOjE3Mjk0MTM5OTB9.TfsgodwU8-brjh2Wb8e4ciBiS5ugx50DppCrFlh1YP4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","dnt":"1","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-IN,en;q=0.9,bn-IN;q=0.8,bn;q=0.7,en-GB;q=0.6,en-US;q=0.5,hi;q=0.4","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5NDEzMDkwLCJleHAiOjE3MzAwMTc4OTB9._KmbSOtBCsAKC4JcKlSdwVt-gx1Exy43ynreQj_DMBo; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5NDEzMDkwLCJleHAiOjE3Mjk0MTM5OTB9.TfsgodwU8-brjh2Wb8e4ciBiS5ugx50DppCrFlh1YP4"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T08:31:30.678Z
+  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"8295626702","email":"roy.abhay98@gmail.com"},"_id":"671166048c263d74319abd2b","fullName":"Avay Roy","dateOfBirth":"1989-03-20T00:00:00.000Z","gender":"male","address":"8no. Deshbondhu colony ,Howrah","employeeId":"DSC/P/01","educationalQualifications":"PhD in Sociology","yearsOfExperience":3,"previousPositions":[],"dateOfJoining":"2023-03-02T00:00:00.000Z","username":"abhayroy","password":"$2b$10$T/OsHCmMsaJQDZzRNxA/LO66XmXjXWC/wid3NQgVx26JTE3Z3tGuC","accessLevel":"principal","accountCreationDate":"2024-10-17T19:31:16.953Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5NDEzMDkwLCJleHAiOjE3MzAwMTc4OTB9._KmbSOtBCsAKC4JcKlSdwVt-gx1Exy43ynreQj_DMBo","role":"principal"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T08:31:30.683Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5NDEzMDkwLCJleHAiOjE3Mjk0MTM5OTB9.TfsgodwU8-brjh2Wb8e4ciBiS5ugx50DppCrFlh1YP4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","dnt":"1","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-IN,en;q=0.9,bn-IN;q=0.8,bn;q=0.7,en-GB;q=0.6,en-US;q=0.5,hi;q=0.4","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5NDEzMDkwLCJleHAiOjE3MzAwMTc4OTB9._KmbSOtBCsAKC4JcKlSdwVt-gx1Exy43ynreQj_DMBo; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5NDEzMDkwLCJleHAiOjE3Mjk0MTM5OTB9.TfsgodwU8-brjh2Wb8e4ciBiS5ugx50DppCrFlh1YP4","if-none-match":"W/\"319-8SQid3NnX2NxRIZRffSY0sKedxg\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T08:31:30.830Z
+  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"8295626702","email":"roy.abhay98@gmail.com"},"_id":"671166048c263d74319abd2b","fullName":"Avay Roy","dateOfBirth":"1989-03-20T00:00:00.000Z","gender":"male","address":"8no. Deshbondhu colony ,Howrah","employeeId":"DSC/P/01","educationalQualifications":"PhD in Sociology","yearsOfExperience":3,"previousPositions":[],"dateOfJoining":"2023-03-02T00:00:00.000Z","username":"abhayroy","password":"$2b$10$T/OsHCmMsaJQDZzRNxA/LO66XmXjXWC/wid3NQgVx26JTE3Z3tGuC","accessLevel":"principal","accountCreationDate":"2024-10-17T19:31:16.953Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5NDEzMDkwLCJleHAiOjE3MzAwMTc4OTB9._KmbSOtBCsAKC4JcKlSdwVt-gx1Exy43ynreQj_DMBo","role":"principal"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T08:31:30.834Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5NDEzMDkwLCJleHAiOjE3Mjk0MTM5OTB9.TfsgodwU8-brjh2Wb8e4ciBiS5ugx50DppCrFlh1YP4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","dnt":"1","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-IN,en;q=0.9,bn-IN;q=0.8,bn;q=0.7,en-GB;q=0.6,en-US;q=0.5,hi;q=0.4","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5NDEzMDkwLCJleHAiOjE3MzAwMTc4OTB9._KmbSOtBCsAKC4JcKlSdwVt-gx1Exy43ynreQj_DMBo; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5NDEzMDkwLCJleHAiOjE3Mjk0MTM5OTB9.TfsgodwU8-brjh2Wb8e4ciBiS5ugx50DppCrFlh1YP4","if-none-match":"W/\"319-8SQid3NnX2NxRIZRffSY0sKedxg\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T08:31:30.990Z
+  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"8295626702","email":"roy.abhay98@gmail.com"},"_id":"671166048c263d74319abd2b","fullName":"Avay Roy","dateOfBirth":"1989-03-20T00:00:00.000Z","gender":"male","address":"8no. Deshbondhu colony ,Howrah","employeeId":"DSC/P/01","educationalQualifications":"PhD in Sociology","yearsOfExperience":3,"previousPositions":[],"dateOfJoining":"2023-03-02T00:00:00.000Z","username":"abhayroy","password":"$2b$10$T/OsHCmMsaJQDZzRNxA/LO66XmXjXWC/wid3NQgVx26JTE3Z3tGuC","accessLevel":"principal","accountCreationDate":"2024-10-17T19:31:16.953Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5NDEzMDkwLCJleHAiOjE3MzAwMTc4OTB9._KmbSOtBCsAKC4JcKlSdwVt-gx1Exy43ynreQj_DMBo","role":"principal"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-10-20T08:31:30.994Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5NDEzMDkwLCJleHAiOjE3Mjk0MTM5OTB9.TfsgodwU8-brjh2Wb8e4ciBiS5ugx50DppCrFlh1YP4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"","dnt":"1","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-IN,en;q=0.9,bn-IN;q=0.8,bn;q=0.7,en-GB;q=0.6,en-US;q=0.5,hi;q=0.4","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5NDEzMDkwLCJleHAiOjE3MzAwMTc4OTB9._KmbSOtBCsAKC4JcKlSdwVt-gx1Exy43ynreQj_DMBo; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5NDEzMDkwLCJleHAiOjE3Mjk0MTM5OTB9.TfsgodwU8-brjh2Wb8e4ciBiS5ugx50DppCrFlh1YP4","if-none-match":"W/\"319-8SQid3NnX2NxRIZRffSY0sKedxg\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-10-20T08:31:31.115Z
+  Response Data: {"message":"Token is valid","user":{"contactInfo":{"phone":"8295626702","email":"roy.abhay98@gmail.com"},"_id":"671166048c263d74319abd2b","fullName":"Avay Roy","dateOfBirth":"1989-03-20T00:00:00.000Z","gender":"male","address":"8no. Deshbondhu colony ,Howrah","employeeId":"DSC/P/01","educationalQualifications":"PhD in Sociology","yearsOfExperience":3,"previousPositions":[],"dateOfJoining":"2023-03-02T00:00:00.000Z","username":"abhayroy","password":"$2b$10$T/OsHCmMsaJQDZzRNxA/LO66XmXjXWC/wid3NQgVx26JTE3Z3tGuC","accessLevel":"principal","accountCreationDate":"2024-10-17T19:31:16.953Z","__v":0,"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFiaGF5cm95IiwiaWF0IjoxNzI5NDEzMDkwLCJleHAiOjE3MzAwMTc4OTB9._KmbSOtBCsAKC4JcKlSdwVt-gx1Exy43ynreQj_DMBo","role":"principal"}}
+  -------------------------
+  
