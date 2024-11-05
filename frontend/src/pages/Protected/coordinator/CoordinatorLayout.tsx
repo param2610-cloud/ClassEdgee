@@ -33,7 +33,7 @@ const CoordinatorLayout: React.FC<{ children: React.ReactNode }> = ({ children }
                 Dashboard
               </Button>
               <Button 
-                onClick={() => handleNavigation('/p/teachers')} 
+                onClick={() => handleNavigation('/p/teachers/create')} 
                 className="text-lg hover:underline"
               >
                 Teachers

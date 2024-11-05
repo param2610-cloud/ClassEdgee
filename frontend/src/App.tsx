@@ -18,6 +18,7 @@ import SupremeDashboard from './pages/Protected/supreme/dashboard/SupremeDashboa
 import PrincipalDashboard from './pages/Protected/principal/dashboard/PrincipalDashboard';
 import CreateCoordinatorForm from './pages/Protected/principal/createCoordinator/CreateCoordinator';
 import CoordinatorLayout from './pages/Protected/coordinator/CoordinatorLayout';
+import CreateTeacher from './pages/Protected/coordinator/teachers/create/CreateTeacher';
 import CoordinatorDashboard from './pages/Protected/coordinator/dashaboard/CoordinatorDashboard';
 import CreateStudent from './pages/Protected/coordinator/student/create/CreateStudent';
 import CoordinatorStudent from './pages/Protected/coordinator/student/CoordinatorStudent';
@@ -134,6 +135,7 @@ const CoordinatorRoutes: React.FC = () => (
       <Route path="/student" element={<CoordinatorStudent />} />
       <Route path="/student/create" element={<CreateStudent />} />
       <Route path="/student/edit/:id" element={<StudentEditProfile />} />
+      <Route path="/teachers/create" element={<CreateTeacher />} />
     </Routes>
   </CoordinatorLayout>
 );
