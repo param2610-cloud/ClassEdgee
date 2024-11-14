@@ -121,7 +121,7 @@ if __name__ == "__main__":
     user_id = 1
     
     # Example question for the chatbot
-    question = "Can you explain Newton's laws of motion?"
+    question = "Can you explain mass-velocity concept?"
     
     # Get the chatbot's response and feedback
     response, feedback = chatbot(user_id, question)
