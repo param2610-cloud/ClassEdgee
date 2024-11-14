@@ -4,6 +4,9 @@ const CoordinatorDashboard = () => {
   return (
     <div>
       Dashboard of Coordinator
+      <button>
+        Create Teacher
+      </button>
     </div>
   )
 }
