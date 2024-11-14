@@ -23,6 +23,8 @@ import CoordinatorDashboard from './pages/Protected/coordinator/dashaboard/Coord
 import CreateStudent from './pages/Protected/coordinator/student/create/CreateStudent';
 import CoordinatorStudent from './pages/Protected/coordinator/student/CoordinatorStudent';
 import StudentEditProfile from './pages/Protected/coordinator/student/edit/Studentedit';
+import TeacherEditProfile from './pages/Protected/coordinator/teachers/edit/Teacheredit';
+import CoordinatorFaculty from './pages/Protected/coordinator/teachers/CoordinatorFaculty';
 
 const App: React.FC = () => {
   return (
@@ -115,7 +117,6 @@ const FacultyRoutes: React.FC = () => (
   <FacultyLayout>
     <Routes>
       <Route path="/" element={<Dashboard />} />
-      {/* Add faculty-specific routes here */}
     </Routes>
   </FacultyLayout>
 );
@@ -135,7 +136,9 @@ const CoordinatorRoutes: React.FC = () => (
       <Route path="/student" element={<CoordinatorStudent />} />
       <Route path="/student/create" element={<CreateStudent />} />
       <Route path="/student/edit/:id" element={<StudentEditProfile />} />
-      <Route path="/teachers/create" element={<CreateTeacher />} />
+      <Route path="/faculty" element={<CoordinatorFaculty />} />
+      <Route path="/faculty/create" element={<CreateTeacher />} />
+      <Route path="/faculty/edit/:id" element={<TeacherEditProfile />} />
     </Routes>
   </CoordinatorLayout>
 );

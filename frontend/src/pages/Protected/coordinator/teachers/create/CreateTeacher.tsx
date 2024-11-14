@@ -329,7 +329,7 @@ const CreateTeacher: React.FC = () => {
               </Alert>
             )}
             {success && (
-              <Alert variant="success">
+              <Alert >
                 <AlertDescription>{success}</AlertDescription>
               </Alert>
             )}

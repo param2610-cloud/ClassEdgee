@@ -20,7 +20,7 @@ const studentSchema  = new mongoose.Schema({
     },
   
     // Academic Information
-    studentId: { type: String, required: true, unique: true },
+    rollno: { type: String, required: true, unique: true },
     enrollmentDate: { type: Date, required: false },
     grade: { type: String, required: false },
     section: { type: String },
@@ -41,6 +41,10 @@ const studentSchema  = new mongoose.Schema({
       relation: { type: String, required: false },
       phone: { type: String, required: false }
     },
+
+    //login credential
+    username: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
   
     // System Metadata
     createdAt: { type: Date, default: Date.now },
