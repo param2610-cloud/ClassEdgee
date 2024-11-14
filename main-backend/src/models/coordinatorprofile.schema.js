@@ -4,8 +4,8 @@ const coordinatorSchema = new mongoose.Schema({
     dateOfBirth: { type: Date, required: true },
     gender: { type: String, required: true },
     contactInfo: {
-      phone: { type: String, required: true },
-      email: { type: String, required: true, unique: true }
+        phone: { type: String, required: true },
+        email: { type: String, required: true, unique: true },
     },
     address: { type: String, required: true },
     employeeId: { type: String, required: true, unique: true },
@@ -16,14 +16,21 @@ const coordinatorSchema = new mongoose.Schema({
     department: { type: String, required: true },
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    accessLevel: { type: String, default: 'coordinator' },
+    accessLevel: { type: String, default: "coordinator" },
     accountCreationDate: { type: Date, default: Date.now },
-    reportingTo: { type: mongoose.Schema.Types.ObjectId, ref: 'Principal', required: true },
+    reportingTo: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Principal",
+        required: true,
+    },
     refreshToken: { type: String },
-    role:{
-      type:String,
-      default:"coordinator"
-  }
-  });
-  
-  export const coordinatorModel = mongoose.model("Coordinator",coordinatorSchema)
+    role: {
+        type: String,
+        default: "coordinator",
+    },
+});
+
+export const coordinatorModel = mongoose.model(
+    "Coordinator",
+    coordinatorSchema
+);
