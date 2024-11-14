@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/select";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { domain } from "@/lib/constant";
+import { Label } from "@/components/ui/label";
 
 // Define TypeScript interfaces
 interface Address {
@@ -38,6 +39,8 @@ interface Student {
     guardianName: string;
     guardianRelation: string;
     guardianContact: string;
+    rollno: string;
+    dateOfBirth: string;
 }
 
 interface CloudinaryResponse {
@@ -63,6 +66,7 @@ const StudentEditProfile: React.FC = () => {
     const [profileImagePreview, setProfileImagePreview] = useState<
         string | null
     >(null);
+    const [formattedDate, setFormattedDate] = useState<string>("");
 
     const getPublicIdFromUrl = (url: string): string | null => {
         try {
@@ -82,13 +86,25 @@ const StudentEditProfile: React.FC = () => {
         if (!public_id) return;
 
         try {
-            const generateSignature = (public_id:any, timestamp:any, api_secret:any) => {
+            const generateSignature = (
+                public_id: any,
+                timestamp: any,
+                api_secret: any
+            ) => {
                 const stringToSign = `public_id=${public_id}&timestamp=${timestamp}${api_secret}`;
-                return CryptoJS.createHash("sha1").update(stringToSign).digest("hex");
+                return CryptoJS.createHash("sha1")
+                    .update(stringToSign)
+                    .digest("hex");
             };
-            
-            const timestamp = Math.round(new Date().getTime() / 1000).toString();
-            const signature = generateSignature(public_id, timestamp, process.env.CLOUDINARY_API_SECRET);
+
+            const timestamp = Math.round(
+                new Date().getTime() / 1000
+            ).toString();
+            const signature = generateSignature(
+                public_id,
+                timestamp,
+                process.env.CLOUDINARY_API_SECRET
+            );
             const formData = new FormData();
             formData.append("public_id", public_id);
             formData.append("api_key", CLOUDINARY_API_KEY);
@@ -193,6 +209,13 @@ const StudentEditProfile: React.FC = () => {
             setFormData(response.data.data);
             setProfileImagePreview(response.data.data.profile_image_link);
             setLoading(false);
+            const dateStr = response.data.data.dateOfBirth;
+            const date = new Date(dateStr);
+
+            const day = String(date.getUTCDate()).padStart(2, "0"); // Get the day, padded to 2 digits
+            const month = String(date.getUTCMonth() + 1).padStart(2, "0"); // Get the month, padded to 2 digits (months are 0-indexed)
+            const year = date.getUTCFullYear(); // Get the full year
+            setFormattedDate(`${day}${month}${year}`);
         } catch (err) {
             const error = err as AxiosError;
             setError(
@@ -418,7 +441,36 @@ const StudentEditProfile: React.FC = () => {
                                 onChange={handleChange}
                                 placeholder="Blood Group"
                             />
-
+                            <div className="space-y-4">
+                                <h3 className="text-lg font-medium">
+                                    Login Credentials
+                                </h3>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <Label htmlFor="username">
+                                            Username (Same as Student Roll no)
+                                        </Label>
+                                        <Input
+                                            id="username"
+                                            value={formData.rollno}
+                                            disabled
+                                            className="bg-gray-50"
+                                        />
+                                    </div>
+                                    <div>
+                                        <Label htmlFor="password">
+                                            Password (Same as Date of Birth)
+                                        </Label>
+                                        <Input
+                                            id="password"
+                                            type="text"
+                                            value={formattedDate}
+                                            disabled
+                                            className="bg-gray-50"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
                             {/* Address Fields */}
                             <Input
                                 name="address.street"

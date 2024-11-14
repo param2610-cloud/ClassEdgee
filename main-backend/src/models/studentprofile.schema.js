@@ -20,7 +20,7 @@ const studentSchema  = new mongoose.Schema({
     },
   
     // Academic Information
-    rollno: { type: String, required: true, unique: true },
+    studentId: { type: String, required: true, unique: true },
     enrollmentDate: { type: Date, required: false },
     grade: { type: String, required: false },
     section: { type: String },
@@ -51,10 +51,27 @@ const studentSchema  = new mongoose.Schema({
     updatedAt: { type: Date, default: Date.now }
 });
 
+// Pre-save middleware to set username and password
+studentSchema.pre('save', function(next) {
+    // Set username to studentId
+    this.username = this.studentId;
+    
+    // Format password from date of birth if it exists
+    if (this.dateOfBirth) {
+        const dob = new Date(this.dateOfBirth);
+        const day = String(dob.getDate()).padStart(2, '0');
+        const month = String(dob.getMonth() + 1).padStart(2, '0'); // Month is 0-based
+        const year = dob.getFullYear();
+        
+        this.password = `${day}${month}${year}`;
+    }
+    
+    next();
+});
+
 studentSchema.index({ studentId: 1, email: 1 });
 
 export const studentModel = mongoose.model(
     "Student",
     studentSchema 
 );
-
