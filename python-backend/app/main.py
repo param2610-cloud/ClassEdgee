@@ -441,4 +441,4 @@ async def process_faculty_excel(file: UploadFile):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="192.168.0.158", port=8000)
+    uvicorn.run(app, host=os.getenv('PORT'), port=8000)
