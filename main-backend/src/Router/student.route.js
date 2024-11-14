@@ -9,4 +9,5 @@ router.get("/list-of-student",listofstudent)
 router.put("/edit/:id",editStudent)
 router.get("/get-student/:id",uniquestudent)
 router.delete("/delete-student/:id",deletestudent)
+
 export default router

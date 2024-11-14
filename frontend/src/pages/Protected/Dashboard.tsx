@@ -5,7 +5,7 @@ const Dashboard = () => {
     <div>
       Faculty Dashboard
       
-    </div>
+    </div>             
   )
 }
 
