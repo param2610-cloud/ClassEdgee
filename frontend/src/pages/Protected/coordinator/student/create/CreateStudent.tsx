@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import React, { useState, useEffect } from "react";
+import { Controller, useForm, useWatch } from "react-hook-form";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -32,6 +32,7 @@ const StudentRegistration = () => {
         handleSubmit,
         reset,
         setValue,
+        watch,
         formState: { errors },
     } = useForm({
         defaultValues: {
@@ -53,6 +54,8 @@ const StudentRegistration = () => {
             medicalConditions: [],
             enrollmentDate:"",
             profile_image_link: "",
+            username: "",
+            password: "",
             
             address: {
                 street: "",
@@ -68,6 +71,25 @@ const StudentRegistration = () => {
             },
         }
     });
+
+    // Watch for changes in studentId and dateOfBirth
+    const studentId = watch("studentId");
+    const dateOfBirth = watch("dateOfBirth");
+
+    // Update username and password when studentId or dateOfBirth changes
+    useEffect(() => {
+        if (studentId) {
+            setValue("username", studentId);
+        }
+    }, [studentId, setValue]);
+
+    useEffect(() => {
+        if (dateOfBirth) {
+            // Remove hyphens from date string for password
+            setValue("password", dateOfBirth.replace(/-/g, ""));
+        }
+    }, [dateOfBirth, setValue]);
+
 
     const handleProfileImageChange = async (e: any) => {
         const selectedFile = e.target.files[0];
@@ -193,7 +215,7 @@ const StudentRegistration = () => {
     };
 
     return (
-        <Card className="w-full max-w-4xl mx-auto">
+<Card className="w-full max-w-4xl mx-auto">
             <CardHeader>
                 <CardTitle>Student Registration</CardTitle>
             </CardHeader>
@@ -548,7 +570,36 @@ const StudentRegistration = () => {
                                     </div>
                                 </div>
                             </div>
-
+                            <div className="space-y-4">
+                                <h3 className="text-lg font-medium">
+                                    Login Credentials
+                                </h3>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <Label htmlFor="username">
+                                            Username (Same as Student Roll no)
+                                        </Label>
+                                        <Input
+                                            id="username"
+                                            {...register("username")}
+                                            disabled
+                                            className="bg-gray-50"
+                                        />
+                                    </div>
+                                    <div>
+                                        <Label htmlFor="password">
+                                            Password (Same as Date of Birth)
+                                        </Label>
+                                        <Input
+                                            id="password"
+                                            type="text"
+                                            {...register("password")}
+                                            disabled
+                                            className="bg-gray-50"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
                             {/* Guardian Information */}
                             <div className="space-y-4">
                                 <h3 className="text-lg font-medium">

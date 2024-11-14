@@ -49,6 +49,8 @@ class Student(BaseModel):
     guardianRelation: str
     guardianContact: str
     emergencyContact: dict
+    username: str  # Added username field
+    password: str
 
 # Column mapping dictionary
 COLUMN_MAPPINGS = {
@@ -116,7 +118,7 @@ def map_columns(df: pd.DataFrame) -> Dict[str, str]:
 def validate_student_data(data: dict) -> bool:
     required_fields = [
         "firstName", "lastName", "dateOfBirth", "gender", "email",
-        "phoneNumber", "studentId", "enrollmentDate", "grade",
+        "phoneNumber", "studentId", "username", "password", "enrollmentDate", "grade",
         "guardianName", "guardianRelation", "guardianContact"
     ]
     
@@ -207,25 +209,37 @@ async def process_excel(file: UploadFile):
                 # Clean NaN values
                 student_data = {k: (v if pd.notna(v) else None) for k, v in student_data.items()}
                 
-                # Validate data
-                validate_student_data(student_data)
-                
-                # Convert dates to proper format
+                # Set username as studentId
+                # Set username as studentId
+                student_data['username'] = student_data['studentId']
+
+
                 if 'dateOfBirth' in student_data and student_data['dateOfBirth']:
-                    student_data['dateOfBirth'] = pd.to_datetime(
-                        student_data['dateOfBirth']
-                    ).strftime('%Y-%m-%d')
-                
+                    # Format date of birth
+                    dob = pd.to_datetime(student_data['dateOfBirth']).strftime('%d%m%Y')  # Changed format here
+                    student_data['dateOfBirth'] = pd.to_datetime(student_data['dateOfBirth']).strftime('%Y-%m-%d')  # Keep storage format as is
+                    
+                    # Hash the password
+                    password = dob  # No need to replace hyphens since we're using direct format
+                    salt = bcrypt.gensalt()
+                    hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
+                    student_data['password'] = hashed_password.decode('utf-8')
+
+
                 if 'enrollmentDate' in student_data and student_data['enrollmentDate']:
                     student_data['enrollmentDate'] = pd.to_datetime(
                         student_data['enrollmentDate']
                     ).strftime('%Y-%m-%d')
                 
+                # Validate data
+                validate_student_data(student_data)
+                
                 # Check for existing student
                 existing_student = students_collection.find_one({
                     '$or': [
                         {'studentId': student_data['studentId']},
-                        {'email': student_data['email']}
+                        {'email': student_data['email']},
+                        {'username': student_data['username']}
                     ]
                 })
                 
@@ -243,7 +257,8 @@ async def process_excel(file: UploadFile):
                 
                 successful_entries.append({
                     'studentId': student_data['studentId'],
-                    'name': f"{student_data['firstName']} {student_data.get('lastName', '')}"
+                    'name': f"{student_data['firstName']} {student_data.get('lastName', '')}",
+                    'username': student_data['username']
                 })
                 
             except Exception as e:
@@ -263,7 +278,6 @@ async def process_excel(file: UploadFile):
         
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-
 
 # Column mapping dictionary for faculty with nested structure
 FACULTY_COLUMN_MAPPINGS = {
