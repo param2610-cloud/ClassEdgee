@@ -24,7 +24,7 @@ const createStudent = async (req, res) => {
             "email",
             "phoneNumber",
             "address",
-            "studentId",
+            "rollno",
             "enrollmentDate",
             "grade",
             "guardianName",
@@ -47,7 +47,8 @@ const createStudent = async (req, res) => {
         if (!emailRegex.test(studentData.email)) {
             return res.status(400).json({ message: "Invalid email format" });
         }
-        password = "classedgee" // For testing purposes
+        const username = studentData.rollno
+        password = studentData.dateOfBirth // For testing purposes
         // Validate password strength
         if (password.length < 8) {
             return res
