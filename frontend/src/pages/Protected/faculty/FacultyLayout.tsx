@@ -9,6 +9,7 @@ const FacultyLayout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
       <main>{children}</main>
       <footer>{/* Faculty footer content */}</footer>
     </div>
+    
   );
 };
 
