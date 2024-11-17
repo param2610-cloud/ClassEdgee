@@ -1,343 +1,559 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import axios from "axios";
-import { Upload } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
+import {
+    AlertCircle,
+    User,
+    Building2,
+    GraduationCap,
+    Upload,
+} from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { AlertCircle } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { domain } from "@/lib/constant";
+import { Department } from "@/interface/general";
 
-interface Duration {
-  startDate: string;
-  endDate: string;
-}
+// Add your Cloudinary configuration
+const CLOUDINARY_UPLOAD_PRESET = process.env.CLOUDINARY_UPLOAD_PRESET;
+const CLOUDINARY_CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME;
 
-interface TeacherFormData {
-  personalInformation: {
-    fullName: string;
-    dateOfBirth: string;
-    gender: string;
-    contactNumber: string;
-    email: string;
-  };
-  qualification: {
-    highestDegree: string;
-    specialization: string;
-    universityInstitute: string;
-    yearOfPassing: number;
-  };
-  professionalExperience: {
-    totalYearsOfExperience: number;
-    previousJobTitle: string;
-    previousOrganization: string;
-    duration: Duration;
-  };
-  subjectExpertise: {
-    primarySubject: string;
-    secondarySubjects: string;
-  };
-  additionalInformation: {
-    address: string;
-  };
-  certifications: File[];
-  linkedinProfile: string;
-}
+const facultySchema = z.object({
+    email: z.string().email("Invalid email address"),
+    password: z
+        .string()
+        .min(8, "Password must be at least 8 characters")
+        .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
+        .regex(/[a-z]/, "Password must contain at least one lowercase letter")
+        .regex(/[0-9]/, "Password must contain at least one number"),
+    firstName: z.string().min(2, "First name must be at least 2 characters"),
+    lastName: z.string().min(2, "Last name must be at least 2 characters"),
+    phoneNumber: z.string().optional(),
+    departmentId: z.string().min(1, "Department is required"),
+    employeeId: z.string().min(1, "Employee ID is required"),
+    designation: z.string().min(1, "Designation is required"),
+    joiningDate: z.string().min(1, "Joining date is required"),
+    contractEndDate: z.string().optional(),
+    expertise: z.string().optional(),
+    qualifications: z.string().optional(),
+    maxWeeklyHours: z.number().min(1).max(168),
+    researchInterests: z.string().optional(),
+    publications: z.string().optional(),
+    profilePicture: z.any().optional(),
+    profilePictureUrl: z.string().optional(), // Add this new field
+});
 
-const CreateTeacher: React.FC = () => {
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [file, setFile] = useState<File | null>(null);
+type FacultyFormData = z.infer<typeof facultySchema>;
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<TeacherFormData>();
+const CreateFacultyForm = () => {
+    const { toast } = useToast();
+    const [isLoading, setIsLoading] = useState(false);
+    const [uploadingImage, setUploadingImage] = useState(false);
+    const [profilePreview, setProfilePreview] = useState<string>("");
+    const [error, setError] = useState<string>("");
+    const [departmentList,setdepartmentList] = useState<Department[]>([]);
 
-  const onSubmit = async (data: TeacherFormData) => {
-    setLoading(true);
-    setError(null);
-    setSuccess(null);
-    try {
-      await axios.post(`${domain}/api/teachers`, data);
-      setSuccess("Teacher created successfully.");
-    } catch (error) {
-      setError("Failed to create teacher.");
-    } finally {
-      setLoading(false);
-    }
-  };
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        setValue,
+    } = useForm<FacultyFormData>({
+        resolver: zodResolver(facultySchema),
+        defaultValues: {
+            maxWeeklyHours: 40,
+        },
+    });
 
-  const handleBulkUpload = async () => {
-    if (!file) return;
-    setLoading(true);
-    try {
-      // Handle bulk file upload logic here
-      setSuccess("File uploaded successfully.");
-    } catch (error) {
-      setError("Failed to upload file.");
-    } finally {
-      setLoading(false);
-    }
-  };
+    const uploadToCloudinary = async (file: File): Promise<string> => {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
 
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Create Teacher</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="space-y-4">
-            {/* Personal Information */}
-            <div>
-              <Label htmlFor="fullName">Full Name *</Label>
-              <Input
-                id="fullName"
-                {...register("personalInformation.fullName", {
-                  required: "Full name is required",
-                })}
-                className={errors.personalInformation?.fullName ? "border-red-500" : ""}
-              />
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="dateOfBirth">Date of Birth *</Label>
-                <Input
-                  type="date"
-                  id="dateOfBirth"
-                  {...register("personalInformation.dateOfBirth", {
-                    required: "Date of birth is required",
-                  })}
-                  className={errors.personalInformation?.dateOfBirth ? "border-red-500" : ""}
-                />
-              </div>
-              <div>
-                <Label htmlFor="gender">Gender *</Label>
-                <Input
-                  id="gender"
-                  {...register("personalInformation.gender", {
-                    required: "Gender is required",
-                  })}
-                  className={errors.personalInformation?.gender ? "border-red-500" : ""}
-                />
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="contactNumber">Contact Number *</Label>
-                <Input
-                  id="contactNumber"
-                  {...register("personalInformation.contactNumber", {
-                    required: "Contact number is required",
-                  })}
-                  className={errors.personalInformation?.contactNumber ? "border-red-500" : ""}
-                />
-              </div>
-              <div>
-                <Label htmlFor="email">Email *</Label>
-                <Input
-                  id="email"
-                  {...register("personalInformation.email", {
-                    required: "Email is required",
-                  })}
-                  className={errors.personalInformation?.email ? "border-red-500" : ""}
-                />
-              </div>
-            </div>
+        try {
+            const response = await axios.post(
+                `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
+                formData
+            );
 
-            {/* Qualification */}
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor="highestDegree">Highest Degree *</Label>
-                <Input
-                  id="highestDegree"
-                  {...register("qualification.highestDegree", {
-                    required: "Highest degree is required",
-                  })}
-                  className={errors.qualification?.highestDegree ? "border-red-500" : ""}
-                />
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="specialization">Specialization *</Label>
-                  <Input
-                    id="specialization"
-                    {...register("qualification.specialization", {
-                      required: "Specialization is required",
-                    })}
-                    className={errors.qualification?.specialization ? "border-red-500" : ""}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="universityInstitute">University/Institute *</Label>
-                  <Input
-                    id="universityInstitute"
-                    {...register("qualification.universityInstitute", {
-                      required: "University/Institute is required",
-                    })}
-                    className={errors.qualification?.universityInstitute ? "border-red-500" : ""}
-                  />
-                </div>
-              </div>
-              <div>
-                <Label htmlFor="yearOfPassing">Year of Passing *</Label>
-                <Input
-                  type="number"
-                  id="yearOfPassing"
-                  {...register("qualification.yearOfPassing", {
-                    required: "Year of passing is required",
-                  })}
-                  className={errors.qualification?.yearOfPassing ? "border-red-500" : ""}
-                />
-              </div>
-            </div>
+            return response.data.secure_url;
+        } catch (error) {
+            throw new Error("Failed to upload image to Cloudinary");
+        }
+    };
+    useEffect(()=>{
+        const fetchDepartments = async () => {
+            try {
+                const response = await axios.get(`${domain}/api/v1/data/list-of-department`);
+                setdepartmentList(response.data);
+            } catch (error) {
+                console.error("Error fetching departments:", error);
+            }
+        };
+        fetchDepartments();
+    },[])
 
-            {/* Professional Experience */}
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor="totalYearsOfExperience">Total Years of Experience *</Label>
-                <Input
-                  type="number"
-                  id="totalYearsOfExperience"
-                  {...register("professionalExperience.totalYearsOfExperience", {
-                    required: "Total years of experience is required",
-                  })}
-                  className={errors.professionalExperience?.totalYearsOfExperience ? "border-red-500" : ""}
-                />
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="previousJobTitle">Previous Job Title *</Label>
-                  <Input
-                    id="previousJobTitle"
-                    {...register("professionalExperience.previousJobTitle", {
-                      required: "Previous job title is required",
-                    })}
-                    className={errors.professionalExperience?.previousJobTitle ? "border-red-500" : ""}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="previousOrganization">Previous Organization *</Label>
-                  <Input
-                    id="previousOrganization"
-                    {...register("professionalExperience.previousOrganization", {
-                      required: "Previous organization is required",
-                    })}
-                    className={errors.professionalExperience?.previousOrganization ? "border-red-500" : ""}
-                  />
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="startDate">Start Date *</Label>
-                  <Input
-                    type="date"
-                    id="startDate"
-                    {...register("professionalExperience.duration.startDate", {
-                      required: "Start date is required",
-                    })}
-                    className={errors.professionalExperience?.duration?.startDate ? "border-red-500" : ""}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="endDate">End Date *</Label>
-                  <Input
-                    type="date"
-                    id="endDate"
-                    {...register("professionalExperience.duration.endDate", {
-                      required: "End date is required",
-                    })}
-                    className={errors.professionalExperience?.duration?.endDate ? "border-red-500" : ""}
-                  />
-                </div>
-              </div>
-            </div>
+    const handleImageUpload = async (
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            try {
+                setUploadingImage(true);
+                // Show preview immediately
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    const result = reader.result;
+                    if (typeof result === "string") {
+                        setProfilePreview(result);
+                    }
+                };
+                reader.readAsDataURL(file);
 
-            {/* Subject Expertise */}
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor="primarySubject">Primary Subject *</Label>
-                <Input
-                  id="primarySubject"
-                  {...register("subjectExpertise.primarySubject", {
-                    required: "Primary subject is required",
-                  })}
-                  className={errors.subjectExpertise?.primarySubject ? "border-red-500" : ""}
-                />
-              </div>
-              <div>
-                <Label htmlFor="secondarySubjects">Secondary Subjects</Label>
-                <Input
-                  id="secondarySubjects"
-                  {...register("subjectExpertise.secondarySubjects")}
-                  className={errors.subjectExpertise?.secondarySubjects ? "border-red-500" : ""}
-                />
-              </div>
-            </div>
+                // Upload to Cloudinary
+                const imageUrl = await uploadToCloudinary(file);
+                setValue("profilePictureUrl", imageUrl);
 
-            {/* Additional Information */}
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor="address">Address *</Label>
-                <Input
-                  id="address"
-                  {...register("additionalInformation.address", {
-                    required: "Address is required",
-                  })}
-                  className={errors.additionalInformation?.address ? "border-red-500" : ""}
-                />
-              </div>
-              <div>
-                <Label htmlFor="linkedinProfile">LinkedIn Profile *</Label>
-                <Input
-                  id="linkedinProfile"
-                  {...register("linkedinProfile", {
-                    required: "LinkedIn profile is required",
-                  })}
-                  className={errors.linkedinProfile ? "border-red-500" : ""}
-                />
-              </div>
-            </div>
+                toast({
+                    title: "Success",
+                    description: "Image uploaded successfully",
+                    duration: 3000,
+                });
+            } catch (error) {
+                toast({
+                    title: "Error",
+                    description: "Failed to upload image. Please try again.",
+                    variant: "destructive",
+                    duration: 5000,
+                });
+                setProfilePreview("");
+            } finally {
+                setUploadingImage(false);
+            }
+        }
+    };
 
-            {/* File Upload for Certifications */}
-            <div className="space-y-4">
-              <Label htmlFor="certifications">Certifications</Label>
-              <Input
-                type="file"
-                id="certifications"
-                {...register("certifications")}
-                multiple
-              />
-            </div>
+    const onSubmit = async (data: FacultyFormData) => {
+        setIsLoading(true);
+        setError("");
 
-            {/* Submit Button */}
-            <Button type="submit" disabled={loading}>
-              {loading ? "Submitting..." : "Create Teacher"}
-            </Button>
+        try {
+            // Create the payload without the file, using the Cloudinary URL instead
+            const payload = {
+                ...data,
+                profilePicture: data.profilePictureUrl, // Use the Cloudinary URL
+            };
 
-            {/* Display Success/Error Message */}
-            {error && (
-              <Alert variant="destructive">
-                <AlertCircle className="h-4 w-4" />
-                <AlertDescription>{error}</AlertDescription>
-              </Alert>
-            )}
-            {success && (
-              <Alert >
-                <AlertDescription>{success}</AlertDescription>
-              </Alert>
-            )}
-          </div>
-        </form>
-      </CardContent>
-    </Card>
-  );
+            // Remove the original file and URL fields
+            delete payload.profilePictureUrl;
+
+            await axios.post(
+                `${domain}/api/v1/faculty/createfaculty`,
+                payload,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+
+            toast({
+                title: "Success!",
+                description: "Faculty member has been created successfully.",
+                duration: 5000,
+            });
+        } catch (error) {
+            const errorMessage =
+                error instanceof Error ? error.message : "An error occurred";
+            setError(errorMessage);
+            toast({
+                title: "Error",
+                description:
+                    "Failed to create faculty member. Please try again.",
+                variant: "destructive",
+                duration: 5000,
+            });
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    return (
+        <div className="w-full max-w-4xl mx-auto p-4 space-y-6">
+            <Card className="w-full">
+                <CardHeader>
+                    <CardTitle className="text-2xl font-bold flex items-center gap-2">
+                        <User className="h-6 w-6" />
+                        Create New Faculty Member
+                    </CardTitle>
+                    <CardDescription>
+                        Enter the details for the new faculty member. All fields
+                        marked with * are required.
+                    </CardDescription>
+                </CardHeader>
+
+                <CardContent>
+                    <form
+                        onSubmit={handleSubmit(onSubmit)}
+                        className="space-y-8"
+                    >
+                        {/* Profile Picture Upload */}
+                        <div className="flex flex-col items-center space-y-4">
+                            <Avatar className="h-32 w-32">
+                                <AvatarImage
+                                    src={profilePreview}
+                                    alt="Profile preview"
+                                />
+                                <AvatarFallback>
+                                    <User className="h-16 w-16" />
+                                </AvatarFallback>
+                            </Avatar>
+                            <div className="flex flex-col items-center">
+                                <Label
+                                    htmlFor="profilePicture"
+                                    className="cursor-pointer"
+                                >
+                                    <div className="flex items-center space-x-2 bg-secondary p-2 rounded-md">
+                                        <Upload className="h-4 w-4" />
+                                        <span>
+                                            {uploadingImage
+                                                ? "Uploading..."
+                                                : "Upload Photo"}
+                                        </span>
+                                    </div>
+                                    <input
+                                        type="file"
+                                        id="profilePicture"
+                                        className="hidden"
+                                        accept="image/*"
+                                        onChange={handleImageUpload}
+                                        disabled={uploadingImage}
+                                    />
+                                </Label>
+                            </div>
+                        </div>
+
+                        {/* Personal Information Section */}
+                        <div className="space-y-6">
+                            <div className="flex items-center gap-2">
+                                <User className="h-5 w-5 text-primary" />
+                                <h3 className="text-lg font-semibold">
+                                    Personal Information
+                                </h3>
+                            </div>
+                            <Separator />
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <Label htmlFor="firstName">
+                                        First Name *
+                                    </Label>
+                                    <Input {...register("firstName")} />
+                                    {errors.firstName && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.firstName.message}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="lastName">
+                                        Last Name *
+                                    </Label>
+                                    <Input {...register("lastName")} />
+                                    {errors.lastName && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.lastName.message}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="email">
+                                        Email Address *
+                                    </Label>
+                                    <Input
+                                        {...register("email")}
+                                        type="email"
+                                    />
+                                    {errors.email && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.email.message}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="password">Password *</Label>
+                                    <Input
+                                        {...register("password")}
+                                        type="password"
+                                    />
+                                    {errors.password && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.password.message}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="phoneNumber">
+                                        Phone Number
+                                    </Label>
+                                    <Input {...register("phoneNumber")} />
+                                    {errors.phoneNumber && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.phoneNumber.message}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Employment Information */}
+                        <div className="space-y-6">
+                            <div className="flex items-center gap-2">
+                                <Building2 className="h-5 w-5 text-primary" />
+                                <h3 className="text-lg font-semibold">
+                                    Employment Information
+                                </h3>
+                            </div>
+                            <Separator />
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <Label htmlFor="employeeId">
+                                        Employee ID *
+                                    </Label>
+                                    <Input
+                                        {...register("employeeId")}
+                                        placeholder="FAC001"
+                                    />
+                                    {errors.employeeId && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.employeeId.message}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="departmentId">
+                                        Department *
+                                    </Label>
+                                    <Select
+                                        onValueChange={(value) =>
+                                            setValue("departmentId", value)
+                                        }
+                                    >
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Select Department" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {departmentList.map((dept:Department) => (
+                                                <SelectItem
+                                                    key={dept.department_id}
+                                                    value={dept.department_code}
+                                                >
+                                                    {dept.department_name}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                    {errors.departmentId && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.departmentId.message}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="designation">
+                                        Designation *
+                                    </Label>
+                                    <Select
+                                        onValueChange={(value) =>
+                                            setValue("designation", value)
+                                        }
+                                    >
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Select Designation" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="professor">
+                                                Professor
+                                            </SelectItem>
+                                            <SelectItem value="associate">
+                                                Associate Professor
+                                            </SelectItem>
+                                            <SelectItem value="assistant">
+                                                Assistant Professor
+                                            </SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                    {errors.designation && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.designation.message}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="maxWeeklyHours">
+                                        Max Weekly Hours *
+                                    </Label>
+                                    <Input
+                                        type="number"
+                                        {...register("maxWeeklyHours", {
+                                            valueAsNumber: true,
+                                        })}
+                                        placeholder="40"
+                                    />
+                                    {errors.maxWeeklyHours && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.maxWeeklyHours.message}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="joiningDate">
+                                        Joining Date *
+                                    </Label>
+                                    <Input
+                                        {...register("joiningDate")}
+                                        type="date"
+                                    />
+                                    {errors.joiningDate && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.joiningDate.message}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="contractEndDate">
+                                        Contract End Date
+                                    </Label>
+                                    <Input
+                                        {...register("contractEndDate")}
+                                        type="date"
+                                    />
+                                    {errors.contractEndDate && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.contractEndDate.message}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Academic Information */}
+                        <div className="space-y-6">
+                            <div className="flex items-center gap-2">
+                                <GraduationCap className="h-5 w-5 text-primary" />
+                                <h3 className="text-lg font-semibold">
+                                    Academic Information
+                                </h3>
+                            </div>
+                            <Separator />
+
+                            <div className="grid grid-cols-1 gap-6">
+                                <div className="space-y-2">
+                                    <Label htmlFor="qualifications">
+                                        Qualifications
+                                    </Label>
+                                    <Input
+                                        {...register("qualifications")}
+                                        placeholder="Ph.D. in Computer Science, M.Sc. in Mathematics"
+                                    />
+                                    <p className="text-sm text-gray-500">
+                                        Separate multiple qualifications with
+                                        commas
+                                    </p>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="expertise">
+                                        Areas of Expertise
+                                    </Label>
+                                    <Input
+                                        {...register("expertise")}
+                                        placeholder="Machine Learning, Data Science, Algorithm Design"
+                                    />
+                                    <p className="text-sm text-gray-500">
+                                        Separate multiple areas with commas
+                                    </p>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="researchInterests">
+                                        Research Interests
+                                    </Label>
+                                    <Input
+                                        {...register("researchInterests")}
+                                        placeholder="Artificial Intelligence, Neural Networks"
+                                    />
+                                    <p className="text-sm text-gray-500">
+                                        Separate multiple interests with commas
+                                    </p>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="publications">
+                                        Notable Publications
+                                    </Label>
+                                    <Input
+                                        {...register("publications")}
+                                        placeholder="Title of publications"
+                                    />
+                                    <p className="text-sm text-gray-500">
+                                        Separate multiple publications with
+                                        commas
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {error && (
+                            <Alert variant="destructive">
+                                <AlertCircle className="h-4 w-4" />
+                                <AlertDescription>{error}</AlertDescription>
+                            </Alert>
+                        )}
+
+                        <div className="flex justify-end space-x-4">
+                            <Button variant="outline" type="button">
+                                Cancel
+                            </Button>
+                            <Button type="submit" disabled={isLoading}>
+                                {isLoading ? "Creating..." : "Create Faculty"}
+                            </Button>
+                        </div>
+                    </form>
+                </CardContent>
+            </Card>
+        </div>
+    );
 };
 
-export default CreateTeacher;
+export default CreateFacultyForm;

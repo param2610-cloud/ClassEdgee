@@ -20,16 +20,16 @@ const generatePassword = (length) => {
 
 
 
-function generateTokens(username, accessTokenExpiry, refreshTokenExpiry) {
+function generateTokens(college_uid, accessTokenExpiry, refreshTokenExpiry) {
   try {
     const accessToken = jwt.sign(
-      { username: username },
+      { college_uid: college_uid },
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: accessTokenExpiry }
     );
   
     const refreshToken = jwt.sign(
-      { username: username },
+      { college_uid: college_uid },
       process.env.REFRESH_TOKEN_SECRET,
       { expiresIn: refreshTokenExpiry }
     );
