@@ -1,802 +1,350 @@
-import React, { useState, useEffect } from "react";
-import { Controller, useForm, useWatch } from "react-hook-form";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import  { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import axios from 'axios';
+import { useToast } from '@/hooks/use-toast';
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Upload, AlertCircle, Camera } from "lucide-react";
-import { domain } from "@/lib/constant";
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
-const StudentRegistration = () => {
-    const [activeTab, setActiveTab] = useState("manual");
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
-    const [success, setSuccess] = useState("");
-    const [file, setFile] = useState(null);
-    const [profileImage, setProfileImage] = useState(null);
-    const [profileImagePreview, setProfileImagePreview] = useState("");
-    const [uploadingImage, setUploadingImage] = useState(false);
+// Define the form schema
+const studentSchema = z.object({
+  first_name: z.string().min(2, 'First name must be at least 2 characters'),
+  last_name: z.string().min(2, 'Last name must be at least 2 characters'),
+  email: z.string().email('Invalid email address'),
+  phone_number: z.string().min(10, 'Invalid phone number'),
+  enrollment_number: z.string().min(1, 'Enrollment number is required'),
+  department_id: z.string().min(1, 'Department is required'),
+  batch_year: z.string().min(4, 'Invalid batch year'),
+  current_semester: z.string().min(1, 'Current semester is required'),
+  guardian_name: z.string().min(2, 'Guardian name is required'),
+  guardian_contact: z.string().min(10, 'Invalid guardian contact'),
+  college_uid: z.string().min(1, 'College UID is required'),
+  profile_picture: z.any().optional(),
+});
 
-    const {
-        control,
-        register,
-        handleSubmit,
-        reset,
-        setValue,
-        watch,
-        formState: { errors },
-    } = useForm({
-        defaultValues: {
-            firstName:"",
-            middleName: "",
-            lastName: "",
-            email: "",
-            phoneNumber: "",
-            studentId: "",
-            dateOfBirth: "",
-            bloodGroup: "",
-            gender: "",
-            grade: "",
-            section: "",
-            previousSchool: "",
-            guardianName: "",
-            guardianRelation: "",
-            guardianContact: "",
-            medicalConditions: [],
-            enrollmentDate:"",
-            profile_image_link: "",
-            username: "",
-            password: "",
-            
-            address: {
-                street: "",
-                city: "",
-                state: "",
-                postalCode: "",
-                country: "",
-            },
-            emergencyContact: {
-                name: "",
-                relation: "",
-                phone: "",
-            },
-        }
-    });
+type StudentFormData = z.infer<typeof studentSchema>;
 
-    // Watch for changes in studentId and dateOfBirth
-    const studentId = watch("studentId");
-    const dateOfBirth = watch("dateOfBirth");
+const CLOUDINARY_UPLOAD_PRESET = 'your_upload_preset';
+const CLOUDINARY_CLOUD_NAME = 'your_cloud_name';
 
-    // Update username and password when studentId or dateOfBirth changes
-    useEffect(() => {
-        if (studentId) {
-            setValue("username", studentId);
-        }
-    }, [studentId, setValue]);
+export default function CreateStudentForm() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [profilePreview, setProfilePreview] = useState<string>('');
+  const { toast } = useToast();
 
-    useEffect(() => {
-        if (dateOfBirth) {
-            // Remove hyphens from date string for password
-            setValue("password", dateOfBirth.replace(/-/g, ""));
-        }
-    }, [dateOfBirth, setValue]);
+  const form = useForm<StudentFormData>({
+    resolver: zodResolver(studentSchema),
+    defaultValues: {
+      first_name: '',
+      last_name: '',
+      email: '',
+      phone_number: '',
+      enrollment_number: '',
+      department_id: '',
+      batch_year: '',
+      current_semester: '',
+      guardian_name: '',
+      guardian_contact: '',
+      college_uid: '',
+    },
+  });
 
+  const handleImageUpload = async (file: File) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
 
-    const handleProfileImageChange = async (e: any) => {
-        const selectedFile = e.target.files[0];
-        if (!selectedFile) return;
+    try {
+      const response = await axios.post(
+        `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
+        formData
+      );
+      return response.data.secure_url;
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      throw new Error('Failed to upload image');
+    }
+  };
 
-        // Preview
-        const reader = new FileReader();
-        reader.onload = () => {
-            setProfileImagePreview(reader.result);
-        };
-        reader.readAsDataURL(selectedFile);
+  const onSubmit = async (data: StudentFormData) => {
+    try {
+      setIsLoading(true);
+      
+      let imageUrl = '';
+      if (data.profile_picture instanceof File) {
+        imageUrl = await handleImageUpload(data.profile_picture);
+      }
 
-        setProfileImage(selectedFile);
-        setUploadingImage(true);
+      const studentData = {
+        ...data,
+        profile_picture: imageUrl,
+      };
 
-        // Upload to Cloudinary
-        try {
-            const formData = new FormData();
-            formData.append("file", selectedFile);
-            formData.append("api_key", "978417188612515");
-            formData.append(
-                "timestamp",
-                Math.round(new Date().getTime() / 1000).toString()
-            );
-            formData.append("upload_preset", "student_profile"); // You'll need to create this in Cloudinary
+      await axios.post('/api/v1/students/create', studentData);
+      
+      toast({
+        title: "Success!",
+        description: "Student has been created successfully.",
+        duration: 5000,
+      });
 
-            const response = await fetch(
-                `https://api.cloudinary.com/v1_1/diacb8luh/image/upload`,
-                {
-                    method: "POST",
-                    body: formData,
-                }
-            );
+      form.reset();
+      setProfilePreview('');
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to create student. Please try again.",
+        variant: "destructive",
+        duration: 5000,
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-            const data = await response.json();
-            if (data.secure_url) {
-                setValue("profile_image_link", data.secure_url);
-                setSuccess("Profile image uploaded successfully!");
-            }
-        } catch (err) {
-            console.log(err);
-            setError("Failed to upload profile image");
-            setProfileImagePreview("");
-            setProfileImage(null);
-        } finally {
-            setUploadingImage(false);
-        }
-    };
-
-    const handleManualSubmit = async (data: any) => {
-        setLoading(true);
-        setError("");
-        setSuccess("");
-
-        try {
-            const response = await fetch(
-                `${domain}/api/v1/student/createstudent`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(data),
-                }
-            );
-
-            const result = await response.json();
-
-            if (!response.ok) {
-                throw new Error(result.message || "Failed to register student");
-            }
-
-            setSuccess("Student registered successfully!");
-            reset();
-            setProfileImagePreview("");
-            setProfileImage(null);
-        } catch (err: any) {
-            setError(err.message);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const handleFileUpload = async (e: any) => {
-        setFile(e.target.files[0]);
-    };
-
-    const handleBulkUpload = async () => {
-        if (!file) {
-            setError("Please select a file first");
-            return;
-        }
-
-        setLoading(true);
-        setError("");
-        setSuccess("");
-
-        const formData = new FormData();
-        formData.append("file", file);
-
-        try {
-            const response = await fetch(
-                `${domain}/api/v1/student/studentbulkupload`,
-                {
-                    method: "POST",
-                    body: formData,
-                }
-            );
-
-            const result = await response.json();
-
-            if (!response.ok) {
-                throw new Error(result.message || "Failed to upload students");
-            }
-
-            setSuccess("Students uploaded successfully!");
-            setFile(null);
-        } catch (err: any) {
-            setError(err.message);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    return (
-<Card className="w-full max-w-4xl mx-auto">
-            <CardHeader>
-                <CardTitle>Student Registration</CardTitle>
-            </CardHeader>
-            <CardContent>
-                <Tabs value={activeTab} onValueChange={setActiveTab}>
-                    <TabsList className="grid w-full grid-cols-2">
-                        <TabsTrigger value="manual">Manual Entry</TabsTrigger>
-                        <TabsTrigger value="bulk">Bulk Upload</TabsTrigger>
-                    </TabsList>
-
-                    <TabsContent value="manual">
-                        <form
-                            onSubmit={handleSubmit(handleManualSubmit)}
-                            className="space-y-4"
-                        >
-                            <div className="space-y-4">
-                                <h3 className="text-lg font-medium">
-                                    Profile Image
-                                </h3>
-                                <div className="flex flex-col items-center space-y-4">
-                                    <div className="relative w-32 h-32">
-                                        {profileImagePreview ? (
-                                            <img
-                                                src={profileImagePreview}
-                                                alt="Profile preview"
-                                                className="w-full h-full rounded-full object-cover"
-                                            />
-                                        ) : (
-                                            <div className="w-full h-full rounded-full bg-gray-100 flex items-center justify-center">
-                                                <Camera className="w-8 h-8 text-gray-400" />
-                                            </div>
-                                        )}
-                                        <Input
-                                            type="file"
-                                            accept="image/*"
-                                            onChange={handleProfileImageChange}
-                                            className="hidden"
-                                            id="profile-image"
-                                            disabled={uploadingImage}
-                                        />
-                                        <Label
-                                            htmlFor="profile-image"
-                                            className="absolute bottom-0 right-0 bg-primary text-white p-2 rounded-full cursor-pointer"
-                                        >
-                                            <Camera className="w-4 h-4" />
-                                        </Label>
-                                    </div>
-                                    {uploadingImage && (
-                                        <p className="text-sm text-gray-500">
-                                            Uploading...
-                                        </p>
-                                    )}
-                                </div>
-                            </div>
-                            {/* Personal Information */}
-                            <div className="space-y-4">
-                                <h3 className="text-lg font-medium">
-                                    Personal Information
-                                </h3>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    <div>
-                                        <Label htmlFor="firstName">
-                                            First Name *
-                                        </Label>
-                                        <Input
-                                            id="firstName"
-                                            {...register("firstName", {
-                                                required:
-                                                    "First name is required",
-                                            })}
-                                            className={
-                                                errors.firstName
-                                                    ? "border-red-500"
-                                                    : ""
-                                            }
-                                        />
-                                    </div>
-                                    <div>
-                                        <Label htmlFor="middleName">
-                                            Middle Name
-                                        </Label>
-                                        <Input
-                                            id="middleName"
-                                            {...register("middleName")}
-                                        />
-                                    </div>
-                                    <div>
-                                        <Label htmlFor="lastName">
-                                            Last Name *
-                                        </Label>
-                                        <Input
-                                            id="lastName"
-                                            {...register("lastName", {
-                                                required:
-                                                    "Last name is required",
-                                            })}
-                                            className={
-                                                errors.lastName
-                                                    ? "border-red-500"
-                                                    : ""
-                                            }
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    <div>
-                                        <Label htmlFor="dateOfBirth">
-                                            Date of Birth *
-                                        </Label>
-                                        <Input
-                                            id="dateOfBirth"
-                                            type="date"
-                                            {...register("dateOfBirth", {
-                                                required:
-                                                    "Date of birth is required",
-                                            })}
-                                            className={
-                                                errors.dateOfBirth
-                                                    ? "border-red-500"
-                                                    : ""
-                                            }
-                                        />
-                                    </div>
-                                    <div>
-                                        <Label htmlFor="gender">Gender *</Label>
-                                        <Controller
-                                            name="gender"
-                                            control={control}
-                                            rules={{
-                                                required: "Gender is required",
-                                            }}
-                                            render={({ field }) => (
-                                                <Select
-                                                    onValueChange={
-                                                        field.onChange
-                                                    }
-                                                    defaultValue={field.value}
-                                                >
-                                                    <SelectTrigger>
-                                                        <SelectValue placeholder="Select gender" />
-                                                    </SelectTrigger>
-                                                    <SelectContent>
-                                                        <SelectItem value="Male">
-                                                            Male
-                                                        </SelectItem>
-                                                        <SelectItem value="Female">
-                                                            Female
-                                                        </SelectItem>
-                                                        <SelectItem value="Other">
-                                                            Other
-                                                        </SelectItem>
-                                                    </SelectContent>
-                                                </Select>
-                                            )}
-                                        />
-                                    </div>
-                                    <div>
-                                        <Label htmlFor="bloodGroup">
-                                            Blood Group
-                                        </Label>
-                                        <Input
-                                            id="bloodGroup"
-                                            {...register("bloodGroup")}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Contact Information */}
-                            <div className="space-y-4">
-                                <h3 className="text-lg font-medium">
-                                    Contact Information
-                                </h3>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <Label htmlFor="email">Email *</Label>
-                                        <Input
-                                            id="email"
-                                            type="email"
-                                            {...register("email", {
-                                                required: "Email is required",
-                                                pattern: {
-                                                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                                                    message:
-                                                        "Invalid email format",
-                                                },
-                                            })}
-                                            className={
-                                                errors.email
-                                                    ? "border-red-500"
-                                                    : ""
-                                            }
-                                        />
-                                    </div>
-                                    <div>
-                                        <Label htmlFor="phoneNumber">
-                                            Phone Number *
-                                        </Label>
-                                        <Input
-                                            id="phoneNumber"
-                                            {...register("phoneNumber", {
-                                                required:
-                                                    "Phone number is required",
-                                            })}
-                                            className={
-                                                errors.phoneNumber
-                                                    ? "border-red-500"
-                                                    : ""
-                                            }
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="space-y-2">
-                                    <Label>Address *</Label>
-                                    <Input
-                                        placeholder="Street"
-                                        {...register("address.street", {
-                                            required: "Street is required",
-                                        })}
-                                        className={
-                                            errors["address.street"]
-                                                ? "border-red-500"
-                                                : ""
-                                        }
-                                    />
-                                    <div className="grid grid-cols-2 gap-2">
-                                        <Input
-                                            placeholder="City"
-                                            {...register("address.city", {
-                                                required: "City is required",
-                                            })}
-                                            className={
-                                                errors["address.city"]
-                                                    ? "border-red-500"
-                                                    : ""
-                                            }
-                                        />
-                                        <Input
-                                            placeholder="State"
-                                            {...register("address.state", {
-                                                required: "State is required",
-                                            })}
-                                            className={
-                                                errors["address.state"]
-                                                    ? "border-red-500"
-                                                    : ""
-                                            }
-                                        />
-                                    </div>
-                                    <div className="grid grid-cols-2 gap-2">
-                                        <Input
-                                            placeholder="Postal Code"
-                                            {...register("address.postalCode", {
-                                                required:
-                                                    "Postal code is required",
-                                            })}
-                                            className={
-                                                errors["address.postalCode"]
-                                                    ? "border-red-500"
-                                                    : ""
-                                            }
-                                        />
-                                        <Input
-                                            placeholder="Country"
-                                            {...register("address.country", {
-                                                required: "Country is required",
-                                            })}
-                                            className={
-                                                errors["address.country"]
-                                                    ? "border-red-500"
-                                                    : ""
-                                            }
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Academic Information */}
-                            <div className="space-y-4">
-                                <h3 className="text-lg font-medium">
-                                    Academic Information
-                                </h3>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <Label htmlFor="studentId">
-                                            Student ID *
-                                        </Label>
-                                        <Input
-                                            id="studentId"
-                                            {...register("studentId", {
-                                                required:
-                                                    "Student ID is required",
-                                            })}
-                                            className={
-                                                errors.studentId
-                                                    ? "border-red-500"
-                                                    : ""
-                                            }
-                                        />
-                                    </div>
-                                    <div>
-                                        <Label htmlFor="enrollmentDate">
-                                            Enrollment Date *
-                                        </Label>
-                                        <Input
-                                            id="enrollmentDate"
-                                            type="date"
-                                            {...register("enrollmentDate", {
-                                                required:
-                                                    "Enrollment date is required",
-                                            })}
-                                            className={
-                                                errors.enrollmentDate
-                                                    ? "border-red-500"
-                                                    : ""
-                                            }
-                                        />
-                                    </div>
-                                </div>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    <div>
-                                        <Label htmlFor="grade">Grade *</Label>
-                                        <Input
-                                            id="grade"
-                                            {...register("grade", {
-                                                required: "Grade is required",
-                                            })}
-                                            className={
-                                                errors.grade
-                                                    ? "border-red-500"
-                                                    : ""
-                                            }
-                                        />
-                                    </div>
-                                    <div>
-                                        <Label htmlFor="section">Section</Label>
-                                        <Input
-                                            id="section"
-                                            {...register("section")}
-                                        />
-                                    </div>
-                                    <div>
-                                        <Label htmlFor="previousSchool">
-                                            Previous School
-                                        </Label>
-                                        <Input
-                                            id="previousSchool"
-                                            {...register("previousSchool")}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="space-y-4">
-                                <h3 className="text-lg font-medium">
-                                    Login Credentials
-                                </h3>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <Label htmlFor="username">
-                                            Username (Same as Student Roll no)
-                                        </Label>
-                                        <Input
-                                            id="username"
-                                            {...register("username")}
-                                            disabled
-                                            className="bg-gray-50"
-                                        />
-                                    </div>
-                                    <div>
-                                        <Label htmlFor="password">
-                                            Password (Same as Date of Birth)
-                                        </Label>
-                                        <Input
-                                            id="password"
-                                            type="text"
-                                            {...register("password")}
-                                            disabled
-                                            className="bg-gray-50"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            {/* Guardian Information */}
-                            <div className="space-y-4">
-                                <h3 className="text-lg font-medium">
-                                    Guardian Information
-                                </h3>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    <div>
-                                        <Label htmlFor="guardianName">
-                                            Guardian Name *
-                                        </Label>
-                                        <Input
-                                            id="guardianName"
-                                            {...register("guardianName", {
-                                                required:
-                                                    "Guardian name is required",
-                                            })}
-                                            className={
-                                                errors.guardianName
-                                                    ? "border-red-500"
-                                                    : ""
-                                            }
-                                        />
-                                    </div>
-                                    <div>
-                                        <Label htmlFor="guardianRelation">
-                                            Relation *
-                                        </Label>
-                                        <Input
-                                            id="guardianRelation"
-                                            {...register("guardianRelation", {
-                                                required:
-                                                    "Guardian relation is required",
-                                            })}
-                                            className={
-                                                errors.guardianRelation
-                                                    ? "border-red-500"
-                                                    : ""
-                                            }
-                                        />
-                                    </div>
-                                    <div>
-                                        <Label htmlFor="guardianContact">
-                                            Contact *
-                                        </Label>
-                                        <Input
-                                            id="guardianContact"
-                                            {...register("guardianContact", {
-                                                required:
-                                                    "Guardian contact is required",
-                                            })}
-                                            className={
-                                                errors.guardianContact
-                                                    ? "border-red-500"
-                                                    : ""
-                                            }
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Emergency Contact */}
-                            <div className="space-y-4">
-                                <h3 className="text-lg font-medium">
-                                    Emergency Contact
-                                </h3>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    <div>
-                                        <Label htmlFor="emergencyContact.name">
-                                            Name *
-                                        </Label>
-                                        <Input
-                                            id="emergencyContact.name"
-                                            {...register(
-                                                "emergencyContact.name",
-                                                {
-                                                    required:
-                                                        "Emergency contact name is required",
-                                                }
-                                            )}
-                                            className={
-                                                errors["emergencyContact.name"]
-                                                    ? "border-red-500"
-                                                    : ""
-                                            }
-                                        />
-                                    </div>
-                                    <div>
-                                        <Label htmlFor="emergencyContact.relation">
-                                            Relation *
-                                        </Label>
-                                        <Input
-                                            id="emergencyContact.relation"
-                                            {...register(
-                                                "emergencyContact.relation",
-                                                {
-                                                    required:
-                                                        "Emergency contact relation is required",
-                                                }
-                                            )}
-                                            className={
-                                                errors[
-                                                    "emergencyContact.relation"
-                                                ]
-                                                    ? "border-red-500"
-                                                    : ""
-                                            }
-                                        />
-                                    </div>
-                                    <div>
-                                        <Label htmlFor="emergencyContact.phone">
-                                            Phone *
-                                        </Label>
-                                        <Input
-                                            id="emergencyContact.phone"
-                                            {...register(
-                                                "emergencyContact.phone",
-                                                {
-                                                    required:
-                                                        "Emergency contact phone is required",
-                                                }
-                                            )}
-                                            className={
-                                                errors["emergencyContact.phone"]
-                                                    ? "border-red-500"
-                                                    : ""
-                                            }
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <Button
-                                type="submit"
-                                disabled={loading}
-                                className="w-full"
-                            >
-                                {loading
-                                    ? "Registering..."
-                                    : "Register Student"}
-                            </Button>
-                        </form>
-                    </TabsContent>
-
-                    <TabsContent value="bulk">
-                        <div className="space-y-4">
-                            <div className="border-2 border-dashed rounded-lg p-6 text-center">
-                                <Input
-                                    type="file"
-                                    accept=".xlsx,.xls"
-                                    onChange={handleFileUpload}
-                                    className="hidden"
-                                    id="file-upload"
-                                />
-                                <Label
-                                    htmlFor="file-upload"
-                                    className="cursor-pointer"
-                                >
-                                    <Upload className="mx-auto h-12 w-12 text-gray-400" />
-                                    <p className="mt-2">
-                                        Click to upload or drag and drop
-                                    </p>
-                                    <p className="text-sm text-gray-500">
-                                        Excel files only (*.xlsx, *.xls)
-                                    </p>
-                                </Label>
-                            </div>
-                            {file && (
-                                <p className="text-sm text-gray-600">
-                                    Selected file: {file ? file.name : ""}
-                                </p>
-                            )}
-                            <Button
-                                onClick={handleBulkUpload}
-                                disabled={!file || loading}
-                                className="w-full"
-                            >
-                                {loading ? "Uploading..." : "Upload Students"}
-                            </Button>
-                        </div>
-                    </TabsContent>
-                </Tabs>
-
-                {error && (
-                    <Alert variant="destructive" className="mt-4">
-                        <AlertCircle className="h-4 w-4" />
-                        <AlertDescription>{error}</AlertDescription>
-                    </Alert>
+  return (
+    <Card className="w-full max-w-2xl mx-auto">
+      <CardHeader>
+        <CardTitle>Create New Student</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="first_name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>First Name</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
                 )}
-
-                {success && (
-                    <Alert className="mt-4 bg-green-50 text-green-700 border-green-200">
-                        <AlertDescription>{success}</AlertDescription>
-                    </Alert>
+              />
+              
+              <FormField
+                control={form.control}
+                name="last_name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Last Name</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
                 )}
-            </CardContent>
-        </Card>
-    );
-};
+              />
 
-export default StudentRegistration;
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input type="email" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="phone_number"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Phone Number</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="enrollment_number"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Enrollment Number</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="department_id"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Department</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select department" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="1">Computer Science</SelectItem>
+                        <SelectItem value="2">Electrical Engineering</SelectItem>
+                        <SelectItem value="3">Mechanical Engineering</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="batch_year"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Batch Year</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="current_semester"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Current Semester</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select semester" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {[1, 2, 3, 4, 5, 6, 7, 8].map((sem) => (
+                          <SelectItem key={sem} value={sem.toString()}>
+                            Semester {sem}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="guardian_name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Guardian Name</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="guardian_contact"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Guardian Contact</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="college_uid"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>College UID</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="profile_picture"
+                render={({ field: { value, onChange, ...field } }) => (
+                  <FormItem>
+                    <FormLabel>Profile Picture</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="file"
+                        accept="image/*"
+                        onChange={(event) => {
+                          const file = event.target.files?.[0];
+                          if (file) {
+                            onChange(file);
+                            const reader = new FileReader();
+                            reader.onloadend = () => {
+                              setProfilePreview(reader.result as string);
+                            };
+                            reader.readAsDataURL(file);
+                          }
+                        }}
+                        {...field}
+                      />
+                    </FormControl>
+                    {profilePreview && (
+                      <img 
+                        src={profilePreview} 
+                        alt="Profile preview" 
+                        className="mt-2 w-24 h-24 rounded-full object-cover"
+                      />
+                    )}
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? "Creating..." : "Create Student"}
+            </Button>
+          </form>
+        </Form>
+      </CardContent>
+    </Card>
+  );
+}

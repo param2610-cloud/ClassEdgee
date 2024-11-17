@@ -1,7 +1,8 @@
 import e from "express";
 import jwt from "jsonwebtoken";
 import { generateTokens } from "../utils/generate.js";
-import { findUserById, updateUser } from "../utils/db_operation.js";
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
 const router = e.Router();
 
@@ -27,7 +28,7 @@ function validateToken(req, res, next) {
 
 
 router.get("/validate-token", validateToken,async (req, res) => {
-    const data = await findUserById(req.user.username);
+    const data = await prisma.users.findUnique({ where: { college_uid: req.user.college_uid } });
     res.status(200).json({ message: "Token is valid", user: data });
 });
 
@@ -142,6 +143,8 @@ router.post("/logout", async (req, res) => {
         return res.status(403).json({ message: "Invalid refresh token." });
     }
 });
+
+
 
 
 export default router;

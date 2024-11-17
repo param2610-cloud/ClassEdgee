@@ -1,0 +1,557 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model activitylogs {
+  log_id        Int       @id @default(autoincrement())
+  user_id       Int?
+  activity_type String    @db.VarChar(100)
+  description   String?
+  ip_address    String?   @db.Inet
+  user_agent    String?
+  created_at    DateTime? @default(now()) @db.Timestamp(6)
+  users         users?    @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model administrativeduties {
+  duty_id        Int       @id @default(autoincrement())
+  faculty_id     Int?
+  duty_title     String    @db.VarChar(100)
+  description    String?
+  start_date     DateTime  @db.Date
+  end_date       DateTime? @db.Date
+  hours_per_week Int?
+  priority       Int?
+  created_at     DateTime? @default(now()) @db.Timestamp(6)
+  faculty        faculty?  @relation(fields: [faculty_id], references: [faculty_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model alertnotifications {
+  notification_id Int              @id @default(autoincrement())
+  alert_id        Int?
+  recipient_id    Int?
+  message         String
+  sent_at         DateTime?        @default(now()) @db.Timestamp(6)
+  delivery_status String?          @default("pending") @db.VarChar(20)
+  read_at         DateTime?        @db.Timestamp(6)
+  response_action String?
+  emergencyalerts emergencyalerts? @relation(fields: [alert_id], references: [alert_id], onDelete: NoAction, onUpdate: NoAction)
+  users           users?           @relation(fields: [recipient_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model analyticsdata {
+  data_id         Int                       @id @default(autoincrement())
+  data_type       String                    @db.VarChar(50)
+  entity_type     String                    @db.VarChar(50)
+  entity_id       Int
+  metrics         Json
+  analysis_period Unsupported("daterange")?
+  created_at      DateTime?                 @default(now()) @db.Timestamp(6)
+}
+
+model announcements {
+  announcement_id         Int          @id @default(autoincrement())
+  title                   String       @db.VarChar(255)
+  content                 String
+  sender_id               Int?
+  department_id           Int?
+  target_type             String       @db.VarChar(50)
+  target_id               Int?
+  priority                String?      @default("normal") @db.VarChar(20)
+  posted_at               DateTime?    @default(now()) @db.Timestamp(6)
+  expires_at              DateTime?    @db.Timestamp(6)
+  acknowledgment_required Boolean?     @default(false)
+  departments             departments? @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction)
+  users                   users?       @relation(fields: [sender_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This table is a partition table and requires additional setup for migrations. Visit https://pris.ly/d/partition-tables for more info.
+model attendance {
+  attendance_id        Int                   @default(autoincrement())
+  class_id             Int?
+  student_id           Int?
+  date                 DateTime              @db.Date
+  status               String                @db.VarChar(20)
+  verification_method  verification_method
+  location_coordinates Unsupported("point")?
+  device_info          Json?
+  verification_data    Bytes?
+  created_at           DateTime?             @default(now()) @db.Timestamp(6)
+  classes              classes?              @relation(fields: [class_id], references: [class_id], onDelete: NoAction, onUpdate: NoAction)
+  students             students?             @relation(fields: [student_id], references: [student_id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([attendance_id, date])
+  @@unique([class_id, student_id, date])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model backlogsessions {
+  backlog_id                                            Int       @id @default(autoincrement())
+  original_class_id                                     Int?
+  rescheduled_class_id                                  Int?
+  reason                                                String
+  requested_by                                          Int?
+  priority                                              Int?
+  status                                                String?   @default("pending") @db.VarChar(20)
+  created_at                                            DateTime? @default(now()) @db.Timestamp(6)
+  classes_backlogsessions_original_class_idToclasses    classes?  @relation("backlogsessions_original_class_idToclasses", fields: [original_class_id], references: [class_id], onDelete: NoAction, onUpdate: NoAction)
+  users                                                 users?    @relation(fields: [requested_by], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  classes_backlogsessions_rescheduled_class_idToclasses classes?  @relation("backlogsessions_rescheduled_class_idToclasses", fields: [rescheduled_class_id], references: [class_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model buildings {
+  building_id          Int                   @id @default(autoincrement())
+  building_name        String                @db.VarChar(100)
+  floors               Int
+  location_coordinates Unsupported("point")?
+  created_at           DateTime?             @default(now()) @db.Timestamp(6)
+  rooms                rooms[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model chatinteractions {
+  interaction_id   Int       @id @default(autoincrement())
+  student_id       Int?
+  session_id       String    @db.Uuid
+  query_text       String
+  response_text    String
+  learning_gaps    String[]
+  confidence_score Decimal?  @db.Decimal(4, 3)
+  feedback_rating  Int?
+  created_at       DateTime? @default(now()) @db.Timestamp(6)
+  students         students? @relation(fields: [student_id], references: [student_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model classes {
+  class_id                                                      Int                 @id @default(autoincrement())
+  course_id                                                     Int?
+  faculty_id                                                    Int?
+  room_id                                                       Int?
+  section_id                                                    Int?
+  slot_id                                                       Int?
+  semester                                                      Int
+  academic_year                                                 Int
+  start_date                                                    DateTime            @db.Date
+  end_date                                                      DateTime            @db.Date
+  is_active                                                     Boolean?            @default(true)
+  created_at                                                    DateTime?           @default(now()) @db.Timestamp(6)
+  updated_at                                                    DateTime?           @db.Timestamp(6)
+  attendance                                                    attendance[]
+  backlogsessions_backlogsessions_original_class_idToclasses    backlogsessions[]   @relation("backlogsessions_original_class_idToclasses")
+  backlogsessions_backlogsessions_rescheduled_class_idToclasses backlogsessions[]   @relation("backlogsessions_rescheduled_class_idToclasses")
+  courses                                                       courses?            @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction)
+  faculty                                                       faculty?            @relation(fields: [faculty_id], references: [faculty_id], onDelete: NoAction, onUpdate: NoAction)
+  rooms                                                         rooms?              @relation(fields: [room_id], references: [room_id], onDelete: NoAction, onUpdate: NoAction)
+  sections                                                      sections?           @relation(fields: [section_id], references: [section_id], onDelete: NoAction, onUpdate: NoAction)
+  timeslots                                                     timeslots?          @relation(fields: [slot_id], references: [slot_id], onDelete: NoAction, onUpdate: NoAction)
+  studentengagement                                             studentengagement[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model courses {
+  course_id         Int                 @id @default(autoincrement())
+  course_code       String              @unique @db.VarChar(20)
+  course_name       String              @db.VarChar(255)
+  department_id     Int?
+  credits           Int
+  description       String?
+  prerequisites     String?
+  syllabus_url      String?             @db.VarChar(255)
+  learning_outcomes String[]
+  is_active         Boolean?            @default(true)
+  created_at        DateTime?           @default(now()) @db.Timestamp(6)
+  updated_at        DateTime?           @db.Timestamp(6)
+  classes           classes[]
+  departments       departments?        @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction)
+  learninganalytics learninganalytics[]
+  notes             notes[]
+  resources         resources[]
+}
+
+model departments {
+  department_id   Int             @id @default(autoincrement())
+  department_name String          @db.VarChar(100)
+  department_code String          @unique @db.VarChar(20)
+  hod_user_id     Int?
+  contact_email   String?         @db.VarChar(255)
+  contact_phone   String?         @db.VarChar(20)
+  created_at      DateTime?       @default(now()) @db.Timestamp(6)
+  updated_at      DateTime?       @db.Timestamp(6)
+  announcements   announcements[]
+  courses         courses[]
+  users           users?          @relation(fields: [hod_user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  faculty         faculty[]
+  sections        sections[]
+  students        students[]
+}
+
+model emergencyalerts {
+  alert_id           Int                  @id @default(autoincrement())
+  type               alert_type
+  severity           alert_severity
+  location_id        Int?
+  description        String
+  reported_by        Int?
+  reported_at        DateTime?            @default(now()) @db.Timestamp(6)
+  resolved_at        DateTime?            @db.Timestamp(6)
+  resolution_notes   String?
+  status             String?              @default("active") @db.VarChar(20)
+  alertnotifications alertnotifications[]
+  rooms              rooms?               @relation(fields: [location_id], references: [room_id], onDelete: NoAction, onUpdate: NoAction)
+  users              users?               @relation(fields: [reported_by], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model equipment {
+  equipment_id          Int              @id @default(autoincrement())
+  name                  String           @db.VarChar(100)
+  type                  String           @db.VarChar(50)
+  room_id               Int?
+  serial_number         String?          @unique @db.VarChar(100)
+  purchase_date         DateTime?        @db.Date
+  warranty_end_date     DateTime?        @db.Date
+  status                resource_status? @default(available)
+  last_maintenance_date DateTime?        @db.Date
+  next_maintenance_date DateTime?        @db.Date
+  maintenance_schedule  Json?
+  specifications        Json?
+  created_at            DateTime?        @default(now()) @db.Timestamp(6)
+  updated_at            DateTime?        @db.Timestamp(6)
+  rooms                 rooms?           @relation(fields: [room_id], references: [room_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model eventparticipants {
+  event_id          Int
+  user_id           Int
+  role              String    @db.VarChar(50)
+  registration_date DateTime? @default(now()) @db.Timestamp(6)
+  attendance_status String?   @default("registered") @db.VarChar(20)
+  feedback          String?
+  events            events    @relation(fields: [event_id], references: [event_id], onDelete: NoAction, onUpdate: NoAction)
+  users             users     @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([event_id, user_id])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model events {
+  event_id              Int                 @id @default(autoincrement())
+  title                 String              @db.VarChar(255)
+  description           String?
+  event_type            event_type
+  start_datetime        DateTime            @db.Timestamp(6)
+  end_datetime          DateTime            @db.Timestamp(6)
+  location_id           Int?
+  organizer_id          Int?
+  max_participants      Int?
+  registration_deadline DateTime?           @db.Timestamp(6)
+  priority              String?             @default("medium") @db.VarChar(20)
+  status                String?             @default("scheduled") @db.VarChar(20)
+  created_at            DateTime?           @default(now()) @db.Timestamp(6)
+  updated_at            DateTime?           @db.Timestamp(6)
+  eventparticipants     eventparticipants[]
+  rooms                 rooms?              @relation(fields: [location_id], references: [room_id], onDelete: NoAction, onUpdate: NoAction)
+  users                 users?              @relation(fields: [organizer_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model faculty {
+  faculty_id           Int                    @id @default(autoincrement())
+  user_id              Int?                   @unique
+  department_id        Int?
+  designation          String                 @db.VarChar(100)
+  expertise            String[]
+  qualifications       String[]
+  max_weekly_hours     Int?                   @default(40)
+  joining_date         DateTime               @db.Date
+  contract_end_date    DateTime?              @db.Date
+  research_interests   String[]
+  publications         String[]
+  created_at           DateTime?              @default(now()) @db.Timestamp(6)
+  updated_at           DateTime?              @db.Timestamp(6)
+  administrativeduties administrativeduties[]
+  classes              classes[]
+  departments          departments?           @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction)
+  users                users?                 @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  facultyavailability  facultyavailability[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model facultyavailability {
+  availability_id Int       @id @default(autoincrement())
+  faculty_id      Int?
+  day_of_week     Int?
+  start_time      DateTime  @db.Time(6)
+  end_time        DateTime  @db.Time(6)
+  is_preferred    Boolean?  @default(false)
+  repeat_until    DateTime? @db.Date
+  created_at      DateTime? @default(now()) @db.Timestamp(6)
+  faculty         faculty?  @relation(fields: [faculty_id], references: [faculty_id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([faculty_id, day_of_week, start_time, end_time])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model feedback {
+  feedback_id                       Int       @id @default(autoincrement())
+  sender_id                         Int?
+  receiver_id                       Int?
+  feedback_type                     String    @db.VarChar(50)
+  entity_id                         Int
+  rating                            Int?
+  comments                          String?
+  anonymous                         Boolean?  @default(false)
+  created_at                        DateTime? @default(now()) @db.Timestamp(6)
+  users_feedback_receiver_idTousers users?    @relation("feedback_receiver_idTousers", fields: [receiver_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  users_feedback_sender_idTousers   users?    @relation("feedback_sender_idTousers", fields: [sender_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model learninganalytics {
+  analytics_id    Int       @id @default(autoincrement())
+  student_id      Int?
+  course_id       Int?
+  metric_type     String    @db.VarChar(50)
+  metric_value    Json
+  analysis_date   DateTime  @db.Date
+  recommendations String[]
+  created_at      DateTime? @default(now()) @db.Timestamp(6)
+  courses         courses?  @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction)
+  students        students? @relation(fields: [student_id], references: [student_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model notes {
+  note_id    Int       @id @default(autoincrement())
+  title      String    @db.VarChar(255)
+  content    String
+  created_by Int?
+  section_id Int?
+  course_id  Int?
+  tags       String[]
+  is_private Boolean?  @default(false)
+  created_at DateTime? @default(now()) @db.Timestamp(6)
+  updated_at DateTime? @db.Timestamp(6)
+  courses    courses?  @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction)
+  users      users?    @relation(fields: [created_by], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  sections   sections? @relation(fields: [section_id], references: [section_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model resources {
+  resource_id   Int       @id @default(autoincrement())
+  title         String    @db.VarChar(255)
+  description   String?
+  file_url      String?   @db.VarChar(255)
+  resource_type String    @db.VarChar(50)
+  course_id     Int?
+  uploaded_by   Int?
+  tags          String[]
+  visibility    String?   @default("section") @db.VarChar(20)
+  version       Int?      @default(1)
+  created_at    DateTime? @default(now()) @db.Timestamp(6)
+  updated_at    DateTime? @db.Timestamp(6)
+  courses       courses?  @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction)
+  users         users?    @relation(fields: [uploaded_by], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model roomfeatures {
+  feature_id   Int              @id @default(autoincrement())
+  room_id      Int?
+  feature_name String           @db.VarChar(100)
+  quantity     Int?             @default(1)
+  status       resource_status? @default(functional)
+  last_checked DateTime?        @db.Date
+  created_at   DateTime?        @default(now()) @db.Timestamp(6)
+  rooms        rooms?           @relation(fields: [room_id], references: [room_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model rooms {
+  room_id               Int               @id @default(autoincrement())
+  building_id           Int?
+  room_number           String            @unique @db.VarChar(50)
+  room_type             room_type
+  capacity              Int
+  floor_number          Int
+  wing                  String?           @db.VarChar(50)
+  area_sqft             Decimal?          @db.Decimal(8, 2)
+  features              Json?
+  status                resource_status?  @default(available)
+  last_maintenance_date DateTime?         @db.Date
+  next_maintenance_date DateTime?         @db.Date
+  created_at            DateTime?         @default(now()) @db.Timestamp(6)
+  updated_at            DateTime?         @db.Timestamp(6)
+  classes               classes[]
+  emergencyalerts       emergencyalerts[]
+  equipment             equipment[]
+  events                events[]
+  roomfeatures          roomfeatures[]
+  buildings             buildings?        @relation(fields: [building_id], references: [building_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model sections {
+  section_id        Int          @id @default(autoincrement())
+  section_name      String       @db.VarChar(50)
+  batch_year        Int
+  department_id     Int?
+  student_count     Int          @default(0)
+  max_capacity      Int
+  is_combined       Boolean?     @default(false)
+  parent_section_id Int?
+  academic_year     Int
+  semester          Int
+  created_at        DateTime?    @default(now()) @db.Timestamp(6)
+  classes           classes[]
+  notes             notes[]
+  departments       departments? @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction)
+  sections          sections?    @relation("sectionsTosections", fields: [parent_section_id], references: [section_id], onDelete: NoAction, onUpdate: NoAction)
+  other_sections    sections[]   @relation("sectionsTosections")
+}
+
+model studentengagement {
+  engagement_id      Int       @id @default(autoincrement())
+  class_id           Int?
+  student_id         Int?
+  engagement_type    String    @db.VarChar(50)
+  engagement_metrics Json
+  duration           Int?
+  notes              String?
+  created_at         DateTime? @default(now()) @db.Timestamp(6)
+  classes            classes?  @relation(fields: [class_id], references: [class_id], onDelete: NoAction, onUpdate: NoAction)
+  students           students? @relation(fields: [student_id], references: [student_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model students {
+  student_id        Int                 @id @default(autoincrement())
+  user_id           Int?                @unique
+  enrollment_number String              @unique @db.VarChar(50)
+  department_id     Int?
+  batch_year        Int
+  current_semester  Int?
+  cgpa              Decimal?            @db.Decimal(4, 2)
+  guardian_name     String?             @db.VarChar(100)
+  guardian_contact  String?             @db.VarChar(20)
+  face_encoding     Bytes?
+  biometric_data    Bytes?
+  created_at        DateTime?           @default(now()) @db.Timestamp(6)
+  updated_at        DateTime?           @db.Timestamp(6)
+  attendance        attendance[]
+  chatinteractions  chatinteractions[]
+  learninganalytics learninganalytics[]
+  studentengagement studentengagement[]
+  departments       departments?        @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction)
+  users             users?              @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model timeslots {
+  slot_id     Int       @id @default(autoincrement())
+  start_time  DateTime  @db.Time(6)
+  end_time    DateTime  @db.Time(6)
+  day_of_week Int?
+  slot_type   String?   @default("regular") @db.VarChar(50)
+  created_at  DateTime? @default(now()) @db.Timestamp(6)
+  classes     classes[]
+
+  @@unique([start_time, end_time, day_of_week])
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model users {
+  user_id                              Int                  @id @default(autoincrement())
+  uuid                                 String?              @unique @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  email                                String               @unique @db.VarChar(255)
+  password_hash                        String               @db.VarChar(255)
+  role                                 user_role
+  first_name                           String               @db.VarChar(100)
+  last_name                            String               @db.VarChar(100)
+  profile_picture                      String?              @db.VarChar(255)
+  phone_number                         String?              @db.VarChar(20)
+  created_at                           DateTime?            @default(now()) @db.Timestamp(6)
+  last_login                           DateTime?            @db.Timestamp(6)
+  status                               user_status?         @default(active)
+  mfa_enabled                          Boolean?             @default(false)
+  mfa_secret                           String?              @db.VarChar(32)
+  refreshtoken                         String?              @db.VarChar(255)
+  college_uid                          String               @unique @db.VarChar(255)
+  activitylogs                         activitylogs[]
+  alertnotifications                   alertnotifications[]
+  announcements                        announcements[]
+  backlogsessions                      backlogsessions[]
+  departments                          departments[]
+  emergencyalerts                      emergencyalerts[]
+  eventparticipants                    eventparticipants[]
+  events                               events[]
+  faculty                              faculty?
+  feedback_feedback_receiver_idTousers feedback[]           @relation("feedback_receiver_idTousers")
+  feedback_feedback_sender_idTousers   feedback[]           @relation("feedback_sender_idTousers")
+  notes                                notes[]
+  resources                            resources[]
+  students                             students?
+}
+
+enum alert_severity {
+  low
+  medium
+  high
+  critical
+}
+
+enum alert_type {
+  fire
+  security
+  medical
+  other
+}
+
+enum event_type {
+  academic
+  cultural
+  emergency_drill
+  workshop
+  exam
+}
+
+enum resource_status {
+  available
+  in_use
+  maintenance
+  functional
+}
+
+enum room_type {
+  classroom
+  lab
+  seminar_hall
+  auditorium
+}
+
+enum user_role {
+  student
+  faculty
+  coordinator
+  admin
+}
+
+enum user_status {
+  active
+  inactive
+  suspended
+}
+
+enum verification_method {
+  facial
+  manual
+  mobile
+  biometric
+}

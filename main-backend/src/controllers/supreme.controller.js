@@ -1,77 +1,95 @@
 import mongoose from "mongoose";
-import { principalModel } from "../models/principalprofile.schema.js";
+import { coordinatorModel } from "../models/coordinatorprofile.schema.js";
 import { supremeModel } from "../models/supremeprofile.schema.js";
 import {
-    generatePassword,
-    generateTokens,
-    generateusername,
+    
+    generateTokens
 } from "../utils/generate.js";
 import bcrypt from "bcrypt";
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+
 
 const registersupreme = async (req, res) => {
     try {
-        const { username, password } = req.body;
-        if (!username || !password) {
-            return res.status(400).json({
-                message: "username and password are required",
+        const { college_uid, password,email,role,firstname,lastname } = req.body;
+        if (!college_uid || !password || !email  || !firstname || !lastname) {
+            return res.status(400).send({
+                message: "All fields are required",
             });
         }
-        console.log("reached");
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = await supremeModel.create({
-            username: username,
-            password: hashedPassword,
-        });
-        res.status(200).json({
-            message: "user created successfully",
-            newUser,
+
+        const newAdminUser =await prisma.users.create({
+            data:{
+                college_uid: college_uid,
+                password_hash: hashedPassword,
+                email: email,
+                role: role?role:"admin",
+                first_name: firstname,
+                last_name: lastname,
+            }
+        })
+
+        res.status(200).send({
+            message: "Admin user created successfully",
+            newAdminUser,
         });
     } catch (error) {
         console.log(error);
-        res.send(500, error);
+        res.status(500).send( error);
     }
 };
 const loginsupreme = async (req, res) => {
     try {
-        const { username, password } = req.body;
+        const { college_uid, password } = req.body;
 
         // Input validation
-        if (!username || !password) {
-            return res.status(400).json({
-                message: "User ID and password are required",
+        if (!college_uid || !password) {
+            return res.status(400).send({
+                message: "college_uid and password are required",
             });
         }
 
-        // Find user by username only
-        const user = await supremeModel.findOne({ username });
+        // Find user by college_uid only
+        const finduser =await prisma.users.findUnique({
+            where:{
+                college_uid: college_uid},
+                select:{
+                    password_hash:true,
+                    email:true,
+                    first_name:true,
+                    last_name:true
+                }
+        })
 
-        if (!user) {
+        if (!finduser) {
             // Use a generic message to prevent user enumeration
-            return res.status(401).json({
-                message: "Invalid credentials",
+            return res.status(401).send({
+                message: "No Admin exists with this college_uid",
             });
         }
 
         // Compare password using bcrypt
-        const isMatch = await bcrypt.compare(password, user.password);
+        const isMatch = await bcrypt.compare(password, finduser.password_hash);
 
         if (!isMatch) {
-            return res.status(401).json({
+            return res.status(401).send({
                 message: "Invalid credentials",
             });
         }
 
         // Generate tokens
         const { accessToken, refreshToken } = generateTokens(
-            username,
-            "15m",
+            college_uid,
+            "2d",
             "7d"
         );
-        const UpdatedUser = await supremeModel.findOneAndUpdate(
-            { username: username },
-            { refreshToken: refreshToken },
-            { new: true }
-        );
+        const puttoken = await prisma.users.update({
+            where:{
+                college_uid: college_uid},
+            data:{refreshtoken:refreshToken}
+        })
         // Set HTTP-only cookies
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
@@ -86,11 +104,12 @@ const loginsupreme = async (req, res) => {
         });
 
         // Send response
-        return res.status(200).json({
+        return res.status(200).send({
             message: "User logged in successfully",
             user: {
-                username: user.username,
-                role: user.role,
+                email: finduser.email,
+                firstName: finduser.first_name,
+                lastName: finduser.last_name,
                 // Include other non-sensitive user data here
             },
             refreshToken,
@@ -98,111 +117,63 @@ const loginsupreme = async (req, res) => {
         });
     } catch (error) {
         console.error("Login error:", error);
-        res.status(500).json({ message: "An error occurred during login" });
+        res.status(500).send({ message: "An error occurred during login" });
     }
 };
-const principalcreate = async (req, res) => {
+const coordinatorcreate = async (req, res) => {
     try {
-        const { password, ...principalData } = req.body;
-
-        // Validate required fields
-        const requiredFields = [
-            "fullName",
-            "dateOfBirth",
-            "gender",
-            "contactInfo",
-            "address",
-            "employeeId",
-            "educationalQualifications",
-            "yearsOfExperience",
-            "dateOfJoining",
-            "username",
-        ];
-        for (const field of requiredFields) {
-            if (!principalData[field]) {
-                return res
-                    .status(400)
-                    .json({ message: `Missing required field: ${field}` });
-            }
-        }
-
-        // Validate email format
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(principalData.contactInfo.email)) {
-            return res.status(400).json({ message: "Invalid email format" });
-        }
+        const { password, ...coordinatorData } = req.body;
 
         // Validate password strength
         if (password && password.length < 8) {
             return res
                 .status(400)
-                .json({
+                .send({
                     message: "Password must be at least 8 characters long",
                 });
         }
 
-        // Check if username or email already exists
-        const existingPrincipal = await principalModel.findOne({
-            $or: [
-                { username: principalData.username },
-                { "contactInfo.email": principalData.contactInfo.email },
-            ],
-        });
-        if (existingPrincipal) {
+        // Check if college_uid or email already exists
+        const existingcoordinator = await prisma.users.findUnique(
+            {
+                where: {
+                    college_uid: coordinatorData.college_uid,
+                },
+            }
+        );
+        if (existingcoordinator) {
             return res
                 .status(409)
-                .json({ message: "Username or email already exists" });
+                .send({ message: "college_uid or email already exists" });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const newPrincipal = new principalModel({
-            ...principalData,
-            password: hashedPassword,
+        const newcoordinator = await prisma.users.create({
+            data: {
+                college_uid: coordinatorData.college_uid,
+                password_hash: hashedPassword,
+                email: coordinatorData.email,
+                role: "coordinator",
+                first_name: coordinatorData.firstName,
+                last_name: coordinatorData.lastName,
+            },
         });
 
-        await newPrincipal.save();
-        res.status(201).json({
-            message: "Principal created successfully",
-            principalId: newPrincipal._id,
+        
+        res.status(201).send({
+            message: "coordinator created successfully",
+            newcoordinator,
         });
     } catch (error) {
-        console.error("Error in createPrincipal:", error);
-
-        if (error instanceof mongoose.Error.ValidationError) {
-            // Handle Mongoose validation errors
-            const validationErrors = Object.values(error.errors).map(
-                (err) => err.message
-            );
-            return res
-                .status(400)
-                .json({
-                    message: "Validation error",
-                    errors: validationErrors,
-                });
-        }
-
-        if (error.code === 11000) {
-            // Handle duplicate key errors
-            return res
-                .status(409)
-                .json({
-                    message:
-                        "Duplicate key error. A principal with this unique field already exists.",
-                });
-        }
-
-        if (error instanceof bcrypt.BcryptError) {
-            // Handle bcrypt-specific errors
-            return res.status(500).json({ message: "Error hashing password" });
-        }
+        console.error("Error in createcoordinator:", error);
 
         // Generic error handler
-        res.status(500).json({
+        res.status(500).send({
             message: "Internal server error",
             error: error.message,
         });
     }
 };
 
-export { registersupreme, loginsupreme, principalcreate };
+export { registersupreme, loginsupreme, coordinatorcreate };

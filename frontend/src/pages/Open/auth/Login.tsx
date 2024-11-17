@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useAtom } from 'jotai';
 import { roleAtom } from '@/store/atom';
 import { enhancedLocalStorage, useAuth } from '@/services/AuthContext';
+import { roleType } from '@/interface/general';
 
 const LoginPage: React.FC = () => {
   const { user,isLoading} = useAuth()
@@ -16,29 +17,25 @@ const LoginPage: React.FC = () => {
       navigate("/p/", { replace: true });
     }
   },[user,isLoading,navigate])
-  const [username, setusername] = useState<string>('');
+  const [college_uid, setcollege_uid] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [role, setRole] = useState<'principal' | 'admin' | 'student'| 'coordinator'>('student');
+  const [role, setRole] = useState<roleType>('student');
   const [message, setMessage] = useState<string>('');
   const [, setRoleAtom] = useAtom(roleAtom);
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!username || !password) {
+    if (!college_uid || !password) {
       setMessage("User ID and password are required");
       return;
     }
 
     try {
-      const endpoint = role === 'admin' 
-        ? `${domain}/api/v1/supreme/login`
-        : role === 'principal'
-          ? `${domain}/api/v1/principal/login`
-          : role === 'coordinator' ? `${domain}/api/v1/coordinator/login`:`${domain}/api/v1/student/login`;
+      const endpoint =`${domain}/api/v1/${role}/login` ;
 
       const response = await axios.post(endpoint, {
-        username: username,
+        college_uid: college_uid,
         password
       }, {
         withCredentials: true
@@ -79,7 +76,7 @@ const LoginPage: React.FC = () => {
         <form className="login-form" onSubmit={handleLogin}>
           <select 
             value={role} 
-            onChange={(e) => setRole(e.target.value as 'principal' | 'admin' | 'student'| 'coordinator')} 
+            onChange={(e) => setRole(e.target.value as roleType)} 
             required
           >
             <option value="principal">Principal</option>
@@ -89,9 +86,9 @@ const LoginPage: React.FC = () => {
           </select>
           <input
             type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setusername(e.target.value)}
+            placeholder="college_uid"
+            value={college_uid}
+            onChange={(e) => setcollege_uid(e.target.value)}
             required
           />
           <input

@@ -1,11 +1,8 @@
+import {  User } from "@/interface/general";
 import { domain } from "@/lib/constant";
 import axios, { AxiosError } from "axios";
 import React, { createContext, useState, useContext, useEffect } from "react";
 
-interface User {
-    username: string;
-    role: 'supreme' | 'staff' | 'principal' | 'faculty' | 'student' | 'coordinator';
-}
 
 interface AuthContextType {
     user: User | null;

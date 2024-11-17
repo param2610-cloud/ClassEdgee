@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './services/AuthContext';
+import { AuthProvider,useAuth } from './services/AuthContext';
 import LandingPage from './pages/Open/LandingPage/LandingPage';
 import LoginPage from './pages/Open/auth/Login';
 
 // Import layouts
 import SupremeLayout from './pages/Protected/supreme/SupremeLayout';
-import StaffLayout from './pages/Protected/staff/StaffLayout';
-import PrincipalLayout from './pages/Protected/principal/PrincipalLayout';
 import FacultyLayout from './pages/Protected/faculty/FacultyLayout';
 import StudentLayout from './pages/Protected/student/StudentLayout';
 
@@ -15,8 +13,6 @@ import StudentLayout from './pages/Protected/student/StudentLayout';
 import Dashboard from './pages/Protected/Dashboard';
 import Idgenerate from './pages/Protected/supreme/generator/Idgenerate';
 import SupremeDashboard from './pages/Protected/supreme/dashboard/SupremeDashboard';
-import PrincipalDashboard from './pages/Protected/principal/dashboard/PrincipalDashboard';
-import CreateCoordinatorForm from './pages/Protected/principal/createCoordinator/CreateCoordinator';
 import CoordinatorLayout from './pages/Protected/coordinator/CoordinatorLayout';
 import CreateTeacher from './pages/Protected/coordinator/teachers/create/CreateTeacher';
 import CoordinatorDashboard from './pages/Protected/coordinator/dashaboard/CoordinatorDashboard';
@@ -66,12 +62,8 @@ const ProtectedRoute: React.FC = () => {
   console.log("ProtectedRoute - Rendering routes for role:", user.role);
 
   switch (user.role) {
-    case 'supreme':
+    case 'admin':
       return <SupremeRoutes />;
-    case 'staff':
-      return <StaffRoutes />;
-    case 'principal':
-      return <PrincipalRoutes />;
     case 'faculty':
       return <FacultyRoutes />;
     case 'student':
@@ -94,24 +86,6 @@ const SupremeRoutes: React.FC = () => (
   </SupremeLayout>
 );
 
-const StaffRoutes: React.FC = () => (
-  <StaffLayout>
-    <Routes>
-      <Route path="/" element={<Dashboard />} />
-      {/* Add staff-specific routes here */}
-    </Routes>
-  </StaffLayout>
-);
-
-const PrincipalRoutes: React.FC = () => (
-  <PrincipalLayout>
-    <Routes>
-      <Route path="/" element={<PrincipalDashboard />} />
-      <Route path="/idgenerate" element={<CreateCoordinatorForm />} />
-      {/* Add principal-specific routes here */}
-    </Routes>
-  </PrincipalLayout>
-);
 
 const FacultyRoutes: React.FC = () => (
   <FacultyLayout>
