@@ -1,13 +1,20 @@
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
+
 const list_of_department = async (req, res) => {
     try {
-        const departments = await prisma.departments.findMany();
-        res.status(200).send(departments);
+        const department = await prisma.departments.findMany();
+        res.status(200).send({
+            department
+        })
     } catch (error) {
-        console.error("Error retrieving departments:", error);
-        res.status(500).send({ error: "Failed to retrieve departments" });
+        console.log(error)
+        res.status(500).send({
+            message:"Internal Server Error"
+        })
     }
+};
+export {
+    list_of_department
 }
-export {list_of_department}
