@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
-import { generateTokens } from "../utils/generate";
+import { generateTokens } from "../utils/generate.js";
 
 const prismaClient = new PrismaClient();
 
@@ -310,8 +310,7 @@ const deletestudent = async (req, res) => {
         });
     }
 };
-
-module.exports = {
+export{
     createStudent,
     loginStudent,
     listofstudent,
