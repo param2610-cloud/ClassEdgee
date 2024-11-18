@@ -6,7 +6,6 @@ import LoginPage from './pages/Open/auth/Login';
 
 // Import layouts
 import SupremeLayout from './pages/Protected/supreme/SupremeLayout';
-import FacultyLayout from './pages/Protected/faculty/FacultyLayout';
 import StudentLayout from './pages/Protected/student/StudentLayout';
 
 // Import pages
@@ -21,6 +20,7 @@ import CoordinatorStudent from './pages/Protected/coordinator/student/Coordinato
 import StudentEditProfile from './pages/Protected/coordinator/student/edit/Studentedit';
 import TeacherEditProfile from './pages/Protected/coordinator/teachers/edit/Teacheredit';
 import CoordinatorFaculty from './pages/Protected/coordinator/teachers/CoordinatorFaculty';
+import CreateFacultyForm from './pages/Protected/coordinator/teachers/create/CreateTeacher';
 
 const App: React.FC = () => {
   return (
@@ -88,11 +88,11 @@ const SupremeRoutes: React.FC = () => (
 
 
 const FacultyRoutes: React.FC = () => (
-  <FacultyLayout>
+  <CoordinatorLayout>
     <Routes>
       <Route path="/" element={<Dashboard />} />
     </Routes>
-  </FacultyLayout>
+  </CoordinatorLayout>
 );
 
 const StudentRoutes: React.FC = () => (
@@ -107,12 +107,12 @@ const CoordinatorRoutes: React.FC = () => (
   <CoordinatorLayout>
     <Routes>
       <Route path="/" element={<CoordinatorDashboard />} />
-      <Route path="/student" element={<CoordinatorStudent />} />
-      <Route path="/student/create" element={<CreateStudent />} />
-      <Route path="/student/edit/:id" element={<StudentEditProfile />} />
+      {/* <Route path="/student" element={<CoordinatorStudent />} /> */}
+      {/* <Route path="/student/create" element={<CreateStudent />} /> */}
+      {/* <Route path="/student/edit/:id" element={<StudentEditProfile />} /> */}
       <Route path="/faculty" element={<CoordinatorFaculty />} />
-      <Route path="/faculty/create" element={<CreateTeacher />} />
-      <Route path="/faculty/edit/:id" element={<TeacherEditProfile />} />
+      <Route path="/faculty/create" element={<CreateFacultyForm />} />
+      {/* <Route path="/faculty/edit/:id" element={<TeacherEditProfile />} /> */}
     </Routes>
   </CoordinatorLayout>
 );

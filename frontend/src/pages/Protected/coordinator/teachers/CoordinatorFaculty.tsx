@@ -28,6 +28,8 @@ import { domain } from "@/lib/constant";
 import { IStudent } from "@/lib/Interface/student";
 
 const CoordinatorFaculty = () => {
+    console.log("CoordinatorFaculty");
+    
     const navigate = useNavigate();
     const [students, setStudents] = useState<IStudent[]>([]);
     const [loading, setLoading] = useState(true);

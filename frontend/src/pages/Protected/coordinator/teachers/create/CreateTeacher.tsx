@@ -33,10 +33,11 @@ import { useToast } from "@/hooks/use-toast";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { domain } from "@/lib/constant";
 import { Department } from "@/interface/general";
+import { uploadFile } from "@/services/Cloudinary";
 
 // Add your Cloudinary configuration
-const CLOUDINARY_UPLOAD_PRESET = process.env.CLOUDINARY_UPLOAD_PRESET;
-const CLOUDINARY_CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME;
+// const CLOUDINARY_UPLOAD_PRESET = process.env.CLOUDINARY_UPLOAD_PRESET || "";
+// const CLOUDINARY_CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME;
 
 const facultySchema = z.object({
     email: z.string().email("Invalid email address"),
@@ -66,6 +67,8 @@ const facultySchema = z.object({
 type FacultyFormData = z.infer<typeof facultySchema>;
 
 const CreateFacultyForm = () => {
+    console.log("CreateFacultyForm");
+    
     const { toast } = useToast();
     const [isLoading, setIsLoading] = useState(false);
     const [uploadingImage, setUploadingImage] = useState(false);
@@ -85,27 +88,14 @@ const CreateFacultyForm = () => {
         },
     });
 
-    const uploadToCloudinary = async (file: File): Promise<string> => {
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
-
-        try {
-            const response = await axios.post(
-                `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
-                formData
-            );
-
-            return response.data.secure_url;
-        } catch (error) {
-            throw new Error("Failed to upload image to Cloudinary");
-        }
-    };
+    
     useEffect(()=>{
         const fetchDepartments = async () => {
             try {
                 const response = await axios.get(`${domain}/api/v1/data/list-of-department`);
-                setdepartmentList(response.data);
+                setdepartmentList(response.data.department);
+                console.log("departments",response.data);
+                
             } catch (error) {
                 console.error("Error fetching departments:", error);
             }
@@ -113,13 +103,12 @@ const CreateFacultyForm = () => {
         fetchDepartments();
     },[])
 
-    const handleImageUpload = async (
-        event: React.ChangeEvent<HTMLInputElement>
-    ) => {
+    const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (file) {
             try {
                 setUploadingImage(true);
+                
                 // Show preview immediately
                 const reader = new FileReader();
                 reader.onloadend = () => {
@@ -129,16 +118,31 @@ const CreateFacultyForm = () => {
                     }
                 };
                 reader.readAsDataURL(file);
-
+                
                 // Upload to Cloudinary
-                const imageUrl = await uploadToCloudinary(file);
-                setValue("profilePictureUrl", imageUrl);
+                const result = await uploadFile(file, 'profile-images');
+                
+                if ('secure_url' in result) {
+                    setValue('profilePictureUrl', result.secure_url);
+                    // Handle successful upload
+                    console.log('Upload successful:', result.secure_url);
+                    toast({
+                        title: "Success",
+                        description: "Image uploaded successfully",
+                        duration: 3000,
+                    });
+                    // You might want to save this URL to your backend/state
+                } else {
+                    // Handle error
+                    console.error('Upload failed:', result.message);
+                    toast({
+                        title: "Error",
+                        description: "Failed to upload image. Please try again.",
+                        variant: "destructive",
+                        duration: 5000,
+                    });
+                }
 
-                toast({
-                    title: "Success",
-                    description: "Image uploaded successfully",
-                    duration: 3000,
-                });
             } catch (error) {
                 toast({
                     title: "Error",
