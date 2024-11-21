@@ -414,6 +414,7 @@ model sections {
   departments       departments? @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction)
   sections          sections?    @relation("sectionsTosections", fields: [parent_section_id], references: [section_id], onDelete: NoAction, onUpdate: NoAction)
   other_sections    sections[]   @relation("sectionsTosections")
+  students          students[]
 }
 
 model studentengagement {
@@ -445,10 +446,12 @@ model students {
   biometric_data    Bytes?
   created_at        DateTime?           @default(now()) @db.Timestamp(6)
   updated_at        DateTime?           @db.Timestamp(6)
+  section_id        Int?
   attendance        attendance[]
   chatinteractions  chatinteractions[]
   learninganalytics learninganalytics[]
   studentengagement studentengagement[]
+  sections          sections?           @relation(fields: [section_id], references: [section_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_section")
   departments       departments?        @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction)
   users             users?              @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
 }

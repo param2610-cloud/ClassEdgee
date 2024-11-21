@@ -423,6 +423,8 @@ export interface Student {
     student_engagement?: StudentEngagement[];
     departments?: Department;
     users?: User;
+    section_id:number
+    sections?:Section
 }
 
 export interface TimeSlot {

@@ -1,350 +1,486 @@
-import  { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import axios from 'axios';
-import { useToast } from '@/hooks/use-toast';
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import axios from "axios";
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
+import {
+    AlertCircle,
+    User,
+    Building2,
+    GraduationCap,
+    Upload,
+} from "lucide-react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { useToast } from "@/hooks/use-toast";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { domain } from "@/lib/constant";
+import { Department } from "@/interface/general";
+import { uploadFile } from "@/services/Cloudinary";
 
-// Define the form schema
 const studentSchema = z.object({
-  first_name: z.string().min(2, 'First name must be at least 2 characters'),
-  last_name: z.string().min(2, 'Last name must be at least 2 characters'),
-  email: z.string().email('Invalid email address'),
-  phone_number: z.string().min(10, 'Invalid phone number'),
-  enrollment_number: z.string().min(1, 'Enrollment number is required'),
-  department_id: z.string().min(1, 'Department is required'),
-  batch_year: z.string().min(4, 'Invalid batch year'),
-  current_semester: z.string().min(1, 'Current semester is required'),
-  guardian_name: z.string().min(2, 'Guardian name is required'),
-  guardian_contact: z.string().min(10, 'Invalid guardian contact'),
-  college_uid: z.string().min(1, 'College UID is required'),
-  profile_picture: z.any().optional(),
+    firstName: z.string().min(2, "First name must be at least 2 characters"),
+    lastName: z.string().min(2, "Last name must be at least 2 characters"),
+    email: z.string().email("Invalid email address"),
+    password: z
+        .string(),
+    phoneNumber: z.string().min(10, "Invalid phone number"),
+    departmentId: z.number().min(1, "Department is required"),
+    enrollmentNumber: z.string().min(1, "Enrollment number is required"),
+    batchYear: z.string().min(4, "Invalid batch year"),
+    currentSemester: z.string().min(1, "Current semester is required"),
+    guardianName: z.string().min(2, "Guardian name is required"),
+    guardianContact: z.string().min(10, "Invalid guardian contact"),
+    collegeUid: z.string().min(1, "College UID is required"),
+    profilePicture: z.any().optional(),
+    profilePictureUrl: z.string().optional(),
 });
 
 type StudentFormData = z.infer<typeof studentSchema>;
 
-const CLOUDINARY_UPLOAD_PRESET = 'your_upload_preset';
-const CLOUDINARY_CLOUD_NAME = 'your_cloud_name';
+const CreateStudentForm = () => {
+    const { toast } = useToast();
+    const [isLoading, setIsLoading] = useState(false);
+    const [uploadingImage, setUploadingImage] = useState(false);
+    const [profilePreview, setProfilePreview] = useState<string>("");
+    const [error, setError] = useState<string>("");
+    const [departmentList, setDepartmentList] = useState<Department[]>([]);
 
-export default function CreateStudentForm() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [profilePreview, setProfilePreview] = useState<string>('');
-  const { toast } = useToast();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        setValue,
+    } = useForm<StudentFormData>({
+        resolver: zodResolver(studentSchema),
+    });
 
-  const form = useForm<StudentFormData>({
-    resolver: zodResolver(studentSchema),
-    defaultValues: {
-      first_name: '',
-      last_name: '',
-      email: '',
-      phone_number: '',
-      enrollment_number: '',
-      department_id: '',
-      batch_year: '',
-      current_semester: '',
-      guardian_name: '',
-      guardian_contact: '',
-      college_uid: '',
-    },
-  });
+    useEffect(() => {
+        const fetchDepartments = async () => {
+            try {
+                const response = await axios.get(
+                    `${domain}/api/v1/department/list-of-department`
+                );
+                setDepartmentList(response.data.department);
+            } catch (error) {
+                console.error("Error fetching departments:", error);
+            }
+        };
+        fetchDepartments();
+    }, []);
 
-  const handleImageUpload = async (file: File) => {
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+    const handleImageUpload = async (
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            try {
+                setUploadingImage(true);
 
-    try {
-      const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
-        formData
-      );
-      return response.data.secure_url;
-    } catch (error) {
-      console.error('Error uploading image:', error);
-      throw new Error('Failed to upload image');
-    }
-  };
+                // Show preview immediately
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    const result = reader.result;
+                    if (typeof result === "string") {
+                        setProfilePreview(result);
+                    }
+                };
+                reader.readAsDataURL(file);
 
-  const onSubmit = async (data: StudentFormData) => {
-    try {
-      setIsLoading(true);
-      
-      let imageUrl = '';
-      if (data.profile_picture instanceof File) {
-        imageUrl = await handleImageUpload(data.profile_picture);
-      }
+                // Upload to Cloudinary
+                const result = await uploadFile(file, "student-profile-images");
 
-      const studentData = {
-        ...data,
-        profile_picture: imageUrl,
-      };
+                if ("secure_url" in result) {
+                    setValue("profilePictureUrl", result.secure_url);
+                    toast({
+                        title: "Success",
+                        description: "Image uploaded successfully",
+                        duration: 3000,
+                    });
+                } else {
+                    console.error("Upload failed:", result.message);
+                    toast({
+                        title: "Error",
+                        description:
+                            "Failed to upload image. Please try again.",
+                        variant: "destructive",
+                        duration: 5000,
+                    });
+                }
+            } catch (error) {
+                toast({
+                    title: "Error",
+                    description: "Failed to upload image. Please try again.",
+                    variant: "destructive",
+                    duration: 5000,
+                });
+                setProfilePreview("");
+            } finally {
+                setUploadingImage(false);
+            }
+        }
+    };
 
-      await axios.post('/api/v1/students/create', studentData);
-      
-      toast({
-        title: "Success!",
-        description: "Student has been created successfully.",
-        duration: 5000,
-      });
+    const onSubmit = async (data: StudentFormData) => {
+        setIsLoading(true);
+        setError("");
 
-      form.reset();
-      setProfilePreview('');
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to create student. Please try again.",
-        variant: "destructive",
-        duration: 5000,
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
+        try {
+            // Create the payload without the file, using the Cloudinary URL instead
+            const payload = {
+                ...data,
+                profilePicture: data.profilePictureUrl, // Use the Cloudinary URL
+            };
 
-  return (
-    <Card className="w-full max-w-2xl mx-auto">
-      <CardHeader>
-        <CardTitle>Create New Student</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <FormField
-                control={form.control}
-                name="first_name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>First Name</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              
-              <FormField
-                control={form.control}
-                name="last_name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Last Name</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+            // Remove the original file and URL fields
+            delete payload.profilePictureUrl;
 
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input type="email" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+            await axios.post(`${domain}/api/v1/student/createstudent`, payload, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
 
-              <FormField
-                control={form.control}
-                name="phone_number"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Phone Number</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+            toast({
+                title: "Success!",
+                description: "Student has been created successfully.",
+                duration: 5000,
+            });
+        } catch (error) {
+            const errorMessage =
+                error instanceof Error ? error.message : "An error occurred";
+            setError(errorMessage);
+            toast({
+                title: "Error",
+                description: "Failed to create student. Please try again.",
+                variant: "destructive",
+                duration: 5000,
+            });
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
-              <FormField
-                control={form.control}
-                name="enrollment_number"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Enrollment Number</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+    return (
+        <div className="w-full max-w-4xl mx-auto p-4 space-y-6">
+            <Card className="w-full">
+                <CardHeader>
+                    <CardTitle className="text-2xl font-bold flex items-center gap-2">
+                        <User className="h-6 w-6" />
+                        Create New Student
+                    </CardTitle>
+                    <CardDescription>
+                        Enter the details for the new student. All fields marked
+                        with * are required.
+                    </CardDescription>
+                </CardHeader>
 
-              <FormField
-                control={form.control}
-                name="department_id"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Department</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select department" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="1">Computer Science</SelectItem>
-                        <SelectItem value="2">Electrical Engineering</SelectItem>
-                        <SelectItem value="3">Mechanical Engineering</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                <CardContent>
+                    <form
+                        onSubmit={handleSubmit(onSubmit)}
+                        className="space-y-8"
+                    >
+                        {/* Profile Picture Upload */}
+                        <div className="flex flex-col items-center space-y-4">
+                            <Avatar className="h-32 w-32">
+                                <AvatarImage
+                                    src={profilePreview}
+                                    alt="Profile preview"
+                                />
+                                <AvatarFallback>
+                                    <User className="h-16 w-16" />
+                                </AvatarFallback>
+                            </Avatar>
+                            <div className="flex flex-col items-center">
+                                <Label
+                                    htmlFor="profilePicture"
+                                    className="cursor-pointer"
+                                >
+                                    <div className="flex items-center space-x-2 bg-secondary p-2 rounded-md">
+                                        <Upload className="h-4 w-4" />
+                                        <span>
+                                            {uploadingImage
+                                                ? "Uploading..."
+                                                : "Upload Photo"}
+                                        </span>
+                                    </div>
+                                    <input
+                                        type="file"
+                                        id="profilePicture"
+                                        className="hidden"
+                                        accept="image/*"
+                                        onChange={handleImageUpload}
+                                        disabled={uploadingImage}
+                                    />
+                                </Label>
+                            </div>
+                        </div>
 
-              <FormField
-                control={form.control}
-                name="batch_year"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Batch Year</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                        {/* Personal Information Section */}
+                        <div className="space-y-6">
+                            <div className="flex items-center gap-2">
+                                <User className="h-5 w-5 text-primary" />
+                                <h3 className="text-lg font-semibold">
+                                    Personal Information
+                                </h3>
+                            </div>
+                            <Separator />
 
-              <FormField
-                control={form.control}
-                name="current_semester"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Current Semester</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select semester" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {[1, 2, 3, 4, 5, 6, 7, 8].map((sem) => (
-                          <SelectItem key={sem} value={sem.toString()}>
-                            Semester {sem}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <Label htmlFor="firstName">
+                                        First Name *
+                                    </Label>
+                                    <Input {...register("firstName")} />
+                                    {errors.firstName && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.firstName.message}
+                                        </p>
+                                    )}
+                                </div>
 
-              <FormField
-                control={form.control}
-                name="guardian_name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Guardian Name</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                                <div className="space-y-2">
+                                    <Label htmlFor="lastName">
+                                        Last Name *
+                                    </Label>
+                                    <Input {...register("lastName")} />
+                                    {errors.lastName && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.lastName.message}
+                                        </p>
+                                    )}
+                                </div>
 
-              <FormField
-                control={form.control}
-                name="guardian_contact"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Guardian Contact</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                                <div className="space-y-2">
+                                    <Label htmlFor="email">
+                                        Email Address *
+                                    </Label>
+                                    <Input
+                                        {...register("email")}
+                                        type="email"
+                                    />
+                                    {errors.email && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.email.message}
+                                        </p>
+                                    )}
+                                </div>
 
-              <FormField
-                control={form.control}
-                name="college_uid"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>College UID</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                                <div className="space-y-2">
+                                    <Label htmlFor="password">Password *</Label>
+                                    <Input
+                                        {...register("password")}
+                                        type="password"
+                                    />
+                                    {errors.password && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.password.message}
+                                        </p>
+                                    )}
+                                </div>
 
-              <FormField
-                control={form.control}
-                name="profile_picture"
-                render={({ field: { value, onChange, ...field } }) => (
-                  <FormItem>
-                    <FormLabel>Profile Picture</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="file"
-                        accept="image/*"
-                        onChange={(event) => {
-                          const file = event.target.files?.[0];
-                          if (file) {
-                            onChange(file);
-                            const reader = new FileReader();
-                            reader.onloadend = () => {
-                              setProfilePreview(reader.result as string);
-                            };
-                            reader.readAsDataURL(file);
-                          }
-                        }}
-                        {...field}
-                      />
-                    </FormControl>
-                    {profilePreview && (
-                      <img 
-                        src={profilePreview} 
-                        alt="Profile preview" 
-                        className="mt-2 w-24 h-24 rounded-full object-cover"
-                      />
-                    )}
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="phoneNumber">
+                                        Phone Number *
+                                    </Label>
+                                    <Input {...register("phoneNumber")} />
+                                    {errors.phoneNumber && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.phoneNumber.message}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
 
-            <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? "Creating..." : "Create Student"}
-            </Button>
-          </form>
-        </Form>
-      </CardContent>
-    </Card>
-  );
-}
+                        {/* Academic Information */}
+                        <div className="space-y-6">
+                            <div className="flex items-center gap-2">
+                                <GraduationCap className="h-5 w-5 text-primary" />
+                                <h3 className="text-lg font-semibold">
+                                    Academic Information
+                                </h3>
+                            </div>
+                            <Separator />
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <Label htmlFor="enrollmentNumber">
+                                        Enrollment Number *
+                                    </Label>
+                                    <Input {...register("enrollmentNumber")} />
+                                    {errors.enrollmentNumber && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.enrollmentNumber.message}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="departmentId">
+                                        Department *
+                                    </Label>
+                                    <Select
+                                        onValueChange={(value) =>
+                                            setValue("departmentId", parseInt(value))
+                                        }
+                                    >
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Select Department" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {departmentList.map(
+                                                (dept: Department) => (
+                                                    <SelectItem
+                                                        key={dept.department_id}
+                                                        value={
+                                                            dept.department_id.toString()
+                                                        }
+                                                    >
+                                                        {dept.department_name}
+                                                    </SelectItem>
+                                                )
+                                            )}
+                                        </SelectContent>
+                                    </Select>
+                                    {errors.departmentId && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.departmentId.message}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="batchYear">
+                                        Batch Year *
+                                    </Label>
+                                    <Input {...register("batchYear")} />
+                                    {errors.batchYear && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.batchYear.message}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="currentSemester">
+                                        Current Semester *
+                                    </Label>
+                                    <Select
+                                        onValueChange={(value) =>
+                                            setValue("currentSemester", value)
+                                        }
+                                    >
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Select Semester" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {[1, 2, 3, 4, 5, 6, 7, 8].map(
+                                                (sem) => (
+                                                    <SelectItem
+                                                        key={sem}
+                                                        value={sem.toString()}
+                                                    >
+                                                        Semester {sem}
+                                                    </SelectItem>
+                                                )
+                                            )}
+                                        </SelectContent>
+                                    </Select>
+                                    {errors.currentSemester && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.currentSemester.message}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="space-y-6">
+                            <div className="flex items-center gap-2">
+                                <Building2 className="h-5 w-5 text-primary" />
+                                <h3 className="text-lg font-semibold">
+                                    Guardian Information
+                                </h3>
+                            </div>
+                            <Separator />
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <Label htmlFor="guardianName">
+                                        Guardian Name *
+                                    </Label>
+                                    <Input {...register("guardianName")} />
+                                    {errors.guardianName && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.guardianName.message}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="guardianContact">
+                                        Guardian Contact *
+                                    </Label>
+                                    <Input {...register("guardianContact")} />
+                                    {errors.guardianContact && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.guardianContact.message}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="collegeUid">
+                                        College UID *
+                                    </Label>
+                                    <Input {...register("collegeUid")} />
+                                    {errors.collegeUid && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.collegeUid.message}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+
+                        {error && (
+                            <Alert variant="destructive">
+                                <AlertCircle className="h-4 w-4" />
+                                <AlertDescription>{error}</AlertDescription>
+                            </Alert>
+                        )}
+
+                        <div className="flex justify-end space-x-4">
+                            <Button variant="outline" type="button">
+                                Cancel
+                            </Button>
+                            <Button type="submit" disabled={isLoading}>
+                                {isLoading ? "Creating..." : "Create Student"}
+                            </Button>
+                        </div>
+                    </form>
+                </CardContent>
+            </Card>
+        </div>
+    );
+};
+
+export default CreateStudentForm;

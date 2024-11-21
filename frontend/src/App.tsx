@@ -21,21 +21,27 @@ import StudentEditProfile from './pages/Protected/coordinator/student/edit/Stude
 import TeacherEditProfile from './pages/Protected/coordinator/teachers/edit/Teacheredit';
 import CoordinatorFaculty from './pages/Protected/coordinator/teachers/CoordinatorFaculty';
 import CreateFacultyForm from './pages/Protected/coordinator/teachers/create/CreateTeacher';
+import TeacherUploadLayout from './pages/Protected/coordinator/teachers/create/CreateTeacherLayout';
+import AddDepartmentForm from './pages/Protected/department/create/DepartmentCreate';
+import { Toaster } from './components/ui/toaster';
+import DepartmentLayout from './pages/Protected/department/DepartmentLayout';
+import DetailDepartment from './pages/Protected/department/[departmentid]/DetailDepartment';
+import StudentUploadLayout from './pages/Protected/coordinator/student/create/StudentCreateLayout';
 
 const App: React.FC = () => {
   return (
-    <AuthProvider>
+    // <AuthProvider>
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/auth/signin" element={<LoginPage />} />
         <Route path="/p/*" element={<ProtectedRoute />} />
-        {/* Add other public routes here */}
       </Routes>
+      <Toaster/>
     </Router>
-    </AuthProvider>
   );
 }
+{/* </AuthProvider> */}
 
 const ProtectedRoute: React.FC = () => {
   const { user, isLoading } = useAuth();
@@ -107,12 +113,16 @@ const CoordinatorRoutes: React.FC = () => (
   <CoordinatorLayout>
     <Routes>
       <Route path="/" element={<CoordinatorDashboard />} />
-      {/* <Route path="/student" element={<CoordinatorStudent />} /> */}
-      {/* <Route path="/student/create" element={<CreateStudent />} /> */}
+      <Route path="/student" element={<CoordinatorStudent />} />
+      <Route path="/student/create" element={<StudentUploadLayout />} />
       {/* <Route path="/student/edit/:id" element={<StudentEditProfile />} /> */}
       <Route path="/faculty" element={<CoordinatorFaculty />} />
-      <Route path="/faculty/create" element={<CreateFacultyForm />} />
+      <Route path="/faculty/create" element={<TeacherUploadLayout />} />
       {/* <Route path="/faculty/edit/:id" element={<TeacherEditProfile />} /> */}
+      <Route path="/department" element={<DepartmentLayout />} />
+      <Route path="/department/:id" element={<DetailDepartment />} />
+      <Route path="/department/create" element={<AddDepartmentForm />} />
+
     </Routes>
   </CoordinatorLayout>
 );

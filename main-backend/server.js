@@ -32,7 +32,8 @@ import logger from "./src/middlewares/logger.js";
 import coordinatorRouter from './src/Router/coordinator.router.js'
 import studentRouter from './src/Router/student.route.js'
 import facultyRouter from './src/Router/faculty.router.js'
-import dataRouter from './src/Router/data.router.js'
+import departmentRouter from './src/Router/department.router.js'
+import sectionRouter from './src/Router/section.router.js'
 
 //print route
 app.use((req, res, next) => {
@@ -48,7 +49,8 @@ app.use('/api/v1/general',generalRouter)
 app.use("/api/v1/coordinator",coordinatorRouter)
 app.use("/api/v1/student",studentRouter)
 app.use("/api/v1/faculty",facultyRouter)
-app.use("/api/v1/data",dataRouter)
+app.use("/api/v1/department",departmentRouter)
+app.use("/api/v1/section",sectionRouter)
 //princiipal form data register 
 //principal login\
 
