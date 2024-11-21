@@ -92,7 +92,7 @@ const CreateFacultyForm = () => {
     useEffect(()=>{
         const fetchDepartments = async () => {
             try {
-                const response = await axios.get(`${domain}/api/v1/data/list-of-department`);
+                const response = await axios.get(`${domain}/api/v1/department/list-of-department`);
                 setdepartmentList(response.data.department);
                 console.log("departments",response.data);
                 

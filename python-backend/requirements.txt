@@ -8,6 +8,7 @@ alembic>=1.7.1
 psycopg2-binary>=2.9.1
 pymongo>=4.6.1
 
+
 # Data Validation and Settings Management
 pydantic>=1.8.2
 pydantic-settings>=2.0.0

@@ -1,20 +1,28 @@
-from fastapi import FastAPI, UploadFile, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
-from typing import List, Dict
-import pandas as pd
-from pymongo import MongoClient
-from datetime import datetime
-import bcrypt
-from pydantic import BaseModel, EmailStr
-import io
 import os
+import uuid
+import pandas as pd
+import numpy as np
+from fastapi import FastAPI, APIRouter, File, UploadFile, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from dotenv import load_dotenv
+import psycopg2
+from psycopg2.extras import execute_values
+from datetime import datetime, date
+import bcrypt
+from student.studentRouter import student_router
 
+# Load environment variables
 load_dotenv()
 
-app = FastAPI()
+# Create FastAPI app
+app = FastAPI(
+    title="Faculty Management API",
+    description="API for managing faculty records and bulk uploads with data type validation",
+    version="0.1.0"
+)
 
-# Configure CORS
+# Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -23,436 +31,331 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# MongoDB connection
-database_uri = os.getenv('DATABASE_URI')
-client = MongoClient(database_uri)
-db = client['classedgee']
-students_collection = db['students']
-faculty_collection = db['faculty']
-
-class Student(BaseModel):
-    firstName: str
-    middleName: str | None = None
-    lastName: str
-    dateOfBirth: str
-    gender: str
-    bloodGroup: str | None = None
-    email: EmailStr
-    phoneNumber: str
-    address: dict
-    studentId: str
-    enrollmentDate: str
-    grade: str
-    section: str | None = None
-    previousSchool: str | None = None
-    guardianName: str
-    guardianRelation: str
-    guardianContact: str
-    emergencyContact: dict
-    username: str  # Added username field
-    password: str
-
-# Column mapping dictionary
-COLUMN_MAPPINGS = {
-    'name': ['name', 'full name', 'student name'],
-    'dateOfBirth': ['dob', 'date of birth', 'birth date', 'birthdate','DOB'],
-    'gender': ['gender', 'sex', 'Gender'],
-    'bloodGroup': ['blood group', 'bloodgroup', 'blood type'],
-    'email': ['email', 'email address', 'mail'],
-    'phoneNumber': ['phone number', 'phone', 'contact number', 'mobile'],
-    'studentId': ['student id', 'studentid', 'id', 'student number'],
-    'enrollmentDate': ['enrollment date', 'admission date', 'joining date'],
-    'grade': ['grade', 'class', 'standard'],
-    'section': ['section', 'division'],
-    'previousSchool': ['previous school', 'privious school', 'last school'],
-    'guardianName': ['guardian name', 'gurdian name', 'parent name'],
-    'guardianRelation': ['guardian relation', 'gurdian relation', 'relation'],
-    'guardianContact': ['guardian contact', 'gurdian contact', 'parent contact'],
-    'emergencyContactPhone': ['emergency contact phone', 'emergency contact phone number', 'emergency phone'],
-    'emergencyContactName': ['emergency contact name', 'emergency name'],
-    'emergencyContactRelation': ['emergency contact relation', 'emergency relation']
-}
-
-def parse_name(full_name: str) -> Dict[str, str]:
-    """Parse full name into first, middle, and last name components."""
-    name_parts = full_name.strip().split()
+# Database column type validation and conversion
+class DataValidator:
+    @staticmethod
+    def validate_and_convert_users_table(row):
+        """
+        Validate and convert data for users table columns
+        """
+        validated_data = {}
+        
+        # UUID validation (string)
+        validated_data['uuid'] = str(uuid.uuid4())
+        
+        # Email validation (string, max 255 chars)
+        if not isinstance(row['email'], str):
+            row['email'] = str(row['email'])
+        validated_data['email'] = row['email'][:255]
+        
+        # First Name validation (string, max 100 chars)
+        if not isinstance(row['firstName'], str):
+            row['firstName'] = str(row['firstName'])
+        validated_data['first_name'] = row['firstName'][:100]
+        
+        # Last Name validation (string, max 100 chars)
+        if not isinstance(row['lastName'], str):
+            row['lastName'] = str(row['lastName'])
+        validated_data['last_name'] = row['lastName'][:100]
+        
+        # Phone Number validation (string, nullable, max 20 chars)
+        if pd.notna(row['phoneNumber']):
+            validated_data['phone_number'] = str(row['phoneNumber'])[:20]
+        else:
+            validated_data['phone_number'] = None
+        
+        # College UID validation (string, unique)
+        if not isinstance(row['employeeId'], str):
+            row['employeeId'] = str(row['employeeId'])
+        validated_data['college_uid'] = row['employeeId'][:255]
+        
+        # Created_at will be automatically set by database
+        return validated_data
     
-    if len(name_parts) == 1:
-        return {
-            'firstName': name_parts[0],
-            'middleName': None,
-            'lastName': None
+    @staticmethod
+    def validate_and_convert_faculty_table(row, user_id):
+        """
+        Validate and convert data for faculty table columns
+        """
+        validated_data = {
+            'user_id': user_id
         }
-    elif len(name_parts) == 2:
-        return {
-            'firstName': name_parts[0],
-            'middleName': None,
-            'lastName': name_parts[1]
-        }
-    else:
-        return {
-            'firstName': name_parts[0],
-            'middleName': ' '.join(name_parts[1:-1]),
-            'lastName': name_parts[-1]
-        }
+        
+        # Department ID validation (integer)
+        validated_data['department_id'] = int(row['departmentId']) if pd.notna(row['departmentId']) else None
+        
+        # Designation validation (string, max 100 chars)
+        if not isinstance(row['designation'], str):
+            row['designation'] = str(row['designation'])
+        validated_data['designation'] = row['designation'][:100]
+        
+        # Expertise validation (string array)
+        if pd.notna(row['expertise']):
+            expertise = str(row['expertise']).split(',')
+            validated_data['expertise'] = [exp.strip() for exp in expertise]
+        else:
+            validated_data['expertise'] = []
+        
+        # Qualifications validation (string array)
+        if pd.notna(row['qualifications']):
+            qualifications = str(row['qualifications']).split(',')
+            validated_data['qualifications'] = [qual.strip() for qual in qualifications]
+        else:
+            validated_data['qualifications'] = []
+        
+        # Max Weekly Hours validation (integer, default 40)
+        validated_data['max_weekly_hours'] = int(row.get('maxWeeklyHours', 40))
+        
+        # Joining Date validation (date)
+        if pd.notna(row['joiningDate']):
+            validated_data['joining_date'] = pd.to_datetime(row['joiningDate']).date()
+        else:
+            raise ValueError("Joining Date is required")
+        
+        # Contract End Date validation (date, nullable)
+        if pd.notna(row['contractEndDate']):
+            validated_data['contract_end_date'] = pd.to_datetime(row['contractEndDate']).date()
+        else:
+            validated_data['contract_end_date'] = None
+        
+        # Research Interests validation (string array)
+        if pd.notna(row['researchInterests']):
+            interests = str(row['researchInterests']).split(',')
+            validated_data['research_interests'] = [interest.strip() for interest in interests]
+        else:
+            validated_data['research_interests'] = []
+        
+        # Publications validation (string array)
+        if pd.notna(row['publications']):
+            publications = str(row['publications']).split(',')
+            validated_data['publications'] = [pub.strip() for pub in publications]
+        else:
+            validated_data['publications'] = []
+        
+        return validated_data
 
-def find_matching_column(df: pd.DataFrame, possible_names: List[str]) -> str:
-    """Find the first matching column name from the possible names list."""
-    df_columns = [col.lower().strip() for col in df.columns]
-    for name in possible_names:
-        if name.lower() in df_columns:
-            return df.columns[df_columns.index(name.lower())]
-    return None
+# Database connection function (same as previous implementation)
+def get_db_connection():
+    try:
+        conn = psycopg2.connect(
+            host=os.getenv("DB_HOST", "localhost"),
+            database=os.getenv("DB_NAME"),
+            user=os.getenv("DB_USER"),
+            password=os.getenv("DB_PASSWORD")
+        )
+        return conn
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Database connection error: {str(e)}")
 
-def map_columns(df: pd.DataFrame) -> Dict[str, str]:
-    """Create mapping between standardized field names and actual Excel column names."""
-    column_mapping = {}
-    
-    for field, possible_names in COLUMN_MAPPINGS.items():
-        matched_column = find_matching_column(df, possible_names)
-        if matched_column:
-            column_mapping[field] = matched_column
+# Router for faculty bulk upload
+faculty_router = APIRouter(prefix="/faculty", tags=["Faculty"])
+
+@faculty_router.post("/process-faculty-excel")
+async def process_faculty_excel(file: UploadFile = File(...)):
+    try:
+        # Read Excel file
+        df = pd.read_excel(file.file)
+        
+        # Validate required columns
+        required_columns = [
+            'email', 'firstName', 'lastName', 'phoneNumber', 
+            'departmentId', 'employeeId', 'designation', 
+            'expertise', 'qualifications', 'joiningDate',"password"
+        ]
+        
+        for col in required_columns:
+            if col not in df.columns:
+                raise HTTPException(status_code=400, detail=f"Missing required column: {col}")
+        
+        # Establish database connection
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        
+        # Prepare lists for bulk insert
+        user_data = []
+        faculty_data = []
+        
+        # Process each row
+        successful_uploads = 0
+        errors = []
+        
+        for index, row in df.iterrows():
+            try:
+                # Validate and convert user data
+                # Validate and convert user data
+                user_entry = DataValidator.validate_and_convert_users_table(row)
+
+                # Generate hashed password
+                password = row.get('password', 'classedgee')  # Use default password if not provided
+                hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+                user_entry['password_hash'] = hashed_password.decode('utf-8')  # Convert to string
+                user_entry['role'] = 'faculty'
+                # Insert user into the database
+                user_insert_query = """
+                INSERT INTO users (uuid, email, first_name, last_name, phone_number, college_uid, password_hash,role)
+                VALUES (%(uuid)s, %(email)s, %(first_name)s, %(last_name)s, %(phone_number)s, %(college_uid)s, %(password_hash)s, %(role)s)
+                RETURNING user_id
+                """
+                cursor.execute(user_insert_query, user_entry)
+                user_id = cursor.fetchone()[0]
+
+                
+                # Validate and convert faculty data
+                faculty_entry = DataValidator.validate_and_convert_faculty_table(row, user_id)
+                
+                # Perform faculty insert
+                faculty_insert_query = """
+                INSERT INTO faculty (
+                    user_id, department_id, designation, 
+                    expertise, qualifications, joining_date, 
+                    max_weekly_hours, contract_end_date, 
+                    research_interests, publications
+                ) VALUES (
+                    %(user_id)s, %(department_id)s, %(designation)s, 
+                    %(expertise)s, %(qualifications)s, %(joining_date)s, 
+                    %(max_weekly_hours)s, %(contract_end_date)s, 
+                    %(research_interests)s, %(publications)s
+                )
+                """
+                
+                cursor.execute(faculty_insert_query, faculty_entry)
+                
+                successful_uploads += 1
             
-    return column_mapping
-
-def validate_student_data(data: dict) -> bool:
-    required_fields = [
-        "firstName", "lastName", "dateOfBirth", "gender", "email",
-        "phoneNumber", "studentId", "username", "password", "enrollmentDate", "grade",
-        "guardianName", "guardianRelation", "guardianContact"
-    ]
-    
-    for field in required_fields:
-        if field not in data or not data[field]:
-            raise ValueError(f"Missing required field: {field}")
-    
-    if not "@" in data["email"]:
-        raise ValueError("Invalid email format")
-    
-    return True
-
-@app.post("/process-excel")
-async def process_excel(file: UploadFile):
-    if not file.filename.endswith(('.xls', '.xlsx')):
-        raise HTTPException(status_code=400, detail="Invalid file format")
-    
-    try:
-        # Read the Excel file
-        contents = await file.read()
-        df = pd.read_excel(io.BytesIO(contents))
-        
-        # Map columns to standardized fields
-        column_mapping = map_columns(df)
-        
-        successful_entries = []
-        failed_entries = []
-        
-        for index, row in df.iterrows():
-            try:
-                # Initialize student data dictionary
-                student_data = {}
-                
-                # Handle name field
-                if 'name' in column_mapping:
-                    name_parts = parse_name(str(row[column_mapping['name']]))
-                    student_data.update(name_parts)
-                
-                # Map other fields
-                field_mappings = {
-                    'dateOfBirth': 'dateOfBirth',
-                    'gender': 'gender',
-                    'bloodGroup': 'bloodGroup',
-                    'email': 'email',
-                    'phoneNumber': 'phoneNumber',
-                    'studentId': 'studentId',
-                    'enrollmentDate': 'enrollmentDate',
-                    'grade': 'grade',
-                    'section': 'section',
-                    'previousSchool': 'previousSchool',
-                    'guardianName': 'guardianName',
-                    'guardianRelation': 'guardianRelation',
-                    'guardianContact': 'guardianContact'
-                }
-                
-                for field, target in field_mappings.items():
-                    if field in column_mapping:
-                        student_data[target] = row[column_mapping[field]]
-                
-                # Handle address fields (if present)
-                address_fields = {
-                    'street': ['street', 'address'],
-                    'city': ['city'],
-                    'state': ['state'],
-                    'postalCode': ['postal code', 'zip code', 'pincode'],
-                    'country': ['country']
-                }
-                
-                address_data = {}
-                for field, possible_names in address_fields.items():
-                    for name in possible_names:
-                        matched_col = find_matching_column(df, [name])
-                        if matched_col and pd.notna(row[matched_col]):
-                            address_data[field] = row[matched_col]
-                            break
-                
-                student_data['address'] = address_data
-                
-                # Handle emergency contact
-                emergency_contact = {
-                    'name': row[column_mapping['emergencyContactName']] if 'emergencyContactName' in column_mapping else None,
-                    'relation': row[column_mapping['emergencyContactRelation']] if 'emergencyContactRelation' in column_mapping else None,
-                    'phone': row[column_mapping['emergencyContactPhone']] if 'emergencyContactPhone' in column_mapping else None
-                }
-                
-                student_data['emergencyContact'] = emergency_contact
-                
-                # Clean NaN values
-                student_data = {k: (v if pd.notna(v) else None) for k, v in student_data.items()}
-                
-                # Set username as studentId
-                # Set username as studentId
-                student_data['username'] = student_data['studentId']
-
-
-                if 'dateOfBirth' in student_data and student_data['dateOfBirth']:
-                    # Format date of birth
-                    dob = pd.to_datetime(student_data['dateOfBirth']).strftime('%d%m%Y')  # Changed format here
-                    student_data['dateOfBirth'] = pd.to_datetime(student_data['dateOfBirth']).strftime('%Y-%m-%d')  # Keep storage format as is
-                    
-                    # Hash the password
-                    password = dob  # No need to replace hyphens since we're using direct format
-                    salt = bcrypt.gensalt()
-                    hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
-                    student_data['password'] = hashed_password.decode('utf-8')
-
-
-                if 'enrollmentDate' in student_data and student_data['enrollmentDate']:
-                    student_data['enrollmentDate'] = pd.to_datetime(
-                        student_data['enrollmentDate']
-                    ).strftime('%Y-%m-%d')
-                
-                # Validate data
-                validate_student_data(student_data)
-                
-                # Check for existing student
-                existing_student = students_collection.find_one({
-                    '$or': [
-                        {'studentId': student_data['studentId']},
-                        {'email': student_data['email']},
-                        {'username': student_data['username']}
-                    ]
-                })
-                
-                if existing_student:
-                    raise ValueError(
-                        f"Student with ID {student_data['studentId']} or email {student_data['email']} already exists"
-                    )
-                
-                # Add metadata
-                student_data['createdAt'] = datetime.utcnow()
-                student_data['updatedAt'] = datetime.utcnow()
-                
-                # Insert into database
-                result = students_collection.insert_one(student_data)
-                
-                successful_entries.append({
-                    'studentId': student_data['studentId'],
-                    'name': f"{student_data['firstName']} {student_data.get('lastName', '')}",
-                    'username': student_data['username']
-                })
-                
-            except Exception as e:
-                failed_entries.append({
-                    'row': index + 2,  # Excel rows start at 1, and header is row 1
-                    'error': str(e)
-                })
-        
-        return {
-            'status': 'completed',
-            'successful_entries': successful_entries,
-            'failed_entries': failed_entries,
-            'total_processed': len(successful_entries) + len(failed_entries),
-            'total_successful': len(successful_entries),
-            'total_failed': len(failed_entries)
-        }
-        
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-# Column mapping dictionary for faculty with nested structure
-FACULTY_COLUMN_MAPPINGS = {
-    'personalInformation.fullName': ['full name', 'faculty name', 'name'],
-    'personalInformation.dateOfBirth': ['dob', 'date of birth', 'birth date', 'birthdate'],
-    'personalInformation.gender': ['gender', 'sex'],
-    'personalInformation.contactNumber': ['contact number', 'phone number', 'mobile'],
-    'personalInformation.email': ['email', 'email address'],
-    'qualification.highestDegree': ['highest degree', 'degree'],
-    'qualification.specialization': ['specialization', 'major'],
-    'qualification.universityInstitute': ['university', 'institute', 'college','University/Institute'],
-    'qualification.yearOfPassing': ['year of passing', 'graduation year'],
-    'professionalExperience.totalYearsOfExperience': ['years of experience', 'total experience',"Total Years of Experience"],
-    'professionalExperience.previousJobTitle': ['previous job title', 'job title'],
-    'professionalExperience.previousOrganization': ['previous organization', 'last company'],
-    'professionalExperience.duration.startDate': ['job start date', 'duration start', 'start date'],
-    'professionalExperience.duration.endDate': ['job end date', 'duration end', 'end date'],
-    'subjectExpertise.primarySubject': ['primary subject', 'main subject'],
-    'subjectExpertise.secondarySubjects': ['secondary subjects', 'other subjects'],
-    'additionalInformation.address': ['address', 'location'],
-}
-
-def set_nested_value(dictionary: dict, path: str, value) -> None:
-    """Set a value in a nested dictionary using a dot-notated path."""
-    keys = path.split('.')
-    for key in keys[:-1]:
-        dictionary = dictionary.setdefault(key, {})
-    dictionary[keys[-1]] = value
-
-def validate_faculty_data(data: dict) -> bool:
-    """Validate faculty data against required fields and data types."""
-    required_fields = [
-        'personalInformation.fullName',
-        'personalInformation.dateOfBirth',
-        'personalInformation.gender',
-        'personalInformation.contactNumber',
-        'personalInformation.email',
-        'qualification.highestDegree',
-        'qualification.specialization',
-        'qualification.universityInstitute',
-        'qualification.yearOfPassing',
-        'professionalExperience.totalYearsOfExperience',
-        'professionalExperience.previousJobTitle',
-        'professionalExperience.previousOrganization',
-        'professionalExperience.duration.startDate',
-        'professionalExperience.duration.endDate',
-        'subjectExpertise.primarySubject',
-        'additionalInformation.address'
-    ]
-
-    def get_nested_value(d, path):
-        """Get a value from a nested dictionary using a dot-notated path."""
-        keys = path.split('.')
-        current = d
-        for key in keys:
-            if not isinstance(current, dict) or key not in current:
-                return None
-            current = current[key]
-        return current
-
-    for field in required_fields:
-        value = get_nested_value(data, field)
-        if value is None or pd.isna(value) or value == '':
-            raise ValueError(f"Missing required field: {field}")
-
-    # Validate email format
-    email = get_nested_value(data, 'personalInformation.email')
-    if not '@' in str(email):
-        raise ValueError("Invalid email format")
-
-    # Validate gender
-    gender = get_nested_value(data, 'personalInformation.gender')
-    valid_genders = ['Male', 'Female', 'Other', 'M', 'F']
-    if str(gender).strip() not in valid_genders:
-        raise ValueError("Invalid gender value")
-
-    return True
-
-@app.post("/process-faculty-excel")
-async def process_faculty_excel(file: UploadFile):
-    if not file.filename.endswith(('.xls', '.xlsx')):
-        raise HTTPException(status_code=400, detail="Invalid file format")
-    
-    try:
-        # Read the Excel file
-        contents = await file.read()
-        df = pd.read_excel(io.BytesIO(contents))
-        
-        # Map columns to standardized fields
-        column_mapping = {}
-        for field, possible_names in FACULTY_COLUMN_MAPPINGS.items():
-            matched_col = None
-            for name in possible_names:
-                if name.lower() in [col.lower() for col in df.columns]:
-                    matched_col = next(col for col in df.columns if col.lower() == name.lower())
-                    break
-            if matched_col:
-                column_mapping[field] = matched_col
-        
-        successful_entries = []
-        failed_entries = []
-        
-        for index, row in df.iterrows():
-            try:
-                # Initialize nested faculty data structure
-                faculty_data = {
-                    'personalInformation': {},
-                    'qualification': {},
-                    'professionalExperience': {
-                        'duration': {}
-                    },
-                    'subjectExpertise': {},
-                    'additionalInformation': {}
-                }
-
-                # Map values to nested structure
-                for field, excel_col in column_mapping.items():
-                    value = row[excel_col]
-                    # Handle date fields
-                    if 'date' in field.lower() or 'dob' in field.lower():
-                        if pd.notna(value):
-                            value = pd.to_datetime(value).strftime('%Y-%m-%d')
-                    # Handle numerical fields
-                    elif 'yearOfPassing' in field or 'totalYearsOfExperience' in field:
-                        if pd.notna(value):
-                            value = int(float(value))
-                    # Handle gender standardization
-                    elif 'gender' in field.lower():
-                        if pd.notna(value):
-                            value = 'Female' if str(value).strip().upper() in ['F', 'FEMALE'] else 'Male' if str(value).strip().upper() in ['M', 'MALE'] else str(value)
-                    
-                    if pd.notna(value):
-                        set_nested_value(faculty_data, field, value)
-
-                # Validate data
-                validate_faculty_data(faculty_data)
-                
-                # Check for existing faculty member
-                existing_faculty = faculty_collection.find_one({
-                    'personalInformation.email': faculty_data['personalInformation']['email']
-                })
-                
-                if existing_faculty:
-                    raise ValueError(f"Faculty with email {faculty_data['personalInformation']['email']} already exists")
-                
-                # Add metadata
-                faculty_data['createdAt'] = datetime.utcnow()
-                faculty_data['updatedAt'] = datetime.utcnow()
-                
-                # Insert into database
-                result = faculty_collection.insert_one(faculty_data)
-                
-                successful_entries.append({
-                    'email': faculty_data['personalInformation']['email'],
-                    'name': faculty_data['personalInformation']['fullName']
-                })
-                
-            except Exception as e:
-                failed_entries.append({
+            except Exception as row_error:
+                print(f"Error processing row {index + 2}: {row_error}")
+                errors.append({
                     'row': index + 2,  # Excel rows start at 1, header is row 1
-                    'error': str(e)
+                    'error': str(row_error)
                 })
         
-        return {
-            'status': 'completed',
-            'successful_entries': successful_entries,
-            'failed_entries': failed_entries,
-            'total_processed': len(successful_entries) + len(failed_entries),
-            'total_successful': len(successful_entries),
-            'total_failed': len(failed_entries)
+        # Check for errors before final processing
+        if errors:
+            conn.rollback()
+            return JSONResponse(content={
+                "message": "Upload failed",
+                "errors": errors
+            }, status_code=400)
+        
+        try:
+            # Commit transactions
+            conn.commit()
+        except Exception as commit_error:
+            conn.rollback()
+            return JSONResponse(content={
+                "message": "Database commit failed",
+                "error": str(commit_error)
+            }, status_code=500)
+        
+        finally:
+            # Close database connection
+            cursor.close()
+            conn.close()
+        
+        return JSONResponse(content={
+            "message": f"Successfully uploaded {successful_uploads} faculty records",
+            "total_records": len(df)
+        }, status_code=200)
+    
+    except Exception as e:
+        return HTTPException(status_code=500, detail=str(e))
+
+# Additional SQL-based endpoints
+@faculty_router.get("/")
+async def list_faculty(skip: int = 0, take: int = 10):
+    conn = get_db_connection()
+    try:
+        cursor = conn.cursor()
+        query = """
+        SELECT 
+            f.faculty_id, 
+            f.designation, 
+            u.email, 
+            u.first_name, 
+            u.last_name 
+        FROM faculty f
+        JOIN users u ON f.user_id = u.user_id
+        LIMIT %s OFFSET %s
+        """
+        cursor.execute(query, (take, skip))
+        faculty = cursor.fetchall()
+        
+        # Convert to list of dictionaries
+        faculty_list = [
+            {
+                "faculty_id": row[0],
+                "designation": row[1],
+                "email": row[2],
+                "first_name": row[3],
+                "last_name": row[4]
+            } for row in faculty
+        ]
+        
+        return faculty_list
+    finally:
+        cursor.close()
+        conn.close()
+
+@faculty_router.get("/{faculty_id}")
+async def get_faculty(faculty_id: int):
+    conn = get_db_connection()
+    try:
+        cursor = conn.cursor()
+        query = """
+        SELECT 
+            f.*, 
+            u.email, 
+            u.first_name, 
+            u.last_name,
+            u.phone_number,
+            u.college_uid
+        FROM faculty f
+        JOIN users u ON f.user_id = u.user_id
+        WHERE f.faculty_id = %s
+        """
+        cursor.execute(query, (faculty_id,))
+        faculty = cursor.fetchone()
+        
+        if not faculty:
+            raise HTTPException(status_code=404, detail="Faculty not found")
+        
+        # Create a dictionary with the faculty details
+        faculty_dict = {
+            "faculty_id": faculty[0],
+            "user_id": faculty[1],
+            "department_id": faculty[2],
+            "designation": faculty[3],
+            "expertise": faculty[4],
+            "qualifications": faculty[5],
+            "max_weekly_hours": faculty[6],
+            "joining_date": faculty[7],
+            "contract_end_date": faculty[8],
+            "research_interests": faculty[9],
+            "publications": faculty[10],
+            "created_at": faculty[11],
+            "updated_at": faculty[12],
+            "email": faculty[13],
+            "first_name": faculty[14],
+            "last_name": faculty[15],
+            "phone_number": faculty[16],
+            "college_uid": faculty[17]
         }
         
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        return faculty_dict
+    finally:
+        cursor.close()
+        conn.close()
 
+# Include the router in the app
+app.include_router(faculty_router)
+app.include_router(student_router)
+
+# Optional: Add a root endpoint
+@app.get("/")
+async def root():
+    return {"message": "Faculty Management API is running"}
+
+# If running the script directly
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host=os.getenv('PORT'), port=8000)
+    uvicorn.run(app, host="127.0.0.1", port=8000)

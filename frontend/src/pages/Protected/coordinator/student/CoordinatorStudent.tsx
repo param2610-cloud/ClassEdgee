@@ -15,10 +15,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { domain } from '@/lib/constant';
 import { IStudent } from '@/lib/Interface/student';
+import { Student } from '@/interface/general';
 
 const CoordinatorStudent = () => {
   const navigate = useNavigate();
-  const [students, setStudents] = useState<IStudent[]>([]);
+  const [students, setStudents] = useState<Student[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -41,7 +42,7 @@ const CoordinatorStudent = () => {
       }
       
       const data = await response.json();
-      setStudents(data);
+      setStudents(data.data);
     } catch (err:any) {
       setError(err.message);
     } finally {
@@ -49,11 +50,7 @@ const CoordinatorStudent = () => {
     }
   };
 
-  const filteredStudents = students.filter(student => 
-    student.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    student.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    student.studentId.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  
 
   // Format date to readable string
   const formatDate = (dateString:string) => {
@@ -113,41 +110,41 @@ const CoordinatorStudent = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filteredStudents.map((student) => (
-              <TableRow key={student._id}>
+            {students.map((student) => (
+              <TableRow key={student.users?.college_uid}>
                 <TableCell className="font-medium">
                   <div className="flex items-center gap-3">
                     <Avatar className="h-8 w-8">
-                      <AvatarImage src={student.profile_image_link} />
+                      <AvatarImage src={student.users?.profile_picture} />
                       <AvatarFallback>
-                        {student.firstName[0]}{student.lastName[0]}
+                        {student.users?.first_name[0]}{student.users?.last_name[0]}
                       </AvatarFallback>
                     </Avatar>
-                    {student.studentId}
+                    {student.users?.college_uid}
                   </div>
                 </TableCell>
                 <TableCell>
-                  {student.firstName} {student.lastName}
+                  {student.users?.first_name} {student.users?.last_name}
                 </TableCell>
                 <TableCell>
                   <Badge variant="secondary" className="mr-2">
-                    Grade {student.grade}
+                    Grade {student.current_semester}
                   </Badge>
                   <Badge variant="outline">
-                    Section {student.section}
+                    Section {student.sections?.section_name}
                   </Badge>
                 </TableCell>
                 <TableCell>
                   <div className="flex flex-col text-sm">
-                    <span>{student.phoneNumber}</span>
-                    <span className="text-gray-500">{student.email}</span>
+                    <span>{student.users?.phone_number}</span>
+                    <span className="text-gray-500">{student.users?.email}</span>
                   </div>
                 </TableCell>
                 <TableCell>
                   <Button
                     variant="ghost"
                     size="icon"
-                    onClick={() => navigate(`/p/student/edit/${student._id}`)}
+                    onClick={() => navigate(`/p/student/edit/${student.users?.college_uid}`)}
                   >
                     <Pencil className="h-4 w-4" />
                   </Button>
@@ -156,7 +153,7 @@ const CoordinatorStudent = () => {
                     size="icon"
                     onClick={() => {
                       try {
-                        const response = fetch(`${domain}/api/v1/student/delete-student/${student._id}`, {
+                        const response = fetch(`${domain}/api/v1/student/delete-student/${student.users?.college_uid}`, {
                           method: 'DELETE',
                         })
                         console.log(response);
@@ -176,7 +173,7 @@ const CoordinatorStudent = () => {
         </Table>
       </div>
 
-      {filteredStudents.length === 0 && (
+      {students.length === 0 && (
         <div className="text-center py-8 text-gray-500">
           No students found matching your search criteria.
         </div>

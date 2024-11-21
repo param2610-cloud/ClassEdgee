@@ -189,8 +189,8 @@ const facultyblukupload = async (req, res) => {
 
         // Add timeout and better error handling
         const response = await axios.post(
-            `${fastapidomain}/process-faculty-excel`,
-            form,
+            ` ${fastapidomain}/faculty/process-faculty-excel`,
+            form,   
             {
                 headers: {
                     ...form.getHeaders(),
@@ -199,7 +199,8 @@ const facultyblukupload = async (req, res) => {
                 validateStatus: false, // Don't throw error on non-2xx status
             }
         );
-
+        console.log(response.data);
+        (response.data);
         // Clean up the temporary file
         if (fs.existsSync(req.file.path)) {
             fs.unlinkSync(req.file.path);
@@ -323,8 +324,19 @@ const loginfaculty = async (req, res) => {
 const listoffaculty = async (req, res) => {
     try {
         const facultys = await prisma.faculty.findMany({
-            include: {
-                users: true,
+            select: {
+                faculty_id: true,
+                user_id: true,
+                department_id: true,
+                designation: true,
+                expertise: true,
+                qualifications: true,
+                max_weekly_hours: true,
+                joining_date: true,
+                contract_end_date: true,
+                research_interests: true,
+                publications: true,
+                users:true
             },
         });
         res.status(200).send(facultys);
@@ -333,6 +345,7 @@ const listoffaculty = async (req, res) => {
         res.status(500).send({ error: "Failed to retrieve facultys" });
     }
 };
+
 
 const editfaculty = async (req, res) => {
     try {

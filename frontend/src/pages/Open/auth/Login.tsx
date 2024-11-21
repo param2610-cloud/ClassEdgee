@@ -47,7 +47,7 @@ const LoginPage: React.FC = () => {
         
         enhancedLocalStorage.setItem('accessToken', response.data.accessToken);
         enhancedLocalStorage.setItem('refreshToken', response.data.refreshToken);
-        console.log(`Logging in as: ${response.data.user.role}`);
+        // console.log(`Logging in as: ${response.data.user.role}`);
         navigate("/p/");
       }
     } catch (error: any) {

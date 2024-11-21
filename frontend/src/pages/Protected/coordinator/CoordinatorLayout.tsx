@@ -56,6 +56,12 @@ const CoordinatorLayout: React.FC<{ children: React.ReactNode }> = ({ children }
               >
                 Reports
               </Button>
+              <Button 
+                onClick={() => handleNavigation('/p/department')} 
+                className="text-lg hover:underline"
+              >
+                Department
+              </Button>
             </nav>
           </SheetContent>
         </Sheet>
