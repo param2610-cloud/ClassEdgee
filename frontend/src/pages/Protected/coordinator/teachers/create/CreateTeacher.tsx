@@ -33,7 +33,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { domain } from "@/lib/constant";
 import { Department } from "@/interface/general";
-import { uploadFile } from "@/services/Cloudinary";
+import CloudinaryUpload from "@/services/Cloudinary";
 
 // Add your Cloudinary configuration
 // const CLOUDINARY_UPLOAD_PRESET = process.env.CLOUDINARY_UPLOAD_PRESET || "";
@@ -67,14 +67,16 @@ const facultySchema = z.object({
 type FacultyFormData = z.infer<typeof facultySchema>;
 
 const CreateFacultyForm = () => {
-    console.log("CreateFacultyForm");
-    
     const { toast } = useToast();
     const [isLoading, setIsLoading] = useState(false);
-    const [uploadingImage, setUploadingImage] = useState(false);
-    const [profilePreview, setProfilePreview] = useState<string>("");
     const [error, setError] = useState<string>("");
     const [departmentList,setdepartmentList] = useState<Department[]>([]);
+    const [profileImageLink, setProfileImageLink] = useState('');
+
+    useEffect(() => {
+        setValue('profilePictureUrl', profileImageLink);
+        
+    },[profileImageLink])
 
     const {
         register,
@@ -103,59 +105,7 @@ const CreateFacultyForm = () => {
         fetchDepartments();
     },[])
 
-    const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
-        if (file) {
-            try {
-                setUploadingImage(true);
-                
-                // Show preview immediately
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                    const result = reader.result;
-                    if (typeof result === "string") {
-                        setProfilePreview(result);
-                    }
-                };
-                reader.readAsDataURL(file);
-                
-                // Upload to Cloudinary
-                const result = await uploadFile(file, 'profile-images');
-                
-                if ('secure_url' in result) {
-                    setValue('profilePictureUrl', result.secure_url);
-                    // Handle successful upload
-                    console.log('Upload successful:', result.secure_url);
-                    toast({
-                        title: "Success",
-                        description: "Image uploaded successfully",
-                        duration: 3000,
-                    });
-                    // You might want to save this URL to your backend/state
-                } else {
-                    // Handle error
-                    console.error('Upload failed:', result.message);
-                    toast({
-                        title: "Error",
-                        description: "Failed to upload image. Please try again.",
-                        variant: "destructive",
-                        duration: 5000,
-                    });
-                }
 
-            } catch (error) {
-                toast({
-                    title: "Error",
-                    description: "Failed to upload image. Please try again.",
-                    variant: "destructive",
-                    duration: 5000,
-                });
-                setProfilePreview("");
-            } finally {
-                setUploadingImage(false);
-            }
-        }
-    };
 
     const onSubmit = async (data: FacultyFormData) => {
         setIsLoading(true);
@@ -221,41 +171,7 @@ const CreateFacultyForm = () => {
                         onSubmit={handleSubmit(onSubmit)}
                         className="space-y-8"
                     >
-                        {/* Profile Picture Upload */}
-                        <div className="flex flex-col items-center space-y-4">
-                            <Avatar className="h-32 w-32">
-                                <AvatarImage
-                                    src={profilePreview}
-                                    alt="Profile preview"
-                                />
-                                <AvatarFallback>
-                                    <User className="h-16 w-16" />
-                                </AvatarFallback>
-                            </Avatar>
-                            <div className="flex flex-col items-center">
-                                <Label
-                                    htmlFor="profilePicture"
-                                    className="cursor-pointer"
-                                >
-                                    <div className="flex items-center space-x-2 bg-secondary p-2 rounded-md">
-                                        <Upload className="h-4 w-4" />
-                                        <span>
-                                            {uploadingImage
-                                                ? "Uploading..."
-                                                : "Upload Photo"}
-                                        </span>
-                                    </div>
-                                    <input
-                                        type="file"
-                                        id="profilePicture"
-                                        className="hidden"
-                                        accept="image/*"
-                                        onChange={handleImageUpload}
-                                        disabled={uploadingImage}
-                                    />
-                                </Label>
-                            </div>
-                        </div>
+                       <CloudinaryUpload apiSecret={import.meta.env.VITE_CLOUDINARY_API_SECRET} apiKey={import.meta.env.VITE_CLOUDINARY_API_KEY} cloudName={import.meta.env.VITE_CLOUDINARY_CLOUD_NAME} setProfileImageLink={setProfileImageLink}/>
 
                         {/* Personal Information Section */}
                         <div className="space-y-6">

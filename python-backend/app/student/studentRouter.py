@@ -106,8 +106,11 @@ student_router = APIRouter(prefix="/student", tags=["Students"])
 @student_router.post("/process-student-excel")
 async def process_student_excel(file: UploadFile = File(...)):
     try:
+        print(f"[INFO] Starting to process Excel file: {file.filename}")
+        
         # Read Excel file
         df = pd.read_excel(file.file)
+        print(f"[INFO] Successfully read Excel file. Found {len(df)} records to process")
         
         # Validate required columns
         required_columns = [
@@ -117,26 +120,38 @@ async def process_student_excel(file: UploadFile = File(...)):
             'collegeUid', 'password'
         ]
         
+        print("[INFO] Validating required columns...")
         for col in required_columns:
             if col not in df.columns:
+                print(f"[ERROR] Missing required column: {col}")
                 raise HTTPException(status_code=400, detail=f"Missing required column: {col}")
+        print("[INFO] All required columns found")
         
         # Establish database connection
+        print("[INFO] Establishing database connection...")
         conn = get_db_connection()
         cursor = conn.cursor()
+        print("[INFO] Database connection established")
         
         # Prepare lists for bulk insert
         successful_uploads = 0
         errors = []
         
         # Process each row
+        print("[INFO] Starting to process individual records...")
+        total_rows = len(df)
+        
         for index, row in df.iterrows():
             try:
+                print(f"[INFO] Processing record {index + 1}/{total_rows} - Student: {row['firstName']} {row['lastName']}")
+                
                 # Validate and convert user data
+                print(f"[INFO] Validating user data for record {index + 1}")
                 user_entry = StudentDataValidator.validate_and_convert_users_table(row)
 
                 # Generate hashed password
-                password = row.get('password', 'classedgee')  # Use default password if not provided
+                print(f"[INFO] Generating password hash for record {index + 1}")
+                password = row.get('password', 'classedgee')
                 hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
                 user_entry['password_hash'] = hashed_password.decode('utf-8')
                 
@@ -145,6 +160,7 @@ async def process_student_excel(file: UploadFile = File(...)):
                 user_entry['profile_picture'] = row.get('profilePictureUrl', None)
 
                 # Insert user into the database
+                print(f"[INFO] Inserting user data for record {index + 1}")
                 user_insert_query = """
                 INSERT INTO users (uuid, email, first_name, last_name, phone_number, 
                                    college_uid, password_hash, role, status, profile_picture)
@@ -154,11 +170,14 @@ async def process_student_excel(file: UploadFile = File(...)):
                 """
                 cursor.execute(user_insert_query, user_entry)
                 user_id = cursor.fetchone()[0]
+                print(f"[INFO] User created with ID: {user_id}")
 
                 # Validate and convert student data
+                print(f"[INFO] Validating student data for record {index + 1}")
                 student_entry = StudentDataValidator.validate_and_convert_students_table(row, user_id)
                 
                 # Perform student insert
+                print(f"[INFO] Inserting student data for record {index + 1}")
                 student_insert_query = """
                 INSERT INTO students (
                     user_id, enrollment_number, department_id, 
@@ -172,18 +191,20 @@ async def process_student_excel(file: UploadFile = File(...)):
                 """
                 
                 cursor.execute(student_insert_query, student_entry)
+                print(f"[SUCCESS] Successfully processed record {index + 1}")
                 
                 successful_uploads += 1
             
             except Exception as row_error:
-                print(f"Error processing row {index + 2}: {row_error}")
+                print(f"[ERROR] Failed processing record {index + 2}: {row_error}")
                 errors.append({
-                    'row': index + 2,  # Excel rows start at 1, header is row 1
+                    'row': index + 2,
                     'error': str(row_error)
                 })
         
         # Check for errors before final processing
         if errors:
+            print(f"[ERROR] Upload failed. Found {len(errors)} errors")
             conn.rollback()
             return JSONResponse(content={
                 "message": "Upload failed",
@@ -192,8 +213,11 @@ async def process_student_excel(file: UploadFile = File(...)):
         
         try:
             # Commit transactions
+            print("[INFO] Committing transactions to database...")
             conn.commit()
+            print("[SUCCESS] Database commit successful")
         except Exception as commit_error:
+            print(f"[ERROR] Database commit failed: {commit_error}")
             conn.rollback()
             return JSONResponse(content={
                 "message": "Database commit failed",
@@ -202,15 +226,18 @@ async def process_student_excel(file: UploadFile = File(...)):
         
         finally:
             # Close database connection
+            print("[INFO] Closing database connection")
             cursor.close()
             conn.close()
         
+        print(f"[SUCCESS] Process completed. Successfully uploaded {successful_uploads}/{total_rows} student records")
         return JSONResponse(content={
             "message": f"Successfully uploaded {successful_uploads} student records",
             "total_records": len(df)
         }, status_code=200)
     
     except Exception as e:
+        print(f"[ERROR] Process failed with error: {e}")
         return HTTPException(status_code=500, detail=str(e))
 
 # Additional student-related endpoints can be added here

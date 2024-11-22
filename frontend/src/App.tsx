@@ -17,7 +17,7 @@ import CreateTeacher from './pages/Protected/coordinator/teachers/create/CreateT
 import CoordinatorDashboard from './pages/Protected/coordinator/dashaboard/CoordinatorDashboard';
 import CreateStudent from './pages/Protected/coordinator/student/create/CreateStudent';
 import CoordinatorStudent from './pages/Protected/coordinator/student/CoordinatorStudent';
-import StudentEditProfile from './pages/Protected/coordinator/student/edit/Studentedit';
+// import StudentEditProfile from './pages/Protected/coordinator/student/edit/Studentedit';
 import TeacherEditProfile from './pages/Protected/coordinator/teachers/edit/Teacheredit';
 import CoordinatorFaculty from './pages/Protected/coordinator/teachers/CoordinatorFaculty';
 import CreateFacultyForm from './pages/Protected/coordinator/teachers/create/CreateTeacher';
@@ -28,7 +28,9 @@ import DepartmentLayout from './pages/Protected/department/DepartmentLayout';
 import DetailDepartment from './pages/Protected/department/[departmentid]/DetailDepartment';
 import StudentUploadLayout from './pages/Protected/coordinator/student/create/StudentCreateLayout';
 
+
 const App: React.FC = () => {
+
   return (
     // <AuthProvider>
     <Router>

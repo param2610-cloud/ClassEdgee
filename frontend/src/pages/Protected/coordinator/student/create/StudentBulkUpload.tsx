@@ -17,7 +17,7 @@ const StudentBulkUpload: React.FC = () => {
     if (selectedFile) {
       const allowedTypes = [
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // .xlsx
-        'application/vnd.ms-excel' // .xls
+        'application/vnd.ms-excel'
       ];
       
       if (!allowedTypes.includes(selectedFile.type)) {
