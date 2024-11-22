@@ -51,12 +51,23 @@ app.use("/api/v1/student",studentRouter)
 app.use("/api/v1/faculty",facultyRouter)
 app.use("/api/v1/department",departmentRouter)
 app.use("/api/v1/section",sectionRouter)
-//princiipal form data register 
+//principal form data register 
 //principal login\
 
 
-//interactive classroom
+//interactive classroom routes
+import feedbackRoutes from './src/Router/InteractiveClassroom/feedback.router.js'
+import courseRoutes from './src/Router/InteractiveClassroom/course.router.js'
+import activityRoutes from './src/Router/InteractiveClassroom/activity.router.js'
+import sessionRoutes from './src/Router/InteractiveClassroom/session.router.js'
+import analogisticRouters from './src/Router/InteractiveClassroom/analogistic.router.js'
 
+//interactive classroom
+app.use('/api/v2/feedback', feedbackRoutes);
+app.use('/api/v2/courses', courseRoutes);
+app.use('/api/v2/activities', activityRoutes);
+app.use('/api/v2/sessions', sessionRoutes);
+app.use('/api/v2/analogistics',analogisticRouters)
 
 
 
