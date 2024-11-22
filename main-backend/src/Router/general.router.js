@@ -2,6 +2,7 @@ import e from "express";
 import jwt from "jsonwebtoken";
 import { generateTokens } from "../utils/generate.js";
 import { PrismaClient } from "@prisma/client";
+import {v2 as cloudinary} from "cloudinary";
 const prisma = new PrismaClient();
 
 const router = e.Router();
@@ -144,6 +145,19 @@ router.post("/logout", async (req, res) => {
     }
 });
 
+
+router.get("/generate-signature", async (req, res) => {
+    try {
+        const timestamp = Math.round((new Date).getTime()/1000);
+
+        const api_secret = process.env.CLOUDINARY_API_SECRET;
+        const signature = cloudinary.utils.api_sign_request({timestamp,use_filename: true}, api_secret);
+        res.send(signature);
+    } catch (error) {
+        consolel.log(error);
+        res.status(500).send("Internal Server Error");
+    }
+})
 
 
 

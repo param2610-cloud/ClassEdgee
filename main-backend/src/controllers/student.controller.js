@@ -211,19 +211,66 @@ const loginStudent = async (req, res) => {
 };
 
 // List all students
-const listofstudent = async (req, res) => {
+const listOfStudents = async (req, res) => {
     try {
+        const { 
+            page = 1, 
+            pageSize = 50, 
+            search = '',
+            department = '',
+            semester = '',
+            batchYear = '',
+            sortBy = 'created_at',
+            sortOrder = 'desc'
+        } = req.query;
+
+        // Convert page and pageSize to numbers
+        const pageNumber = parseInt(page);
+        const pageSizeNumber = parseInt(pageSize);
+
+        // Prepare dynamic filtering
+        const whereCondition = {
+            ...(search ? {
+                OR: [
+                    { users: { first_name: { contains: search, mode: 'insensitive' } } },
+                    { users: { last_name: { contains: search, mode: 'insensitive' } } },
+                    { users: { college_uid: { contains: search, mode: 'insensitive' } } }
+                ]
+            } : {}),
+            ...(department ? { departments: { department_name: department } } : {}),
+            ...(semester ? { current_semester: parseInt(semester) } : {}),
+            ...(batchYear ? { batch_year: parseInt(batchYear) } : {})
+        };
+
+        // Fetch total count for pagination
+        const totalStudents = await prismaClient.students.count({
+            where: whereCondition
+        });
+
+        // Fetch paginated students
         const students = await prismaClient.students.findMany({
+            where: whereCondition,
             include: {
                 departments: true,
                 users: true,
                 sections: true,
             },
+            orderBy: {
+                [sortBy]: sortOrder
+            },
+            skip: (pageNumber - 1) * pageSizeNumber,
+            take: pageSizeNumber
         });
 
         res.status(200).send({
             success: true,
             data: students,
+            pagination: {
+                total: totalStudents,
+                page: pageNumber,
+                pageSize: pageSizeNumber,
+                totalPages: Math.ceil(totalStudents / pageSizeNumber)
+            }
         });
     } catch (error) {
         console.error("Error fetching students:", error);
@@ -400,7 +447,7 @@ const studentblukupload = async (req, res) => {
                 headers: {
                     ...form.getHeaders(),
                 },
-                timeout: 30000, // 30 second timeout
+                timeout: 600000, // 30 second timeout
                 validateStatus: false, // Don't throw error on non-2xx status
             }
         );
@@ -458,7 +505,7 @@ const studentblukupload = async (req, res) => {
 export {
     createStudent,
     loginStudent,
-    listofstudent,
+    listOfStudents,
     editStudent,
     uniquestudent,
     deletestudent,

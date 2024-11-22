@@ -9,6 +9,7 @@ import axios from "axios";
 import FormData from "form-data";
 import { PrismaClient } from "@prisma/client";
 import { v4 as uuidv4 } from "uuid";
+import { handleUpload } from "../utils/Cloudinary_Config.js";
 
 const prisma = new PrismaClient();
 
@@ -34,6 +35,7 @@ const createFaculty = async (req, res) => {
             contractEndDate,
             researchInterests,
             publications,
+            file
         } = req.body;
 
         // Basic validation
@@ -50,6 +52,12 @@ const createFaculty = async (req, res) => {
                 success: false,
                 message: "Missing required fields",
             });
+        }
+        const b64 = Buffer.from(req.file.buffer).toString("base64");
+        let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+        const cldRes = await handleUpload(dataURI);
+        if(cldRes){
+            profilePicture = cldRes.secure_url
         }
         const college_id = employeeId;
         // Email format validation
