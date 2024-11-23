@@ -1,5 +1,5 @@
 import e from 'express'
-import { addActivity,getActivity } from '../../controllers/InteractiveClassroom/activity.controller';
+import { addActivity,getActivity } from '../../controllers/InteractiveClassroom/activity.controller.js';
 
 
 const router = e.Router();

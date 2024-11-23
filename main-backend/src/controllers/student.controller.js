@@ -25,7 +25,6 @@ const createStudent = async (req, res) => {
             guardianName,
             guardianContact,
             collegeUid,
-            profilePicture,
             profilePictureUrl,
         } = req.body;
 

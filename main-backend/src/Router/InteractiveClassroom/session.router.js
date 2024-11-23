@@ -1,5 +1,5 @@
 import e from 'express'
-import { getAllSession, addSession, updateSession, deleteSession } from '../../controllers/InteractiveClassroom/session.controller';
+import { getAllSession, addSession, updateSession, deleteSession } from '../../controllers/InteractiveClassroom/session.controller.js';
 
 const router = e.Router();
 
