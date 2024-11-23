@@ -300,7 +300,7 @@ const CoordinatorStudentAdvanced = () => {
                   <Button
                     variant="ghost"
                     size="icon"
-                    onClick={() => navigate(`/p/student/edit/${student.users?.college_uid}`)}
+                    onClick={() => navigate(`/p/student/edit/${student.users?.user_id}`)}
                   >
                     <Pencil className="h-4 w-4" />
                   </Button>
