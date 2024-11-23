@@ -1,558 +1,528 @@
-// import React, { useEffect, useState, useCallback } from "react";
-// import { useParams, useNavigate } from "react-router-dom";
-// import axios, { AxiosError } from "axios";
-// import { Camera, Save, X } from "lucide-react";
-// import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-// import { Button } from "@/components/ui/button";
-// import { Input } from "@/components/ui/input";
-// import CryptoJS from "crypto-js";
-// import {
-//     Select,
-//     SelectContent,
-//     SelectItem,
-//     SelectTrigger,
-//     SelectValue,
-// } from "@/components/ui/select";
-// import { Alert, AlertDescription } from "@/components/ui/alert";
-// import { domain } from "@/lib/constant";
-// import { Label } from "@/components/ui/label";
-
-// // Define TypeScript interfaces
-// interface Address {
-//     street: string;
-//     city: string;
-//     state: string;
-//     postalCode: string;
-//     country: string;
-// }
-
-// interface Student {
-//     id: string;
-//     firstName: string;
-//     lastName: string;
-//     email: string;
-//     phoneNumber: string;
-//     gender: "Male" | "Female" | "Other";
-//     bloodGroup: string;
-//     profile_image_link: string;
-//     address: Address;
-//     guardianName: string;
-//     guardianRelation: string;
-//     guardianContact: string;
-//     rollno: string;
-//     dateOfBirth: string;
-// }
-
-// interface CloudinaryResponse {
-//     secure_url: string;
-//     public_id: string;
-// }
 
 
 
-// const StudentEditProfile: React.FC = () => {
-//     const { id } = useParams<{ id: string }>();
-//     const navigate = useNavigate();
-//     const [student, setStudent] = useState<Student | null>(null);
-//     const [formData, setFormData] = useState<Student | null>(null);
-//     const [loading, setLoading] = useState<boolean>(true);
-//     const [error, setError] = useState<string | null>(null);
-//     const [success, setSuccess] = useState<string | null>(null);
-//     const [isChanged, setIsChanged] = useState<boolean>(false);
-//     const [saving, setSaving] = useState<boolean>(false);
-//     const [uploadingImage, setUploadingImage] = useState<boolean>(false);
-//     const [profileImagePreview, setProfileImagePreview] = useState<
-//         string | null
-//     >(null);
-//     const [formattedDate, setFormattedDate] = useState<string>("");
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
+import {
+    AlertCircle,
+    User,
+    Building2,
+    GraduationCap,
+} from "lucide-react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { useToast } from "@/hooks/use-toast";
+import { domain } from "@/lib/constant";
+import { Department } from "@/interface/general";
+import CloudinaryUpload from "@/services/Cloudinary";
 
-//     const getPublicIdFromUrl = (url: string): string | null => {
-//         try {
-//             const urlParts = url.split("/");
-//             const filename = urlParts[urlParts.length - 1];
-//             return filename.split(".")[0];
-//         } catch (error) {
-//             console.error("Error extracting public_id:", error);
-//             return null;
-//         }
-//     };
+const studentSchema = z.object({
+    firstName: z.string().min(2, "First name must be at least 2 characters"),
+    lastName: z.string().min(2, "Last name must be at least 2 characters"),
+    email: z.string().email("Invalid email address"),
+    phoneNumber: z.string().min(10, "Invalid phone number"),
+    departmentId: z.number().min(1, "Department is required"),
+    enrollmentNumber: z.string().min(1, "Enrollment number is required"),
+    batchYear: z.string().min(4, "Invalid batch year"),
+    currentSemester: z.string().min(1, "Current semester is required"),
+    guardianName: z.string().min(2, "Guardian name is required"),
+    guardianContact: z.string().min(10, "Invalid guardian contact"),
+    collegeUid: z.string().min(1, "College UID is required"),
+    profilePicture: z.any().optional(),
+    profilePictureUrl: z.string().optional(),
+});
 
-//     const deleteImageFromCloudinary = async (
-//         imageUrl: string
-//     ): Promise<void> => {
-//         const public_id = getPublicIdFromUrl(imageUrl);
-//         if (!public_id) return;
+type StudentFormData = z.infer<typeof studentSchema>;
 
-//         try {
-//             const generateSignature = (
-//                 public_id: any,
-//                 timestamp: any,
-//                 api_secret: any
-//             ) => {
-//                 const stringToSign = `public_id=${public_id}&timestamp=${timestamp}${api_secret}`;
-//                 return CryptoJS.createHash("sha1")
-//                     .update(stringToSign)
-//                     .digest("hex");
-//             };
+const EditStudentForm = () => {
+    const { toast } = useToast();
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string>("");
+    const [departmentList, setDepartmentList] = useState<Department[]>([]);
+    const [profileImageLink, setProfileImageLink] = useState('');
+    const { user_id } = useParams(); // Get student ID from URL
 
-//             const timestamp = Math.round(
-//                 new Date().getTime() / 1000
-//             ).toString();
-//             const signature = generateSignature(
-//                 public_id,
-//                 timestamp,
-//                 process.env.CLOUDINARY_API_SECRET
-//             );
-//             const formData = new FormData();
-//             formData.append("public_id", public_id);
-//             formData.append("api_key", CLOUDINARY_API_KEY);
-//             formData.append("timestamp", timestamp);
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        setValue,
+        reset,
+    } = useForm<StudentFormData>({
+        resolver: zodResolver(studentSchema),
+    });
 
-//             const response = await fetch(
-//                 `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/destroy`,
-//                 {
-//                     method: "POST",
-//                     body: formData,
-//                 }
-//             );
+    // Fetch student data
+    useEffect(() => {
+        const fetchStudentData = async () => {
+            try {
+                const response = await axios.get(`${domain}/api/v1/student/get-student/${user_id}`);
+                const studentData = response.data.data;
 
-//             const data = await response.json();
-//             if (data.result !== "ok") {
-//                 throw new Error("Failed to delete image from Cloudinary");
-//             }
-//         } catch (error) {
-//             console.error("Error deleting image from Cloudinary:", error);
-//         }
-//     };
+                // Set form values
+                reset({
+                    firstName: studentData.users.first_name,
+                    lastName: studentData.users.last_name,
+                    email: studentData.users.email,
+                    phoneNumber: studentData.users.phone_number,
+                    departmentId: studentData.departments.department_name,
+                    enrollmentNumber: studentData.enrollment_number,
+                    batchYear: studentData.batch_year,
+                    currentSemester: studentData.current_semester,
+                    guardianName: studentData.guardian_name,
+                    guardianContact: studentData.guardian_contact,
+                    collegeUid: studentData.users.college_uid,
+                    profilePictureUrl: studentData.profile_picture
+                });
 
-//     const handleProfileImageChange = async (
-//         e: React.ChangeEvent<HTMLInputElement>
-//     ) => {
-//         const selectedFile = e.target.files?.[0];
-//         if (!selectedFile) return;
+                setProfileImageLink(studentData.profile_picture || '');
+            } catch (error) {
+                console.error("Error fetching student data:", error);
+                toast({
+                    title: "Error",
+                    description: "Failed to fetch student data",
+                    variant: "destructive",
+                });
+            }
+        };
 
-//         // Validate file type and size
-//         const validTypes = ["image/jpeg", "image/png", "image/jpg"];
-//         if (!validTypes.includes(selectedFile.type)) {
-//             setError("Please upload a valid image file (JPEG, PNG)");
-//             return;
-//         }
+        if (user_id) {
+            fetchStudentData();
+        }
+    }, [user_id, reset]);
 
-//         if (selectedFile.size > 5 * 1024 * 1024) {
-//             // 5MB limit
-//             setError("Image size should be less than 5MB");
-//             return;
-//         }
+    // Fetch departments
+    useEffect(() => {
+        const fetchDepartments = async () => {
+            try {
+                const response = await axios.get(
+                    `${domain}/api/v1/department/list-of-department`
+                );
+                setDepartmentList(response.data.department);
+            } catch (error) {
+                console.error("Error fetching departments:", error);
+            }
+        };
+        fetchDepartments();
+    }, []);
 
-//         setUploadingImage(true);
-//         setError(null);
+    useEffect(() => {
+        setValue('profilePictureUrl', profileImageLink);
+    }, [profileImageLink, setValue]);
 
-//         try {
-//             // Show preview
-//             const reader = new FileReader();
-//             reader.onload = () => {
-//                 setProfileImagePreview(reader.result as string);
-//             };
-//             reader.readAsDataURL(selectedFile);
+    const onSubmit = async (data: StudentFormData) => {
+        setIsLoading(true);
+        setError("");
 
-//             // Upload to Cloudinary
-//             const uploadFormData = new FormData();
-//             uploadFormData.append("file", selectedFile);
-//             uploadFormData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+        try {
+            const payload = {
+                ...data,
+                profilePicture: data.profilePictureUrl,
+            };
 
-//             const response = await fetch(
-//                 `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
-//                 {
-//                     method: "POST",
-//                     body: uploadFormData,
-//                 }
-//             );
+            delete payload.profilePictureUrl;
 
-//             const data: CloudinaryResponse = await response.json();
+            await axios.put(`${domain}/api/v1/student/edit/${user_id}`, payload, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
 
-//             if (data.secure_url) {
-//                 // Delete old image if exists
-//                 if (formData?.profile_image_link) {
-//                     await deleteImageFromCloudinary(
-//                         formData.profile_image_link
-//                     );
-//                 }
+            toast({
+                title: "Success!",
+                description: "Student information has been updated successfully.",
+                duration: 5000,
+            });
+        } catch (error) {
+            const errorMessage =
+                error instanceof Error ? error.message : "An error occurred";
+            setError(errorMessage);
+            toast({
+                title: "Error",
+                description: "Failed to update student information. Please try again.",
+                variant: "destructive",
+                duration: 5000,
+            });
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
-//                 setFormData((prev) =>
-//                     prev
-//                         ? {
-//                               ...prev,
-//                               profile_image_link: data.secure_url,
-//                           }
-//                         : null
-//                 );
-//                 setSuccess("Profile image updated successfully!");
-//                 setIsChanged(true);
-//             }
-//         } catch (err) {
-//             console.error(err);
-//             setError("Failed to update profile image");
-//             setProfileImagePreview(formData?.profile_image_link || null);
-//         } finally {
-//             setUploadingImage(false);
-//         }
-//     };
+    return (
+        <div className="w-full max-w-4xl mx-auto p-4 space-y-6">
+            <Card className="w-full">
+                <CardHeader>
+                    <CardTitle className="text-2xl font-bold flex items-center gap-2">
+                        <User className="h-6 w-6" />
+                        Edit Student Information
+                    </CardTitle>
+                    <CardDescription>
+                        Update the student's information. All fields marked with * are required.
+                    </CardDescription>
+                </CardHeader>
 
-//     const fetchStudent = useCallback(async () => {
-//         try {
-//             const response = await axios.get<{ data: Student }>(
-//                 `${domain}/api/v1/student/get-student/${id}`
-//             );
-//             setStudent(response.data.data);
-//             setFormData(response.data.data);
-//             setProfileImagePreview(response.data.data.profile_image_link);
-//             setLoading(false);
-//             const dateStr = response.data.data.dateOfBirth;
-//             const date = new Date(dateStr);
+                <CardContent>
+                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+                        <CloudinaryUpload 
+                            apiSecret={import.meta.env.VITE_CLOUDINARY_API_SECRET} 
+                            apiKey={import.meta.env.VITE_CLOUDINARY_API_KEY} 
+                            cloudName={import.meta.env.VITE_CLOUDINARY_CLOUD_NAME} 
+                            setProfileImageLink={setProfileImageLink}
+                            existingImage={profileImageLink}
+                        />
 
-//             const day = String(date.getUTCDate()).padStart(2, "0"); // Get the day, padded to 2 digits
-//             const month = String(date.getUTCMonth() + 1).padStart(2, "0"); // Get the month, padded to 2 digits (months are 0-indexed)
-//             const year = date.getUTCFullYear(); // Get the full year
-//             setFormattedDate(`${day}${month}${year}`);
-//         } catch (err) {
-//             const error = err as AxiosError;
-//             setError(
-//                 error.response?.data?.message || "Failed to fetch student data"
-//             );
-//             setLoading(false);
-//         }
-//     }, [id]);
+                        {/* Personal Information Section */}
+                        <div className="space-y-6">
+                            <div className="flex items-center gap-2">
+                                <User className="h-5 w-5 text-primary" />
+                                <h3 className="text-lg font-semibold">
+                                    Personal Information
+                                </h3>
+                            </div>
+                            <Separator />
 
-//     useEffect(() => {
-//         if (id) {
-//             fetchStudent();
-//         }
-//     }, [id, fetchStudent]);
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <Label htmlFor="firstName">First Name *</Label>
+                                    <Input {...register("firstName")} />
+                                    {errors.firstName && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.firstName.message}
+                                        </p>
+                                    )}
+                                </div>
 
-//     const handleChange = (
-//         e:
-//             | React.ChangeEvent<HTMLInputElement>
-//             | { target: { name: string; value: string } }
-//     ) => {
-//         const { name, value } = e.target;
-//         setFormData((prev) => {
-//             if (!prev) return null;
+                                <div className="space-y-2">
+                                    <Label htmlFor="lastName">Last Name *</Label>
+                                    <Input {...register("lastName")} />
+                                    {errors.lastName && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.lastName.message}
+                                        </p>
+                                    )}
+                                </div>
 
-//             if (name.includes(".")) {
-//                 const [parent, child] = name.split(".");
-//                 return {
-//                     ...prev,
-//                     [parent]: {
-//                         ...prev[parent as keyof Student],
-//                         [child]: value,
-//                     },
-//                 };
-//             }
-//             return {
-//                 ...prev,
-//                 [name]: value,
-//             };
-//         });
-//         setIsChanged(true);
-//         setError(null); // Clear any previous errors
-//     };
+                                <div className="space-y-2">
+                                    <Label htmlFor="email">Email Address *</Label>
+                                    <Input {...register("email")} type="email" />
+                                    {errors.email && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.email.message}
+                                        </p>
+                                    )}
+                                </div>
 
-//     const validateForm = (): boolean => {
-//         if (!formData) return false;
+                                <div className="space-y-2">
+                                    <Label htmlFor="phoneNumber">Phone Number *</Label>
+                                    <Input {...register("phoneNumber")} />
+                                    {errors.phoneNumber && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.phoneNumber.message}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
 
-//         if (
-//             !formData.email ||
-//             !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)
-//         ) {
-//             setError("Please enter a valid email address");
-//             return false;
-//         }
+                        {/* Academic Information */}
+                        <div className="space-y-6">
+                            <div className="flex items-center gap-2">
+                                <GraduationCap className="h-5 w-5 text-primary" />
+                                <h3 className="text-lg font-semibold">
+                                    Academic Information
+                                </h3>
+                            </div>
+                            <Separator />
 
-//         if (!formData.phoneNumber || !/^\d{10}$/.test(formData.phoneNumber)) {
-//             setError("Please enter a valid 10-digit phone number");
-//             return false;
-//         }
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <Label htmlFor="enrollmentNumber">Enrollment Number *</Label>
+                                    <Input {...register("enrollmentNumber")} />
+                                    {errors.enrollmentNumber && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.enrollmentNumber.message}
+                                        </p>
+                                    )}
+                                </div>
 
-//         if (
-//             !formData.guardianContact ||
-//             !/^\d{10}$/.test(formData.guardianContact)
-//         ) {
-//             setError("Please enter a valid guardian contact number");
-//             return false;
-//         }
+                                <div className="space-y-2">
+                                    <Label htmlFor="departmentId">Department *</Label>
+                                    <Select
+                                        onValueChange={(value) =>
+                                            setValue("departmentId", parseInt(value))
+                                        }
+                                    >
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Select Department" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {departmentList.map((dept: Department) => (
+                                                <SelectItem
+                                                    key={dept.department_id}
+                                                    value={dept.department_id.toString()}
+                                                >
+                                                    {dept.department_name}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                    {errors.departmentId && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.departmentId.message}
+                                        </p>
+                                    )}
+                                </div>
 
-//         return true;
-//     };
+                                <div className="space-y-2">
+                                    <Label htmlFor="batchYear">Batch Year *</Label>
+                                    <Input {...register("batchYear")} />
+                                    {errors.batchYear && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.batchYear.message}
+                                        </p>
+                                    )}
+                                </div>
 
-//     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-//         e.preventDefault();
+                                <div className="space-y-2">
+                                    <Label htmlFor="currentSemester">Current Semester *</Label>
+                                    <Select
+                                        onValueChange={(value) =>
+                                            setValue("currentSemester", value)
+                                        }
+                                    >
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Select Semester" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {[1, 2, 3, 4, 5, 6, 7, 8].map((sem) => (
+                                                <SelectItem
+                                                    key={sem}
+                                                    value={sem.toString()}
+                                                >
+                                                    Semester {sem}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                    {errors.currentSemester && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.currentSemester.message}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
 
-//         if (!validateForm()) return;
+                        {/* Guardian Information */}
+                        <div className="space-y-6">
+                            <div className="flex items-center gap-2">
+                                <Building2 className="h-5 w-5 text-primary" />
+                                <h3 className="text-lg font-semibold">
+                                    Guardian Information
+                                </h3>
+                            </div>
+                            <Separator />
 
-//         setSaving(true);
-//         setError(null);
-//         setSuccess(null);
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <Label htmlFor="guardianName">Guardian Name *</Label>
+                                    <Input {...register("guardianName")} />
+                                    {errors.guardianName && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.guardianName.message}
+                                        </p>
+                                    )}
+                                </div>
 
-//         try {
-//             const response = await axios.put<{ data: Student }>(
-//                 `${domain}/api/v1/student/edit/${id}`,
-//                 formData
-//             );
+                                <div className="space-y-2">
+                                    <Label htmlFor="guardianContact">Guardian Contact *</Label>
+                                    <Input {...register("guardianContact")} />
+                                    {errors.guardianContact && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.guardianContact.message}
+                                        </p>
+                                    )}
+                                </div>
 
-//             setStudent(response.data.data);
-//             setFormData(response.data.data);
-//             setProfileImagePreview(response.data.data.profile_image_link);
-//             setIsChanged(false);
-//             setSuccess("Profile updated successfully!");
+                                <div className="space-y-2">
+                                    <Label htmlFor="collegeUid">College UID *</Label>
+                                    <Input {...register("collegeUid")} />
+                                    {errors.collegeUid && (
+                                        <p className="text-sm text-destructive">
+                                            {errors.collegeUid.message}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
 
-//             // Clear success message after 3 seconds
-//             setTimeout(() => setSuccess(null), 3000);
-//         } catch (err) {
-//             const error = err as AxiosError;
-//             setError(
-//                 error.response?.data?.message ||
-//                     "Failed to update profile. Please try again."
-//             );
-//             setProfileImagePreview(student?.profile_image_link || null);
-//         } finally {
-//             setSaving(false);
-//         }
-//     };
+                        {error && (
+                            <Alert variant="destructive">
+                                <AlertCircle className="h-4 w-4" />
+                                <AlertDescription>{error}</AlertDescription>
+                            </Alert>
+                        )}
 
-//     if (loading) {
-//         return (
-//             <div className="flex justify-center items-center h-screen">
-//                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-//             </div>
-//         );
-//     }
+                        <div className="flex justify-end space-x-4">
+                            <Button variant="outline" type="button">
+                                Cancel
+                            </Button>
+                            <Button type="submit" disabled={isLoading}>
+                                {isLoading ? "Updating..." : "Update Student"}
+                            </Button>
+                        </div>
+                    </form>
+                </CardContent>
+            </Card>
+        </div>
+    );
+};
 
-//     if (!student || !formData) {
-//         return (
-//             <div className="flex justify-center items-center h-screen">
-//                 <Alert variant="destructive">
-//                     <AlertDescription>Student not found</AlertDescription>
-//                 </Alert>
-//             </div>
-//         );
-//     }
+export default EditStudentForm;
 
-//     return (
-//         <div className="container mx-auto p-4 max-w-4xl">
-//             <Card>
-//                 <CardHeader>
-//                     <CardTitle>Edit Student Profile</CardTitle>
-//                 </CardHeader>
-//                 <CardContent>
-//                     <form onSubmit={handleSubmit} className="space-y-6">
-//                         {/* Profile Image Section */}
-//                         <div className="flex flex-col items-center space-y-4">
-//                             <div className="relative">
-//                                 <img
-//                                     src={
-//                                         profileImagePreview ||
-//                                         "/placeholder-avatar.png"
-//                                     }
-//                                     alt="Profile"
-//                                     className="w-32 h-32 rounded-full object-cover border-2 border-gray-200"
-//                                 />
-//                                 <label className="absolute bottom-0 right-0 p-2 bg-primary rounded-full cursor-pointer hover:bg-primary/90 transition-colors">
-//                                     {uploadingImage ? (
-//                                         <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-//                                     ) : (
-//                                         <Camera className="w-5 h-5 text-white" />
-//                                     )}
-//                                     <input
-//                                         type="file"
-//                                         accept="image/*"
-//                                         className="hidden"
-//                                         onChange={handleProfileImageChange}
-//                                         disabled={uploadingImage}
-//                                     />
-//                                 </label>
-//                             </div>
-//                         </div>
 
-//                         {/* Success/Error Messages */}
-//                         {success && (
-//                             <Alert>
-//                                 <AlertDescription>{success}</AlertDescription>
-//                             </Alert>
-//                         )}
-//                         {error && (
-//                             <Alert variant="destructive">
-//                                 <AlertDescription>{error}</AlertDescription>
-//                             </Alert>
-//                         )}
 
-//                         {/* Form Fields */}
-//                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-//                             <Input
-//                                 name="firstName"
-//                                 value={formData.firstName}
-//                                 onChange={handleChange}
-//                                 placeholder="First Name"
-//                             />
-//                             <Input
-//                                 name="lastName"
-//                                 value={formData.lastName}
-//                                 onChange={handleChange}
-//                                 placeholder="Last Name"
-//                             />
-//                             <Input
-//                                 name="email"
-//                                 value={formData.email}
-//                                 onChange={handleChange}
-//                                 placeholder="Email"
-//                                 type="email"
-//                             />
-//                             <Input
-//                                 name="phoneNumber"
-//                                 value={formData.phoneNumber}
-//                                 onChange={handleChange}
-//                                 placeholder="Phone Number"
-//                                 pattern="\d{10}"
-//                                 title="Please enter a valid 10-digit phone number"
-//                             />
-//                             <Select
-//                                 value={formData.gender}
-//                                 onValueChange={(value) =>
-//                                     handleChange({
-//                                         target: { name: "gender", value },
-//                                     })
-//                                 }
-//                             >
-//                                 <SelectTrigger>
-//                                     <SelectValue placeholder="Select Gender" />
-//                                 </SelectTrigger>
-//                                 <SelectContent>
-//                                     <SelectItem value="Male">Male</SelectItem>
-//                                     <SelectItem value="Female">
-//                                         Female
-//                                     </SelectItem>
-//                                     <SelectItem value="Other">Other</SelectItem>
-//                                 </SelectContent>
-//                             </Select>
-//                             <Input
-//                                 name="bloodGroup"
-//                                 value={formData.bloodGroup}
-//                                 onChange={handleChange}
-//                                 placeholder="Blood Group"
-//                             />
-//                             <div className="space-y-4">
-//                                 <h3 className="text-lg font-medium">
-//                                     Login Credentials
-//                                 </h3>
-//                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-//                                     <div>
-//                                         <Label htmlFor="username">
-//                                             Username (Same as Student Roll no)
-//                                         </Label>
-//                                         <Input
-//                                             id="username"
-//                                             value={formData.rollno}
-//                                             disabled
-//                                             className="bg-gray-50"
-//                                         />
-//                                     </div>
-//                                     <div>
-//                                         <Label htmlFor="password">
-//                                             Password (Same as Date of Birth)
-//                                         </Label>
-//                                         <Input
-//                                             id="password"
-//                                             type="text"
-//                                             value={formattedDate}
-//                                             disabled
-//                                             className="bg-gray-50"
-//                                         />
-//                                     </div>
-//                                 </div>
-//                             </div>
-//                             {/* Address Fields */}
-//                             <Input
-//                                 name="address.street"
-//                                 value={formData.address.street}
-//                                 onChange={handleChange}
-//                                 placeholder="Street"
-//                             />
-//                             <Input
-//                                 name="address.city"
-//                                 value={formData.address.city}
-//                                 onChange={handleChange}
-//                                 placeholder="City"
-//                             />
-//                             <Input
-//                                 name="address.state"
-//                                 value={formData.address.state}
-//                                 onChange={handleChange}
-//                                 placeholder="State"
-//                             />
-//                             <Input
-//                                 name="address.postalCode"
-//                                 value={formData.address.postalCode}
-//                                 onChange={handleChange}
-//                                 placeholder="Postal Code"
-//                             />
-//                             <Input
-//                                 name="address.country"
-//                                 value={formData.address.country}
-//                                 onChange={handleChange}
-//                                 placeholder="Country"
-//                             />
 
-//                             {/* Guardian Fields */}
-//                             <Input
-//                                 name="guardianName"
-//                                 value={formData.guardianName}
-//                                 onChange={handleChange}
-//                                 placeholder="Guardian Name"
-//                             />
-//                             <Input
-//                                 name="guardianRelation"
-//                                 value={formData.guardianRelation}
-//                                 onChange={handleChange}
-//                                 placeholder="Guardian Relation"
-//                             />
-//                             <Input
-//                                 name="guardianContact"
-//                                 value={formData.guardianContact}
-//                                 onChange={handleChange}
-//                                 placeholder="Guardian Contact"
-//                                 pattern="\d{10}"
-//                                 title="Please enter a valid 10-digit contact number"
-//                             />
-//                         </div>
 
-//                         {/* Action Buttons */}
-//                         <div className="flex justify-end space-x-4 mt-6">
-//                             <Button
-//                                 type="button"
-//                                 variant="outline"
-//                                 onClick={() => navigate(-1)}
-//                                 disabled={saving}
-//                             >
-//                                 <X className="w-4 h-4 mr-2" />
-//                                 Cancel
-//                             </Button>
-//                             <Button
-//                                 type="submit"
-//                                 disabled={!isChanged || saving}
-//                                 className={
-//                                     !isChanged
-//                                         ? "opacity-50 cursor-not-allowed"
-//                                         : ""
-//                                 }
-//                             >
-//                                 <Save className="w-4 h-4 mr-2" />
-//                                 {saving ? "Saving..." : "Save Changes"}
-//                             </Button>
-//                         </div>
-//                     </form>
-//                 </CardContent>
-//             </Card>
-//         </div>
-//     );
-// };
 
-// export default StudentEditProfile;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
