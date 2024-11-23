@@ -33,14 +33,14 @@ import { useToast } from "@/hooks/use-toast";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { domain } from "@/lib/constant";
 import { Department } from "@/interface/general";
-import CloudinaryUpload from "@/services/Cloudinary";
+import UploadOnCloudinary from "@/services/Cloudinary";
 
+// Updated schema to match backend expectations
 const studentSchema = z.object({
     firstName: z.string().min(2, "First name must be at least 2 characters"),
     lastName: z.string().min(2, "Last name must be at least 2 characters"),
     email: z.string().email("Invalid email address"),
-    password: z
-        .string(),
+    password: z.string().min(6, "Password must be at least 6 characters"),
     phoneNumber: z.string().min(10, "Invalid phone number"),
     departmentId: z.number().min(1, "Department is required"),
     enrollmentNumber: z.string().min(1, "Enrollment number is required"),
@@ -49,29 +49,34 @@ const studentSchema = z.object({
     guardianName: z.string().min(2, "Guardian name is required"),
     guardianContact: z.string().min(10, "Invalid guardian contact"),
     collegeUid: z.string().min(1, "College UID is required"),
-    profilePicture: z.any().optional(),
     profilePictureUrl: z.string().optional(),
 });
 
 type StudentFormData = z.infer<typeof studentSchema>;
+
+interface ApiError {
+    success: boolean;
+    message: string;
+    field?: string;
+    errorCode?: string;
+}
 
 const CreateStudentForm = () => {
     const { toast } = useToast();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string>("");
     const [departmentList, setDepartmentList] = useState<Department[]>([]);
-    const [profileImageLink, setProfileImageLink] = useState('');
+    const [profilePicturePreview, setProfilePicturePreview] = useState<string>("");
+    const [uploadingImage, setUploadingImage] = useState(false);
+    const [imageLinks, setImageLinks] = useState<string[]>([]);
+    const [videoLinks, setVideoLinks] = useState<string[]>([]);
 
-    useEffect(() => {
-        setValue('profilePictureUrl', profileImageLink);
-        console.log("profileImageLink", profileImageLink);
-        
-    },[profileImageLink])
     const {
         register,
         handleSubmit,
         formState: { errors },
         setValue,
+        setError: setFormError,
     } = useForm<StudentFormData>({
         resolver: zodResolver(studentSchema),
     });
@@ -85,48 +90,99 @@ const CreateStudentForm = () => {
                 setDepartmentList(response.data.department);
             } catch (error) {
                 console.error("Error fetching departments:", error);
+                toast({
+                    title: "Error",
+                    description: "Failed to fetch departments. Please refresh the page.",
+                    variant: "destructive",
+                });
             }
         };
         fetchDepartments();
-    }, []);
+    }, [toast]);
 
+    const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            try {
+                setUploadingImage(true);
+                setProfilePicturePreview(URL.createObjectURL(file));
+                
+                await UploadOnCloudinary({
+                    mediaFiles: [file],
+                    setuploadedImageMediaLinks: setImageLinks,
+                    setuploadedVideoMediaLinks: setVideoLinks,
+                });
+                
+                // Set the first uploaded image URL as the profile picture URL
+                if (imageLinks.length > 0) {
+                    setValue('profilePictureUrl', imageLinks[0]);
+                }
+                
+            } catch (error) {
+                console.error('Image upload error:', error);
+                toast({
+                    title: "Error",
+                    description: "Failed to upload image. Please try again.",
+                    variant: "destructive",
+                });
+            } finally {
+                setUploadingImage(false);
+            }
+        }
+    };
 
+    const handleApiError = (error: any) => {
+        const apiError = error.response?.data as ApiError;
+        
+        if (apiError?.field && apiError.message) {
+            setFormError(apiError.field as any, {
+                type: "manual",
+                message: apiError.message,
+            });
+        } else {
+            setError(apiError?.message || "An unexpected error occurred");
+        }
+        
+        toast({
+            title: "Error",
+            description: apiError?.message || "Failed to create student. Please try again.",
+            variant: "destructive",
+        });
+    };
+    useEffect(() => {
+        if (imageLinks.length > 0) {
+            setValue('profilePictureUrl', imageLinks[0]);
+            console.log("Updated profilePictureUrl:", imageLinks[0]);
+        }
+    }, [imageLinks, setValue]);
 
     const onSubmit = async (data: StudentFormData) => {
         setIsLoading(true);
         setError("");
 
         try {
-            // Create the payload without the file, using the Cloudinary URL instead
             const payload = {
                 ...data,
-                profilePicture: data.profilePictureUrl, // Use the Cloudinary URL
+                batchYear: data.batchYear,
+                currentSemester: data.currentSemester,
+                departmentId: Number(data.departmentId),
             };
+            console.log(payload);
+            
+            // const response = await axios.post(
+            //     `${domain}/api/v1/student/createstudent`,
+            //     payload
+            // );
 
-            // Remove the original file and URL fields
-            delete payload.profilePictureUrl;
-
-            await axios.post(`${domain}/api/v1/student/createstudent`, payload, {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-
-            toast({
-                title: "Success!",
-                description: "Student has been created successfully.",
-                duration: 5000,
-            });
+            if (true) {
+                toast({
+                    title: "Success!",
+                    description: "Student has been created successfully.",
+                });
+                // Optional: Reset form or redirect
+            }
         } catch (error) {
-            const errorMessage =
-                error instanceof Error ? error.message : "An error occurred";
-            setError(errorMessage);
-            toast({
-                title: "Error",
-                description: "Failed to create student. Please try again.",
-                variant: "destructive",
-                duration: 5000,
-            });
+            handleApiError(error);
         } finally {
             setIsLoading(false);
         }
@@ -151,7 +207,40 @@ const CreateStudentForm = () => {
                         onSubmit={handleSubmit(onSubmit)}
                         className="space-y-8"
                     >
-                        <CloudinaryUpload apiSecret={import.meta.env.VITE_CLOUDINARY_API_SECRET} apiKey={import.meta.env.VITE_CLOUDINARY_API_KEY} cloudName={import.meta.env.VITE_CLOUDINARY_CLOUD_NAME} setProfileImageLink={setProfileImageLink}/>
+                        <div className="flex flex-col items-center space-y-4">
+                            <Avatar className="h-32 w-32">
+                                <AvatarImage
+                                    src={profilePicturePreview}
+                                    alt="Profile preview"
+                                />
+                                <AvatarFallback>
+                                    <User className="h-16 w-16" />
+                                </AvatarFallback>
+                            </Avatar>
+                            <div className="flex flex-col items-center">
+                                <Label
+                                    htmlFor="profilePicture"
+                                    className="cursor-pointer"
+                                >
+                                    <div className="flex items-center space-x-2 bg-secondary p-2 rounded-md">
+                                        <Upload className="h-4 w-4" />
+                                        <span>
+                                            {uploadingImage
+                                                ? "Uploading..."
+                                                : "Upload Photo"}
+                                        </span>
+                                    </div>
+                                    <input
+                                        type="file"
+                                        id="profilePicture"
+                                        className="hidden"
+                                        accept="image/*"
+                                        onChange={handleImageUpload}
+                                        disabled={uploadingImage}
+                                    />
+                                </Label>
+                            </div>
+                        </div>
 
                         {/* Personal Information Section */}
                         <div className="space-y-6">

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+import { string, z } from "zod";
 import axios from "axios";
 import {
     Card,
@@ -33,7 +33,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { domain } from "@/lib/constant";
 import { Department } from "@/interface/general";
-import CloudinaryUpload from "@/services/Cloudinary";
+import UploadOnCloudinary from "@/services/Cloudinary";
 
 // Add your Cloudinary configuration
 // const CLOUDINARY_UPLOAD_PRESET = process.env.CLOUDINARY_UPLOAD_PRESET || "";
@@ -42,15 +42,11 @@ import CloudinaryUpload from "@/services/Cloudinary";
 const facultySchema = z.object({
     email: z.string().email("Invalid email address"),
     password: z
-        .string()
-        .min(8, "Password must be at least 8 characters")
-        .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
-        .regex(/[a-z]/, "Password must contain at least one lowercase letter")
-        .regex(/[0-9]/, "Password must contain at least one number"),
+        .string(),
     firstName: z.string().min(2, "First name must be at least 2 characters"),
     lastName: z.string().min(2, "Last name must be at least 2 characters"),
     phoneNumber: z.string().optional(),
-    departmentId: z.string().min(1, "Department is required"),
+    departmentId: z.number().min(1, "Department is required"),
     employeeId: z.string().min(1, "Employee ID is required"),
     designation: z.string().min(1, "Designation is required"),
     joiningDate: z.string().min(1, "Joining date is required"),
@@ -69,33 +65,39 @@ type FacultyFormData = z.infer<typeof facultySchema>;
 const CreateFacultyForm = () => {
     const { toast } = useToast();
     const [isLoading, setIsLoading] = useState(false);
+    const [uploadingImage, setUploadingImage] = useState(false);
+    const [profileFile, setProfileFile] = useState<File | null>(null);
+    const [profilePicturePreview, setProfilePicturePreview] = useState<string>("");
     const [error, setError] = useState<string>("");
-    const [departmentList,setdepartmentList] = useState<Department[]>([]);
-    const [profileImageLink, setProfileImageLink] = useState('');
-
-    useEffect(() => {
-        setValue('profilePictureUrl', profileImageLink);
-        
-    },[profileImageLink])
-
+    const [departmentList, setDepartmentList] = useState<Department[]>([]);
+    const [imageLinks, setImageLinks] = useState<string[]>([]);
+    const [videoLinks, setVideoLinks] = useState<string[]>([]);
     const {
         register,
         handleSubmit,
         formState: { errors },
         setValue,
+        watch,
     } = useForm<FacultyFormData>({
         resolver: zodResolver(facultySchema),
         defaultValues: {
             maxWeeklyHours: 40,
+            profilePictureUrl: "",
         },
     });
+    useEffect(() => {
+        if (imageLinks.length > 0) {
+            setValue('profilePictureUrl', imageLinks[0]);
+            console.log("Updated profilePictureUrl:", imageLinks[0]);
+        }
+    }, [imageLinks, setValue]);
 
     
     useEffect(()=>{
         const fetchDepartments = async () => {
             try {
                 const response = await axios.get(`${domain}/api/v1/department/list-of-department`);
-                setdepartmentList(response.data.department);
+                setDepartmentList(response.data.department);
                 console.log("departments",response.data);
                 
             } catch (error) {
@@ -104,46 +106,85 @@ const CreateFacultyForm = () => {
         };
         fetchDepartments();
     },[])
-
-
-
+    useEffect(() => {
+        if (imageLinks.length > 0) {
+            setValue('profilePictureUrl', imageLinks[0]);
+            console.log("Updated profilePictureUrl:", imageLinks[0]);
+        }
+    }, [imageLinks, setValue]);
+    const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            try {
+                setUploadingImage(true);
+                setProfileFile(file);
+                setProfilePicturePreview(URL.createObjectURL(file));
+                
+                await UploadOnCloudinary({
+                    mediaFiles: [file],
+                    setuploadedImageMediaLinks: setImageLinks,
+                    setuploadedVideoMediaLinks: setVideoLinks,
+                });
+                
+            } catch (error) {
+                console.error('Image upload error:', error);
+                toast({
+                    title: "Error",
+                    description: "Failed to upload image. Please try again.",
+                    variant: "destructive",
+                    duration: 5000,
+                });
+                setProfileFile(null);
+            } finally {
+                setUploadingImage(false);
+            }
+        }
+    };
     const onSubmit = async (data: FacultyFormData) => {
         setIsLoading(true);
         setError("");
 
         try {
-            // Create the payload without the file, using the Cloudinary URL instead
-            const payload = {
-                ...data,
-                profilePicture: data.profilePictureUrl, // Use the Cloudinary URL
+            // Format the data according to the backend requirements
+            const formattedData = {
+                ...data, // Include all form data
+                expertise: data.expertise ? data.expertise.split(',').map(item => item.trim()) : [],
+                qualifications: data.qualifications ? data.qualifications.split(',').map(item => item.trim()) : [],
+                maxWeeklyHours: Number(data.maxWeeklyHours),
+                researchInterests: data.researchInterests ? data.researchInterests.split(',').map(item => item.trim()) : [],
+                publications: data.publications ? data.publications.split(',').map(item => item.trim()) : [],
+                profilePictureUrl: data.profilePictureUrl || undefined // Ensure profilePictureUrl is included
             };
 
-            // Remove the original file and URL fields
-            delete payload.profilePictureUrl;
+            console.log("Submitting data:", formattedData);
 
-            await axios.post(
+            const response = await axios.post(
                 `${domain}/api/v1/faculty/createfaculty`,
-                payload,
+                formattedData,
                 {
                     headers: {
-                        "Content-Type": "application/json",
-                    },
+                        'Content-Type': 'application/json'
+                    }
                 }
             );
 
-            toast({
-                title: "Success!",
-                description: "Faculty member has been created successfully.",
-                duration: 5000,
-            });
+            if (response.data.success) {
+                toast({
+                    title: "Success!",
+                    description: "Faculty member has been created successfully.",
+                    duration: 5000,
+                });
+                // Optional: Reset form or redirect
+            } else {
+                throw new Error(response.data.message || "Failed to create faculty member");
+            }
         } catch (error) {
-            const errorMessage =
-                error instanceof Error ? error.message : "An error occurred";
+            console.error("Form submission error:", error);
+            const errorMessage = error instanceof Error ? error.message : "An error occurred";
             setError(errorMessage);
             toast({
                 title: "Error",
-                description:
-                    "Failed to create faculty member. Please try again.",
+                description: errorMessage || "Failed to create faculty member. Please try again.",
                 variant: "destructive",
                 duration: 5000,
             });
@@ -171,7 +212,41 @@ const CreateFacultyForm = () => {
                         onSubmit={handleSubmit(onSubmit)}
                         className="space-y-8"
                     >
-                       <CloudinaryUpload apiSecret={import.meta.env.VITE_CLOUDINARY_API_SECRET} apiKey={import.meta.env.VITE_CLOUDINARY_API_KEY} cloudName={import.meta.env.VITE_CLOUDINARY_CLOUD_NAME} setProfileImageLink={setProfileImageLink}/>
+                        {/* Profile Picture Upload */}
+                        <div className="flex flex-col items-center space-y-4">
+                            <Avatar className="h-32 w-32">
+                                <AvatarImage
+                                    src={profilePicturePreview}
+                                    alt="Profile preview"
+                                />
+                                <AvatarFallback>
+                                    <User className="h-16 w-16" />
+                                </AvatarFallback>
+                            </Avatar>
+                            <div className="flex flex-col items-center">
+                                <Label
+                                    htmlFor="profilePicture"
+                                    className="cursor-pointer"
+                                >
+                                    <div className="flex items-center space-x-2 bg-secondary p-2 rounded-md">
+                                        <Upload className="h-4 w-4" />
+                                        <span>
+                                            {uploadingImage
+                                                ? "Uploading..."
+                                                : "Upload Photo"}
+                                        </span>
+                                    </div>
+                                    <input
+                                        type="file"
+                                        id="profilePicture"
+                                        className="hidden"
+                                        accept="image/*"
+                                        onChange={handleImageUpload}
+                                        disabled={uploadingImage}
+                                    />
+                                </Label>
+                            </div>
+                        </div>
 
                         {/* Personal Information Section */}
                         <div className="space-y-6">
@@ -282,7 +357,7 @@ const CreateFacultyForm = () => {
                                     </Label>
                                     <Select
                                         onValueChange={(value) =>
-                                            setValue("departmentId", value)
+                                            setValue("departmentId", parseInt(value))
                                         }
                                     >
                                         <SelectTrigger>
@@ -292,7 +367,7 @@ const CreateFacultyForm = () => {
                                             {departmentList.map((dept:Department) => (
                                                 <SelectItem
                                                     key={dept.department_id}
-                                                    value={dept.department_code}
+                                                    value={dept.department_id.toString()}
                                                 >
                                                     {dept.department_name}
                                                 </SelectItem>

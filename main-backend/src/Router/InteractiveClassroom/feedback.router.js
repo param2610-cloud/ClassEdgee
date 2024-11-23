@@ -1,5 +1,5 @@
 import e from 'express'
-import {createFeedback,getFeedback} from "./feedback.router.js"
+import { createFeedback,getFeedback } from '../../controllers/InteractiveClassroom/feedback.controller.js';
 
 const router = e.Router();
 
