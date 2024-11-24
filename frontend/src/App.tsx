@@ -126,6 +126,15 @@ const CoordinatorRoutes: React.FC = () => (
       <Route path="/department" element={<DepartmentLayout />} />
       <Route path="/department/:id" element={<DetailDepartment />} />
       <Route path="/department/create" element={<AddDepartmentForm />} />
+      <Route path="/course" element={<CourseDashboard />} />
+      <Route path="/course/:id" element={<SpecificCourseDashboard />} />
+      <Route path="/course/:id/stream/create" element={<StreamCreate />} />
+      <Route path="/course/:id/stream/edit/:id" element={<StreamEdit />} />
+      <Route path="/course/:id/stream/:id/semester/:id" element={<SemesterDashboard />} />
+      <Route path="/course/:id/stream/:id/semester/:id/syllabus" element={<SemesterSyllabus />} />
+      <Route path="/course/:id/stream/:id/semester/:id/syllabus/create" element={<SemesterSyllabusCreate />} />
+      <Route path="/course/:id/stream/:id/semester/:id/syllabus/create/edit" element={<SemesterSyllabusEdit />} />
+      
 
     </Routes>
   </CoordinatorLayout>

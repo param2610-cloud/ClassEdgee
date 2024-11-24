@@ -158,23 +158,25 @@ model classes {
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model courses {
-  course_id         Int                 @id @default(autoincrement())
-  course_code       String              @unique @db.VarChar(20)
-  course_name       String              @db.VarChar(255)
-  department_id     Int?
-  credits           Int
-  description       String?
-  prerequisites     String?
-  syllabus_url      String?             @db.VarChar(255)
-  learning_outcomes String[]
-  is_active         Boolean?            @default(true)
-  created_at        DateTime?           @default(now()) @db.Timestamp(6)
-  updated_at        DateTime?           @db.Timestamp(6)
-  classes           classes[]
-  departments       departments?        @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction)
-  learninganalytics learninganalytics[]
-  notes             notes[]
-  resources         resources[]
+  course_id          Int                  @id @default(autoincrement())
+  course_code        String               @unique @db.VarChar(20)
+  course_name        String               @db.VarChar(255)
+  department_id      Int?
+  credits            Int
+  description        String?
+  prerequisites      String?
+  syllabus_url       String?              @db.VarChar(255)
+  learning_outcomes  String[]
+  is_active          Boolean?             @default(true)
+  created_at         DateTime?            @default(now()) @db.Timestamp(6)
+  updated_at         DateTime?            @db.Timestamp(6)
+  classes            classes[]
+  departments        departments?         @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction)
+  learninganalytics  learninganalytics[]
+  notes              notes[]
+  resources          resources[]
+  subject_details    subject_details[]
+  syllabus_structure syllabus_structure[]
 }
 
 model departments {
@@ -503,6 +505,79 @@ model users {
   students                             students?
 }
 
+model subject_details {
+  subject_id                        Int                 @id @default(autoincrement())
+  syllabus_id                       Int?
+  course_id                         Int?
+  subject_type                      subject_type
+  preferred_faculty_specializations String[]            @default([])
+  resources_required                String[]
+  created_at                        DateTime?           @default(now()) @db.Timestamp(6)
+  updated_at                        DateTime?           @default(now()) @db.Timestamp(6)
+  courses                           courses?            @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction)
+  syllabus_structure                syllabus_structure? @relation(fields: [syllabus_id], references: [syllabus_id], onDelete: NoAction, onUpdate: NoAction)
+  units                             units[]
+
+  @@index([syllabus_id], map: "idx_subject_syllabus")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model syllabus_structure {
+  syllabus_id     Int               @id @default(autoincrement())
+  course_id       Int?
+  semester        Int
+  created_at      DateTime?         @default(now()) @db.Timestamp(6)
+  updated_at      DateTime?         @default(now()) @db.Timestamp(6)
+  subject_details subject_details[]
+  courses         courses?          @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([course_id, semester])
+  @@index([course_id, semester], map: "idx_syllabus_course_sem")
+}
+
+model topics {
+  topic_id          Int       @id @default(autoincrement())
+  unit_id           Int?
+  topic_name        String    @db.VarChar(255)
+  topic_description String?
+  created_at        DateTime? @default(now()) @db.Timestamp(6)
+  updated_at        DateTime? @default(now()) @db.Timestamp(6)
+  units             units?    @relation(fields: [unit_id], references: [unit_id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([unit_id], map: "idx_topic_unit")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model unit_prerequisites {
+  unit_id                                              Int
+  prerequisite_unit_id                                 Int
+  prerequisite_type                                    String?   @db.VarChar(20)
+  created_at                                           DateTime? @default(now()) @db.Timestamp(6)
+  units_unit_prerequisites_prerequisite_unit_idTounits units     @relation("unit_prerequisites_prerequisite_unit_idTounits", fields: [prerequisite_unit_id], references: [unit_id], onDelete: Cascade, onUpdate: NoAction)
+  units_unit_prerequisites_unit_idTounits              units     @relation("unit_prerequisites_unit_idTounits", fields: [unit_id], references: [unit_id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([unit_id, prerequisite_unit_id])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model units {
+  unit_id                                                           Int                  @id @default(autoincrement())
+  subject_id                                                        Int?
+  unit_number                                                       Int
+  unit_name                                                         String               @db.VarChar(255)
+  required_hours                                                    Int
+  learning_objectives                                               String[]
+  created_at                                                        DateTime?            @default(now()) @db.Timestamp(6)
+  updated_at                                                        DateTime?            @default(now()) @db.Timestamp(6)
+  topics                                                            topics[]
+  unit_prerequisites_unit_prerequisites_prerequisite_unit_idTounits unit_prerequisites[] @relation("unit_prerequisites_prerequisite_unit_idTounits")
+  unit_prerequisites_unit_prerequisites_unit_idTounits              unit_prerequisites[] @relation("unit_prerequisites_unit_idTounits")
+  subject_details                                                   subject_details?     @relation(fields: [subject_id], references: [subject_id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([subject_id, unit_number])
+  @@index([subject_id], map: "idx_unit_subject")
+}
+
 enum alert_severity {
   low
   medium
@@ -557,4 +632,10 @@ enum verification_method {
   manual
   mobile
   biometric
+}
+
+enum subject_type {
+  theory
+  lab
+  project
 }
