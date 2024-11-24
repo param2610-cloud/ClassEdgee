@@ -32,7 +32,7 @@ const createFaculty = async (req, res) => {
             joiningDate,
             contractEndDate,
             researchInterests,
-            publications
+            publications,
         } = req.body;
         // Basic validation
         console.log(req.body);
@@ -50,7 +50,7 @@ const createFaculty = async (req, res) => {
                 message: "Missing required fields",
             });
         }
-        
+
         const college_id = employeeId;
         // Email format validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -75,7 +75,7 @@ const createFaculty = async (req, res) => {
 
         // Check if email already exists
         const existingUser = await prisma.users.findUnique({
-            where: { college_uid:college_id },
+            where: { college_uid: college_id },
         });
 
         if (existingUser) {
@@ -84,8 +84,6 @@ const createFaculty = async (req, res) => {
                 message: "Faculty already registered",
             });
         }
-
-        
 
         // Hash password
         const saltRounds = 10;
@@ -105,7 +103,7 @@ const createFaculty = async (req, res) => {
                     phone_number: phoneNumber,
                     profile_picture: profilePictureUrl,
                     status: "active",
-                    college_uid:college_id
+                    college_uid: college_id,
                 },
             });
 
@@ -190,7 +188,7 @@ const facultyblukupload = async (req, res) => {
         // Add timeout and better error handling
         const response = await axios.post(
             ` ${fastapidomain}/faculty/process-faculty-excel`,
-            form,   
+            form,
             {
                 headers: {
                     ...form.getHeaders(),
@@ -200,7 +198,7 @@ const facultyblukupload = async (req, res) => {
             }
         );
         console.log(response.data);
-        (response.data);
+        response.data;
         // Clean up the temporary file
         if (fs.existsSync(req.file.path)) {
             fs.unlinkSync(req.file.path);
@@ -268,8 +266,8 @@ const loginfaculty = async (req, res) => {
                 college_uid: college_uid,
             },
             include: {
-                faculty: true
-            }
+                faculty: true,
+            },
         });
         if (!faculty || faculty.role !== "faculty") {
             return res.status(401).send({ message: "Invalid credentials" });
@@ -296,7 +294,7 @@ const loginfaculty = async (req, res) => {
             data: {
                 refresh_token: refreshToken,
             },
-        })
+        });
         // Set HTTP-only cookies
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
@@ -323,124 +321,241 @@ const loginfaculty = async (req, res) => {
 };
 const listoffaculty = async (req, res) => {
     try {
+        const {
+            page = 1,
+            pageSize = 8,
+            search = "",
+            department = "",
+            designation = "",
+            sortBy = "created_at",
+            sortOrder = "desc"
+        } = req.query;
+
+        // Convert page and pageSize to numbers
+        const pageNumber = parseInt(page);
+        const limit = parseInt(pageSize);
+        const offset = (pageNumber - 1) * limit;
+
+        // Build the where clause based on search and filters
+        let whereClause = {};
+        
+        if (search) {
+            whereClause = {
+                OR: [
+                    {
+                        users: {
+                            OR: [
+                                { college_uid: { contains: search, mode: 'insensitive' } },
+                                { first_name: { contains: search, mode: 'insensitive' } },
+                                { last_name: { contains: search, mode: 'insensitive' } },
+                                { email: { contains: search, mode: 'insensitive' } }
+                            ]
+                        }
+                    }
+                ]
+            };
+        }
+
+        if (department) {
+            whereClause = {
+                ...whereClause,
+                departments: {
+                    department_name: {
+                        equals: department,
+                        mode: 'insensitive'
+                    }
+                }
+            };
+        }
+
+        if (designation) {
+            whereClause = {
+                ...whereClause,
+                designation: {
+                    equals: designation,
+                    mode: 'insensitive'
+                }
+            };
+        }
+
+        // Build the orderBy clause
+        let orderByClause = {};
+        
+        // Handle different sort fields
+        switch (sortBy) {
+            case 'name':
+                orderByClause = {
+                    users: {
+                        first_name: sortOrder
+                    }
+                };
+                break;
+            case 'department':
+                orderByClause = {
+                    departments: {
+                        department_name: sortOrder
+                    }
+                };
+                break;
+            case 'joining_date':
+                orderByClause = {
+                    joining_date: sortOrder
+                };
+                break;
+            default:
+                orderByClause = {
+                    created_at: sortOrder
+                };
+        }
+
+        // Get total count for pagination
+        const totalCount = await prisma.faculty.count({
+            where: whereClause
+        });
+
+        // Get faculty data with pagination, filtering, and sorting
         const facultys = await prisma.faculty.findMany({
-            select: {
-                faculty_id: true,
-                user_id: true,
-                department_id: true,
-                designation: true,
-                expertise: true,
-                qualifications: true,
-                max_weekly_hours: true,
-                joining_date: true,
-                contract_end_date: true,
-                research_interests: true,
-                publications: true,
-                users:true
+            where: whereClause,
+            include: {
+                users: {
+                    select: {
+                        user_id: true,
+                        college_uid: true,
+                        first_name: true,
+                        last_name: true,
+                        email: true,
+                        phone_number: true,
+                        profile_picture: true
+                    }
+                },
+                departments: {
+                    select: {
+                        department_id: true,
+                        department_name: true
+                    }
+                }
+            },
+            orderBy: orderByClause,
+            skip: offset,
+            take: limit
+        });
+
+        // Calculate pagination metadata
+        const totalPages = Math.ceil(totalCount / limit);
+
+        res.status(200).json({
+            success: true,
+            data: facultys,
+            pagination: {
+                total: totalCount,
+                page: pageNumber,
+                pageSize: limit,
+                totalPages
+            }
+        });
+
+    } catch (error) {
+        console.error("Error retrieving faculty:", error);
+        res.status(500).json({
+            success: false,
+            error: "Failed to retrieve faculty",
+            details: error.message
+        });
+    }
+};
+
+
+const editFaculty = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const data = req.body;
+
+        // Start transaction to update both user and faculty
+        const result = await prisma.$transaction(async (tx) => {
+            // Update user details
+            const updatedUser = await tx.users.update({
+                where: { user_id: Number(id) },
+                data: {
+                    first_name: data.user.first_name,
+                    last_name: data.user.last_name,
+                    email: data.user.email,
+                    phone_number: data.user.phone_number,
+                    profile_picture: data.user.profile_picture,
+                },
+            });
+
+            // Update faculty details
+            const updatedFaculty = await tx.faculty.update({
+                where: { user_id: Number(id) },
+                data: {
+                    department_id: data.faculty.department_id,
+                    designation: data.faculty.designation,
+                    expertise: data.faculty.expertise,
+                    qualifications: data.faculty.qualifications,
+                    max_weekly_hours: data.faculty.max_weekly_hours,
+                    contract_end_date: data.faculty.contract_end_date,
+                    research_interests: data.faculty.research_interests,
+                    publications: data.faculty.publications,
+                    updated_at: new Date(),
+                },
+            });
+
+            return { user: updatedUser, faculty: updatedFaculty };
+        });
+
+        res.status(200).json({
+            success: true,
+            message: "Faculty profile updated successfully",
+            data: result,
+        });
+    } catch (error) {
+        console.error("Error updating faculty:", error);
+        res.status(500).json({
+            success: false,
+            message: "Error updating faculty profile",
+            error:
+                error instanceof Error
+                    ? error.message
+                    : "Unknown error occurred",
+        });
+    }
+};
+
+const getUniqueFaculty = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const faculty = await prisma.users.findUnique({
+            where: { user_id: Number(id) },
+            include: {
+                faculty: {
+                    include: {
+                        departments: true,
+                    },
+                },
             },
         });
-        res.status(200).send(facultys);
-    } catch (error) {
-        console.error("Error retrieving facultys:", error);
-        res.status(500).send({ error: "Failed to retrieve facultys" });
-    }
-};
-
-
-const editfaculty = async (req, res) => {
-    try {
-        const facultyId = req.params.id;
-        console.log(facultyId);
-        console.log("adas");
-        const updateData = req.body;
-        console.log(updateData);
-
-        // Remove fields that shouldn't be updated directly
-        delete updateData.createdAt;
-        delete updateData.facultyId; // Prevent facultyId modification
-
-        // Add updatedAt timestamp
-        updateData.updatedAt = new Date();
-        if (updateData.gender == "F") {
-            updateData.gender = "Female";
-        } else if (updateData.gender == "M") {
-            updateData.gender = "Male";
-        }
-        // Find and update the faculty
-        const updatedfaculty = await facultyprofileSchema.findOneAndUpdate(
-            { _id: facultyId },
-            { $set: updateData },
-            {
-                new: true, // Return the updated document
-                runValidators: true, // Run schema validators on update
-            }
-        );
-
-        // Check if faculty exists
-        if (!updatedfaculty) {
-            return res.status(404).send({
-                success: false,
-                message: "faculty not found",
-            });
-        }
-
-        return res.status(200).send({
-            success: true,
-            message: "faculty updated successfully",
-            data: updatedfaculty,
-        });
-    } catch (error) {
-        if (error.name === "ValidationError") {
-            return res.status(400).send({
-                success: false,
-                message: "Validation Error",
-                errors: Object.values(error.errors).map((err) => err.message),
-            });
-        }
-
-        // Handle duplicate key errors
-        if (error.code === 11000) {
-            return res.status(400).send({
-                success: false,
-                message: "Duplicate field value entered",
-                field: Object.keys(error.keyPattern)[0],
-            });
-        }
-
-        // Handle other errors
-        return res.status(500).send({
-            success: false,
-            message: "Error updating faculty",
-            error: error.message,
-        });
-    }
-};
-const uniquefaculty = async (req, res) => {
-    try {
-        console.log("adsfad");
-
-        const facultyId = req.params.id;
-        console.log(facultyId);
-
-        const faculty = await facultyprofileSchema.findOne({ _id: facultyId });
-        console.log(faculty);
 
         if (!faculty) {
-            return res.status(404).send({
+            return res.status(404).json({
                 success: false,
-                message: "faculty not found",
+                message: "Faculty not found",
             });
         }
-        return res.status(200).send({
+
+        res.status(200).json({
             success: true,
-            message: "faculty found successfully",
             data: faculty,
         });
     } catch (error) {
-        return res.status(500).send({
+        console.error("Error fetching faculty:", error);
+        res.status(500).json({
             success: false,
-            message: "Error finding faculty",
-            error: error.message,
+            message: "Error fetching faculty details",
+            error:
+                error instanceof Error
+                    ? error.message
+                    : "Unknown error occurred",
         });
     }
 };
@@ -475,7 +590,7 @@ export {
     loginfaculty,
     facultyblukupload,
     listoffaculty,
-    editfaculty,
-    uniquefaculty,
+    editFaculty,
+    getUniqueFaculty,
     deletefaculty,
 };

@@ -68,7 +68,7 @@ router.post("/refresh-token", async (req, res) => {
         
         const tokens = generateTokens(
             user.username, 
-            "15m", 
+            "2d", 
             "7d"   
         );
 
