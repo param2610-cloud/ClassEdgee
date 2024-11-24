@@ -169,12 +169,12 @@ const CreateStudentForm = () => {
             };
             console.log(payload);
             
-            // const response = await axios.post(
-            //     `${domain}/api/v1/student/createstudent`,
-            //     payload
-            // );
+            const response = await axios.post(
+                `${domain}/api/v1/student/createstudent`,
+                payload
+            );
 
-            if (true) {
+            if (response.data.success) {
                 toast({
                     title: "Success!",
                     description: "Student has been created successfully.",

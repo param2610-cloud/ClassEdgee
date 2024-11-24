@@ -286,40 +286,47 @@ const editStudent = async (req, res) => {
     try {
         const { id } = req.params;
         const updateData = req.body;
-
+        
         // First update user data
-        if (
-            updateData.first_name ||
-            updateData.last_name ||
-            updateData.email ||
-            updateData.phone_number
-        ) {
-            await prismaClient.users.update({
-                where: { user_id: parseInt(id) },
-                data: {
-                    first_name: updateData.first_name,
-                    last_name: updateData.last_name,
-                    email: updateData.email,
-                    phone_number: updateData.phone_number,
-                },
-            });
-        }
+        await prismaClient.users.update({
+            where: { user_id: parseInt(id) },
+            data: {
+                first_name: updateData.firstName,
+                last_name: updateData.lastName,
+                email: updateData.email,
+                phone_number: updateData.phoneNumber,
+                college_uid: updateData.collegeUid,
+                profile_picture: updateData.profilePictureUrl
+            },
+        });
 
         // Then update student specific data
         const student = await prismaClient.students.update({
             where: { user_id: parseInt(id) },
             data: {
-                department_id: updateData.department_id,
-                current_semester: updateData.current_semester,
-                guardian_name: updateData.guardian_name,
-                guardian_contact: updateData.guardian_contact,
+                department_id: updateData.departmentId,
+                enrollment_number: updateData.enrollmentNumber,
+                batch_year: updateData.batchYear,
+                current_semester: updateData.currentSemester,
+                guardian_name: updateData.guardianName,
+                guardian_contact: updateData.guardianContact,
+                profile_picture: updateData.profilePicture || undefined
             },
+        });
+
+        // Fetch the updated student data with relations
+        const updatedStudent = await prismaClient.students.findUnique({
+            where: { user_id: parseInt(id) },
+            include: {
+                users: true,
+                departments: true
+            }
         });
 
         res.status(200).send({
             success: true,
             message: "Student updated successfully",
-            data: student,
+            data: updatedStudent,
         });
     } catch (error) {
         console.error("Error updating student:", error);
@@ -331,29 +338,15 @@ const editStudent = async (req, res) => {
     }
 };
 
-// Get unique student
-const uniquestudent = async (req, res) => {
+const uniqueStudent = async (req, res) => {
     try {
         const { id } = req.params;
-
         const student = await prismaClient.students.findUnique({
             where: { user_id: parseInt(id) },
             include: {
-                users: {
-                    select: {
-                        first_name: true,
-                        last_name: true,
-                        email: true,
-                        phone_number: true,
-                        college_uid: true,
-                    },
-                },
-                departments: {
-                    select: {
-                        department_name: true,
-                    },
-                },
-            },
+                users: true,
+                departments: true
+            }
         });
 
         if (!student) {
@@ -376,6 +369,7 @@ const uniquestudent = async (req, res) => {
         });
     }
 };
+
 
 // Delete student
 const deletestudent = async (req, res) => {
@@ -506,7 +500,7 @@ export {
     loginStudent,
     listOfStudents,
     editStudent,
-    uniquestudent,
+    uniqueStudent,
     deletestudent,
     studentblukupload
 };

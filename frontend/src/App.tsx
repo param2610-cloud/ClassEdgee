@@ -28,6 +28,7 @@ import DepartmentLayout from './pages/Protected/department/DepartmentLayout';
 import DetailDepartment from './pages/Protected/department/[departmentid]/DetailDepartment';
 import StudentUploadLayout from './pages/Protected/coordinator/student/create/StudentCreateLayout';
 import EditStudentForm from './pages/Protected/coordinator/student/edit/Studentedit';
+import FacultyEditProfile from './pages/Protected/coordinator/teachers/edit/Teacheredit';
 
 
 const App: React.FC = () => {
@@ -121,7 +122,7 @@ const CoordinatorRoutes: React.FC = () => (
       <Route path="/student/edit/:user_id" element={<EditStudentForm/>} />
       <Route path="/faculty" element={<CoordinatorFaculty />} />
       <Route path="/faculty/create" element={<TeacherUploadLayout />} />
-      {/* <Route path="/faculty/edit/:id" element={<TeacherEditProfile />} /> */}
+      <Route path="/faculty/edit/:id" element={<FacultyEditProfile />} />
       <Route path="/department" element={<DepartmentLayout />} />
       <Route path="/department/:id" element={<DetailDepartment />} />
       <Route path="/department/create" element={<AddDepartmentForm />} />

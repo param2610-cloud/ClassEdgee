@@ -48,7 +48,7 @@ const loginCoordinator = async (req, res) => {
         // Generate tokens
         const { accessToken, refreshToken } = generateTokens(
             college_uid,
-            "15m",
+            "2d",
             "7d"
         );
         const UpdatedUser = await prisma.users.update({

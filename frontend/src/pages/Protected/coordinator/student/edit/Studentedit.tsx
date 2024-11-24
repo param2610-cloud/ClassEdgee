@@ -1,6 +1,3 @@
-
-
-
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -30,12 +27,14 @@ import {
     User,
     Building2,
     GraduationCap,
+    Upload,
 } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useToast } from "@/hooks/use-toast";
 import { domain } from "@/lib/constant";
 import { Department } from "@/interface/general";
-import CloudinaryUpload from "@/services/Cloudinary";
+import UploadOnCloudinary from "@/services/Cloudinary";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const studentSchema = z.object({
     firstName: z.string().min(2, "First name must be at least 2 characters"),
@@ -44,12 +43,11 @@ const studentSchema = z.object({
     phoneNumber: z.string().min(10, "Invalid phone number"),
     departmentId: z.number().min(1, "Department is required"),
     enrollmentNumber: z.string().min(1, "Enrollment number is required"),
-    batchYear: z.string().min(4, "Invalid batch year"),
-    currentSemester: z.string().min(1, "Current semester is required"),
+    batchYear: z.number().min(4, "Invalid batch year"),
+    currentSemester: z.number().min(1, "Current semester is required"),
     guardianName: z.string().min(2, "Guardian name is required"),
     guardianContact: z.string().min(10, "Invalid guardian contact"),
     collegeUid: z.string().min(1, "College UID is required"),
-    profilePicture: z.any().optional(),
     profilePictureUrl: z.string().optional(),
 });
 
@@ -60,8 +58,11 @@ const EditStudentForm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string>("");
     const [departmentList, setDepartmentList] = useState<Department[]>([]);
-    const [profileImageLink, setProfileImageLink] = useState('');
-    const { user_id } = useParams(); // Get student ID from URL
+    const [uploadingImage, setUploadingImage] = useState(false);
+    const { user_id } = useParams();
+    const [previewUrl, setPreviewUrl] = useState<string>("");
+    const [imageMediaLinks, setImageMediaLinks] = useState<string[]>([]);
+    const [videoMediaLinks, setVideoMediaLinks] = useState<string[]>([]);
 
     const {
         register,
@@ -69,9 +70,21 @@ const EditStudentForm = () => {
         formState: { errors },
         setValue,
         reset,
+        watch,
     } = useForm<StudentFormData>({
         resolver: zodResolver(studentSchema),
     });
+
+    // Watch profilePictureUrl to update preview
+    const profilePictureUrl = watch("profilePictureUrl");
+
+    useEffect(() => {
+        // When imageMediaLinks changes and has items, update the form
+        if (imageMediaLinks.length > 0) {
+            setValue('profilePictureUrl', imageMediaLinks[0]);
+            setPreviewUrl(imageMediaLinks[0]);
+        }
+    }, [imageMediaLinks, setValue]);
 
     // Fetch student data
     useEffect(() => {
@@ -79,24 +92,23 @@ const EditStudentForm = () => {
             try {
                 const response = await axios.get(`${domain}/api/v1/student/get-student/${user_id}`);
                 const studentData = response.data.data;
-
-                // Set form values
+                
                 reset({
                     firstName: studentData.users.first_name,
                     lastName: studentData.users.last_name,
                     email: studentData.users.email,
                     phoneNumber: studentData.users.phone_number,
-                    departmentId: studentData.departments.department_name,
+                    departmentId: studentData.department_id,
                     enrollmentNumber: studentData.enrollment_number,
                     batchYear: studentData.batch_year,
                     currentSemester: studentData.current_semester,
                     guardianName: studentData.guardian_name,
                     guardianContact: studentData.guardian_contact,
                     collegeUid: studentData.users.college_uid,
-                    profilePictureUrl: studentData.profile_picture
+                    profilePictureUrl: studentData.users.profile_picture || "",
                 });
 
-                setProfileImageLink(studentData.profile_picture || '');
+                setPreviewUrl(studentData.users.profile_picture || "");
             } catch (error) {
                 console.error("Error fetching student data:", error);
                 toast({
@@ -127,27 +139,47 @@ const EditStudentForm = () => {
         fetchDepartments();
     }, []);
 
-    useEffect(() => {
-        setValue('profilePictureUrl', profileImageLink);
-    }, [profileImageLink, setValue]);
+    const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            try {
+                setUploadingImage(true);
+                // Set temporary preview
+                setPreviewUrl(URL.createObjectURL(file));
+
+                await UploadOnCloudinary({
+                    mediaFiles: [file],
+                    setuploadedImageMediaLinks: setImageMediaLinks,
+                    setuploadedVideoMediaLinks: setVideoMediaLinks,
+                });
+
+            } catch (error) {
+                console.error('Image upload error:', error);
+                toast({
+                    title: "Error",
+                    description: "Failed to upload image. Please try again.",
+                    variant: "destructive",
+                });
+            } finally {
+                setUploadingImage(false);
+            }
+        }
+    };
 
     const onSubmit = async (data: StudentFormData) => {
         setIsLoading(true);
         setError("");
 
         try {
-            const payload = {
-                ...data,
-                profilePicture: data.profilePictureUrl,
-            };
-
-            delete payload.profilePictureUrl;
-
-            await axios.put(`${domain}/api/v1/student/edit/${user_id}`, payload, {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
+            const response = await axios.put(
+                `${domain}/api/v1/student/edit/${user_id}`,
+                data,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
 
             toast({
                 title: "Success!",
@@ -184,14 +216,40 @@ const EditStudentForm = () => {
 
                 <CardContent>
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-                        <CloudinaryUpload 
-                            apiSecret={import.meta.env.VITE_CLOUDINARY_API_SECRET} 
-                            apiKey={import.meta.env.VITE_CLOUDINARY_API_KEY} 
-                            cloudName={import.meta.env.VITE_CLOUDINARY_CLOUD_NAME} 
-                            setProfileImageLink={setProfileImageLink}
-                            existingImage={profileImageLink}
-                        />
-
+                        <div className="flex flex-col items-center space-y-4">
+                            <Avatar className="h-32 w-32">
+                                <AvatarImage
+                                    src={previewUrl}
+                                    alt="Profile preview"
+                                />
+                                <AvatarFallback>
+                                    <User className="h-16 w-16" />
+                                </AvatarFallback>
+                            </Avatar>
+                            <div className="flex flex-col items-center">
+                                <Label
+                                    htmlFor="profilePicture"
+                                    className="cursor-pointer"
+                                >
+                                    <div className="flex items-center space-x-2 bg-secondary p-2 rounded-md">
+                                        <Upload className="h-4 w-4" />
+                                        <span>
+                                            {uploadingImage
+                                                ? "Uploading..."
+                                                : "Upload Photo"}
+                                        </span>
+                                    </div>
+                                    <input
+                                        type="file"
+                                        id="profilePicture"
+                                        className="hidden"
+                                        accept="image/*"
+                                        onChange={handleImageUpload}
+                                        disabled={uploadingImage}
+                                    />
+                                </Label>
+                            </div>
+                        </div>
                         {/* Personal Information Section */}
                         <div className="space-y-6">
                             <div className="flex items-center gap-2">
@@ -204,7 +262,9 @@ const EditStudentForm = () => {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <Label htmlFor="firstName">First Name *</Label>
+                                    <Label htmlFor="firstName">
+                                        First Name *
+                                    </Label>
                                     <Input {...register("firstName")} />
                                     {errors.firstName && (
                                         <p className="text-sm text-destructive">
@@ -214,7 +274,9 @@ const EditStudentForm = () => {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <Label htmlFor="lastName">Last Name *</Label>
+                                    <Label htmlFor="lastName">
+                                        Last Name *
+                                    </Label>
                                     <Input {...register("lastName")} />
                                     {errors.lastName && (
                                         <p className="text-sm text-destructive">
@@ -224,8 +286,13 @@ const EditStudentForm = () => {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <Label htmlFor="email">Email Address *</Label>
-                                    <Input {...register("email")} type="email" />
+                                    <Label htmlFor="email">
+                                        Email Address *
+                                    </Label>
+                                    <Input
+                                        {...register("email")}
+                                        type="email"
+                                    />
                                     {errors.email && (
                                         <p className="text-sm text-destructive">
                                             {errors.email.message}
@@ -234,7 +301,9 @@ const EditStudentForm = () => {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <Label htmlFor="phoneNumber">Phone Number *</Label>
+                                    <Label htmlFor="phoneNumber">
+                                        Phone Number *
+                                    </Label>
                                     <Input {...register("phoneNumber")} />
                                     {errors.phoneNumber && (
                                         <p className="text-sm text-destructive">
@@ -257,7 +326,9 @@ const EditStudentForm = () => {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <Label htmlFor="enrollmentNumber">Enrollment Number *</Label>
+                                    <Label htmlFor="enrollmentNumber">
+                                        Enrollment Number *
+                                    </Label>
                                     <Input {...register("enrollmentNumber")} />
                                     {errors.enrollmentNumber && (
                                         <p className="text-sm text-destructive">
@@ -267,24 +338,31 @@ const EditStudentForm = () => {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <Label htmlFor="departmentId">Department *</Label>
+                                    <Label htmlFor="departmentId">
+                                        Department *
+                                    </Label>
                                     <Select
                                         onValueChange={(value) =>
-                                            setValue("departmentId", parseInt(value))
+                                            setValue(
+                                                "departmentId",
+                                                parseInt(value)
+                                            )
                                         }
                                     >
                                         <SelectTrigger>
                                             <SelectValue placeholder="Select Department" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            {departmentList.map((dept: Department) => (
-                                                <SelectItem
-                                                    key={dept.department_id}
-                                                    value={dept.department_id.toString()}
-                                                >
-                                                    {dept.department_name}
-                                                </SelectItem>
-                                            ))}
+                                            {departmentList.map(
+                                                (dept: Department) => (
+                                                    <SelectItem
+                                                        key={dept.department_id}
+                                                        value={dept.department_id.toString()}
+                                                    >
+                                                        {dept.department_name}
+                                                    </SelectItem>
+                                                )
+                                            )}
                                         </SelectContent>
                                     </Select>
                                     {errors.departmentId && (
@@ -295,7 +373,9 @@ const EditStudentForm = () => {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <Label htmlFor="batchYear">Batch Year *</Label>
+                                    <Label htmlFor="batchYear">
+                                        Batch Year *
+                                    </Label>
                                     <Input {...register("batchYear")} />
                                     {errors.batchYear && (
                                         <p className="text-sm text-destructive">
@@ -305,24 +385,31 @@ const EditStudentForm = () => {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <Label htmlFor="currentSemester">Current Semester *</Label>
+                                    <Label htmlFor="currentSemester">
+                                        Current Semester *
+                                    </Label>
                                     <Select
                                         onValueChange={(value) =>
-                                            setValue("currentSemester", value)
+                                            setValue(
+                                                "currentSemester",
+                                                parseInt(value)
+                                            )
                                         }
                                     >
                                         <SelectTrigger>
                                             <SelectValue placeholder="Select Semester" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            {[1, 2, 3, 4, 5, 6, 7, 8].map((sem) => (
-                                                <SelectItem
-                                                    key={sem}
-                                                    value={sem.toString()}
-                                                >
-                                                    Semester {sem}
-                                                </SelectItem>
-                                            ))}
+                                            {[1, 2, 3, 4, 5, 6, 7, 8].map(
+                                                (sem) => (
+                                                    <SelectItem
+                                                        key={sem}
+                                                        value={sem.toString()}
+                                                    >
+                                                        Semester {sem}
+                                                    </SelectItem>
+                                                )
+                                            )}
                                         </SelectContent>
                                     </Select>
                                     {errors.currentSemester && (
@@ -346,7 +433,9 @@ const EditStudentForm = () => {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <Label htmlFor="guardianName">Guardian Name *</Label>
+                                    <Label htmlFor="guardianName">
+                                        Guardian Name *
+                                    </Label>
                                     <Input {...register("guardianName")} />
                                     {errors.guardianName && (
                                         <p className="text-sm text-destructive">
@@ -356,7 +445,9 @@ const EditStudentForm = () => {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <Label htmlFor="guardianContact">Guardian Contact *</Label>
+                                    <Label htmlFor="guardianContact">
+                                        Guardian Contact *
+                                    </Label>
                                     <Input {...register("guardianContact")} />
                                     {errors.guardianContact && (
                                         <p className="text-sm text-destructive">
@@ -366,7 +457,9 @@ const EditStudentForm = () => {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <Label htmlFor="collegeUid">College UID *</Label>
+                                    <Label htmlFor="collegeUid">
+                                        College UID *
+                                    </Label>
                                     <Input {...register("collegeUid")} />
                                     {errors.collegeUid && (
                                         <p className="text-sm text-destructive">
@@ -400,129 +493,3 @@ const EditStudentForm = () => {
 };
 
 export default EditStudentForm;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
