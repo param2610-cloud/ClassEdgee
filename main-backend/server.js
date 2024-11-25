@@ -26,7 +26,7 @@ app.use('/',express.static(path.join(__dirname,'public')));
 
 
 //router import 
-import supremeRouter from "./src/Router/supreme.router.js"
+import adminRouter from "./src/Router/supreme.router.js"
 import generalRouter from './src/Router/general.router.js'
 import logger from "./src/middlewares/logger.js";
 import coordinatorRouter from './src/Router/coordinator.router.js'
@@ -51,7 +51,7 @@ app.use(logger)
 
 
 //router declaration 
-app.use('/api/v1/supreme',supremeRouter)
+app.use('/api/v1/admin',adminRouter)
 app.use('/api/v1/general',generalRouter)
 app.use("/api/v1/coordinator",coordinatorRouter)
 app.use("/api/v1/student",studentRouter)

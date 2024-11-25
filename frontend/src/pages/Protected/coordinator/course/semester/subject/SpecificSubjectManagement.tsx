@@ -14,7 +14,6 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useParams } from "react-router-dom";
 import { domain } from "@/lib/constant";
 
-// Types based on the Prisma schema
 interface Topic {
     topic_id: number;
     unit_id: number;
@@ -42,9 +41,8 @@ const UnitTopicManagement = () => {
         unit_number: 0,
         unit_name: "",
         required_hours: 0,
-        learning_objectives: [] as string[],  // Explicitly type as string[]
+        learning_objectives: [] as string[], // Explicitly type as string[]
     });
-    
 
     const [showUnitForm, setShowUnitForm] = useState(false);
     const [error, setError] = useState("");
@@ -58,7 +56,9 @@ const UnitTopicManagement = () => {
 
     const fetchUnits = async () => {
         try {
-            const response = await fetch(`${domain}/api/v1/curriculum/unit/${subject_id}`);
+            const response = await fetch(
+                `${domain}/api/v1/curriculum/unit/${subject_id}`
+            );
             if (!response.ok) throw new Error("Failed to fetch units");
             const data = await response.json();
             setUnits(data);
@@ -71,31 +71,34 @@ const UnitTopicManagement = () => {
         e.preventDefault();
         setError("");
         setSuccess("");
-    
+
         try {
-            const response = await fetch(`${domain}/api/v1/curriculum/unit/${subject_id}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    ...currentUnit,
-                    learning_objectives: currentUnit.learning_objectives,  // Already an array
-                }),
-            });
-    
+            const response = await fetch(
+                `${domain}/api/v1/curriculum/unit/${subject_id}`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        ...currentUnit,
+                        learning_objectives: currentUnit.learning_objectives, // Already an array
+                    }),
+                }
+            );
+
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.error || "Failed to create unit");
             }
-    
+
             const newUnit = await response.json();
             setUnits([...units, { ...newUnit, topics: [] }]);
             setCurrentUnit({
                 unit_number: 0,
                 unit_name: "",
                 required_hours: 0,
-                learning_objectives: [],  // Reset to empty array
+                learning_objectives: [], // Reset to empty array
             });
             setShowUnitForm(false);
             setSuccess("Unit created successfully!");
@@ -104,15 +107,21 @@ const UnitTopicManagement = () => {
         }
     };
 
-    const handleAddTopic = async (unitId: number, topicData: Partial<Topic>) => {
+    const handleAddTopic = async (
+        unitId: number,
+        topicData: Partial<Topic>
+    ) => {
         try {
-            const response = await fetch(`${domain}/api/v1/curriculum/topic/${unitId}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(topicData),
-            });
+            const response = await fetch(
+                `${domain}/api/v1/curriculum/topic/${unitId}`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(topicData),
+                }
+            );
 
             if (!response.ok) {
                 const errorData = await response.json();
@@ -166,7 +175,10 @@ const UnitTopicManagement = () => {
                     )}
 
                     {showUnitForm && (
-                        <form onSubmit={handleUnitSubmit} className="space-y-4 mb-6">
+                        <form
+                            onSubmit={handleUnitSubmit}
+                            className="space-y-4 mb-6"
+                        >
                             <div className="grid grid-cols-2 gap-4">
                                 <Input
                                     type="number"
@@ -175,7 +187,8 @@ const UnitTopicManagement = () => {
                                     onChange={(e) =>
                                         setCurrentUnit({
                                             ...currentUnit,
-                                            unit_number: parseInt(e.target.value) || 0,
+                                            unit_number:
+                                                parseInt(e.target.value) || 0,
                                         })
                                     }
                                     required
@@ -199,24 +212,33 @@ const UnitTopicManagement = () => {
                                 onChange={(e) =>
                                     setCurrentUnit({
                                         ...currentUnit,
-                                        required_hours: parseInt(e.target.value) || 0,
+                                        required_hours:
+                                            parseInt(e.target.value) || 0,
                                     })
                                 }
                                 required
                             />
                             <Textarea
-    placeholder="Learning Objectives (one per line)"
-    value={Array.isArray(currentUnit.learning_objectives) 
-        ? currentUnit.learning_objectives.join('\n')
-        : ''}
-    onChange={(e) =>
-        setCurrentUnit({
-            ...currentUnit,
-            learning_objectives: e.target.value.split('\n').filter(Boolean),
-        })
-    }
-    required
-/>
+                                placeholder="Learning Objectives (one per line)"
+                                value={
+                                    Array.isArray(
+                                        currentUnit.learning_objectives
+                                    )
+                                        ? currentUnit.learning_objectives.join(
+                                              "\n"
+                                          )
+                                        : ""
+                                }
+                                onChange={(e) =>
+                                    setCurrentUnit({
+                                        ...currentUnit,
+                                        learning_objectives: e.target.value
+                                            .split("\n")
+                                            .filter(Boolean),
+                                    })
+                                }
+                                required
+                            />
                             <div className="flex gap-2">
                                 <Button type="submit">Create Unit</Button>
                                 <Button
@@ -239,7 +261,8 @@ const UnitTopicManagement = () => {
                                 <AccordionTrigger className="hover:no-underline">
                                     <div className="flex items-center gap-4">
                                         <span className="font-semibold">
-                                            Unit {unit.unit_number}: {unit.unit_name}
+                                            Unit {unit.unit_number}:{" "}
+                                            {unit.unit_name}
                                         </span>
                                     </div>
                                 </AccordionTrigger>

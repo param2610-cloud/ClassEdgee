@@ -111,7 +111,11 @@ model buildings {
   floors               Int
   location_coordinates Unsupported("point")?
   created_at           DateTime?             @default(now()) @db.Timestamp(6)
+  institution_id       Int?
+  institutions         institutions?         @relation(fields: [institution_id], references: [institution_id], onDelete: Cascade, onUpdate: NoAction)
   rooms                rooms[]
+
+  @@unique([institution_id, building_name], map: "unique_building_name_per_institution")
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -170,13 +174,17 @@ model courses {
   is_active          Boolean?             @default(true)
   created_at         DateTime?            @default(now()) @db.Timestamp(6)
   updated_at         DateTime?            @db.Timestamp(6)
+  institution_id     Int?
   classes            classes[]
   departments        departments?         @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction)
+  institutions       institutions?        @relation(fields: [institution_id], references: [institution_id], onDelete: Cascade, onUpdate: NoAction)
   learninganalytics  learninganalytics[]
   notes              notes[]
   resources          resources[]
   subject_details    subject_details[]
   syllabus_structure syllabus_structure[]
+
+  @@unique([institution_id, course_code], map: "unique_course_code_per_institution")
 }
 
 model departments {
@@ -188,12 +196,16 @@ model departments {
   contact_phone   String?         @db.VarChar(20)
   created_at      DateTime?       @default(now()) @db.Timestamp(6)
   updated_at      DateTime?       @db.Timestamp(6)
+  institution_id  Int?
   announcements   announcements[]
   courses         courses[]
   users           users?          @relation(fields: [hod_user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  institutions    institutions?   @relation(fields: [institution_id], references: [institution_id], onDelete: Cascade, onUpdate: NoAction)
   faculty         faculty[]
   sections        sections[]
   students        students[]
+
+  @@unique([institution_id, department_code], map: "unique_department_code_per_institution")
 }
 
 model emergencyalerts {
@@ -400,23 +412,27 @@ model rooms {
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model sections {
-  section_id        Int          @id @default(autoincrement())
-  section_name      String       @db.VarChar(50)
+  section_id        Int           @id @default(autoincrement())
+  section_name      String        @db.VarChar(50)
   batch_year        Int
   department_id     Int?
-  student_count     Int          @default(0)
+  student_count     Int           @default(0)
   max_capacity      Int
-  is_combined       Boolean?     @default(false)
+  is_combined       Boolean?      @default(false)
   parent_section_id Int?
   academic_year     Int
   semester          Int
-  created_at        DateTime?    @default(now()) @db.Timestamp(6)
+  created_at        DateTime?     @default(now()) @db.Timestamp(6)
+  institution_id    Int?
   classes           classes[]
   notes             notes[]
-  departments       departments? @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction)
-  sections          sections?    @relation("sectionsTosections", fields: [parent_section_id], references: [section_id], onDelete: NoAction, onUpdate: NoAction)
-  other_sections    sections[]   @relation("sectionsTosections")
+  departments       departments?  @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction)
+  institutions      institutions? @relation(fields: [institution_id], references: [institution_id], onDelete: Cascade, onUpdate: NoAction)
+  sections          sections?     @relation("sectionsTosections", fields: [parent_section_id], references: [section_id], onDelete: NoAction, onUpdate: NoAction)
+  other_sections    sections[]    @relation("sectionsTosections")
   students          students[]
+
+  @@unique([institution_id, section_name, batch_year], map: "unique_section_name_per_institution")
 }
 
 model studentengagement {
@@ -489,6 +505,7 @@ model users {
   mfa_secret                           String?              @db.VarChar(32)
   refreshtoken                         String?              @db.VarChar(255)
   college_uid                          String               @unique @db.VarChar(255)
+  institution_id                       Int?
   activitylogs                         activitylogs[]
   alertnotifications                   alertnotifications[]
   announcements                        announcements[]
@@ -503,6 +520,10 @@ model users {
   notes                                notes[]
   resources                            resources[]
   students                             students?
+  institutions                         institutions?        @relation(fields: [institution_id], references: [institution_id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([institution_id, college_uid], map: "unique_college_uid_per_institution")
+  @@unique([institution_id, email], map: "unique_email_per_institution")
 }
 
 model subject_details {
@@ -578,6 +599,39 @@ model units {
 
   @@unique([subject_id, unit_number])
   @@index([subject_id], map: "idx_unit_subject")
+}
+
+model academic_years {
+  year_id        Int          @id @default(autoincrement())
+  institution_id Int
+  start_date     DateTime     @db.Date
+  end_date       DateTime     @db.Date
+  is_current     Boolean?     @default(false)
+  created_at     DateTime?    @default(now()) @db.Timestamp(6)
+  institutions   institutions @relation(fields: [institution_id], references: [institution_id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([institution_id, start_date, end_date])
+}
+
+model institutions {
+  institution_id Int              @id @default(autoincrement())
+  name           String           @db.VarChar(255)
+  code           String           @unique @db.VarChar(50)
+  address        String?
+  contact_email  String           @db.VarChar(255)
+  contact_phone  String?          @db.VarChar(20)
+  license_type   String           @db.VarChar(50)
+  settings       Json?
+  theme          Json?
+  is_active      Boolean?         @default(true)
+  created_at     DateTime?        @default(now()) @db.Timestamp(6)
+  updated_at     DateTime?        @db.Timestamp(6)
+  academic_years academic_years[]
+  buildings      buildings[]
+  courses        courses[]
+  departments    departments[]
+  sections       sections[]
+  users          users[]
 }
 
 enum alert_severity {

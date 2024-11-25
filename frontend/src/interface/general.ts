@@ -42,6 +42,7 @@ export enum UserRole {
     ADMIN = "admin",
 }
 
+
 export enum UserStatus {
     ACTIVE = "active",
     INACTIVE = "inactive",
@@ -587,4 +588,34 @@ export interface Unit {
     subject_details?: SubjectDetail;
     topics: Topic[];
     unitprerequisites: UnitPrerequisite[];
+}
+export interface AcademicYear {
+    year_id: number;
+    institution_id: number;
+    start_date: Date;
+    end_date: Date;
+    is_current?: boolean;
+    created_at?: Date;
+    institution?: Institution; // Assuming Institution is defined elsewhere
+}
+
+export interface Institution {
+    institution_id: number;
+    name: string;
+    code: string;
+    address?: string;
+    contact_email: string;
+    contact_phone?: string;
+    license_type: string;
+    settings?: Record<string, unknown>;
+    theme?: Record<string, unknown>;
+    is_active?: boolean;
+    created_at?: Date;
+    updated_at?: Date;
+    academic_years?: AcademicYear[]; 
+    buildings?: Building[]; 
+    courses?: Course[]; 
+    departments?: Department[]; 
+    sections?: Section[]; 
+    users?: User[]; 
 }

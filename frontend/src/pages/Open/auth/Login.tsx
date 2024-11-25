@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { domain } from '@/lib/constant';
 import axios from 'axios';
 import { useAtom } from 'jotai';
-import { roleAtom } from '@/store/atom';
+import { institutionIdAtom, roleAtom, userAtom } from '@/store/atom';
 import { enhancedLocalStorage, useAuth } from '@/services/AuthContext';
-import { roleType } from '@/interface/general';
+import { UserRole } from '@/interface/general';
 
 const LoginPage: React.FC = () => {
   const { user,isLoading} = useAuth()
@@ -17,17 +17,18 @@ const LoginPage: React.FC = () => {
       navigate("/p/", { replace: true });
     }
   },[user,isLoading,navigate])
-  const [college_uid, setcollege_uid] = useState<string>('');
+  const [email, setemail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [role, setRole] = useState<roleType>('student');
+  const [role, setRole] = useState<UserRole>(UserRole.STUDENT);
   const [message, setMessage] = useState<string>('');
   const [, setRoleAtom] = useAtom(roleAtom);
+  const [,setInstitutionId] = useAtom(institutionIdAtom)
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!college_uid || !password) {
-      setMessage("User ID and password are required");
+    if (!email || !password) {
+      setMessage("Email and password are required");
       return;
     }
 
@@ -35,14 +36,16 @@ const LoginPage: React.FC = () => {
       const endpoint =`${domain}/api/v1/${role}/login` ;
 
       const response = await axios.post(endpoint, {
-        college_uid: college_uid,
+        email: email,
         password
       }, {
         withCredentials: true
       });
 
       if (response.status === 200) {
+        
         setRoleAtom(role);
+        setInstitutionId(response.data.user.institutionId)
         console.log(response.data);
         
         enhancedLocalStorage.setItem('accessToken', response.data.accessToken);
@@ -76,19 +79,19 @@ const LoginPage: React.FC = () => {
         <form className="login-form" onSubmit={handleLogin}>
           <select 
             value={role} 
-            onChange={(e) => setRole(e.target.value as roleType)} 
+            onChange={(e) => setRole(e.target.value as UserRole)} 
             required
           >
-            <option value="principal">Principal</option>
-            <option value="admin">Admin</option>
-            <option value="student">Student</option>
-            <option value="coordinator">Co-ordinator</option>
+            <option value={UserRole.FACULTY}>Faculty</option>
+            <option value={UserRole.ADMIN}>Admin</option>
+            <option value={UserRole.STUDENT}>Student</option>
+            <option value={UserRole.COORDINATOR}>Co-ordinator</option>
           </select>
           <input
             type="text"
-            placeholder="college_uid"
-            value={college_uid}
-            onChange={(e) => setcollege_uid(e.target.value)}
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setemail(e.target.value)}
             required
           />
           <input
