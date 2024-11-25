@@ -29,6 +29,13 @@ import DetailDepartment from './pages/Protected/department/[departmentid]/Detail
 import StudentUploadLayout from './pages/Protected/coordinator/student/create/StudentCreateLayout';
 import EditStudentForm from './pages/Protected/coordinator/student/edit/Studentedit';
 import FacultyEditProfile from './pages/Protected/coordinator/teachers/edit/Teacheredit';
+import CourseDashboard from './pages/Protected/coordinator/course/CourseDashboard';
+import SpecificCourseDashboard from './pages/Protected/coordinator/course/SpecificCourseDashboard';
+import SemesterDashboard from './pages/Protected/coordinator/course/semester/SemesterSyllabusCreate';
+import SemesterSyllabusDashboard from './pages/Protected/coordinator/course/semester/SemesterSyllabusCreate';
+import SubjectManagement from './pages/Protected/coordinator/course/semester/SemesterSyllabusCreate';
+import SpecificSubjectManagement from './pages/Protected/coordinator/course/semester/subject/SpecificSubjectManagement';
+import UnitTopicManagement from './pages/Protected/coordinator/course/semester/subject/SpecificSubjectManagement';
 
 
 const App: React.FC = () => {
@@ -128,13 +135,9 @@ const CoordinatorRoutes: React.FC = () => (
       <Route path="/department/create" element={<AddDepartmentForm />} />
       <Route path="/course" element={<CourseDashboard />} />
       <Route path="/course/:id" element={<SpecificCourseDashboard />} />
-      <Route path="/course/:id/stream/create" element={<StreamCreate />} />
-      <Route path="/course/:id/stream/edit/:id" element={<StreamEdit />} />
-      <Route path="/course/:id/stream/:id/semester/:id" element={<SemesterDashboard />} />
-      <Route path="/course/:id/stream/:id/semester/:id/syllabus" element={<SemesterSyllabus />} />
-      <Route path="/course/:id/stream/:id/semester/:id/syllabus/create" element={<SemesterSyllabusCreate />} />
-      <Route path="/course/:id/stream/:id/semester/:id/syllabus/create/edit" element={<SemesterSyllabusEdit />} />
-      
+      <Route path="/course/:course_id/semester/:semester_id/:syllabus_id" element={<SubjectManagement />} />
+      <Route path="/course/:course_id/semester/:semester_id/syllabus/:syllabus_id/subject/:subject_id" element={<UnitTopicManagement />} />
+
 
     </Routes>
   </CoordinatorLayout>

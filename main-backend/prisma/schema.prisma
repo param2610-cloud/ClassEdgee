@@ -514,8 +514,10 @@ model subject_details {
   resources_required                String[]
   created_at                        DateTime?           @default(now()) @db.Timestamp(6)
   updated_at                        DateTime?           @default(now()) @db.Timestamp(6)
+  subject_name                      String?             @db.VarChar(255)
+  subject_code                      String?             @db.VarChar(50)
+  syllabus_structure                syllabus_structure? @relation(fields: [syllabus_id], references: [syllabus_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_syllabus_id")
   courses                           courses?            @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction)
-  syllabus_structure                syllabus_structure? @relation(fields: [syllabus_id], references: [syllabus_id], onDelete: NoAction, onUpdate: NoAction)
   units                             units[]
 
   @@index([syllabus_id], map: "idx_subject_syllabus")
