@@ -1,4 +1,67 @@
-export type roleType = "faculty" | "student" | "coordinator" | "admin";
+// Enums
+export enum AlertSeverity {
+    LOW = "low",
+    MEDIUM = "medium",
+    HIGH = "high",
+    CRITICAL = "critical",
+}
+
+export enum AlertType {
+    FIRE = "fire",
+    SECURITY = "security",
+    MEDICAL = "medical",
+    OTHER = "other",
+}
+
+export enum EventType {
+    ACADEMIC = "academic",
+    CULTURAL = "cultural",
+    EMERGENCY_DRILL = "emergency_drill",
+    WORKSHOP = "workshop",
+    EXAM = "exam",
+}
+
+export enum ResourceStatus {
+    AVAILABLE = "available",
+    IN_USE = "in_use",
+    MAINTENANCE = "maintenance",
+    FUNCTIONAL = "functional",
+}
+
+export enum RoomType {
+    CLASSROOM = "classroom",
+    LAB = "lab",
+    SEMINAR_HALL = "seminar_hall",
+    AUDITORIUM = "auditorium",
+}
+
+export enum UserRole {
+    STUDENT = "student",
+    FACULTY = "faculty",
+    COORDINATOR = "coordinator",
+    ADMIN = "admin",
+}
+
+export enum UserStatus {
+    ACTIVE = "active",
+    INACTIVE = "inactive",
+    SUSPENDED = "suspended",
+}
+
+export enum VerificationMethod {
+    FACIAL = "facial",
+    MANUAL = "manual",
+    MOBILE = "mobile",
+    BIOMETRIC = "biometric",
+}
+
+export enum SubjectType {
+    THEORY = "theory",
+    LAB = "lab",
+    PROJECT = "project",
+}
+
+// Interfaces
 export interface ActivityLog {
     log_id: number;
     user_id?: number;
@@ -68,7 +131,7 @@ export interface Attendance {
     student_id?: number;
     date: Date;
     status: string;
-    verification_method: "facial" | "manual" | "mobile" | "biometric";
+    verification_method: VerificationMethod;
     location_coordinates?: any; // point type
     device_info?: any;
     verification_data?: Buffer;
@@ -86,9 +149,9 @@ export interface BacklogSession {
     priority?: number;
     status?: string;
     created_at?: Date;
-    original_class?: Class;
-    rescheduled_class?: Class;
+    classes_original?: Class;
     users?: User;
+    classes_rescheduled?: Class;
 }
 
 export interface Building {
@@ -97,7 +160,7 @@ export interface Building {
     floors: number;
     location_coordinates?: any; // point type
     created_at?: Date;
-    rooms?: Room[];
+    rooms: Room[];
 }
 
 export interface ChatInteraction {
@@ -127,14 +190,15 @@ export interface Class {
     is_active?: boolean;
     created_at?: Date;
     updated_at?: Date;
-    attendance?: Attendance[];
-    backlog_sessions?: BacklogSession[];
+    attendance: Attendance[];
+    backlogsessions_original: BacklogSession[];
+    backlogsessions_rescheduled: BacklogSession[];
     courses?: Course;
     faculty?: Faculty;
     rooms?: Room;
     sections?: Section;
     timeslots?: TimeSlot;
-    student_engagement?: StudentEngagement[];
+    studentengagement: StudentEngagement[];
 }
 
 export interface Course {
@@ -150,11 +214,13 @@ export interface Course {
     is_active?: boolean;
     created_at?: Date;
     updated_at?: Date;
-    classes?: Class[];
+    classes: Class[];
     departments?: Department;
-    learning_analytics?: LearningAnalytics[];
-    notes?: Note[];
-    resources?: Resource[];
+    learninganalytics: LearningAnalytics[];
+    notes: Note[];
+    resources: Resource[];
+    subject_details: SubjectDetail[];
+    syllabus_structure: SyllabusStructure[];
 }
 
 export interface Department {
@@ -166,18 +232,18 @@ export interface Department {
     contact_phone?: string;
     created_at?: Date;
     updated_at?: Date;
-    announcements?: Announcement[];
-    courses?: Course[];
+    announcements: Announcement[];
+    courses: Course[];
     users?: User;
-    faculty?: Faculty[];
-    sections?: Section[];
-    students?: Student[];
+    faculty: Faculty[];
+    sections: Section[];
+    students: Student[];
 }
 
 export interface EmergencyAlert {
     alert_id: number;
-    type: "fire" | "security" | "medical" | "other";
-    severity: "low" | "medium" | "high" | "critical";
+    type: AlertType;
+    severity: AlertSeverity;
     location_id?: number;
     description: string;
     reported_by?: number;
@@ -185,7 +251,7 @@ export interface EmergencyAlert {
     resolved_at?: Date;
     resolution_notes?: string;
     status?: string;
-    alert_notifications?: AlertNotification[];
+    alertnotifications: AlertNotification[];
     rooms?: Room;
     users?: User;
 }
@@ -198,7 +264,7 @@ export interface Equipment {
     serial_number?: string;
     purchase_date?: Date;
     warranty_end_date?: Date;
-    status?: "available" | "in_use" | "maintenance" | "functional";
+    status?: ResourceStatus;
     last_maintenance_date?: Date;
     next_maintenance_date?: Date;
     maintenance_schedule?: any;
@@ -223,12 +289,7 @@ export interface Event {
     event_id: number;
     title: string;
     description?: string;
-    event_type:
-        | "academic"
-        | "cultural"
-        | "emergency_drill"
-        | "workshop"
-        | "exam";
+    event_type: EventType;
     start_datetime: Date;
     end_datetime: Date;
     location_id?: number;
@@ -239,7 +300,7 @@ export interface Event {
     status?: string;
     created_at?: Date;
     updated_at?: Date;
-    event_participants?: EventParticipant[];
+    eventparticipants: EventParticipant[];
     rooms?: Room;
     users?: User;
 }
@@ -258,11 +319,11 @@ export interface Faculty {
     publications: string[];
     created_at?: Date;
     updated_at?: Date;
-    administrative_duties?: AdministrativeDuty[];
-    classes?: Class[];
+    administrativeduties: AdministrativeDuty[];
+    classes: Class[];
     departments?: Department;
     users?: User;
-    faculty_availability?: FacultyAvailability[];
+    facultyavailability: FacultyAvailability[];
 }
 
 export interface FacultyAvailability {
@@ -287,8 +348,8 @@ export interface Feedback {
     comments?: string;
     anonymous?: boolean;
     created_at?: Date;
-    receiver?: User;
-    sender?: User;
+    users_receiver?: User;
+    users_sender?: User;
 }
 
 export interface LearningAnalytics {
@@ -342,7 +403,7 @@ export interface RoomFeature {
     room_id?: number;
     feature_name: string;
     quantity?: number;
-    status?: "available" | "in_use" | "maintenance" | "functional";
+    status?: ResourceStatus;
     last_checked?: Date;
     created_at?: Date;
     rooms?: Room;
@@ -352,22 +413,22 @@ export interface Room {
     room_id: number;
     building_id?: number;
     room_number: string;
-    room_type: "classroom" | "lab" | "seminar_hall" | "auditorium";
+    room_type: RoomType;
     capacity: number;
     floor_number: number;
     wing?: string;
     area_sqft?: number;
     features?: any;
-    status?: "available" | "in_use" | "maintenance" | "functional";
+    status?: ResourceStatus;
     last_maintenance_date?: Date;
     next_maintenance_date?: Date;
     created_at?: Date;
     updated_at?: Date;
-    classes?: Class[];
-    emergency_alerts?: EmergencyAlert[];
-    equipment?: Equipment[];
-    events?: Event[];
-    room_features?: RoomFeature[];
+    classes: Class[];
+    emergencyalerts: EmergencyAlert[];
+    equipment: Equipment[];
+    events: Event[];
+    roomfeatures: RoomFeature[];
     buildings?: Building;
 }
 
@@ -383,11 +444,12 @@ export interface Section {
     academic_year: number;
     semester: number;
     created_at?: Date;
-    classes?: Class[];
-    notes?: Note[];
+    classes: Class[];
+    notes: Note[];
     departments?: Department;
     parent_section?: Section;
-    child_sections?: Section[];
+    child_sections: Section[];
+    students: Student[];
 }
 
 export interface StudentEngagement {
@@ -417,14 +479,14 @@ export interface Student {
     biometric_data?: Buffer;
     created_at?: Date;
     updated_at?: Date;
-    attendance?: Attendance[];
-    chat_interactions?: ChatInteraction[];
-    learning_analytics?: LearningAnalytics[];
-    student_engagement?: StudentEngagement[];
+    section_id?: number;
+    attendance: Attendance[];
+    chatinteractions: ChatInteraction[];
+    learninganalytics: LearningAnalytics[];
+    studentengagement: StudentEngagement[];
+    sections?: Section;
     departments?: Department;
     users?: User;
-    section_id:number
-    sections?:Section
 }
 
 export interface TimeSlot {
@@ -434,7 +496,7 @@ export interface TimeSlot {
     day_of_week?: number;
     slot_type?: string;
     created_at?: Date;
-    classes?: Class[];
+    classes: Class[];
 }
 
 export interface User {
@@ -442,30 +504,87 @@ export interface User {
     uuid?: string;
     email: string;
     password_hash: string;
-    role: roleType;
+    role: UserRole;
     first_name: string;
     last_name: string;
     profile_picture?: string;
     phone_number?: string;
     created_at?: Date;
     last_login?: Date;
-    status?: "active" | "inactive" | "suspended";
+    status?: UserStatus;
     mfa_enabled?: boolean;
     mfa_secret?: string;
     refreshtoken?: string;
     college_uid: string;
-    activity_logs?: ActivityLog[];
-    alert_notifications?: AlertNotification[];
-    announcements?: Announcement[];
-    backlog_sessions?: BacklogSession[];
-    departments?: Department[];
-    emergency_alerts?: EmergencyAlert[];
-    event_participants?: EventParticipant[];
-    events?: Event[];
+    activitylogs: ActivityLog[];
+    alertnotifications: AlertNotification[];
+    announcements: Announcement[];
+    backlogsessions: BacklogSession[];
+    departments: Department[];
+    emergencyalerts: EmergencyAlert[];
+    eventparticipants: EventParticipant[];
+    events: Event[];
     faculty?: Faculty;
-    feedback_received?: Feedback[];
-    feedback_sent?: Feedback[];
-    notes?: Note[];
-    resources?: Resource[];
-    student?: Student;
+    feedback_received: Feedback[];
+    feedback_sent: Feedback[];
+    notes: Note[];
+    resources: Resource[];
+    students?: Student;
+}
+
+export interface SubjectDetail {
+    subject_id: number;
+    syllabus_id?: number;
+    course_id?: number;
+    subject_type: SubjectType;
+    preferred_faculty_specializations: string[];
+    resources_required: string[];
+    created_at?: Date;
+    updated_at?: Date;
+    courses?: Course;
+    syllabus_structure?: SyllabusStructure;
+    units: Unit[];
+}
+
+export interface SyllabusStructure {
+    syllabus_id: number;
+    course_id?: number;
+    semester: number;
+    created_at?: Date;
+    updated_at?: Date;
+    subject_details: SubjectDetail[];
+    courses?: Course;
+}
+
+export interface Topic {
+    topic_id: number;
+    unit_id?: number;
+    topic_name: string;
+    topic_description?: string;
+    created_at?: Date;
+    updated_at?: Date;
+    units?: Unit;
+}
+
+export interface UnitPrerequisite {
+    unit_id: number;
+    prerequisite_unit_id: number;
+    prerequisite_type?: string;
+    created_at?: Date;
+    prerequisite_unit: Unit;
+    dependent_unit: Unit;
+}
+
+export interface Unit {
+    unit_id: number;
+    subject_id?: number;
+    unit_number: number;
+    unit_name: string;
+    required_hours: number;
+    learning_objectives: string[];
+    created_at?: Date;
+    updated_at?: Date;
+    subject_details?: SubjectDetail;
+    topics: Topic[];
+    unitprerequisites: UnitPrerequisite[];
 }
