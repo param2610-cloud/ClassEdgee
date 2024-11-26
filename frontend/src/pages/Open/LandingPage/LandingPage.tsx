@@ -35,6 +35,15 @@ const LandingPage: React.FC = () => {
   const handleLoginClick = () => {
     navigate('/auth/signin');
   };
+   
+
+  const handleRegisterationClick = () => {
+    navigate('/auth/signup');
+  };
+
+
+
+
 
   return (
     <div>
@@ -70,6 +79,17 @@ const LandingPage: React.FC = () => {
         >
           Login
         </button>
+        
+        <button
+          onClick={handleRegisterationClick}
+          className="text-white bg-yellow-500 hover:bg-yellow-400 px-4 py-2 rounded"
+        >
+         Registration
+       </button>
+        
+
+
+
       </nav>
 
       <section id="home" className="bg-gray-200 p-20 pt-32 min-h-screen">

@@ -9,6 +9,7 @@ import {
 import { AuthProvider, useAuth } from "./services/AuthContext";
 import LandingPage from "./pages/Open/LandingPage/LandingPage";
 import LoginPage from "./pages/Open/auth/Login";
+import Registration from "./pages/Open/auth/Registration";
 
 // Import layouts
 import SupremeLayout from "./pages/Protected/supreme/SupremeLayout";
@@ -42,6 +43,7 @@ import SemesterSyllabusDashboard from "./pages/Protected/coordinator/course/seme
 import SubjectManagement from "./pages/Protected/coordinator/course/semester/SemesterSyllabusCreate";
 import SpecificSubjectManagement from "./pages/Protected/coordinator/course/semester/subject/SpecificSubjectManagement";
 import UnitTopicManagement from "./pages/Protected/coordinator/course/semester/subject/SpecificSubjectManagement";
+import TimeslotManagement from "./pages/Protected/coordinator/classes/TimeSlotTable";
 
 const App: React.FC = () => {
     return (
@@ -50,6 +52,7 @@ const App: React.FC = () => {
             <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/auth/signin" element={<LoginPage />} />
+                <Route path="/auth/signup" element={<Registration />} />
                 <Route path="/p/*" element={<ProtectedRoute />} />
             </Routes>
             <Toaster />
@@ -153,6 +156,7 @@ const CoordinatorRoutes: React.FC = () => (
                 path="/course/:course_id/semester/:semester_id/syllabus/:syllabus_id/subject/:subject_id"
                 element={<UnitTopicManagement />}
             />
+            <Route path="/classes" element={<TimeslotManagement/>} />
         </Routes>
     </CoordinatorLayout>
 );

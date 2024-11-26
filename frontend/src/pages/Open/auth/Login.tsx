@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { domain } from '@/lib/constant';
 import axios from 'axios';
 import { useAtom } from 'jotai';
-import { institutionIdAtom, roleAtom, userAtom } from '@/store/atom';
+import { institutionIdAtom, roleAtom } from '@/store/atom';
 import { enhancedLocalStorage, useAuth } from '@/services/AuthContext';
 import { UserRole } from '@/interface/general';
 
