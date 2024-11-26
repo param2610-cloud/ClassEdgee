@@ -267,6 +267,7 @@ const loginfaculty = async (req, res) => {
         const faculty = await prisma.users.findUnique({
             where: {
                 email: email,
+                role: "faculty",
             },
             include: {
                 faculty: true,
@@ -277,7 +278,7 @@ const loginfaculty = async (req, res) => {
         }
 
         // Compare password using bcrypt
-        const isMatch = await bcrypt.compare(password, faculty.password);
+        const isMatch = await bcrypt.compare(password, faculty.password_hash);
         if (!isMatch) {
             return res.status(401).send({ message: "Invalid credentials" });
         }
@@ -295,7 +296,7 @@ const loginfaculty = async (req, res) => {
                 email: faculty.email,
             },
             data: {
-                refresh_token: refreshToken,
+                refreshtoken: refreshToken,
                 last_login : new Date()
             },
         });
@@ -321,7 +322,12 @@ const loginfaculty = async (req, res) => {
         return res.status(200).send({
             message: "User logged in successfully",
             faculty,
+            user:{
+                institutionId: faculty.institution_id,
+
+            },
             accessToken,
+            refreshToken
         });
     } catch (error) {
         console.error("Login error:", error);
