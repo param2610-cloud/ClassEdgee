@@ -6329,3 +6329,1113 @@
   Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T09:52:14.963Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE0NzM0LCJleHAiOjE3MzMyMTk1MzR9.v95Twb_VC24hDA3JTCXjsD8QQhAtmUa6y_KbnwQ1RNI","college_uid":"dsec/coordinator/01","institution_id":4}}
   -------------------------
   
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:51:46.028Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE0NzM0LCJleHAiOjE3MzI3ODc1MzR9.UnaxbhenX_4z5QMS0nASgDNz40tB8X6v66M7dtJiwFU","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE0NzM0LCJleHAiOjE3MzMyMTk1MzR9.v95Twb_VC24hDA3JTCXjsD8QQhAtmUa6y_KbnwQ1RNI; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE0NzM0LCJleHAiOjE3MzI3ODc1MzR9.UnaxbhenX_4z5QMS0nASgDNz40tB8X6v66M7dtJiwFU; institution_id=4"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:51:48.009Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T09:52:14.963Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE0NzM0LCJleHAiOjE3MzMyMTk1MzR9.v95Twb_VC24hDA3JTCXjsD8QQhAtmUa6y_KbnwQ1RNI","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:51:48.017Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE0NzM0LCJleHAiOjE3MzI3ODc1MzR9.UnaxbhenX_4z5QMS0nASgDNz40tB8X6v66M7dtJiwFU","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE0NzM0LCJleHAiOjE3MzMyMTk1MzR9.v95Twb_VC24hDA3JTCXjsD8QQhAtmUa6y_KbnwQ1RNI; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE0NzM0LCJleHAiOjE3MzI3ODc1MzR9.UnaxbhenX_4z5QMS0nASgDNz40tB8X6v66M7dtJiwFU; institution_id=4","if-none-match":"W/\"2b5-6mXYd1Zikm7PG1GoBeqHZMBlwZ4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:51:48.105Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T09:52:14.963Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE0NzM0LCJleHAiOjE3MzMyMTk1MzR9.v95Twb_VC24hDA3JTCXjsD8QQhAtmUa6y_KbnwQ1RNI","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:51:58.367Z
+  Method: POST
+  URL: /api/v1/coordinator/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"email":"coordinator@dsec.com","password":"classedgee"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"56","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","content-type":"application/json","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:51:59.563Z
+  Response Data: {"message":"User logged in successfully","refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzMyMjMxMTl9.XddZ4TmQ85Kwl7Od5a1C6D-64wXyr7ithPS3DDwY1g8","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzI3OTExMTl9.aBuwLiL9lRUGiZFRM2i951c_Mn3Jc2gG4f2gDgNl7IE","user":{"institutionId":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:51:59.580Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzI3OTExMTl9.aBuwLiL9lRUGiZFRM2i951c_Mn3Jc2gG4f2gDgNl7IE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzMyMjMxMTl9.XddZ4TmQ85Kwl7Od5a1C6D-64wXyr7ithPS3DDwY1g8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzI3OTExMTl9.aBuwLiL9lRUGiZFRM2i951c_Mn3Jc2gG4f2gDgNl7IE; institution_id=4","if-none-match":"W/\"2b5-6mXYd1Zikm7PG1GoBeqHZMBlwZ4\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:51:59.676Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T10:51:59.329Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzMyMjMxMTl9.XddZ4TmQ85Kwl7Od5a1C6D-64wXyr7ithPS3DDwY1g8","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:51:59.695Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzI3OTExMTl9.aBuwLiL9lRUGiZFRM2i951c_Mn3Jc2gG4f2gDgNl7IE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzMyMjMxMTl9.XddZ4TmQ85Kwl7Od5a1C6D-64wXyr7ithPS3DDwY1g8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzI3OTExMTl9.aBuwLiL9lRUGiZFRM2i951c_Mn3Jc2gG4f2gDgNl7IE; institution_id=4","if-none-match":"W/\"2b5-JZJB86CGxdLYhhcF6tAR73HCfsA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:51:59.795Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T10:51:59.329Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzMyMjMxMTl9.XddZ4TmQ85Kwl7Od5a1C6D-64wXyr7ithPS3DDwY1g8","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:14.279Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:15.181Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:14.279Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:15.182Z
+  Response Data: {"department":[{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":null},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":null},{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:15.187Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:15.286Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:15.187Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:15.287Z
+  Response Data: {"department":[{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":null},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":null},{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:14.274Z
+  Method: GET
+  URL: /api/v1/curriculum/course
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:15.349Z
+  Response Data: [{"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"}}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:15.353Z
+  Method: GET
+  URL: /api/v1/curriculum/course
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"187-xqwW2tMcgoNV2pXCgdMQDd15PFA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:15.531Z
+  Response Data: [{"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"}}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:17.630Z
+  Method: GET
+  URL: /api/v1/curriculum/course/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:18.285Z
+  Response Data: {"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"},"syllabus_structure":[{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101"}]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:18.290Z
+  Method: GET
+  URL: /api/v1/curriculum/course/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"349-An6z7drvs7BoYNWfj2YW0v6TFa8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:18.640Z
+  Response Data: {"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"},"syllabus_structure":[{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101"}]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:17.633Z
+  Method: GET
+  URL: /api/v1/curriculum/syllabus/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:19.174Z
+  Response Data: [{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101","units":[{"unit_id":1,"subject_id":2,"unit_number":1,"unit_name":"Introduction To Mathematics","required_hours":2,"learning_objectives":["Strong Foundation on fundamental"],"created_at":"2024-11-25T09:34:19.807Z","updated_at":"2024-11-25T09:34:19.807Z","topics":[{"topic_id":1,"unit_id":1,"topic_name":"Integration","topic_description":"single, double , triple integration","created_at":"2024-11-25T09:34:57.818Z","updated_at":"2024-11-25T09:34:57.818Z"},{"topic_id":2,"unit_id":1,"topic_name":"Differentiation","topic_description":"first,second,third order derivative.","created_at":"2024-11-25T09:35:30.066Z","updated_at":"2024-11-25T09:35:30.066Z"}],"unit_prerequisites_unit_prerequisites_unit_idTounits":[]}]}]}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:19.181Z
+  Method: GET
+  URL: /api/v1/curriculum/syllabus/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"477-q2Pjv+u7xDvwNBqN7Dx2cFCUq8w\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:19.604Z
+  Response Data: [{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101","units":[{"unit_id":1,"subject_id":2,"unit_number":1,"unit_name":"Introduction To Mathematics","required_hours":2,"learning_objectives":["Strong Foundation on fundamental"],"created_at":"2024-11-25T09:34:19.807Z","updated_at":"2024-11-25T09:34:19.807Z","topics":[{"topic_id":1,"unit_id":1,"topic_name":"Integration","topic_description":"single, double , triple integration","created_at":"2024-11-25T09:34:57.818Z","updated_at":"2024-11-25T09:34:57.818Z"},{"topic_id":2,"unit_id":1,"topic_name":"Differentiation","topic_description":"first,second,third order derivative.","created_at":"2024-11-25T09:35:30.066Z","updated_at":"2024-11-25T09:35:30.066Z"}],"unit_prerequisites_unit_prerequisites_unit_idTounits":[]}]}]}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:20.149Z
+  Method: GET
+  URL: /api/v1/curriculum/syllabus/1/subjects
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:20.500Z
+  Response Data: [{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101","units":[{"unit_id":1,"subject_id":2,"unit_number":1,"unit_name":"Introduction To Mathematics","required_hours":2,"learning_objectives":["Strong Foundation on fundamental"],"created_at":"2024-11-25T09:34:19.807Z","updated_at":"2024-11-25T09:34:19.807Z","topics":[{"topic_id":1,"unit_id":1,"topic_name":"Integration","topic_description":"single, double , triple integration","created_at":"2024-11-25T09:34:57.818Z","updated_at":"2024-11-25T09:34:57.818Z"},{"topic_id":2,"unit_id":1,"topic_name":"Differentiation","topic_description":"first,second,third order derivative.","created_at":"2024-11-25T09:35:30.066Z","updated_at":"2024-11-25T09:35:30.066Z"}]}]}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:20.504Z
+  Method: GET
+  URL: /api/v1/curriculum/syllabus/1/subjects
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"3ac-wUjJn/ybqBhVVA9DOLxfbPvOseo\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:20.762Z
+  Response Data: [{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101","units":[{"unit_id":1,"subject_id":2,"unit_number":1,"unit_name":"Introduction To Mathematics","required_hours":2,"learning_objectives":["Strong Foundation on fundamental"],"created_at":"2024-11-25T09:34:19.807Z","updated_at":"2024-11-25T09:34:19.807Z","topics":[{"topic_id":1,"unit_id":1,"topic_name":"Integration","topic_description":"single, double , triple integration","created_at":"2024-11-25T09:34:57.818Z","updated_at":"2024-11-25T09:34:57.818Z"},{"topic_id":2,"unit_id":1,"topic_name":"Differentiation","topic_description":"first,second,third order derivative.","created_at":"2024-11-25T09:35:30.066Z","updated_at":"2024-11-25T09:35:30.066Z"}]}]}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:22.007Z
+  Method: GET
+  URL: /api/v1/curriculum/unit/2
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:23.220Z
+  Response Data: [{"unit_id":1,"subject_id":2,"unit_number":1,"unit_name":"Introduction To Mathematics","required_hours":2,"learning_objectives":["Strong Foundation on fundamental"],"created_at":"2024-11-25T09:34:19.807Z","updated_at":"2024-11-25T09:34:19.807Z","topics":[{"topic_id":1,"unit_id":1,"topic_name":"Integration","topic_description":"single, double , triple integration","created_at":"2024-11-25T09:34:57.818Z","updated_at":"2024-11-25T09:34:57.818Z"},{"topic_id":2,"unit_id":1,"topic_name":"Differentiation","topic_description":"first,second,third order derivative.","created_at":"2024-11-25T09:35:30.066Z","updated_at":"2024-11-25T09:35:30.066Z"}],"unit_prerequisites_unit_prerequisites_prerequisite_unit_idTounits":[]}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:23.225Z
+  Method: GET
+  URL: /api/v1/curriculum/unit/2
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"2cd-WV5kKq8vEjbOZM+5kw3x3m8ZL68\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:23.502Z
+  Response Data: [{"unit_id":1,"subject_id":2,"unit_number":1,"unit_name":"Introduction To Mathematics","required_hours":2,"learning_objectives":["Strong Foundation on fundamental"],"created_at":"2024-11-25T09:34:19.807Z","updated_at":"2024-11-25T09:34:19.807Z","topics":[{"topic_id":1,"unit_id":1,"topic_name":"Integration","topic_description":"single, double , triple integration","created_at":"2024-11-25T09:34:57.818Z","updated_at":"2024-11-25T09:34:57.818Z"},{"topic_id":2,"unit_id":1,"topic_name":"Differentiation","topic_description":"first,second,third order derivative.","created_at":"2024-11-25T09:35:30.066Z","updated_at":"2024-11-25T09:35:30.066Z"}],"unit_prerequisites_unit_prerequisites_prerequisite_unit_idTounits":[]}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:26.454Z
+  Method: GET
+  URL: /api/v1/curriculum/syllabus/1/subjects
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"3ac-wUjJn/ybqBhVVA9DOLxfbPvOseo\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:26.708Z
+  Response Data: [{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101","units":[{"unit_id":1,"subject_id":2,"unit_number":1,"unit_name":"Introduction To Mathematics","required_hours":2,"learning_objectives":["Strong Foundation on fundamental"],"created_at":"2024-11-25T09:34:19.807Z","updated_at":"2024-11-25T09:34:19.807Z","topics":[{"topic_id":1,"unit_id":1,"topic_name":"Integration","topic_description":"single, double , triple integration","created_at":"2024-11-25T09:34:57.818Z","updated_at":"2024-11-25T09:34:57.818Z"},{"topic_id":2,"unit_id":1,"topic_name":"Differentiation","topic_description":"first,second,third order derivative.","created_at":"2024-11-25T09:35:30.066Z","updated_at":"2024-11-25T09:35:30.066Z"}]}]}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:26.722Z
+  Method: GET
+  URL: /api/v1/curriculum/syllabus/1/subjects
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"3ac-wUjJn/ybqBhVVA9DOLxfbPvOseo\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:26.978Z
+  Response Data: [{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101","units":[{"unit_id":1,"subject_id":2,"unit_number":1,"unit_name":"Introduction To Mathematics","required_hours":2,"learning_objectives":["Strong Foundation on fundamental"],"created_at":"2024-11-25T09:34:19.807Z","updated_at":"2024-11-25T09:34:19.807Z","topics":[{"topic_id":1,"unit_id":1,"topic_name":"Integration","topic_description":"single, double , triple integration","created_at":"2024-11-25T09:34:57.818Z","updated_at":"2024-11-25T09:34:57.818Z"},{"topic_id":2,"unit_id":1,"topic_name":"Differentiation","topic_description":"first,second,third order derivative.","created_at":"2024-11-25T09:35:30.066Z","updated_at":"2024-11-25T09:35:30.066Z"}]}]}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:26.937Z
+  Method: GET
+  URL: /api/v1/curriculum/course/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"349-An6z7drvs7BoYNWfj2YW0v6TFa8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:27.276Z
+  Response Data: {"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"},"syllabus_structure":[{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101"}]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:27.282Z
+  Method: GET
+  URL: /api/v1/curriculum/course/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"349-An6z7drvs7BoYNWfj2YW0v6TFa8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:27.623Z
+  Response Data: {"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"},"syllabus_structure":[{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101"}]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:28.239Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:28.332Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:28.239Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:28.333Z
+  Response Data: {"department":[{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":null},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":null},{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:28.234Z
+  Method: GET
+  URL: /api/v1/curriculum/course
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"187-xqwW2tMcgoNV2pXCgdMQDd15PFA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:28.408Z
+  Response Data: [{"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"}}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:28.344Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:28.434Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:28.344Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:28.434Z
+  Response Data: {"department":[{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":null},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":null},{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:26.939Z
+  Method: GET
+  URL: /api/v1/curriculum/syllabus/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"477-q2Pjv+u7xDvwNBqN7Dx2cFCUq8w\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:28.478Z
+  Response Data: [{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101","units":[{"unit_id":1,"subject_id":2,"unit_number":1,"unit_name":"Introduction To Mathematics","required_hours":2,"learning_objectives":["Strong Foundation on fundamental"],"created_at":"2024-11-25T09:34:19.807Z","updated_at":"2024-11-25T09:34:19.807Z","topics":[{"topic_id":1,"unit_id":1,"topic_name":"Integration","topic_description":"single, double , triple integration","created_at":"2024-11-25T09:34:57.818Z","updated_at":"2024-11-25T09:34:57.818Z"},{"topic_id":2,"unit_id":1,"topic_name":"Differentiation","topic_description":"first,second,third order derivative.","created_at":"2024-11-25T09:35:30.066Z","updated_at":"2024-11-25T09:35:30.066Z"}],"unit_prerequisites_unit_prerequisites_unit_idTounits":[]}]}]}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:28.411Z
+  Method: GET
+  URL: /api/v1/curriculum/course
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"187-xqwW2tMcgoNV2pXCgdMQDd15PFA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:28.581Z
+  Response Data: [{"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"}}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:54:28.486Z
+  Method: GET
+  URL: /api/v1/curriculum/syllabus/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"477-q2Pjv+u7xDvwNBqN7Dx2cFCUq8w\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:54:28.947Z
+  Response Data: [{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101","units":[{"unit_id":1,"subject_id":2,"unit_number":1,"unit_name":"Introduction To Mathematics","required_hours":2,"learning_objectives":["Strong Foundation on fundamental"],"created_at":"2024-11-25T09:34:19.807Z","updated_at":"2024-11-25T09:34:19.807Z","topics":[{"topic_id":1,"unit_id":1,"topic_name":"Integration","topic_description":"single, double , triple integration","created_at":"2024-11-25T09:34:57.818Z","updated_at":"2024-11-25T09:34:57.818Z"},{"topic_id":2,"unit_id":1,"topic_name":"Differentiation","topic_description":"first,second,third order derivative.","created_at":"2024-11-25T09:35:30.066Z","updated_at":"2024-11-25T09:35:30.066Z"}],"unit_prerequisites_unit_prerequisites_unit_idTounits":[]}]}]}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:58:23.093Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzI3OTExMTl9.aBuwLiL9lRUGiZFRM2i951c_Mn3Jc2gG4f2gDgNl7IE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzMyMjMxMTl9.XddZ4TmQ85Kwl7Od5a1C6D-64wXyr7ithPS3DDwY1g8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzI3OTExMTl9.aBuwLiL9lRUGiZFRM2i951c_Mn3Jc2gG4f2gDgNl7IE; institution_id=4","if-none-match":"W/\"2b5-JZJB86CGxdLYhhcF6tAR73HCfsA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:58:24.034Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T10:51:59.329Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzMyMjMxMTl9.XddZ4TmQ85Kwl7Od5a1C6D-64wXyr7ithPS3DDwY1g8","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:58:24.040Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzI3OTExMTl9.aBuwLiL9lRUGiZFRM2i951c_Mn3Jc2gG4f2gDgNl7IE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzMyMjMxMTl9.XddZ4TmQ85Kwl7Od5a1C6D-64wXyr7ithPS3DDwY1g8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzI3OTExMTl9.aBuwLiL9lRUGiZFRM2i951c_Mn3Jc2gG4f2gDgNl7IE; institution_id=4","if-none-match":"W/\"2b5-JZJB86CGxdLYhhcF6tAR73HCfsA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:58:24.136Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T10:51:59.329Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzMyMjMxMTl9.XddZ4TmQ85Kwl7Od5a1C6D-64wXyr7ithPS3DDwY1g8","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:58:24.071Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"null","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:58:24.265Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:58:24.071Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"null","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:58:24.266Z
+  Response Data: {"department":[{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":null},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":null},{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:58:24.068Z
+  Method: GET
+  URL: /api/v1/curriculum/course
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"187-xqwW2tMcgoNV2pXCgdMQDd15PFA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:58:24.343Z
+  Response Data: [{"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"}}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:58:24.272Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"null","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:58:24.379Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:58:24.272Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"null","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:58:24.379Z
+  Response Data: {"department":[{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":null},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":null},{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T10:58:24.517Z
+  Method: GET
+  URL: /api/v1/curriculum/course
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"187-xqwW2tMcgoNV2pXCgdMQDd15PFA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T10:58:24.687Z
+  Response Data: [{"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"}}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T14:55:47.875Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzI3OTExMTl9.aBuwLiL9lRUGiZFRM2i951c_Mn3Jc2gG4f2gDgNl7IE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzMyMjMxMTl9.XddZ4TmQ85Kwl7Od5a1C6D-64wXyr7ithPS3DDwY1g8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzI3OTExMTl9.aBuwLiL9lRUGiZFRM2i951c_Mn3Jc2gG4f2gDgNl7IE; institution_id=4","if-none-match":"W/\"2b5-JZJB86CGxdLYhhcF6tAR73HCfsA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T14:55:49.247Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T14:28:36.266Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjMxMzE2LCJleHAiOjE3MzMyMzYxMTZ9.jjGyooKGKZ8mZWzbOHR8FW1Qj1LcVXzUgzFKhXwK0tY","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T14:55:49.382Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzI3OTExMTl9.aBuwLiL9lRUGiZFRM2i951c_Mn3Jc2gG4f2gDgNl7IE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzMyMjMxMTl9.XddZ4TmQ85Kwl7Od5a1C6D-64wXyr7ithPS3DDwY1g8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzI3OTExMTl9.aBuwLiL9lRUGiZFRM2i951c_Mn3Jc2gG4f2gDgNl7IE; institution_id=4","if-none-match":"W/\"2b5-e2VYic7oIL7gr0HMV4KmE2VH7Ac\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T14:55:49.479Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T14:28:36.266Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjMxMzE2LCJleHAiOjE3MzMyMzYxMTZ9.jjGyooKGKZ8mZWzbOHR8FW1Qj1LcVXzUgzFKhXwK0tY","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:18:57.637Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"null","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:18:58.700Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:18:57.637Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"null","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:18:58.701Z
+  Response Data: {"department":[{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":null},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":null},{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:18:58.710Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"null","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:18:58.801Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:18:58.710Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"null","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:18:58.802Z
+  Response Data: {"department":[{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":null},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":null},{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:18:57.633Z
+  Method: GET
+  URL: /api/v1/curriculum/course
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"187-xqwW2tMcgoNV2pXCgdMQDd15PFA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:18:58.874Z
+  Response Data: [{"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"}}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:18:58.878Z
+  Method: GET
+  URL: /api/v1/curriculum/course
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"187-xqwW2tMcgoNV2pXCgdMQDd15PFA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:18:59.057Z
+  Response Data: [{"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"}}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:18:59.965Z
+  Method: GET
+  URL: /api/v1/curriculum/course/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"349-An6z7drvs7BoYNWfj2YW0v6TFa8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:00.612Z
+  Response Data: {"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"},"syllabus_structure":[{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101"}]},{"syllabus_id":2,"course_id":1,"semester":2,"created_at":"2024-11-26T14:29:29.465Z","updated_at":"2024-11-26T14:29:29.465Z","subject_details":[]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:19:00.618Z
+  Method: GET
+  URL: /api/v1/curriculum/course/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"3db-DBue9kjMHJiS62ZYNGUyFUCn2Ng\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:00.981Z
+  Response Data: {"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"},"syllabus_structure":[{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101"}]},{"syllabus_id":2,"course_id":1,"semester":2,"created_at":"2024-11-26T14:29:29.465Z","updated_at":"2024-11-26T14:29:29.465Z","subject_details":[]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:18:59.970Z
+  Method: GET
+  URL: /api/v1/curriculum/syllabus/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"477-q2Pjv+u7xDvwNBqN7Dx2cFCUq8w\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:01.510Z
+  Response Data: [{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101","units":[{"unit_id":1,"subject_id":2,"unit_number":1,"unit_name":"Introduction To Mathematics","required_hours":2,"learning_objectives":["Strong Foundation on fundamental"],"created_at":"2024-11-25T09:34:19.807Z","updated_at":"2024-11-25T09:34:19.807Z","topics":[{"topic_id":1,"unit_id":1,"topic_name":"Integration","topic_description":"single, double , triple integration","created_at":"2024-11-25T09:34:57.818Z","updated_at":"2024-11-25T09:34:57.818Z"},{"topic_id":2,"unit_id":1,"topic_name":"Differentiation","topic_description":"first,second,third order derivative.","created_at":"2024-11-25T09:35:30.066Z","updated_at":"2024-11-25T09:35:30.066Z"}],"unit_prerequisites_unit_prerequisites_unit_idTounits":[]}]}]},{"syllabus_id":2,"course_id":1,"semester":2,"created_at":"2024-11-26T14:29:29.465Z","updated_at":"2024-11-26T14:29:29.465Z","subject_details":[]}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:19:01.514Z
+  Method: GET
+  URL: /api/v1/curriculum/syllabus/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"509-7/P5xIO2Gio+bIU1SmhqQaTlhHY\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:01.945Z
+  Response Data: [{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101","units":[{"unit_id":1,"subject_id":2,"unit_number":1,"unit_name":"Introduction To Mathematics","required_hours":2,"learning_objectives":["Strong Foundation on fundamental"],"created_at":"2024-11-25T09:34:19.807Z","updated_at":"2024-11-25T09:34:19.807Z","topics":[{"topic_id":1,"unit_id":1,"topic_name":"Integration","topic_description":"single, double , triple integration","created_at":"2024-11-25T09:34:57.818Z","updated_at":"2024-11-25T09:34:57.818Z"},{"topic_id":2,"unit_id":1,"topic_name":"Differentiation","topic_description":"first,second,third order derivative.","created_at":"2024-11-25T09:35:30.066Z","updated_at":"2024-11-25T09:35:30.066Z"}],"unit_prerequisites_unit_prerequisites_unit_idTounits":[]}]}]},{"syllabus_id":2,"course_id":1,"semester":2,"created_at":"2024-11-26T14:29:29.465Z","updated_at":"2024-11-26T14:29:29.465Z","subject_details":[]}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:19:02.794Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"null","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:02.888Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:19:02.794Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"null","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:02.889Z
+  Response Data: {"department":[{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":null},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":null},{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:19:02.784Z
+  Method: GET
+  URL: /api/v1/curriculum/course
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"187-xqwW2tMcgoNV2pXCgdMQDd15PFA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:02.967Z
+  Response Data: [{"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"}}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:19:02.897Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"null","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:02.990Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:19:02.897Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"null","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:02.992Z
+  Response Data: {"department":[{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":null},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":null},{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:19:02.971Z
+  Method: GET
+  URL: /api/v1/curriculum/course
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"187-xqwW2tMcgoNV2pXCgdMQDd15PFA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:03.149Z
+  Response Data: [{"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"}}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:19:04.894Z
+  Method: GET
+  URL: /api/v1/curriculum/course/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"3db-DBue9kjMHJiS62ZYNGUyFUCn2Ng\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:05.259Z
+  Response Data: {"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"},"syllabus_structure":[{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101"}]},{"syllabus_id":2,"course_id":1,"semester":2,"created_at":"2024-11-26T14:29:29.465Z","updated_at":"2024-11-26T14:29:29.465Z","subject_details":[]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:19:04.897Z
+  Method: GET
+  URL: /api/v1/curriculum/syllabus/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"509-7/P5xIO2Gio+bIU1SmhqQaTlhHY\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:05.332Z
+  Response Data: [{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101","units":[{"unit_id":1,"subject_id":2,"unit_number":1,"unit_name":"Introduction To Mathematics","required_hours":2,"learning_objectives":["Strong Foundation on fundamental"],"created_at":"2024-11-25T09:34:19.807Z","updated_at":"2024-11-25T09:34:19.807Z","topics":[{"topic_id":1,"unit_id":1,"topic_name":"Integration","topic_description":"single, double , triple integration","created_at":"2024-11-25T09:34:57.818Z","updated_at":"2024-11-25T09:34:57.818Z"},{"topic_id":2,"unit_id":1,"topic_name":"Differentiation","topic_description":"first,second,third order derivative.","created_at":"2024-11-25T09:35:30.066Z","updated_at":"2024-11-25T09:35:30.066Z"}],"unit_prerequisites_unit_prerequisites_unit_idTounits":[]}]}]},{"syllabus_id":2,"course_id":1,"semester":2,"created_at":"2024-11-26T14:29:29.465Z","updated_at":"2024-11-26T14:29:29.465Z","subject_details":[]}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:19:05.265Z
+  Method: GET
+  URL: /api/v1/curriculum/course/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"3db-DBue9kjMHJiS62ZYNGUyFUCn2Ng\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:05.626Z
+  Response Data: {"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"},"syllabus_structure":[{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101"}]},{"syllabus_id":2,"course_id":1,"semester":2,"created_at":"2024-11-26T14:29:29.465Z","updated_at":"2024-11-26T14:29:29.465Z","subject_details":[]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:19:05.337Z
+  Method: GET
+  URL: /api/v1/curriculum/syllabus/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"509-7/P5xIO2Gio+bIU1SmhqQaTlhHY\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:05.774Z
+  Response Data: [{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101","units":[{"unit_id":1,"subject_id":2,"unit_number":1,"unit_name":"Introduction To Mathematics","required_hours":2,"learning_objectives":["Strong Foundation on fundamental"],"created_at":"2024-11-25T09:34:19.807Z","updated_at":"2024-11-25T09:34:19.807Z","topics":[{"topic_id":1,"unit_id":1,"topic_name":"Integration","topic_description":"single, double , triple integration","created_at":"2024-11-25T09:34:57.818Z","updated_at":"2024-11-25T09:34:57.818Z"},{"topic_id":2,"unit_id":1,"topic_name":"Differentiation","topic_description":"first,second,third order derivative.","created_at":"2024-11-25T09:35:30.066Z","updated_at":"2024-11-25T09:35:30.066Z"}],"unit_prerequisites_unit_prerequisites_unit_idTounits":[]}]}]},{"syllabus_id":2,"course_id":1,"semester":2,"created_at":"2024-11-26T14:29:29.465Z","updated_at":"2024-11-26T14:29:29.465Z","subject_details":[]}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:19:06.510Z
+  Method: GET
+  URL: /api/v1/curriculum/syllabus/2/subjects
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:06.689Z
+  Response Data: []
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:19:06.699Z
+  Method: GET
+  URL: /api/v1/curriculum/syllabus/2/subjects
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:06.784Z
+  Response Data: []
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:19:08.630Z
+  Method: GET
+  URL: /api/v1/curriculum/course/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"3db-DBue9kjMHJiS62ZYNGUyFUCn2Ng\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:08.987Z
+  Response Data: {"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"},"syllabus_structure":[{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101"}]},{"syllabus_id":2,"course_id":1,"semester":2,"created_at":"2024-11-26T14:29:29.465Z","updated_at":"2024-11-26T14:29:29.465Z","subject_details":[]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:19:08.651Z
+  Method: GET
+  URL: /api/v1/curriculum/syllabus/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"509-7/P5xIO2Gio+bIU1SmhqQaTlhHY\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:09.087Z
+  Response Data: [{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101","units":[{"unit_id":1,"subject_id":2,"unit_number":1,"unit_name":"Introduction To Mathematics","required_hours":2,"learning_objectives":["Strong Foundation on fundamental"],"created_at":"2024-11-25T09:34:19.807Z","updated_at":"2024-11-25T09:34:19.807Z","topics":[{"topic_id":1,"unit_id":1,"topic_name":"Integration","topic_description":"single, double , triple integration","created_at":"2024-11-25T09:34:57.818Z","updated_at":"2024-11-25T09:34:57.818Z"},{"topic_id":2,"unit_id":1,"topic_name":"Differentiation","topic_description":"first,second,third order derivative.","created_at":"2024-11-25T09:35:30.066Z","updated_at":"2024-11-25T09:35:30.066Z"}],"unit_prerequisites_unit_prerequisites_unit_idTounits":[]}]}]},{"syllabus_id":2,"course_id":1,"semester":2,"created_at":"2024-11-26T14:29:29.465Z","updated_at":"2024-11-26T14:29:29.465Z","subject_details":[]}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:19:08.994Z
+  Method: GET
+  URL: /api/v1/curriculum/course/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"3db-DBue9kjMHJiS62ZYNGUyFUCn2Ng\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:09.352Z
+  Response Data: {"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"},"syllabus_structure":[{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101"}]},{"syllabus_id":2,"course_id":1,"semester":2,"created_at":"2024-11-26T14:29:29.465Z","updated_at":"2024-11-26T14:29:29.465Z","subject_details":[]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:19:09.093Z
+  Method: GET
+  URL: /api/v1/curriculum/syllabus/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"509-7/P5xIO2Gio+bIU1SmhqQaTlhHY\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:09.533Z
+  Response Data: [{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101","units":[{"unit_id":1,"subject_id":2,"unit_number":1,"unit_name":"Introduction To Mathematics","required_hours":2,"learning_objectives":["Strong Foundation on fundamental"],"created_at":"2024-11-25T09:34:19.807Z","updated_at":"2024-11-25T09:34:19.807Z","topics":[{"topic_id":1,"unit_id":1,"topic_name":"Integration","topic_description":"single, double , triple integration","created_at":"2024-11-25T09:34:57.818Z","updated_at":"2024-11-25T09:34:57.818Z"},{"topic_id":2,"unit_id":1,"topic_name":"Differentiation","topic_description":"first,second,third order derivative.","created_at":"2024-11-25T09:35:30.066Z","updated_at":"2024-11-25T09:35:30.066Z"}],"unit_prerequisites_unit_prerequisites_unit_idTounits":[]}]}]},{"syllabus_id":2,"course_id":1,"semester":2,"created_at":"2024-11-26T14:29:29.465Z","updated_at":"2024-11-26T14:29:29.465Z","subject_details":[]}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:19:11.437Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"null","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:11.530Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:19:11.437Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"null","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:11.532Z
+  Response Data: {"department":[{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":null},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":null},{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:19:11.433Z
+  Method: GET
+  URL: /api/v1/curriculum/course
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"187-xqwW2tMcgoNV2pXCgdMQDd15PFA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:11.612Z
+  Response Data: [{"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"}}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:19:11.535Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"null","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:11.626Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:19:11.535Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"null","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:11.627Z
+  Response Data: {"department":[{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":null},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":null},{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:19:11.622Z
+  Method: GET
+  URL: /api/v1/curriculum/course
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","if-none-match":"W/\"187-xqwW2tMcgoNV2pXCgdMQDd15PFA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:19:11.803Z
+  Response Data: [{"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"}}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T16:05:31.827Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzI3OTExMTl9.aBuwLiL9lRUGiZFRM2i951c_Mn3Jc2gG4f2gDgNl7IE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Brave\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzMyMjMxMTl9.XddZ4TmQ85Kwl7Od5a1C6D-64wXyr7ithPS3DDwY1g8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE4MzE5LCJleHAiOjE3MzI3OTExMTl9.aBuwLiL9lRUGiZFRM2i951c_Mn3Jc2gG4f2gDgNl7IE; institution_id=4","if-none-match":"W/\"2b5-e2VYic7oIL7gr0HMV4KmE2VH7Ac\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T16:05:33.359Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T14:28:36.266Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjMxMzE2LCJleHAiOjE3MzMyMzYxMTZ9.jjGyooKGKZ8mZWzbOHR8FW1Qj1LcVXzUgzFKhXwK0tY","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  

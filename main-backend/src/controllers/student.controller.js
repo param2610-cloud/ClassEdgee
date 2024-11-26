@@ -142,12 +142,12 @@ const createStudent = async (req, res) => {
 // Student login
 const loginStudent = async (req, res) => {
     try {
-        const { college_uid, password } = req.body;
+        const { email, password } = req.body;
 
         // Find user by college_uid
         const user = await prismaClient.users.findUnique({
             where: {
-                college_uid: college_uid,
+                email: email,
                 role: "student",
             },
         });
@@ -172,7 +172,7 @@ const loginStudent = async (req, res) => {
         }
 
         const { accessToken, refreshToken } = generateTokens(
-            college_uid,
+            email,
             "2d",
             "7d"
         );
@@ -193,11 +193,19 @@ const loginStudent = async (req, res) => {
             secure: process.env.NODE_ENV === "production",
             sameSite: "strict",
         });
+        res.cookie("institution_id", user.institution_id, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict",
+        });
 
         res.status(200).send({
             success: true,
             message: "Login successful",
             token,
+            user:{
+                institution_id:user.institution_id
+            }
         });
     } catch (error) {
         console.error("Error in student login:", error);
