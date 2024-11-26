@@ -33,6 +33,7 @@ const createFaculty = async (req, res) => {
             contractEndDate,
             researchInterests,
             publications,
+            institute_id
         } = req.body;
         // Basic validation
         console.log(req.body);
@@ -43,7 +44,8 @@ const createFaculty = async (req, res) => {
             !lastName ||
             !employeeId ||
             !designation ||
-            !departmentId
+            !departmentId ||
+            !institute_id
         ) {
             return res.status(400).send({
                 success: false,
@@ -104,6 +106,7 @@ const createFaculty = async (req, res) => {
                     profile_picture: profilePictureUrl,
                     status: "active",
                     college_uid: college_id,
+                    institution_id:institute_id
                 },
             });
 
@@ -251,19 +254,19 @@ const facultyblukupload = async (req, res) => {
 // Log in a faculty
 const loginfaculty = async (req, res) => {
     try {
-        const { college_uid, password } = req.body;
+        const { email, password } = req.body;
 
         // Input validation
-        if (!college_uid || !password) {
+        if (!email || !password) {
             return res
                 .status(400)
-                .send({ message: "college_uid and password are required" });
+                .send({ message: "email and password are required" });
         }
 
         // Find faculty by email
         const faculty = await prisma.users.findUnique({
             where: {
-                college_uid: college_uid,
+                email: email,
             },
             include: {
                 faculty: true,
@@ -281,7 +284,7 @@ const loginfaculty = async (req, res) => {
 
         // Generate JWT tokens
         const { accessToken, refreshToken } = generateTokens(
-            faculty.college_uid,
+            faculty.email,
             "2d",
             "7d"
         );
@@ -289,10 +292,11 @@ const loginfaculty = async (req, res) => {
         // Update the faculty's refresh token
         await prisma.users.update({
             where: {
-                college_uid: faculty.college_uid,
+                email: faculty.email,
             },
             data: {
                 refresh_token: refreshToken,
+                last_login : new Date()
             },
         });
         // Set HTTP-only cookies
@@ -303,6 +307,11 @@ const loginfaculty = async (req, res) => {
         });
 
         res.cookie("accessToken", accessToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict",
+        });
+        res.cookie("institution_id", faculty.institution_id, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             sameSite: "strict",

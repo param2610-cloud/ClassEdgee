@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { 
   Card, 
@@ -35,11 +35,14 @@ import { Department } from '@/interface/general';
 import { domain } from '@/lib/constant';
 import axios from 'axios';
 import { useToast } from '@/hooks/use-toast';
+import { useAtom } from 'jotai';
+import { institutionIdAtom } from '@/store/atom';
 
 const DepartmentDetails = () => {
   const { id } = useParams();
   const [department, setDepartment] = useState<Department|null>(null);
   const [loading, setLoading] = useState(true);
+  const [institution_id] = useAtom(institutionIdAtom)
   const {toast} = useToast()
   const [newSection, setNewSection] = useState({
     section_name: '',
@@ -48,16 +51,16 @@ const DepartmentDetails = () => {
     semester: 1,
     student_count: 0,
     academic_year: new Date().getFullYear(),
-    department_id:id
+    department_id:id,
+    institution_id:institution_id
   });
 
   useEffect(() => {
     fetchDepartmentDetails();
   }, [id]);
-  
   const fetchDepartmentDetails = async () => {
     try {
-      const response = await axios.get(`${domain}/api/v1/department/${id}`);
+      const response = await axios.get(`${domain}/api/v1/department/${id}/${institution_id}`,);
       const data = await response.data.department;
       setDepartment(data);
       console.log(data);

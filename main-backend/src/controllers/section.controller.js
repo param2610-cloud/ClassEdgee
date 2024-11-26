@@ -40,7 +40,7 @@ const listofsection = async (req, res) => {
 }
 const add_section = async (req, res) => {
     try {
-        const { section_name,batch_year,department_id,student_count,max_capacity,academic_year,semester } = req.body;
+        const { section_name,batch_year,department_id,student_count,max_capacity,academic_year,semester,institution_id } = req.body;
         const section = await prisma.sections.create({
             data: {
                 section_name: section_name,
@@ -49,7 +49,8 @@ const add_section = async (req, res) => {
                 student_count,
                 max_capacity,
                 academic_year,
-                semester
+                semester,
+                institution_id:institution_id
             },
         });
         res.status(200).send({

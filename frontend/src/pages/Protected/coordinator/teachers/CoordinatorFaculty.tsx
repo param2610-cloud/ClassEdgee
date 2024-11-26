@@ -35,6 +35,8 @@ import {
 } from "@/components/ui/hover-card";
 import { domain } from '@/lib/constant';
 import { debounce } from 'lodash';
+import { useAtom } from 'jotai';
+import { institutionIdAtom } from '@/store/atom';
 
 interface Faculty {
   faculty_id: number;
@@ -86,6 +88,7 @@ const CoordinatorFaculty = () => {
   const [designationFilter, setDesignationFilter] = useState('');
   const [sortBy, setSortBy] = useState('joining_date');
   const [sortOrder, setSortOrder] = useState('desc');
+  const [institution_id,] = useAtom(institutionIdAtom)
 
   // Predefined designation options
   const designations = [
@@ -100,8 +103,9 @@ const CoordinatorFaculty = () => {
     try {
       const response = await fetch(`${domain}/api/v1/department/list-of-department`, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          'X-Institution-Id': `${institution_id}`
+        },
       });
       
       if (!response.ok) throw new Error('Failed to fetch departments');

@@ -34,6 +34,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { domain } from "@/lib/constant";
 import { Department } from "@/interface/general";
 import UploadOnCloudinary from "@/services/Cloudinary";
+import { useAtom } from "jotai";
+import { institutionIdAtom } from "@/store/atom";
 
 // Add your Cloudinary configuration
 // const CLOUDINARY_UPLOAD_PRESET = process.env.CLOUDINARY_UPLOAD_PRESET || "";
@@ -72,6 +74,7 @@ const CreateFacultyForm = () => {
     const [departmentList, setDepartmentList] = useState<Department[]>([]);
     const [imageLinks, setImageLinks] = useState<string[]>([]);
     const [videoLinks, setVideoLinks] = useState<string[]>([]);
+    const [institution_id] = useAtom(institutionIdAtom);
     const {
         register,
         handleSubmit,
@@ -96,7 +99,11 @@ const CreateFacultyForm = () => {
     useEffect(()=>{
         const fetchDepartments = async () => {
             try {
-                const response = await axios.get(`${domain}/api/v1/department/list-of-department`);
+                const response = await axios.get(`${domain}/api/v1/department/list-of-department`,{
+                    headers:{
+                        "X-Institution-Id": `${institution_id}`,
+                    }
+                });
                 setDepartmentList(response.data.department);
                 console.log("departments",response.data);
                 
@@ -153,7 +160,8 @@ const CreateFacultyForm = () => {
                 maxWeeklyHours: Number(data.maxWeeklyHours),
                 researchInterests: data.researchInterests ? data.researchInterests.split(',').map(item => item.trim()) : [],
                 publications: data.publications ? data.publications.split(',').map(item => item.trim()) : [],
-                profilePictureUrl: data.profilePictureUrl || undefined // Ensure profilePictureUrl is included
+                profilePictureUrl: data.profilePictureUrl || undefined, // Ensure profilePictureUrl is included
+                institute_id:institution_id
             };
 
             console.log("Submitting data:", formattedData);

@@ -30,6 +30,8 @@ import {
 import { domain } from '@/lib/constant';
 import { Student, Department } from '@/interface/general';
 import { debounce } from 'lodash';
+import { useAtom } from 'jotai';
+import { institutionIdAtom } from '@/store/atom';
 
 interface StudentResponse {
   success: boolean;
@@ -62,6 +64,7 @@ const CoordinatorStudentAdvanced = () => {
   const [batchYearFilter, setBatchYearFilter] = useState('');
   const [sortBy, setSortBy] = useState('created_at');
   const [sortOrder, setSortOrder] = useState('desc');
+  const [institution_id,] = useAtom(institutionIdAtom);
 
   // Predefined semester and batch year options
   const semesters = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -72,7 +75,8 @@ const CoordinatorStudentAdvanced = () => {
     try {
       const response = await fetch(`${domain}/api/v1/department/list-of-department`, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          'X-Institution-Id': `${institution_id}`
         }
       });
       

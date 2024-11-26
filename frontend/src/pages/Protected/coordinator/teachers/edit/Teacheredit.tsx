@@ -46,7 +46,7 @@ const FacultyEditProfile: React.FC = () => {
         const fetchFaculty = async () => {
             try {
                 const response = await axios.get(`${domain}/api/v1/faculty/get-faculty/${id}`);
-                const { data } = response.data;
+                const { data } = response.data; 
                 
                 // Transform the data to match our form structure
                 setFormData({
