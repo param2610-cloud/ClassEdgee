@@ -19,8 +19,8 @@ const CoordinatorLayout: React.FC<{ children: React.ReactNode }> = ({ children }
         <h1 className="text-2xl font-bold">Coordinator Dashboard</h1>
         <Sheet open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
           <SheetTrigger asChild>
-            <Button variant="outline" size="icon">
-              <Menu className="h-4 w-4" />
+            <Button variant="outline" className='text-black' size="icon">
+              <Menu className="h-4 w-4" color='black' />
             </Button>
           </SheetTrigger>
           <SheetContent side="left">
