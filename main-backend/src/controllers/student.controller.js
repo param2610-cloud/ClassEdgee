@@ -202,7 +202,7 @@ const loginStudent = async (req, res) => {
         res.status(200).send({
             success: true,
             message: "Login successful",
-            token,
+            user,
             user:{
                 institution_id:user.institution_id
             }
