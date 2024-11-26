@@ -29,7 +29,7 @@ function validateToken(req, res, next) {
 
 
 router.get("/validate-token", validateToken,async (req, res) => {
-    const data = await prisma.users.findUnique({ where: { college_uid: req.user.college_uid } });
+    const data = await prisma.users.findUnique({ where: { email: req.user.email } });
     res.status(200).json({ message: "Token is valid", user: data });
 });
 

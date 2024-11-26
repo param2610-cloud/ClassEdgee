@@ -22,11 +22,11 @@ app.use('/',express.static(path.join(__dirname,'public')));
 
 
 //database connection
-connectDB()
+// connectDB()
 
 
 //router import 
-import supremeRouter from "./src/Router/supreme.router.js"
+import adminRouter from "./src/Router/supreme.router.js"
 import generalRouter from './src/Router/general.router.js'
 import logger from "./src/middlewares/logger.js";
 import coordinatorRouter from './src/Router/coordinator.router.js'
@@ -34,6 +34,13 @@ import studentRouter from './src/Router/student.route.js'
 import facultyRouter from './src/Router/faculty.router.js'
 import departmentRouter from './src/Router/department.router.js'
 import sectionRouter from './src/Router/section.router.js'
+import curriculumRouter from "./src/Router/curriculum.router.js";
+//interactive classroom routes
+import feedbackRoutes from './src/Router/InteractiveClassroom/feedback.router.js'
+import courseRoutes from './src/Router/InteractiveClassroom/course.router.js'
+import activityRoutes from './src/Router/InteractiveClassroom/activity.router.js'
+import sessionRoutes from './src/Router/InteractiveClassroom/session.router.js'
+import analogisticRouters from './src/Router/InteractiveClassroom/analogistic.router.js'
 
 //print route
 app.use((req, res, next) => {
@@ -44,30 +51,25 @@ app.use(logger)
 
 
 //router declaration 
-app.use('/api/v1/supreme',supremeRouter)
+app.use('/api/v1/admin',adminRouter)
 app.use('/api/v1/general',generalRouter)
 app.use("/api/v1/coordinator",coordinatorRouter)
 app.use("/api/v1/student",studentRouter)
 app.use("/api/v1/faculty",facultyRouter)
 app.use("/api/v1/department",departmentRouter)
 app.use("/api/v1/section",sectionRouter)
+app.use("/api/v1/curriculum",curriculumRouter)
 //principal form data register 
-//principal login\
+//principal login
 
 
-//interactive classroom routes
-import feedbackRoutes from './src/Router/InteractiveClassroom/feedback.router.js'
-import courseRoutes from './src/Router/InteractiveClassroom/course.router.js'
-import activityRoutes from './src/Router/InteractiveClassroom/activity.router.js'
-import sessionRoutes from './src/Router/InteractiveClassroom/session.router.js'
-import analogisticRouters from './src/Router/InteractiveClassroom/analogistic.router.js'
 
 //interactive classroom
-app.use('/api/v2/feedback', feedbackRoutes);
-app.use('/api/v2/courses', courseRoutes);
-app.use('/api/v2/activities', activityRoutes);
-app.use('/api/v2/sessions', sessionRoutes);
-app.use('/api/v2/analogistics',analogisticRouters)
+app.use('/api/v1/feedback', feedbackRoutes);
+app.use('/api/v1/courses', courseRoutes);
+app.use('/api/v1/activities', activityRoutes);
+app.use('/api/v1/sessions', sessionRoutes);
+app.use('/api/v1/analogistics',analogisticRouters)
 
 
 import timeslotRouter from './src/Router/timeslot.router.js';
