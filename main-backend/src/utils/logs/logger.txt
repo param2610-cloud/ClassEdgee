@@ -6329,3 +6329,1612 @@
   Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T09:52:14.963Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE0NzM0LCJleHAiOjE3MzMyMTk1MzR9.v95Twb_VC24hDA3JTCXjsD8QQhAtmUa6y_KbnwQ1RNI","college_uid":"dsec/coordinator/01","institution_id":4}}
   -------------------------
   
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:01:57.934Z
+  Method: POST
+  URL: /api/v1/coordinator/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"email":"coordinator@dsec.com","password":"classedgee"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"56","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","content-type":"application/json","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:01:58.949Z
+  Response Data: {"message":"An error occurred during login"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:07:53.891Z
+  Method: POST
+  URL: /api/v1/coordinator/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"email":"coordinator@dsec.com","password":"classedgee"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"56","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","content-type":"application/json","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:07:55.667Z
+  Response Data: {"message":"User logged in successfully","refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user":{"institutionId":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:07:55.710Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2a9-A6jfY6/0MdfAexaCVT8pXRHxj0A\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:07:56.558Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T11:07:55.491Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:07:56.563Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-+Jpy7NvXSLayryE1UTGAYSqdaT8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:07:56.650Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T11:07:55.491Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:08:22.600Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:08:23.368Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:08:22.600Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:08:23.368Z
+  Response Data: {"department":[{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":null},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":null},{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:08:23.372Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:08:23.447Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:08:23.372Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:08:23.448Z
+  Response Data: {"department":[{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":null},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":null},{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:08:22.583Z
+  Method: GET
+  URL: /api/v1/curriculum/course
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:08:23.515Z
+  Response Data: [{"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"}}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:08:23.529Z
+  Method: GET
+  URL: /api/v1/curriculum/course
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"187-xqwW2tMcgoNV2pXCgdMQDd15PFA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:08:23.683Z
+  Response Data: [{"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"}}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:08:30.032Z
+  Method: GET
+  URL: /api/v1/curriculum/course/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:08:30.582Z
+  Response Data: {"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"},"syllabus_structure":[{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101"}]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:08:30.596Z
+  Method: GET
+  URL: /api/v1/curriculum/course/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"349-An6z7drvs7BoYNWfj2YW0v6TFa8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:08:30.905Z
+  Response Data: {"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"},"syllabus_structure":[{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101"}]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:08:30.036Z
+  Method: GET
+  URL: /api/v1/curriculum/syllabus/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:08:31.368Z
+  Response Data: [{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101","units":[{"unit_id":1,"subject_id":2,"unit_number":1,"unit_name":"Introduction To Mathematics","required_hours":2,"learning_objectives":["Strong Foundation on fundamental"],"created_at":"2024-11-25T09:34:19.807Z","updated_at":"2024-11-25T09:34:19.807Z","topics":[{"topic_id":1,"unit_id":1,"topic_name":"Integration","topic_description":"single, double , triple integration","created_at":"2024-11-25T09:34:57.818Z","updated_at":"2024-11-25T09:34:57.818Z"},{"topic_id":2,"unit_id":1,"topic_name":"Differentiation","topic_description":"first,second,third order derivative.","created_at":"2024-11-25T09:35:30.066Z","updated_at":"2024-11-25T09:35:30.066Z"}],"unit_prerequisites_unit_prerequisites_unit_idTounits":[]}]}]}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:08:31.382Z
+  Method: GET
+  URL: /api/v1/curriculum/syllabus/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"477-q2Pjv+u7xDvwNBqN7Dx2cFCUq8w\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:08:31.773Z
+  Response Data: [{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101","units":[{"unit_id":1,"subject_id":2,"unit_number":1,"unit_name":"Introduction To Mathematics","required_hours":2,"learning_objectives":["Strong Foundation on fundamental"],"created_at":"2024-11-25T09:34:19.807Z","updated_at":"2024-11-25T09:34:19.807Z","topics":[{"topic_id":1,"unit_id":1,"topic_name":"Integration","topic_description":"single, double , triple integration","created_at":"2024-11-25T09:34:57.818Z","updated_at":"2024-11-25T09:34:57.818Z"},{"topic_id":2,"unit_id":1,"topic_name":"Differentiation","topic_description":"first,second,third order derivative.","created_at":"2024-11-25T09:35:30.066Z","updated_at":"2024-11-25T09:35:30.066Z"}],"unit_prerequisites_unit_prerequisites_unit_idTounits":[]}]}]}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:08:45.420Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:08:45.575Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:08:45.420Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:08:45.576Z
+  Response Data: {"department":[{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":null},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":null},{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:08:45.414Z
+  Method: GET
+  URL: /api/v1/curriculum/course
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"187-xqwW2tMcgoNV2pXCgdMQDd15PFA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:08:45.651Z
+  Response Data: [{"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"}}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:08:45.580Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:08:45.655Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:08:45.580Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:08:45.656Z
+  Response Data: {"department":[{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":null},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":null},{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:08:45.663Z
+  Method: GET
+  URL: /api/v1/curriculum/course
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"187-xqwW2tMcgoNV2pXCgdMQDd15PFA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:08:45.814Z
+  Response Data: [{"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"}}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:09:16.714Z
+  Method: GET
+  URL: /api/v1/curriculum/course/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"349-An6z7drvs7BoYNWfj2YW0v6TFa8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:09:17.105Z
+  Response Data: {"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"},"syllabus_structure":[{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101"}]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:09:16.716Z
+  Method: GET
+  URL: /api/v1/curriculum/syllabus/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"477-q2Pjv+u7xDvwNBqN7Dx2cFCUq8w\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:09:17.196Z
+  Response Data: [{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101","units":[{"unit_id":1,"subject_id":2,"unit_number":1,"unit_name":"Introduction To Mathematics","required_hours":2,"learning_objectives":["Strong Foundation on fundamental"],"created_at":"2024-11-25T09:34:19.807Z","updated_at":"2024-11-25T09:34:19.807Z","topics":[{"topic_id":1,"unit_id":1,"topic_name":"Integration","topic_description":"single, double , triple integration","created_at":"2024-11-25T09:34:57.818Z","updated_at":"2024-11-25T09:34:57.818Z"},{"topic_id":2,"unit_id":1,"topic_name":"Differentiation","topic_description":"first,second,third order derivative.","created_at":"2024-11-25T09:35:30.066Z","updated_at":"2024-11-25T09:35:30.066Z"}],"unit_prerequisites_unit_prerequisites_unit_idTounits":[]}]}]}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:09:17.109Z
+  Method: GET
+  URL: /api/v1/curriculum/course/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"349-An6z7drvs7BoYNWfj2YW0v6TFa8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:09:17.418Z
+  Response Data: {"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"},"syllabus_structure":[{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101"}]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:09:17.200Z
+  Method: GET
+  URL: /api/v1/curriculum/syllabus/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"477-q2Pjv+u7xDvwNBqN7Dx2cFCUq8w\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:09:17.599Z
+  Response Data: [{"syllabus_id":1,"course_id":1,"semester":1,"created_at":"2024-11-24T20:33:03.832Z","updated_at":"2024-11-24T20:33:03.832Z","subject_details":[{"subject_id":2,"syllabus_id":1,"course_id":1,"subject_type":"theory","preferred_faculty_specializations":["Mathematics"],"resources_required":[],"created_at":"2024-11-24T21:29:17.610Z","updated_at":"2024-11-24T21:29:17.610Z","subject_name":"Mathematics-IA","subject_code":"BS-M101","units":[{"unit_id":1,"subject_id":2,"unit_number":1,"unit_name":"Introduction To Mathematics","required_hours":2,"learning_objectives":["Strong Foundation on fundamental"],"created_at":"2024-11-25T09:34:19.807Z","updated_at":"2024-11-25T09:34:19.807Z","topics":[{"topic_id":1,"unit_id":1,"topic_name":"Integration","topic_description":"single, double , triple integration","created_at":"2024-11-25T09:34:57.818Z","updated_at":"2024-11-25T09:34:57.818Z"},{"topic_id":2,"unit_id":1,"topic_name":"Differentiation","topic_description":"first,second,third order derivative.","created_at":"2024-11-25T09:35:30.066Z","updated_at":"2024-11-25T09:35:30.066Z"}],"unit_prerequisites_unit_prerequisites_unit_idTounits":[]}]}]}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:09:26.396Z
+  Method: GET
+  URL: /api/v1/curriculum/course
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"187-xqwW2tMcgoNV2pXCgdMQDd15PFA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:09:26.549Z
+  Response Data: [{"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"}}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:09:26.400Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:09:26.559Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:09:26.400Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:09:26.560Z
+  Response Data: {"department":[{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":null},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":null},{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:09:26.566Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:09:26.645Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:09:26.566Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:09:26.645Z
+  Response Data: {"department":[{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":null},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":null},{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:09:26.558Z
+  Method: GET
+  URL: /api/v1/curriculum/course
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"187-xqwW2tMcgoNV2pXCgdMQDd15PFA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:09:26.718Z
+  Response Data: [{"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"}}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:09:35.528Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-+Jpy7NvXSLayryE1UTGAYSqdaT8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:09:35.701Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T11:07:55.491Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:09:35.712Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-+Jpy7NvXSLayryE1UTGAYSqdaT8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:09:35.800Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T11:07:55.491Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:13:43.125Z
+  Method: GET
+  URL: /api/v1/timeslots
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"3a9-wnFw0yO711/m1nDbqZN3d/ASYdI\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:13:44.228Z
+  Response Data: {"success":true,"data":[{"slot_id":29,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:14:31.262Z","classes":[]},{"slot_id":31,"start_time":"11:00:00","end_time":"12:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:17:49.403Z","classes":[]},{"slot_id":32,"start_time":"12:00:00","end_time":"13:00:00","day_of_week":1,"slot_type":"special","created_at":"2024-11-25T19:18:49.335Z","classes":[]},{"slot_id":34,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":2,"slot_type":"regular","created_at":"2024-11-25T19:20:52.286Z","classes":[]},{"slot_id":33,"start_time":"04:30:00","end_time":"05:30:00","day_of_week":4,"slot_type":"regular","created_at":"2024-11-25T19:19:58.297Z","classes":[]},{"slot_id":35,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":5,"slot_type":"regular","created_at":"2024-11-25T19:21:31.225Z","classes":[]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:13:44.255Z
+  Method: GET
+  URL: /api/v1/timeslots
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"3a9-wnFw0yO711/m1nDbqZN3d/ASYdI\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:13:44.418Z
+  Response Data: {"success":true,"data":[{"slot_id":29,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:14:31.262Z","classes":[]},{"slot_id":31,"start_time":"11:00:00","end_time":"12:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:17:49.403Z","classes":[]},{"slot_id":32,"start_time":"12:00:00","end_time":"13:00:00","day_of_week":1,"slot_type":"special","created_at":"2024-11-25T19:18:49.335Z","classes":[]},{"slot_id":34,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":2,"slot_type":"regular","created_at":"2024-11-25T19:20:52.286Z","classes":[]},{"slot_id":33,"start_time":"04:30:00","end_time":"05:30:00","day_of_week":4,"slot_type":"regular","created_at":"2024-11-25T19:19:58.297Z","classes":[]},{"slot_id":35,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":5,"slot_type":"regular","created_at":"2024-11-25T19:21:31.225Z","classes":[]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:14:07.813Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-+Jpy7NvXSLayryE1UTGAYSqdaT8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:14:08.599Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T11:07:55.491Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:14:08.602Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-+Jpy7NvXSLayryE1UTGAYSqdaT8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:14:08.685Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T11:07:55.491Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:14:08.626Z
+  Method: GET
+  URL: /api/v1/timeslots
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"3a9-wnFw0yO711/m1nDbqZN3d/ASYdI\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:14:08.864Z
+  Response Data: {"success":true,"data":[{"slot_id":29,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:14:31.262Z","classes":[]},{"slot_id":31,"start_time":"11:00:00","end_time":"12:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:17:49.403Z","classes":[]},{"slot_id":32,"start_time":"12:00:00","end_time":"13:00:00","day_of_week":1,"slot_type":"special","created_at":"2024-11-25T19:18:49.335Z","classes":[]},{"slot_id":34,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":2,"slot_type":"regular","created_at":"2024-11-25T19:20:52.286Z","classes":[]},{"slot_id":33,"start_time":"04:30:00","end_time":"05:30:00","day_of_week":4,"slot_type":"regular","created_at":"2024-11-25T19:19:58.297Z","classes":[]},{"slot_id":35,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":5,"slot_type":"regular","created_at":"2024-11-25T19:21:31.225Z","classes":[]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:14:08.867Z
+  Method: GET
+  URL: /api/v1/timeslots
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"3a9-wnFw0yO711/m1nDbqZN3d/ASYdI\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:14:09.047Z
+  Response Data: {"success":true,"data":[{"slot_id":29,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:14:31.262Z","classes":[]},{"slot_id":31,"start_time":"11:00:00","end_time":"12:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:17:49.403Z","classes":[]},{"slot_id":32,"start_time":"12:00:00","end_time":"13:00:00","day_of_week":1,"slot_type":"special","created_at":"2024-11-25T19:18:49.335Z","classes":[]},{"slot_id":34,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":2,"slot_type":"regular","created_at":"2024-11-25T19:20:52.286Z","classes":[]},{"slot_id":33,"start_time":"04:30:00","end_time":"05:30:00","day_of_week":4,"slot_type":"regular","created_at":"2024-11-25T19:19:58.297Z","classes":[]},{"slot_id":35,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":5,"slot_type":"regular","created_at":"2024-11-25T19:21:31.225Z","classes":[]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:27:02.692Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"null","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:27:04.216Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:27:02.692Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"null","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:27:04.565Z
+  Response Data: {"department":[{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":null},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":null},{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:27:04.570Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"null","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:27:04.655Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:27:04.570Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"null","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:27:04.655Z
+  Response Data: {"department":[{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":null},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":null},{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:27:02.688Z
+  Method: GET
+  URL: /api/v1/curriculum/course
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"187-xqwW2tMcgoNV2pXCgdMQDd15PFA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:27:04.761Z
+  Response Data: [{"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"}}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T11:27:04.767Z
+  Method: GET
+  URL: /api/v1/curriculum/course
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"187-xqwW2tMcgoNV2pXCgdMQDd15PFA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T11:27:04.930Z
+  Response Data: [{"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"}}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:32:07.504Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-+Jpy7NvXSLayryE1UTGAYSqdaT8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:32:09.600Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T11:07:55.491Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:32:09.611Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-+Jpy7NvXSLayryE1UTGAYSqdaT8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:32:09.698Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T11:07:55.491Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:32:09.644Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"null","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:32:10.398Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:32:09.644Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"null","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:32:10.399Z
+  Response Data: {"department":[{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":null},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":null},{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:32:10.402Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"null","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:32:10.483Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:32:10.402Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"null","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:32:10.483Z
+  Response Data: {"department":[{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":null},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":null},{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:32:09.641Z
+  Method: GET
+  URL: /api/v1/curriculum/course
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"187-xqwW2tMcgoNV2pXCgdMQDd15PFA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:32:10.578Z
+  Response Data: [{"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"}}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:32:10.587Z
+  Method: GET
+  URL: /api/v1/curriculum/course
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"187-xqwW2tMcgoNV2pXCgdMQDd15PFA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:32:10.755Z
+  Response Data: [{"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"}}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:34:02.647Z
+  Method: GET
+  URL: /api/v1/timeslots
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"3a9-wnFw0yO711/m1nDbqZN3d/ASYdI\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:34:03.591Z
+  Response Data: {"success":true,"data":[{"slot_id":29,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:14:31.262Z","classes":[]},{"slot_id":31,"start_time":"11:00:00","end_time":"12:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:17:49.403Z","classes":[]},{"slot_id":32,"start_time":"12:00:00","end_time":"13:00:00","day_of_week":1,"slot_type":"special","created_at":"2024-11-25T19:18:49.335Z","classes":[]},{"slot_id":34,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":2,"slot_type":"regular","created_at":"2024-11-25T19:20:52.286Z","classes":[]},{"slot_id":33,"start_time":"04:30:00","end_time":"05:30:00","day_of_week":4,"slot_type":"regular","created_at":"2024-11-25T19:19:58.297Z","classes":[]},{"slot_id":35,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":5,"slot_type":"regular","created_at":"2024-11-25T19:21:31.225Z","classes":[]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:34:03.597Z
+  Method: GET
+  URL: /api/v1/timeslots
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"3a9-wnFw0yO711/m1nDbqZN3d/ASYdI\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:34:03.758Z
+  Response Data: {"success":true,"data":[{"slot_id":29,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:14:31.262Z","classes":[]},{"slot_id":31,"start_time":"11:00:00","end_time":"12:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:17:49.403Z","classes":[]},{"slot_id":32,"start_time":"12:00:00","end_time":"13:00:00","day_of_week":1,"slot_type":"special","created_at":"2024-11-25T19:18:49.335Z","classes":[]},{"slot_id":34,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":2,"slot_type":"regular","created_at":"2024-11-25T19:20:52.286Z","classes":[]},{"slot_id":33,"start_time":"04:30:00","end_time":"05:30:00","day_of_week":4,"slot_type":"regular","created_at":"2024-11-25T19:19:58.297Z","classes":[]},{"slot_id":35,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":5,"slot_type":"regular","created_at":"2024-11-25T19:21:31.225Z","classes":[]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:34:13.072Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-+Jpy7NvXSLayryE1UTGAYSqdaT8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:34:13.245Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T11:07:55.491Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:34:13.251Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-+Jpy7NvXSLayryE1UTGAYSqdaT8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:34:13.338Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T11:07:55.491Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:34:29.066Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-+Jpy7NvXSLayryE1UTGAYSqdaT8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:34:29.232Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T11:07:55.491Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:34:29.237Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-+Jpy7NvXSLayryE1UTGAYSqdaT8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:34:29.324Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T11:07:55.491Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:53:52.195Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-+Jpy7NvXSLayryE1UTGAYSqdaT8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:53:54.413Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T11:07:55.491Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:53:54.455Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-+Jpy7NvXSLayryE1UTGAYSqdaT8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:53:54.540Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T11:07:55.491Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:53:57.257Z
+  Method: GET
+  URL: /api/v1/timeslots
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"3a9-wnFw0yO711/m1nDbqZN3d/ASYdI\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:53:58.282Z
+  Response Data: {"success":true,"data":[{"slot_id":29,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:14:31.262Z","classes":[]},{"slot_id":31,"start_time":"11:00:00","end_time":"12:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:17:49.403Z","classes":[]},{"slot_id":32,"start_time":"12:00:00","end_time":"13:00:00","day_of_week":1,"slot_type":"special","created_at":"2024-11-25T19:18:49.335Z","classes":[]},{"slot_id":34,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":2,"slot_type":"regular","created_at":"2024-11-25T19:20:52.286Z","classes":[]},{"slot_id":33,"start_time":"04:30:00","end_time":"05:30:00","day_of_week":4,"slot_type":"regular","created_at":"2024-11-25T19:19:58.297Z","classes":[]},{"slot_id":35,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":5,"slot_type":"regular","created_at":"2024-11-25T19:21:31.225Z","classes":[]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:53:58.286Z
+  Method: GET
+  URL: /api/v1/timeslots
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"3a9-wnFw0yO711/m1nDbqZN3d/ASYdI\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:53:58.449Z
+  Response Data: {"success":true,"data":[{"slot_id":29,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:14:31.262Z","classes":[]},{"slot_id":31,"start_time":"11:00:00","end_time":"12:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:17:49.403Z","classes":[]},{"slot_id":32,"start_time":"12:00:00","end_time":"13:00:00","day_of_week":1,"slot_type":"special","created_at":"2024-11-25T19:18:49.335Z","classes":[]},{"slot_id":34,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":2,"slot_type":"regular","created_at":"2024-11-25T19:20:52.286Z","classes":[]},{"slot_id":33,"start_time":"04:30:00","end_time":"05:30:00","day_of_week":4,"slot_type":"regular","created_at":"2024-11-25T19:19:58.297Z","classes":[]},{"slot_id":35,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":5,"slot_type":"regular","created_at":"2024-11-25T19:21:31.225Z","classes":[]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:54:01.643Z
+  Method: DELETE
+  URL: /api/v1/timeslots/35
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:54:02.159Z
+  Response Data: {"success":true,"message":"Time slot deleted successfully"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:54:02.165Z
+  Method: GET
+  URL: /api/v1/timeslots
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"3a9-wnFw0yO711/m1nDbqZN3d/ASYdI\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:54:02.428Z
+  Response Data: {"success":true,"data":[{"slot_id":29,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:14:31.262Z","classes":[]},{"slot_id":31,"start_time":"11:00:00","end_time":"12:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:17:49.403Z","classes":[]},{"slot_id":32,"start_time":"12:00:00","end_time":"13:00:00","day_of_week":1,"slot_type":"special","created_at":"2024-11-25T19:18:49.335Z","classes":[]},{"slot_id":34,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":2,"slot_type":"regular","created_at":"2024-11-25T19:20:52.286Z","classes":[]},{"slot_id":33,"start_time":"04:30:00","end_time":"05:30:00","day_of_week":4,"slot_type":"regular","created_at":"2024-11-25T19:19:58.297Z","classes":[]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:54:16.685Z
+  Method: POST
+  URL: /api/v1/timeslots
+  Query Params: {}
+  URL Params: {}
+  Body: {"start_time":"10:00:00","end_time":"11:00:00","day_of_week":"5","slot_type":"regular"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"87","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","content-type":"application/json","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:54:16.953Z
+  Response Data: {"success":true,"data":{"slot_id":36,"start_time":"1970-01-01T10:00:00.000Z","end_time":"1970-01-01T11:00:00.000Z","day_of_week":5,"slot_type":"regular","created_at":"2024-11-26T12:54:16.693Z"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:54:16.960Z
+  Method: GET
+  URL: /api/v1/timeslots
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:54:17.123Z
+  Response Data: {"success":true,"data":[{"slot_id":29,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:14:31.262Z","classes":[]},{"slot_id":31,"start_time":"11:00:00","end_time":"12:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:17:49.403Z","classes":[]},{"slot_id":32,"start_time":"12:00:00","end_time":"13:00:00","day_of_week":1,"slot_type":"special","created_at":"2024-11-25T19:18:49.335Z","classes":[]},{"slot_id":34,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":2,"slot_type":"regular","created_at":"2024-11-25T19:20:52.286Z","classes":[]},{"slot_id":33,"start_time":"04:30:00","end_time":"05:30:00","day_of_week":4,"slot_type":"regular","created_at":"2024-11-25T19:19:58.297Z","classes":[]},{"slot_id":36,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":5,"slot_type":"regular","created_at":"2024-11-26T12:54:16.693Z","classes":[]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:54:33.485Z
+  Method: GET
+  URL: /api/v1/timeslots
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"3a9-fQZvMF3sgyw5iTGgThfYU9bul68\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:54:33.726Z
+  Response Data: {"success":true,"data":[{"slot_id":29,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:14:31.262Z","classes":[]},{"slot_id":31,"start_time":"11:00:00","end_time":"12:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:17:49.403Z","classes":[]},{"slot_id":32,"start_time":"12:00:00","end_time":"13:00:00","day_of_week":1,"slot_type":"special","created_at":"2024-11-25T19:18:49.335Z","classes":[]},{"slot_id":34,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":2,"slot_type":"regular","created_at":"2024-11-25T19:20:52.286Z","classes":[]},{"slot_id":33,"start_time":"04:30:00","end_time":"05:30:00","day_of_week":4,"slot_type":"regular","created_at":"2024-11-25T19:19:58.297Z","classes":[]},{"slot_id":36,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":5,"slot_type":"regular","created_at":"2024-11-26T12:54:16.693Z","classes":[]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:54:33.729Z
+  Method: GET
+  URL: /api/v1/timeslots
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"3a9-fQZvMF3sgyw5iTGgThfYU9bul68\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:54:33.890Z
+  Response Data: {"success":true,"data":[{"slot_id":29,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:14:31.262Z","classes":[]},{"slot_id":31,"start_time":"11:00:00","end_time":"12:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:17:49.403Z","classes":[]},{"slot_id":32,"start_time":"12:00:00","end_time":"13:00:00","day_of_week":1,"slot_type":"special","created_at":"2024-11-25T19:18:49.335Z","classes":[]},{"slot_id":34,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":2,"slot_type":"regular","created_at":"2024-11-25T19:20:52.286Z","classes":[]},{"slot_id":33,"start_time":"04:30:00","end_time":"05:30:00","day_of_week":4,"slot_type":"regular","created_at":"2024-11-25T19:19:58.297Z","classes":[]},{"slot_id":36,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":5,"slot_type":"regular","created_at":"2024-11-26T12:54:16.693Z","classes":[]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:54:43.245Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-+Jpy7NvXSLayryE1UTGAYSqdaT8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:54:43.430Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T11:07:55.491Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T12:54:43.438Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-+Jpy7NvXSLayryE1UTGAYSqdaT8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T12:54:43.523Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T11:07:55.491Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T13:43:21.060Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-+Jpy7NvXSLayryE1UTGAYSqdaT8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T13:43:22.785Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T11:07:55.491Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T13:43:22.803Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-+Jpy7NvXSLayryE1UTGAYSqdaT8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T13:43:22.887Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T11:07:55.491Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T13:44:20.013Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-+Jpy7NvXSLayryE1UTGAYSqdaT8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T13:44:20.180Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T11:07:55.491Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T13:44:20.186Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-+Jpy7NvXSLayryE1UTGAYSqdaT8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T13:44:20.272Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T11:07:55.491Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T14:36:43.567Z
+  Method: POST
+  URL: /api/v1/supreme/register
+  Query Params: {}
+  URL Params: {}
+  Body: {"admin_college_uid":"admin123","admin_password":"password123","admin_email":"admin@example.com","admin_firstname":"John","admin_lastname":"Doe","admin_profile_picture":"url-to-picture","admin_phone_number":"1234567890","institution_name":"Example Institution","institution_code":"EX123","institution_address":"123 Example Street","institution_email":"institution@example.com","institution_phone_number":"0987654321"}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"ae991fd8-af84-4c46-bd97-981ab5e6e844","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"481"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T14:36:45.201Z
+  Response Data: PrismaClientValidationError: 
+Invalid `prisma.institutions.create()` invocation:
+
+{
+  data: {
+    name: "Example Institution",
+    code: "EX123",
+    address: "123 Example Street",
+    email: "institution@example.com",
+    phone_number: "0987654321",
+    license_type: "premium",
++   contact_email: String
+  }
+}
+
+Argument `contact_email` is missing.
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T14:36:43.567Z
+  Method: POST
+  URL: /api/v1/supreme/register
+  Query Params: {}
+  URL Params: {}
+  Body: {"admin_college_uid":"admin123","admin_password":"password123","admin_email":"admin@example.com","admin_firstname":"John","admin_lastname":"Doe","admin_profile_picture":"url-to-picture","admin_phone_number":"1234567890","institution_name":"Example Institution","institution_code":"EX123","institution_address":"123 Example Street","institution_email":"institution@example.com","institution_phone_number":"0987654321"}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"ae991fd8-af84-4c46-bd97-981ab5e6e844","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"481"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T14:36:45.222Z
+  Response Data: {"name":"PrismaClientValidationError","clientVersion":"5.22.0"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T14:49:31.246Z
+  Method: POST
+  URL: /api/v1/supreme/register
+  Query Params: {}
+  URL Params: {}
+  Body: {"admin_college_uid":"admin123","admin_password":"password123","admin_email":"admin@example.com","admin_firstname":"John","admin_lastname":"Doe","admin_profile_picture":"url-to-picture","admin_phone_number":"1234567890","institution_name":"Example Institution","institution_code":"EX123","institution_address":"123 Example Street","contact_email":"institution@example.com","contact_phone":"0987654321","license_type":"premium"}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"9617c162-461d-44d9-8627-e60aa9d6d57c","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"496"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T14:49:31.249Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T14:49:31.246Z
+  Method: POST
+  URL: /api/v1/supreme/register
+  Query Params: {}
+  URL Params: {}
+  Body: {"admin_college_uid":"admin123","admin_password":"password123","admin_email":"admin@example.com","admin_firstname":"John","admin_lastname":"Doe","admin_profile_picture":"url-to-picture","admin_phone_number":"1234567890","institution_name":"Example Institution","institution_code":"EX123","institution_address":"123 Example Street","contact_email":"institution@example.com","contact_phone":"0987654321","license_type":"premium"}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"9617c162-461d-44d9-8627-e60aa9d6d57c","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"496"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T14:49:31.275Z
+  Response Data: {"message":"All fields are required"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T14:52:48.235Z
+  Method: POST
+  URL: /api/v1/supreme/register
+  Query Params: {}
+  URL Params: {}
+  Body: {"admin_college_uid":"admin123","admin_password":"password123","admin_email":"admin@example.com","admin_firstname":"John","admin_lastname":"Doe","admin_profile_picture":"url-to-picture","admin_phone_number":"1234567890","institution_name":"Example Institution","institution_code":"EX123","institution_address":"123 Example Street","institution_contact_email":"institution@example.com","institution_contact_phone":"0987654321","institution_license_type":"premium"}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"854d3d66-dacc-48b9-907d-f3bbf7f2967d","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"532"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T14:52:49.783Z
+  Response Data: PrismaClientValidationError: 
+Invalid `prisma.institutions.create()` invocation:
+
+{
+  data: {
+    name: "Example Institution",
+    code: "EX123",
+    address: "123 Example Street",
+    email: "institution@example.com",
+    phone_number: "0987654321",
+    license_type: "premium",
++   contact_email: String
+  }
+}
+
+Argument `contact_email` is missing.
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T14:52:48.235Z
+  Method: POST
+  URL: /api/v1/supreme/register
+  Query Params: {}
+  URL Params: {}
+  Body: {"admin_college_uid":"admin123","admin_password":"password123","admin_email":"admin@example.com","admin_firstname":"John","admin_lastname":"Doe","admin_profile_picture":"url-to-picture","admin_phone_number":"1234567890","institution_name":"Example Institution","institution_code":"EX123","institution_address":"123 Example Street","institution_contact_email":"institution@example.com","institution_contact_phone":"0987654321","institution_license_type":"premium"}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"854d3d66-dacc-48b9-907d-f3bbf7f2967d","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"532"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T14:52:49.809Z
+  Response Data: {"name":"PrismaClientValidationError","clientVersion":"5.22.0"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T14:54:05.448Z
+  Method: POST
+  URL: /api/v1/supreme/register
+  Query Params: {}
+  URL Params: {}
+  Body: {"admin_college_uid":"admin123","admin_password":"password123","admin_email":"admin@example.com","admin_role":"admin","admin_firstname":"John","admin_lastname":"Doe","admin_profile_picture":"url-to-picture","admin_phone_number":"1234567890","institution_name":"Example Institution","institution_code":"EX123","institution_address":"123 Example Street","institution_contact_email":"institution@example.com","institution_contact_phone":"0987654321","institution_license_type":"premium"}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"ac5b1bd1-a57f-47d7-9dc4-36bd2054b8d5","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"557"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T14:54:05.606Z
+  Response Data: PrismaClientValidationError: 
+Invalid `prisma.institutions.create()` invocation:
+
+{
+  data: {
+    name: "Example Institution",
+    code: "EX123",
+    address: "123 Example Street",
+    email: "institution@example.com",
+    phone_number: "0987654321",
+    license_type: "premium",
++   contact_email: String
+  }
+}
+
+Argument `contact_email` is missing.
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T14:54:05.448Z
+  Method: POST
+  URL: /api/v1/supreme/register
+  Query Params: {}
+  URL Params: {}
+  Body: {"admin_college_uid":"admin123","admin_password":"password123","admin_email":"admin@example.com","admin_role":"admin","admin_firstname":"John","admin_lastname":"Doe","admin_profile_picture":"url-to-picture","admin_phone_number":"1234567890","institution_name":"Example Institution","institution_code":"EX123","institution_address":"123 Example Street","institution_contact_email":"institution@example.com","institution_contact_phone":"0987654321","institution_license_type":"premium"}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"ac5b1bd1-a57f-47d7-9dc4-36bd2054b8d5","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"557"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T14:54:05.607Z
+  Response Data: {"name":"PrismaClientValidationError","clientVersion":"5.22.0"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T14:59:08.956Z
+  Method: POST
+  URL: /api/v1/supreme/register
+  Query Params: {}
+  URL Params: {}
+  Body: {"institution_name":"Minimal Institution","institution_code":"MIN123","institution_contact_email":"minimal@example.com","institution_license_type":"basic"}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"7c6c1608-1a4c-4f0a-9266-81f971593f1f","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"179"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T14:59:08.956Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T14:59:08.956Z
+  Method: POST
+  URL: /api/v1/supreme/register
+  Query Params: {}
+  URL Params: {}
+  Body: {"institution_name":"Minimal Institution","institution_code":"MIN123","institution_contact_email":"minimal@example.com","institution_license_type":"basic"}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"7c6c1608-1a4c-4f0a-9266-81f971593f1f","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"179"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T14:59:08.984Z
+  Response Data: {"message":"All fields are required"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:04:10.113Z
+  Method: POST
+  URL: /api/v1/supreme/register
+  Query Params: {}
+  URL Params: {}
+  Body: {"admin_college_uid":"admin123","admin_password":"password123","admin_email":"admin@example.com","admin_firstname":"John","admin_lastname":"Doe","admin_profile_picture":"url-to-picture","admin_phone_number":"1234567890","institution_name":"Test Institution","institution_code":"TEST123","institution_contact_email":"test@example.com","institution_contact_phone":"9876543210","institution_license_type":"premium"}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"3737093c-9893-41a1-8eef-6042ed1f268b","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"476"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:04:10.116Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T15:04:10.113Z
+  Method: POST
+  URL: /api/v1/supreme/register
+  Query Params: {}
+  URL Params: {}
+  Body: {"admin_college_uid":"admin123","admin_password":"password123","admin_email":"admin@example.com","admin_firstname":"John","admin_lastname":"Doe","admin_profile_picture":"url-to-picture","admin_phone_number":"1234567890","institution_name":"Test Institution","institution_code":"TEST123","institution_contact_email":"test@example.com","institution_contact_phone":"9876543210","institution_license_type":"premium"}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"3737093c-9893-41a1-8eef-6042ed1f268b","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"476"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T15:04:10.169Z
+  Response Data: {"message":"All fields are required"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T16:08:38.846Z
+  Method: POST
+  URL: /api/v1/supreme/register
+  Query Params: {}
+  URL Params: {}
+  Body: {"user_user_id":"admin123","user_password_hash":"password123","user_email":"admin@example.com","user_firstname":"John","user_lastname":"Doe","user_profile_picture":"url-to-picture","user_phone_number":"1234567890","institution_name":"Test Institution","institution_code":"TEST123","institution_address":"123 Example Street","institution_contact_email":"test@example.com","institution_contact_phone":"9876543210"}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"57a1f972-aea7-44b1-a97e-d278ececdf4e","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"476"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T16:08:38.857Z
+  Response Data: ReferenceError: admin_password is not defined
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T16:08:38.846Z
+  Method: POST
+  URL: /api/v1/supreme/register
+  Query Params: {}
+  URL Params: {}
+  Body: {"user_user_id":"admin123","user_password_hash":"password123","user_email":"admin@example.com","user_firstname":"John","user_lastname":"Doe","user_profile_picture":"url-to-picture","user_phone_number":"1234567890","institution_name":"Test Institution","institution_code":"TEST123","institution_address":"123 Example Street","institution_contact_email":"test@example.com","institution_contact_phone":"9876543210"}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"57a1f972-aea7-44b1-a97e-d278ececdf4e","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"476"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T16:08:38.869Z
+  Response Data: {}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T16:10:45.483Z
+  Method: POST
+  URL: /api/v1/supreme/register
+  Query Params: {}
+  URL Params: {}
+  Body: {"user_user_id":"admin123","user_password_hash":"password123","user_email":"admin@example.com","user_firstname":"John","user_lastname":"Doe","user_profile_picture":"url-to-picture","user_phone_number":"1234567890","institution_name":"Test Institution","institution_code":"TEST123","institution_address":"123 Example Street","institution_contact_email":"test@example.com","institution_contact_phone":"9876543210"}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"ea1abd84-f6bc-48fd-9dfc-d630a99bae97","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"476"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T16:10:47.044Z
+  Response Data: ReferenceError: admin_role is not defined
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T16:10:45.483Z
+  Method: POST
+  URL: /api/v1/supreme/register
+  Query Params: {}
+  URL Params: {}
+  Body: {"user_user_id":"admin123","user_password_hash":"password123","user_email":"admin@example.com","user_firstname":"John","user_lastname":"Doe","user_profile_picture":"url-to-picture","user_phone_number":"1234567890","institution_name":"Test Institution","institution_code":"TEST123","institution_address":"123 Example Street","institution_contact_email":"test@example.com","institution_contact_phone":"9876543210"}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"ea1abd84-f6bc-48fd-9dfc-d630a99bae97","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"476"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T16:10:47.046Z
+  Response Data: {}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T16:11:27.899Z
+  Method: POST
+  URL: /api/v1/supreme/register
+  Query Params: {}
+  URL Params: {}
+  Body: {"user_user_id":"admin123","user_password_hash":"password123","user_email":"admin@example.com","user_firstname":"John","user_lastname":"Doe","user_profile_picture":"url-to-picture","user_phone_number":"1234567890","institution_name":"Test Institution","institution_code":"TEST123","institution_address":"123 Example Street","institution_contact_email":"test@example.com","institution_contact_phone":"9876543210"}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"d83782c0-68e1-4997-a6c7-e9097f893fe4","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"476"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T16:11:28.756Z
+  Response Data: PrismaClientKnownRequestError: 
+Invalid `prisma.institutions.create()` invocation:
+
+
+Unique constraint failed on the fields: (`code`)
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T16:11:27.899Z
+  Method: POST
+  URL: /api/v1/supreme/register
+  Query Params: {}
+  URL Params: {}
+  Body: {"user_user_id":"admin123","user_password_hash":"password123","user_email":"admin@example.com","user_firstname":"John","user_lastname":"Doe","user_profile_picture":"url-to-picture","user_phone_number":"1234567890","institution_name":"Test Institution","institution_code":"TEST123","institution_address":"123 Example Street","institution_contact_email":"test@example.com","institution_contact_phone":"9876543210"}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"d83782c0-68e1-4997-a6c7-e9097f893fe4","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"476"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T16:11:28.758Z
+  Response Data: {"name":"PrismaClientKnownRequestError","code":"P2002","clientVersion":"5.22.0","meta":{"modelName":"institutions","target":["code"]}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T16:21:08.156Z
+  Method: POST
+  URL: /api/v1/supreme/register
+  Query Params: {}
+  URL Params: {}
+  Body: {"user_user_id":"admin123","user_password_hash":"password123","user_email":"admin@example.com","user_firstname":"John","user_lastname":"Doe","user_profile_picture":"url-to-picture","user_phone_number":"1234567890","institution_name":"Test Institution","institution_code":"TEST1423","institution_address":"123 Example Street","institution_contact_email":"test@example.com","institution_contact_phone":"9876543210"}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"c2263fba-71e3-41e8-ae9a-7941b0eabcb3","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"477"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T16:21:10.103Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T16:21:08.156Z
+  Method: POST
+  URL: /api/v1/supreme/register
+  Query Params: {}
+  URL Params: {}
+  Body: {"user_user_id":"admin123","user_password_hash":"password123","user_email":"admin@example.com","user_firstname":"John","user_lastname":"Doe","user_profile_picture":"url-to-picture","user_phone_number":"1234567890","institution_name":"Test Institution","institution_code":"TEST1423","institution_address":"123 Example Street","institution_contact_email":"test@example.com","institution_contact_phone":"9876543210"}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"c2263fba-71e3-41e8-ae9a-7941b0eabcb3","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"477"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T16:21:10.125Z
+  Response Data: {"message":"Institution and Instituition's admin created successfully","newAdminUser":{"user_id":5451,"uuid":"d6aa7863-56fe-42e1-bdf6-a5efff6713f9","email":"admin@example.com","password_hash":"password123","role":"admin","first_name":"John","last_name":"Doe","profile_picture":"url-to-picture","phone_number":"1234567890","created_at":"2024-11-26T16:21:09.909Z","last_login":null,"status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":null,"college_uid":"admin123","institution_id":7}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T16:26:07.852Z
+  Method: POST
+  URL: /api/v1/supreme/register
+  Query Params: {}
+  URL Params: {}
+  Body: {"user_user_id":"admin456","user_password_hash":"password456","user_email":"admin456@example.com","user_firstname":"Alice","user_lastname":"Smith","user_profile_picture":"url-to-picture-456","user_phone_number":"0987654321","institution_name":"Alpha University","institution_code":"ALPHA2024","institution_address":"456 Alpha Street, Cityville","institution_contact_email":"contact@alphauniversity.com","institution_contact_phone":"1122334455"}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"bc000812-4316-4aea-acde-bcd3fca00df6","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"508"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T16:26:08.169Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T16:26:07.852Z
+  Method: POST
+  URL: /api/v1/supreme/register
+  Query Params: {}
+  URL Params: {}
+  Body: {"user_user_id":"admin456","user_password_hash":"password456","user_email":"admin456@example.com","user_firstname":"Alice","user_lastname":"Smith","user_profile_picture":"url-to-picture-456","user_phone_number":"0987654321","institution_name":"Alpha University","institution_code":"ALPHA2024","institution_address":"456 Alpha Street, Cityville","institution_contact_email":"contact@alphauniversity.com","institution_contact_phone":"1122334455"}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"bc000812-4316-4aea-acde-bcd3fca00df6","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"508"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T16:26:08.170Z
+  Response Data: {"message":"Institution and Instituition's admin created successfully","newAdminUser":{"user_id":5452,"uuid":"d42334d9-d6e9-4f79-a75e-24808119e371","email":"admin456@example.com","password_hash":"password456","role":"admin","first_name":"Alice","last_name":"Smith","profile_picture":"url-to-picture-456","phone_number":"0987654321","created_at":"2024-11-26T16:26:08.088Z","last_login":null,"status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":null,"college_uid":"admin456","institution_id":8}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T17:08:57.492Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-+Jpy7NvXSLayryE1UTGAYSqdaT8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T17:08:59.944Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T14:28:36.266Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjMxMzE2LCJleHAiOjE3MzMyMzYxMTZ9.jjGyooKGKZ8mZWzbOHR8FW1Qj1LcVXzUgzFKhXwK0tY","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T17:08:59.956Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-e2VYic7oIL7gr0HMV4KmE2VH7Ac\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T17:09:00.046Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T14:28:36.266Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjMxMzE2LCJleHAiOjE3MzMyMzYxMTZ9.jjGyooKGKZ8mZWzbOHR8FW1Qj1LcVXzUgzFKhXwK0tY","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T17:09:26.394Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-purpose":"prefetch;prerender","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","purpose":"prefetch","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-e2VYic7oIL7gr0HMV4KmE2VH7Ac\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T17:09:26.559Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T14:28:36.266Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjMxMzE2LCJleHAiOjE3MzMyMzYxMTZ9.jjGyooKGKZ8mZWzbOHR8FW1Qj1LcVXzUgzFKhXwK0tY","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T17:09:26.562Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-purpose":"prefetch;prerender","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","purpose":"prefetch","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-e2VYic7oIL7gr0HMV4KmE2VH7Ac\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T17:09:26.647Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T14:28:36.266Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjMxMzE2LCJleHAiOjE3MzMyMzYxMTZ9.jjGyooKGKZ8mZWzbOHR8FW1Qj1LcVXzUgzFKhXwK0tY","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T17:15:32.138Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-e2VYic7oIL7gr0HMV4KmE2VH7Ac\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T17:15:33.827Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T14:28:36.266Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjMxMzE2LCJleHAiOjE3MzMyMzYxMTZ9.jjGyooKGKZ8mZWzbOHR8FW1Qj1LcVXzUgzFKhXwK0tY","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T17:15:34.178Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzMyMjQwNzV9.m5DQdHZ7Zt0HSSKwH2RpqGRolBo6rVkcrpw71wT74Z8; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjE5Mjc1LCJleHAiOjE3MzI3OTIwNzV9.Ynd_hUy-WyJDcstSF3JS4pVK9hS1h9Is1WJscffIn00; institution_id=4","if-none-match":"W/\"2b5-e2VYic7oIL7gr0HMV4KmE2VH7Ac\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T17:15:34.277Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-26T14:28:36.266Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNjMxMzE2LCJleHAiOjE3MzMyMzYxMTZ9.jjGyooKGKZ8mZWzbOHR8FW1Qj1LcVXzUgzFKhXwK0tY","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T17:37:01.747Z
+  Method: POST
+  URL: /api/v1/supreme/register
+  Query Params: {}
+  URL Params: {}
+  Body: {"user_user_id":"7894","user_password_hash":"18052004","user_email":"chatterjeeankita548@gmail.com","user_firstname":"Admin","user_lastname":"Chatterjee","user_phone_number":"8777743599","user_profile_picture":"https://via.placeholder.com/150","institution_name":"ExampleInstituteofTechnology","institution_code":"85241","institution_address":"exampleaddress,kolkata-700036","institution_contact_email":"exampleinstitute@gmail.com","institution_contact_phone":"8777743500","institution_license_type":"premium"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"510","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","content-type":"application/json","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T17:37:03.821Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-26T17:37:01.747Z
+  Method: POST
+  URL: /api/v1/supreme/register
+  Query Params: {}
+  URL Params: {}
+  Body: {"user_user_id":"7894","user_password_hash":"18052004","user_email":"chatterjeeankita548@gmail.com","user_firstname":"Admin","user_lastname":"Chatterjee","user_phone_number":"8777743599","user_profile_picture":"https://via.placeholder.com/150","institution_name":"ExampleInstituteofTechnology","institution_code":"85241","institution_address":"exampleaddress,kolkata-700036","institution_contact_email":"exampleinstitute@gmail.com","institution_contact_phone":"8777743500","institution_license_type":"premium"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"510","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","content-type":"application/json","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-26T17:37:03.848Z
+  Response Data: {"message":"Institution and Instituition's admin created successfully","newAdminUser":{"user_id":5453,"uuid":"59802673-0dbf-4ff7-a660-ffdb22894c37","email":"chatterjeeankita548@gmail.com","password_hash":"18052004","role":"admin","first_name":"Admin","last_name":"Chatterjee","profile_picture":"https://via.placeholder.com/150","phone_number":"8777743599","created_at":"2024-11-26T17:37:03.593Z","last_login":null,"status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":null,"college_uid":"7894","institution_id":9}}
+  -------------------------
+  

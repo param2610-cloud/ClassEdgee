@@ -7,36 +7,37 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 
+
 const registerInstitution = async (req, res) => {
     try {
-        const { admin_college_uid, admin_password,admin_email,admin_role="admin",admin_firstname,admin_lastname,admin_profile_picture,admin_phone_number,institution_name,institution_code,institution_address,institution_email,institution_phone_number,institution_license_type="premium" } = req.body;
-        if (!admin_college_uid || !admin_password || !admin_email  || !admin_firstname || !admin_lastname || !admin_profile_picture || !admin_phone_number || !institution_name || !institution_code || !institution_address || !institution_email || !institution_phone_number || !institution_license_type) {
+        const { user_user_id, user_password_hash,user_email,user_role="admin",user_firstname,user_lastname,user_profile_picture,user_phone_number,institution_name,institution_code,institution_address,institution_contact_email,institution_contact_phone,institution_license_type="premium" } = req.body;
+        if (!user_user_id || !user_password_hash || !user_email  || !user_firstname || !user_lastname || !user_profile_picture || !user_phone_number || !institution_name || !institution_code || !institution_address || !institution_contact_email || !institution_contact_phone || !institution_license_type) {
             return res.status(400).send({
                 message: "All fields are required",
             });
         }
-        const hashedPassword = await bcrypt.hash(admin_password, 10);
+        const hashedPassword = await bcrypt.hash(user_password_hash, 10);
 
         const newInstitution = await prisma.institutions.create({
             data:{
                 name: institution_name,
                 code: institution_code,
                 address: institution_address,
-                email: institution_email,
-                phone_number: institution_phone_number,
+                contact_email: institution_contact_email,
+                contact_phone: institution_contact_phone,
                 license_type: institution_license_type,
             }
         })
         const newAdminUser =await prisma.users.create({
             data:{
-                college_uid: admin_college_uid,
-                password_hash: hashedPassword,
-                email: admin_email,
-                role: admin_role?admin_role:"admin",
-                first_name: admin_firstname,
-                last_name: admin_lastname,
-                profile_picture:admin_profile_picture,
-                phone_number: admin_phone_number,
+                college_uid: user_user_id,
+                password_hash: user_password_hash,
+                email: user_email,
+                role: user_role?user_role:"admin",
+                first_name: user_firstname,
+                last_name: user_lastname,
+                profile_picture:user_profile_picture,
+                phone_number: user_phone_number,
                 institution_id: newInstitution.institution_id
             }
         })
