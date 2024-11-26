@@ -143,7 +143,11 @@ const createStudent = async (req, res) => {
 const loginStudent = async (req, res) => {
     try {
         const { email, password } = req.body;
-
+        if (!email || !password) {
+            return res.status(400).send({
+                message: "email and password are required",
+            });
+        }
         // Find user by college_uid
         const user = await prismaClient.users.findUnique({
             where: {
@@ -172,7 +176,7 @@ const loginStudent = async (req, res) => {
         }
 
         const { accessToken, refreshToken } = generateTokens(
-            email,
+            user.email,
             "2d",
             "7d"
         );
@@ -202,10 +206,9 @@ const loginStudent = async (req, res) => {
         res.status(200).send({
             success: true,
             message: "Login successful",
+            accessToken,
+            refreshToken,
             user,
-            user:{
-                institution_id:user.institution_id
-            }
         });
     } catch (error) {
         console.error("Error in student login:", error);

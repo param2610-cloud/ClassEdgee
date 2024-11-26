@@ -4,7 +4,7 @@ import { upload } from "../utils/multer.js";
 const router = e.Router();
 router.post("/createfaculty",createFaculty);
 router.post("/facultybulkupload",upload.single("file") ,facultyblukupload)
-router.post("/facultylogin",loginfaculty);
+router.post("/login",loginfaculty);
 router.get("/list-of-faculty",listoffaculty)
 router.put("/edit/:id",editFaculty)
 router.get("/get-faculty/:id",getUniqueFaculty)

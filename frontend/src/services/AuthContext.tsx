@@ -37,6 +37,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
     const initializeAuth = async () => {
         const token = enhancedLocalStorage.getItem("accessToken");
+        console.log("adada",token);
+        
         if (token) {
             console.log("AuthProvider - Token found, validating...");
             await validateToken(token);
@@ -85,7 +87,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
                 withCredentials: true
             });
             
+            console.log(response);
             if (response.status === 200 && response.data.user) {
+                
                 setUser(response.data.user);
                 setIsLoading(false);
             } else {
