@@ -7,25 +7,27 @@ const prisma =new  PrismaClient();
 
 const loginCoordinator = async (req, res) => {
     try {
-        const { college_uid, password } = req.body;
+        const { email, password } = req.body;
 
         // Input validation
-        if (!college_uid || !password) {
+        if (!email || !password) {
             return res.status(400).send({
-                message: "college_uid and password are required",
+                message: "email and password are required",
             });
         }
 
         // Find user by college_uid only
         const user = await prisma.users.findUnique({
             where: {
-                college_uid: college_uid,
+                email: email,
             },
             select: {
                 password_hash: true,
-                email: true,
+                college_uid: true,
                 first_name: true,
                 last_name: true,
+                email:true,
+                institution_id:true
             },
         })
 
@@ -47,16 +49,17 @@ const loginCoordinator = async (req, res) => {
 
         // Generate tokens
         const { accessToken, refreshToken } = generateTokens(
-            college_uid,
+            user.email,
             "2d",
             "7d"
         );
         const UpdatedUser = await prisma.users.update({
             where: {
-                college_uid: college_uid,
+                email: email,
             },
             data: {
                 refreshtoken: refreshToken,
+                last_login: new Date()
             },
         })
         // Set HTTP-only cookies
@@ -71,13 +74,20 @@ const loginCoordinator = async (req, res) => {
             secure: process.env.NODE_ENV === "production",
             sameSite: "strict",
         });
+        res.cookie("institution_id", user.institution_id, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict",
+        });
 
         // Send response
         return res.status(200).json({
             message: "User logged in successfully",
-            UpdatedUser,
             refreshToken,
             accessToken,
+            user:{
+                institutionId:user.institution_id
+            }
         });
     } catch (error) {
         console.error("Login error:", error);

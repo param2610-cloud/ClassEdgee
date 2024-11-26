@@ -1,6 +1,3 @@
-import mongoose from "mongoose";
-import { coordinatorModel } from "../models/coordinatorprofile.schema.js";
-import { supremeModel } from "../models/supremeprofile.schema.js";
 import {
     
     generateTokens
@@ -10,29 +7,42 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 
-const registersupreme = async (req, res) => {
+const registerInstitution = async (req, res) => {
     try {
-        const { college_uid, password,email,role,firstname,lastname } = req.body;
-        if (!college_uid || !password || !email  || !firstname || !lastname) {
+        const { admin_college_uid, admin_password,admin_email,admin_role="admin",admin_firstname,admin_lastname,admin_profile_picture,admin_phone_number,institution_name,institution_code,institution_address,institution_email,institution_phone_number,institution_license_type="premium" } = req.body;
+        if (!admin_college_uid || !admin_password || !admin_email  || !admin_firstname || !admin_lastname || !admin_profile_picture || !admin_phone_number || !institution_name || !institution_code || !institution_address || !institution_email || !institution_phone_number || !institution_license_type) {
             return res.status(400).send({
                 message: "All fields are required",
             });
         }
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const hashedPassword = await bcrypt.hash(admin_password, 10);
 
+        const newInstitution = await prisma.institutions.create({
+            data:{
+                name: institution_name,
+                code: institution_code,
+                address: institution_address,
+                email: institution_email,
+                phone_number: institution_phone_number,
+                license_type: institution_license_type,
+            }
+        })
         const newAdminUser =await prisma.users.create({
             data:{
-                college_uid: college_uid,
+                college_uid: admin_college_uid,
                 password_hash: hashedPassword,
-                email: email,
-                role: role?role:"admin",
-                first_name: firstname,
-                last_name: lastname,
+                email: admin_email,
+                role: admin_role?admin_role:"admin",
+                first_name: admin_firstname,
+                last_name: admin_lastname,
+                profile_picture:admin_profile_picture,
+                phone_number: admin_phone_number,
+                institution_id: newInstitution.institution_id
             }
         })
 
         res.status(200).send({
-            message: "Admin user created successfully",
+            message: "Institution and Instituition's admin created successfully",
             newAdminUser,
         });
     } catch (error) {
@@ -40,12 +50,12 @@ const registersupreme = async (req, res) => {
         res.status(500).send( error);
     }
 };
-const loginsupreme = async (req, res) => {
+const adminLogin = async (req, res) => {
     try {
-        const { college_uid, password } = req.body;
+        const { email, password } = req.body;
 
         // Input validation
-        if (!college_uid || !password) {
+        if (!email || !password) {
             return res.status(400).send({
                 message: "college_uid and password are required",
             });
@@ -54,19 +64,23 @@ const loginsupreme = async (req, res) => {
         // Find user by college_uid only
         const finduser =await prisma.users.findUnique({
             where:{
-                college_uid: college_uid},
+                email: email,
+                role:"admin"
+            },
                 select:{
                     password_hash:true,
                     email:true,
                     first_name:true,
-                    last_name:true
+                    last_name:true,
+                    institution_id:true,
+                    institutions:true
                 }
         })
 
         if (!finduser) {
             // Use a generic message to prevent user enumeration
             return res.status(401).send({
-                message: "No Admin exists with this college_uid",
+                message: "No Admin exists with this Email",
             });
         }
 
@@ -81,14 +95,16 @@ const loginsupreme = async (req, res) => {
 
         // Generate tokens
         const { accessToken, refreshToken } = generateTokens(
-            college_uid,
+            finduser.email,
             "2d",
             "7d"
         );
         const puttoken = await prisma.users.update({
             where:{
-                college_uid: college_uid},
-            data:{refreshtoken:refreshToken}
+                email: email},
+            data:{refreshtoken:refreshToken,
+                last_login: new Date(),
+            }
         })
         // Set HTTP-only cookies
         res.cookie("refreshToken", refreshToken, {
@@ -102,6 +118,11 @@ const loginsupreme = async (req, res) => {
             secure: process.env.NODE_ENV === "production",
             sameSite: "strict",
         });
+        res.cookie("institution_id", finduser.institution_id, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict",
+        })
 
         // Send response
         return res.status(200).send({
@@ -110,6 +131,8 @@ const loginsupreme = async (req, res) => {
                 email: finduser.email,
                 firstName: finduser.first_name,
                 lastName: finduser.last_name,
+                institutionId: finduser.institution_id,
+                finduser
                 // Include other non-sensitive user data here
             },
             refreshToken,
@@ -137,7 +160,9 @@ const coordinatorcreate = async (req, res) => {
         const existingcoordinator = await prisma.users.findUnique(
             {
                 where: {
+                    email: coordinatorData.email,
                     college_uid: coordinatorData.college_uid,
+                    institution_id: coordinatorData.institution_id,
                 },
             }
         );
@@ -157,6 +182,7 @@ const coordinatorcreate = async (req, res) => {
                 role: "coordinator",
                 first_name: coordinatorData.firstName,
                 last_name: coordinatorData.lastName,
+                institution_id: coordinatorData.institution_id,
             },
         });
 
@@ -176,4 +202,4 @@ const coordinatorcreate = async (req, res) => {
     }
 };
 
-export { registersupreme, loginsupreme, coordinatorcreate };
+export { registerInstitution, adminLogin, coordinatorcreate };

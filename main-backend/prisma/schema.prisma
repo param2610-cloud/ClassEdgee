@@ -111,7 +111,11 @@ model buildings {
   floors               Int
   location_coordinates Unsupported("point")?
   created_at           DateTime?             @default(now()) @db.Timestamp(6)
+  institution_id       Int?
+  institutions         institutions?         @relation(fields: [institution_id], references: [institution_id], onDelete: Cascade, onUpdate: NoAction)
   rooms                rooms[]
+
+  @@unique([institution_id, building_name], map: "unique_building_name_per_institution")
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -158,23 +162,29 @@ model classes {
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model courses {
-  course_id         Int                 @id @default(autoincrement())
-  course_code       String              @unique @db.VarChar(20)
-  course_name       String              @db.VarChar(255)
-  department_id     Int?
-  credits           Int
-  description       String?
-  prerequisites     String?
-  syllabus_url      String?             @db.VarChar(255)
-  learning_outcomes String[]
-  is_active         Boolean?            @default(true)
-  created_at        DateTime?           @default(now()) @db.Timestamp(6)
-  updated_at        DateTime?           @db.Timestamp(6)
-  classes           classes[]
-  departments       departments?        @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction)
-  learninganalytics learninganalytics[]
-  notes             notes[]
-  resources         resources[]
+  course_id          Int                  @id @default(autoincrement())
+  course_code        String               @unique @db.VarChar(20)
+  course_name        String               @db.VarChar(255)
+  department_id      Int?
+  credits            Int
+  description        String?
+  prerequisites      String?
+  syllabus_url       String?              @db.VarChar(255)
+  learning_outcomes  String[]
+  is_active          Boolean?             @default(true)
+  created_at         DateTime?            @default(now()) @db.Timestamp(6)
+  updated_at         DateTime?            @db.Timestamp(6)
+  institution_id     Int?
+  classes            classes[]
+  departments        departments?         @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction)
+  institutions       institutions?        @relation(fields: [institution_id], references: [institution_id], onDelete: Cascade, onUpdate: NoAction)
+  learninganalytics  learninganalytics[]
+  notes              notes[]
+  resources          resources[]
+  subject_details    subject_details[]
+  syllabus_structure syllabus_structure[]
+
+  @@unique([institution_id, course_code], map: "unique_course_code_per_institution")
 }
 
 model departments {
@@ -186,12 +196,16 @@ model departments {
   contact_phone   String?         @db.VarChar(20)
   created_at      DateTime?       @default(now()) @db.Timestamp(6)
   updated_at      DateTime?       @db.Timestamp(6)
+  institution_id  Int?
   announcements   announcements[]
   courses         courses[]
   users           users?          @relation(fields: [hod_user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  institutions    institutions?   @relation(fields: [institution_id], references: [institution_id], onDelete: Cascade, onUpdate: NoAction)
   faculty         faculty[]
   sections        sections[]
   students        students[]
+
+  @@unique([institution_id, department_code], map: "unique_department_code_per_institution")
 }
 
 model emergencyalerts {
@@ -398,23 +412,27 @@ model rooms {
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model sections {
-  section_id        Int          @id @default(autoincrement())
-  section_name      String       @db.VarChar(50)
+  section_id        Int           @id @default(autoincrement())
+  section_name      String        @db.VarChar(50)
   batch_year        Int
   department_id     Int?
-  student_count     Int          @default(0)
+  student_count     Int           @default(0)
   max_capacity      Int
-  is_combined       Boolean?     @default(false)
+  is_combined       Boolean?      @default(false)
   parent_section_id Int?
   academic_year     Int
   semester          Int
-  created_at        DateTime?    @default(now()) @db.Timestamp(6)
+  created_at        DateTime?     @default(now()) @db.Timestamp(6)
+  institution_id    Int?
   classes           classes[]
   notes             notes[]
-  departments       departments? @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction)
-  sections          sections?    @relation("sectionsTosections", fields: [parent_section_id], references: [section_id], onDelete: NoAction, onUpdate: NoAction)
-  other_sections    sections[]   @relation("sectionsTosections")
+  departments       departments?  @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction)
+  institutions      institutions? @relation(fields: [institution_id], references: [institution_id], onDelete: Cascade, onUpdate: NoAction)
+  sections          sections?     @relation("sectionsTosections", fields: [parent_section_id], references: [section_id], onDelete: NoAction, onUpdate: NoAction)
+  other_sections    sections[]    @relation("sectionsTosections")
   students          students[]
+
+  @@unique([institution_id, section_name, batch_year], map: "unique_section_name_per_institution")
 }
 
 model studentengagement {
@@ -487,6 +505,7 @@ model users {
   mfa_secret                           String?              @db.VarChar(32)
   refreshtoken                         String?              @db.VarChar(255)
   college_uid                          String               @unique @db.VarChar(255)
+  institution_id                       Int?
   activitylogs                         activitylogs[]
   alertnotifications                   alertnotifications[]
   announcements                        announcements[]
@@ -501,6 +520,118 @@ model users {
   notes                                notes[]
   resources                            resources[]
   students                             students?
+  institutions                         institutions?        @relation(fields: [institution_id], references: [institution_id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([institution_id, college_uid], map: "unique_college_uid_per_institution")
+  @@unique([institution_id, email], map: "unique_email_per_institution")
+}
+
+model subject_details {
+  subject_id                        Int                 @id @default(autoincrement())
+  syllabus_id                       Int?
+  course_id                         Int?
+  subject_type                      subject_type
+  preferred_faculty_specializations String[]            @default([])
+  resources_required                String[]
+  created_at                        DateTime?           @default(now()) @db.Timestamp(6)
+  updated_at                        DateTime?           @default(now()) @db.Timestamp(6)
+  subject_name                      String?             @db.VarChar(255)
+  subject_code                      String?             @db.VarChar(50)
+  syllabus_structure                syllabus_structure? @relation(fields: [syllabus_id], references: [syllabus_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_syllabus_id")
+  courses                           courses?            @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction)
+  units                             units[]
+
+  @@index([syllabus_id], map: "idx_subject_syllabus")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model syllabus_structure {
+  syllabus_id     Int               @id @default(autoincrement())
+  course_id       Int?
+  semester        Int
+  created_at      DateTime?         @default(now()) @db.Timestamp(6)
+  updated_at      DateTime?         @default(now()) @db.Timestamp(6)
+  subject_details subject_details[]
+  courses         courses?          @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([course_id, semester])
+  @@index([course_id, semester], map: "idx_syllabus_course_sem")
+}
+
+model topics {
+  topic_id          Int       @id @default(autoincrement())
+  unit_id           Int?
+  topic_name        String    @db.VarChar(255)
+  topic_description String?
+  created_at        DateTime? @default(now()) @db.Timestamp(6)
+  updated_at        DateTime? @default(now()) @db.Timestamp(6)
+  units             units?    @relation(fields: [unit_id], references: [unit_id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([unit_id], map: "idx_topic_unit")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model unit_prerequisites {
+  unit_id                                              Int
+  prerequisite_unit_id                                 Int
+  prerequisite_type                                    String?   @db.VarChar(20)
+  created_at                                           DateTime? @default(now()) @db.Timestamp(6)
+  units_unit_prerequisites_prerequisite_unit_idTounits units     @relation("unit_prerequisites_prerequisite_unit_idTounits", fields: [prerequisite_unit_id], references: [unit_id], onDelete: Cascade, onUpdate: NoAction)
+  units_unit_prerequisites_unit_idTounits              units     @relation("unit_prerequisites_unit_idTounits", fields: [unit_id], references: [unit_id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([unit_id, prerequisite_unit_id])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model units {
+  unit_id                                                           Int                  @id @default(autoincrement())
+  subject_id                                                        Int?
+  unit_number                                                       Int
+  unit_name                                                         String               @db.VarChar(255)
+  required_hours                                                    Int
+  learning_objectives                                               String[]
+  created_at                                                        DateTime?            @default(now()) @db.Timestamp(6)
+  updated_at                                                        DateTime?            @default(now()) @db.Timestamp(6)
+  topics                                                            topics[]
+  unit_prerequisites_unit_prerequisites_prerequisite_unit_idTounits unit_prerequisites[] @relation("unit_prerequisites_prerequisite_unit_idTounits")
+  unit_prerequisites_unit_prerequisites_unit_idTounits              unit_prerequisites[] @relation("unit_prerequisites_unit_idTounits")
+  subject_details                                                   subject_details?     @relation(fields: [subject_id], references: [subject_id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([subject_id, unit_number])
+  @@index([subject_id], map: "idx_unit_subject")
+}
+
+model academic_years {
+  year_id        Int          @id @default(autoincrement())
+  institution_id Int
+  start_date     DateTime     @db.Date
+  end_date       DateTime     @db.Date
+  is_current     Boolean?     @default(false)
+  created_at     DateTime?    @default(now()) @db.Timestamp(6)
+  institutions   institutions @relation(fields: [institution_id], references: [institution_id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([institution_id, start_date, end_date])
+}
+
+model institutions {
+  institution_id Int              @id @default(autoincrement())
+  name           String           @db.VarChar(255)
+  code           String           @unique @db.VarChar(50)
+  address        String?
+  contact_email  String           @db.VarChar(255)
+  contact_phone  String?          @db.VarChar(20)
+  license_type   String           @db.VarChar(50)
+  settings       Json?
+  theme          Json?
+  is_active      Boolean?         @default(true)
+  created_at     DateTime?        @default(now()) @db.Timestamp(6)
+  updated_at     DateTime?        @db.Timestamp(6)
+  academic_years academic_years[]
+  buildings      buildings[]
+  courses        courses[]
+  departments    departments[]
+  sections       sections[]
+  users          users[]
 }
 
 enum alert_severity {
@@ -557,4 +688,10 @@ enum verification_method {
   manual
   mobile
   biometric
+}
+
+enum subject_type {
+  theory
+  lab
+  project
 }
