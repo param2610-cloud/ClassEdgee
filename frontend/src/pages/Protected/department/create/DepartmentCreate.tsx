@@ -23,6 +23,8 @@ import {
 import {  useToast } from "@/hooks/use-toast"; 
 import { Faculty } from "@/interface/general";
 import { domain } from "@/lib/constant";
+import { useAtom } from "jotai";
+import { institutionIdAtom } from "@/store/atom";
 
 // Zod validation schema
 const departmentSchema = z.object({
@@ -69,7 +71,7 @@ const AddDepartmentForm = () => {
             hod_college_uid: "",
         },
     });
-
+    const [institution_id, ] = useAtom(institutionIdAtom)
     // Form submission handler
     const onSubmit = async (data: z.infer<typeof departmentSchema>) => {
         try {
@@ -77,6 +79,7 @@ const AddDepartmentForm = () => {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    "X-Institution-Id": `${institution_id}`,
                 },
                 body: JSON.stringify(data),
             });

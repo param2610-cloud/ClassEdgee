@@ -35,6 +35,8 @@ import { domain } from "@/lib/constant";
 import { Department } from "@/interface/general";
 import UploadOnCloudinary from "@/services/Cloudinary";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useAtom } from "jotai";
+import { institutionIdAtom } from "@/store/atom";
 
 const studentSchema = z.object({
     firstName: z.string().min(2, "First name must be at least 2 characters"),
@@ -63,6 +65,7 @@ const EditStudentForm = () => {
     const [previewUrl, setPreviewUrl] = useState<string>("");
     const [imageMediaLinks, setImageMediaLinks] = useState<string[]>([]);
     const [videoMediaLinks, setVideoMediaLinks] = useState<string[]>([]);
+    const [institution_id] = useAtom(institutionIdAtom)
 
     const {
         register,
@@ -129,7 +132,12 @@ const EditStudentForm = () => {
         const fetchDepartments = async () => {
             try {
                 const response = await axios.get(
-                    `${domain}/api/v1/department/list-of-department`
+                    `${domain}/api/v1/department/list-of-department`,
+                    {
+                        headers: {
+                            "X-Institution-Id": `${institution_id}`,
+                        }
+                    }
                 );
                 setDepartmentList(response.data.department);
             } catch (error) {

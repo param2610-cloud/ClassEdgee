@@ -30,11 +30,14 @@ import {
 } from "@/components/ui/select";
 import { Course, Department } from "@/interface/general";
 import { domain } from "@/lib/constant";
+import { useAtom } from "jotai";
+import { institutionIdAtom } from "@/store/atom";
 
 const CourseDashboard = () => {
     const [courses, setCourses] = useState<Course[]>([]);
     const [departments, setDepartments] = useState<Department[]>([]);
     const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+    const [institution_id] = useAtom(institutionIdAtom)
     const [newCourse, setNewCourse] = useState({
         course_code: "",
         course_name: "",
@@ -51,7 +54,11 @@ const CourseDashboard = () => {
 
     const fetchDepartments = async () => {
         try {
-            const response = await fetch(`${domain}/api/v1/department/list-of-department`);
+            const response = await fetch(`${domain}/api/v1/department/list-of-department`,{
+                headers:{
+                    "X-Institution-Id": `${institution_id}`,
+                }
+            });
             const data = await response.json();
             setDepartments(data.department);
         } catch (error) {
