@@ -72,6 +72,9 @@ app.use('/api/v1/sessions', sessionRoutes);
 app.use('/api/v1/analogistics',analogisticRouters)
 
 
+import timeslotRouter from './src/Router/timeslot.router.js';
+app.use('/api/v1/timeslots', timeslotRouter);
+
 
 app.get("/", (req, res) => {
     res.sendFile("interface.html", { root: path.join(__dirname,'public') });
