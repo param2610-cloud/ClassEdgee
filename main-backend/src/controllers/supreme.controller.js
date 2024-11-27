@@ -31,7 +31,7 @@ const registerInstitution = async (req, res) => {
         const newAdminUser =await prisma.users.create({
             data:{
                 college_uid: user_user_id,
-                password_hash: user_password_hash,
+                password_hash: hashedPassword,
                 email: user_email,
                 role: user_role?user_role:"admin",
                 first_name: user_firstname,

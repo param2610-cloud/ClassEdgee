@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 
 const PrincipalList = () => {
     const [principals, setPrincipals] = useState([]);
-
+   
     useEffect(() => {
         const fetchPrincipals = async () => {
             const response = await axios.get(

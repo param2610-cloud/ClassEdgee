@@ -41,7 +41,7 @@ const Registration = () => {
   });
 
   const [errors, setErrors] = useState({});
-  Const {toast} = useToast()
+ // Const {toast} = useToast()
   
   
   
