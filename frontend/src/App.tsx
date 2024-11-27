@@ -16,7 +16,7 @@ import SupremeLayout from "./pages/Protected/supreme/SupremeLayout";
 import StudentLayout from "./pages/Protected/student/StudentLayout";
 
 // Import pages
-import Dashboard from "./pages/Protected/Dashboard";
+import Dashboard from "./pages/Protected/student/Dashboard";
 import Idgenerate from "./pages/Protected/supreme/generator/Idgenerate";
 import SupremeDashboard from "./pages/Protected/supreme/dashboard/SupremeDashboard";
 import CoordinatorLayout from "./pages/Protected/coordinator/CoordinatorLayout";
@@ -44,6 +44,9 @@ import SubjectManagement from "./pages/Protected/coordinator/course/semester/Sem
 import SpecificSubjectManagement from "./pages/Protected/coordinator/course/semester/subject/SpecificSubjectManagement";
 import UnitTopicManagement from "./pages/Protected/coordinator/course/semester/subject/SpecificSubjectManagement";
 import TimeslotManagement from "./pages/Protected/coordinator/classes/TimeSlotTable";
+import FacultyLMSDashboard from "./pages/Protected/faculty/FacultyDashboard";
+import FacultyLayout from "./pages/Protected/faculty/FacultyLayout";
+import VirtualRoom from "./pages/Protected/faculty/InteractiveClassroom";
 
 const App: React.FC = () => {
     return (
@@ -115,11 +118,12 @@ const SupremeRoutes: React.FC = () => (
 );
 
 const FacultyRoutes: React.FC = () => (
-    <CoordinatorLayout>
+    <FacultyLayout>
         <Routes>
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/" element={<FacultyLMSDashboard />} />
+            <Route path="/interactive-classroom" element={<VirtualRoom />} />
         </Routes>
-    </CoordinatorLayout>
+    </FacultyLayout>
 );
 
 const StudentRoutes: React.FC = () => (
