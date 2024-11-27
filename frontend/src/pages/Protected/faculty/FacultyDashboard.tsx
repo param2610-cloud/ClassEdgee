@@ -17,8 +17,6 @@ const FacultyLMSDashboard = () => {
     const [activeSection, setActiveSection] = useState("courses");
     const {logout}= useAuth()
     const navigate = useNavigate()
-
-    // Sample data (would typically come from backend)
     const courses = [
         {
             id: 1,

@@ -136,9 +136,16 @@ const SpecificCourseDashboard = () => {
                                 </span>
                             </div>
                         </div>
+                        <div className="w-full flex justify-between">
                         <p className="mt-4 text-gray-600">
                             {course.description}
                         </p>
+                        <div>
+                            <Button onClick={()=>navigate(`/p/department/${course.department_id}/add-syllabus/${course.course_id}`)}>
+                                Add Syllabus
+                            </Button>
+                        </div>
+                        </div>
                     </CardContent>
                 </Card>
 
