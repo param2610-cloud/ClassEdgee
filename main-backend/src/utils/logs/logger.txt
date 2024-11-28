@@ -13664,3 +13664,1158 @@
   Response Data: {"message":"Coordinators retrieved successfully","data":[{"college_uid":"dsec/coordinator/02","email":"parthib@gmail.com","first_name":"Parthib","last_name":"Panja","institution_id":4,"created_at":"2024-11-27T14:11:07.154Z"},{"college_uid":"dsec/coordinator/01","email":"coordinator@dsec.com","first_name":"Parambrata","last_name":"Ghosh","institution_id":4,"created_at":"2024-11-17T13:15:46.805Z"}],"pagination":{"currentPage":1,"totalPages":1,"totalCoordinators":2,"limit":10}}
   -------------------------
   
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T06:57:27.793Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3NzQ2MTUsImV4cCI6MTczMjk0NzQxNX0.4_pJp7XX4JvBI46h2Zu-vhCMRzvAg1WBXspuaJVtKVA","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3NzQ2MTUsImV4cCI6MTczMzM3OTQxNX0.DCuUrUZBxzVvzoUdrv1n_BMR6_TgziAnWYe6Pvu8vpg; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3NzQ2MTUsImV4cCI6MTczMjk0NzQxNX0.4_pJp7XX4JvBI46h2Zu-vhCMRzvAg1WBXspuaJVtKVA; institution_id=4","if-none-match":"W/\"2a4-BVKTxQKvQK1S0cspIiWR20chJhc\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T06:57:29.506Z
+  Response Data: {"message":"Token is valid","user":{"user_id":2,"uuid":"ead2f259-aa55-42d6-863e-feea3b76cf13","email":"gpampa138@gmail.com","password_hash":"$2b$10$3lJ6DsDWcJ0s4l/BgXCsCeLAMoWknakDJO6UcFxMXkNNN8lqzR4eO","role":"admin","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T11:41:15.801Z","last_login":"2024-11-28T06:16:55.902Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3NzQ2MTUsImV4cCI6MTczMzM3OTQxNX0.DCuUrUZBxzVvzoUdrv1n_BMR6_TgziAnWYe6Pvu8vpg","college_uid":"8420282255","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T06:57:29.612Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3NzQ2MTUsImV4cCI6MTczMjk0NzQxNX0.4_pJp7XX4JvBI46h2Zu-vhCMRzvAg1WBXspuaJVtKVA","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3NzQ2MTUsImV4cCI6MTczMzM3OTQxNX0.DCuUrUZBxzVvzoUdrv1n_BMR6_TgziAnWYe6Pvu8vpg; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3NzQ2MTUsImV4cCI6MTczMjk0NzQxNX0.4_pJp7XX4JvBI46h2Zu-vhCMRzvAg1WBXspuaJVtKVA; institution_id=4","if-none-match":"W/\"2a4-BVKTxQKvQK1S0cspIiWR20chJhc\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T06:57:29.715Z
+  Response Data: {"message":"Token is valid","user":{"user_id":2,"uuid":"ead2f259-aa55-42d6-863e-feea3b76cf13","email":"gpampa138@gmail.com","password_hash":"$2b$10$3lJ6DsDWcJ0s4l/BgXCsCeLAMoWknakDJO6UcFxMXkNNN8lqzR4eO","role":"admin","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T11:41:15.801Z","last_login":"2024-11-28T06:16:55.902Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3NzQ2MTUsImV4cCI6MTczMzM3OTQxNX0.DCuUrUZBxzVvzoUdrv1n_BMR6_TgziAnWYe6Pvu8vpg","college_uid":"8420282255","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T08:51:36.791Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3NzQ2MTUsImV4cCI6MTczMjk0NzQxNX0.4_pJp7XX4JvBI46h2Zu-vhCMRzvAg1WBXspuaJVtKVA","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"2a4-BVKTxQKvQK1S0cspIiWR20chJhc\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T08:51:38.382Z
+  Response Data: {"message":"Token is valid","user":{"user_id":2,"uuid":"ead2f259-aa55-42d6-863e-feea3b76cf13","email":"gpampa138@gmail.com","password_hash":"$2b$10$3lJ6DsDWcJ0s4l/BgXCsCeLAMoWknakDJO6UcFxMXkNNN8lqzR4eO","role":"admin","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T11:41:15.801Z","last_login":"2024-11-28T06:16:55.902Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3NzQ2MTUsImV4cCI6MTczMzM3OTQxNX0.DCuUrUZBxzVvzoUdrv1n_BMR6_TgziAnWYe6Pvu8vpg","college_uid":"8420282255","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T08:51:38.401Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3NzQ2MTUsImV4cCI6MTczMjk0NzQxNX0.4_pJp7XX4JvBI46h2Zu-vhCMRzvAg1WBXspuaJVtKVA","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"2a4-BVKTxQKvQK1S0cspIiWR20chJhc\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T08:51:38.498Z
+  Response Data: {"message":"Token is valid","user":{"user_id":2,"uuid":"ead2f259-aa55-42d6-863e-feea3b76cf13","email":"gpampa138@gmail.com","password_hash":"$2b$10$3lJ6DsDWcJ0s4l/BgXCsCeLAMoWknakDJO6UcFxMXkNNN8lqzR4eO","role":"admin","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T11:41:15.801Z","last_login":"2024-11-28T06:16:55.902Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3NzQ2MTUsImV4cCI6MTczMzM3OTQxNX0.DCuUrUZBxzVvzoUdrv1n_BMR6_TgziAnWYe6Pvu8vpg","college_uid":"8420282255","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T10:48:54.254Z
+  Method: POST
+  URL: /api/v1/room/rooms
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":2,"room_number":101,"room_type":"normal_class","capacity":30,"wing":"East Wing","area_sqft":500,"features":["Projector","Whiteboard"]}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"96fc9933-d54b-488c-b6aa-649658e1633f","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"190"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T10:48:55.944Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T10:48:54.254Z
+  Method: POST
+  URL: /api/v1/room/rooms
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":2,"room_number":101,"room_type":"normal_class","capacity":30,"wing":"East Wing","area_sqft":500,"features":["Projector","Whiteboard"]}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"96fc9933-d54b-488c-b6aa-649658e1633f","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"190"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T10:48:55.999Z
+  Response Data: {"success":false,"message":"Failed to create room","error":"\nInvalid `prisma.rooms.findUnique()` invocation:\n\n{\n  where: {\n    room_number: 101\n                 ~~~\n  }\n}\n\nArgument `room_number`: Invalid value provided. Expected String, provided Int."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T10:49:39.588Z
+  Method: POST
+  URL: /api/v1/room/rooms
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":2,"room_number":"101","room_type":"normal_class","capacity":30,"wing":"East Wing","area_sqft":500,"features":["Projector","Whiteboard"]}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"2e33632e-5c2b-479e-96ff-6f3e6cd3ae54","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"192"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T10:49:40.291Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T10:49:39.588Z
+  Method: POST
+  URL: /api/v1/room/rooms
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":2,"room_number":"101","room_type":"normal_class","capacity":30,"wing":"East Wing","area_sqft":500,"features":["Projector","Whiteboard"]}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"2e33632e-5c2b-479e-96ff-6f3e6cd3ae54","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"192"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T10:49:40.292Z
+  Response Data: {"success":false,"message":"Failed to create room","error":"\nInvalid `prisma.rooms.create()` invocation:\n\n{\n  data: {\n    building_id: 1,\n    room_number: \"101\",\n    room_type: \"normal_class\",\n               ~~~~~~~~~~~~~~\n    capacity: 30,\n    floor_number: 2,\n    wing: \"East Wing\",\n    area_sqft: 500,\n    features: [\n      \"Projector\",\n      \"Whiteboard\"\n    ],\n    status: \"available\"\n  }\n}\n\nInvalid value for argument `room_type`. Expected room_type."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T10:52:38.632Z
+  Method: POST
+  URL: /api/v1/room/rooms
+  Query Params: {}
+  URL Params: {}
+  Body: {"room_number":"101","room_type":"normal_class","capacity":30,"floor_number":1,"wing":"A","area_sqft":500,"features":{"whiteboard":true,"projector":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"7cb0a638-15ef-49b1-afff-9c5e07c71719","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"209"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T10:52:38.799Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T10:52:38.632Z
+  Method: POST
+  URL: /api/v1/room/rooms
+  Query Params: {}
+  URL Params: {}
+  Body: {"room_number":"101","room_type":"normal_class","capacity":30,"floor_number":1,"wing":"A","area_sqft":500,"features":{"whiteboard":true,"projector":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"7cb0a638-15ef-49b1-afff-9c5e07c71719","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"209"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T10:52:38.799Z
+  Response Data: {"success":false,"message":"Failed to create room","error":"\nInvalid `prisma.rooms.create()` invocation:\n\n{\n  data: {\n    building_id: 1,\n    room_number: \"101\",\n    room_type: \"normal_class\",\n               ~~~~~~~~~~~~~~\n    capacity: 30,\n    floor_number: 1,\n    wing: \"A\",\n    area_sqft: 500,\n    features: {\n      whiteboard: true,\n      projector: true\n    },\n    status: \"available\"\n  }\n}\n\nInvalid value for argument `room_type`. Expected room_type."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T10:53:43.357Z
+  Method: POST
+  URL: /api/v1/room/rooms
+  Query Params: {}
+  URL Params: {}
+  Body: {"room_number":"101","room_type":"lab","capacity":30,"floor_number":1,"wing":"A","area_sqft":500,"features":{"whiteboard":true,"projector":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"4f790b8f-e6ed-4cd1-9888-a26c9b6032ca","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"200"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T10:53:43.357Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T10:53:43.357Z
+  Method: POST
+  URL: /api/v1/room/rooms
+  Query Params: {}
+  URL Params: {}
+  Body: {"room_number":"101","room_type":"lab","capacity":30,"floor_number":1,"wing":"A","area_sqft":500,"features":{"whiteboard":true,"projector":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"4f790b8f-e6ed-4cd1-9888-a26c9b6032ca","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"200"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T10:53:43.358Z
+  Response Data: {"success":false,"message":"Invalid room type","validTypes":["normal_class","laboratory","seminar_room","workshop","computer_lab","science_lab"]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T11:09:06.551Z
+  Method: POST
+  URL: /api/v1/room/rooms
+  Query Params: {}
+  URL Params: {}
+  Body: {"room_number":"101","room_type":"lab","capacity":30,"floor_number":1,"wing":"A","area_sqft":500,"features":{"whiteboard":true,"projector":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"36f79fca-a8e9-4c6d-8cc2-f1e3771d7f7b","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"200"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T11:09:07.780Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T11:09:06.551Z
+  Method: POST
+  URL: /api/v1/room/rooms
+  Query Params: {}
+  URL Params: {}
+  Body: {"room_number":"101","room_type":"lab","capacity":30,"floor_number":1,"wing":"A","area_sqft":500,"features":{"whiteboard":true,"projector":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"36f79fca-a8e9-4c6d-8cc2-f1e3771d7f7b","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"200"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T11:09:07.798Z
+  Response Data: {"success":false,"message":"Failed to create room","error":"\nInvalid `prisma.rooms.create()` invocation:\n\n\nForeign key constraint violated: `rooms_building_id_fkey (index)`"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T11:10:37.787Z
+  Method: POST
+  URL: /api/v1/room/rooms
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":1,"room_number":"101A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"40f95e70-4245-412a-8b59-d9690f702b94","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T11:10:38.434Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T11:10:37.787Z
+  Method: POST
+  URL: /api/v1/room/rooms
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":1,"room_number":"101A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"40f95e70-4245-412a-8b59-d9690f702b94","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T11:10:38.435Z
+  Response Data: {"success":false,"message":"Failed to create room","error":"\nInvalid `prisma.rooms.create()` invocation:\n\n\nForeign key constraint violated: `rooms_building_id_fkey (index)`"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T11:16:32.035Z
+  Method: POST
+  URL: /api/v1/room/rooms
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":1,"room_number":"101A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"89788c1f-ef2f-4def-b3f7-6bfcda16341f","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T11:16:32.886Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T11:16:32.035Z
+  Method: POST
+  URL: /api/v1/room/rooms
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":1,"room_number":"101A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"89788c1f-ef2f-4def-b3f7-6bfcda16341f","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T11:16:32.888Z
+  Response Data: {"success":false,"message":"Failed to create room","error":"mainBuildingId is not defined"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T11:18:47.620Z
+  Method: POST
+  URL: /api/v1/room/rooms
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":1,"room_number":"101A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"6ce8deeb-2f80-47ec-8e88-8dc0acf2abe5","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T11:18:48.652Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T11:18:47.620Z
+  Method: POST
+  URL: /api/v1/room/rooms
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":1,"room_number":"101A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"6ce8deeb-2f80-47ec-8e88-8dc0acf2abe5","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T11:18:48.654Z
+  Response Data: {"success":true,"message":"Room created successfully","data":{"room_id":3,"building_id":null,"room_number":"101A","room_type":"classroom","capacity":30,"floor_number":1,"wing":"North","area_sqft":"500.5","features":{"projector":true,"whiteboard":true,"airconditioned":true},"status":"available","last_maintenance_date":null,"next_maintenance_date":null,"created_at":"2024-11-28T11:18:48.355Z","updated_at":null}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T11:26:15.485Z
+  Method: POST
+  URL: /api/v1/room/rooms
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":1,"room_number":"101A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"565bbd80-d648-4cbb-b4cc-6ecb50135d1b","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T11:26:17.157Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T11:26:15.485Z
+  Method: POST
+  URL: /api/v1/room/rooms
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":1,"room_number":"101A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"565bbd80-d648-4cbb-b4cc-6ecb50135d1b","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T11:26:17.504Z
+  Response Data: {"success":false,"message":"Room number 101A already exists"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T11:26:27.538Z
+  Method: POST
+  URL: /api/v1/room/rooms
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":1,"room_number":"102A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"aef56e0d-0224-496d-9142-d96bb659c421","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T11:26:27.797Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T11:26:27.538Z
+  Method: POST
+  URL: /api/v1/room/rooms
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":1,"room_number":"102A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"aef56e0d-0224-496d-9142-d96bb659c421","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T11:26:27.797Z
+  Response Data: {"success":true,"message":"Room created successfully","data":{"room_id":4,"building_id":null,"room_number":"102A","room_type":"classroom","capacity":30,"floor_number":1,"wing":"North","area_sqft":"500.5","features":{"projector":true,"whiteboard":true,"airconditioned":true},"status":"available","last_maintenance_date":null,"next_maintenance_date":null,"created_at":"2024-11-28T11:26:27.623Z","updated_at":null}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:00:58.213Z
+  Method: POST
+  URL: /api/v1/room
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":1,"room_number":"103A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"d6d0faf4-fdac-4177-8caf-5478a3f8ee3f","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:01:00.610Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:00:58.213Z
+  Method: POST
+  URL: /api/v1/room
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":1,"room_number":"103A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"d6d0faf4-fdac-4177-8caf-5478a3f8ee3f","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:01:00.615Z
+  Response Data: {"success":true,"message":"Room created successfully","data":{"room_id":5,"building_id":null,"room_number":"103A","room_type":"classroom","capacity":30,"floor_number":1,"wing":"North","area_sqft":"500.5","features":{"projector":true,"whiteboard":true,"airconditioned":true},"status":"available","last_maintenance_date":null,"next_maintenance_date":null,"created_at":"2024-11-28T12:01:00.405Z","updated_at":null}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:01:37.007Z
+  Method: GET
+  URL: /api/v1/room/floors/1
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":1,"room_number":"103A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"1fbd6d03-b5d9-4811-b5db-f862be123cc2","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:01:37.256Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:01:37.007Z
+  Method: GET
+  URL: /api/v1/room/floors/1
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":1,"room_number":"103A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"1fbd6d03-b5d9-4811-b5db-f862be123cc2","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:01:37.257Z
+  Response Data: {"success":true,"data":[]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:01:59.907Z
+  Method: GET
+  URL: /api/v1/room/floors/2
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":1,"room_number":"103A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"b7668b26-72cc-40d3-bf60-0dae1593adbe","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:02:00.062Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:01:59.907Z
+  Method: GET
+  URL: /api/v1/room/floors/2
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":1,"room_number":"103A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"b7668b26-72cc-40d3-bf60-0dae1593adbe","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:02:00.062Z
+  Response Data: {"success":true,"data":[]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:02:28.471Z
+  Method: GET
+  URL: /api/v1/room/floors/2
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":1,"room_number":"103A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"d3ec7ac2-8c50-4d09-88eb-8909e91b01e1","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:02:28.624Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:02:28.471Z
+  Method: GET
+  URL: /api/v1/room/floors/2
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":1,"room_number":"103A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"d3ec7ac2-8c50-4d09-88eb-8909e91b01e1","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:02:28.624Z
+  Response Data: {"success":true,"data":[]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:02:53.140Z
+  Method: POST
+  URL: /api/v1/room
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":2,"room_number":"103A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"aa53d867-10e1-4ae1-b6a8-780b8946f642","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:02:53.295Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:02:53.140Z
+  Method: POST
+  URL: /api/v1/room
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":2,"room_number":"103A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"aa53d867-10e1-4ae1-b6a8-780b8946f642","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:02:53.296Z
+  Response Data: {"success":false,"message":"Room number 103A already exists"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:03:02.108Z
+  Method: POST
+  URL: /api/v1/room
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":2,"room_number":"104A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"46112c1d-3821-4a56-af17-52b0eac27168","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:03:02.267Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:03:02.108Z
+  Method: POST
+  URL: /api/v1/room
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":2,"room_number":"104A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"46112c1d-3821-4a56-af17-52b0eac27168","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:03:02.268Z
+  Response Data: {"success":true,"message":"Room created successfully","data":{"room_id":6,"building_id":null,"room_number":"104A","room_type":"classroom","capacity":30,"floor_number":2,"wing":"North","area_sqft":"500.5","features":{"projector":true,"whiteboard":true,"airconditioned":true},"status":"available","last_maintenance_date":null,"next_maintenance_date":null,"created_at":"2024-11-28T12:03:02.188Z","updated_at":null}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:03:52.107Z
+  Method: GET
+  URL: /api/v1/room/floors/2
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":2,"room_number":"104A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"f5bc2f1a-c3d8-403f-a29a-6e0384b3adb3","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:03:52.261Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:03:52.107Z
+  Method: GET
+  URL: /api/v1/room/floors/2
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":2,"room_number":"104A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"f5bc2f1a-c3d8-403f-a29a-6e0384b3adb3","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:03:52.262Z
+  Response Data: {"success":true,"data":[]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:04:32.706Z
+  Method: GET
+  URL: /api/v1/room/floors/1
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":2,"room_number":"104A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"c5596109-7f03-4cc0-8f52-d26e3db9be4d","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:04:32.863Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:04:32.706Z
+  Method: GET
+  URL: /api/v1/room/floors/1
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":2,"room_number":"104A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"c5596109-7f03-4cc0-8f52-d26e3db9be4d","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:04:32.863Z
+  Response Data: {"success":true,"data":[]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:04:58.329Z
+  Method: DELETE
+  URL: /api/v1/room/1
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":2,"room_number":"104A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"f80c4b20-24eb-478a-97ed-88700213d1af","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:04:58.562Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:04:58.329Z
+  Method: DELETE
+  URL: /api/v1/room/1
+  Query Params: {}
+  URL Params: {}
+  Body: {"floor_number":2,"room_number":"104A","room_type":"classroom","capacity":30,"wing":"North","area_sqft":500.5,"features":{"whiteboard":true,"projector":true,"airconditioned":true}}
+  Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","cache-control":"no-cache","postman-token":"f80c4b20-24eb-478a-97ed-88700213d1af","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"243"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:04:58.563Z
+  Response Data: {"success":false,"message":"Room not found"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:08:57.455Z
+  Method: POST
+  URL: /api/v1/coordinator/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"email":"dsec/coordinator/01","password":"classedgee"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"55","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","content-type":"application/json","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:08:58.291Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:08:57.455Z
+  Method: POST
+  URL: /api/v1/coordinator/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"email":"dsec/coordinator/01","password":"classedgee"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"55","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","content-type":"application/json","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:08:58.658Z
+  Response Data: {"message":"Invalid credentials"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:09:15.416Z
+  Method: POST
+  URL: /api/v1/coordinator/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"email":"gpampa138@gmail.com","password":"classedgee"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"55","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","content-type":"application/json","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:09:15.947Z
+  Response Data: {"message":"User logged in successfully","refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3OTU3NTUsImV4cCI6MTczMzQwMDU1NX0.XdRGWPQLkyobyB73wpUI4wp_W3w0ROsvnbDpmnOK9b4","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3OTU3NTUsImV4cCI6MTczMjk2ODU1NX0.dppzUW_u_eJW99ZDXCNQwdP_LsueNImYKYSMRFx0gHE","user":{"institutionId":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:09:15.962Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3OTU3NTUsImV4cCI6MTczMjk2ODU1NX0.dppzUW_u_eJW99ZDXCNQwdP_LsueNImYKYSMRFx0gHE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3OTU3NTUsImV4cCI6MTczMzQwMDU1NX0.XdRGWPQLkyobyB73wpUI4wp_W3w0ROsvnbDpmnOK9b4; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3OTU3NTUsImV4cCI6MTczMjk2ODU1NX0.dppzUW_u_eJW99ZDXCNQwdP_LsueNImYKYSMRFx0gHE; institution_id=4","if-none-match":"W/\"2a4-BVKTxQKvQK1S0cspIiWR20chJhc\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:09:16.704Z
+  Response Data: {"message":"Token is valid","user":{"user_id":2,"uuid":"ead2f259-aa55-42d6-863e-feea3b76cf13","email":"gpampa138@gmail.com","password_hash":"$2b$10$3lJ6DsDWcJ0s4l/BgXCsCeLAMoWknakDJO6UcFxMXkNNN8lqzR4eO","role":"admin","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T11:41:15.801Z","last_login":"2024-11-28T12:09:15.765Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3OTU3NTUsImV4cCI6MTczMzQwMDU1NX0.XdRGWPQLkyobyB73wpUI4wp_W3w0ROsvnbDpmnOK9b4","college_uid":"8420282255","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:09:16.711Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3OTU3NTUsImV4cCI6MTczMjk2ODU1NX0.dppzUW_u_eJW99ZDXCNQwdP_LsueNImYKYSMRFx0gHE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3OTU3NTUsImV4cCI6MTczMzQwMDU1NX0.XdRGWPQLkyobyB73wpUI4wp_W3w0ROsvnbDpmnOK9b4; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3OTU3NTUsImV4cCI6MTczMjk2ODU1NX0.dppzUW_u_eJW99ZDXCNQwdP_LsueNImYKYSMRFx0gHE; institution_id=4","if-none-match":"W/\"2a4-xoOkcUHvLEMIFkrHVR5+7qTiIYE\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:09:16.799Z
+  Response Data: {"message":"Token is valid","user":{"user_id":2,"uuid":"ead2f259-aa55-42d6-863e-feea3b76cf13","email":"gpampa138@gmail.com","password_hash":"$2b$10$3lJ6DsDWcJ0s4l/BgXCsCeLAMoWknakDJO6UcFxMXkNNN8lqzR4eO","role":"admin","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T11:41:15.801Z","last_login":"2024-11-28T12:09:15.765Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3OTU3NTUsImV4cCI6MTczMzQwMDU1NX0.XdRGWPQLkyobyB73wpUI4wp_W3w0ROsvnbDpmnOK9b4","college_uid":"8420282255","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:09:16.741Z
+  Method: GET
+  URL: /api/v1/supreme/coordinators
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"1df-7J2VNSH2LkdQiBh3oTxhJcizCQo\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:09:17.749Z
+  Response Data: {"message":"Coordinators retrieved successfully","data":[{"college_uid":"dsec/coordinator/02","email":"parthib@gmail.com","first_name":"Parthib","last_name":"Panja","institution_id":4,"created_at":"2024-11-27T14:11:07.154Z"},{"college_uid":"dsec/coordinator/01","email":"coordinator@dsec.com","first_name":"Parambrata","last_name":"Ghosh","institution_id":4,"created_at":"2024-11-17T13:15:46.805Z"}],"pagination":{"currentPage":1,"totalPages":1,"totalCoordinators":2,"limit":10}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:09:17.754Z
+  Method: GET
+  URL: /api/v1/supreme/coordinators
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"1df-7J2VNSH2LkdQiBh3oTxhJcizCQo\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:09:17.915Z
+  Response Data: {"message":"Coordinators retrieved successfully","data":[{"college_uid":"dsec/coordinator/02","email":"parthib@gmail.com","first_name":"Parthib","last_name":"Panja","institution_id":4,"created_at":"2024-11-27T14:11:07.154Z"},{"college_uid":"dsec/coordinator/01","email":"coordinator@dsec.com","first_name":"Parambrata","last_name":"Ghosh","institution_id":4,"created_at":"2024-11-17T13:15:46.805Z"}],"pagination":{"currentPage":1,"totalPages":1,"totalCoordinators":2,"limit":10}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:09:21.193Z
+  Method: GET
+  URL: /api/v1/supreme/coordinators
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"1df-7J2VNSH2LkdQiBh3oTxhJcizCQo\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:09:21.354Z
+  Response Data: {"message":"Coordinators retrieved successfully","data":[{"college_uid":"dsec/coordinator/02","email":"parthib@gmail.com","first_name":"Parthib","last_name":"Panja","institution_id":4,"created_at":"2024-11-27T14:11:07.154Z"},{"college_uid":"dsec/coordinator/01","email":"coordinator@dsec.com","first_name":"Parambrata","last_name":"Ghosh","institution_id":4,"created_at":"2024-11-17T13:15:46.805Z"}],"pagination":{"currentPage":1,"totalPages":1,"totalCoordinators":2,"limit":10}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:09:21.358Z
+  Method: GET
+  URL: /api/v1/supreme/coordinators
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"1df-7J2VNSH2LkdQiBh3oTxhJcizCQo\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:09:21.519Z
+  Response Data: {"message":"Coordinators retrieved successfully","data":[{"college_uid":"dsec/coordinator/02","email":"parthib@gmail.com","first_name":"Parthib","last_name":"Panja","institution_id":4,"created_at":"2024-11-27T14:11:07.154Z"},{"college_uid":"dsec/coordinator/01","email":"coordinator@dsec.com","first_name":"Parambrata","last_name":"Ghosh","institution_id":4,"created_at":"2024-11-17T13:15:46.805Z"}],"pagination":{"currentPage":1,"totalPages":1,"totalCoordinators":2,"limit":10}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:09:31.264Z
+  Method: GET
+  URL: /api/v1/supreme/coordinators
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"1df-7J2VNSH2LkdQiBh3oTxhJcizCQo\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:09:31.427Z
+  Response Data: {"message":"Coordinators retrieved successfully","data":[{"college_uid":"dsec/coordinator/02","email":"parthib@gmail.com","first_name":"Parthib","last_name":"Panja","institution_id":4,"created_at":"2024-11-27T14:11:07.154Z"},{"college_uid":"dsec/coordinator/01","email":"coordinator@dsec.com","first_name":"Parambrata","last_name":"Ghosh","institution_id":4,"created_at":"2024-11-17T13:15:46.805Z"}],"pagination":{"currentPage":1,"totalPages":1,"totalCoordinators":2,"limit":10}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:09:31.431Z
+  Method: GET
+  URL: /api/v1/supreme/coordinators
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"1df-7J2VNSH2LkdQiBh3oTxhJcizCQo\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:09:31.594Z
+  Response Data: {"message":"Coordinators retrieved successfully","data":[{"college_uid":"dsec/coordinator/02","email":"parthib@gmail.com","first_name":"Parthib","last_name":"Panja","institution_id":4,"created_at":"2024-11-27T14:11:07.154Z"},{"college_uid":"dsec/coordinator/01","email":"coordinator@dsec.com","first_name":"Parambrata","last_name":"Ghosh","institution_id":4,"created_at":"2024-11-17T13:15:46.805Z"}],"pagination":{"currentPage":1,"totalPages":1,"totalCoordinators":2,"limit":10}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:09:33.144Z
+  Method: POST
+  URL: /api/v1/general/logout
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3OTU3NTUsImV4cCI6MTczMjk2ODU1NX0.dppzUW_u_eJW99ZDXCNQwdP_LsueNImYKYSMRFx0gHE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3OTU3NTUsImV4cCI6MTczMzQwMDU1NX0.XdRGWPQLkyobyB73wpUI4wp_W3w0ROsvnbDpmnOK9b4; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3OTU3NTUsImV4cCI6MTczMjk2ODU1NX0.dppzUW_u_eJW99ZDXCNQwdP_LsueNImYKYSMRFx0gHE; institution_id=4"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:09:33.146Z
+  Response Data: {"message":"Invalid refresh token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:10:31.544Z
+  Method: POST
+  URL: /api/v1/coordinator/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"email":"coordinator@dsec.com","password":"classedgee"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"56","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","content-type":"application/json","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3OTU3NTUsImV4cCI6MTczMzQwMDU1NX0.XdRGWPQLkyobyB73wpUI4wp_W3w0ROsvnbDpmnOK9b4; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdwYW1wYTEzOEBnbWFpbC5jb20iLCJpYXQiOjE3MzI3OTU3NTUsImV4cCI6MTczMjk2ODU1NX0.dppzUW_u_eJW99ZDXCNQwdP_LsueNImYKYSMRFx0gHE; institution_id=4"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:10:31.858Z
+  Response Data: {"message":"User logged in successfully","refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNzk1ODMxLCJleHAiOjE3MzM0MDA2MzF9.J6nChxG8SH6uoL-nFd_J0vqIvKCI5uoLeGvhXNqI8F4","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNzk1ODMxLCJleHAiOjE3MzI5Njg2MzF9.v7t4BfGtVlEQRDCTipKXv-LxUP09Wii-qFwp-UUubUE","user":{"institutionId":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:10:31.879Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNzk1ODMxLCJleHAiOjE3MzI5Njg2MzF9.v7t4BfGtVlEQRDCTipKXv-LxUP09Wii-qFwp-UUubUE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"institution_id=4; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNzk1ODMxLCJleHAiOjE3MzM0MDA2MzF9.J6nChxG8SH6uoL-nFd_J0vqIvKCI5uoLeGvhXNqI8F4; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNzk1ODMxLCJleHAiOjE3MzI5Njg2MzF9.v7t4BfGtVlEQRDCTipKXv-LxUP09Wii-qFwp-UUubUE","if-none-match":"W/\"2a4-xoOkcUHvLEMIFkrHVR5+7qTiIYE\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:10:32.064Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-28T12:10:31.776Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNzk1ODMxLCJleHAiOjE3MzM0MDA2MzF9.J6nChxG8SH6uoL-nFd_J0vqIvKCI5uoLeGvhXNqI8F4","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:10:32.068Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNzk1ODMxLCJleHAiOjE3MzI5Njg2MzF9.v7t4BfGtVlEQRDCTipKXv-LxUP09Wii-qFwp-UUubUE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"institution_id=4; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNzk1ODMxLCJleHAiOjE3MzM0MDA2MzF9.J6nChxG8SH6uoL-nFd_J0vqIvKCI5uoLeGvhXNqI8F4; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNzk1ODMxLCJleHAiOjE3MzI5Njg2MzF9.v7t4BfGtVlEQRDCTipKXv-LxUP09Wii-qFwp-UUubUE","if-none-match":"W/\"2b5-KvrOuV70/ny/PlaTIKJ45mgRl9c\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:10:32.156Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-28T12:10:31.776Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNzk1ODMxLCJleHAiOjE3MzM0MDA2MzF9.J6nChxG8SH6uoL-nFd_J0vqIvKCI5uoLeGvhXNqI8F4","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:10:38.163Z
+  Method: GET
+  URL: /api/v1/curriculum/course
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"187-xqwW2tMcgoNV2pXCgdMQDd15PFA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:10:39.077Z
+  Response Data: [{"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"}}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:10:38.170Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:10:39.083Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:10:38.170Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"278-Bow2gqxbVfbLeJpu7WSFRmoaMhM\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:10:39.084Z
+  Response Data: {"department":[{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null},{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":{"first_name":"Harsh","last_name":"Acharya","college_uid":"dsec/faculty/007"}},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":{"first_name":"Divya","last_name":"Kumar","college_uid":"dsec/faculty/008"}}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:10:39.080Z
+  Method: GET
+  URL: /api/v1/curriculum/course
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"187-xqwW2tMcgoNV2pXCgdMQDd15PFA\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:10:39.234Z
+  Response Data: [{"course_id":1,"course_code":"B.Tech CSE","course_name":"Bachelor of Technology in Computer Science & Engineering","department_id":1,"credits":4,"description":"Na","prerequisites":null,"syllabus_url":null,"learning_outcomes":[],"is_active":true,"created_at":"2024-11-24T20:07:32.081Z","updated_at":null,"institution_id":4,"departments":{"department_name":"Computer Science & Engineering"}}]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:10:39.088Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"308-pDDYWKVdPohWggaqWVj9C1p/tjI\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:10:39.246Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:10:39.088Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"308-pDDYWKVdPohWggaqWVj9C1p/tjI\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:10:39.247Z
+  Response Data: {"department":[{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null},{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":{"first_name":"Harsh","last_name":"Acharya","college_uid":"dsec/faculty/007"}},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":{"first_name":"Divya","last_name":"Kumar","college_uid":"dsec/faculty/008"}}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:10:46.201Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"308-pDDYWKVdPohWggaqWVj9C1p/tjI\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:10:46.356Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:10:46.201Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"308-pDDYWKVdPohWggaqWVj9C1p/tjI\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:10:46.357Z
+  Response Data: {"department":[{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null},{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":{"first_name":"Harsh","last_name":"Acharya","college_uid":"dsec/faculty/007"}},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":{"first_name":"Divya","last_name":"Kumar","college_uid":"dsec/faculty/008"}}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:10:46.360Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"308-pDDYWKVdPohWggaqWVj9C1p/tjI\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:10:46.520Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:10:46.360Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"308-pDDYWKVdPohWggaqWVj9C1p/tjI\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:10:46.520Z
+  Response Data: {"department":[{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null},{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":{"first_name":"Harsh","last_name":"Acharya","college_uid":"dsec/faculty/007"}},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":{"first_name":"Divya","last_name":"Kumar","college_uid":"dsec/faculty/008"}}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:10:50.048Z
+  Method: GET
+  URL: /api/v1/department/4/4
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:10:50.078Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:10:50.048Z
+  Method: GET
+  URL: /api/v1/department/4/4
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:10:50.079Z
+  Response Data: {"message":"Internal Server Error"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:10:50.082Z
+  Method: GET
+  URL: /api/v1/department/4/4
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:10:50.086Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:10:50.082Z
+  Method: GET
+  URL: /api/v1/department/4/4
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:10:50.087Z
+  Response Data: {"message":"Internal Server Error"}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:10:53.136Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"308-pDDYWKVdPohWggaqWVj9C1p/tjI\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:10:53.291Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:10:53.136Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"308-pDDYWKVdPohWggaqWVj9C1p/tjI\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:10:53.292Z
+  Response Data: {"department":[{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null},{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":{"first_name":"Harsh","last_name":"Acharya","college_uid":"dsec/faculty/007"}},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":{"first_name":"Divya","last_name":"Kumar","college_uid":"dsec/faculty/008"}}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:10:53.294Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"308-pDDYWKVdPohWggaqWVj9C1p/tjI\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:10:53.454Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:10:53.294Z
+  Method: GET
+  URL: /api/v1/department/list-of-department
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","x-institution-id":"4","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"308-pDDYWKVdPohWggaqWVj9C1p/tjI\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:10:53.454Z
+  Response Data: {"department":[{"department_id":3,"department_name":"Civil Engineering","department_code":"CE","users":null},{"department_id":4,"department_name":"Mechanical Engineering","department_code":"ME","users":null},{"department_id":5,"department_name":"Electrical Engineering","department_code":"EE","users":null},{"department_id":6,"department_name":"Information Technology","department_code":"IT","users":null},{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","users":{"first_name":"Harsh","last_name":"Acharya","college_uid":"dsec/faculty/007"}},{"department_id":2,"department_name":"Electronics & Communication Engineering","department_code":"ECE","users":{"first_name":"Divya","last_name":"Kumar","college_uid":"dsec/faculty/008"}}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:10:58.949Z
+  Method: GET
+  URL: /api/v1/timeslots
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"3a9-fQZvMF3sgyw5iTGgThfYU9bul68\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:10:59.915Z
+  Response Data: {"success":true,"data":[{"slot_id":29,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:14:31.262Z","classes":[]},{"slot_id":31,"start_time":"11:00:00","end_time":"12:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:17:49.403Z","classes":[]},{"slot_id":32,"start_time":"12:00:00","end_time":"13:00:00","day_of_week":1,"slot_type":"special","created_at":"2024-11-25T19:18:49.335Z","classes":[]},{"slot_id":34,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":2,"slot_type":"regular","created_at":"2024-11-25T19:20:52.286Z","classes":[]},{"slot_id":33,"start_time":"04:30:00","end_time":"05:30:00","day_of_week":4,"slot_type":"regular","created_at":"2024-11-25T19:19:58.297Z","classes":[]},{"slot_id":36,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":5,"slot_type":"regular","created_at":"2024-11-26T12:54:16.693Z","classes":[]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:10:59.918Z
+  Method: GET
+  URL: /api/v1/timeslots
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"3a9-fQZvMF3sgyw5iTGgThfYU9bul68\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:11:00.072Z
+  Response Data: {"success":true,"data":[{"slot_id":29,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:14:31.262Z","classes":[]},{"slot_id":31,"start_time":"11:00:00","end_time":"12:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:17:49.403Z","classes":[]},{"slot_id":32,"start_time":"12:00:00","end_time":"13:00:00","day_of_week":1,"slot_type":"special","created_at":"2024-11-25T19:18:49.335Z","classes":[]},{"slot_id":34,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":2,"slot_type":"regular","created_at":"2024-11-25T19:20:52.286Z","classes":[]},{"slot_id":33,"start_time":"04:30:00","end_time":"05:30:00","day_of_week":4,"slot_type":"regular","created_at":"2024-11-25T19:19:58.297Z","classes":[]},{"slot_id":36,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":5,"slot_type":"regular","created_at":"2024-11-26T12:54:16.693Z","classes":[]}]}
+  -------------------------
+  
