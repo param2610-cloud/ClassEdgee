@@ -6,10 +6,10 @@ import { createRoom, getRoomsOnFloor, getRoomDetails, updateRoom, deleteRoom } f
 
 
 router.post('/', createRoom);
-router.get('/floors/:floor_number/', getRoomsOnFloor);
-router.get('/:room_id', getRoomDetails);
-router.put('/:room_id', updateRoom);
-router.delete('/:room_id', deleteRoom);
+router.get('/floors/:floor_number', getRoomsOnFloor);
+router.get('/:room_number', getRoomDetails);
+router.put('/:room_number', updateRoom);
+router.delete('/:room_number', deleteRoom);
 
 
 

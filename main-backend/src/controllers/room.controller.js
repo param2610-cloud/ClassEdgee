@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 
-// Remove the local RoomType enum since it's now defined in the Prisma schema
+
 const prismaClient = new PrismaClient();
 
 // Create a new room
@@ -90,7 +90,7 @@ const getRoomsOnFloor = async (req, res) => {
     const mainBuildingId = 1;
     const rooms = await prismaClient.rooms.findMany({
       where: {
-        building_id: mainBuildingId,
+       
         floor_number: parseInt(floor_number)
       },
       orderBy: {
@@ -113,9 +113,9 @@ const getRoomsOnFloor = async (req, res) => {
 // Get room details
 const getRoomDetails = async (req, res) => {
   try {
-    const { room_id } = req.params;
+    const { room_number } = req.params;
     const room = await prismaClient.rooms.findUnique({
-      where: { room_id: parseInt(room_id) },
+      where: { room_number: room_number },
       include: {
         buildings: true,
         classes: true
@@ -145,7 +145,7 @@ const getRoomDetails = async (req, res) => {
 // Update room details
 const updateRoom = async (req, res) => {
   try {
-    const { room_id } = req.params;
+    const { room_number} = req.params;
     const updateData = req.body;
 
     // Validate room type if provided
@@ -159,7 +159,7 @@ const updateRoom = async (req, res) => {
     }
 
     const updatedRoom = await prismaClient.rooms.update({
-      where: { room_id: parseInt(room_id) },
+      where: { room_number: room_number },
       data: {
         ...updateData,
         updated_at: new Date()
@@ -198,10 +198,10 @@ const updateRoom = async (req, res) => {
 // Delete room
 const deleteRoom = async (req, res) => {
   try {
-    const { room_id } = req.params;
+    const { room_number } = req.params;
     // First find the room
     const room = await prismaClient.rooms.findUnique({
-      where: { room_id: parseInt(room_id) },
+      where: { room_number: room_number },
     });
     if (!room) {
       return res.status(404).send({
@@ -211,7 +211,7 @@ const deleteRoom = async (req, res) => {
     }
     // Delete room record
     await prismaClient.rooms.delete({
-      where: { room_id: parseInt(room_id) },
+      where: { room_number: room_number },
     });
     res.status(200).send({
       success: true,

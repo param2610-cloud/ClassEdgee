@@ -24,7 +24,7 @@ import CreateTeacher from "./pages/Protected/coordinator/teachers/create/CreateT
 import CoordinatorDashboard from "./pages/Protected/coordinator/dashaboard/CoordinatorDashboard";
 import CreateStudent from "./pages/Protected/coordinator/student/create/CreateStudent";
 import CoordinatorStudent from "./pages/Protected/coordinator/student/CoordinatorStudent";
-
+import Createroom from "./pages/Protected/coordinator/rooms/Createroom";
 import TeacherEditProfile from "./pages/Protected/coordinator/teachers/edit/Teacheredit";
 import CoordinatorFaculty from "./pages/Protected/coordinator/teachers/CoordinatorFaculty";
 import CreateFacultyForm from "./pages/Protected/coordinator/teachers/create/CreateTeacher";
@@ -150,6 +150,7 @@ const CoordinatorRoutes: React.FC = () => (
             <Route path="/department" element={<DepartmentLayout />} />
             <Route path="/department/:id" element={<DetailDepartment />} />
             <Route path="/department/create" element={<AddDepartmentForm />} />
+            <Route path="/roomCreation" element={<Createroom />} />
             <Route path="/course" element={<CourseDashboard />} />
             <Route path="/course/:id" element={<SpecificCourseDashboard />} />
             <Route
