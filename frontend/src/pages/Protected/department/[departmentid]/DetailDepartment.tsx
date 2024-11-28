@@ -31,16 +31,19 @@ import {
   Phone,
   Mail
 } from 'lucide-react';
-import { Department } from '@/interface/general';
+import { Department, User } from '@/interface/general';
 import { domain } from '@/lib/constant';
 import axios from 'axios';
 import { useToast } from '@/hooks/use-toast';
 import { useAtom } from 'jotai';
 import { institutionIdAtom } from '@/store/atom';
+import { useAuth } from '@/services/AuthContext';
 
 const DepartmentDetails = () => {
   const navigate = useNavigate()
+  const {user} = useAuth()
   const [department, setDepartment] = useState<Department|null>(null);
+  const [profileData,setProfileData] = useState<User|null>(null)
   const [loading, setLoading] = useState(true);
   const [institution_id,setInstitutionId] = useAtom(institutionIdAtom)
   console.log(institution_id);
@@ -50,10 +53,18 @@ const DepartmentDetails = () => {
       
       setInstitutionId(localStorage.getItem('institution_id') as string)
       console.log('after institution id',institution_id);
+    }
+    if(!profileData){
+      fetchProfile()
     }else{
       fetchDepartmentDetails()
-    }
-  },[institution_id])
+    } 
+  },[institution_id,user,profileData])
+  const fetchProfile = async () => {
+    const response = await axios.get(`${domain}/api/v1/faculty/get-faculty/${user?.user_id}`);
+  const { data } = response.data; 
+  setProfileData(data);
+  }
   const {toast} = useToast()
   const [newSection, setNewSection] = useState({
     section_name: '',
@@ -69,7 +80,7 @@ const DepartmentDetails = () => {
 
   const fetchDepartmentDetails = async () => {
     try {
-      const response = await axios.get(`${domain}/api/v1/department/${department?.department_id}/${institution_id}`,);
+      const response = await axios.get(`${domain}/api/v1/department/${profileData?.departments[0].department_id}/${institution_id}`,);
       const data = await response.data.department;
       setDepartment(data);
       console.log(data);
