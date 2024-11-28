@@ -50,8 +50,8 @@ import VirtualRoom from "./pages/Protected/faculty/InteractiveClassroom";
 import AddBatchSyllabus from "./pages/Protected/coordinator/course/AddBatchSyllabus";
 import AddHod from "./pages/Protected/department/[departmentid]/AddHod";
 import Profilepage from "./pages/Protected/faculty/profile/Profilepage";
-import DepartmentDetails from "./pages/Protected/faculty/Department/Details/DepartmentDetails";
 import DepartmentSyllabus from "./pages/Protected/faculty/Department/syllabus/DepartmentSyllabus";
+import DepartmentDetails from "./pages/Protected/department/[departmentid]/DetailDepartment";
 
 const App: React.FC = () => {
     return (

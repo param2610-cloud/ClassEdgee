@@ -1,5 +1,5 @@
 import  { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { 
   Card, 
   CardHeader, 
@@ -39,7 +39,6 @@ import { useAtom } from 'jotai';
 import { institutionIdAtom } from '@/store/atom';
 
 const DepartmentDetails = () => {
-  const { id } = useParams();
   const navigate = useNavigate()
   const [department, setDepartment] = useState<Department|null>(null);
   const [loading, setLoading] = useState(true);
@@ -54,7 +53,7 @@ const DepartmentDetails = () => {
     }else{
       fetchDepartmentDetails()
     }
-  },[institution_id,id])
+  },[institution_id])
   const {toast} = useToast()
   const [newSection, setNewSection] = useState({
     section_name: '',
@@ -63,15 +62,14 @@ const DepartmentDetails = () => {
     semester: 1,
     student_count: 0,
     academic_year: new Date().getFullYear(),
-    department_id:id,
+    department_id:department?.department_id,
     institution_id:institution_id
   });
 
 
   const fetchDepartmentDetails = async () => {
     try {
-      
-      const response = await axios.get(`${domain}/api/v1/department/${id}/${institution_id}`,);
+      const response = await axios.get(`${domain}/api/v1/department/${department?.department_id}/${institution_id}`,);
       const data = await response.data.department;
       setDepartment(data);
       console.log(data);
