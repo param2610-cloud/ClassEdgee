@@ -31,7 +31,7 @@ const registerInstitution = async (req, res) => {
         const newAdminUser =await prisma.users.create({
             data:{
                 college_uid: user_user_id,
-                password_hash: user_password_hash,
+                password_hash: hashedPassword,
                 email: user_email,
                 role: user_role?user_role:"admin",
                 first_name: user_firstname,
@@ -203,4 +203,73 @@ const coordinatorcreate = async (req, res) => {
     }
 };
 
-export { registerInstitution, adminLogin, coordinatorcreate };
+const listOfCoordinators = async (req, res) => {
+    try {
+        // Extract pagination and filter parameters from the request query
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+        const skip = (page - 1) * limit;
+
+        // Optional filtering parameters
+        const filters = {
+            role: 'coordinator',
+            institution_id: req.query.institution_id, // Optional: filter by institution
+            // Add more filter options as needed
+        };
+
+        // Remove undefined filter values
+        Object.keys(filters).forEach(key => 
+            filters[key] === undefined && delete filters[key]
+        );
+
+        // Fetch coordinators with pagination and filtering
+        const coordinators = await prisma.users.findMany({
+            where: filters,
+            select: {
+               
+                college_uid: true,
+                email: true,
+                first_name: true,
+                last_name: true,
+                institution_id: true,
+                created_at: true
+            },
+            skip: skip,
+            take: limit,
+            orderBy: {
+                created_at: 'desc' // Most recent coordinators first
+            }
+        });
+
+        // Count total number of coordinators for pagination metadata
+        const totalCoordinators = await prisma.users.count({
+            where: filters
+        });
+
+        // Calculate total pages
+        const totalPages = Math.ceil(totalCoordinators / limit);
+
+        // Prepare response
+        res.status(200).json({
+            message: 'Coordinators retrieved successfully',
+            data: coordinators,
+            pagination: {
+                currentPage: page,
+                totalPages: totalPages,
+                totalCoordinators: totalCoordinators,
+                limit: limit
+            }
+        });
+
+    } catch (error) {
+        console.error('Error in listCoordinators:', error);
+        res.status(500).json({
+            message: 'Internal server error',
+            error: error.message
+        });
+    }
+};
+
+
+
+export { registerInstitution, adminLogin, coordinatorcreate,listOfCoordinators };
