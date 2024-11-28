@@ -49,6 +49,9 @@ import FacultyLayout from "./pages/Protected/faculty/FacultyLayout";
 import VirtualRoom from "./pages/Protected/faculty/InteractiveClassroom";
 import AddBatchSyllabus from "./pages/Protected/coordinator/course/AddBatchSyllabus";
 import AddHod from "./pages/Protected/department/[departmentid]/AddHod";
+import Profilepage from "./pages/Protected/faculty/profile/Profilepage";
+import DepartmentDetails from "./pages/Protected/faculty/Department/Details/DepartmentDetails";
+import DepartmentSyllabus from "./pages/Protected/faculty/Department/syllabus/DepartmentSyllabus";
 
 const App: React.FC = () => {
     return (
@@ -124,6 +127,22 @@ const FacultyRoutes: React.FC = () => (
         <Routes>
             <Route path="/" element={<FacultyLMSDashboard />} />
             <Route path="/interactive-classroom" element={<VirtualRoom />} />
+            <Route path="/profile-page" element={<Profilepage />} />
+            <Route path="/department" element={<DepartmentDetails />} />
+            <Route path="/department-syllabus" element={<CourseDashboard />} />
+            <Route path="/course/:id" element={<SpecificCourseDashboard />} />
+            <Route
+                path="/course/:course_id/semester/:semester_id/:syllabus_id"
+                element={<SubjectManagement />}
+            />
+            <Route
+                path="department/:department_id/add-syllabus/:course_id"
+                element={<AddBatchSyllabus />}
+            />
+            <Route
+                path="/course/:course_id/semester/:semester_id/syllabus/:syllabus_id/subject/:subject_id"
+                element={<UnitTopicManagement />}
+            />
         </Routes>
     </FacultyLayout>
 );

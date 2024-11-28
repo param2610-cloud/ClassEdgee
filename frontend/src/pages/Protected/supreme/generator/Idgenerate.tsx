@@ -478,7 +478,7 @@ import {
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { toast } from "sonner";
+import { toast } from '@/hooks/use-toast';
 import { domain } from '@/lib/constant';
 import { useAtom } from 'jotai';
 import { institutionIdAtom } from '@/store/atom';
@@ -523,7 +523,7 @@ const Idgenerate = () => {
     }
   });
   const [institution_Id] = useAtom(institutionIdAtom);
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: any) => {
     setIsLoading(true);
     try {
       const response = await axios.post(`${domain}/api/v1/supreme/coordinator-create`, {
@@ -535,14 +535,14 @@ const Idgenerate = () => {
         password: data.password
       });
 
-      toast.success('Coordinator created successfully', {
+      toast({title:'Coordinator created successfully', 
         description: response.data.message
       });
 
       // Reset form after successful submission
       form.reset();
-    } catch (error) {
-      toast.error('Error creating coordinator', {
+    } catch (error: any) {
+      toast({title:'Error creating coordinator', 
         description: error.response?.data?.message || 'An unexpected error occurred'
       });
     } finally {

@@ -172,6 +172,11 @@ const add_hod_to_department = async (req, res) => {
     }
 };
 
+
+
+//head of department controller 
+
+
 export {
     list_of_department,
     add_department,

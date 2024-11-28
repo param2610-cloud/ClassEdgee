@@ -543,11 +543,8 @@ const getUniqueFaculty = async (req, res) => {
         const faculty = await prisma.users.findUnique({
             where: { user_id: Number(id) },
             include: {
-                faculty: {
-                    include: {
-                        departments: true,
-                    },
-                },
+                faculty: true,
+                departments:true
             },
         });
 
