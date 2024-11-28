@@ -14819,3 +14819,63 @@
   Response Data: {"success":true,"data":[{"slot_id":29,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:14:31.262Z","classes":[]},{"slot_id":31,"start_time":"11:00:00","end_time":"12:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:17:49.403Z","classes":[]},{"slot_id":32,"start_time":"12:00:00","end_time":"13:00:00","day_of_week":1,"slot_type":"special","created_at":"2024-11-25T19:18:49.335Z","classes":[]},{"slot_id":34,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":2,"slot_type":"regular","created_at":"2024-11-25T19:20:52.286Z","classes":[]},{"slot_id":33,"start_time":"04:30:00","end_time":"05:30:00","day_of_week":4,"slot_type":"regular","created_at":"2024-11-25T19:19:58.297Z","classes":[]},{"slot_id":36,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":5,"slot_type":"regular","created_at":"2024-11-26T12:54:16.693Z","classes":[]}]}
   -------------------------
   
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:44:26.308Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNzk1ODMxLCJleHAiOjE3MzI5Njg2MzF9.v7t4BfGtVlEQRDCTipKXv-LxUP09Wii-qFwp-UUubUE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"institution_id=4; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNzk1ODMxLCJleHAiOjE3MzM0MDA2MzF9.J6nChxG8SH6uoL-nFd_J0vqIvKCI5uoLeGvhXNqI8F4; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNzk1ODMxLCJleHAiOjE3MzI5Njg2MzF9.v7t4BfGtVlEQRDCTipKXv-LxUP09Wii-qFwp-UUubUE","if-none-match":"W/\"2b5-KvrOuV70/ny/PlaTIKJ45mgRl9c\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:44:27.911Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-28T12:10:31.776Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNzk1ODMxLCJleHAiOjE3MzM0MDA2MzF9.J6nChxG8SH6uoL-nFd_J0vqIvKCI5uoLeGvhXNqI8F4","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:44:27.917Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNzk1ODMxLCJleHAiOjE3MzI5Njg2MzF9.v7t4BfGtVlEQRDCTipKXv-LxUP09Wii-qFwp-UUubUE","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"institution_id=4; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNzk1ODMxLCJleHAiOjE3MzM0MDA2MzF9.J6nChxG8SH6uoL-nFd_J0vqIvKCI5uoLeGvhXNqI8F4; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNzk1ODMxLCJleHAiOjE3MzI5Njg2MzF9.v7t4BfGtVlEQRDCTipKXv-LxUP09Wii-qFwp-UUubUE","if-none-match":"W/\"2b5-KvrOuV70/ny/PlaTIKJ45mgRl9c\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:44:28.010Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3,"uuid":"97cc745e-b975-4d4b-ada9-981f2905aee5","email":"coordinator@dsec.com","password_hash":"$2b$10$QX6ycPyTtr5lo3MQ26XlYu0IQGtsxtFHXoe4blJNUiEk6lGf9NcVq","role":"coordinator","first_name":"Parambrata","last_name":"Ghosh","profile_picture":null,"phone_number":null,"created_at":"2024-11-17T13:15:46.805Z","last_login":"2024-11-28T12:10:31.776Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvb3JkaW5hdG9yQGRzZWMuY29tIiwiaWF0IjoxNzMyNzk1ODMxLCJleHAiOjE3MzM0MDA2MzF9.J6nChxG8SH6uoL-nFd_J0vqIvKCI5uoLeGvhXNqI8F4","college_uid":"dsec/coordinator/01","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:44:27.958Z
+  Method: GET
+  URL: /api/v1/timeslots
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"3a9-fQZvMF3sgyw5iTGgThfYU9bul68\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:44:28.919Z
+  Response Data: {"success":true,"data":[{"slot_id":29,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:14:31.262Z","classes":[]},{"slot_id":31,"start_time":"11:00:00","end_time":"12:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:17:49.403Z","classes":[]},{"slot_id":32,"start_time":"12:00:00","end_time":"13:00:00","day_of_week":1,"slot_type":"special","created_at":"2024-11-25T19:18:49.335Z","classes":[]},{"slot_id":34,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":2,"slot_type":"regular","created_at":"2024-11-25T19:20:52.286Z","classes":[]},{"slot_id":33,"start_time":"04:30:00","end_time":"05:30:00","day_of_week":4,"slot_type":"regular","created_at":"2024-11-25T19:19:58.297Z","classes":[]},{"slot_id":36,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":5,"slot_type":"regular","created_at":"2024-11-26T12:54:16.693Z","classes":[]}]}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-11-28T12:44:28.922Z
+  Method: GET
+  URL: /api/v1/timeslots
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"3a9-fQZvMF3sgyw5iTGgThfYU9bul68\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-11-28T12:44:29.089Z
+  Response Data: {"success":true,"data":[{"slot_id":29,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:14:31.262Z","classes":[]},{"slot_id":31,"start_time":"11:00:00","end_time":"12:00:00","day_of_week":1,"slot_type":"regular","created_at":"2024-11-25T19:17:49.403Z","classes":[]},{"slot_id":32,"start_time":"12:00:00","end_time":"13:00:00","day_of_week":1,"slot_type":"special","created_at":"2024-11-25T19:18:49.335Z","classes":[]},{"slot_id":34,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":2,"slot_type":"regular","created_at":"2024-11-25T19:20:52.286Z","classes":[]},{"slot_id":33,"start_time":"04:30:00","end_time":"05:30:00","day_of_week":4,"slot_type":"regular","created_at":"2024-11-25T19:19:58.297Z","classes":[]},{"slot_id":36,"start_time":"10:00:00","end_time":"11:00:00","day_of_week":5,"slot_type":"regular","created_at":"2024-11-26T12:54:16.693Z","classes":[]}]}
+  -------------------------
+  
