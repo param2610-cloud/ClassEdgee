@@ -48,6 +48,7 @@ import FacultyLMSDashboard from "./pages/Protected/faculty/FacultyDashboard";
 import FacultyLayout from "./pages/Protected/faculty/FacultyLayout";
 import VirtualRoom from "./pages/Protected/faculty/InteractiveClassroom";
 import AddBatchSyllabus from "./pages/Protected/coordinator/course/AddBatchSyllabus";
+import AddHod from "./pages/Protected/department/[departmentid]/AddHod";
 
 const App: React.FC = () => {
     return (
@@ -166,6 +167,7 @@ const CoordinatorRoutes: React.FC = () => (
                 element={<UnitTopicManagement />}
             />
             <Route path="/classes" element={<TimeslotManagement/>} />
+            <Route path="department/:department_id/add-hod" element={<AddHod/>} />
         </Routes>
     </CoordinatorLayout>
 );
