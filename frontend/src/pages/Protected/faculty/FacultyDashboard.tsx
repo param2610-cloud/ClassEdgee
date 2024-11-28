@@ -9,6 +9,8 @@ import {
     BookOpen,
     LogOut,
     Home,
+    User2,
+    List,
 } from "lucide-react";
 import { useAuth } from "@/services/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -17,8 +19,6 @@ const FacultyLMSDashboard = () => {
     const [activeSection, setActiveSection] = useState("courses");
     const {logout}= useAuth()
     const navigate = useNavigate()
-
-    // Sample data (would typically come from backend)
     const courses = [
         {
             id: 1,
@@ -127,6 +127,24 @@ const FacultyLMSDashboard = () => {
                         }`}
                     >
                         <Home className="w-6 h-6" />
+                    </button>
+                    <button
+                        onClick={()=>navigate("/p/profile-page")}
+                        className={`p-3 rounded `}
+                    >
+                        <User2 className="w-6 h-6" />
+                    </button>
+                    <button
+                        onClick={()=>navigate("/p/department")}
+                        className={`p-3 rounded `}
+                    >
+                        <Book className="w-6 h-6" />
+                    </button>
+                    <button
+                        onClick={()=>navigate("/p/department-syllabus")}
+                        className={`p-3 rounded `}
+                    >
+                        <List className="w-6 h-6" />
                     </button>
                     <button
                         onClick={logout}

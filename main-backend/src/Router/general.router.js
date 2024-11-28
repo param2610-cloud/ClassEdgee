@@ -9,10 +9,8 @@ const router = e.Router();
 
 
 function validateToken(req, res, next) {
-    console.log("hey ");
     
     let token = req.header("Authorization")?.split(" ")[1];
-    console.log("token acehy",token);
     
     if (!token) {
         token = req.cookies.accessToken;
@@ -32,7 +30,6 @@ function validateToken(req, res, next) {
 
 
 router.get("/validate-token", validateToken,async (req, res) => {
-    console.log("this is",req.user);
     
     const data = await prisma.users.findUnique({ where: { email: req.user.email } });
     res.status(200).json({ message: "Token is valid", user: data });

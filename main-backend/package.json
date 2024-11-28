@@ -31,7 +31,11 @@
     "mongoose": "^8.6.3",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.15",
+    "openai": "^4.73.1",
+    "pdf-lib": "^1.17.1",
+    "pdf2json": "^3.1.4",
     "react-hook-form": "^7.53.1",
+    "textract": "^2.5.0",
     "uuid": "^11.0.3"
   }
 }

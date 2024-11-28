@@ -47,6 +47,11 @@ import TimeslotManagement from "./pages/Protected/coordinator/classes/TimeSlotTa
 import FacultyLMSDashboard from "./pages/Protected/faculty/FacultyDashboard";
 import FacultyLayout from "./pages/Protected/faculty/FacultyLayout";
 import VirtualRoom from "./pages/Protected/faculty/InteractiveClassroom";
+import AddBatchSyllabus from "./pages/Protected/coordinator/course/AddBatchSyllabus";
+import AddHod from "./pages/Protected/department/[departmentid]/AddHod";
+import Profilepage from "./pages/Protected/faculty/profile/Profilepage";
+import DepartmentSyllabus from "./pages/Protected/faculty/Department/syllabus/DepartmentSyllabus";
+import DepartmentDetails from "./pages/Protected/department/[departmentid]/DetailDepartment";
 
 const App: React.FC = () => {
     return (
@@ -122,6 +127,22 @@ const FacultyRoutes: React.FC = () => (
         <Routes>
             <Route path="/" element={<FacultyLMSDashboard />} />
             <Route path="/interactive-classroom" element={<VirtualRoom />} />
+            <Route path="/profile-page" element={<Profilepage />} />
+            <Route path="/department" element={<DepartmentDetails />} />
+            <Route path="/department-syllabus" element={<CourseDashboard />} />
+            <Route path="/course/:id" element={<SpecificCourseDashboard />} />
+            <Route
+                path="/course/:course_id/semester/:semester_id/:syllabus_id"
+                element={<SubjectManagement />}
+            />
+            <Route
+                path="department/:department_id/add-syllabus/:course_id"
+                element={<AddBatchSyllabus />}
+            />
+            <Route
+                path="/course/:course_id/semester/:semester_id/syllabus/:syllabus_id/subject/:subject_id"
+                element={<UnitTopicManagement />}
+            />
         </Routes>
     </FacultyLayout>
 );
@@ -158,10 +179,15 @@ const CoordinatorRoutes: React.FC = () => (
                 element={<SubjectManagement />}
             />
             <Route
+                path="department/:department_id/add-syllabus/:course_id"
+                element={<AddBatchSyllabus />}
+            />
+            <Route
                 path="/course/:course_id/semester/:semester_id/syllabus/:syllabus_id/subject/:subject_id"
                 element={<UnitTopicManagement />}
             />
             <Route path="/classes" element={<TimeslotManagement/>} />
+            <Route path="department/:department_id/add-hod" element={<AddHod/>} />
         </Routes>
     </CoordinatorLayout>
 );

@@ -37,7 +37,6 @@ import sectionRouter from './src/Router/section.router.js'
 import curriculumRouter from "./src/Router/curriculum.router.js";
 import timeslotRouter from './src/Router/timeslot.router.js';
 import supremeRouter from './src/Router/supreme.router.js';
-import room from './src/Router/room.router.js';
 //interactive classroom routes
 import feedbackRoutes from './src/Router/InteractiveClassroom/feedback.router.js'
 import courseRoutes from './src/Router/InteractiveClassroom/course.router.js'
@@ -64,7 +63,9 @@ app.use("/api/v1/section",sectionRouter)
 app.use("/api/v1/curriculum",curriculumRouter)
 app.use('/api/v1/timeslots', timeslotRouter)
 app.use("/api/v1/supreme",supremeRouter)
-app.use("/api/v1/room",room)
+//principal form data register 
+//principal login
+
 
 
 //interactive classroom
@@ -75,8 +76,8 @@ app.use('/api/v1/sessions', sessionRoutes);
 app.use('/api/v1/analogistics',analogisticRouters)
 
 
-
-
+//import timeslotRouter from './src/Router/timeslot.router.js';
+//app.use('/api/v1/timeslots', timeslotRouter);
 
 
 app.get("/", (req, res) => {

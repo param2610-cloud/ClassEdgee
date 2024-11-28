@@ -4,6 +4,16 @@ export default {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
         extend: {
+            "slide-in-up": {
+                "0%": {
+                    opacity: "0",
+                    transform: "translateY(20px)",
+                },
+                "100%": {
+                    opacity: "1",
+                    transform: "translateY(0)",
+                },
+            },
             borderRadius: {
                 lg: "var(--radius)",
                 md: "calc(var(--radius) - 2px)",
@@ -51,6 +61,9 @@ export default {
                     5: "hsl(var(--chart-5))",
                 },
             },
+        },
+        animation: {
+            "slide-in-up": "slide-in-up 0.5s ease-out",
         },
     },
     plugins: [require("tailwindcss-animate")],
