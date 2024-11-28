@@ -52,6 +52,7 @@ import AddHod from "./pages/Protected/department/[departmentid]/AddHod";
 import Profilepage from "./pages/Protected/faculty/profile/Profilepage";
 import DepartmentSyllabus from "./pages/Protected/faculty/Department/syllabus/DepartmentSyllabus";
 import DepartmentDetails from "./pages/Protected/department/[departmentid]/DetailDepartment";
+import CourseDashboardForFaculty from "./pages/Protected/faculty/Course/CourseDashboardForFaculty";
 
 const App: React.FC = () => {
     return (
@@ -129,7 +130,7 @@ const FacultyRoutes: React.FC = () => (
             <Route path="/interactive-classroom" element={<VirtualRoom />} />
             <Route path="/profile-page" element={<Profilepage />} />
             <Route path="/department" element={<DepartmentDetails />} />
-            <Route path="/department-syllabus" element={<CourseDashboard />} />
+            <Route path="/department-syllabus" element={<CourseDashboardForFaculty />} />
             <Route path="/course/:id" element={<SpecificCourseDashboard />} />
             <Route
                 path="/course/:course_id/semester/:semester_id/:syllabus_id"

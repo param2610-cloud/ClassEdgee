@@ -1,5 +1,5 @@
 import  { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { 
   Card, 
   CardHeader, 
@@ -42,6 +42,7 @@ import { useAuth } from '@/services/AuthContext';
 const DepartmentDetails = () => {
   const navigate = useNavigate()
   const {user} = useAuth()
+  const {id} = useParams()
   const [department, setDepartment] = useState<Department|null>(null);
   const [profileData,setProfileData] = useState<User|null>(null)
   const [loading, setLoading] = useState(true);
@@ -54,12 +55,15 @@ const DepartmentDetails = () => {
       setInstitutionId(localStorage.getItem('institution_id') as string)
       console.log('after institution id',institution_id);
     }
-    if(!profileData){
+    if(!profileData && !id){
       fetchProfile()
     }else{
       fetchDepartmentDetails()
     } 
-  },[institution_id,user,profileData])
+    if(!profileData && id){
+      fetchDepartmentDetailsByID()
+    }
+  },[institution_id,user,profileData,id])
   const fetchProfile = async () => {
     const response = await axios.get(`${domain}/api/v1/faculty/get-faculty/${user?.user_id}`);
   const { data } = response.data; 
@@ -80,7 +84,24 @@ const DepartmentDetails = () => {
 
   const fetchDepartmentDetails = async () => {
     try {
+      console.log(profileData);
+      
       const response = await axios.get(`${domain}/api/v1/department/${profileData?.departments[0].department_id}/${institution_id}`,);
+      const data = await response.data.department;
+      setDepartment(data);
+      console.log(data);
+      
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching department details:', error);
+      setLoading(false);
+    }
+  };
+  const fetchDepartmentDetailsByID = async () => {
+    try {
+      console.log(profileData);
+      
+      const response = await axios.get(`${domain}/api/v1/department/${id}/${institution_id}`,);
       const data = await response.data.department;
       setDepartment(data);
       console.log(data);
