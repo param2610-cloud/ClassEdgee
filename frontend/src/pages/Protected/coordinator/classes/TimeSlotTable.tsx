@@ -4,6 +4,7 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/componen
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { domain } from '@/lib/constant';
 
 const TimeslotManagement = () => {
   const [timeslots, setTimeslots] = useState([]);
@@ -22,7 +23,7 @@ const TimeslotManagement = () => {
 
   const fetchTimeslots = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/v1/timeslots');
+      const response = await axios.get(`${domain}/api/v1/timeslots`);
       console.log('API Response:', response.data.data);
       setTimeslots(response.data.data);
       setError(null);

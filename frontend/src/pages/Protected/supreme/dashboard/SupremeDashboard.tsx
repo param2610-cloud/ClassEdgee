@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import PrincipalList from './Listofprincipal';
+import Listofcoordinator from './Listofcoordinator';
 
 const SupremeDashboard = () => {
   const navigate = useNavigate();
@@ -22,9 +22,9 @@ const SupremeDashboard = () => {
         </button>
       </div>
 
-      {/* Principal List */}
+      {/* Coordinator List */}
       <div className="w-full md:w-2/3">
-        <PrincipalList />
+        <Listofcoordinator />
       </div>
     </div>
   );
