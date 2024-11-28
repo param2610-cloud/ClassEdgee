@@ -491,10 +491,10 @@ const coordinatorSchema = z.object({
   collegeUid: z.string().min(4, { message: "College UID must be at least 4 characters" }),
   institutionId: z.coerce.number().min(1, { message: "Institution ID is required" }),
   password: z.string()
-    .min(8, { message: "Password must be at least 8 characters" })
-    .regex(/[A-Z]/, { message: "Password must contain at least one uppercase letter" })
-    .regex(/[a-z]/, { message: "Password must contain at least one lowercase letter" })
-    .regex(/[0-9]/, { message: "Password must contain at least one number" }),
+    .min(4, { message: "Password must be at least 8 characters" }),
+   
+   
+   
   confirmPassword: z.string()
 });
 
@@ -631,23 +631,7 @@ const Idgenerate = () => {
                 )}
               />
 
-              <FormField
-                control={form.control}
-                name="institutionId"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Institution ID</FormLabel>
-                    <FormControl>
-                      <Input 
-                        placeholder="Enter institution ID" 
-                        {...field} 
-                         
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+             
 
               <FormField
                 control={form.control}
