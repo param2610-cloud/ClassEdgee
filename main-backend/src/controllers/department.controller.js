@@ -89,11 +89,10 @@ const add_department = async (req, res) => {
 
 const specific_department_details = async (req, res) => {
     try {
-        const { department_id, institute_id } = req.params;
+        const { department_id } = req.params;
         const department = await prisma.departments.findUnique({
             where: {
                 department_id: parseInt(department_id),
-                institution_id: parseInt(institute_id),
             },
             include: {
                 users: true,

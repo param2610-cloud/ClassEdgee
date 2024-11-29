@@ -314,7 +314,7 @@ const DepartmentDetails = () => {
                   <TableCell>{section.max_capacity}</TableCell>
                   <TableCell>{section.semester}</TableCell>
                   <TableCell>
-                    <Button variant="ghost" size="sm">
+                    <Button variant="ghost" size="sm" onClick={() => navigate(`/p/department/${profileData?.departments[0].department_id}/section/${section.section_id}`)}>
                       View Details
                     </Button>
                   </TableCell>
