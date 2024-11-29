@@ -146,6 +146,7 @@ const FacultyRoutes: React.FC = () => (
                 path="/course/:course_id/semester/:semester_id/syllabus/:syllabus_id/subject/:subject_id"
                 element={<UnitTopicManagement />}
             />
+   
         </Routes>
     </FacultyLayout>
 );
