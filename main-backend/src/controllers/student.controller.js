@@ -506,6 +506,61 @@ const studentblukupload = async (req, res) => {
         });
     }
 };
+const listOfStudentsOfSection = async (req,res)=>{
+    try {
+        const { section_id } = req.params;
+        const students = await prismaClient.students.findMany({
+            where: {
+                sections: {
+                    section_id: parseInt(section_id),
+                },
+            },
+            include: {
+                users: true,
+                sections: true,
+            },
+        });
+        res.status(200).send({
+            students,
+        });
+    } catch (error) {
+        console.error("Error fetching student:", error);
+        res.status(500).send({
+            success: false,
+            message: "Failed to fetch student",
+            error: error.message,
+        });
+    }
+}
+const listOfStudentsOfDepartment = async (req,res)=>{
+    try {
+        console.log("listOfStudentsOfDepartment");
+        
+        const { department_id } = req.params;
+        const students = await prismaClient.students.findMany({
+            where: {
+                departments: {
+                    department_id: parseInt(department_id),
+                },
+            },
+            include: {
+                users: true,
+                sections: true,
+            },
+        });
+        res.status(200).send({
+            students,
+        });
+    } catch (error) {
+        console.error("Error fetching student:", error);
+        res.status(500).send({
+            success: false,
+            message: "Failed to fetch student",
+            error: error.message,
+        });
+    }
+}
+
 export {
     createStudent,
     loginStudent,
@@ -513,5 +568,7 @@ export {
     editStudent,
     uniqueStudent,
     deletestudent,
-    studentblukupload
+    studentblukupload,
+    listOfStudentsOfSection,
+    listOfStudentsOfDepartment
 };
