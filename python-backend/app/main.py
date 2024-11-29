@@ -11,6 +11,7 @@ from psycopg2.extras import execute_values
 from datetime import datetime, date
 import bcrypt
 from student.studentRouter import student_router
+from face_recognition.face_recognition import face_recognition_router
 
 # Load environment variables
 load_dotenv()
@@ -349,6 +350,7 @@ async def get_faculty(faculty_id: int):
 # Include the router in the app
 app.include_router(faculty_router)
 app.include_router(student_router)
+app.include_router(face_recognition_router)
 
 # Optional: Add a root endpoint
 @app.get("/")

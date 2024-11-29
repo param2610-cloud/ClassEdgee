@@ -159,7 +159,7 @@ const SectionDashboard: React.FC = () => {
                                         Enroll Students
                                     </Button>
                                 </DialogTrigger>
-                                <DialogContent className="max-w-2xl">
+                                <DialogContent className="max-w-3xl">
                                     <DialogHeader>
                                         <DialogTitle>
                                             Enroll Students to Section
@@ -212,7 +212,10 @@ const SectionDashboard: React.FC = () => {
                                                         </TableHeader>
                                                         <TableBody>
                                                             {students.map(
-                                                                (student) => (
+                                                                (student) => {
+                                                                    if(student.batch_year === sectionDetails.batch_year){
+
+                                                                    return (
                                                                     <TableRow
                                                                         key={
                                                                             student.student_id
@@ -248,8 +251,9 @@ const SectionDashboard: React.FC = () => {
                                                                             </Button>
                                                                         </TableCell>
                                                                     </TableRow>
-                                                                )
-                                                            )}
+                                                                )}
+                                                            }
+                                                        )}
                                                         </TableBody>
                                                     </Table>
                                                 </ScrollArea>
