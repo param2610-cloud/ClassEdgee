@@ -156,6 +156,7 @@ model classes {
   rooms                                                         rooms?              @relation(fields: [room_id], references: [room_id], onDelete: NoAction, onUpdate: NoAction)
   sections                                                      sections?           @relation(fields: [section_id], references: [section_id], onDelete: NoAction, onUpdate: NoAction)
   timeslots                                                     timeslots?          @relation(fields: [slot_id], references: [slot_id], onDelete: NoAction, onUpdate: NoAction)
+  quizzes                                                       quizzes[]
   studentengagement                                             studentengagement[]
 }
 
@@ -278,24 +279,25 @@ model events {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model faculty {
-  faculty_id           Int                    @id @default(autoincrement())
-  user_id              Int?                   @unique
-  department_id        Int?
-  designation          String                 @db.VarChar(100)
-  expertise            String[]
-  qualifications       String[]
-  max_weekly_hours     Int?                   @default(40)
-  joining_date         DateTime               @db.Date
-  contract_end_date    DateTime?              @db.Date
-  research_interests   String[]
-  publications         String[]
-  created_at           DateTime?              @default(now()) @db.Timestamp(6)
-  updated_at           DateTime?              @db.Timestamp(6)
-  administrativeduties administrativeduties[]
-  classes              classes[]
-  departments          departments?           @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction)
-  users                users?                 @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
-  facultyavailability  facultyavailability[]
+  faculty_id              Int                       @id @default(autoincrement())
+  user_id                 Int?                      @unique
+  department_id           Int?
+  designation             String                    @db.VarChar(100)
+  expertise               String[]
+  qualifications          String[]
+  max_weekly_hours        Int?                      @default(40)
+  joining_date            DateTime                  @db.Date
+  contract_end_date       DateTime?                 @db.Date
+  research_interests      String[]
+  publications            String[]
+  created_at              DateTime?                 @default(now()) @db.Timestamp(6)
+  updated_at              DateTime?                 @db.Timestamp(6)
+  administrativeduties    administrativeduties[]
+  classes                 classes[]
+  departments             departments?              @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction)
+  users                   users?                    @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  faculty_subject_mapping faculty_subject_mapping[]
+  facultyavailability     facultyavailability[]
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -448,8 +450,6 @@ model studentengagement {
   students           students? @relation(fields: [student_id], references: [student_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model students {
   student_id        Int                 @id @default(autoincrement())
   user_id           Int?                @unique
@@ -468,6 +468,7 @@ model students {
   attendance        attendance[]
   chatinteractions  chatinteractions[]
   learninganalytics learninganalytics[]
+  quiz_responses    quiz_responses[]
   studentengagement studentengagement[]
   sections          sections?           @relation(fields: [section_id], references: [section_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_section")
   departments       departments?        @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction)
@@ -527,24 +528,24 @@ model users {
 }
 
 model subject_details {
-  subject_id                        Int                 @id @default(autoincrement())
+  subject_id                        Int                       @id @default(autoincrement())
   syllabus_id                       Int?
   course_id                         Int?
   subject_type                      subject_type
-  preferred_faculty_specializations String[]            @default([])
+  preferred_faculty_specializations String[]                  @default([])
   resources_required                String[]
-  created_at                        DateTime?           @default(now()) @db.Timestamp(6)
-  updated_at                        DateTime?           @default(now()) @db.Timestamp(6)
-  subject_name                      String?             @db.VarChar(255)
-  subject_code                      String?             @db.VarChar(50)
-  syllabus_structure                syllabus_structure? @relation(fields: [syllabus_id], references: [syllabus_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_syllabus_id")
-  courses                           courses?            @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction)
+  created_at                        DateTime?                 @default(now()) @db.Timestamp(6)
+  updated_at                        DateTime?                 @default(now()) @db.Timestamp(6)
+  subject_name                      String?                   @db.VarChar(255)
+  subject_code                      String?                   @db.VarChar(50)
+  faculty_subject_mapping           faculty_subject_mapping[]
+  syllabus_structure                syllabus_structure?       @relation(fields: [syllabus_id], references: [syllabus_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_syllabus_id")
+  courses                           courses?                  @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction)
   units                             units[]
 
   @@index([syllabus_id], map: "idx_subject_syllabus")
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model syllabus_structure {
   syllabus_id     Int               @id @default(autoincrement())
   course_id       Int?
@@ -632,6 +633,59 @@ model institutions {
   departments    departments[]
   sections       sections[]
   users          users[]
+}
+
+model quiz_questions {
+  question_id    Int       @id @default(autoincrement())
+  quiz_id        Int
+  question_text  String
+  options        String[]
+  correct_answer Int
+  explanation    String?
+  created_at     DateTime? @default(now()) @db.Timestamp(6)
+  quizzes        quizzes   @relation(fields: [quiz_id], references: [quiz_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_quizzes")
+}
+
+model quiz_responses {
+  response_id     Int       @id @default(autoincrement())
+  quiz_id         Int
+  student_id      Int
+  question_id     Int
+  selected_option Int
+  is_correct      Boolean
+  created_at      DateTime? @default(now()) @db.Timestamp(6)
+  quizzes         quizzes   @relation(fields: [quiz_id], references: [quiz_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_quiz")
+  students        students  @relation(fields: [student_id], references: [student_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_students")
+}
+
+model quizzes {
+  quiz_id        Int              @id @default(autoincrement())
+  class_id       Int
+  title          String           @db.VarChar(255)
+  description    String?
+  created_by     Int
+  created_at     DateTime?        @default(now()) @db.Timestamp(6)
+  quiz_questions quiz_questions[]
+  quiz_responses quiz_responses[]
+  classes        classes          @relation(fields: [class_id], references: [class_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_classes")
+}
+
+model userpushstreams {
+  user_id   Int      @id @default(autoincrement())
+  addresses String[]
+}
+
+model faculty_subject_mapping {
+  faculty_id      Int
+  subject_id      Int
+  assigned_date   DateTime?       @default(now()) @db.Timestamp(6)
+  status          String?         @default("active") @db.VarChar(255)
+  created_at      DateTime?       @default(now()) @db.Timestamp(6)
+  updated_at      DateTime?       @default(now()) @db.Timestamp(6)
+  faculty         faculty         @relation(fields: [faculty_id], references: [faculty_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_faculty")
+  subject_details subject_details @relation(fields: [subject_id], references: [subject_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_subject")
+
+  @@id([faculty_id, subject_id])
 }
 
 enum alert_severity {

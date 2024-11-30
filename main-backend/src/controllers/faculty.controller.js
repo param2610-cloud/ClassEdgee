@@ -597,6 +597,62 @@ const deletefaculty = async (req, res) => {
     }
 };
 
+const updateFacultyExpertise = async (req, res) => {
+    try {
+        const { faculty_id,subject_id } = req.params;
+        
+        const updatedFaculty = await prisma.faculty_subject_mapping.create({
+            data:{
+                faculty_id: Number(faculty_id),
+                subject_id: Number(subject_id)
+            }
+        });
+
+        res.status(200).json({
+            success: true,
+            message: "Faculty expertise updated successfully",
+            data: updatedFaculty
+        });
+
+    } catch (error) {
+        console.error("Error updating faculty expertise:", error);
+        res.status(500).json({
+            success: false,
+            message: "Error updating faculty expertise",
+            error: error.message
+        });
+    }
+};
+// API endpoint to delete faculty-subject mapping
+const deleteFacultyExpertise = async (req, res) => {
+    try {
+        const { faculty_id, subject_id } = req.params;
+        console.log(faculty_id,subject_id);
+        
+        const deletedMapping = await prisma.faculty_subject_mapping.delete({
+            where: {
+                faculty_id_subject_id: {
+                    faculty_id: parseInt(faculty_id),
+                    subject_id: parseInt(subject_id)
+                }
+            }
+        });
+        
+        res.status(200).json({
+            success: true,
+            message: "Expertise mapping deleted successfully",
+            data: deletedMapping
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Error deleting expertise mapping",
+            error: error.message
+        });
+    }
+};
+
+
 export {
     createFaculty,
     loginfaculty,
@@ -605,4 +661,6 @@ export {
     editFaculty,
     getUniqueFaculty,
     deletefaculty,
+    updateFacultyExpertise,
+    deleteFacultyExpertise
 };

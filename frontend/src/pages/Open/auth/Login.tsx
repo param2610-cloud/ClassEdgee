@@ -43,8 +43,12 @@ const LoginPage: React.FC = () => {
       });
 
       if (response.status === 200) {
+        console.log(response);
         
         setRoleAtom(role);
+        if(role=="faculty"){
+          localStorage.setItem("department_id", response.data.faculty.faculty.department_id.toString());
+        }
         setInstitutionId(response.data.user.institutionId)
         localStorage.setItem('institution_id', response.data.user.institutionId.toString());
         console.log(response.data);
