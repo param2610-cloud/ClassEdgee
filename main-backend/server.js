@@ -77,7 +77,7 @@ app.use('/api/v1/sessions', sessionRoutes);
 app.use('/api/v1/analogistics',analogisticRouters)
 
 
-app.use("/api/v1/router", quizRouter)
+app.use("/api/v1/quizzes/", quizRouter)
 
 
 
