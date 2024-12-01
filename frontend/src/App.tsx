@@ -9,13 +9,14 @@ import {
 import { AuthProvider, useAuth } from "./services/AuthContext";
 import LandingPage from "./pages/Open/LandingPage/LandingPage";
 import LoginPage from "./pages/Open/auth/Login";
+import Registration from "./pages/Open/auth/Registration";
 
 // Import layouts
 import SupremeLayout from "./pages/Protected/supreme/SupremeLayout";
 import StudentLayout from "./pages/Protected/student/StudentLayout";
 
 // Import pages
-import Dashboard from "./pages/Protected/Dashboard";
+import Dashboard from "./pages/Protected/student/Dashboard";
 import Idgenerate from "./pages/Protected/supreme/generator/Idgenerate";
 import SupremeDashboard from "./pages/Protected/supreme/dashboard/SupremeDashboard";
 import CoordinatorLayout from "./pages/Protected/coordinator/CoordinatorLayout";
@@ -23,7 +24,7 @@ import CreateTeacher from "./pages/Protected/coordinator/teachers/create/CreateT
 import CoordinatorDashboard from "./pages/Protected/coordinator/dashaboard/CoordinatorDashboard";
 import CreateStudent from "./pages/Protected/coordinator/student/create/CreateStudent";
 import CoordinatorStudent from "./pages/Protected/coordinator/student/CoordinatorStudent";
-
+import Createroom from "./pages/Protected/coordinator/rooms/Createroom";
 import TeacherEditProfile from "./pages/Protected/coordinator/teachers/edit/Teacheredit";
 import CoordinatorFaculty from "./pages/Protected/coordinator/teachers/CoordinatorFaculty";
 import CreateFacultyForm from "./pages/Protected/coordinator/teachers/create/CreateTeacher";
@@ -42,6 +43,18 @@ import SemesterSyllabusDashboard from "./pages/Protected/coordinator/course/seme
 import SubjectManagement from "./pages/Protected/coordinator/course/semester/SemesterSyllabusCreate";
 import SpecificSubjectManagement from "./pages/Protected/coordinator/course/semester/subject/SpecificSubjectManagement";
 import UnitTopicManagement from "./pages/Protected/coordinator/course/semester/subject/SpecificSubjectManagement";
+import TimeslotManagement from "./pages/Protected/coordinator/classes/TimeSlotTable";
+import FacultyLMSDashboard from "./pages/Protected/faculty/FacultyDashboard";
+import FacultyLayout from "./pages/Protected/faculty/FacultyLayout";
+import VirtualRoom from "./pages/Protected/faculty/InteractiveClassroom";
+import AddBatchSyllabus from "./pages/Protected/coordinator/course/AddBatchSyllabus";
+import AddHod from "./pages/Protected/department/[departmentid]/AddHod";
+import Profilepage from "./pages/Protected/faculty/profile/Profilepage";
+import DepartmentSyllabus from "./pages/Protected/faculty/Department/syllabus/DepartmentSyllabus";
+import DepartmentDetails from "./pages/Protected/department/[departmentid]/DetailDepartment";
+import CourseDashboardForFaculty from "./pages/Protected/faculty/Course/CourseDashboardForFaculty";
+import SectionDashboard from "./pages/Protected/faculty/section/SectionDashboard";
+import SechduleForSemester from "./pages/Protected/faculty/sechdule/SechduleForSemester";
 
 const App: React.FC = () => {
     return (
@@ -50,6 +63,7 @@ const App: React.FC = () => {
             <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/auth/signin" element={<LoginPage />} />
+                <Route path="/auth/signup" element={<Registration />} />
                 <Route path="/p/*" element={<ProtectedRoute />} />
             </Routes>
             <Toaster />
@@ -112,11 +126,33 @@ const SupremeRoutes: React.FC = () => (
 );
 
 const FacultyRoutes: React.FC = () => (
-    <CoordinatorLayout>
+    <FacultyLayout>
         <Routes>
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/" element={<FacultyLMSDashboard />} />
+            <Route path="/interactive-classroom" element={<VirtualRoom />} />
+            <Route path="/profile-page" element={<Profilepage />} />
+            <Route path="/department" element={<DepartmentDetails />} />
+            <Route path="/department/:department_id/section/:section_id" element={<SectionDashboard />} />
+            <Route path="/department-syllabus" element={<CourseDashboardForFaculty />} />
+            <Route path="/course/:id" element={<SpecificCourseDashboard />} />
+            <Route
+                path="/course/:course_id/semester/:semester_id/:syllabus_id"
+                element={<SubjectManagement />}
+            />
+            <Route
+                path="department/:department_id/add-syllabus/:course_id"
+                element={<AddBatchSyllabus />}
+            />
+            <Route
+                path="/course/:course_id/semester/:semester_id/syllabus/:syllabus_id/subject/:subject_id"
+                element={<UnitTopicManagement />}
+            />
+            <Route
+                path="/course/:course_id/semester/:semester_id/sechdule"
+                element={<SechduleForSemester />}
+            />
         </Routes>
-    </CoordinatorLayout>
+    </FacultyLayout>
 );
 
 const StudentRoutes: React.FC = () => (
@@ -143,6 +179,7 @@ const CoordinatorRoutes: React.FC = () => (
             <Route path="/department" element={<DepartmentLayout />} />
             <Route path="/department/:id" element={<DetailDepartment />} />
             <Route path="/department/create" element={<AddDepartmentForm />} />
+            <Route path="/roomCreation" element={<Createroom />} />
             <Route path="/course" element={<CourseDashboard />} />
             <Route path="/course/:id" element={<SpecificCourseDashboard />} />
             <Route
@@ -150,9 +187,15 @@ const CoordinatorRoutes: React.FC = () => (
                 element={<SubjectManagement />}
             />
             <Route
+                path="department/:department_id/add-syllabus/:course_id"
+                element={<AddBatchSyllabus />}
+            />
+            <Route
                 path="/course/:course_id/semester/:semester_id/syllabus/:syllabus_id/subject/:subject_id"
                 element={<UnitTopicManagement />}
             />
+            <Route path="/classes" element={<TimeslotManagement/>} />
+            <Route path="department/:department_id/add-hod" element={<AddHod/>} />
         </Routes>
     </CoordinatorLayout>
 );

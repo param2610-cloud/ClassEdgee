@@ -35,12 +35,15 @@ import facultyRouter from './src/Router/faculty.router.js'
 import departmentRouter from './src/Router/department.router.js'
 import sectionRouter from './src/Router/section.router.js'
 import curriculumRouter from "./src/Router/curriculum.router.js";
+import timeslotRouter from './src/Router/timeslot.router.js';
+import supremeRouter from './src/Router/supreme.router.js';
+import roomRouter from './src/Router/room.router.js'
 //interactive classroom routes
 import feedbackRoutes from './src/Router/InteractiveClassroom/feedback.router.js'
-import courseRoutes from './src/Router/InteractiveClassroom/course.router.js'
 import activityRoutes from './src/Router/InteractiveClassroom/activity.router.js'
 import sessionRoutes from './src/Router/InteractiveClassroom/session.router.js'
 import analogisticRouters from './src/Router/InteractiveClassroom/analogistic.router.js'
+import quizRouter from "./src/Router/quizRoutes.js";
 
 //print route
 app.use((req, res, next) => {
@@ -59,6 +62,9 @@ app.use("/api/v1/faculty",facultyRouter)
 app.use("/api/v1/department",departmentRouter)
 app.use("/api/v1/section",sectionRouter)
 app.use("/api/v1/curriculum",curriculumRouter)
+app.use('/api/v1/timeslots', timeslotRouter)
+app.use("/api/v1/supreme",supremeRouter)
+app.use("/api/v1/room",roomRouter)
 //principal form data register 
 //principal login
 
@@ -66,14 +72,13 @@ app.use("/api/v1/curriculum",curriculumRouter)
 
 //interactive classroom
 app.use('/api/v1/feedback', feedbackRoutes);
-app.use('/api/v1/courses', courseRoutes);
 app.use('/api/v1/activities', activityRoutes);
 app.use('/api/v1/sessions', sessionRoutes);
 app.use('/api/v1/analogistics',analogisticRouters)
 
 
-import timeslotRouter from './src/Router/timeslot.router.js';
-app.use('/api/v1/timeslots', timeslotRouter);
+app.use("/api/v1/router", quizRouter)
+
 
 
 app.get("/", (req, res) => {

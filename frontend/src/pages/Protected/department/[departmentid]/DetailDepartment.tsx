@@ -1,5 +1,5 @@
 import  { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { 
   Card, 
   CardHeader, 
@@ -31,18 +31,44 @@ import {
   Phone,
   Mail
 } from 'lucide-react';
-import { Department } from '@/interface/general';
+import { Department, User } from '@/interface/general';
 import { domain } from '@/lib/constant';
 import axios from 'axios';
 import { useToast } from '@/hooks/use-toast';
 import { useAtom } from 'jotai';
 import { institutionIdAtom } from '@/store/atom';
+import { useAuth } from '@/services/AuthContext';
 
 const DepartmentDetails = () => {
-  const { id } = useParams();
+  const navigate = useNavigate()
+  const {user} = useAuth()
+  const {id} = useParams()
   const [department, setDepartment] = useState<Department|null>(null);
+  const [profileData,setProfileData] = useState<User|null>(null)
   const [loading, setLoading] = useState(true);
-  const [institution_id] = useAtom(institutionIdAtom)
+  const [institution_id,setInstitutionId] = useAtom(institutionIdAtom)
+  console.log(institution_id);
+  useEffect(()=>{
+    if(!institution_id){
+      console.log('no institution id',institution_id);
+      
+      setInstitutionId(localStorage.getItem('institution_id') as string)
+      console.log('after institution id',institution_id);
+    }
+    if(!profileData && !id){
+      fetchProfile()
+    }else{
+      fetchDepartmentDetails()
+    } 
+    if(!profileData && id){
+      fetchDepartmentDetailsByID()
+    }
+  },[institution_id,user,profileData,id])
+  const fetchProfile = async () => {
+    const response = await axios.get(`${domain}/api/v1/faculty/get-faculty/${user?.user_id}`);
+  const { data } = response.data; 
+  setProfileData(data);
+  }
   const {toast} = useToast()
   const [newSection, setNewSection] = useState({
     section_name: '',
@@ -51,15 +77,30 @@ const DepartmentDetails = () => {
     semester: 1,
     student_count: 0,
     academic_year: new Date().getFullYear(),
-    department_id:id,
+    department_id:department?.department_id,
     institution_id:institution_id
   });
 
-  useEffect(() => {
-    fetchDepartmentDetails();
-  }, [id]);
+
   const fetchDepartmentDetails = async () => {
     try {
+      console.log(profileData);
+      
+      const response = await axios.get(`${domain}/api/v1/department/${profileData?.departments[0].department_id}/${institution_id}`,);
+      const data = await response.data.department;
+      setDepartment(data);
+      console.log(data);
+      
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching department details:', error);
+      setLoading(false);
+    }
+  };
+  const fetchDepartmentDetailsByID = async () => {
+    try {
+      console.log(profileData);
+      
       const response = await axios.get(`${domain}/api/v1/department/${id}/${institution_id}`,);
       const data = await response.data.department;
       setDepartment(data);
@@ -103,6 +144,8 @@ const DepartmentDetails = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
+      <div className='flex w-full justify-between'>
+      <div>
       {/* Department Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
@@ -111,6 +154,13 @@ const DepartmentDetails = () => {
         <p className="text-gray-500 text-lg">
           Department Code: {department?.department_code}
         </p>
+      </div>
+      </div>
+      <div>
+        <Button onClick={()=>navigate(`/p/department/${department?.department_id}/add-hod`)}>
+          {department?.hod_user_id ? 'Edit HOD' : 'Add HOD'}
+        </Button>
+      </div>
       </div>
 
       {/* Quick Stats */}
@@ -264,7 +314,7 @@ const DepartmentDetails = () => {
                   <TableCell>{section.max_capacity}</TableCell>
                   <TableCell>{section.semester}</TableCell>
                   <TableCell>
-                    <Button variant="ghost" size="sm">
+                    <Button variant="ghost" size="sm" onClick={() => navigate(`/p/department/${profileData?.departments[0].department_id}/section/${section.section_id}`)}>
                       View Details
                     </Button>
                   </TableCell>

@@ -142,12 +142,16 @@ const createStudent = async (req, res) => {
 // Student login
 const loginStudent = async (req, res) => {
     try {
-        const { college_uid, password } = req.body;
-
+        const { email, password } = req.body;
+        if (!email || !password) {
+            return res.status(400).send({
+                message: "email and password are required",
+            });
+        }
         // Find user by college_uid
         const user = await prismaClient.users.findUnique({
             where: {
-                college_uid: college_uid,
+                email: email,
                 role: "student",
             },
         });
@@ -172,7 +176,7 @@ const loginStudent = async (req, res) => {
         }
 
         const { accessToken, refreshToken } = generateTokens(
-            college_uid,
+            user.email,
             "2d",
             "7d"
         );
@@ -193,11 +197,18 @@ const loginStudent = async (req, res) => {
             secure: process.env.NODE_ENV === "production",
             sameSite: "strict",
         });
+        res.cookie("institution_id", user.institution_id, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict",
+        });
 
         res.status(200).send({
             success: true,
             message: "Login successful",
-            token,
+            accessToken,
+            refreshToken,
+            user,
         });
     } catch (error) {
         console.error("Error in student login:", error);
@@ -495,6 +506,61 @@ const studentblukupload = async (req, res) => {
         });
     }
 };
+const listOfStudentsOfSection = async (req,res)=>{
+    try {
+        const { section_id } = req.params;
+        const students = await prismaClient.students.findMany({
+            where: {
+                sections: {
+                    section_id: parseInt(section_id),
+                },
+            },
+            include: {
+                users: true,
+                sections: true,
+            },
+        });
+        res.status(200).send({
+            students,
+        });
+    } catch (error) {
+        console.error("Error fetching student:", error);
+        res.status(500).send({
+            success: false,
+            message: "Failed to fetch student",
+            error: error.message,
+        });
+    }
+}
+const listOfStudentsOfDepartment = async (req,res)=>{
+    try {
+        console.log("listOfStudentsOfDepartment");
+        
+        const { department_id } = req.params;
+        const students = await prismaClient.students.findMany({
+            where: {
+                departments: {
+                    department_id: parseInt(department_id),
+                },
+            },
+            include: {
+                users: true,
+                sections: true,
+            },
+        });
+        res.status(200).send({
+            students,
+        });
+    } catch (error) {
+        console.error("Error fetching student:", error);
+        res.status(500).send({
+            success: false,
+            message: "Failed to fetch student",
+            error: error.message,
+        });
+    }
+}
+
 export {
     createStudent,
     loginStudent,
@@ -502,5 +568,7 @@ export {
     editStudent,
     uniqueStudent,
     deletestudent,
-    studentblukupload
+    studentblukupload,
+    listOfStudentsOfSection,
+    listOfStudentsOfDepartment
 };

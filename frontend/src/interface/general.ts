@@ -325,6 +325,8 @@ export interface Faculty {
     departments?: Department;
     users?: User;
     facultyavailability: FacultyAvailability[];
+    faculty_subject_mapping: faculty_subject_mapping[];
+
 }
 
 export interface FacultyAvailability {
@@ -545,6 +547,7 @@ export interface SubjectDetail {
     courses?: Course;
     syllabus_structure?: SyllabusStructure;
     units: Unit[];
+    faculty_subject_mapping: faculty_subject_mapping[];
 }
 
 export interface SyllabusStructure {
@@ -619,3 +622,14 @@ export interface Institution {
     sections?: Section[]; 
     users?: User[]; 
 }
+export interface faculty_subject_mapping {
+    faculty_id: number;
+    subject_id: number;
+    assigned_date?: Date; 
+    status?: string;      
+    created_at?: Date;    
+    updated_at?: Date;    
+    faculty?: Faculty;    
+    subject_details?: SubjectDetail; 
+  }
+  

@@ -193,9 +193,33 @@ const createCourseSyllabus = async (req, res) => {
 };
 
 
+const getCoursebyDepartmentId = async (req,res)=>{
+    try {
+        console.log("getCoursebyDepartmentId");
+        console.log(req.params);
+        
+        
+        const {department_id} = req.params;
+        console.log(department_id);
+        
+        const response = await prisma.courses.findMany({
+            where: {
+                department_id: parseInt(department_id)
+            }
+        })
+        res.status(201).json(response);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            error: "Failed to get syllabus",
+        });
+    }
+}
+
 export {
     createCourse,
     getAllCourses,
     getCourseById,
-    createCourseSyllabus
+    createCourseSyllabus,
+    getCoursebyDepartmentId
 }

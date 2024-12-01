@@ -4,6 +4,8 @@ import syllabusRouter from './academy/syllabus.router.js';
 import subjectRouter from './academy/subject.router.js';
 import unitRouter from './academy/unit.router.js';
 import topicRouter from './academy/topic.router.js';
+import { upload } from '../utils/multer.js';
+import { batchUploadController } from '../controllers/academy/batch.controller.js';
 
 const router =e.Router();
 
@@ -26,4 +28,6 @@ router.use('/unit',unitRouter)
 //topic router
 router.use('/topic',topicRouter)
 
+
+router.post('/batch',batchUploadController)
 export default router;

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { domain } from '@/lib/constant';
 import axios from 'axios';
 import { useAtom } from 'jotai';
-import { institutionIdAtom, roleAtom, userAtom } from '@/store/atom';
+import { institutionIdAtom, roleAtom } from '@/store/atom';
 import { enhancedLocalStorage, useAuth } from '@/services/AuthContext';
 import { UserRole } from '@/interface/general';
 
@@ -43,9 +43,14 @@ const LoginPage: React.FC = () => {
       });
 
       if (response.status === 200) {
+        console.log(response);
         
         setRoleAtom(role);
+        if(role=="faculty"){
+          localStorage.setItem("department_id", response.data.faculty.faculty.department_id.toString());
+        }
         setInstitutionId(response.data.user.institutionId)
+        localStorage.setItem('institution_id', response.data.user.institutionId.toString());
         console.log(response.data);
         
         enhancedLocalStorage.setItem('accessToken', response.data.accessToken);

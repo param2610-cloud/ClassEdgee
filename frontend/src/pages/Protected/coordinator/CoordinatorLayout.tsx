@@ -3,8 +3,10 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import {useNavigate } from 'react-router-dom';
+import { useAuth } from '@/services/AuthContext';
 const CoordinatorLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const {logout} = useAuth();
   const navigate = useNavigate();
 
   const handleNavigation = (path: string) => {
@@ -19,8 +21,8 @@ const CoordinatorLayout: React.FC<{ children: React.ReactNode }> = ({ children }
         <h1 className="text-2xl font-bold">Coordinator Dashboard</h1>
         <Sheet open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
           <SheetTrigger asChild>
-            <Button variant="outline" size="icon">
-              <Menu className="h-4 w-4" />
+            <Button variant="outline" className='text-black' size="icon">
+              <Menu className="h-4 w-4" color='black' />
             </Button>
           </SheetTrigger>
           <SheetContent side="left">
@@ -57,6 +59,12 @@ const CoordinatorLayout: React.FC<{ children: React.ReactNode }> = ({ children }
                 Reports
               </Button>
               <Button 
+                onClick={() => handleNavigation('/p/roomCreation')} 
+                 className="text-lg hover:underline"
+               >
+                CreateRoom
+                </Button>
+              <Button 
                 onClick={() => handleNavigation('/p/department')} 
                 className="text-lg hover:underline"
               >
@@ -68,15 +76,19 @@ const CoordinatorLayout: React.FC<{ children: React.ReactNode }> = ({ children }
               >
                 Course
               </Button>
+              <Button 
+                onClick={logout} 
+                className="text-lg hover:underline"
+              >
+                Log Out
+              </Button>
             </nav>
           </SheetContent>
         </Sheet>
       </header>
-      {/* Main content */}
       <main className="flex-grow p-4">
         {children}
       </main>
-      {/* Footer */}
       <footer className="bg-gray-100 p-4 text-center">
         <p>&copy; 2024 Coordinator Dashboard. All rights reserved.</p>
       </footer>

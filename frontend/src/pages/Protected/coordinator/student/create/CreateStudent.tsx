@@ -34,6 +34,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { domain } from "@/lib/constant";
 import { Department } from "@/interface/general";
 import UploadOnCloudinary from "@/services/Cloudinary";
+import { institutionIdAtom } from "@/store/atom";
+import { useAtom } from "jotai";
 
 // Updated schema to match backend expectations
 const studentSchema = z.object({
@@ -70,7 +72,7 @@ const CreateStudentForm = () => {
     const [uploadingImage, setUploadingImage] = useState(false);
     const [imageLinks, setImageLinks] = useState<string[]>([]);
     const [videoLinks, setVideoLinks] = useState<string[]>([]);
-
+    const [institution_id,] = useAtom(institutionIdAtom);
     const {
         register,
         handleSubmit,
@@ -85,7 +87,12 @@ const CreateStudentForm = () => {
         const fetchDepartments = async () => {
             try {
                 const response = await axios.get(
-                    `${domain}/api/v1/department/list-of-department`
+                    `${domain}/api/v1/department/list-of-department`,
+                    {
+                        headers:{
+                            "X-Institution-Id": `${institution_id}`,
+                        }
+                    }
                 );
                 setDepartmentList(response.data.department);
             } catch (error) {

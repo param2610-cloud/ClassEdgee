@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Home from './Home';
+import About from './About';
 
 const LandingPage: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>('home');
@@ -35,6 +37,15 @@ const LandingPage: React.FC = () => {
   const handleLoginClick = () => {
     navigate('/auth/signin');
   };
+   
+
+  const handleRegisterationClick = () => {
+    navigate('/auth/signup');
+  };
+
+
+
+
 
   return (
     <div>
@@ -70,24 +81,26 @@ const LandingPage: React.FC = () => {
         >
           Login
         </button>
+        
+        <button
+          onClick={handleRegisterationClick}
+          className="text-white bg-yellow-500 hover:bg-yellow-400 px-4 py-2 rounded"
+        >
+         Registration
+       </button>
+        
+
+
+
       </nav>
 
-      <section id="home" className="bg-gray-200 p-20 pt-32 min-h-screen">
-        <h2 className="text-2xl font-bold">Home</h2>
-        <p>
-          Welcome to the homepage! Lorem, ipsum dolor sit amet consectetur
-          adipisicing elit. Quos harum pariatur illo omnis maxime voluptate
-          facere officia. Cum, recusandae?
-        </p>
+      <section id="home" className="bg-dark-201 pt-20 min-h-screen">
+        <h2 className="text-2xl font-bold"></h2>
+        <Home />
       </section>
 
-      <section id="about" className="bg-gray-300 p-20 pt-32 min-h-screen">
-        <h2 className="text-2xl font-bold">About</h2>
-        <p>
-          This is the about section. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Autem deserunt vitae natus illum beatae porro
-          temporibus, animi aperiam earum, similique.
-        </p>
+      <section id="about" className="bg-gray-300  min-h-screen">
+        <About />
       </section>
 
       <section id="notices" className="bg-gray-400 p-20 pt-32 min-h-screen">

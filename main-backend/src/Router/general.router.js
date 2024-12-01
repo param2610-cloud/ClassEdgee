@@ -9,6 +9,7 @@ const router = e.Router();
 
 
 function validateToken(req, res, next) {
+    
     let token = req.header("Authorization")?.split(" ")[1];
     
     if (!token) {
@@ -29,6 +30,7 @@ function validateToken(req, res, next) {
 
 
 router.get("/validate-token", validateToken,async (req, res) => {
+    
     const data = await prisma.users.findUnique({ where: { email: req.user.email } });
     res.status(200).json({ message: "Token is valid", user: data });
 });

@@ -4,6 +4,7 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/componen
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { domain } from '@/lib/constant';
 
 const TimeslotManagement = () => {
   const [timeslots, setTimeslots] = useState([]);
@@ -22,7 +23,7 @@ const TimeslotManagement = () => {
 
   const fetchTimeslots = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/v1/timeslots');
+      const response = await axios.get(`${domain}/api/v1/timeslots`);
       console.log('API Response:', response.data.data);
       setTimeslots(response.data.data);
       setError(null);
@@ -43,7 +44,7 @@ const TimeslotManagement = () => {
   const createTimeslot = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3000/api/v1/timeslots', newTimeslot);
+      await axios.post(`${domain}/api/v1/timeslots`, newTimeslot);
       //setTimeslots((prevTimeslots) => [...prevTimeslots, response.data.data]);
       fetchTimeslots(); // Refresh list
       // Reset form
@@ -62,7 +63,7 @@ const TimeslotManagement = () => {
 
   const deleteTimeslot = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/v1/timeslots/${id}`);
+      await axios.delete(`${domain}/api/v1/timeslots/${id}`);
       fetchTimeslots(); // Refresh list
       setError(null);
     } catch (err) {
@@ -151,7 +152,7 @@ const TimeslotManagement = () => {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="regular">Regular</SelectItem>
-                  <SelectItem value="special">Special</SelectItem>
+                  <SelectItem value="break">Break</SelectItem>
                 </SelectContent>
               </Select>
             </div>
