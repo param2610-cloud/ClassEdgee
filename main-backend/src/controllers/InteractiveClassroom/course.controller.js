@@ -4,9 +4,7 @@ const getAllCourse = async (req, res) => {
   try {
     const courses = await PrismaClient.courses.findMany({
       include: {
-        departments: {
-          select: { department_name: true }
-        }
+        departments:true
       }
     });
     res.json(courses);
