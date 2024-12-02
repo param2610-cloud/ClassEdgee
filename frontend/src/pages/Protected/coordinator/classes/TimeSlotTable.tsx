@@ -1,22 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { domain } from '@/lib/constant';
 
 const TimeslotManagement = () => {
   const [timeslots, setTimeslots] = useState([]);
+  const [error, setError] = useState(null);
+  
+  // State for manual creation
   const [newTimeslot, setNewTimeslot] = useState({
     start_time: '',
     end_time: '',
     day_of_week: '',
     slot_type: 'regular'
   });
-  const [error, setError] = useState(null);
 
-  // Fetch timeslots on component mount
+  // State for batch creation
+  const [batchTimeslot, setBatchTimeslot] = useState({
+    start_time: '',
+    end_time: '',
+    break_start_time: '',
+    break_end_time: '',
+    period_duration: '',
+    days: [],
+    academic_year: '',
+    semester: ''
+  });
+
   useEffect(() => {
     fetchTimeslots();
   }, []);
@@ -24,7 +38,6 @@ const TimeslotManagement = () => {
   const fetchTimeslots = async () => {
     try {
       const response = await axios.get(`${domain}/api/v1/timeslots`);
-      console.log('API Response:', response.data.data);
       setTimeslots(response.data.data);
       setError(null);
     } catch (err) {
@@ -33,7 +46,7 @@ const TimeslotManagement = () => {
     }
   };
 
-  const handleInputChange = (e) => {
+  const handleManualInputChange = (e) => {
     const { name, value } = e.target;
     setNewTimeslot(prev => ({
       ...prev,
@@ -41,13 +54,37 @@ const TimeslotManagement = () => {
     }));
   };
 
-  const createTimeslot = async (e) => {
+  const handleBatchInputChange = (e) => {
+    const { name, value } = e.target;
+    setBatchTimeslot(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleDaySelection = (day) => {
+    setBatchTimeslot(prev => {
+      const currentDays = [...prev.days];
+      const dayIndex = currentDays.indexOf(day);
+      
+      if (dayIndex === -1) {
+        currentDays.push(day);
+      } else {
+        currentDays.splice(dayIndex, 1);
+      }
+      
+      return {
+        ...prev,
+        days: currentDays
+      };
+    });
+  };
+
+  const createManualTimeslot = async (e) => {
     e.preventDefault();
     try {
       await axios.post(`${domain}/api/v1/timeslots`, newTimeslot);
-      //setTimeslots((prevTimeslots) => [...prevTimeslots, response.data.data]);
-      fetchTimeslots(); // Refresh list
-      // Reset form
+      fetchTimeslots();
       setNewTimeslot({
         start_time: '',
         end_time: '',
@@ -61,10 +98,32 @@ const TimeslotManagement = () => {
     }
   };
 
+  const createBatchTimeslots = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post(`${domain}/api/v1/timeslots/batch`, batchTimeslot);
+      fetchTimeslots();
+      setBatchTimeslot({
+        start_time: '',
+        end_time: '',
+        break_start_time: '',
+        break_end_time: '',
+        period_duration: '',
+        days: [],
+        academic_year: '',
+        semester: ''
+      });
+      setError(null);
+    } catch (err) {
+      setError(err.response?.data?.message || 'Failed to create batch timeslots');
+      console.error(err);
+    }
+  };
+
   const deleteTimeslot = async (id) => {
     try {
       await axios.delete(`${domain}/api/v1/timeslots/${id}`);
-      fetchTimeslots(); // Refresh list
+      fetchTimeslots();
       setError(null);
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to delete timeslot');
@@ -73,7 +132,7 @@ const TimeslotManagement = () => {
   };
 
   const daysOfWeek = [
-    'Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
   ];
 
   return (
@@ -87,78 +146,204 @@ const TimeslotManagement = () => {
             {error}
           </div>
         )}
-        
-        {/* Create Timeslot Form */}
-        <form onSubmit={createTimeslot} className="grid gap-4 mb-6">
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label>Start Time</label>
-              <Input
-                type="time"
-                step="1"
-                name="start_time"
-                value={newTimeslot.start_time}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <div>
-              <label>End Time</label>
-              <Input
-                type="time"
-                step="1"
-                name="end_time"
-                value={newTimeslot.end_time}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label>Day of Week</label>
-              <Select
-                name="day_of_week"
-                value={newTimeslot.day_of_week}
-                onValueChange={(value) => setNewTimeslot(prev => ({
-                  ...prev,
-                  day_of_week: value
-                }))}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select Day" />
-                </SelectTrigger>
-                <SelectContent>
+
+        <Tabs defaultValue="manual" className="mb-6">
+          <TabsList className="grid grid-cols-2 w-64">
+            <TabsTrigger value="manual">Manual</TabsTrigger>
+            <TabsTrigger value="batch">Batch Upload</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="manual">
+            <form onSubmit={createManualTimeslot} className="grid gap-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label>Start Time</label>
+                  <Input
+                    type="time"
+                    step="1"
+                    name="start_time"
+                    value={newTimeslot.start_time}
+                    onChange={handleManualInputChange}
+                    required
+                  />
+                </div>
+                <div>
+                  <label>End Time</label>
+                  <Input
+                    type="time"
+                    step="1"
+                    name="end_time"
+                    value={newTimeslot.end_time}
+                    onChange={handleManualInputChange}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label>Day of Week</label>
+                  <Select
+                    name="day_of_week"
+                    value={newTimeslot.day_of_week}
+                    onValueChange={(value) => setNewTimeslot(prev => ({
+                      ...prev,
+                      day_of_week: value
+                    }))}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select Day" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {daysOfWeek.map((day, index) => (
+                        <SelectItem key={index} value={index.toString()}>
+                          {day}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <label>Slot Type</label>
+                  <Select
+                    name="slot_type"
+                    value={newTimeslot.slot_type}
+                    onValueChange={(value) => setNewTimeslot(prev => ({
+                      ...prev,
+                      slot_type: value
+                    }))}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Slot Type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="regular">Regular</SelectItem>
+                      <SelectItem value="break">Break</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+              <Button type="submit" className="w-full">Create Timeslot</Button>
+            </form>
+          </TabsContent>
+
+          <TabsContent value="batch">
+            <form onSubmit={createBatchTimeslots} className="grid gap-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label>Start Time</label>
+                  <Input
+                    type="time"
+                    step="1"
+                    name="start_time"
+                    value={batchTimeslot.start_time}
+                    onChange={handleBatchInputChange}
+                    required
+                  />
+                </div>
+                <div>
+                  <label>End Time</label>
+                  <Input
+                    type="time"
+                    step="1"
+                    name="end_time"
+                    value={batchTimeslot.end_time}
+                    onChange={handleBatchInputChange}
+                    required
+                  />
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label>Break Start Time</label>
+                  <Input
+                    type="time"
+                    step="1"
+                    name="break_start_time"
+                    value={batchTimeslot.break_start_time}
+                    onChange={handleBatchInputChange}
+                    required
+                  />
+                </div>
+                <div>
+                  <label>Break End Time</label>
+                  <Input
+                    type="time"
+                    step="1"
+                    name="break_end_time"
+                    value={batchTimeslot.break_end_time}
+                    onChange={handleBatchInputChange}
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label>Period Duration (minutes)</label>
+                  <Input
+                    type="number"
+                    name="period_duration"
+                    value={batchTimeslot.period_duration}
+                    onChange={handleBatchInputChange}
+                    min="1"
+                    required
+                  />
+                </div>
+                <div>
+                  <label>Academic Year</label>
+                  <Input
+                    type="text"
+                    name="academic_year"
+                    value={batchTimeslot.academic_year}
+                    onChange={handleBatchInputChange}
+                    required
+                    placeholder="e.g., 2023-2024"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label>Semester</label>
+                <Select
+                  name="semester"
+                  value={batchTimeslot.semester}
+                  onValueChange={(value) => setBatchTimeslot(prev => ({
+                    ...prev,
+                    semester: value
+                  }))}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select Semester" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="1">Semester 1</SelectItem>
+                    <SelectItem value="2">Semester 2</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
+                <label className="block mb-2">Select Days</label>
+                <div className="flex flex-wrap gap-2">
                   {daysOfWeek.map((day, index) => (
-                    <SelectItem key={index} value={index.toString()}>
+                    <Button
+                      key={index}
+                      type="button"
+                      variant={batchTimeslot.days.includes(index.toString()) ? "default" : "outline"}
+                      onClick={() => handleDaySelection(index.toString())}
+                      className="w-24"
+                    >
                       {day}
-                    </SelectItem>
+                    </Button>
                   ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div>
-              <label>Slot Type</label>
-              <Select
-                name="slot_type"
-                value={newTimeslot.slot_type}
-                onValueChange={(value) => setNewTimeslot(prev => ({
-                  ...prev,
-                  slot_type: value
-                }))}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Slot Type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="regular">Regular</SelectItem>
-                  <SelectItem value="break">Break</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-          <Button type="submit" className="w-full">Create Timeslot</Button>
-        </form>
+                </div>
+              </div>
+
+              <Button type="submit" className="w-full">Create Batch Timeslots</Button>
+            </form>
+          </TabsContent>
+        </Tabs>
 
         {/* Timeslot List */}
         <div>

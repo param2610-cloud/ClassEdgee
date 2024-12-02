@@ -1,17 +1,20 @@
 // routes/timeslotRoutes.js
 import e from "express";
 
-const router = e.Router();
 import { 
     createTimeSlot,
+    createTimeSlotBybatch,
     deleteTimeSlot,
     getTimeSlots,
-    getTimeSlotsByDay
+    getTimeSlotsByDay,
+    getTimeSlotsbySemAndYear
 } from "../controllers/timeslot.controller.js";
+const router = e.Router();
 
-router.post('/', createTimeSlot);
-router.delete('/:id', deleteTimeSlot);
 router.get('/', getTimeSlots);
+router.post('/', createTimeSlot);
+router.post('/batch', createTimeSlotBybatch);
+router.delete('/:id', deleteTimeSlot);
 router.get('/day/:dayOfWeek', getTimeSlotsByDay);
 
 export default router

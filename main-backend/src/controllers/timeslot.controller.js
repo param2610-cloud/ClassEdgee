@@ -159,6 +159,7 @@ const deleteTimeSlot = async (req, res) => {
 //Get all timeslots
 const getTimeSlots = async (req, res) => {
     try {
+        
         const timeSlots = await prisma.timeslots.findMany({
             orderBy: [
                 { day_of_week: 'asc' },
@@ -199,7 +200,44 @@ const getTimeSlots = async (req, res) => {
         });
     }
 };
-
+const getTimeSlotsbySemAndYear = async (req, res) => {
+    console.log('Received params:', req.params);
+        
+        const { semester, academic_year } = req.params;
+        if(semester && academic_year){
+            console.log('semester:', semester);
+            
+            const timeSlots = await prisma.timeslots.findMany({
+                where: { semester: parseInt(semester), academic_year: parseInt(academic_year) },
+                orderBy: [
+                    { day_of_week: 'asc' },
+                    { start_time: 'asc' }
+                ],
+                include: {
+                    classes: {
+                        select: {
+                            class_id: true,
+                            
+                        }
+                    }
+                }
+            });
+            const formattedTimeSlots = timeSlots.map(slot => ({
+                ...slot,
+                start_time: slot.start_time.toISOString().split('T')[1].split('.')[0],
+                end_time: slot.end_time.toISOString().split('T')[1].split('.')[0]
+              //  start_time: formatToLocalTime(slot.start_time),
+             //   end_time: formatToLocalTime(slot.end_time)
+              
+              
+            }));
+    
+            return res.status(200).json({
+                success: true,
+                data: formattedTimeSlots
+            });
+        }
+    }
 //Get timeslots for a specific day
 const getTimeSlotsByDay = async (req, res) => {
     try {
@@ -251,12 +289,90 @@ const getTimeSlotsByDay = async (req, res) => {
         });
     }
 };
+const createTimeSlotBybatch = async (req, res) => {
+    try {
+        const { start_time, end_time, break_start_time, break_end_time, period_duration, days, academic_year, semester } = req.body;
+
+        // Validate required fields
+        if (!start_time || !end_time || !break_start_time || !break_end_time || !period_duration || !days || !academic_year || !semester) {
+            return res.status(400).json({
+                success: false,
+                message: "Missing required fields"
+            });
+        }
+
+        // Validate time format
+        if (!isValidTimeFormat(start_time) || !isValidTimeFormat(end_time) || !isValidTimeFormat(break_start_time) || !isValidTimeFormat(break_end_time)) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid time format. Use HH:MM:SS"
+            });
+        }
+
+        // Convert time strings to DateTime objects
+        const startDateTime = timeStringToDateTime(start_time);
+        const endDateTime = timeStringToDateTime(end_time);
+        const breakStartDateTime = timeStringToDateTime(break_start_time);
+        const breakEndDateTime = timeStringToDateTime(break_end_time);
+
+        // Validate period duration
+        const periodDurationMs = period_duration * 60 * 1000; // Convert minutes to milliseconds
+
+        // Generate time slots for each day
+        const timeSlots = [];
+        for (const day of days) {
+            let currentTime = startDateTime;
+            while (currentTime < endDateTime) {
+                const nextTime = new Date(currentTime.getTime() + periodDurationMs);
+
+                // Skip break period
+                if (currentTime >= breakStartDateTime && currentTime < breakEndDateTime) {
+                    currentTime = breakEndDateTime;
+                    continue;
+                }
+
+                if (nextTime > endDateTime) break;
+
+                timeSlots.push({
+                    start_time: currentTime,
+                    end_time: nextTime,
+                    day_of_week: parseInt(day),
+                    academic_year:parseInt(academic_year),
+                    semester:parseInt(semester)
+                });
+
+                currentTime = nextTime;
+            }
+        }
+
+        // Create time slots in the database
+        const createdTimeSlots = await prisma.timeslots.createMany({
+            data: timeSlots,
+            skipDuplicates: true
+        });
+
+        return res.status(201).json({
+            success: true,
+            data: createdTimeSlots
+        });
+
+    } catch (error) {
+        console.error('Error creating time slots:', error);
+        return res.status(500).json({
+            success: false,
+            message: error.message || "Internal server error while creating time slots",
+            error: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        });
+    }
+}     
 
 export {
     createTimeSlot,
     deleteTimeSlot,
     getTimeSlots,
-    getTimeSlotsByDay
+    getTimeSlotsByDay,
+    createTimeSlotBybatch,
+    getTimeSlotsbySemAndYear
 };
 
 

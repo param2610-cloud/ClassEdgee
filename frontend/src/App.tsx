@@ -55,6 +55,10 @@ import DepartmentDetails from "./pages/Protected/department/[departmentid]/Detai
 import CourseDashboardForFaculty from "./pages/Protected/faculty/Course/CourseDashboardForFaculty";
 import SectionDashboard from "./pages/Protected/faculty/section/SectionDashboard";
 import ScheduleDashboard from "./pages/Protected/faculty/schedule/ScheduleDashboard";
+import FacultyExpertiseManager from "./pages/Protected/faculty/schedule/FacultyExpertiseManager";
+import SubjectAssignment from "./pages/Protected/faculty/schedule/SubjectAssignment";
+import ScheduleGenerator from "./pages/Protected/faculty/schedule/ScheduleGenerator";
+import ScheduleViewer from "./pages/Protected/faculty/schedule/ScheduleViewer";
 // import SechduleForSemester from "./pages/Protected/faculty/sechdule/SechduleForSemester";
 // import ScheduleManager from "./pages/Protected/faculty/sechdule/ScheduleManagement";
 // import ScheduleDetailView from "./pages/Protected/faculty/sechdule/ScheduleDetailsView";
@@ -152,8 +156,16 @@ const FacultyRoutes: React.FC = () => (
             />
             <Route path="/schedule/" element={<ScheduleDashboard/>} />
             <Route
-                path="/schedule/course/:course_id/semester/:semester_id/:syllabus_id"
-                element={<SubjectManagement />}
+                path="/schedule/course/:course_id/semester/:semester_id/:syllabus_id/subject-assignment"
+                element={<SubjectAssignment    />}
+            />
+            <Route
+                path="/schedule/course/:course_id/semester/:semester_id/:syllabus_id/generate-schedule"
+                element={<ScheduleGenerator    />}
+            />
+            <Route
+                path="/schedule/:section_id"
+                element={<ScheduleViewer    />}
             />
         </Routes>
     </FacultyLayout>

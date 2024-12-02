@@ -71,7 +71,7 @@ const CourseSelector = () => {
 
   const handleSyllabusSelect = (syllabusId:string) => {
     setSelectedSyllabus(syllabusId);
-    navigate(`/p/schedule/course/${selectedCourse}/semester/${selectedSemester}/${syllabusId}`);
+    navigate(`/p/schedule/course/${selectedCourse}/semester/${selectedSemester}/${syllabusId}/subject-assignment`);
   };
 
   return (
