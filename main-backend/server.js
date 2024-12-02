@@ -43,6 +43,7 @@ import feedbackRoutes from './src/Router/InteractiveClassroom/feedback.router.js
 import activityRoutes from './src/Router/InteractiveClassroom/activity.router.js'
 import sessionRoutes from './src/Router/InteractiveClassroom/session.router.js'
 import analogisticRouters from './src/Router/InteractiveClassroom/analogistic.router.js'
+import quizRouter from "./src/Router/quizRoutes.js";
 import scheduleRoutes from './src/Router/schedule.router.js'
 
 //print route
@@ -78,7 +79,7 @@ app.use('/api/v1/sessions', sessionRoutes);
 app.use('/api/v1/analogistics',analogisticRouters)
 
 
-
+app.use("/api/v1/quizzes/", quizRouter)
 
 
 
