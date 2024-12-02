@@ -5,6 +5,6 @@ const router = express.Router();
 
 
 router.post("/generate", generateSchedule);
-router.get("/latest",getLatestSchedule)
+router.get("/latest/:section_id",getLatestSchedule)
 
 export default router;

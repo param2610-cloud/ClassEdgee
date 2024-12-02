@@ -20,6 +20,7 @@ const list_of_department = async (req, res) => {
                         college_uid: true,
                     },
                 },
+                sections:true
             },
         });
         res.status(200).send({

@@ -1,0 +1,4653 @@
+{
+  "departments": {
+    "CSE": {
+      "name": "Computer Science & Engineering",
+      "faculty": [
+        {
+          "id": "1",
+          "name": "Naveen Srinivasan",
+          "department": "CSE",
+          "specializations": [
+            "CSE105",
+            "CSE106",
+            "CSE101",
+            "CSE101",
+            "CSE306",
+            "CSE305",
+            "CSE307",
+            "CSE301",
+            "CSE506",
+            "CSE505",
+            "CSE504",
+            "CSE705",
+            "CSE704",
+            "CSE701"
+          ],
+          "preferred_times": null,
+          "max_hours_per_day": 8,
+          "unavailable_days": null
+        },
+        {
+          "id": "7",
+          "name": "Harsh Acharya",
+          "department": "CSE",
+          "specializations": [
+            "CSE102",
+            "CSE106",
+            "CSE103",
+            "CSE101",
+            "CSE302",
+            "CSE306",
+            "CSE307",
+            "CSE301",
+            "CSE305",
+            "CSE502",
+            "CSE506",
+            "CSE501",
+            "CSE503",
+            "CSE703",
+            "CSE704",
+            "CSE702",
+            "CSE705"
+          ],
+          "preferred_times": null,
+          "max_hours_per_day": 6,
+          "unavailable_days": null
+        },
+        {
+          "id": "13",
+          "name": "Rahul Malhotra",
+          "department": "CSE",
+          "specializations": [
+            "CSE103",
+            "CSE106",
+            "CSE104",
+            "CSE105",
+            "CSE101",
+            "CSE306",
+            "CSE303",
+            "CSE307",
+            "CSE304",
+            "CSE506",
+            "CSE503",
+            "CSE502",
+            "CSE705",
+            "CSE703",
+            "CSE702",
+            "CSE701"
+          ],
+          "preferred_times": null,
+          "max_hours_per_day": 3.4,
+          "unavailable_days": null
+        },
+        {
+          "id": "19",
+          "name": "Harsh Nair",
+          "department": "CSE",
+          "specializations": [
+            "CSE103",
+            "CSE101",
+            "CSE101",
+            "CSE101",
+            "CSE104",
+            "CSE303",
+            "CSE304",
+            "CSE301",
+            "CSE305",
+            "CSE503",
+            "CSE502",
+            "CSE501",
+            "CSE504",
+            "CSE701",
+            "CSE703",
+            "CSE702"
+          ],
+          "preferred_times": null,
+          "max_hours_per_day": 7,
+          "unavailable_days": null
+        },
+        {
+          "id": "25",
+          "name": "Anand Naidu",
+          "department": "CSE",
+          "specializations": [
+            "CSE101",
+            "CSE101",
+            "CSE101",
+            "CSE103",
+            "CSE106",
+            "CSE104",
+            "CSE307",
+            "CSE306",
+            "CSE303",
+            "CSE302",
+            "CSE504",
+            "CSE506",
+            "CSE501",
+            "CSE505",
+            "CSE705",
+            "CSE703",
+            "CSE702",
+            "CSE704"
+          ],
+          "preferred_times": null,
+          "max_hours_per_day": 5.4,
+          "unavailable_days": null
+        },
+        {
+          "id": "35",
+          "name": "Pallbi Bose",
+          "department": "CSE",
+          "specializations": [
+            "CSE102",
+            "CSE103",
+            "CSE101"
+          ],
+          "preferred_times": null,
+          "max_hours_per_day": 8,
+          "unavailable_days": null
+        },
+        {
+          "id": "36",
+          "name": "Sanjay  Patra",
+          "department": "CSE",
+          "specializations": [
+            "CSE102",
+            "CSE105",
+            "CSE104",
+            "CSE103",
+            "CSE106"
+          ],
+          "preferred_times": null,
+          "max_hours_per_day": 8,
+          "unavailable_days": null
+        },
+        {
+          "id": "37",
+          "name": "Amrut Ranjan Jana",
+          "department": "CSE",
+          "specializations": [
+            "CSE106",
+            "CSE101",
+            "CSE101",
+            "CSE101",
+            "CSE102",
+            "CSE103",
+            "CSE104",
+            "CSE105"
+          ],
+          "preferred_times": null,
+          "max_hours_per_day": 8,
+          "unavailable_days": null
+        },
+        {
+          "id": "38",
+          "name": "Madhusmita Mishra",
+          "department": "CSE",
+          "specializations": [
+            "CSE101",
+            "CSE101",
+            "CSE101",
+            "CSE103",
+            "CSE105",
+            "CSE106",
+            "CSE102"
+          ],
+          "preferred_times": null,
+          "max_hours_per_day": 8,
+          "unavailable_days": null
+        }
+      ],
+      "subjects": [
+        {
+          "code": "CSE703",
+          "name": "Algorithms",
+          "department": "CSE",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [
+            "7",
+            "13",
+            "19",
+            "25"
+          ],
+          "course_id": "1",
+          "total_hours": 57
+        },
+        {
+          "code": "CSE704",
+          "name": "Computer Architecture",
+          "department": "CSE",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [
+            "1",
+            "7",
+            "25"
+          ],
+          "course_id": "1",
+          "total_hours": 37
+        },
+        {
+          "code": "CSE101",
+          "name": "Programming Fundamentals",
+          "department": "CSE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [
+            "19",
+            "25",
+            "1",
+            "35",
+            "37",
+            "38"
+          ],
+          "course_id": "1",
+          "total_hours": 11
+        },
+        {
+          "code": "CSE101",
+          "name": "Programming Fundamentals",
+          "department": "CSE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [
+            "19",
+            "25",
+            "7",
+            "13",
+            "37",
+            "38"
+          ],
+          "course_id": "1",
+          "total_hours": 11
+        },
+        {
+          "code": "CSE101",
+          "name": "Programming Fundamentals",
+          "department": "CSE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [
+            "19",
+            "25",
+            "1",
+            "37",
+            "38"
+          ],
+          "course_id": "1",
+          "total_hours": 46
+        },
+        {
+          "code": "CSE102",
+          "name": "Data Structures",
+          "department": "CSE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [
+            "7",
+            "35",
+            "36",
+            "37",
+            "38"
+          ],
+          "course_id": "1",
+          "total_hours": 78
+        },
+        {
+          "code": "CSE103",
+          "name": "Algorithms",
+          "department": "CSE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [
+            "7",
+            "13",
+            "19",
+            "25",
+            "35",
+            "36",
+            "37",
+            "38"
+          ],
+          "course_id": "1",
+          "total_hours": 51
+        },
+        {
+          "code": "CSE104",
+          "name": "Computer Architecture",
+          "department": "CSE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [
+            "25",
+            "19",
+            "13",
+            "36",
+            "37"
+          ],
+          "course_id": "1",
+          "total_hours": 42
+        },
+        {
+          "code": "CSE105",
+          "name": "Operating Systems",
+          "department": "CSE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [
+            "1",
+            "13",
+            "36",
+            "37",
+            "38"
+          ],
+          "course_id": "1",
+          "total_hours": 72
+        },
+        {
+          "code": "CSE106",
+          "name": "Database Management",
+          "department": "CSE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [
+            "1",
+            "7",
+            "25",
+            "13",
+            "36",
+            "37",
+            "38"
+          ],
+          "course_id": "1",
+          "total_hours": 68
+        },
+        {
+          "code": "CSE201",
+          "name": "Programming Fundamentals",
+          "department": "CSE",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "1",
+          "total_hours": 51
+        },
+        {
+          "code": "CSE202",
+          "name": "Data Structures",
+          "department": "CSE",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "1",
+          "total_hours": 43
+        },
+        {
+          "code": "CSE203",
+          "name": "Algorithms",
+          "department": "CSE",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "1",
+          "total_hours": 55
+        },
+        {
+          "code": "CSE204",
+          "name": "Computer Architecture",
+          "department": "CSE",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "1",
+          "total_hours": 55
+        },
+        {
+          "code": "CSE205",
+          "name": "Operating Systems",
+          "department": "CSE",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "1",
+          "total_hours": 44
+        },
+        {
+          "code": "CSE206",
+          "name": "Database Management",
+          "department": "CSE",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "1",
+          "total_hours": 58
+        },
+        {
+          "code": "CSE301",
+          "name": "Programming Fundamentals",
+          "department": "CSE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [
+            "7",
+            "19",
+            "1"
+          ],
+          "course_id": "1",
+          "total_hours": 66
+        },
+        {
+          "code": "CSE302",
+          "name": "Data Structures",
+          "department": "CSE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [
+            "7",
+            "25"
+          ],
+          "course_id": "1",
+          "total_hours": 44
+        },
+        {
+          "code": "CSE303",
+          "name": "Algorithms",
+          "department": "CSE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [
+            "13",
+            "19",
+            "25"
+          ],
+          "course_id": "1",
+          "total_hours": 53
+        },
+        {
+          "code": "CSE304",
+          "name": "Computer Architecture",
+          "department": "CSE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [
+            "13",
+            "19"
+          ],
+          "course_id": "1",
+          "total_hours": 39
+        },
+        {
+          "code": "CSE305",
+          "name": "Operating Systems",
+          "department": "CSE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [
+            "1",
+            "7",
+            "19"
+          ],
+          "course_id": "1",
+          "total_hours": 69
+        },
+        {
+          "code": "CSE306",
+          "name": "Database Management",
+          "department": "CSE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [
+            "1",
+            "7",
+            "13",
+            "25"
+          ],
+          "course_id": "1",
+          "total_hours": 47
+        },
+        {
+          "code": "CSE307",
+          "name": "Computer Networks",
+          "department": "CSE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [
+            "7",
+            "13",
+            "25",
+            "1"
+          ],
+          "course_id": "1",
+          "total_hours": 33
+        },
+        {
+          "code": "CSE401",
+          "name": "Programming Fundamentals",
+          "department": "CSE",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "1",
+          "total_hours": 81
+        },
+        {
+          "code": "CSE402",
+          "name": "Data Structures",
+          "department": "CSE",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "1",
+          "total_hours": 73
+        },
+        {
+          "code": "CSE403",
+          "name": "Algorithms",
+          "department": "CSE",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "1",
+          "total_hours": 56
+        },
+        {
+          "code": "CSE404",
+          "name": "Computer Architecture",
+          "department": "CSE",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "1",
+          "total_hours": 44
+        },
+        {
+          "code": "CSE405",
+          "name": "Operating Systems",
+          "department": "CSE",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "1",
+          "total_hours": 83
+        },
+        {
+          "code": "CSE501",
+          "name": "Programming Fundamentals",
+          "department": "CSE",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [
+            "7",
+            "19",
+            "25"
+          ],
+          "course_id": "1",
+          "total_hours": 42
+        },
+        {
+          "code": "CSE502",
+          "name": "Data Structures",
+          "department": "CSE",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [
+            "7",
+            "13",
+            "19"
+          ],
+          "course_id": "1",
+          "total_hours": 46
+        },
+        {
+          "code": "CSE503",
+          "name": "Algorithms",
+          "department": "CSE",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [
+            "7",
+            "13",
+            "19"
+          ],
+          "course_id": "1",
+          "total_hours": 73
+        },
+        {
+          "code": "CSE504",
+          "name": "Computer Architecture",
+          "department": "CSE",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [
+            "1",
+            "25",
+            "19"
+          ],
+          "course_id": "1",
+          "total_hours": 71
+        },
+        {
+          "code": "CSE505",
+          "name": "Operating Systems",
+          "department": "CSE",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [
+            "1",
+            "25"
+          ],
+          "course_id": "1",
+          "total_hours": 70
+        },
+        {
+          "code": "CSE506",
+          "name": "Database Management",
+          "department": "CSE",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [
+            "1",
+            "7",
+            "13",
+            "25"
+          ],
+          "course_id": "1",
+          "total_hours": 65
+        },
+        {
+          "code": "CSE601",
+          "name": "Programming Fundamentals",
+          "department": "CSE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "1",
+          "total_hours": 46
+        },
+        {
+          "code": "CSE602",
+          "name": "Data Structures",
+          "department": "CSE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "1",
+          "total_hours": 76
+        },
+        {
+          "code": "CSE603",
+          "name": "Algorithms",
+          "department": "CSE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "1",
+          "total_hours": 42
+        },
+        {
+          "code": "CSE604",
+          "name": "Computer Architecture",
+          "department": "CSE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "1",
+          "total_hours": 46
+        },
+        {
+          "code": "CSE605",
+          "name": "Operating Systems",
+          "department": "CSE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "1",
+          "total_hours": 55
+        },
+        {
+          "code": "CSE606",
+          "name": "Database Management",
+          "department": "CSE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "1",
+          "total_hours": 39
+        },
+        {
+          "code": "CSE701",
+          "name": "Programming Fundamentals",
+          "department": "CSE",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [
+            "13",
+            "19",
+            "1"
+          ],
+          "course_id": "1",
+          "total_hours": 59
+        },
+        {
+          "code": "CSE702",
+          "name": "Data Structures",
+          "department": "CSE",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [
+            "7",
+            "13",
+            "19",
+            "25"
+          ],
+          "course_id": "1",
+          "total_hours": 75
+        },
+        {
+          "code": "CSE705",
+          "name": "Operating Systems",
+          "department": "CSE",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [
+            "1",
+            "7",
+            "13",
+            "25"
+          ],
+          "course_id": "1",
+          "total_hours": 42
+        },
+        {
+          "code": "CSE801",
+          "name": "Programming Fundamentals",
+          "department": "CSE",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "1",
+          "total_hours": 42
+        },
+        {
+          "code": "CSE802",
+          "name": "Data Structures",
+          "department": "CSE",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "1",
+          "total_hours": 78
+        },
+        {
+          "code": "CSE803",
+          "name": "Algorithms",
+          "department": "CSE",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "1",
+          "total_hours": 64
+        },
+        {
+          "code": "CSE804",
+          "name": "Computer Architecture",
+          "department": "CSE",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "1",
+          "total_hours": 47
+        },
+        {
+          "code": "CSE805",
+          "name": "Operating Systems",
+          "department": "CSE",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "1",
+          "total_hours": 46
+        }
+      ],
+      "sections": {
+        "6": {
+          "batch": 2022,
+          "section": "CSE-A",
+          "strength": 60,
+          "semester": 5,
+          "academic_year": 2024,
+          "section_id": "6"
+        },
+        "7": {
+          "batch": 2022,
+          "section": "CSE-B",
+          "strength": 60,
+          "semester": 5,
+          "academic_year": 2024,
+          "section_id": "7"
+        },
+        "8": {
+          "batch": 2022,
+          "section": "CSE-C",
+          "strength": 50,
+          "semester": 5,
+          "academic_year": 2024,
+          "section_id": "8"
+        },
+        "9": {
+          "batch": 2023,
+          "section": "CSE-C",
+          "strength": 42,
+          "semester": 3,
+          "academic_year": 2024,
+          "section_id": "9"
+        },
+        "10": {
+          "batch": 2023,
+          "section": "CSE-B",
+          "strength": 60,
+          "semester": 3,
+          "academic_year": 2024,
+          "section_id": "10"
+        },
+        "11": {
+          "batch": 2023,
+          "section": "CSE-A",
+          "strength": 60,
+          "semester": 3,
+          "academic_year": 2024,
+          "section_id": "11"
+        },
+        "12": {
+          "batch": 2024,
+          "section": "CSE-A",
+          "strength": 60,
+          "semester": 1,
+          "academic_year": 2024,
+          "section_id": "12"
+        },
+        "13": {
+          "batch": 2024,
+          "section": "CSE-B",
+          "strength": 60,
+          "semester": 1,
+          "academic_year": 2024,
+          "section_id": "13"
+        },
+        "14": {
+          "batch": 2024,
+          "section": "CSE-C",
+          "strength": 47,
+          "semester": 1,
+          "academic_year": 2024,
+          "section_id": "14"
+        },
+        "15": {
+          "batch": 2021,
+          "section": "CSE-A",
+          "strength": 60,
+          "semester": 7,
+          "academic_year": 2024,
+          "section_id": "15"
+        },
+        "16": {
+          "batch": 2021,
+          "section": "CSE-B",
+          "strength": 60,
+          "semester": 7,
+          "academic_year": 2024,
+          "section_id": "16"
+        },
+        "17": {
+          "batch": 2021,
+          "section": "CSE-C",
+          "strength": 12,
+          "semester": 7,
+          "academic_year": 2024,
+          "section_id": "17"
+        }
+      }
+    },
+    "ECE": {
+      "name": "Electronics & Communication Engineering",
+      "faculty": [
+        {
+          "id": "2",
+          "name": "Gayatri Sharma",
+          "department": "ECE",
+          "specializations": [],
+          "preferred_times": null,
+          "max_hours_per_day": 5.8,
+          "unavailable_days": null
+        },
+        {
+          "id": "8",
+          "name": "Divya Kumar",
+          "department": "ECE",
+          "specializations": [],
+          "preferred_times": null,
+          "max_hours_per_day": 7.2,
+          "unavailable_days": null
+        },
+        {
+          "id": "14",
+          "name": "Deepika Tripathi",
+          "department": "ECE",
+          "specializations": [],
+          "preferred_times": null,
+          "max_hours_per_day": 4.2,
+          "unavailable_days": null
+        },
+        {
+          "id": "20",
+          "name": "Sunita Sharma",
+          "department": "ECE",
+          "specializations": [],
+          "preferred_times": null,
+          "max_hours_per_day": 7.4,
+          "unavailable_days": null
+        },
+        {
+          "id": "26",
+          "name": "Archana Naidu",
+          "department": "ECE",
+          "specializations": [],
+          "preferred_times": null,
+          "max_hours_per_day": 3.6,
+          "unavailable_days": null
+        }
+      ],
+      "subjects": [
+        {
+          "code": "ECE101",
+          "name": "Electronic Circuits",
+          "department": "ECE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 61
+        },
+        {
+          "code": "ECE102",
+          "name": "Digital Electronics",
+          "department": "ECE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 41
+        },
+        {
+          "code": "ECE103",
+          "name": "Signals and Systems",
+          "department": "ECE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 50
+        },
+        {
+          "code": "ECE104",
+          "name": "Communication Systems",
+          "department": "ECE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 55
+        },
+        {
+          "code": "ECE105",
+          "name": "Microprocessors",
+          "department": "ECE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 38
+        },
+        {
+          "code": "ECE106",
+          "name": "VLSI Design",
+          "department": "ECE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 80
+        },
+        {
+          "code": "ECE107",
+          "name": "Embedded Systems",
+          "department": "ECE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 50
+        },
+        {
+          "code": "ECE201",
+          "name": "Electronic Circuits",
+          "department": "ECE",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 60
+        },
+        {
+          "code": "ECE202",
+          "name": "Digital Electronics",
+          "department": "ECE",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 40
+        },
+        {
+          "code": "ECE203",
+          "name": "Signals and Systems",
+          "department": "ECE",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 66
+        },
+        {
+          "code": "ECE204",
+          "name": "Communication Systems",
+          "department": "ECE",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 48
+        },
+        {
+          "code": "ECE205",
+          "name": "Microprocessors",
+          "department": "ECE",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 74
+        },
+        {
+          "code": "ECE301",
+          "name": "Electronic Circuits",
+          "department": "ECE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 48
+        },
+        {
+          "code": "ECE302",
+          "name": "Digital Electronics",
+          "department": "ECE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 41
+        },
+        {
+          "code": "ECE303",
+          "name": "Signals and Systems",
+          "department": "ECE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 61
+        },
+        {
+          "code": "ECE304",
+          "name": "Communication Systems",
+          "department": "ECE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 50
+        },
+        {
+          "code": "ECE305",
+          "name": "Microprocessors",
+          "department": "ECE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 86
+        },
+        {
+          "code": "ECE306",
+          "name": "VLSI Design",
+          "department": "ECE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 69
+        },
+        {
+          "code": "ECE307",
+          "name": "Embedded Systems",
+          "department": "ECE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 50
+        },
+        {
+          "code": "ECE401",
+          "name": "Electronic Circuits",
+          "department": "ECE",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 53
+        },
+        {
+          "code": "ECE402",
+          "name": "Digital Electronics",
+          "department": "ECE",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 74
+        },
+        {
+          "code": "ECE403",
+          "name": "Signals and Systems",
+          "department": "ECE",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 41
+        },
+        {
+          "code": "ECE404",
+          "name": "Communication Systems",
+          "department": "ECE",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 62
+        },
+        {
+          "code": "ECE405",
+          "name": "Microprocessors",
+          "department": "ECE",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 75
+        },
+        {
+          "code": "ECE406",
+          "name": "VLSI Design",
+          "department": "ECE",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 62
+        },
+        {
+          "code": "ECE501",
+          "name": "Electronic Circuits",
+          "department": "ECE",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 57
+        },
+        {
+          "code": "ECE502",
+          "name": "Digital Electronics",
+          "department": "ECE",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 44
+        },
+        {
+          "code": "ECE503",
+          "name": "Signals and Systems",
+          "department": "ECE",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 65
+        },
+        {
+          "code": "ECE504",
+          "name": "Communication Systems",
+          "department": "ECE",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 68
+        },
+        {
+          "code": "ECE505",
+          "name": "Microprocessors",
+          "department": "ECE",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 43
+        },
+        {
+          "code": "ECE506",
+          "name": "VLSI Design",
+          "department": "ECE",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 34
+        },
+        {
+          "code": "ECE601",
+          "name": "Electronic Circuits",
+          "department": "ECE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 74
+        },
+        {
+          "code": "ECE602",
+          "name": "Digital Electronics",
+          "department": "ECE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 50
+        },
+        {
+          "code": "ECE603",
+          "name": "Signals and Systems",
+          "department": "ECE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 69
+        },
+        {
+          "code": "ECE604",
+          "name": "Communication Systems",
+          "department": "ECE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 65
+        },
+        {
+          "code": "ECE605",
+          "name": "Microprocessors",
+          "department": "ECE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 53
+        },
+        {
+          "code": "ECE606",
+          "name": "VLSI Design",
+          "department": "ECE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 40
+        },
+        {
+          "code": "ECE607",
+          "name": "Embedded Systems",
+          "department": "ECE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 40
+        },
+        {
+          "code": "ECE701",
+          "name": "Electronic Circuits",
+          "department": "ECE",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 70
+        },
+        {
+          "code": "ECE702",
+          "name": "Digital Electronics",
+          "department": "ECE",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 37
+        },
+        {
+          "code": "ECE703",
+          "name": "Signals and Systems",
+          "department": "ECE",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 53
+        },
+        {
+          "code": "ECE704",
+          "name": "Communication Systems",
+          "department": "ECE",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 47
+        },
+        {
+          "code": "ECE705",
+          "name": "Microprocessors",
+          "department": "ECE",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 49
+        },
+        {
+          "code": "ECE801",
+          "name": "Electronic Circuits",
+          "department": "ECE",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 41
+        },
+        {
+          "code": "ECE802",
+          "name": "Digital Electronics",
+          "department": "ECE",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 50
+        },
+        {
+          "code": "ECE803",
+          "name": "Signals and Systems",
+          "department": "ECE",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 71
+        },
+        {
+          "code": "ECE804",
+          "name": "Communication Systems",
+          "department": "ECE",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 57
+        },
+        {
+          "code": "ECE805",
+          "name": "Microprocessors",
+          "department": "ECE",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 49
+        },
+        {
+          "code": "ECE806",
+          "name": "VLSI Design",
+          "department": "ECE",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 57
+        },
+        {
+          "code": "ECE807",
+          "name": "Embedded Systems",
+          "department": "ECE",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "3",
+          "total_hours": 63
+        }
+      ],
+      "sections": {
+        "20": {
+          "batch": 2021,
+          "section": "ECE-A",
+          "strength": 60,
+          "semester": 7,
+          "academic_year": 2024,
+          "section_id": "20"
+        },
+        "21": {
+          "batch": 2022,
+          "section": "ECE-B",
+          "strength": 60,
+          "semester": 5,
+          "academic_year": 2024,
+          "section_id": "21"
+        },
+        "22": {
+          "batch": 2023,
+          "section": "ECE-C",
+          "strength": 0,
+          "semester": 3,
+          "academic_year": 2024,
+          "section_id": "22"
+        },
+        "23": {
+          "batch": 2024,
+          "section": "ECE-A",
+          "strength": 60,
+          "semester": 1,
+          "academic_year": 2024,
+          "section_id": "23"
+        },
+        "24": {
+          "batch": 2021,
+          "section": "ECE-B",
+          "strength": 60,
+          "semester": 7,
+          "academic_year": 2024,
+          "section_id": "24"
+        },
+        "25": {
+          "batch": 2021,
+          "section": "ECE-C",
+          "strength": 28,
+          "semester": 7,
+          "academic_year": 2024,
+          "section_id": "25"
+        },
+        "26": {
+          "batch": 2022,
+          "section": "ECE-A",
+          "strength": 60,
+          "semester": 5,
+          "academic_year": 2024,
+          "section_id": "26"
+        },
+        "27": {
+          "batch": 2022,
+          "section": "ECE-C",
+          "strength": 55,
+          "semester": 5,
+          "academic_year": 2024,
+          "section_id": "27"
+        },
+        "28": {
+          "batch": 2023,
+          "section": "ECE-A",
+          "strength": 60,
+          "semester": 3,
+          "academic_year": 2024,
+          "section_id": "28"
+        },
+        "29": {
+          "batch": 2023,
+          "section": "ECE-B",
+          "strength": 13,
+          "semester": 3,
+          "academic_year": 2024,
+          "section_id": "29"
+        },
+        "30": {
+          "batch": 2024,
+          "section": "ECE-B",
+          "strength": 9,
+          "semester": 1,
+          "academic_year": 2024,
+          "section_id": "30"
+        },
+        "31": {
+          "batch": 2024,
+          "section": "ECE-C",
+          "strength": 0,
+          "semester": 1,
+          "academic_year": 2024,
+          "section_id": "31"
+        }
+      }
+    },
+    "CE": {
+      "name": "Civil Engineering",
+      "faculty": [
+        {
+          "id": "3",
+          "name": "Rahul Patel",
+          "department": "CE",
+          "specializations": [],
+          "preferred_times": null,
+          "max_hours_per_day": 6.2,
+          "unavailable_days": null
+        },
+        {
+          "id": "9",
+          "name": "Sachin Singh",
+          "department": "CE",
+          "specializations": [],
+          "preferred_times": null,
+          "max_hours_per_day": 5,
+          "unavailable_days": null
+        },
+        {
+          "id": "15",
+          "name": "Chandan Jain",
+          "department": "CE",
+          "specializations": [],
+          "preferred_times": null,
+          "max_hours_per_day": 8,
+          "unavailable_days": null
+        },
+        {
+          "id": "21",
+          "name": "Ankur Singh",
+          "department": "CE",
+          "specializations": [],
+          "preferred_times": null,
+          "max_hours_per_day": 6.4,
+          "unavailable_days": null
+        },
+        {
+          "id": "27",
+          "name": "Anand Srinivasan",
+          "department": "CE",
+          "specializations": [],
+          "preferred_times": null,
+          "max_hours_per_day": 7.6,
+          "unavailable_days": null
+        }
+      ],
+      "subjects": [
+        {
+          "code": "CE101",
+          "name": "Structural Analysis",
+          "department": "CE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 59
+        },
+        {
+          "code": "CE102",
+          "name": "Geotechnical Engineering",
+          "department": "CE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 90
+        },
+        {
+          "code": "CE103",
+          "name": "Transportation Engineering",
+          "department": "CE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 70
+        },
+        {
+          "code": "CE104",
+          "name": "Hydraulics",
+          "department": "CE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 52
+        },
+        {
+          "code": "CE105",
+          "name": "Environmental Engineering",
+          "department": "CE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 42
+        },
+        {
+          "code": "CE106",
+          "name": "Construction Management",
+          "department": "CE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 57
+        },
+        {
+          "code": "CE201",
+          "name": "Structural Analysis",
+          "department": "CE",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 45
+        },
+        {
+          "code": "CE202",
+          "name": "Geotechnical Engineering",
+          "department": "CE",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 43
+        },
+        {
+          "code": "CE203",
+          "name": "Transportation Engineering",
+          "department": "CE",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 47
+        },
+        {
+          "code": "CE204",
+          "name": "Hydraulics",
+          "department": "CE",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 51
+        },
+        {
+          "code": "CE205",
+          "name": "Environmental Engineering",
+          "department": "CE",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 49
+        },
+        {
+          "code": "CE301",
+          "name": "Structural Analysis",
+          "department": "CE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 82
+        },
+        {
+          "code": "CE302",
+          "name": "Geotechnical Engineering",
+          "department": "CE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 54
+        },
+        {
+          "code": "CE303",
+          "name": "Transportation Engineering",
+          "department": "CE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 45
+        },
+        {
+          "code": "CE304",
+          "name": "Hydraulics",
+          "department": "CE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 62
+        },
+        {
+          "code": "CE305",
+          "name": "Environmental Engineering",
+          "department": "CE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 47
+        },
+        {
+          "code": "CE306",
+          "name": "Construction Management",
+          "department": "CE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 72
+        },
+        {
+          "code": "CE401",
+          "name": "Structural Analysis",
+          "department": "CE",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 66
+        },
+        {
+          "code": "CE402",
+          "name": "Geotechnical Engineering",
+          "department": "CE",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 60
+        },
+        {
+          "code": "CE403",
+          "name": "Transportation Engineering",
+          "department": "CE",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 49
+        },
+        {
+          "code": "CE404",
+          "name": "Hydraulics",
+          "department": "CE",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 69
+        },
+        {
+          "code": "CE405",
+          "name": "Environmental Engineering",
+          "department": "CE",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 60
+        },
+        {
+          "code": "CE501",
+          "name": "Structural Analysis",
+          "department": "CE",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 69
+        },
+        {
+          "code": "CE502",
+          "name": "Geotechnical Engineering",
+          "department": "CE",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 49
+        },
+        {
+          "code": "CE503",
+          "name": "Transportation Engineering",
+          "department": "CE",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 64
+        },
+        {
+          "code": "CE504",
+          "name": "Hydraulics",
+          "department": "CE",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 61
+        },
+        {
+          "code": "CE505",
+          "name": "Environmental Engineering",
+          "department": "CE",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 45
+        },
+        {
+          "code": "CE601",
+          "name": "Structural Analysis",
+          "department": "CE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 37
+        },
+        {
+          "code": "CE602",
+          "name": "Geotechnical Engineering",
+          "department": "CE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 35
+        },
+        {
+          "code": "CE603",
+          "name": "Transportation Engineering",
+          "department": "CE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 61
+        },
+        {
+          "code": "CE604",
+          "name": "Hydraulics",
+          "department": "CE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 78
+        },
+        {
+          "code": "CE605",
+          "name": "Environmental Engineering",
+          "department": "CE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 43
+        },
+        {
+          "code": "CE606",
+          "name": "Construction Management",
+          "department": "CE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 80
+        },
+        {
+          "code": "CE701",
+          "name": "Structural Analysis",
+          "department": "CE",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 73
+        },
+        {
+          "code": "CE702",
+          "name": "Geotechnical Engineering",
+          "department": "CE",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 49
+        },
+        {
+          "code": "CE703",
+          "name": "Transportation Engineering",
+          "department": "CE",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 56
+        },
+        {
+          "code": "CE704",
+          "name": "Hydraulics",
+          "department": "CE",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 47
+        },
+        {
+          "code": "CE705",
+          "name": "Environmental Engineering",
+          "department": "CE",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 79
+        },
+        {
+          "code": "CE706",
+          "name": "Construction Management",
+          "department": "CE",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 62
+        },
+        {
+          "code": "CE707",
+          "name": "Concrete Technology",
+          "department": "CE",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 64
+        },
+        {
+          "code": "CE801",
+          "name": "Structural Analysis",
+          "department": "CE",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 73
+        },
+        {
+          "code": "CE802",
+          "name": "Geotechnical Engineering",
+          "department": "CE",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 62
+        },
+        {
+          "code": "CE803",
+          "name": "Transportation Engineering",
+          "department": "CE",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 84
+        },
+        {
+          "code": "CE804",
+          "name": "Hydraulics",
+          "department": "CE",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 45
+        },
+        {
+          "code": "CE805",
+          "name": "Environmental Engineering",
+          "department": "CE",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "4",
+          "total_hours": 44
+        }
+      ],
+      "sections": {
+        "32": {
+          "batch": 2021,
+          "section": "CE-A",
+          "strength": 60,
+          "semester": 7,
+          "academic_year": 2024,
+          "section_id": "32"
+        },
+        "33": {
+          "batch": 2021,
+          "section": "CE-B",
+          "strength": 60,
+          "semester": 7,
+          "academic_year": 2024,
+          "section_id": "33"
+        },
+        "34": {
+          "batch": 2021,
+          "section": "CE-C",
+          "strength": 8,
+          "semester": 7,
+          "academic_year": 2024,
+          "section_id": "34"
+        },
+        "35": {
+          "batch": 2022,
+          "section": "CE-A",
+          "strength": 60,
+          "semester": 5,
+          "academic_year": 2024,
+          "section_id": "35"
+        },
+        "36": {
+          "batch": 2022,
+          "section": "CE-B",
+          "strength": 60,
+          "semester": 5,
+          "academic_year": 2024,
+          "section_id": "36"
+        },
+        "37": {
+          "batch": 2022,
+          "section": "CE-C",
+          "strength": 26,
+          "semester": 5,
+          "academic_year": 2024,
+          "section_id": "37"
+        },
+        "38": {
+          "batch": 2023,
+          "section": "CE-A",
+          "strength": 60,
+          "semester": 3,
+          "academic_year": 2024,
+          "section_id": "38"
+        },
+        "39": {
+          "batch": 2023,
+          "section": "CE-B",
+          "strength": 42,
+          "semester": 3,
+          "academic_year": 2024,
+          "section_id": "39"
+        },
+        "40": {
+          "batch": 2023,
+          "section": "CE-C",
+          "strength": 0,
+          "semester": 3,
+          "academic_year": 2024,
+          "section_id": "40"
+        },
+        "41": {
+          "batch": 2024,
+          "section": "CE-A",
+          "strength": 60,
+          "semester": 3,
+          "academic_year": 2024,
+          "section_id": "41"
+        },
+        "42": {
+          "batch": 2024,
+          "section": "CE-B",
+          "strength": 44,
+          "semester": 1,
+          "academic_year": 2024,
+          "section_id": "42"
+        },
+        "43": {
+          "batch": 2024,
+          "section": "CE-C",
+          "strength": 0,
+          "semester": 1,
+          "academic_year": 2024,
+          "section_id": "43"
+        }
+      }
+    },
+    "ME": {
+      "name": "Mechanical Engineering",
+      "faculty": [
+        {
+          "id": "10",
+          "name": "Priya Dutta",
+          "department": "ME",
+          "specializations": [],
+          "preferred_times": null,
+          "max_hours_per_day": 6.6,
+          "unavailable_days": null
+        },
+        {
+          "id": "22",
+          "name": "Kavita Singh",
+          "department": "ME",
+          "specializations": [
+            "ME206"
+          ],
+          "preferred_times": null,
+          "max_hours_per_day": 6.6,
+          "unavailable_days": null
+        },
+        {
+          "id": "16",
+          "name": "Gayatri Tripathi",
+          "department": "ME",
+          "specializations": [],
+          "preferred_times": null,
+          "max_hours_per_day": 4.2,
+          "unavailable_days": null
+        },
+        {
+          "id": "28",
+          "name": "Deepika Jain",
+          "department": "ME",
+          "specializations": [],
+          "preferred_times": null,
+          "max_hours_per_day": 5.6,
+          "unavailable_days": null
+        },
+        {
+          "id": "4",
+          "name": "Aditi Malhotra",
+          "department": "ME",
+          "specializations": [],
+          "preferred_times": null,
+          "max_hours_per_day": 3.8,
+          "unavailable_days": null
+        }
+      ],
+      "subjects": [
+        {
+          "code": "ME101",
+          "name": "Thermodynamics",
+          "department": "ME",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 69
+        },
+        {
+          "code": "ME102",
+          "name": "Machine Design",
+          "department": "ME",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 53
+        },
+        {
+          "code": "ME103",
+          "name": "Manufacturing Processes",
+          "department": "ME",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 82
+        },
+        {
+          "code": "ME104",
+          "name": "Heat Transfer",
+          "department": "ME",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 35
+        },
+        {
+          "code": "ME105",
+          "name": "Fluid Mechanics",
+          "department": "ME",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 62
+        },
+        {
+          "code": "ME106",
+          "name": "Machine Dynamics",
+          "department": "ME",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 66
+        },
+        {
+          "code": "ME201",
+          "name": "Thermodynamics",
+          "department": "ME",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 69
+        },
+        {
+          "code": "ME202",
+          "name": "Machine Design",
+          "department": "ME",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 74
+        },
+        {
+          "code": "ME203",
+          "name": "Manufacturing Processes",
+          "department": "ME",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 82
+        },
+        {
+          "code": "ME204",
+          "name": "Heat Transfer",
+          "department": "ME",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 62
+        },
+        {
+          "code": "ME205",
+          "name": "Fluid Mechanics",
+          "department": "ME",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 76
+        },
+        {
+          "code": "ME206",
+          "name": "Machine Dynamics",
+          "department": "ME",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [
+            "22"
+          ],
+          "course_id": "5",
+          "total_hours": 61
+        },
+        {
+          "code": "ME301",
+          "name": "Thermodynamics",
+          "department": "ME",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 84
+        },
+        {
+          "code": "ME302",
+          "name": "Machine Design",
+          "department": "ME",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 73
+        },
+        {
+          "code": "ME303",
+          "name": "Manufacturing Processes",
+          "department": "ME",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 60
+        },
+        {
+          "code": "ME304",
+          "name": "Heat Transfer",
+          "department": "ME",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 49
+        },
+        {
+          "code": "ME305",
+          "name": "Fluid Mechanics",
+          "department": "ME",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 74
+        },
+        {
+          "code": "ME306",
+          "name": "Machine Dynamics",
+          "department": "ME",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 61
+        },
+        {
+          "code": "ME307",
+          "name": "CAD/CAM",
+          "department": "ME",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 73
+        },
+        {
+          "code": "ME401",
+          "name": "Thermodynamics",
+          "department": "ME",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 64
+        },
+        {
+          "code": "ME402",
+          "name": "Machine Design",
+          "department": "ME",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 75
+        },
+        {
+          "code": "ME403",
+          "name": "Manufacturing Processes",
+          "department": "ME",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 47
+        },
+        {
+          "code": "ME404",
+          "name": "Heat Transfer",
+          "department": "ME",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 46
+        },
+        {
+          "code": "ME405",
+          "name": "Fluid Mechanics",
+          "department": "ME",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 65
+        },
+        {
+          "code": "ME406",
+          "name": "Machine Dynamics",
+          "department": "ME",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 60
+        },
+        {
+          "code": "ME407",
+          "name": "CAD/CAM",
+          "department": "ME",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 75
+        },
+        {
+          "code": "ME501",
+          "name": "Thermodynamics",
+          "department": "ME",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 76
+        },
+        {
+          "code": "ME502",
+          "name": "Machine Design",
+          "department": "ME",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 83
+        },
+        {
+          "code": "ME503",
+          "name": "Manufacturing Processes",
+          "department": "ME",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 40
+        },
+        {
+          "code": "ME504",
+          "name": "Heat Transfer",
+          "department": "ME",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 40
+        },
+        {
+          "code": "ME505",
+          "name": "Fluid Mechanics",
+          "department": "ME",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 41
+        },
+        {
+          "code": "ME506",
+          "name": "Machine Dynamics",
+          "department": "ME",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 54
+        },
+        {
+          "code": "ME507",
+          "name": "CAD/CAM",
+          "department": "ME",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 61
+        },
+        {
+          "code": "ME601",
+          "name": "Thermodynamics",
+          "department": "ME",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 82
+        },
+        {
+          "code": "ME602",
+          "name": "Machine Design",
+          "department": "ME",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 81
+        },
+        {
+          "code": "ME603",
+          "name": "Manufacturing Processes",
+          "department": "ME",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 47
+        },
+        {
+          "code": "ME604",
+          "name": "Heat Transfer",
+          "department": "ME",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 72
+        },
+        {
+          "code": "ME605",
+          "name": "Fluid Mechanics",
+          "department": "ME",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 57
+        },
+        {
+          "code": "ME701",
+          "name": "Thermodynamics",
+          "department": "ME",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 67
+        },
+        {
+          "code": "ME702",
+          "name": "Machine Design",
+          "department": "ME",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 70
+        },
+        {
+          "code": "ME703",
+          "name": "Manufacturing Processes",
+          "department": "ME",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 40
+        },
+        {
+          "code": "ME704",
+          "name": "Heat Transfer",
+          "department": "ME",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 62
+        },
+        {
+          "code": "ME705",
+          "name": "Fluid Mechanics",
+          "department": "ME",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 56
+        },
+        {
+          "code": "ME706",
+          "name": "Machine Dynamics",
+          "department": "ME",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 88
+        },
+        {
+          "code": "ME801",
+          "name": "Thermodynamics",
+          "department": "ME",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 45
+        },
+        {
+          "code": "ME802",
+          "name": "Machine Design",
+          "department": "ME",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 59
+        },
+        {
+          "code": "ME803",
+          "name": "Manufacturing Processes",
+          "department": "ME",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 47
+        },
+        {
+          "code": "ME804",
+          "name": "Heat Transfer",
+          "department": "ME",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 50
+        },
+        {
+          "code": "ME805",
+          "name": "Fluid Mechanics",
+          "department": "ME",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 53
+        },
+        {
+          "code": "ME806",
+          "name": "Machine Dynamics",
+          "department": "ME",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "5",
+          "total_hours": 56
+        }
+      ],
+      "sections": {
+        "44": {
+          "batch": 2021,
+          "section": "ME-A",
+          "strength": 60,
+          "semester": 7,
+          "academic_year": 2024,
+          "section_id": "44"
+        },
+        "45": {
+          "batch": 2021,
+          "section": "ME-B",
+          "strength": 60,
+          "semester": 7,
+          "academic_year": 2024,
+          "section_id": "45"
+        },
+        "46": {
+          "batch": 2021,
+          "section": "ME-C",
+          "strength": 60,
+          "semester": 7,
+          "academic_year": 2024,
+          "section_id": "46"
+        },
+        "47": {
+          "batch": 2022,
+          "section": "ME-A",
+          "strength": 60,
+          "semester": 5,
+          "academic_year": 2024,
+          "section_id": "47"
+        },
+        "48": {
+          "batch": 2022,
+          "section": "ME-B",
+          "strength": 60,
+          "semester": 5,
+          "academic_year": 2024,
+          "section_id": "48"
+        },
+        "49": {
+          "batch": 2022,
+          "section": "ME-C",
+          "strength": 53,
+          "semester": 5,
+          "academic_year": 2024,
+          "section_id": "49"
+        },
+        "50": {
+          "batch": 2023,
+          "section": "ME-A",
+          "strength": 60,
+          "semester": 3,
+          "academic_year": 2024,
+          "section_id": "50"
+        },
+        "51": {
+          "batch": 2023,
+          "section": "ME-B",
+          "strength": 28,
+          "semester": 3,
+          "academic_year": 2024,
+          "section_id": "51"
+        },
+        "52": {
+          "batch": 2023,
+          "section": "ME-C",
+          "strength": 0,
+          "semester": 3,
+          "academic_year": 2024,
+          "section_id": "52"
+        },
+        "53": {
+          "batch": 2024,
+          "section": "ME-A",
+          "strength": 60,
+          "semester": 1,
+          "academic_year": 2024,
+          "section_id": "53"
+        },
+        "54": {
+          "batch": 2024,
+          "section": "ME-B",
+          "strength": 52,
+          "semester": 1,
+          "academic_year": 2024,
+          "section_id": "54"
+        },
+        "55": {
+          "batch": 2024,
+          "section": "ME-C",
+          "strength": 0,
+          "semester": 1,
+          "academic_year": 2024,
+          "section_id": "55"
+        }
+      }
+    },
+    "EE": {
+      "name": "Electrical Engineering",
+      "faculty": [
+        {
+          "id": "5",
+          "name": "Sachin Acharya",
+          "department": "EE",
+          "specializations": [],
+          "preferred_times": null,
+          "max_hours_per_day": 5.2,
+          "unavailable_days": null
+        },
+        {
+          "id": "11",
+          "name": "Ashish Acharya",
+          "department": "EE",
+          "specializations": [],
+          "preferred_times": null,
+          "max_hours_per_day": 4.2,
+          "unavailable_days": null
+        },
+        {
+          "id": "17",
+          "name": "Abhinav Rao",
+          "department": "EE",
+          "specializations": [],
+          "preferred_times": null,
+          "max_hours_per_day": 3.8,
+          "unavailable_days": null
+        },
+        {
+          "id": "23",
+          "name": "Rajesh Gandhi",
+          "department": "EE",
+          "specializations": [],
+          "preferred_times": null,
+          "max_hours_per_day": 5.4,
+          "unavailable_days": null
+        },
+        {
+          "id": "29",
+          "name": "Bappaditya Singha Ray",
+          "department": "EE",
+          "specializations": [],
+          "preferred_times": null,
+          "max_hours_per_day": 5,
+          "unavailable_days": null
+        }
+      ],
+      "subjects": [
+        {
+          "code": "EE101",
+          "name": "Electric Circuits",
+          "department": "EE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 49
+        },
+        {
+          "code": "EE102",
+          "name": "Electromagnetic Theory",
+          "department": "EE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 51
+        },
+        {
+          "code": "EE103",
+          "name": "Power Systems",
+          "department": "EE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 39
+        },
+        {
+          "code": "EE104",
+          "name": "Control Systems",
+          "department": "EE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 64
+        },
+        {
+          "code": "EE105",
+          "name": "Electric Machines",
+          "department": "EE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 38
+        },
+        {
+          "code": "EE106",
+          "name": "Power Electronics",
+          "department": "EE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 59
+        },
+        {
+          "code": "EE107",
+          "name": "Electrical Measurements",
+          "department": "EE",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 60
+        },
+        {
+          "code": "EE201",
+          "name": "Electric Circuits",
+          "department": "EE",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 51
+        },
+        {
+          "code": "EE202",
+          "name": "Electromagnetic Theory",
+          "department": "EE",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 62
+        },
+        {
+          "code": "EE203",
+          "name": "Power Systems",
+          "department": "EE",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 59
+        },
+        {
+          "code": "EE204",
+          "name": "Control Systems",
+          "department": "EE",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 39
+        },
+        {
+          "code": "EE205",
+          "name": "Electric Machines",
+          "department": "EE",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 71
+        },
+        {
+          "code": "EE301",
+          "name": "Electric Circuits",
+          "department": "EE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 65
+        },
+        {
+          "code": "EE302",
+          "name": "Electromagnetic Theory",
+          "department": "EE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 80
+        },
+        {
+          "code": "EE303",
+          "name": "Power Systems",
+          "department": "EE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 68
+        },
+        {
+          "code": "EE304",
+          "name": "Control Systems",
+          "department": "EE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 44
+        },
+        {
+          "code": "EE305",
+          "name": "Electric Machines",
+          "department": "EE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 62
+        },
+        {
+          "code": "EE306",
+          "name": "Power Electronics",
+          "department": "EE",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 63
+        },
+        {
+          "code": "EE401",
+          "name": "Electric Circuits",
+          "department": "EE",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 42
+        },
+        {
+          "code": "EE402",
+          "name": "Electromagnetic Theory",
+          "department": "EE",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 52
+        },
+        {
+          "code": "EE403",
+          "name": "Power Systems",
+          "department": "EE",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 51
+        },
+        {
+          "code": "EE404",
+          "name": "Control Systems",
+          "department": "EE",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 60
+        },
+        {
+          "code": "EE405",
+          "name": "Electric Machines",
+          "department": "EE",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 38
+        },
+        {
+          "code": "EE406",
+          "name": "Power Electronics",
+          "department": "EE",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 40
+        },
+        {
+          "code": "EE501",
+          "name": "Electric Circuits",
+          "department": "EE",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 66
+        },
+        {
+          "code": "EE502",
+          "name": "Electromagnetic Theory",
+          "department": "EE",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 70
+        },
+        {
+          "code": "EE503",
+          "name": "Power Systems",
+          "department": "EE",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 38
+        },
+        {
+          "code": "EE504",
+          "name": "Control Systems",
+          "department": "EE",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 54
+        },
+        {
+          "code": "EE505",
+          "name": "Electric Machines",
+          "department": "EE",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 59
+        },
+        {
+          "code": "EE506",
+          "name": "Power Electronics",
+          "department": "EE",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 40
+        },
+        {
+          "code": "EE601",
+          "name": "Electric Circuits",
+          "department": "EE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 41
+        },
+        {
+          "code": "EE602",
+          "name": "Electromagnetic Theory",
+          "department": "EE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 67
+        },
+        {
+          "code": "EE603",
+          "name": "Power Systems",
+          "department": "EE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 65
+        },
+        {
+          "code": "EE604",
+          "name": "Control Systems",
+          "department": "EE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 84
+        },
+        {
+          "code": "EE605",
+          "name": "Electric Machines",
+          "department": "EE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 45
+        },
+        {
+          "code": "EE606",
+          "name": "Power Electronics",
+          "department": "EE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 89
+        },
+        {
+          "code": "EE607",
+          "name": "Electrical Measurements",
+          "department": "EE",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 70
+        },
+        {
+          "code": "EE701",
+          "name": "Electric Circuits",
+          "department": "EE",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 36
+        },
+        {
+          "code": "EE702",
+          "name": "Electromagnetic Theory",
+          "department": "EE",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 66
+        },
+        {
+          "code": "EE703",
+          "name": "Power Systems",
+          "department": "EE",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 51
+        },
+        {
+          "code": "EE704",
+          "name": "Control Systems",
+          "department": "EE",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 40
+        },
+        {
+          "code": "EE705",
+          "name": "Electric Machines",
+          "department": "EE",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 37
+        },
+        {
+          "code": "EE706",
+          "name": "Power Electronics",
+          "department": "EE",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 50
+        },
+        {
+          "code": "EE801",
+          "name": "Electric Circuits",
+          "department": "EE",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 83
+        },
+        {
+          "code": "EE802",
+          "name": "Electromagnetic Theory",
+          "department": "EE",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 83
+        },
+        {
+          "code": "EE803",
+          "name": "Power Systems",
+          "department": "EE",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 89
+        },
+        {
+          "code": "EE804",
+          "name": "Control Systems",
+          "department": "EE",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 54
+        },
+        {
+          "code": "EE805",
+          "name": "Electric Machines",
+          "department": "EE",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 65
+        },
+        {
+          "code": "EE806",
+          "name": "Power Electronics",
+          "department": "EE",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 60
+        },
+        {
+          "code": "EE807",
+          "name": "Electrical Measurements",
+          "department": "EE",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "6",
+          "total_hours": 50
+        }
+      ],
+      "sections": {
+        "56": {
+          "batch": 2021,
+          "section": "EE-A",
+          "strength": 60,
+          "semester": 7,
+          "academic_year": 2024,
+          "section_id": "56"
+        },
+        "57": {
+          "batch": 2021,
+          "section": "EE-B",
+          "strength": 20,
+          "semester": 7,
+          "academic_year": 2024,
+          "section_id": "57"
+        },
+        "58": {
+          "batch": 2021,
+          "section": "EE-C",
+          "strength": 0,
+          "semester": 7,
+          "academic_year": 2024,
+          "section_id": "58"
+        },
+        "59": {
+          "batch": 2022,
+          "section": "EE-A",
+          "strength": 60,
+          "semester": 5,
+          "academic_year": 2024,
+          "section_id": "59"
+        },
+        "60": {
+          "batch": 2022,
+          "section": "EE-B",
+          "strength": 60,
+          "semester": 5,
+          "academic_year": 2024,
+          "section_id": "60"
+        },
+        "61": {
+          "batch": 2022,
+          "section": "EE-C",
+          "strength": 43,
+          "semester": 5,
+          "academic_year": 2024,
+          "section_id": "61"
+        },
+        "62": {
+          "batch": 2023,
+          "section": "EE-A",
+          "strength": 60,
+          "semester": 3,
+          "academic_year": 2024,
+          "section_id": "62"
+        },
+        "63": {
+          "batch": 2023,
+          "section": "EE-B",
+          "strength": 31,
+          "semester": 3,
+          "academic_year": 2024,
+          "section_id": "63"
+        },
+        "64": {
+          "batch": 2023,
+          "section": "EE-C",
+          "strength": 0,
+          "semester": 3,
+          "academic_year": 2024,
+          "section_id": "64"
+        },
+        "65": {
+          "batch": 2024,
+          "section": "EE-A",
+          "strength": 60,
+          "semester": 1,
+          "academic_year": 2024,
+          "section_id": "65"
+        },
+        "66": {
+          "batch": 2024,
+          "section": "EE-B",
+          "strength": 18,
+          "semester": 1,
+          "academic_year": 2024,
+          "section_id": "66"
+        },
+        "67": {
+          "batch": 2024,
+          "section": "EE-C",
+          "strength": 0,
+          "semester": 1,
+          "academic_year": 2024,
+          "section_id": "67"
+        }
+      }
+    },
+    "IT": {
+      "name": "Information Technology",
+      "faculty": [
+        {
+          "id": "6",
+          "name": "Pooja Dutta",
+          "department": "IT",
+          "specializations": [],
+          "preferred_times": null,
+          "max_hours_per_day": 4.8,
+          "unavailable_days": null
+        },
+        {
+          "id": "12",
+          "name": "Akshara Mehta",
+          "department": "IT",
+          "specializations": [],
+          "preferred_times": null,
+          "max_hours_per_day": 6.4,
+          "unavailable_days": null
+        },
+        {
+          "id": "18",
+          "name": "Shobha Mehta",
+          "department": "IT",
+          "specializations": [],
+          "preferred_times": null,
+          "max_hours_per_day": 3.4,
+          "unavailable_days": null
+        },
+        {
+          "id": "24",
+          "name": "Archana Patel",
+          "department": "IT",
+          "specializations": [],
+          "preferred_times": null,
+          "max_hours_per_day": 6.4,
+          "unavailable_days": null
+        },
+        {
+          "id": "30",
+          "name": "Aditi Bose",
+          "department": "IT",
+          "specializations": [],
+          "preferred_times": null,
+          "max_hours_per_day": 6,
+          "unavailable_days": null
+        }
+      ],
+      "subjects": [
+        {
+          "code": "IT101",
+          "name": "Web Technologies",
+          "department": "IT",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 44
+        },
+        {
+          "code": "IT102",
+          "name": "Cloud Computing",
+          "department": "IT",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 63
+        },
+        {
+          "code": "IT103",
+          "name": "Artificial Intelligence",
+          "department": "IT",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 52
+        },
+        {
+          "code": "IT104",
+          "name": "Data Science",
+          "department": "IT",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 42
+        },
+        {
+          "code": "IT105",
+          "name": "Cyber Security",
+          "department": "IT",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 72
+        },
+        {
+          "code": "IT106",
+          "name": "Software Testing",
+          "department": "IT",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 38
+        },
+        {
+          "code": "IT107",
+          "name": "Mobile Application Development",
+          "department": "IT",
+          "semester": 1,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 52
+        },
+        {
+          "code": "IT201",
+          "name": "Web Technologies",
+          "department": "IT",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 56
+        },
+        {
+          "code": "IT202",
+          "name": "Cloud Computing",
+          "department": "IT",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 49
+        },
+        {
+          "code": "IT203",
+          "name": "Artificial Intelligence",
+          "department": "IT",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 53
+        },
+        {
+          "code": "IT204",
+          "name": "Data Science",
+          "department": "IT",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 69
+        },
+        {
+          "code": "IT205",
+          "name": "Cyber Security",
+          "department": "IT",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 52
+        },
+        {
+          "code": "IT206",
+          "name": "Software Testing",
+          "department": "IT",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 58
+        },
+        {
+          "code": "IT207",
+          "name": "Mobile Application Development",
+          "department": "IT",
+          "semester": 2,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 61
+        },
+        {
+          "code": "IT301",
+          "name": "Web Technologies",
+          "department": "IT",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 60
+        },
+        {
+          "code": "IT302",
+          "name": "Cloud Computing",
+          "department": "IT",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 74
+        },
+        {
+          "code": "IT303",
+          "name": "Artificial Intelligence",
+          "department": "IT",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 60
+        },
+        {
+          "code": "IT304",
+          "name": "Data Science",
+          "department": "IT",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 46
+        },
+        {
+          "code": "IT305",
+          "name": "Cyber Security",
+          "department": "IT",
+          "semester": 3,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 79
+        },
+        {
+          "code": "IT401",
+          "name": "Web Technologies",
+          "department": "IT",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 79
+        },
+        {
+          "code": "IT402",
+          "name": "Cloud Computing",
+          "department": "IT",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 72
+        },
+        {
+          "code": "IT403",
+          "name": "Artificial Intelligence",
+          "department": "IT",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 84
+        },
+        {
+          "code": "IT404",
+          "name": "Data Science",
+          "department": "IT",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 63
+        },
+        {
+          "code": "IT405",
+          "name": "Cyber Security",
+          "department": "IT",
+          "semester": 4,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 55
+        },
+        {
+          "code": "IT501",
+          "name": "Web Technologies",
+          "department": "IT",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 69
+        },
+        {
+          "code": "IT502",
+          "name": "Cloud Computing",
+          "department": "IT",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 64
+        },
+        {
+          "code": "IT503",
+          "name": "Artificial Intelligence",
+          "department": "IT",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 53
+        },
+        {
+          "code": "IT504",
+          "name": "Data Science",
+          "department": "IT",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 47
+        },
+        {
+          "code": "IT505",
+          "name": "Cyber Security",
+          "department": "IT",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 52
+        },
+        {
+          "code": "IT506",
+          "name": "Software Testing",
+          "department": "IT",
+          "semester": 5,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 61
+        },
+        {
+          "code": "IT601",
+          "name": "Web Technologies",
+          "department": "IT",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 65
+        },
+        {
+          "code": "IT602",
+          "name": "Cloud Computing",
+          "department": "IT",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 53
+        },
+        {
+          "code": "IT603",
+          "name": "Artificial Intelligence",
+          "department": "IT",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 73
+        },
+        {
+          "code": "IT604",
+          "name": "Data Science",
+          "department": "IT",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 45
+        },
+        {
+          "code": "IT605",
+          "name": "Cyber Security",
+          "department": "IT",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 58
+        },
+        {
+          "code": "IT606",
+          "name": "Software Testing",
+          "department": "IT",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 53
+        },
+        {
+          "code": "IT607",
+          "name": "Mobile Application Development",
+          "department": "IT",
+          "semester": 6,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 69
+        },
+        {
+          "code": "IT701",
+          "name": "Web Technologies",
+          "department": "IT",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 73
+        },
+        {
+          "code": "IT702",
+          "name": "Cloud Computing",
+          "department": "IT",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 57
+        },
+        {
+          "code": "IT703",
+          "name": "Artificial Intelligence",
+          "department": "IT",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 66
+        },
+        {
+          "code": "IT704",
+          "name": "Data Science",
+          "department": "IT",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 60
+        },
+        {
+          "code": "IT705",
+          "name": "Cyber Security",
+          "department": "IT",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 47
+        },
+        {
+          "code": "IT706",
+          "name": "Software Testing",
+          "department": "IT",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 49
+        },
+        {
+          "code": "IT707",
+          "name": "Mobile Application Development",
+          "department": "IT",
+          "semester": 7,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 69
+        },
+        {
+          "code": "IT801",
+          "name": "Web Technologies",
+          "department": "IT",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 74
+        },
+        {
+          "code": "IT802",
+          "name": "Cloud Computing",
+          "department": "IT",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 77
+        },
+        {
+          "code": "IT803",
+          "name": "Artificial Intelligence",
+          "department": "IT",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 60
+        },
+        {
+          "code": "IT804",
+          "name": "Data Science",
+          "department": "IT",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": false,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 88
+        },
+        {
+          "code": "IT805",
+          "name": "Cyber Security",
+          "department": "IT",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 43
+        },
+        {
+          "code": "IT806",
+          "name": "Software Testing",
+          "department": "IT",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 42
+        },
+        {
+          "code": "IT807",
+          "name": "Mobile Application Development",
+          "department": "IT",
+          "semester": 8,
+          "credits": 4,
+          "requires_lab": true,
+          "preferred_faculty_specializations": [],
+          "course_id": "2",
+          "total_hours": 49
+        }
+      ],
+      "sections": {
+        "68": {
+          "batch": 2021,
+          "section": "IT-A",
+          "strength": 60,
+          "semester": 7,
+          "academic_year": 2024,
+          "section_id": "68"
+        },
+        "69": {
+          "batch": 2021,
+          "section": "IT-B",
+          "strength": 60,
+          "semester": 7,
+          "academic_year": 2024,
+          "section_id": "69"
+        },
+        "70": {
+          "batch": 2021,
+          "section": "IT-C",
+          "strength": 3,
+          "semester": 7,
+          "academic_year": 2024,
+          "section_id": "70"
+        },
+        "71": {
+          "batch": 2022,
+          "section": "IT-A",
+          "strength": 60,
+          "semester": 5,
+          "academic_year": 2024,
+          "section_id": "71"
+        },
+        "72": {
+          "batch": 2022,
+          "section": "IT-B",
+          "strength": 37,
+          "semester": 5,
+          "academic_year": 2024,
+          "section_id": "72"
+        },
+        "73": {
+          "batch": 2022,
+          "section": "IT-C",
+          "strength": 0,
+          "semester": 5,
+          "academic_year": 2024,
+          "section_id": "73"
+        },
+        "74": {
+          "batch": 2023,
+          "section": "IT-A",
+          "strength": 60,
+          "semester": 3,
+          "academic_year": 2024,
+          "section_id": "74"
+        },
+        "75": {
+          "batch": 2023,
+          "section": "IT-B",
+          "strength": 35,
+          "semester": 3,
+          "academic_year": 2024,
+          "section_id": "75"
+        },
+        "76": {
+          "batch": 2023,
+          "section": "IT-C",
+          "strength": 0,
+          "semester": 3,
+          "academic_year": 2024,
+          "section_id": "76"
+        },
+        "77": {
+          "batch": 2024,
+          "section": "IT-A",
+          "strength": 60,
+          "semester": 1,
+          "academic_year": 2024,
+          "section_id": "77"
+        },
+        "78": {
+          "batch": 2024,
+          "section": "IT-B",
+          "strength": 38,
+          "semester": 1,
+          "academic_year": 2024,
+          "section_id": "78"
+        },
+        "79": {
+          "batch": 2024,
+          "section": "IT-C",
+          "strength": 0,
+          "semester": 1,
+          "academic_year": 2024,
+          "section_id": "79"
+        }
+      }
+    }
+  },
+  "rooms": [
+    {
+      "id": "10",
+      "name": "10y",
+      "capacity": 60,
+      "room_type": "classroom",
+      "facilities": {
+        "projector": true,
+        "whiteboard": true,
+        "airconditioned": true
+      },
+      "building": "Main Building"
+    },
+    {
+      "id": "12",
+      "name": "189W",
+      "capacity": 60,
+      "room_type": "lab",
+      "facilities": null,
+      "building": "Main Building"
+    },
+    {
+      "id": "13",
+      "name": "854p",
+      "capacity": 60,
+      "room_type": "lab",
+      "facilities": null,
+      "building": "Main Building"
+    },
+    {
+      "id": "14",
+      "name": "401",
+      "capacity": 800,
+      "room_type": "seminar_hall",
+      "facilities": null,
+      "building": "Main Building"
+    },
+    {
+      "id": "11",
+      "name": "261P",
+      "capacity": 65,
+      "room_type": "lab",
+      "facilities": null,
+      "building": "Main Building"
+    },
+    {
+      "id": "15",
+      "name": "402",
+      "capacity": 850,
+      "room_type": "auditorium",
+      "facilities": null,
+      "building": "Main Building"
+    },
+    {
+      "id": "16",
+      "name": "101",
+      "capacity": 60,
+      "room_type": "classroom",
+      "facilities": null,
+      "building": "Main Building"
+    },
+    {
+      "id": "17",
+      "name": "102",
+      "capacity": 60,
+      "room_type": "classroom",
+      "facilities": null,
+      "building": "Main Building"
+    },
+    {
+      "id": "18",
+      "name": "103",
+      "capacity": 60,
+      "room_type": "classroom",
+      "facilities": null,
+      "building": "Main Building"
+    },
+    {
+      "id": "19",
+      "name": "104",
+      "capacity": 60,
+      "room_type": "classroom",
+      "facilities": null,
+      "building": "Main Building"
+    },
+    {
+      "id": "20",
+      "name": "105",
+      "capacity": 60,
+      "room_type": "classroom",
+      "facilities": null,
+      "building": "Main Building"
+    },
+    {
+      "id": "21",
+      "name": "107",
+      "capacity": 60,
+      "room_type": "classroom",
+      "facilities": null,
+      "building": "Main Building"
+    },
+    {
+      "id": "22",
+      "name": "108",
+      "capacity": 60,
+      "room_type": "classroom",
+      "facilities": null,
+      "building": "Main Building"
+    },
+    {
+      "id": "23",
+      "name": "109",
+      "capacity": 60,
+      "room_type": "classroom",
+      "facilities": null,
+      "building": "Main Building"
+    },
+    {
+      "id": "24",
+      "name": "110",
+      "capacity": 60,
+      "room_type": "classroom",
+      "facilities": null,
+      "building": "Main Building"
+    },
+    {
+      "id": "25",
+      "name": "111",
+      "capacity": 60,
+      "room_type": "classroom",
+      "facilities": null,
+      "building": "Main Building"
+    },
+    {
+      "id": "26",
+      "name": "112",
+      "capacity": 60,
+      "room_type": "classroom",
+      "facilities": null,
+      "building": "Main Building"
+    },
+    {
+      "id": "27",
+      "name": "113",
+      "capacity": 60,
+      "room_type": "lab",
+      "facilities": null,
+      "building": "Main Building"
+    },
+    {
+      "id": "28",
+      "name": "114",
+      "capacity": 60,
+      "room_type": "lab",
+      "facilities": null,
+      "building": "Main Building"
+    },
+    {
+      "id": "29",
+      "name": "115",
+      "capacity": 60,
+      "room_type": "lab",
+      "facilities": null,
+      "building": "Main Building"
+    }
+  ],
+  "time_slots": {
+    "days": [
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "2",
+      "2",
+      "2",
+      "2",
+      "2",
+      "2",
+      "3",
+      "3",
+      "3",
+      "3",
+      "3",
+      "3",
+      "5",
+      "5",
+      "5",
+      "5",
+      "5",
+      "5",
+      "4",
+      "4",
+      "4",
+      "4",
+      "4",
+      "4"
+    ],
+    "times": [
+      "10:00:00.000Z",
+      "11:00:00.000Z",
+      "12:00:00.000Z",
+      "14:00:00.000Z",
+      "15:00:00.000Z",
+      "16:00:00.000Z",
+      "10:00:00.000Z",
+      "11:00:00.000Z",
+      "12:00:00.000Z",
+      "14:00:00.000Z",
+      "15:00:00.000Z",
+      "16:00:00.000Z",
+      "10:00:00.000Z",
+      "11:00:00.000Z",
+      "12:00:00.000Z",
+      "14:00:00.000Z",
+      "15:00:00.000Z",
+      "16:00:00.000Z",
+      "10:00:00.000Z",
+      "11:00:00.000Z",
+      "12:00:00.000Z",
+      "14:00:00.000Z",
+      "15:00:00.000Z",
+      "16:00:00.000Z",
+      "10:00:00.000Z",
+      "11:00:00.000Z",
+      "12:00:00.000Z",
+      "14:00:00.000Z",
+      "15:00:00.000Z",
+      "16:00:00.000Z"
+    ]
+  }
+}

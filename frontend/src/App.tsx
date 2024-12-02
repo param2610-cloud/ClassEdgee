@@ -4,9 +4,8 @@ import {
     Route,
     Routes,
     Navigate,
-    useNavigate,
 } from "react-router-dom";
-import { AuthProvider, useAuth } from "./services/AuthContext";
+import { useAuth } from "./services/AuthContext";
 import LandingPage from "./pages/Open/LandingPage/LandingPage";
 import LoginPage from "./pages/Open/auth/Login";
 import Registration from "./pages/Open/auth/Registration";
@@ -20,14 +19,10 @@ import Dashboard from "./pages/Protected/student/Dashboard";
 import Idgenerate from "./pages/Protected/supreme/generator/Idgenerate";
 import SupremeDashboard from "./pages/Protected/supreme/dashboard/SupremeDashboard";
 import CoordinatorLayout from "./pages/Protected/coordinator/CoordinatorLayout";
-import CreateTeacher from "./pages/Protected/coordinator/teachers/create/CreateTeacher";
 import CoordinatorDashboard from "./pages/Protected/coordinator/dashaboard/CoordinatorDashboard";
-import CreateStudent from "./pages/Protected/coordinator/student/create/CreateStudent";
 import CoordinatorStudent from "./pages/Protected/coordinator/student/CoordinatorStudent";
 import Createroom from "./pages/Protected/coordinator/rooms/Createroom";
-import TeacherEditProfile from "./pages/Protected/coordinator/teachers/edit/Teacheredit";
 import CoordinatorFaculty from "./pages/Protected/coordinator/teachers/CoordinatorFaculty";
-import CreateFacultyForm from "./pages/Protected/coordinator/teachers/create/CreateTeacher";
 import TeacherUploadLayout from "./pages/Protected/coordinator/teachers/create/CreateTeacherLayout";
 import AddDepartmentForm from "./pages/Protected/department/create/DepartmentCreate";
 import { Toaster } from "./components/ui/toaster";
@@ -38,10 +33,7 @@ import EditStudentForm from "./pages/Protected/coordinator/student/edit/Studente
 import FacultyEditProfile from "./pages/Protected/coordinator/teachers/edit/Teacheredit";
 import CourseDashboard from "./pages/Protected/coordinator/course/CourseDashboard";
 import SpecificCourseDashboard from "./pages/Protected/coordinator/course/SpecificCourseDashboard";
-import SemesterDashboard from "./pages/Protected/coordinator/course/semester/SemesterSyllabusCreate";
-import SemesterSyllabusDashboard from "./pages/Protected/coordinator/course/semester/SemesterSyllabusCreate";
 import SubjectManagement from "./pages/Protected/coordinator/course/semester/SemesterSyllabusCreate";
-import SpecificSubjectManagement from "./pages/Protected/coordinator/course/semester/subject/SpecificSubjectManagement";
 import UnitTopicManagement from "./pages/Protected/coordinator/course/semester/subject/SpecificSubjectManagement";
 import TimeslotManagement from "./pages/Protected/coordinator/classes/TimeSlotTable";
 import FacultyLMSDashboard from "./pages/Protected/faculty/FacultyDashboard";
@@ -50,15 +42,14 @@ import VirtualRoom from "./pages/Protected/faculty/InteractiveClassroom";
 import AddBatchSyllabus from "./pages/Protected/coordinator/course/AddBatchSyllabus";
 import AddHod from "./pages/Protected/department/[departmentid]/AddHod";
 import Profilepage from "./pages/Protected/faculty/profile/Profilepage";
-import DepartmentSyllabus from "./pages/Protected/faculty/Department/syllabus/DepartmentSyllabus";
 import DepartmentDetails from "./pages/Protected/department/[departmentid]/DetailDepartment";
 import CourseDashboardForFaculty from "./pages/Protected/faculty/Course/CourseDashboardForFaculty";
 import SectionDashboard from "./pages/Protected/faculty/section/SectionDashboard";
-import ScheduleDashboard from "./pages/Protected/faculty/schedule/ScheduleDashboard";
-import FacultyExpertiseManager from "./pages/Protected/faculty/schedule/FacultyExpertiseManager";
 import SubjectAssignment from "./pages/Protected/faculty/schedule/SubjectAssignment";
 import ScheduleGenerator from "./pages/Protected/faculty/schedule/ScheduleGenerator";
 import ScheduleViewer from "./pages/Protected/faculty/schedule/ScheduleViewer";
+import Load from "./LoadSpinners/Load";
+import ScheduleDashboard from "./pages/Protected/faculty/sechdule/ScheduleDashboard";
 // import SechduleForSemester from "./pages/Protected/faculty/sechdule/SechduleForSemester";
 // import ScheduleManager from "./pages/Protected/faculty/sechdule/ScheduleManagement";
 // import ScheduleDetailView from "./pages/Protected/faculty/sechdule/ScheduleDetailsView";
@@ -83,7 +74,6 @@ const App: React.FC = () => {
 
 const ProtectedRoute: React.FC = () => {
     const { user, isLoading } = useAuth();
-    const navigate = useNavigate();
 
     useEffect(() => {
         console.log("ProtectedRoute - User:", user);
@@ -159,8 +149,8 @@ const FacultyRoutes: React.FC = () => (
                 element={<SubjectAssignment    />}
             />
             <Route
-                path="/schedule/course/:course_id/semester/:semester_id/:syllabus_id/generate-schedule"
-                element={<ScheduleGenerator    />}
+                path="/schedule"
+                element={<ScheduleDashboard    />}
             />
             <Route
                 path="/schedule/:section_id"
