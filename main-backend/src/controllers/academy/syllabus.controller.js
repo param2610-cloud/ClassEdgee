@@ -69,13 +69,36 @@ const getSyllabusByCourse = async (req, res) => {
         });
     }
 };
+const getSyllabusIDByCourseANDSemester = async (req, res) => {
+    try {
+        const { courseId,semester } = req.params;
+        console.log(courseId,semester);
+        
+        const syllabus = await prisma.syllabus_structure.findMany({
+            where: {
+                course_id: parseInt(courseId),
+                semester: parseInt(semester),
+            },
+            select:{
+                syllabus_id:true
+            }
+        });
+        console.log(syllabus);
+
+        res.status(200).json(syllabus);
+    } catch (error) {
+        res.status(500).json({
+            error: "Failed to fetch syllabus",
+        });
+    }
+};
 
 // Get subjects for a syllabus
 const getSyllabusSubjects = async (req, res) => {
     try {
         const { syllabusId } = req.params;
 
-        const subjects = await prisma.subject_details.findMany({
+        const subjects = await prisma.subject_details.findUnique({
             where: {
                 syllabus_id: parseInt(syllabusId),
             },
@@ -146,4 +169,5 @@ export {
     getSyllabusByCourse,
     getSyllabusSubjects,
     validateSyllabus,
+    getSyllabusIDByCourseANDSemester
 };
