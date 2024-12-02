@@ -54,6 +54,7 @@ import DepartmentSyllabus from "./pages/Protected/faculty/Department/syllabus/De
 import DepartmentDetails from "./pages/Protected/department/[departmentid]/DetailDepartment";
 import CourseDashboardForFaculty from "./pages/Protected/faculty/Course/CourseDashboardForFaculty";
 import SectionDashboard from "./pages/Protected/faculty/section/SectionDashboard";
+import SechduleOverview from "./pages/Protected/sechdule/SechduleOverview";
 
 const App: React.FC = () => {
     return (
@@ -183,7 +184,7 @@ const CoordinatorRoutes: React.FC = () => (
                 element={<SubjectManagement />}
             />
             <Route
-                path="department/:department_id/add-syllabus/:course_id"
+                path="/department/:department_id/add-syllabus/:course_id"
                 element={<AddBatchSyllabus />}
             />
             <Route
@@ -191,7 +192,8 @@ const CoordinatorRoutes: React.FC = () => (
                 element={<UnitTopicManagement />}
             />
             <Route path="/classes" element={<TimeslotManagement/>} />
-            <Route path="department/:department_id/add-hod" element={<AddHod/>} />
+            <Route path="/department/:department_id/add-hod" element={<AddHod/>} />
+            <Route path="/sechdule" element={<SechduleOverview/>} />
         </Routes>
     </CoordinatorLayout>
 );

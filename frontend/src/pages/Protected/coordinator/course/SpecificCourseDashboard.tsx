@@ -197,7 +197,9 @@ const SpecificCourseDashboard = () => {
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                {syllabi.map((syllabus: SyllabusStructure) => (
+                                {syllabi.map((syllabus: SyllabusStructure) => {
+                                    
+                                    return (
                                     <Card
                                         key={syllabus.syllabus_id}
                                         className="hover:shadow-lg transition-shadow cursor-pointer"
@@ -223,7 +225,7 @@ const SpecificCourseDashboard = () => {
                                             </p>
                                         </CardContent>
                                     </Card>
-                                ))}
+                                )})}
                             </div>
                         </div>
                     </TabsContent>
