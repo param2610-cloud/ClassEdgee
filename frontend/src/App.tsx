@@ -55,6 +55,7 @@ import DepartmentDetails from "./pages/Protected/department/[departmentid]/Detai
 import CourseDashboardForFaculty from "./pages/Protected/faculty/Course/CourseDashboardForFaculty";
 import SectionDashboard from "./pages/Protected/faculty/section/SectionDashboard";
 import SechduleForSemester from "./pages/Protected/faculty/sechdule/SechduleForSemester";
+import Load from "./LoadSpinners/Load";
 
 const App: React.FC = () => {
     return (
@@ -88,7 +89,7 @@ const ProtectedRoute: React.FC = () => {
 
     if (isLoading) {
         console.log("ProtectedRoute - Still loading...");
-        return <div>Loading...</div>;
+        return <div><Load /></div>;
     }
 
     if (!user || !user.role) {
