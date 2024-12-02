@@ -143,11 +143,11 @@ model classes {
   slot_id                                                       Int?
   semester                                                      Int
   academic_year                                                 Int
-  start_date                                                    DateTime            @db.Date
-  end_date                                                      DateTime            @db.Date
   is_active                                                     Boolean?            @default(true)
   created_at                                                    DateTime?           @default(now()) @db.Timestamp(6)
   updated_at                                                    DateTime?           @db.Timestamp(6)
+  start_date                                                    DateTime?           @db.Timestamp(6)
+  end_date                                                      DateTime?           @db.Timestamp(6)
   attendance                                                    attendance[]
   backlogsessions_backlogsessions_original_class_idToclasses    backlogsessions[]   @relation("backlogsessions_original_class_idToclasses")
   backlogsessions_backlogsessions_rescheduled_class_idToclasses backlogsessions[]   @relation("backlogsessions_rescheduled_class_idToclasses")
@@ -157,6 +157,7 @@ model classes {
   sections                                                      sections?           @relation(fields: [section_id], references: [section_id], onDelete: NoAction, onUpdate: NoAction)
   timeslots                                                     timeslots?          @relation(fields: [slot_id], references: [slot_id], onDelete: NoAction, onUpdate: NoAction)
   quizzes                                                       quizzes[]
+  schedule_details                                              schedule_details[]
   studentengagement                                             studentengagement[]
 }
 
@@ -203,6 +204,7 @@ model departments {
   users           users?          @relation(fields: [hod_user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
   institutions    institutions?   @relation(fields: [institution_id], references: [institution_id], onDelete: Cascade, onUpdate: NoAction)
   faculty         faculty[]
+  schedule_meta   schedule_meta[]
   sections        sections[]
   students        students[]
 
@@ -279,25 +281,29 @@ model events {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model faculty {
-  faculty_id              Int                       @id @default(autoincrement())
-  user_id                 Int?                      @unique
-  department_id           Int?
-  designation             String                    @db.VarChar(100)
-  expertise               String[]
-  qualifications          String[]
-  max_weekly_hours        Int?                      @default(40)
-  joining_date            DateTime                  @db.Date
-  contract_end_date       DateTime?                 @db.Date
-  research_interests      String[]
-  publications            String[]
-  created_at              DateTime?                 @default(now()) @db.Timestamp(6)
-  updated_at              DateTime?                 @db.Timestamp(6)
-  administrativeduties    administrativeduties[]
-  classes                 classes[]
-  departments             departments?              @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction)
-  users                   users?                    @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
-  faculty_subject_mapping faculty_subject_mapping[]
-  facultyavailability     facultyavailability[]
+  faculty_id                                                   Int                       @id @default(autoincrement())
+  user_id                                                      Int?                      @unique
+  department_id                                                Int?
+  designation                                                  String                    @db.VarChar(100)
+  expertise                                                    String[]
+  qualifications                                               String[]
+  max_weekly_hours                                             Int?                      @default(40)
+  joining_date                                                 DateTime                  @db.Date
+  contract_end_date                                            DateTime?                 @db.Date
+  research_interests                                           String[]
+  publications                                                 String[]
+  created_at                                                   DateTime?                 @default(now()) @db.Timestamp(6)
+  updated_at                                                   DateTime?                 @db.Timestamp(6)
+  preferred_slots                                              Int[]
+  max_classes_per_day                                          Int?                      @default(4)
+  administrativeduties                                         administrativeduties[]
+  classes                                                      classes[]
+  departments                                                  departments?              @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction)
+  users                                                        users?                    @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  faculty_subject_mapping                                      faculty_subject_mapping[]
+  facultyavailability                                          facultyavailability[]
+  schedule_details_schedule_details_backup_faculty_idTofaculty schedule_details[]        @relation("schedule_details_backup_faculty_idTofaculty")
+  schedule_details_schedule_details_faculty_idTofaculty        schedule_details[]        @relation("schedule_details_faculty_idTofaculty")
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -390,26 +396,28 @@ model roomfeatures {
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model rooms {
-  room_id               Int               @id @default(autoincrement())
-  building_id           Int?
-  room_number           String            @unique @db.VarChar(50)
-  room_type             room_type
-  capacity              Int
-  floor_number          Int
-  wing                  String?           @db.VarChar(50)
-  area_sqft             Decimal?          @db.Decimal(8, 2)
-  features              Json?
-  status                resource_status?  @default(available)
-  last_maintenance_date DateTime?         @db.Date
-  next_maintenance_date DateTime?         @db.Date
-  created_at            DateTime?         @default(now()) @db.Timestamp(6)
-  updated_at            DateTime?         @db.Timestamp(6)
-  classes               classes[]
-  emergencyalerts       emergencyalerts[]
-  equipment             equipment[]
-  events                events[]
-  roomfeatures          roomfeatures[]
-  buildings             buildings?        @relation(fields: [building_id], references: [building_id], onDelete: NoAction, onUpdate: NoAction)
+  room_id                                                 Int                @id @default(autoincrement())
+  building_id                                             Int?
+  room_number                                             String             @unique @db.VarChar(50)
+  room_type                                               room_type
+  capacity                                                Int
+  floor_number                                            Int
+  wing                                                    String?            @db.VarChar(50)
+  area_sqft                                               Decimal?           @db.Decimal(8, 2)
+  features                                                Json?
+  status                                                  resource_status?   @default(available)
+  last_maintenance_date                                   DateTime?          @db.Date
+  next_maintenance_date                                   DateTime?          @db.Date
+  created_at                                              DateTime?          @default(now()) @db.Timestamp(6)
+  updated_at                                              DateTime?          @db.Timestamp(6)
+  classes                                                 classes[]
+  emergencyalerts                                         emergencyalerts[]
+  equipment                                               equipment[]
+  events                                                  events[]
+  roomfeatures                                            roomfeatures[]
+  buildings                                               buildings?         @relation(fields: [building_id], references: [building_id], onDelete: NoAction, onUpdate: NoAction)
+  schedule_details_schedule_details_backup_room_idTorooms schedule_details[] @relation("schedule_details_backup_room_idTorooms")
+  schedule_details_schedule_details_room_idTorooms        schedule_details[] @relation("schedule_details_room_idTorooms")
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -477,13 +485,16 @@ model students {
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model timeslots {
-  slot_id     Int       @id @default(autoincrement())
-  start_time  DateTime  @db.Time(6)
-  end_time    DateTime  @db.Time(6)
-  day_of_week Int?
-  slot_type   String?   @default("regular") @db.VarChar(50)
-  created_at  DateTime? @default(now()) @db.Timestamp(6)
-  classes     classes[]
+  slot_id          Int                @id @default(autoincrement())
+  start_time       DateTime           @db.Time(6)
+  end_time         DateTime           @db.Time(6)
+  day_of_week      Int?
+  slot_type        String?            @default("regular") @db.VarChar(50)
+  created_at       DateTime?          @default(now()) @db.Timestamp(6)
+  semester         Int?
+  academic_year    Int?
+  classes          classes[]
+  schedule_details schedule_details[]
 
   @@unique([start_time, end_time, day_of_week])
 }
@@ -520,6 +531,7 @@ model users {
   feedback_feedback_sender_idTousers   feedback[]           @relation("feedback_sender_idTousers")
   notes                                notes[]
   resources                            resources[]
+  schedule_meta                        schedule_meta[]
   students                             students?
   institutions                         institutions?        @relation(fields: [institution_id], references: [institution_id], onDelete: Cascade, onUpdate: NoAction)
 
@@ -593,6 +605,7 @@ model units {
   learning_objectives                                               String[]
   created_at                                                        DateTime?            @default(now()) @db.Timestamp(6)
   updated_at                                                        DateTime?            @default(now()) @db.Timestamp(6)
+  schedule_topics                                                   schedule_topics[]
   topics                                                            topics[]
   unit_prerequisites_unit_prerequisites_prerequisite_unit_idTounits unit_prerequisites[] @relation("unit_prerequisites_prerequisite_unit_idTounits")
   unit_prerequisites_unit_prerequisites_unit_idTounits              unit_prerequisites[] @relation("unit_prerequisites_unit_idTounits")
@@ -686,6 +699,85 @@ model faculty_subject_mapping {
   subject_details subject_details @relation(fields: [subject_id], references: [subject_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_subject")
 
   @@id([faculty_id, subject_id])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model schedule_conflicts {
+  conflict_id         Int           @id @default(autoincrement())
+  schedule_id         Int
+  conflict_type       String        @db.VarChar(50)
+  description         String
+  status              String        @default("detected") @db.VarChar(20)
+  affected_detail_ids Int[]
+  resolution          String?
+  created_at          DateTime?     @default(now()) @db.Timestamptz(6)
+  resolved_at         DateTime?     @db.Timestamptz(6)
+  schedule_meta       schedule_meta @relation(fields: [schedule_id], references: [schedule_id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([schedule_id], map: "idx_schedule_conflicts_schedule")
+  @@index([status], map: "idx_schedule_conflicts_status")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model schedule_details {
+  detail_id                                           Int               @id @default(autoincrement())
+  schedule_id                                         Int
+  class_id                                            Int
+  faculty_id                                          Int
+  backup_faculty_id                                   Int?
+  room_id                                             Int
+  backup_room_id                                      Int?
+  timeslot_id                                         Int
+  day_of_week                                         Int
+  faculty_schedule_details_backup_faculty_idTofaculty faculty?          @relation("schedule_details_backup_faculty_idTofaculty", fields: [backup_faculty_id], references: [faculty_id], onUpdate: NoAction)
+  rooms_schedule_details_backup_room_idTorooms        rooms?            @relation("schedule_details_backup_room_idTorooms", fields: [backup_room_id], references: [room_id], onUpdate: NoAction)
+  classes                                             classes           @relation(fields: [class_id], references: [class_id], onDelete: Cascade, onUpdate: NoAction)
+  faculty_schedule_details_faculty_idTofaculty        faculty           @relation("schedule_details_faculty_idTofaculty", fields: [faculty_id], references: [faculty_id], onDelete: Cascade, onUpdate: NoAction)
+  rooms_schedule_details_room_idTorooms               rooms             @relation("schedule_details_room_idTorooms", fields: [room_id], references: [room_id], onDelete: Cascade, onUpdate: NoAction)
+  schedule_meta                                       schedule_meta     @relation(fields: [schedule_id], references: [schedule_id], onDelete: Cascade, onUpdate: NoAction)
+  timeslots                                           timeslots         @relation(fields: [timeslot_id], references: [slot_id], onDelete: Cascade, onUpdate: NoAction)
+  schedule_topics                                     schedule_topics[]
+
+  @@unique([schedule_id, faculty_id, timeslot_id, day_of_week])
+  @@unique([schedule_id, room_id, timeslot_id, day_of_week])
+  @@index([faculty_id], map: "idx_schedule_details_faculty")
+  @@index([room_id], map: "idx_schedule_details_room")
+  @@index([schedule_id], map: "idx_schedule_details_schedule")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model schedule_meta {
+  schedule_id        Int                  @id @default(autoincrement())
+  department_id      Int
+  academic_year      Int
+  semester           Int
+  batch_year         Int
+  created_by         Int
+  status             String               @default("draft") @db.VarChar(20)
+  created_at         DateTime?            @default(now()) @db.Timestamptz(6)
+  updated_at         DateTime?            @default(now()) @db.Timestamptz(6)
+  schedule_conflicts schedule_conflicts[]
+  schedule_details   schedule_details[]
+  users              users                @relation(fields: [created_by], references: [user_id], onDelete: Cascade, onUpdate: NoAction)
+  departments        departments          @relation(fields: [department_id], references: [department_id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([department_id], map: "idx_schedule_meta_dept")
+  @@index([status], map: "idx_schedule_meta_status")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model schedule_topics {
+  topic_id           Int              @id @default(autoincrement())
+  schedule_detail_id Int
+  unit_id            Int
+  topic_name         String           @db.VarChar(255)
+  status             String           @default("planned") @db.VarChar(20)
+  original_date      DateTime?        @db.Date
+  rescheduled_date   DateTime?        @db.Date
+  schedule_details   schedule_details @relation(fields: [schedule_detail_id], references: [detail_id], onDelete: Cascade, onUpdate: NoAction)
+  units              units            @relation(fields: [unit_id], references: [unit_id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([schedule_detail_id], map: "idx_schedule_topics_detail")
 }
 
 enum alert_severity {

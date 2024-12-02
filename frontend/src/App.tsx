@@ -54,7 +54,7 @@ import DepartmentSyllabus from "./pages/Protected/faculty/Department/syllabus/De
 import DepartmentDetails from "./pages/Protected/department/[departmentid]/DetailDepartment";
 import CourseDashboardForFaculty from "./pages/Protected/faculty/Course/CourseDashboardForFaculty";
 import SectionDashboard from "./pages/Protected/faculty/section/SectionDashboard";
-import SechduleForSemester from "./pages/Protected/faculty/sechdule/SechduleForSemester";
+import SechduleForSemester from "./pages/Protected/faculty/sechdule/FacultyExpertiseManager";
 import Load from "./LoadSpinners/Load";
 
 const App: React.FC = () => {
