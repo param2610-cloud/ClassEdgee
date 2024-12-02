@@ -95,7 +95,7 @@ const ProtectedRoute: React.FC = () => {
 
     if (isLoading) {
         console.log("ProtectedRoute - Still loading...");
-        return <div>Loading...</div>;
+        return <div><Load /></div>;
     }
 
     if (!user || !user.role) {
@@ -154,7 +154,6 @@ const FacultyRoutes: React.FC = () => (
                 path="/course/:course_id/semester/:semester_id/syllabus/:syllabus_id/subject/:subject_id"
                 element={<UnitTopicManagement />}
             />
-            <Route path="/schedule/" element={<ScheduleDashboard/>} />
             <Route
                 path="/schedule/course/:course_id/semester/:semester_id/:syllabus_id/subject-assignment"
                 element={<SubjectAssignment    />}
@@ -199,6 +198,10 @@ const CoordinatorRoutes: React.FC = () => (
             <Route path="/course" element={<CourseDashboard />} />
             <Route path="/course/:id" element={<SpecificCourseDashboard />} />
             <Route
+                path="/course/:course_id/semester/:semester_id/:syllabus_id"
+                element={<SubjectManagement />}
+            />
+            <Route
                 path="department/:department_id/add-syllabus/:course_id"
                 element={<AddBatchSyllabus />}
             />
@@ -208,7 +211,6 @@ const CoordinatorRoutes: React.FC = () => (
             />
             <Route path="/classes" element={<TimeslotManagement/>} />
             <Route path="department/:department_id/add-hod" element={<AddHod/>} />
-            
         </Routes>
     </CoordinatorLayout>
 );

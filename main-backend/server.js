@@ -44,7 +44,7 @@ import activityRoutes from './src/Router/InteractiveClassroom/activity.router.js
 import sessionRoutes from './src/Router/InteractiveClassroom/session.router.js'
 import analogisticRouters from './src/Router/InteractiveClassroom/analogistic.router.js'
 import quizRouter from "./src/Router/quizRoutes.js";
-import scheduleRoutes from './src/Router/schedule.router.js'
+import scheduleRouter from "./src/Router/schedule.router.js";
 
 //print route
 app.use((req, res, next) => {
@@ -66,7 +66,7 @@ app.use("/api/v1/curriculum",curriculumRouter)
 app.use('/api/v1/timeslots', timeslotRouter)
 app.use("/api/v1/supreme",supremeRouter)
 app.use("/api/v1/room",roomRouter)
-app.use('/api/v1/schedule', scheduleRoutes);
+app.use("/api/v1/schedule",scheduleRouter)
 //principal form data register 
 //principal login
 

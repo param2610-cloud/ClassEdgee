@@ -143,11 +143,11 @@ model classes {
   slot_id                                                       Int?
   semester                                                      Int
   academic_year                                                 Int
-  start_date                                                    DateTime            @db.Time(6)
-  end_date                                                      DateTime            @db.Time(6)
   is_active                                                     Boolean?            @default(true)
   created_at                                                    DateTime?           @default(now()) @db.Timestamp(6)
   updated_at                                                    DateTime?           @db.Timestamp(6)
+  start_date                                                    DateTime?           @db.Timestamp(6)
+  end_date                                                      DateTime?           @db.Timestamp(6)
   attendance                                                    attendance[]
   backlogsessions_backlogsessions_original_class_idToclasses    backlogsessions[]   @relation("backlogsessions_original_class_idToclasses")
   backlogsessions_backlogsessions_rescheduled_class_idToclasses backlogsessions[]   @relation("backlogsessions_rescheduled_class_idToclasses")

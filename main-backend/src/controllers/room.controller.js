@@ -226,30 +226,12 @@ const deleteRoom = async (req, res) => {
     });
   }
 };
-const list_of_room = async (req,res)=>{
-  try {
-    const rooms = await prismaClient.rooms.findMany();
-    res.status(200).send({
-      success: true,
-      data: rooms,
-    });
-  } catch (error) {
-    console.error("Error fetching rooms:", error);
-    res.status(500).send({
-      success: false,
-      message: "Failed to fetch rooms",
-      error: error.message,
-    });
-  }
-}
-
 export {
   createRoom,
   getRoomsOnFloor,
   getRoomDetails,
   updateRoom,
-  deleteRoom,
-  list_of_room
+  deleteRoom
 };
 
 
