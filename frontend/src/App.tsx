@@ -54,8 +54,15 @@ import DepartmentSyllabus from "./pages/Protected/faculty/Department/syllabus/De
 import DepartmentDetails from "./pages/Protected/department/[departmentid]/DetailDepartment";
 import CourseDashboardForFaculty from "./pages/Protected/faculty/Course/CourseDashboardForFaculty";
 import SectionDashboard from "./pages/Protected/faculty/section/SectionDashboard";
+<<<<<<< HEAD
 import SechduleForSemester from "./pages/Protected/faculty/sechdule/SechduleForSemester";
 import Load from "./LoadSpinners/Load";
+=======
+import ScheduleDashboard from "./pages/Protected/faculty/schedule/ScheduleDashboard";
+// import SechduleForSemester from "./pages/Protected/faculty/sechdule/SechduleForSemester";
+// import ScheduleManager from "./pages/Protected/faculty/sechdule/ScheduleManagement";
+// import ScheduleDetailView from "./pages/Protected/faculty/sechdule/ScheduleDetailsView";
+>>>>>>> 7608cf81bf0d0a125a09c68ace26b5ab9f685437
 
 const App: React.FC = () => {
     return (
@@ -148,9 +155,10 @@ const FacultyRoutes: React.FC = () => (
                 path="/course/:course_id/semester/:semester_id/syllabus/:syllabus_id/subject/:subject_id"
                 element={<UnitTopicManagement />}
             />
+            <Route path="/schedule/" element={<ScheduleDashboard/>} />
             <Route
-                path="/course/:course_id/semester/:semester_id/sechdule"
-                element={<SechduleForSemester />}
+                path="/schedule/course/:course_id/semester/:semester_id/:syllabus_id"
+                element={<SubjectManagement />}
             />
         </Routes>
     </FacultyLayout>
@@ -184,10 +192,6 @@ const CoordinatorRoutes: React.FC = () => (
             <Route path="/course" element={<CourseDashboard />} />
             <Route path="/course/:id" element={<SpecificCourseDashboard />} />
             <Route
-                path="/course/:course_id/semester/:semester_id/:syllabus_id"
-                element={<SubjectManagement />}
-            />
-            <Route
                 path="department/:department_id/add-syllabus/:course_id"
                 element={<AddBatchSyllabus />}
             />
@@ -197,6 +201,7 @@ const CoordinatorRoutes: React.FC = () => (
             />
             <Route path="/classes" element={<TimeslotManagement/>} />
             <Route path="department/:department_id/add-hod" element={<AddHod/>} />
+            
         </Routes>
     </CoordinatorLayout>
 );
