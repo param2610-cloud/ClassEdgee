@@ -77,12 +77,6 @@ const CoordinatorLayout: React.FC<{ children: React.ReactNode }> = ({ children }
                 Course
               </Button>
               <Button 
-                onClick={() => handleNavigation('/p/sechdule')} 
-                className="text-lg hover:underline"
-              >
-                Sechdule
-              </Button>
-              <Button 
                 onClick={logout} 
                 className="text-lg hover:underline"
               >

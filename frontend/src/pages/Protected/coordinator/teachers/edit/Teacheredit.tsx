@@ -73,7 +73,7 @@ const FacultyEditProfile: React.FC = () => {
                 setError("Error fetching faculty details");
                 setLoading(false);
             }
-        };  
+        };
         fetchFaculty();
     }, [id]);
 
