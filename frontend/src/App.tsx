@@ -54,6 +54,7 @@ import DepartmentSyllabus from "./pages/Protected/faculty/Department/syllabus/De
 import DepartmentDetails from "./pages/Protected/department/[departmentid]/DetailDepartment";
 import CourseDashboardForFaculty from "./pages/Protected/faculty/Course/CourseDashboardForFaculty";
 import SectionDashboard from "./pages/Protected/faculty/section/SectionDashboard";
+import SechduleForSemester from "./pages/Protected/faculty/sechdule/SechduleForSemester";
 import SechduleOverview from "./pages/Protected/sechdule/SechduleOverview";
 
 const App: React.FC = () => {
@@ -147,7 +148,10 @@ const FacultyRoutes: React.FC = () => (
                 path="/course/:course_id/semester/:semester_id/syllabus/:syllabus_id/subject/:subject_id"
                 element={<UnitTopicManagement />}
             />
-   
+            <Route
+                path="/course/:course_id/semester/:semester_id/sechdule"
+                element={<SechduleForSemester />}
+            />
         </Routes>
     </FacultyLayout>
 );

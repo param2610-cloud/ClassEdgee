@@ -171,8 +171,36 @@ const add_hod_to_department = async (req, res) => {
     }
 };
 
-
-
+const list_of_faculty_for_department = async (req, res) => {
+    try {
+        const { department_id, institute_id } = req.params;
+        const faculty = await prisma.faculty.findMany({
+            where: {
+                department_id:parseInt(department_id),
+                users: {
+                    institution_id: parseInt(institute_id),
+                },
+            },
+            include: {
+                users: true,
+                departments: true,
+                faculty_subject_mapping:{
+                    include:{
+                        subject_details:true
+                    }
+                }
+            },
+        });
+        res.status(200).send({
+            faculty,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            message: "Internal Server Error",
+        });
+    }
+};
 //head of department controller 
 
 
@@ -181,5 +209,6 @@ export {
     add_department,
     specific_department_details,
     list_of_faculty,
-    add_hod_to_department
+    add_hod_to_department,
+    list_of_faculty_for_department
 };

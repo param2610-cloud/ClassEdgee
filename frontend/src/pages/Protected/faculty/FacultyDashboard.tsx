@@ -11,6 +11,7 @@ import {
     Home,
     User2,
     List,
+    Calendar,
 } from "lucide-react";
 import { useAuth } from "@/services/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -145,6 +146,12 @@ const FacultyLMSDashboard = () => {
                         className={`p-3 rounded `}
                     >
                         <List className="w-6 h-6" />
+                    </button>
+                    <button
+                        onClick={()=>navigate("/p/sechdule")}
+                        className={`p-3 rounded `}
+                    >
+                        <Calendar className="w-6 h-6" />
                     </button>
                     <button
                         onClick={logout}

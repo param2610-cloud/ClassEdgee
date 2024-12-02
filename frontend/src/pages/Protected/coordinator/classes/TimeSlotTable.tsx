@@ -44,7 +44,7 @@ const TimeslotManagement = () => {
   const createTimeslot = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3000/api/v1/timeslots', newTimeslot);
+      await axios.post(`${domain}/api/v1/timeslots`, newTimeslot);
       //setTimeslots((prevTimeslots) => [...prevTimeslots, response.data.data]);
       fetchTimeslots(); // Refresh list
       // Reset form
@@ -63,7 +63,7 @@ const TimeslotManagement = () => {
 
   const deleteTimeslot = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/v1/timeslots/${id}`);
+      await axios.delete(`${domain}/api/v1/timeslots/${id}`);
       fetchTimeslots(); // Refresh list
       setError(null);
     } catch (err) {
@@ -152,7 +152,7 @@ const TimeslotManagement = () => {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="regular">Regular</SelectItem>
-                  <SelectItem value="special">Special</SelectItem>
+                  <SelectItem value="break">Break</SelectItem>
                 </SelectContent>
               </Select>
             </div>
