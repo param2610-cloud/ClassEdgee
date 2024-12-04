@@ -4,8 +4,10 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Loader2 } from 'lucide-react';
 import { domain } from '@/lib/constant';
+import { useAuth } from '@/services/AuthContext';
 
 export default function ScheduleGenerator() {
+  const { user } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -18,6 +20,9 @@ export default function ScheduleGenerator() {
 
       const response = await fetch(`${domain}/api/v1/schedule/generate`, {
         method: 'POST',
+        body:JSON.stringify({
+          created_by: user?.user_id
+        }),
         headers: {
           'Content-Type': 'application/json',
         }

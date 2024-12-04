@@ -332,7 +332,7 @@ const createTimeSlotBybatch = async (req, res) => {
                 }
 
                 if (nextTime > endDateTime) break;
-
+                
                 timeSlots.push({
                     start_time: currentTime,
                     end_time: nextTime,

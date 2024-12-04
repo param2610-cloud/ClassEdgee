@@ -49,23 +49,11 @@ const CourseDashboard = () => {
 
     useEffect(() => {
         fetchCourses();
-        fetchDepartments();
+        // fetchDepartments();
     }, []);
 
-    const fetchDepartments = async () => {
-        try {
-            const response = await fetch(`${domain}/api/v1/department/list-of-department`,{
-                headers:{
-                    "X-Institution-Id": `${institution_id}`,
-                }
-            });
-            const data = await response.json();
-            setDepartments(data.department);
-        } catch (error) {
-            console.error("Error fetching departments:", error);
-        }
-    };
 
+ 
     const fetchCourses = async () => {
         try {
             const response = await fetch(`${domain}/api/v1/curriculum/course`);

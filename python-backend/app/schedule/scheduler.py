@@ -123,7 +123,7 @@ class ScheduleGenerator:
                             break
                             
                         time_slot, room = slot
-                        key = f"{dept_code}_{section_data['batch']}_{section_data['section']}"
+                        key = f"{dept_code}_{section_data['batch']}_{section_data['section_id']}"
                         
                         schedule[key][str(time_slot)] = {
                             "course": course.name,

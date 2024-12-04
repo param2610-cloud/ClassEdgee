@@ -5,6 +5,6 @@ const router = express.Router();
 
 
 router.post("/generate", generateSchedule);
-router.get("/latest/:section_id",getLatestSchedule)
+router.get("/:department_id/:academic_year/:batch_year/:semester/:section_id", getLatestSchedule);
 
 export default router;

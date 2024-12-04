@@ -291,7 +291,7 @@ const loginfaculty = async (req, res) => {
         );
 
         // Update the faculty's refresh token
-        await prisma.users.update({
+        const userData = await prisma.users.update({
             where: {
                 email: faculty.email,
             },
@@ -299,6 +299,17 @@ const loginfaculty = async (req, res) => {
                 refreshtoken: refreshToken,
                 last_login : new Date()
             },
+            select:{
+                user_id:true,
+                first_name:true,
+                last_name:true,
+                email:true,
+                phone_number:true,
+                profile_picture:true,
+                institution_id:true,
+                faculty : true,
+                role:true
+            }
         });
         // Set HTTP-only cookies
         res.cookie("refreshToken", refreshToken, {
@@ -322,10 +333,7 @@ const loginfaculty = async (req, res) => {
         return res.status(200).send({
             message: "User logged in successfully",
             faculty,
-            user:{
-                institutionId: faculty.institution_id,
-
-            },
+            userData,
             accessToken,
             refreshToken
         });

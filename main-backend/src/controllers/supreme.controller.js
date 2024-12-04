@@ -74,7 +74,8 @@ const adminLogin = async (req, res) => {
                     first_name:true,
                     last_name:true,
                     institution_id:true,
-                    institutions:true
+                    institutions:true,
+                    role:true
                 }
         })
 
@@ -124,16 +125,16 @@ const adminLogin = async (req, res) => {
             secure: process.env.NODE_ENV === "production",
             sameSite: "strict",
         })
-
+        
         // Send response
         return res.status(200).send({
             message: "User logged in successfully",
-            user: {
+            userData: {
                 email: finduser.email,
                 firstName: finduser.first_name,
                 lastName: finduser.last_name,
                 institutionId: finduser.institution_id,
-                finduser
+                role:finduser.role
                 // Include other non-sensitive user data here
             },
             refreshToken,

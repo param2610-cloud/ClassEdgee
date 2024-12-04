@@ -49,8 +49,8 @@ const LoginPage: React.FC = () => {
         if(role=="faculty"){
           localStorage.setItem("department_id", response.data.faculty.faculty.department_id.toString());
         }
-        setInstitutionId(response.data.user.institutionId)
-        localStorage.setItem('institution_id', response.data.user.institutionId.toString());
+        setInstitutionId(response.data.userData.institution_id)
+        localStorage.setItem('institution_id', response.data.userData.institution_id.toString());
         console.log(response.data);
         
         enhancedLocalStorage.setItem('accessToken', response.data.accessToken);

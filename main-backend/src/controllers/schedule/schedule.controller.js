@@ -247,3 +247,72 @@ const fetchData = async (req, res) => {
 };
 
 
+const assignSubjectToexistedclasses = async (req, res) => {
+    try {
+        const scheduleesData = await prisma.schedule_details.findMany({
+            where:{
+                subject_id:null
+            },
+            select:{
+                faculty_id:true,
+                detail_id:true,
+            }
+        });
+        for (const scheduleData of scheduleesData) {
+            console.log(scheduleData.detail_id);
+            const subjectData = await prisma.faculty_subject_mapping.findMany({
+                where:{
+                    faculty_id:scheduleData.faculty_id
+                },
+                select:{
+                    subject_id:true,
+                }
+            });
+            console.log(subjectData)
+            if(subjectData.length === 0){
+                continue;
+            }
+            const filteredSubjects = [];
+            for (const subject of subjectData) {
+                const subjectDetails = await prisma.subject_details.findUnique({
+                    where: { subject_id: subject.subject_id },
+                    select: { subject_id:true,syllabus_structure:{
+                        select:{
+                            semester:true,
+                        }
+                    } }
+                });
+                if (subjectDetails.syllabus_structure.semester === scheduleData.semester) {
+                    filteredSubjects.push(subjectDetails);
+                }
+            }
+            console.log(2)
+            let subjectindex = Math.floor(Math.random() * filteredSubjects.length);
+            if(subjectindex === filteredSubjects.length){
+                subjectindex = subjectindex;
+            }else if(subjectindex < 0){
+                subjectindex = 0;
+            }else if(filteredSubjects.length === 0){
+                continue;
+            }
+            console.log("subject index",subjectindex);
+            if(subjectindex==0){
+                
+            }
+            const subjectId = filteredSubjects[subjectindex].subject_id;
+            await prisma.schedule_details.update({
+                where:{
+                    detail_id:scheduleData.detail_id
+                },
+                data:{
+                    subject_id:subjectId
+                }
+            });
+            console.log(3)
+        }
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+assignSubjectToexistedclasses()

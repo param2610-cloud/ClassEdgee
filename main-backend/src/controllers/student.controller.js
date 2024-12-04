@@ -180,6 +180,27 @@ const loginStudent = async (req, res) => {
             "2d",
             "7d"
         );
+        const userData = await prismaClient.users.update({
+            where: {
+                email: faculty.email,
+            },
+            data: {
+                refreshtoken: refreshToken,
+                last_login : new Date()
+            },
+            select:{
+                user_id:true,
+                first_name:true,
+                last_name:true,
+                email:true,
+                phone_number:true,
+                profile_picture:true,
+                institution_id:true,
+                students : true,
+                role:true,
+                departments:true
+            }
+        });
 
         // Update last login
         await prismaClient.users.update({
@@ -208,7 +229,8 @@ const loginStudent = async (req, res) => {
             message: "Login successful",
             accessToken,
             refreshToken,
-            user,
+            userData,
+            student:userData,
         });
     } catch (error) {
         console.error("Error in student login:", error);
