@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { domain } from '@/lib/constant';
 
+
 // TypeScript interfaces for type safety
 interface QuizQuestion {
   question_id: number;
@@ -30,6 +31,10 @@ const QuizComponent: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
   const [submissionResult, setSubmissionResult] = useState<any>(null);
 
+
+
+  const studentId = localStorage.getItem('student_id');
+
   // Fetch quiz on component mount
   useEffect(() => {
     const fetchQuiz = async () => {
@@ -51,7 +56,7 @@ const QuizComponent: React.FC = () => {
     };
 
     fetchQuiz();
-  }, [quiz_id]);
+  }, [quiz_id, studentId]);
 
   // Handle option selection
   const handleOptionSelect = (questionId: number, option: string) => {
@@ -74,6 +79,7 @@ const QuizComponent: React.FC = () => {
       );
 
       const response = await axios.post(`${domain}/api/v1/quizzes/7/submit`, {
+        student_id: studentId,
         responses: quizResponses
       });
 
