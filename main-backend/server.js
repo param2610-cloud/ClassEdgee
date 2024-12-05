@@ -38,6 +38,8 @@ import curriculumRouter from "./src/Router/curriculum.router.js";
 import timeslotRouter from './src/Router/timeslot.router.js';
 import supremeRouter from './src/Router/supreme.router.js';
 import roomRouter from './src/Router/room.router.js'
+import attendanceRouter from "./src/Router/attendance.router.js";
+import resourceRouter from "./src/Router/resource/resource.router.js";
 //interactive classroom routes
 import feedbackRoutes from './src/Router/InteractiveClassroom/feedback.router.js'
 import activityRoutes from './src/Router/InteractiveClassroom/activity.router.js'
@@ -45,6 +47,7 @@ import sessionRoutes from './src/Router/InteractiveClassroom/session.router.js'
 import analogisticRouters from './src/Router/InteractiveClassroom/analogistic.router.js'
 import quizRouter from "./src/Router/quizRoutes.js";
 import scheduleRouter from "./src/Router/schedule.router.js";
+
 
 //print route
 app.use((req, res, next) => {
@@ -67,8 +70,10 @@ app.use('/api/v1/timeslots', timeslotRouter)
 app.use("/api/v1/supreme",supremeRouter)
 app.use("/api/v1/room",roomRouter)
 app.use("/api/v1/schedule",scheduleRouter)
-//principal form data register 
-//principal login
+app.use("/api/v1/attendance",attendanceRouter)
+app.use("/api/v1/resource",resourceRouter)
+
+
 
 
 
