@@ -90,7 +90,7 @@ app.use('/api/v1/sessions', sessionRoutes);
 app.use('/api/v1/analogistics',analogisticRouters)
 
 
-app.use("/api/v1/quizzes/", quizRouter)
+app.use("/api/v1/quizzes", quizRouter)
 
 
 

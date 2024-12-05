@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Book, Calendar, CheckSquare, MessageCircle, BarChart2, Settings, LogOut } from 'lucide-react';
 import { useAuth } from '@/services/AuthContext';
+import { useNavigate } from 'react-router-dom';
+//import QuizComponent from './quiz/QuizComponent';
 
 const StudentLMSDashboard = () => {
   const [activeSection, setActiveSection] = useState('courses');
+  const navigate = useNavigate();
   const {logout} = useAuth()
   // Sample data (in a real app, this would come from backend)
   const courses = [
@@ -44,6 +47,7 @@ const StudentLMSDashboard = () => {
 
   return (
     <div className="flex h-screen bg-gray-100">
+      
       {/* Sidebar Navigation */}
       <div className="w-24 bg-white shadow-md flex flex-col items-center py-8">
         <div className="mb-8">
@@ -78,6 +82,14 @@ const StudentLMSDashboard = () => {
           >
             <MessageCircle className="w-6 h-6" />
           </button>
+          <button  className="bg-blue-100 hover:bg-blue-200"
+ onClick={() => navigate('/p/take-quiz')} >
+ 
+    
+    take Quiz
+ </button>
+
+
           <button 
             onClick={logout}
             className={`p-3 rounded ${activeSection === 'messages' ? 'bg-blue-100 text-blue-600' : 'text-gray-500 hover:bg-gray-100'}`}

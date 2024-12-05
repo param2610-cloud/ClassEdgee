@@ -46,11 +46,12 @@ import DepartmentDetails from "./pages/Protected/department/[departmentid]/Detai
 import CourseDashboardForFaculty from "./pages/Protected/faculty/Course/CourseDashboardForFaculty";
 import SectionDashboard from "./pages/Protected/faculty/section/SectionDashboard";
 import SubjectAssignment from "./pages/Protected/faculty/schedule/SubjectAssignment";
-import ScheduleGenerator from "./pages/Protected/faculty/schedule/ScheduleGenerator";
 import ScheduleViewer from "./pages/Protected/faculty/schedule/ScheduleViewer";
 import Load from "./LoadSpinners/Load";
-import ScheduleDashboard from "./pages/Protected/faculty/sechdule/ScheduleDashboard";
+import ScheduleDashboard from "./pages/Protected/faculty/schedule/ScheduleDashboard";
 import ClassDashboard from "./pages/Protected/faculty/classes/ClassDashboard";
+import QuizDashboard from "./pages/Protected/faculty/classes/resource/QuizDashboard";
+import QuizComponent from "./pages/Protected/student/quiz/QuizComponent";
 // import SechduleForSemester from "./pages/Protected/faculty/sechdule/SechduleForSemester";
 // import ScheduleManager from "./pages/Protected/faculty/sechdule/ScheduleManagement";
 // import ScheduleDetailView from "./pages/Protected/faculty/sechdule/ScheduleDetailsView";
@@ -162,6 +163,11 @@ const FacultyRoutes: React.FC = () => (
                 path="/classes/:class_id"
                 element={<ClassDashboard    />}
             />
+            <Route
+                path="/classes/:class_id/quiz"
+                element={<QuizDashboard    />} 
+                />
+
         </Routes>
     </FacultyLayout>
 );
@@ -170,6 +176,7 @@ const StudentRoutes: React.FC = () => (
     <StudentLayout>
         <Routes>
             <Route path="/" element={<Dashboard />} />
+            <Route path="/take-quiz" element={<QuizComponent />} />
             {/* Add student-specific routes here */}
         </Routes>
     </StudentLayout>

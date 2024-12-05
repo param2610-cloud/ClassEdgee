@@ -182,7 +182,7 @@ const loginStudent = async (req, res) => {
         );
         const userData = await prismaClient.users.update({
             where: {
-                email: faculty.email,
+                email: user.email,
             },
             data: {
                 refreshtoken: refreshToken,
