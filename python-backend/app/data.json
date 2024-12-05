@@ -213,7 +213,8 @@
             "25"
           ],
           "course_id": "1",
-          "total_hours": 57
+          "total_hours": 57,
+          "department_id": "1"
         },
         {
           "code": "CSE704",
@@ -228,7 +229,8 @@
             "25"
           ],
           "course_id": "1",
-          "total_hours": 37
+          "total_hours": 37,
+          "department_id": "1"
         },
         {
           "code": "CSE101",
@@ -246,7 +248,8 @@
             "38"
           ],
           "course_id": "1",
-          "total_hours": 11
+          "total_hours": 11,
+          "department_id": "1"
         },
         {
           "code": "CSE101",
@@ -264,7 +267,8 @@
             "38"
           ],
           "course_id": "1",
-          "total_hours": 11
+          "total_hours": 11,
+          "department_id": "1"
         },
         {
           "code": "CSE101",
@@ -281,7 +285,8 @@
             "38"
           ],
           "course_id": "1",
-          "total_hours": 46
+          "total_hours": 46,
+          "department_id": "1"
         },
         {
           "code": "CSE102",
@@ -298,7 +303,8 @@
             "38"
           ],
           "course_id": "1",
-          "total_hours": 78
+          "total_hours": 78,
+          "department_id": "1"
         },
         {
           "code": "CSE103",
@@ -318,7 +324,8 @@
             "38"
           ],
           "course_id": "1",
-          "total_hours": 51
+          "total_hours": 51,
+          "department_id": "1"
         },
         {
           "code": "CSE104",
@@ -335,7 +342,8 @@
             "37"
           ],
           "course_id": "1",
-          "total_hours": 42
+          "total_hours": 42,
+          "department_id": "1"
         },
         {
           "code": "CSE105",
@@ -352,7 +360,8 @@
             "38"
           ],
           "course_id": "1",
-          "total_hours": 72
+          "total_hours": 72,
+          "department_id": "1"
         },
         {
           "code": "CSE106",
@@ -371,7 +380,8 @@
             "38"
           ],
           "course_id": "1",
-          "total_hours": 68
+          "total_hours": 68,
+          "department_id": "1"
         },
         {
           "code": "CSE201",
@@ -382,7 +392,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "1",
-          "total_hours": 51
+          "total_hours": 51,
+          "department_id": "1"
         },
         {
           "code": "CSE202",
@@ -393,7 +404,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "1",
-          "total_hours": 43
+          "total_hours": 43,
+          "department_id": "1"
         },
         {
           "code": "CSE203",
@@ -404,7 +416,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "1",
-          "total_hours": 55
+          "total_hours": 55,
+          "department_id": "1"
         },
         {
           "code": "CSE204",
@@ -415,7 +428,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "1",
-          "total_hours": 55
+          "total_hours": 55,
+          "department_id": "1"
         },
         {
           "code": "CSE205",
@@ -426,7 +440,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "1",
-          "total_hours": 44
+          "total_hours": 44,
+          "department_id": "1"
         },
         {
           "code": "CSE206",
@@ -437,7 +452,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "1",
-          "total_hours": 58
+          "total_hours": 58,
+          "department_id": "1"
         },
         {
           "code": "CSE301",
@@ -452,7 +468,8 @@
             "1"
           ],
           "course_id": "1",
-          "total_hours": 66
+          "total_hours": 66,
+          "department_id": "1"
         },
         {
           "code": "CSE302",
@@ -466,7 +483,8 @@
             "25"
           ],
           "course_id": "1",
-          "total_hours": 44
+          "total_hours": 44,
+          "department_id": "1"
         },
         {
           "code": "CSE303",
@@ -481,7 +499,8 @@
             "25"
           ],
           "course_id": "1",
-          "total_hours": 53
+          "total_hours": 53,
+          "department_id": "1"
         },
         {
           "code": "CSE304",
@@ -495,7 +514,8 @@
             "19"
           ],
           "course_id": "1",
-          "total_hours": 39
+          "total_hours": 39,
+          "department_id": "1"
         },
         {
           "code": "CSE305",
@@ -510,7 +530,8 @@
             "19"
           ],
           "course_id": "1",
-          "total_hours": 69
+          "total_hours": 69,
+          "department_id": "1"
         },
         {
           "code": "CSE306",
@@ -526,7 +547,8 @@
             "25"
           ],
           "course_id": "1",
-          "total_hours": 47
+          "total_hours": 47,
+          "department_id": "1"
         },
         {
           "code": "CSE307",
@@ -542,7 +564,8 @@
             "1"
           ],
           "course_id": "1",
-          "total_hours": 33
+          "total_hours": 33,
+          "department_id": "1"
         },
         {
           "code": "CSE401",
@@ -553,7 +576,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "1",
-          "total_hours": 81
+          "total_hours": 81,
+          "department_id": "1"
         },
         {
           "code": "CSE402",
@@ -564,7 +588,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "1",
-          "total_hours": 73
+          "total_hours": 73,
+          "department_id": "1"
         },
         {
           "code": "CSE403",
@@ -575,7 +600,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "1",
-          "total_hours": 56
+          "total_hours": 56,
+          "department_id": "1"
         },
         {
           "code": "CSE404",
@@ -586,7 +612,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "1",
-          "total_hours": 44
+          "total_hours": 44,
+          "department_id": "1"
         },
         {
           "code": "CSE405",
@@ -597,7 +624,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "1",
-          "total_hours": 83
+          "total_hours": 83,
+          "department_id": "1"
         },
         {
           "code": "CSE501",
@@ -612,7 +640,8 @@
             "25"
           ],
           "course_id": "1",
-          "total_hours": 42
+          "total_hours": 42,
+          "department_id": "1"
         },
         {
           "code": "CSE502",
@@ -627,7 +656,8 @@
             "19"
           ],
           "course_id": "1",
-          "total_hours": 46
+          "total_hours": 46,
+          "department_id": "1"
         },
         {
           "code": "CSE503",
@@ -642,7 +672,8 @@
             "19"
           ],
           "course_id": "1",
-          "total_hours": 73
+          "total_hours": 73,
+          "department_id": "1"
         },
         {
           "code": "CSE504",
@@ -657,7 +688,8 @@
             "19"
           ],
           "course_id": "1",
-          "total_hours": 71
+          "total_hours": 71,
+          "department_id": "1"
         },
         {
           "code": "CSE505",
@@ -671,7 +703,8 @@
             "25"
           ],
           "course_id": "1",
-          "total_hours": 70
+          "total_hours": 70,
+          "department_id": "1"
         },
         {
           "code": "CSE506",
@@ -687,7 +720,8 @@
             "25"
           ],
           "course_id": "1",
-          "total_hours": 65
+          "total_hours": 65,
+          "department_id": "1"
         },
         {
           "code": "CSE601",
@@ -698,7 +732,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "1",
-          "total_hours": 46
+          "total_hours": 46,
+          "department_id": "1"
         },
         {
           "code": "CSE602",
@@ -709,7 +744,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "1",
-          "total_hours": 76
+          "total_hours": 76,
+          "department_id": "1"
         },
         {
           "code": "CSE603",
@@ -720,7 +756,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "1",
-          "total_hours": 42
+          "total_hours": 42,
+          "department_id": "1"
         },
         {
           "code": "CSE604",
@@ -731,7 +768,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "1",
-          "total_hours": 46
+          "total_hours": 46,
+          "department_id": "1"
         },
         {
           "code": "CSE605",
@@ -742,7 +780,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "1",
-          "total_hours": 55
+          "total_hours": 55,
+          "department_id": "1"
         },
         {
           "code": "CSE606",
@@ -753,7 +792,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "1",
-          "total_hours": 39
+          "total_hours": 39,
+          "department_id": "1"
         },
         {
           "code": "CSE701",
@@ -768,7 +808,8 @@
             "1"
           ],
           "course_id": "1",
-          "total_hours": 59
+          "total_hours": 59,
+          "department_id": "1"
         },
         {
           "code": "CSE702",
@@ -784,7 +825,8 @@
             "25"
           ],
           "course_id": "1",
-          "total_hours": 75
+          "total_hours": 75,
+          "department_id": "1"
         },
         {
           "code": "CSE705",
@@ -800,7 +842,8 @@
             "25"
           ],
           "course_id": "1",
-          "total_hours": 42
+          "total_hours": 42,
+          "department_id": "1"
         },
         {
           "code": "CSE801",
@@ -811,7 +854,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "1",
-          "total_hours": 42
+          "total_hours": 42,
+          "department_id": "1"
         },
         {
           "code": "CSE802",
@@ -822,7 +866,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "1",
-          "total_hours": 78
+          "total_hours": 78,
+          "department_id": "1"
         },
         {
           "code": "CSE803",
@@ -833,7 +878,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "1",
-          "total_hours": 64
+          "total_hours": 64,
+          "department_id": "1"
         },
         {
           "code": "CSE804",
@@ -844,7 +890,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "1",
-          "total_hours": 47
+          "total_hours": 47,
+          "department_id": "1"
         },
         {
           "code": "CSE805",
@@ -855,7 +902,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "1",
-          "total_hours": 46
+          "total_hours": 46,
+          "department_id": "1"
         }
       ],
       "sections": {
@@ -1016,7 +1064,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 61
+          "total_hours": 61,
+          "department_id": "2"
         },
         {
           "code": "ECE102",
@@ -1027,7 +1076,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 41
+          "total_hours": 41,
+          "department_id": "2"
         },
         {
           "code": "ECE103",
@@ -1038,7 +1088,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 50
+          "total_hours": 50,
+          "department_id": "2"
         },
         {
           "code": "ECE104",
@@ -1049,7 +1100,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 55
+          "total_hours": 55,
+          "department_id": "2"
         },
         {
           "code": "ECE105",
@@ -1060,7 +1112,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 38
+          "total_hours": 38,
+          "department_id": "2"
         },
         {
           "code": "ECE106",
@@ -1071,7 +1124,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 80
+          "total_hours": 80,
+          "department_id": "2"
         },
         {
           "code": "ECE107",
@@ -1082,7 +1136,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 50
+          "total_hours": 50,
+          "department_id": "2"
         },
         {
           "code": "ECE201",
@@ -1093,7 +1148,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 60
+          "total_hours": 60,
+          "department_id": "2"
         },
         {
           "code": "ECE202",
@@ -1104,7 +1160,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 40
+          "total_hours": 40,
+          "department_id": "2"
         },
         {
           "code": "ECE203",
@@ -1115,7 +1172,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 66
+          "total_hours": 66,
+          "department_id": "2"
         },
         {
           "code": "ECE204",
@@ -1126,7 +1184,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 48
+          "total_hours": 48,
+          "department_id": "2"
         },
         {
           "code": "ECE205",
@@ -1137,7 +1196,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 74
+          "total_hours": 74,
+          "department_id": "2"
         },
         {
           "code": "ECE301",
@@ -1148,7 +1208,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 48
+          "total_hours": 48,
+          "department_id": "2"
         },
         {
           "code": "ECE302",
@@ -1159,7 +1220,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 41
+          "total_hours": 41,
+          "department_id": "2"
         },
         {
           "code": "ECE303",
@@ -1170,7 +1232,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 61
+          "total_hours": 61,
+          "department_id": "2"
         },
         {
           "code": "ECE304",
@@ -1181,7 +1244,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 50
+          "total_hours": 50,
+          "department_id": "2"
         },
         {
           "code": "ECE305",
@@ -1192,7 +1256,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 86
+          "total_hours": 86,
+          "department_id": "2"
         },
         {
           "code": "ECE306",
@@ -1203,7 +1268,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 69
+          "total_hours": 69,
+          "department_id": "2"
         },
         {
           "code": "ECE307",
@@ -1214,7 +1280,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 50
+          "total_hours": 50,
+          "department_id": "2"
         },
         {
           "code": "ECE401",
@@ -1225,7 +1292,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 53
+          "total_hours": 53,
+          "department_id": "2"
         },
         {
           "code": "ECE402",
@@ -1236,7 +1304,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 74
+          "total_hours": 74,
+          "department_id": "2"
         },
         {
           "code": "ECE403",
@@ -1247,7 +1316,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 41
+          "total_hours": 41,
+          "department_id": "2"
         },
         {
           "code": "ECE404",
@@ -1258,7 +1328,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 62
+          "total_hours": 62,
+          "department_id": "2"
         },
         {
           "code": "ECE405",
@@ -1269,7 +1340,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 75
+          "total_hours": 75,
+          "department_id": "2"
         },
         {
           "code": "ECE406",
@@ -1280,7 +1352,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 62
+          "total_hours": 62,
+          "department_id": "2"
         },
         {
           "code": "ECE501",
@@ -1291,7 +1364,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 57
+          "total_hours": 57,
+          "department_id": "2"
         },
         {
           "code": "ECE502",
@@ -1302,7 +1376,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 44
+          "total_hours": 44,
+          "department_id": "2"
         },
         {
           "code": "ECE503",
@@ -1313,7 +1388,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 65
+          "total_hours": 65,
+          "department_id": "2"
         },
         {
           "code": "ECE504",
@@ -1324,7 +1400,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 68
+          "total_hours": 68,
+          "department_id": "2"
         },
         {
           "code": "ECE505",
@@ -1335,7 +1412,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 43
+          "total_hours": 43,
+          "department_id": "2"
         },
         {
           "code": "ECE506",
@@ -1346,7 +1424,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 34
+          "total_hours": 34,
+          "department_id": "2"
         },
         {
           "code": "ECE601",
@@ -1357,7 +1436,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 74
+          "total_hours": 74,
+          "department_id": "2"
         },
         {
           "code": "ECE602",
@@ -1368,7 +1448,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 50
+          "total_hours": 50,
+          "department_id": "2"
         },
         {
           "code": "ECE603",
@@ -1379,7 +1460,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 69
+          "total_hours": 69,
+          "department_id": "2"
         },
         {
           "code": "ECE604",
@@ -1390,7 +1472,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 65
+          "total_hours": 65,
+          "department_id": "2"
         },
         {
           "code": "ECE605",
@@ -1401,7 +1484,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 53
+          "total_hours": 53,
+          "department_id": "2"
         },
         {
           "code": "ECE606",
@@ -1412,7 +1496,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 40
+          "total_hours": 40,
+          "department_id": "2"
         },
         {
           "code": "ECE607",
@@ -1423,7 +1508,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 40
+          "total_hours": 40,
+          "department_id": "2"
         },
         {
           "code": "ECE701",
@@ -1434,7 +1520,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 70
+          "total_hours": 70,
+          "department_id": "2"
         },
         {
           "code": "ECE702",
@@ -1445,7 +1532,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 37
+          "total_hours": 37,
+          "department_id": "2"
         },
         {
           "code": "ECE703",
@@ -1456,7 +1544,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 53
+          "total_hours": 53,
+          "department_id": "2"
         },
         {
           "code": "ECE704",
@@ -1467,7 +1556,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 47
+          "total_hours": 47,
+          "department_id": "2"
         },
         {
           "code": "ECE705",
@@ -1478,7 +1568,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 49
+          "total_hours": 49,
+          "department_id": "2"
         },
         {
           "code": "ECE801",
@@ -1489,7 +1580,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 41
+          "total_hours": 41,
+          "department_id": "2"
         },
         {
           "code": "ECE802",
@@ -1500,7 +1592,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 50
+          "total_hours": 50,
+          "department_id": "2"
         },
         {
           "code": "ECE803",
@@ -1511,7 +1604,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 71
+          "total_hours": 71,
+          "department_id": "2"
         },
         {
           "code": "ECE804",
@@ -1522,7 +1616,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 57
+          "total_hours": 57,
+          "department_id": "2"
         },
         {
           "code": "ECE805",
@@ -1533,7 +1628,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 49
+          "total_hours": 49,
+          "department_id": "2"
         },
         {
           "code": "ECE806",
@@ -1544,7 +1640,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 57
+          "total_hours": 57,
+          "department_id": "2"
         },
         {
           "code": "ECE807",
@@ -1555,7 +1652,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "3",
-          "total_hours": 63
+          "total_hours": 63,
+          "department_id": "2"
         }
       ],
       "sections": {
@@ -1716,7 +1814,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 59
+          "total_hours": 59,
+          "department_id": "3"
         },
         {
           "code": "CE102",
@@ -1727,7 +1826,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 90
+          "total_hours": 90,
+          "department_id": "3"
         },
         {
           "code": "CE103",
@@ -1738,7 +1838,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 70
+          "total_hours": 70,
+          "department_id": "3"
         },
         {
           "code": "CE104",
@@ -1749,7 +1850,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 52
+          "total_hours": 52,
+          "department_id": "3"
         },
         {
           "code": "CE105",
@@ -1760,7 +1862,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 42
+          "total_hours": 42,
+          "department_id": "3"
         },
         {
           "code": "CE106",
@@ -1771,7 +1874,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 57
+          "total_hours": 57,
+          "department_id": "3"
         },
         {
           "code": "CE201",
@@ -1782,7 +1886,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 45
+          "total_hours": 45,
+          "department_id": "3"
         },
         {
           "code": "CE202",
@@ -1793,7 +1898,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 43
+          "total_hours": 43,
+          "department_id": "3"
         },
         {
           "code": "CE203",
@@ -1804,7 +1910,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 47
+          "total_hours": 47,
+          "department_id": "3"
         },
         {
           "code": "CE204",
@@ -1815,7 +1922,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 51
+          "total_hours": 51,
+          "department_id": "3"
         },
         {
           "code": "CE205",
@@ -1826,7 +1934,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 49
+          "total_hours": 49,
+          "department_id": "3"
         },
         {
           "code": "CE301",
@@ -1837,7 +1946,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 82
+          "total_hours": 82,
+          "department_id": "3"
         },
         {
           "code": "CE302",
@@ -1848,7 +1958,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 54
+          "total_hours": 54,
+          "department_id": "3"
         },
         {
           "code": "CE303",
@@ -1859,7 +1970,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 45
+          "total_hours": 45,
+          "department_id": "3"
         },
         {
           "code": "CE304",
@@ -1870,7 +1982,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 62
+          "total_hours": 62,
+          "department_id": "3"
         },
         {
           "code": "CE305",
@@ -1881,7 +1994,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 47
+          "total_hours": 47,
+          "department_id": "3"
         },
         {
           "code": "CE306",
@@ -1892,7 +2006,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 72
+          "total_hours": 72,
+          "department_id": "3"
         },
         {
           "code": "CE401",
@@ -1903,7 +2018,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 66
+          "total_hours": 66,
+          "department_id": "3"
         },
         {
           "code": "CE402",
@@ -1914,7 +2030,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 60
+          "total_hours": 60,
+          "department_id": "3"
         },
         {
           "code": "CE403",
@@ -1925,7 +2042,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 49
+          "total_hours": 49,
+          "department_id": "3"
         },
         {
           "code": "CE404",
@@ -1936,7 +2054,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 69
+          "total_hours": 69,
+          "department_id": "3"
         },
         {
           "code": "CE405",
@@ -1947,7 +2066,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 60
+          "total_hours": 60,
+          "department_id": "3"
         },
         {
           "code": "CE501",
@@ -1958,7 +2078,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 69
+          "total_hours": 69,
+          "department_id": "3"
         },
         {
           "code": "CE502",
@@ -1969,7 +2090,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 49
+          "total_hours": 49,
+          "department_id": "3"
         },
         {
           "code": "CE503",
@@ -1980,7 +2102,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 64
+          "total_hours": 64,
+          "department_id": "3"
         },
         {
           "code": "CE504",
@@ -1991,7 +2114,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 61
+          "total_hours": 61,
+          "department_id": "3"
         },
         {
           "code": "CE505",
@@ -2002,7 +2126,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 45
+          "total_hours": 45,
+          "department_id": "3"
         },
         {
           "code": "CE601",
@@ -2013,7 +2138,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 37
+          "total_hours": 37,
+          "department_id": "3"
         },
         {
           "code": "CE602",
@@ -2024,7 +2150,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 35
+          "total_hours": 35,
+          "department_id": "3"
         },
         {
           "code": "CE603",
@@ -2035,7 +2162,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 61
+          "total_hours": 61,
+          "department_id": "3"
         },
         {
           "code": "CE604",
@@ -2046,7 +2174,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 78
+          "total_hours": 78,
+          "department_id": "3"
         },
         {
           "code": "CE605",
@@ -2057,7 +2186,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 43
+          "total_hours": 43,
+          "department_id": "3"
         },
         {
           "code": "CE606",
@@ -2068,7 +2198,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 80
+          "total_hours": 80,
+          "department_id": "3"
         },
         {
           "code": "CE701",
@@ -2079,7 +2210,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 73
+          "total_hours": 73,
+          "department_id": "3"
         },
         {
           "code": "CE702",
@@ -2090,7 +2222,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 49
+          "total_hours": 49,
+          "department_id": "3"
         },
         {
           "code": "CE703",
@@ -2101,7 +2234,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 56
+          "total_hours": 56,
+          "department_id": "3"
         },
         {
           "code": "CE704",
@@ -2112,7 +2246,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 47
+          "total_hours": 47,
+          "department_id": "3"
         },
         {
           "code": "CE705",
@@ -2123,7 +2258,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 79
+          "total_hours": 79,
+          "department_id": "3"
         },
         {
           "code": "CE706",
@@ -2134,7 +2270,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 62
+          "total_hours": 62,
+          "department_id": "3"
         },
         {
           "code": "CE707",
@@ -2145,7 +2282,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 64
+          "total_hours": 64,
+          "department_id": "3"
         },
         {
           "code": "CE801",
@@ -2156,7 +2294,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 73
+          "total_hours": 73,
+          "department_id": "3"
         },
         {
           "code": "CE802",
@@ -2167,7 +2306,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 62
+          "total_hours": 62,
+          "department_id": "3"
         },
         {
           "code": "CE803",
@@ -2178,7 +2318,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 84
+          "total_hours": 84,
+          "department_id": "3"
         },
         {
           "code": "CE804",
@@ -2189,7 +2330,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 45
+          "total_hours": 45,
+          "department_id": "3"
         },
         {
           "code": "CE805",
@@ -2200,7 +2342,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "4",
-          "total_hours": 44
+          "total_hours": 44,
+          "department_id": "3"
         }
       ],
       "sections": {
@@ -2363,7 +2506,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 69
+          "total_hours": 69,
+          "department_id": "4"
         },
         {
           "code": "ME102",
@@ -2374,7 +2518,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 53
+          "total_hours": 53,
+          "department_id": "4"
         },
         {
           "code": "ME103",
@@ -2385,7 +2530,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 82
+          "total_hours": 82,
+          "department_id": "4"
         },
         {
           "code": "ME104",
@@ -2396,7 +2542,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 35
+          "total_hours": 35,
+          "department_id": "4"
         },
         {
           "code": "ME105",
@@ -2407,7 +2554,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 62
+          "total_hours": 62,
+          "department_id": "4"
         },
         {
           "code": "ME106",
@@ -2418,7 +2566,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 66
+          "total_hours": 66,
+          "department_id": "4"
         },
         {
           "code": "ME201",
@@ -2429,7 +2578,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 69
+          "total_hours": 69,
+          "department_id": "4"
         },
         {
           "code": "ME202",
@@ -2440,7 +2590,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 74
+          "total_hours": 74,
+          "department_id": "4"
         },
         {
           "code": "ME203",
@@ -2451,7 +2602,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 82
+          "total_hours": 82,
+          "department_id": "4"
         },
         {
           "code": "ME204",
@@ -2462,7 +2614,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 62
+          "total_hours": 62,
+          "department_id": "4"
         },
         {
           "code": "ME205",
@@ -2473,7 +2626,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 76
+          "total_hours": 76,
+          "department_id": "4"
         },
         {
           "code": "ME206",
@@ -2486,7 +2640,8 @@
             "22"
           ],
           "course_id": "5",
-          "total_hours": 61
+          "total_hours": 61,
+          "department_id": "4"
         },
         {
           "code": "ME301",
@@ -2497,7 +2652,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 84
+          "total_hours": 84,
+          "department_id": "4"
         },
         {
           "code": "ME302",
@@ -2508,7 +2664,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 73
+          "total_hours": 73,
+          "department_id": "4"
         },
         {
           "code": "ME303",
@@ -2519,7 +2676,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 60
+          "total_hours": 60,
+          "department_id": "4"
         },
         {
           "code": "ME304",
@@ -2530,7 +2688,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 49
+          "total_hours": 49,
+          "department_id": "4"
         },
         {
           "code": "ME305",
@@ -2541,7 +2700,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 74
+          "total_hours": 74,
+          "department_id": "4"
         },
         {
           "code": "ME306",
@@ -2552,7 +2712,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 61
+          "total_hours": 61,
+          "department_id": "4"
         },
         {
           "code": "ME307",
@@ -2563,7 +2724,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 73
+          "total_hours": 73,
+          "department_id": "4"
         },
         {
           "code": "ME401",
@@ -2574,7 +2736,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 64
+          "total_hours": 64,
+          "department_id": "4"
         },
         {
           "code": "ME402",
@@ -2585,7 +2748,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 75
+          "total_hours": 75,
+          "department_id": "4"
         },
         {
           "code": "ME403",
@@ -2596,7 +2760,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 47
+          "total_hours": 47,
+          "department_id": "4"
         },
         {
           "code": "ME404",
@@ -2607,7 +2772,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 46
+          "total_hours": 46,
+          "department_id": "4"
         },
         {
           "code": "ME405",
@@ -2618,7 +2784,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 65
+          "total_hours": 65,
+          "department_id": "4"
         },
         {
           "code": "ME406",
@@ -2629,7 +2796,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 60
+          "total_hours": 60,
+          "department_id": "4"
         },
         {
           "code": "ME407",
@@ -2640,7 +2808,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 75
+          "total_hours": 75,
+          "department_id": "4"
         },
         {
           "code": "ME501",
@@ -2651,7 +2820,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 76
+          "total_hours": 76,
+          "department_id": "4"
         },
         {
           "code": "ME502",
@@ -2662,7 +2832,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 83
+          "total_hours": 83,
+          "department_id": "4"
         },
         {
           "code": "ME503",
@@ -2673,7 +2844,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 40
+          "total_hours": 40,
+          "department_id": "4"
         },
         {
           "code": "ME504",
@@ -2684,7 +2856,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 40
+          "total_hours": 40,
+          "department_id": "4"
         },
         {
           "code": "ME505",
@@ -2695,7 +2868,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 41
+          "total_hours": 41,
+          "department_id": "4"
         },
         {
           "code": "ME506",
@@ -2706,7 +2880,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 54
+          "total_hours": 54,
+          "department_id": "4"
         },
         {
           "code": "ME507",
@@ -2717,7 +2892,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 61
+          "total_hours": 61,
+          "department_id": "4"
         },
         {
           "code": "ME601",
@@ -2728,7 +2904,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 82
+          "total_hours": 82,
+          "department_id": "4"
         },
         {
           "code": "ME602",
@@ -2739,7 +2916,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 81
+          "total_hours": 81,
+          "department_id": "4"
         },
         {
           "code": "ME603",
@@ -2750,7 +2928,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 47
+          "total_hours": 47,
+          "department_id": "4"
         },
         {
           "code": "ME604",
@@ -2761,7 +2940,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 72
+          "total_hours": 72,
+          "department_id": "4"
         },
         {
           "code": "ME605",
@@ -2772,7 +2952,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 57
+          "total_hours": 57,
+          "department_id": "4"
         },
         {
           "code": "ME701",
@@ -2783,7 +2964,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 67
+          "total_hours": 67,
+          "department_id": "4"
         },
         {
           "code": "ME702",
@@ -2794,7 +2976,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 70
+          "total_hours": 70,
+          "department_id": "4"
         },
         {
           "code": "ME703",
@@ -2805,7 +2988,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 40
+          "total_hours": 40,
+          "department_id": "4"
         },
         {
           "code": "ME704",
@@ -2816,7 +3000,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 62
+          "total_hours": 62,
+          "department_id": "4"
         },
         {
           "code": "ME705",
@@ -2827,7 +3012,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 56
+          "total_hours": 56,
+          "department_id": "4"
         },
         {
           "code": "ME706",
@@ -2838,7 +3024,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 88
+          "total_hours": 88,
+          "department_id": "4"
         },
         {
           "code": "ME801",
@@ -2849,7 +3036,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 45
+          "total_hours": 45,
+          "department_id": "4"
         },
         {
           "code": "ME802",
@@ -2860,7 +3048,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 59
+          "total_hours": 59,
+          "department_id": "4"
         },
         {
           "code": "ME803",
@@ -2871,7 +3060,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 47
+          "total_hours": 47,
+          "department_id": "4"
         },
         {
           "code": "ME804",
@@ -2882,7 +3072,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 50
+          "total_hours": 50,
+          "department_id": "4"
         },
         {
           "code": "ME805",
@@ -2893,7 +3084,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 53
+          "total_hours": 53,
+          "department_id": "4"
         },
         {
           "code": "ME806",
@@ -2904,7 +3096,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "5",
-          "total_hours": 56
+          "total_hours": 56,
+          "department_id": "4"
         }
       ],
       "sections": {
@@ -3065,7 +3258,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 49
+          "total_hours": 49,
+          "department_id": "5"
         },
         {
           "code": "EE102",
@@ -3076,7 +3270,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 51
+          "total_hours": 51,
+          "department_id": "5"
         },
         {
           "code": "EE103",
@@ -3087,7 +3282,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 39
+          "total_hours": 39,
+          "department_id": "5"
         },
         {
           "code": "EE104",
@@ -3098,7 +3294,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 64
+          "total_hours": 64,
+          "department_id": "5"
         },
         {
           "code": "EE105",
@@ -3109,7 +3306,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 38
+          "total_hours": 38,
+          "department_id": "5"
         },
         {
           "code": "EE106",
@@ -3120,7 +3318,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 59
+          "total_hours": 59,
+          "department_id": "5"
         },
         {
           "code": "EE107",
@@ -3131,7 +3330,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 60
+          "total_hours": 60,
+          "department_id": "5"
         },
         {
           "code": "EE201",
@@ -3142,7 +3342,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 51
+          "total_hours": 51,
+          "department_id": "5"
         },
         {
           "code": "EE202",
@@ -3153,7 +3354,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 62
+          "total_hours": 62,
+          "department_id": "5"
         },
         {
           "code": "EE203",
@@ -3164,7 +3366,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 59
+          "total_hours": 59,
+          "department_id": "5"
         },
         {
           "code": "EE204",
@@ -3175,7 +3378,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 39
+          "total_hours": 39,
+          "department_id": "5"
         },
         {
           "code": "EE205",
@@ -3186,7 +3390,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 71
+          "total_hours": 71,
+          "department_id": "5"
         },
         {
           "code": "EE301",
@@ -3197,7 +3402,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 65
+          "total_hours": 65,
+          "department_id": "5"
         },
         {
           "code": "EE302",
@@ -3208,7 +3414,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 80
+          "total_hours": 80,
+          "department_id": "5"
         },
         {
           "code": "EE303",
@@ -3219,7 +3426,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 68
+          "total_hours": 68,
+          "department_id": "5"
         },
         {
           "code": "EE304",
@@ -3230,7 +3438,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 44
+          "total_hours": 44,
+          "department_id": "5"
         },
         {
           "code": "EE305",
@@ -3241,7 +3450,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 62
+          "total_hours": 62,
+          "department_id": "5"
         },
         {
           "code": "EE306",
@@ -3252,7 +3462,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 63
+          "total_hours": 63,
+          "department_id": "5"
         },
         {
           "code": "EE401",
@@ -3263,7 +3474,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 42
+          "total_hours": 42,
+          "department_id": "5"
         },
         {
           "code": "EE402",
@@ -3274,7 +3486,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 52
+          "total_hours": 52,
+          "department_id": "5"
         },
         {
           "code": "EE403",
@@ -3285,7 +3498,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 51
+          "total_hours": 51,
+          "department_id": "5"
         },
         {
           "code": "EE404",
@@ -3296,7 +3510,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 60
+          "total_hours": 60,
+          "department_id": "5"
         },
         {
           "code": "EE405",
@@ -3307,7 +3522,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 38
+          "total_hours": 38,
+          "department_id": "5"
         },
         {
           "code": "EE406",
@@ -3318,7 +3534,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 40
+          "total_hours": 40,
+          "department_id": "5"
         },
         {
           "code": "EE501",
@@ -3329,7 +3546,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 66
+          "total_hours": 66,
+          "department_id": "5"
         },
         {
           "code": "EE502",
@@ -3340,7 +3558,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 70
+          "total_hours": 70,
+          "department_id": "5"
         },
         {
           "code": "EE503",
@@ -3351,7 +3570,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 38
+          "total_hours": 38,
+          "department_id": "5"
         },
         {
           "code": "EE504",
@@ -3362,7 +3582,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 54
+          "total_hours": 54,
+          "department_id": "5"
         },
         {
           "code": "EE505",
@@ -3373,7 +3594,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 59
+          "total_hours": 59,
+          "department_id": "5"
         },
         {
           "code": "EE506",
@@ -3384,7 +3606,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 40
+          "total_hours": 40,
+          "department_id": "5"
         },
         {
           "code": "EE601",
@@ -3395,7 +3618,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 41
+          "total_hours": 41,
+          "department_id": "5"
         },
         {
           "code": "EE602",
@@ -3406,7 +3630,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 67
+          "total_hours": 67,
+          "department_id": "5"
         },
         {
           "code": "EE603",
@@ -3417,7 +3642,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 65
+          "total_hours": 65,
+          "department_id": "5"
         },
         {
           "code": "EE604",
@@ -3428,7 +3654,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 84
+          "total_hours": 84,
+          "department_id": "5"
         },
         {
           "code": "EE605",
@@ -3439,7 +3666,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 45
+          "total_hours": 45,
+          "department_id": "5"
         },
         {
           "code": "EE606",
@@ -3450,7 +3678,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 89
+          "total_hours": 89,
+          "department_id": "5"
         },
         {
           "code": "EE607",
@@ -3461,7 +3690,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 70
+          "total_hours": 70,
+          "department_id": "5"
         },
         {
           "code": "EE701",
@@ -3472,7 +3702,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 36
+          "total_hours": 36,
+          "department_id": "5"
         },
         {
           "code": "EE702",
@@ -3483,7 +3714,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 66
+          "total_hours": 66,
+          "department_id": "5"
         },
         {
           "code": "EE703",
@@ -3494,7 +3726,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 51
+          "total_hours": 51,
+          "department_id": "5"
         },
         {
           "code": "EE704",
@@ -3505,7 +3738,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 40
+          "total_hours": 40,
+          "department_id": "5"
         },
         {
           "code": "EE705",
@@ -3516,7 +3750,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 37
+          "total_hours": 37,
+          "department_id": "5"
         },
         {
           "code": "EE706",
@@ -3527,7 +3762,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 50
+          "total_hours": 50,
+          "department_id": "5"
         },
         {
           "code": "EE801",
@@ -3538,7 +3774,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 83
+          "total_hours": 83,
+          "department_id": "5"
         },
         {
           "code": "EE802",
@@ -3549,7 +3786,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 83
+          "total_hours": 83,
+          "department_id": "5"
         },
         {
           "code": "EE803",
@@ -3560,7 +3798,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 89
+          "total_hours": 89,
+          "department_id": "5"
         },
         {
           "code": "EE804",
@@ -3571,7 +3810,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 54
+          "total_hours": 54,
+          "department_id": "5"
         },
         {
           "code": "EE805",
@@ -3582,7 +3822,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 65
+          "total_hours": 65,
+          "department_id": "5"
         },
         {
           "code": "EE806",
@@ -3593,7 +3834,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 60
+          "total_hours": 60,
+          "department_id": "5"
         },
         {
           "code": "EE807",
@@ -3604,7 +3846,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "6",
-          "total_hours": 50
+          "total_hours": 50,
+          "department_id": "5"
         }
       ],
       "sections": {
@@ -3765,7 +4008,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 44
+          "total_hours": 44,
+          "department_id": "6"
         },
         {
           "code": "IT102",
@@ -3776,7 +4020,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 63
+          "total_hours": 63,
+          "department_id": "6"
         },
         {
           "code": "IT103",
@@ -3787,7 +4032,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 52
+          "total_hours": 52,
+          "department_id": "6"
         },
         {
           "code": "IT104",
@@ -3798,7 +4044,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 42
+          "total_hours": 42,
+          "department_id": "6"
         },
         {
           "code": "IT105",
@@ -3809,7 +4056,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 72
+          "total_hours": 72,
+          "department_id": "6"
         },
         {
           "code": "IT106",
@@ -3820,7 +4068,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 38
+          "total_hours": 38,
+          "department_id": "6"
         },
         {
           "code": "IT107",
@@ -3831,7 +4080,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 52
+          "total_hours": 52,
+          "department_id": "6"
         },
         {
           "code": "IT201",
@@ -3842,7 +4092,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 56
+          "total_hours": 56,
+          "department_id": "6"
         },
         {
           "code": "IT202",
@@ -3853,7 +4104,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 49
+          "total_hours": 49,
+          "department_id": "6"
         },
         {
           "code": "IT203",
@@ -3864,7 +4116,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 53
+          "total_hours": 53,
+          "department_id": "6"
         },
         {
           "code": "IT204",
@@ -3875,7 +4128,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 69
+          "total_hours": 69,
+          "department_id": "6"
         },
         {
           "code": "IT205",
@@ -3886,7 +4140,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 52
+          "total_hours": 52,
+          "department_id": "6"
         },
         {
           "code": "IT206",
@@ -3897,7 +4152,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 58
+          "total_hours": 58,
+          "department_id": "6"
         },
         {
           "code": "IT207",
@@ -3908,7 +4164,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 61
+          "total_hours": 61,
+          "department_id": "6"
         },
         {
           "code": "IT301",
@@ -3919,7 +4176,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 60
+          "total_hours": 60,
+          "department_id": "6"
         },
         {
           "code": "IT302",
@@ -3930,7 +4188,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 74
+          "total_hours": 74,
+          "department_id": "6"
         },
         {
           "code": "IT303",
@@ -3941,7 +4200,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 60
+          "total_hours": 60,
+          "department_id": "6"
         },
         {
           "code": "IT304",
@@ -3952,7 +4212,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 46
+          "total_hours": 46,
+          "department_id": "6"
         },
         {
           "code": "IT305",
@@ -3963,7 +4224,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 79
+          "total_hours": 79,
+          "department_id": "6"
         },
         {
           "code": "IT401",
@@ -3974,7 +4236,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 79
+          "total_hours": 79,
+          "department_id": "6"
         },
         {
           "code": "IT402",
@@ -3985,7 +4248,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 72
+          "total_hours": 72,
+          "department_id": "6"
         },
         {
           "code": "IT403",
@@ -3996,7 +4260,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 84
+          "total_hours": 84,
+          "department_id": "6"
         },
         {
           "code": "IT404",
@@ -4007,7 +4272,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 63
+          "total_hours": 63,
+          "department_id": "6"
         },
         {
           "code": "IT405",
@@ -4018,7 +4284,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 55
+          "total_hours": 55,
+          "department_id": "6"
         },
         {
           "code": "IT501",
@@ -4029,7 +4296,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 69
+          "total_hours": 69,
+          "department_id": "6"
         },
         {
           "code": "IT502",
@@ -4040,7 +4308,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 64
+          "total_hours": 64,
+          "department_id": "6"
         },
         {
           "code": "IT503",
@@ -4051,7 +4320,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 53
+          "total_hours": 53,
+          "department_id": "6"
         },
         {
           "code": "IT504",
@@ -4062,7 +4332,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 47
+          "total_hours": 47,
+          "department_id": "6"
         },
         {
           "code": "IT505",
@@ -4073,7 +4344,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 52
+          "total_hours": 52,
+          "department_id": "6"
         },
         {
           "code": "IT506",
@@ -4084,7 +4356,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 61
+          "total_hours": 61,
+          "department_id": "6"
         },
         {
           "code": "IT601",
@@ -4095,7 +4368,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 65
+          "total_hours": 65,
+          "department_id": "6"
         },
         {
           "code": "IT602",
@@ -4106,7 +4380,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 53
+          "total_hours": 53,
+          "department_id": "6"
         },
         {
           "code": "IT603",
@@ -4117,7 +4392,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 73
+          "total_hours": 73,
+          "department_id": "6"
         },
         {
           "code": "IT604",
@@ -4128,7 +4404,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 45
+          "total_hours": 45,
+          "department_id": "6"
         },
         {
           "code": "IT605",
@@ -4139,7 +4416,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 58
+          "total_hours": 58,
+          "department_id": "6"
         },
         {
           "code": "IT606",
@@ -4150,7 +4428,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 53
+          "total_hours": 53,
+          "department_id": "6"
         },
         {
           "code": "IT607",
@@ -4161,7 +4440,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 69
+          "total_hours": 69,
+          "department_id": "6"
         },
         {
           "code": "IT701",
@@ -4172,7 +4452,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 73
+          "total_hours": 73,
+          "department_id": "6"
         },
         {
           "code": "IT702",
@@ -4183,7 +4464,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 57
+          "total_hours": 57,
+          "department_id": "6"
         },
         {
           "code": "IT703",
@@ -4194,7 +4476,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 66
+          "total_hours": 66,
+          "department_id": "6"
         },
         {
           "code": "IT704",
@@ -4205,7 +4488,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 60
+          "total_hours": 60,
+          "department_id": "6"
         },
         {
           "code": "IT705",
@@ -4216,7 +4500,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 47
+          "total_hours": 47,
+          "department_id": "6"
         },
         {
           "code": "IT706",
@@ -4227,7 +4512,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 49
+          "total_hours": 49,
+          "department_id": "6"
         },
         {
           "code": "IT707",
@@ -4238,7 +4524,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 69
+          "total_hours": 69,
+          "department_id": "6"
         },
         {
           "code": "IT801",
@@ -4249,7 +4536,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 74
+          "total_hours": 74,
+          "department_id": "6"
         },
         {
           "code": "IT802",
@@ -4260,7 +4548,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 77
+          "total_hours": 77,
+          "department_id": "6"
         },
         {
           "code": "IT803",
@@ -4271,7 +4560,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 60
+          "total_hours": 60,
+          "department_id": "6"
         },
         {
           "code": "IT804",
@@ -4282,7 +4572,8 @@
           "requires_lab": false,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 88
+          "total_hours": 88,
+          "department_id": "6"
         },
         {
           "code": "IT805",
@@ -4293,7 +4584,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 43
+          "total_hours": 43,
+          "department_id": "6"
         },
         {
           "code": "IT806",
@@ -4304,7 +4596,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 42
+          "total_hours": 42,
+          "department_id": "6"
         },
         {
           "code": "IT807",
@@ -4315,7 +4608,8 @@
           "requires_lab": true,
           "preferred_faculty_specializations": [],
           "course_id": "2",
-          "total_hours": 49
+          "total_hours": 49,
+          "department_id": "6"
         }
       ],
       "sections": {
@@ -4432,9 +4726,9 @@
       "building": "Main Building"
     },
     {
-      "id": "12",
-      "name": "189W",
-      "capacity": 60,
+      "id": "11",
+      "name": "261P",
+      "capacity": 65,
       "room_type": "lab",
       "facilities": null,
       "building": "Main Building"
@@ -4448,18 +4742,18 @@
       "building": "Main Building"
     },
     {
-      "id": "14",
-      "name": "401",
-      "capacity": 800,
-      "room_type": "seminar_hall",
+      "id": "12",
+      "name": "189W",
+      "capacity": 60,
+      "room_type": "lab",
       "facilities": null,
       "building": "Main Building"
     },
     {
-      "id": "11",
-      "name": "261P",
-      "capacity": 65,
-      "room_type": "lab",
+      "id": "14",
+      "name": "401",
+      "capacity": 800,
+      "room_type": "seminar_hall",
       "facilities": null,
       "building": "Main Building"
     },
@@ -4488,14 +4782,6 @@
       "building": "Main Building"
     },
     {
-      "id": "18",
-      "name": "103",
-      "capacity": 60,
-      "room_type": "classroom",
-      "facilities": null,
-      "building": "Main Building"
-    },
-    {
       "id": "19",
       "name": "104",
       "capacity": 60,
@@ -4506,6 +4792,14 @@
     {
       "id": "20",
       "name": "105",
+      "capacity": 60,
+      "room_type": "classroom",
+      "facilities": null,
+      "building": "Main Building"
+    },
+    {
+      "id": "18",
+      "name": "103",
       "capacity": 60,
       "room_type": "classroom",
       "facilities": null,
@@ -4528,14 +4822,6 @@
       "building": "Main Building"
     },
     {
-      "id": "23",
-      "name": "109",
-      "capacity": 60,
-      "room_type": "classroom",
-      "facilities": null,
-      "building": "Main Building"
-    },
-    {
       "id": "24",
       "name": "110",
       "capacity": 60,
@@ -4544,16 +4830,16 @@
       "building": "Main Building"
     },
     {
-      "id": "25",
-      "name": "111",
+      "id": "26",
+      "name": "112",
       "capacity": 60,
       "room_type": "classroom",
       "facilities": null,
       "building": "Main Building"
     },
     {
-      "id": "26",
-      "name": "112",
+      "id": "25",
+      "name": "111",
       "capacity": 60,
       "room_type": "classroom",
       "facilities": null,
@@ -4572,6 +4858,14 @@
       "name": "114",
       "capacity": 60,
       "room_type": "lab",
+      "facilities": null,
+      "building": "Main Building"
+    },
+    {
+      "id": "23",
+      "name": "109",
+      "capacity": 60,
+      "room_type": "classroom",
       "facilities": null,
       "building": "Main Building"
     },

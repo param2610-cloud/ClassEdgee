@@ -36,6 +36,7 @@ import { Department } from "@/interface/general";
 import UploadOnCloudinary from "@/services/Cloudinary";
 import { institutionIdAtom } from "@/store/atom";
 import { useAtom } from "jotai";
+import { useDepartments } from '@/hooks/useDepartments';
 
 // Updated schema to match backend expectations
 const studentSchema = z.object({
@@ -67,12 +68,12 @@ const CreateStudentForm = () => {
     const { toast } = useToast();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string>("");
-    const [departmentList, setDepartmentList] = useState<Department[]>([]);
+    // const [departmentList, setDepartmentList] = useState<Department[]>([]);
     const [profilePicturePreview, setProfilePicturePreview] = useState<string>("");
     const [uploadingImage, setUploadingImage] = useState(false);
     const [imageLinks, setImageLinks] = useState<string[]>([]);
     const [videoLinks, setVideoLinks] = useState<string[]>([]);
-    const [institution_id,] = useAtom(institutionIdAtom);
+    const [institution_id,setInstitutionId] = useAtom(institutionIdAtom);
     const {
         register,
         handleSubmit,
@@ -83,29 +84,8 @@ const CreateStudentForm = () => {
         resolver: zodResolver(studentSchema),
     });
 
-    useEffect(() => {
-        const fetchDepartments = async () => {
-            try {
-                const response = await axios.get(
-                    `${domain}/api/v1/department/list-of-department`,
-                    {
-                        headers:{
-                            "X-Institution-Id": `${institution_id}`,
-                        }
-                    }
-                );
-                setDepartmentList(response.data.department);
-            } catch (error) {
-                console.error("Error fetching departments:", error);
-                toast({
-                    title: "Error",
-                    description: "Failed to fetch departments. Please refresh the page.",
-                    variant: "destructive",
-                });
-            }
-        };
-        fetchDepartments();
-    }, [toast]);
+    const { departments, loading: departmentsLoading } = useDepartments(institution_id as string);
+    
 
     const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
@@ -362,7 +342,7 @@ const CreateStudentForm = () => {
                                             <SelectValue placeholder="Select Department" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            {departmentList.map(
+                                            {departments.map(
                                                 (dept: Department) => (
                                                     <SelectItem
                                                         key={dept.department_id}

@@ -186,8 +186,7 @@ export interface Class {
     slot_id?: number;
     semester: number;
     academic_year: number;
-    start_date: Date;
-    end_date: Date;
+    date_of_class:Date
     is_active?: boolean;
     created_at?: Date;
     updated_at?: Date;
@@ -200,6 +199,57 @@ export interface Class {
     sections?: Section;
     timeslots?: TimeSlot;
     studentengagement: StudentEngagement[];
+    detail_id?: number;
+    schedule_details: ScheduleDetails;
+}
+export interface ScheduleDetails {
+    detail_id: number;
+    schedule_id: number;
+    faculty_id: number;
+    backup_faculty_id?: number;
+    room_id: number;
+    backup_room_id?: number;
+    timeslot_id: number;
+    day_of_week?: string;
+    subject_id?: number;
+    classes: Class[];
+    subject_details?: SubjectDetail;
+    faculty_schedule_details_backup_faculty_idTofaculty?: Faculty;
+    rooms_schedule_details_backup_room_idTorooms?: Room;
+    faculty_schedule_details_faculty_idTofaculty: Faculty;
+    rooms_schedule_details_room_idTorooms: Room;
+    schedule_meta: ScheduleMeta;
+    timeslots: TimeSlot;
+    schedule_topics: ScheduleTopic[];
+}
+
+export interface ScheduleMeta {
+    schedule_id: number;
+    department_id: number;
+    academic_year: number;
+    semester: number;
+    batch_year: number;
+    created_by: number;
+    status: string;
+    created_at?: Date;
+    updated_at?: Date;
+    section_id?: number;
+    schedule_details: ScheduleDetails[];
+    sections?: Section;
+    users: User;
+    departments: Department;
+}
+
+export interface ScheduleTopic {
+    topic_id: number;
+    schedule_detail_id: number;
+    unit_id: number;
+    topic_name: string;
+    status: string;
+    original_date?: Date;
+    rescheduled_date?: Date;
+    schedule_details: ScheduleDetails;
+    units: Unit;
 }
 
 export interface Course {

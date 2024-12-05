@@ -28,7 +28,13 @@ const specific_section_details = async (req, res) => {
 };
 const listofsection = async (req, res) => {
     try {
-        const sections = await prisma.sections.findMany();
+        console.log("list of section");
+        const sections = await prisma.sections.findMany({
+            include: {
+                departments: true,
+                students: true,
+            },
+        });
         res.status(200).send({
             success: true,
             data: sections,

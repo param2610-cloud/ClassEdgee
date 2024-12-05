@@ -4,6 +4,10 @@ export default {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
         extend: {
+            "spin": {
+                '0%': { transform: 'rotate(0deg)' },
+                '100%': { transform: 'rotate(360deg)' }
+              },
             "slide-in-up": {
                 "0%": {
                     opacity: "0",
@@ -64,6 +68,7 @@ export default {
         },
         animation: {
             "slide-in-up": "slide-in-up 0.5s ease-out",
+            'spin': 'spin 1s linear infinite',
         },
     },
     plugins: [require("tailwindcss-animate")],

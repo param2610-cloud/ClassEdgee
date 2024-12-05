@@ -27,7 +27,8 @@ const loginCoordinator = async (req, res) => {
                 first_name: true,
                 last_name: true,
                 email:true,
-                institution_id:true
+                institution_id:true,
+                role    :true
             },
         })
 
@@ -85,8 +86,9 @@ const loginCoordinator = async (req, res) => {
             message: "User logged in successfully",
             refreshToken,
             accessToken,
-            user:{
-                institutionId:user.institution_id
+            userData:{
+                institution_id:user.institution_id,
+                role: user.role
             }
         });
     } catch (error) {

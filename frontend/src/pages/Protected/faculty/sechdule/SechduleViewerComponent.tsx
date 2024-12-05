@@ -69,6 +69,7 @@ import { Loader2 } from "lucide-react";
 import { useAtom } from "jotai";
 import { institutionIdAtom } from "@/store/atom";
 import { domain } from "@/lib/constant";
+import { Button } from "@/components/ui/button";
 
 const WeeklySchedule: React.FC = () => {
     const [departments, setDepartments] = useState<Department[]>([]);
@@ -76,14 +77,11 @@ const WeeklySchedule: React.FC = () => {
     const [selectedSection, setSelectedSection] = useState<string | null>(null);
     const [schedule, setSchedule] = useState<ClassSchedule[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
+    const [academic_year, setAcademicYear] = useState<number | null>(null);
+    const [semester, setSemester] = useState<number | null>(null);
+    const [batch_year, setBatchYear] = useState<number | null>(null);
 
     const [institution_id,setInstituteId] = useAtom(institutionIdAtom);
-
-    const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const timeSlots = Array.from({ length: 8 }, (_, i) => {
-        const hour = i + 9; // Starting from 9 AM
-        return `${hour}:00 - ${hour + 1}:00`;
-    });
 
     useEffect(() => {
         if (institution_id) {
@@ -113,7 +111,7 @@ const WeeklySchedule: React.FC = () => {
     const fetchSchedule = async (sectionId: string): Promise<void> => {
         try {
             setLoading(true);
-            const response = await fetch(`${domain}/api/v1/schedule/latest/${sectionId}`);
+            const response = await fetch(`${domain}/api/v1/schedule/${selectedDept?.department_id}/${academic_year}/${batch_year}/${semester}/${sectionId}`);
             const data = await response.json();
             console.log(data);
             
@@ -137,13 +135,27 @@ const WeeklySchedule: React.FC = () => {
         fetchSchedule(sectionId);
     };
 
-    const getClassForTimeSlot = (day: string, time: string): ClassSchedule | undefined => {
-        return schedule.find(
-            (cls) =>
-                cls.timeslots.day_of_week === days.indexOf(day) + 1 &&
-                new Date(cls.timeslots.start_time).getHours() === parseInt(time.split(":")[0])
-        );
-    };
+
+  const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+  const timeSlots = [
+    '10:00 - 11:00',
+    '11:00 - 12:00',
+    '12:00 - 13:00',
+    '14:00 - 15:00',
+    '15:00 - 16:00',
+    '16:00 - 17:00'
+  ];
+
+  const getClassForTimeSlot = (dayIndex, timeSlot) => {
+    // Convert timeSlot string to hour for comparison
+    const hour = parseInt(timeSlot.split(':')[0]);
+    
+    return schedule.find(cls => {
+      const slotHour = new Date(cls.timeslots.start_time).getUTCHours();
+      return cls.timeslots.day_of_week === dayIndex && slotHour === hour;
+    });
+  };
+    
 
     return (
         <div className="p-4">
@@ -171,6 +183,55 @@ const WeeklySchedule: React.FC = () => {
                                 ))}
                             </SelectContent>
                         </Select>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <Select
+                                onValueChange={(value) => setAcademicYear(parseInt(value))}
+                                disabled={loading}
+                            >
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Select Academic Year" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {[2021, 2022, 2023, 2024].map((year) => (
+                                        <SelectItem key={year} value={year.toString()}>
+                                            {year}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+
+                            <Select
+                                onValueChange={(value) => setSemester(parseInt(value))}
+                                disabled={loading}
+                            >
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Select Semester" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {[1, 2,3,4,5,6,7,8].map((sem) => (
+                                        <SelectItem key={sem} value={sem.toString()}>
+                                            Semester {sem}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+
+                            <Select
+                                onValueChange={(value) => setBatchYear(parseInt(value))}
+                                disabled={loading}
+                            >
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Select Batch Year" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {[2021, 2022, 2023, 2024].map((year) => (
+                                        <SelectItem key={year} value={year.toString()}>
+                                            {year}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                        </div>
 
                         <Select
                             onValueChange={handleSectionChange}
@@ -190,6 +251,13 @@ const WeeklySchedule: React.FC = () => {
                                 ))}
                             </SelectContent>
                         </Select>
+                        <Button
+                            onClick={() => selectedSection && fetchSchedule(selectedSection)}
+                            disabled={!selectedSection || loading || !academic_year || !semester || !batch_year}
+                            className="bg-blue-500 text-white px-4 py-2 rounded"
+                        >
+                            Fetch Schedule
+                        </Button>
                     </div>
                 </CardContent>
             </Card>
@@ -201,53 +269,59 @@ const WeeklySchedule: React.FC = () => {
             )}
 
             {!loading && schedule.length > 0 && (
-                <div className="overflow-x-auto">
+                <Card className="w-full">
+                <CardHeader>
+                  <CardTitle>Weekly Class Schedule</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="overflow-x-auto">
                     <table className="w-full border-collapse">
-                        <thead>
-                            <tr>
-                                <th className="border p-2 bg-gray-100">Time</th>
-                                {days.map((day) => (
-                                    <th key={day} className="border p-2 bg-gray-100">
-                                        {day}
-                                    </th>
-                                ))}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {timeSlots.map((timeSlot) => (
-                                <tr key={timeSlot}>
-                                    <td className="border p-2 font-medium">
-                                        {timeSlot}
-                                    </td>
-                                    {days.map((day) => {
-                                        const classInfo = getClassForTimeSlot(day, timeSlot);
-                                        return (
-                                            <td
-                                                key={`${day}-${timeSlot}`}
-                                                className="border p-2"
-                                            >
-                                                {classInfo && (
-                                                    <div className="text-sm">
-                                                        <div className="font-medium">
-                                                            {classInfo.courses.course_name}
-                                                        </div>
-                                                        <div>
-                                                            {classInfo.faculty.users.first_name}{" "}
-                                                            {classInfo.faculty.users.last_name}
-                                                        </div>
-                                                        <div>
-                                                            Room: {classInfo.rooms.room_number}
-                                                        </div>
-                                                    </div>
-                                                )}
-                                            </td>
-                                        );
-                                    })}
-                                </tr>
-                            ))}
-                        </tbody>
+                      <thead>
+                        <tr>
+                          <th className="border p-2 bg-gray-100">Time</th>
+                          {days.map(day => (
+                            <th key={day} className="border p-2 bg-gray-100 min-w-[200px]">
+                              {day}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {timeSlots.map(timeSlot => (
+                          <tr key={timeSlot}>
+                            <td className="border p-2 font-medium whitespace-nowrap">
+                              {timeSlot}
+                            </td>
+                            {days.map((day, dayIndex) => {
+                              const classInfo = getClassForTimeSlot(dayIndex + 1, timeSlot);
+                              return (
+                                <td key={`${day}-${timeSlot}`} className="border p-2">
+                                  {classInfo && (
+                                    <div className="text-sm">
+                                      <div className="font-medium">
+                                        Faculty: {classInfo.faculty_schedule_details_faculty_idTofaculty.users.first_name}{' '}
+                                        {classInfo.faculty_schedule_details_faculty_idTofaculty.users.last_name}
+                                      </div>
+                                      <div className="text-gray-600">
+                                        Room: {classInfo.rooms_schedule_details_room_idTorooms.room_number}
+                                        {classInfo.rooms_schedule_details_room_idTorooms.wing && 
+                                          ` (${classInfo.rooms_schedule_details_room_idTorooms.wing} Wing)`}
+                                      </div>
+                                      <div className="text-xs text-gray-500">
+                                        {classInfo.rooms_schedule_details_room_idTorooms.room_type === 'lab' ? 'Lab Session' : 'Classroom'}
+                                      </div>
+                                    </div>
+                                  )}
+                                </td>
+                              );
+                            })}
+                          </tr>
+                        ))}
+                      </tbody>
                     </table>
-                </div>
+                  </div>
+                </CardContent>
+              </Card>
             )}
         </div>
     );

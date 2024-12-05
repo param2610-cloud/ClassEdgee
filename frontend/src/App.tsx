@@ -38,7 +38,7 @@ import UnitTopicManagement from "./pages/Protected/coordinator/course/semester/s
 import TimeslotManagement from "./pages/Protected/coordinator/classes/TimeSlotTable";
 import FacultyLMSDashboard from "./pages/Protected/faculty/FacultyDashboard";
 import FacultyLayout from "./pages/Protected/faculty/FacultyLayout";
-import VirtualRoom from "./pages/Protected/faculty/InteractiveClassroom";
+import VirtualRoom from "./pages/Protected/faculty/classes/ClassDashboard";
 import AddBatchSyllabus from "./pages/Protected/coordinator/course/AddBatchSyllabus";
 import AddHod from "./pages/Protected/department/[departmentid]/AddHod";
 import Profilepage from "./pages/Protected/faculty/profile/Profilepage";
@@ -50,6 +50,7 @@ import ScheduleGenerator from "./pages/Protected/faculty/schedule/ScheduleGenera
 import ScheduleViewer from "./pages/Protected/faculty/schedule/ScheduleViewer";
 import Load from "./LoadSpinners/Load";
 import ScheduleDashboard from "./pages/Protected/faculty/sechdule/ScheduleDashboard";
+import ClassDashboard from "./pages/Protected/faculty/classes/ClassDashboard";
 // import SechduleForSemester from "./pages/Protected/faculty/sechdule/SechduleForSemester";
 // import ScheduleManager from "./pages/Protected/faculty/sechdule/ScheduleManagement";
 // import ScheduleDetailView from "./pages/Protected/faculty/sechdule/ScheduleDetailsView";
@@ -81,14 +82,15 @@ const ProtectedRoute: React.FC = () => {
         if (user && user.role) {
             console.log("ProtectedRoute - User role:", user.role);
         }
+        console.log("horin:",user);
     }, [user, isLoading]);
 
     if (isLoading) {
         console.log("ProtectedRoute - Still loading...");
         return <div><Load /></div>;
     }
-
-    if (!user || !user.role) {
+    
+    if (!user && !user?.role && isLoading === false) {
         console.log(
             "ProtectedRoute - No user or no role, redirecting to signin"
         );
@@ -155,6 +157,10 @@ const FacultyRoutes: React.FC = () => (
             <Route
                 path="/schedule/:section_id"
                 element={<ScheduleViewer    />}
+            />
+            <Route
+                path="/classes/:class_id"
+                element={<ClassDashboard    />}
             />
         </Routes>
     </FacultyLayout>

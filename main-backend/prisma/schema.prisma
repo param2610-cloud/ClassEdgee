@@ -147,6 +147,7 @@ model classes {
   created_at                                                    DateTime?           @default(now()) @db.Timestamp(6)
   updated_at                                                    DateTime?           @db.Timestamp(6)
   date_of_class                                                 DateTime?           @db.Date
+  detail_id                                                     Int?
   attendance                                                    attendance[]
   backlogsessions_backlogsessions_original_class_idToclasses    backlogsessions[]   @relation("backlogsessions_original_class_idToclasses")
   backlogsessions_backlogsessions_rescheduled_class_idToclasses backlogsessions[]   @relation("backlogsessions_rescheduled_class_idToclasses")
@@ -155,8 +156,8 @@ model classes {
   rooms                                                         rooms?              @relation(fields: [room_id], references: [room_id], onDelete: NoAction, onUpdate: NoAction)
   sections                                                      sections?           @relation(fields: [section_id], references: [section_id], onDelete: NoAction, onUpdate: NoAction)
   timeslots                                                     timeslots?          @relation(fields: [slot_id], references: [slot_id], onDelete: NoAction, onUpdate: NoAction)
+  schedule_details                                              schedule_details?   @relation(fields: [detail_id], references: [detail_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_classes_schedule")
   quizzes                                                       quizzes[]
-  schedule_details                                              schedule_details[]
   studentengagement                                             studentengagement[]
 }
 
@@ -421,24 +422,25 @@ model rooms {
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model sections {
-  section_id        Int           @id @default(autoincrement())
-  section_name      String        @db.VarChar(50)
+  section_id        Int             @id @default(autoincrement())
+  section_name      String          @db.VarChar(50)
   batch_year        Int
   department_id     Int?
-  student_count     Int           @default(0)
+  student_count     Int             @default(0)
   max_capacity      Int
-  is_combined       Boolean?      @default(false)
+  is_combined       Boolean?        @default(false)
   parent_section_id Int?
   academic_year     Int
   semester          Int
-  created_at        DateTime?     @default(now()) @db.Timestamp(6)
+  created_at        DateTime?       @default(now()) @db.Timestamp(6)
   institution_id    Int?
   classes           classes[]
   notes             notes[]
-  departments       departments?  @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction)
-  institutions      institutions? @relation(fields: [institution_id], references: [institution_id], onDelete: Cascade, onUpdate: NoAction)
-  sections          sections?     @relation("sectionsTosections", fields: [parent_section_id], references: [section_id], onDelete: NoAction, onUpdate: NoAction)
-  other_sections    sections[]    @relation("sectionsTosections")
+  schedule_meta     schedule_meta[]
+  departments       departments?    @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction)
+  institutions      institutions?   @relation(fields: [institution_id], references: [institution_id], onDelete: Cascade, onUpdate: NoAction)
+  sections          sections?       @relation("sectionsTosections", fields: [parent_section_id], references: [section_id], onDelete: NoAction, onUpdate: NoAction)
+  other_sections    sections[]      @relation("sectionsTosections")
   students          students[]
 
   @@unique([institution_id, section_name, batch_year], map: "unique_section_name_per_institution")
@@ -550,6 +552,7 @@ model subject_details {
   subject_name                      String?                   @db.VarChar(255)
   subject_code                      String?                   @db.VarChar(50)
   faculty_subject_mapping           faculty_subject_mapping[]
+  schedule_details                  schedule_details[]
   syllabus_structure                syllabus_structure?       @relation(fields: [syllabus_id], references: [syllabus_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_syllabus_id")
   courses                           courses?                  @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction)
   units                             units[]
@@ -721,24 +724,23 @@ model schedule_conflicts {
 model schedule_details {
   detail_id                                           Int               @id @default(autoincrement())
   schedule_id                                         Int
-  class_id                                            Int
   faculty_id                                          Int
   backup_faculty_id                                   Int?
   room_id                                             Int
   backup_room_id                                      Int?
   timeslot_id                                         Int
-  day_of_week                                         Int
+  day_of_week                                         String?           @db.VarChar(255)
+  subject_id                                          Int?
+  classes                                             classes[]
+  subject_details                                     subject_details?  @relation(fields: [subject_id], references: [subject_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_subject_id")
   faculty_schedule_details_backup_faculty_idTofaculty faculty?          @relation("schedule_details_backup_faculty_idTofaculty", fields: [backup_faculty_id], references: [faculty_id], onUpdate: NoAction)
   rooms_schedule_details_backup_room_idTorooms        rooms?            @relation("schedule_details_backup_room_idTorooms", fields: [backup_room_id], references: [room_id], onUpdate: NoAction)
-  classes                                             classes           @relation(fields: [class_id], references: [class_id], onDelete: Cascade, onUpdate: NoAction)
   faculty_schedule_details_faculty_idTofaculty        faculty           @relation("schedule_details_faculty_idTofaculty", fields: [faculty_id], references: [faculty_id], onDelete: Cascade, onUpdate: NoAction)
   rooms_schedule_details_room_idTorooms               rooms             @relation("schedule_details_room_idTorooms", fields: [room_id], references: [room_id], onDelete: Cascade, onUpdate: NoAction)
   schedule_meta                                       schedule_meta     @relation(fields: [schedule_id], references: [schedule_id], onDelete: Cascade, onUpdate: NoAction)
   timeslots                                           timeslots         @relation(fields: [timeslot_id], references: [slot_id], onDelete: Cascade, onUpdate: NoAction)
   schedule_topics                                     schedule_topics[]
 
-  @@unique([schedule_id, faculty_id, timeslot_id, day_of_week])
-  @@unique([schedule_id, room_id, timeslot_id, day_of_week])
   @@index([faculty_id], map: "idx_schedule_details_faculty")
   @@index([room_id], map: "idx_schedule_details_room")
   @@index([schedule_id], map: "idx_schedule_details_schedule")
@@ -755,8 +757,10 @@ model schedule_meta {
   status             String               @default("draft") @db.VarChar(20)
   created_at         DateTime?            @default(now()) @db.Timestamptz(6)
   updated_at         DateTime?            @default(now()) @db.Timestamptz(6)
+  section_id         Int?
   schedule_conflicts schedule_conflicts[]
   schedule_details   schedule_details[]
+  sections           sections?            @relation(fields: [section_id], references: [section_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_section_id")
   users              users                @relation(fields: [created_by], references: [user_id], onDelete: Cascade, onUpdate: NoAction)
   departments        departments          @relation(fields: [department_id], references: [department_id], onDelete: Cascade, onUpdate: NoAction)
 

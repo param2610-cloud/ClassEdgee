@@ -85,6 +85,7 @@ export const fetchData = async () => {
                             (acc, unit) => acc + unit.required_hours,
                             0
                         ),
+                        department_id: department.department_id.toString(),
                     }))
                 ),
                 sections: department.sections.reduce((acc, section) => {
@@ -125,11 +126,13 @@ export const fetchData = async () => {
     }
 };
 
+
 const generateSchedule = async (req, res) => {
     try {
+        const {created_by} = req.body;
         // Fetch data using existing function
         const data = await fetchData();
-
+        const user_id = created_by;
         if (
             !data ||
             !data.departments ||
@@ -149,16 +152,16 @@ const generateSchedule = async (req, res) => {
         const schedule = response.data;
 
         // Save schedule to database
-        const savedSchedule = await saveScheduleToDatabase(schedule);
+        const savedSchedule = await saveScheduleToDatabase(schedule,user_id);
 
-        return res.status(200).json({
+        return res.status(200).send({
             success: true,
             message: "Schedule generated successfully",
             data: savedSchedule,
         });
     } catch (error) {
         console.error("Error generating schedule:", error);
-        return res.status(500).json({
+        return res.status(500).send({
             success: false,
             message: "Error generating schedule",
             error: error.message,
@@ -216,74 +219,177 @@ const generateSchedule = async (req, res) => {
 
 // return savedClasses;
 // };
-const saveScheduleToDatabase = async (schedule) => {
-    try {
-        // Get today's date
-        const today = new Date();
+// Helper function to get the first occurrence of a weekday from start date
+const getFirstOccurrence = (startDate, targetDay) => {
+    const date = new Date(startDate);
+    const currentDay = date.getDay() || 7; // Convert Sunday (0) to 7
+    const daysUntilTarget = (targetDay - currentDay + 7) % 7;
+    date.setDate(date.getDate() + daysUntilTarget);
+    return date;
+};
 
-        // Generate dates for next month (excluding weekends)
-        const dates = [];
-        for (let i = 0; i < 30; i++) {
-            const date = new Date(today);
-            date.setDate(date.getDate() + i);
-            // Only include weekdays (0 = Sunday, 6 = Saturday)
-            if (date.getDay() !== 0 && date.getDay() !== 6) {
-                dates.push(date);
+// Helper function to generate 4 weekly dates
+const generateWeeklyDates = (startDate, dayOfWeek) => {
+    const dates = [];
+    const firstOccurrence = getFirstOccurrence(startDate, dayOfWeek);
+    
+    for (let i = 0; i < 4; i++) {
+        const classDate = new Date(firstOccurrence);
+        classDate.setDate(classDate.getDate() + (i * 7));
+        dates.push(classDate);
+    }
+    
+    return dates;
+};
+
+const saveScheduleToDatabase = async (schedule, user_id) => {
+    try {
+        const startDate = new Date();
+        const batchSize = 100; // Process in smaller batches
+        let allClasses = [];
+
+        // Pre-fetch time slots outside the transaction
+        const timeSlotMap = new Map();
+        const uniqueTimeSlots = new Set();
+        
+        Object.entries(schedule).forEach(([_, timeSlots]) => {
+            Object.keys(timeSlots).forEach(timeSlot => {
+                const [day, time] = timeSlot.split(" ");
+                uniqueTimeSlots.add(`${day}-${time}`);
+            });
+        });
+
+        // Fetch all required time slots at once
+        for (const timeSlotKey of uniqueTimeSlots) {
+            const [day, time] = timeSlotKey.split("-");
+            const startTime = new Date(`1970-01-01T${time}`);
+            const timeSlot = await prisma.timeslots.findFirst({
+                where: {
+                    day_of_week: parseInt(day),
+                    start_time: startTime,
+                },
+                select: {
+                    slot_id: true
+                }
+            });
+            if (timeSlot) {
+                timeSlotMap.set(timeSlotKey, timeSlot.slot_id);
             }
         }
 
-        // For each section in the schedule
-        for (const [sectionKey, sectionSchedule] of Object.entries(schedule)) {
-            // Process each time slot for this section
-            for (const [timeSlotKey, classInfo] of Object.entries(
-                sectionSchedule
-            )) {
-                // Parse day and time from the key (e.g., '1 10:00:00.000Z')
-                const [dayOfWeek, timeString] = timeSlotKey.split(" ");
+        // Process each section in separate transactions
+        for (const [sectionKey, timeSlots] of Object.entries(schedule)) {
+            const [dept, batch, section] = sectionKey.split("_");
+            
+            // Get department info outside transaction
+            const department = await prisma.departments.findFirst({
+                where: {
+                    department_code: dept
+                }
+            });
 
-                // Convert timeString to a time object
-                const time = new Date(`1970-01-01T${timeString}`);
+            if (!department) {
+                throw new Error(`Department not found for code: ${dept}`);
+            }
 
-                // Find matching time slot
-                const timeSlot = await prisma.timeslots.findFirst({
+            // Process this section's schedule in a transaction
+            const sectionClasses = await prisma.$transaction(async (tx) => {
+                const classes = [];
+                // Find or create schedule meta
+                let schedule_meta = await tx.schedule_meta.findFirst({
                     where: {
-                        day_of_week: parseInt(dayOfWeek),
-                        start_time: time,
-                    },
+                        department_id: department.department_id,
+                        batch_year: parseInt(batch),
+                        semester: parseInt(Object.values(timeSlots)[0].semester),
+                        academic_year: Object.values(timeSlots)[0].academic_year,
+                        section_id: parseInt(section)
+                    }
                 });
 
-                if (!timeSlot) {
-                    console.error(
-                        `No matching timeslot found for day ${dayOfWeek} and time ${timeString}`
-                    );
-                    continue;
-                }
-
-                // Create class entries for all matching dates in the next month
-                const classEntries = dates
-                    .filter((date) => date.getDay() === parseInt(dayOfWeek))
-                    .map((date) => ({
-                        course_id: parseInt(classInfo.course_id),
-                        faculty_id: parseInt(classInfo.faculty_id),
-                        room_id: parseInt(classInfo.room_id),
-                        section_id: parseInt(classInfo.section_id),
-                        slot_id: timeSlot.slot_id,
-                        semester: classInfo.semester,
-                        academic_year: classInfo.academic_year,
-                        date_of_class: date,
-                        is_active: true,
-                    }));
-
-                // Batch create all classes
-                if (classEntries.length > 0) {
-                    await prisma.classes.createMany({
-                        data: classEntries,
+                if (!schedule_meta) {
+                    schedule_meta = await tx.schedule_meta.create({
+                        data: {
+                            department_id: department.department_id,
+                            batch_year: parseInt(batch),
+                            semester: parseInt(Object.values(timeSlots)[0].semester),
+                            academic_year: Object.values(timeSlots)[0].academic_year,
+                            created_by: user_id,
+                            section_id: parseInt(section)
+                        }
                     });
                 }
-            }
+
+                // Process time slots in batches
+                const timeSlotEntries = Object.entries(timeSlots);
+                for (let i = 0; i < timeSlotEntries.length; i += batchSize) {
+                    const batch = timeSlotEntries.slice(i, i + batchSize);
+                    
+                    for (const [timeSlot, classInfo] of batch) {
+                        const [day, time] = timeSlot.split(" ");
+                        const timeSlotKey = `${day}-${time}`;
+                        const slotId = timeSlotMap.get(timeSlotKey);
+
+                        if (!slotId) {
+                            console.warn(`Time slot not found for ${timeSlotKey}`);
+                            continue;
+                        }
+
+                        // Find or create schedule details
+                        let schedule_details = await tx.schedule_details.findFirst({
+                            where: {
+                                schedule_id: schedule_meta.schedule_id,
+                                faculty_id: parseInt(classInfo.faculty_id),
+                                room_id: parseInt(classInfo.room_id),
+                                timeslot_id: slotId,
+                            }
+                        });
+
+                        if (!schedule_details) {
+                            schedule_details = await tx.schedule_details.create({
+                                data: {
+                                    schedule_id: schedule_meta.schedule_id,
+                                    faculty_id: parseInt(classInfo.faculty_id),
+                                    room_id: parseInt(classInfo.room_id),
+                                    timeslot_id: slotId,
+                                }
+                            });
+                        }
+
+                        // Generate weekly dates
+                        const classDates = generateWeeklyDates(startDate, parseInt(day));
+
+                        // Create classes in bulk
+                        const classCreations = classDates.map(classDate => ({
+                            academic_year: classInfo.academic_year,
+                            semester: classInfo.semester,
+                            section_id: parseInt(classInfo.section_id),
+                            faculty_id: parseInt(classInfo.faculty_id),
+                            room_id: parseInt(classInfo.room_id),
+                            slot_id: slotId,
+                            is_active: true,
+                            course_id: parseInt(classInfo.course_id),
+                            detail_id: schedule_details.detail_id,
+                            date_of_class: classDate
+                        }));
+
+                        const createdClasses = await tx.classes.createMany({
+                            data: classCreations
+                        });
+
+                        classes.push(...classCreations);
+                    }
+                }
+
+                return classes;
+            }, {
+                maxWait: 10000,  // 5 seconds max wait
+                timeout: 60000  // 10 seconds timeout
+            });
+
+            allClasses.push(...sectionClasses);
         }
-        return true;
-        console.log("Successfully saved schedule to database");
+
+        return allClasses;
     } catch (error) {
         console.error("Error saving schedule to database:", error);
         throw error;
@@ -292,33 +398,39 @@ const saveScheduleToDatabase = async (schedule) => {
 
 const getLatestSchedule = async (req, res) => {
     try {
-        const {section_id} = req.params;
-        const latestClasses = await prisma.classes.findMany({
+        console.log(req.params);
+        
+        const {department_id,academic_year,batch_year,semester,section_id} = req.params;
+        const schedule_meta_details = await prisma.schedule_meta.findMany({
             where: {
-                is_active: true,
-                section_id: parseInt(section_id),
+                section_id:parseInt(section_id),
+            }
+        });
+        console.log(schedule_meta_details);
+        
+        if(!schedule_meta_details[0].schedule_id){
+            return res.status(404).json({
+                success: false,
+                message: "No schedule found",
+            });
+        }
+        const schedule_details = await prisma.schedule_details.findMany({
+            where: {
+                schedule_id:schedule_meta_details[0].schedule_id
             },
-            include: {
-                faculty: {
-                    include: {
-                        users: true,
-                    },
+            include:{
+                faculty_schedule_details_faculty_idTofaculty:{
+                    include:{
+                        users:true
+                    }
                 },
-                sections: {
-                    include: {
-                        departments: true,
-                    },
-                },
-                rooms: true,
-                courses: true,
-                timeslots: true,
-            },
-            orderBy: {
-                created_at: "desc",
-            },
+                rooms_schedule_details_room_idTorooms:true,
+                timeslots:true,
+
+            }
         });
 
-        if (!latestClasses || latestClasses.length === 0) {
+        if (!schedule_details || schedule_details.length === 0) {
             return res.status(404).json({
                 success: false,
                 message: "No schedule found",
@@ -329,7 +441,7 @@ const getLatestSchedule = async (req, res) => {
 
         return res.status(200).json({
             success: true,
-            data: latestClasses,
+            data: schedule_details,
         });
     } catch (error) {
         console.error("Error fetching latest schedule:", error);
@@ -340,5 +452,7 @@ const getLatestSchedule = async (req, res) => {
         });
     }
 };
+
+
 
 export { generateSchedule, getLatestSchedule };

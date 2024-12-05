@@ -25,16 +25,23 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
+import { useAuth } from "@/services/AuthContext";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { domain } from "@/lib/constant";
+import { Class, SyllabusStructure } from "@/interface/general";
+import ResourcesTab from "./resource/Resource";
+import NotesTab from "./notes/Notes";
 
-const VirtualRoom = () => {
-    const [roomDetails] = useState({
-        batch: "2024",
-        stream: "Computer Science",
-        section: "A",
-        subject: "Advanced Programming",
-        semester: "6",
-        faculty: "Dr. Elena Rodriguez",
-    });
+const ClassDashboard = () => {
+    const {class_id}= useParams()
+    const [classData,setClassData] = useState<Class | null>(null);
+    const [syllabus, setSyllabus] = useState<SyllabusStructure | null>(null)
+    useEffect(()=>{
+        if(classData?.schedule_details.subject_details?.syllabus_structure){
+            setSyllabus(classData.schedule_details.subject_details.syllabus_structure)
+        }
+    },[classData])
 
     const [resources, setResources] = useState([
         {
@@ -94,6 +101,17 @@ const VirtualRoom = () => {
     const handleQuizStart = () => {
         setQuizModal(true);
     };
+    useEffect(()=>{
+        const fetchClassDetails = async ()=> {
+            const response = await axios.get(`${domain}/api/v1/classes/${class_id}`)
+            console.log(response.data)
+            setClassData(response.data)
+        }
+        if(class_id && !classData){
+            fetchClassDetails()
+            
+        }
+    },[class_id,classData])
 
     const handleResourceDownload = (resource:any) => {
         alert(`Downloading ${resource.name}`);
@@ -106,39 +124,34 @@ const VirtualRoom = () => {
                 <div className="flex justify-between items-center">
                     <div>
                         <h1 className="text-2xl font-bold text-blue-800">
-                            Virtual Classroom: Advanced Programming
+                            Virtual Classroom: {classData?.courses?.course_name}
                         </h1>
                         <div className="text-sm text-gray-600 mt-2">
                             <p className="flex items-center">
                                 <Users className="mr-2 h-4 w-4" />
-                                Batch: {roomDetails.batch} | Stream:{" "}
-                                {roomDetails.stream}
+                                Batch: {classData?.sections?.batch_year} | Stream:{" "}
+                                {classData?.sections?.departments?.department_name}
                             </p>
                             <p className="flex items-center">
                                 <BookOpen className="mr-2 h-4 w-4" />
-                                Section: {roomDetails.section} | Semester:{" "}
-                                {roomDetails.semester}
+                                Section: {classData?.sections?.section_name} | Semester:{" "}
+                                {classData?.semester}
                             </p>
                             <p className="flex items-center">
                                 <VideoIcon className="mr-2 h-4 w-4" />
-                                Faculty: {roomDetails.faculty}
+                                Faculty: {classData?.faculty?.users?.first_name}{" "}
+                                {classData?.faculty?.users?.last_name}
                             </p>
                         </div>
                     </div>
                     <div className="flex flex-col space-y-2">
-                        <Button
-                            onClick={handleQuizStart}
-                            className="bg-green-500 hover:bg-green-600"
-                        >
-                            <ClipboardList className="mr-2 h-5 w-5" />
-                            Take Quiz
-                        </Button>
-                        <Button
-                            variant="outline"
-                            className="bg-blue-100 hover:bg-blue-200"
-                        >
+                        <Button className="bg-green-500 hover:bg-green-600">
                             <VideoIcon className="mr-2 h-5 w-5" />
-                            Join Live Class
+                            Take Attendance
+                        </Button>
+                        <Button variant="outline" className="bg-blue-100 hover:bg-blue-200">
+                            <Clock className="mr-2 h-5 w-5" />
+                            Create Quiz
                         </Button>
                     </div>
                 </div>
@@ -151,13 +164,13 @@ const VirtualRoom = () => {
                         <File className="mr-2 h-4 w-4" />
                         Resources
                     </TabsTrigger>
+                    <TabsTrigger value="notes">
+                        <BookOpen className="mr-2 h-4 w-4" />
+                        Notes
+                    </TabsTrigger>
                     <TabsTrigger value="assignments">
                         <CheckCircle className="mr-2 h-4 w-4" />
                         Assignments
-                    </TabsTrigger>
-                    <TabsTrigger value="notifications">
-                        <Bell className="mr-2 h-4 w-4" />
-                        Notifications
                     </TabsTrigger>
                     <TabsTrigger value="performance">
                         <BarChart2 className="mr-2 h-4 w-4" />
@@ -167,45 +180,13 @@ const VirtualRoom = () => {
 
                 {/* Resources Tab */}
                 <TabsContent value="resources">
-                    <Card>
-                        <CardHeader>
-                            <CardTitle className="flex items-center">
-                                <Download className="mr-2 h-6 w-6" />
-                                Shared Resources
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            {resources.map((resource) => (
-                                <div
-                                    key={resource.id}
-                                    className="flex justify-between items-center p-3 bg-gray-100 rounded-lg mb-2"
-                                >
-                                    <div>
-                                        <p className="font-medium">
-                                            {resource.name}
-                                        </p>
-                                        <p className="text-sm text-gray-500">
-                                            {resource.type.toUpperCase()} |{" "}
-                                            {resource.size} | Uploaded:{" "}
-                                            {resource.uploadDate}
-                                        </p>
-                                        <p className="text-xs text-gray-600 mt-1">
-                                            {resource.description}
-                                        </p>
-                                    </div>
-                                    <Button
-                                        variant="outline"
-                                        onClick={() =>
-                                            handleResourceDownload(resource)
-                                        }
-                                    >
-                                        Download
-                                    </Button>
-                                </div>
-                            ))}
-                        </CardContent>
-                    </Card>
+                    <ResourcesTab courseId={Number(class_id)} />
                 </TabsContent>
+
+                <TabsContent value="notes">
+                    <NotesTab courseId={Number(class_id)} />
+                </TabsContent>
+
 
                 {/* Assignments Tab */}
                 <TabsContent value="assignments">
@@ -365,4 +346,4 @@ const VirtualRoom = () => {
     );
 };
 
-export default VirtualRoom;
+export default ClassDashboard;
