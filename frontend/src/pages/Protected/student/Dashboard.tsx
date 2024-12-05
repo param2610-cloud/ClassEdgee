@@ -1,10 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Book, Calendar, CheckSquare, MessageCircle, BarChart2, Settings, LogOut } from 'lucide-react';
 import { useAuth } from '@/services/AuthContext';
+import UpcomingClassComponentStudent from './classes/UpciomingClassComponentStudent';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { userDataAtom } from '@/store/atom';
+import { useAtom } from 'jotai';
+import { domain } from '@/lib/constant';
 
 const StudentLMSDashboard = () => {
   const [activeSection, setActiveSection] = useState('courses');
-  const {logout} = useAuth()
+  const {logout,user} = useAuth()
+  const [userData,setUserData] = useAtom(userDataAtom)
+  const [loading, setLoading] = useState(true);
+  const fetchStudentData = async () => {
+    try {
+      const studentResponse = await fetch(`${domain}/api/v1/student/get-student/${user?.user_id}`);
+      const studentData = await studentResponse.json();
+      console.log("studentData:",studentData);
+      setUserData(studentData.data);
+      
+      
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      setLoading(false);
+    }
+  }
+  useEffect(() => {
+    if(user && !userData){
+      fetchStudentData()
+    }
+  },[user,userData])
   // Sample data (in a real app, this would come from backend)
   const courses = [
     { 
@@ -41,17 +67,28 @@ const StudentLMSDashboard = () => {
       status: 'Not Started'
     }
   ];
-
+  if(!userData){
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="text-center">
+          <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32 mb-4"></div>
+          <h2 className="text-xl font-semibold">Loading...</h2>
+          <p className="text-gray-500">Please wait while we fetch your data.</p>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar Navigation */}
       <div className="w-24 bg-white shadow-md flex flex-col items-center py-8">
         <div className="mb-8">
-          <img 
-            src="/api/placeholder/80/80" 
-            alt="Student Profile" 
-            className="rounded-full w-16 h-16 object-cover"
-          />
+          <Avatar>
+            <AvatarImage src={userData?.profile_picture}/>
+            <AvatarFallback className="bg-blue-500 text-white">
+              {userData?.first_name?.charAt(0) || ''}{userData?.last_name?.charAt(0) || ''}
+            </AvatarFallback>
+          </Avatar>
         </div>
         <nav className="space-y-6">
           <button 
@@ -89,6 +126,7 @@ const StudentLMSDashboard = () => {
 
       {/* Main Content Area */}
       <div className="flex-1 p-8 overflow-y-auto">
+        <UpcomingClassComponentStudent userData={userData}/>
         {activeSection === 'courses' && (
           <div>
             <h1 className="text-2xl font-bold mb-6">My Courses</h1>

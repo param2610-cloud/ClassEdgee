@@ -401,6 +401,8 @@ const getLatestSchedule = async (req, res) => {
         console.log(req.params);
         
         const {department_id,academic_year,batch_year,semester,section_id} = req.params;
+        console.log(section_id);
+        
         const schedule_meta_details = await prisma.schedule_meta.findMany({
             where: {
                 section_id:parseInt(section_id),

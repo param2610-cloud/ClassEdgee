@@ -182,7 +182,7 @@ const loginStudent = async (req, res) => {
         );
         const userData = await prismaClient.users.update({
             where: {
-                email: faculty.email,
+                email: user.email,
             },
             data: {
                 refreshtoken: refreshToken,
@@ -373,12 +373,23 @@ const editStudent = async (req, res) => {
 
 const uniqueStudent = async (req, res) => {
     try {
+        console.log("uniqueStudent");
+        
         const { id } = req.params;
-        const student = await prismaClient.students.findUnique({
+        const student = await prismaClient.users.findUnique({
             where: { user_id: parseInt(id) },
             include: {
-                users: true,
-                departments: true
+                students: {
+                    include:{
+                        sections:{
+                            include:{
+                                departments:true,
+                                notes:true,
+                            }
+                        }
+                    }
+                },
+                institutions: true,
             }
         });
 

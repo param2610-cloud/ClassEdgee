@@ -1,4 +1,6 @@
 import os
+import sys
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import uuid
 import pandas as pd
 import numpy as np
@@ -11,18 +13,19 @@ from psycopg2.extras import execute_values
 from datetime import datetime, date
 import bcrypt
 from student.studentRouter import student_router
-# from face_recognition.face_recognition import face_recognition_router
 from schedule.scheduler import ScheduleGenerator
 import json
 from typing import Dict, List
 from pydantic import BaseModel
 
-# Load environment variables
+
 load_dotenv()
+
+# Load environment variables
 
 # Create FastAPI app
 app = FastAPI(
-    title="Faculty Management API",
+    title="ClassEdgee",
     description="API for managing faculty records and bulk uploads with data type validation",
     version="0.1.0"
 )
@@ -382,9 +385,10 @@ async def get_faculty(faculty_id: int):
         conn.close()
 
 # Include the router in the app
+from routes.face_recognition import face_router
+app.include_router(face_router)
 app.include_router(faculty_router)
 app.include_router(student_router)
-# app.include_router(face_recognition_router)
 
 # Optional: Add a root endpoint
 @app.get("/")

@@ -93,12 +93,32 @@ const getUpcomingClassesOfStudent = async (req, res) => {
         section_id: studentDetails.sections.section_id,
         is_active: true,
       },
-      include: {
-        courses: true,
+      select: {
+        date_of_class: true,
+        class_id: true,
+        courses: {
+          select:{
+            course_name:true,
+            course_code:true,
+          }
+        },
         faculty: true,
-        rooms: true,
-        sections: true,
-        timeslots: true,
+        rooms: {
+          select: {
+            room_number: true,
+          }
+        },
+        sections: {
+          select: {
+            section_name: true,
+          },
+        },
+        timeslots: {
+          select: {
+            start_time: true,
+            end_time: true,
+          },
+        },
       },
       orderBy: {
         date_of_class: "asc",

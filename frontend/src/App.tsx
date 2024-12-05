@@ -46,11 +46,11 @@ import DepartmentDetails from "./pages/Protected/department/[departmentid]/Detai
 import CourseDashboardForFaculty from "./pages/Protected/faculty/Course/CourseDashboardForFaculty";
 import SectionDashboard from "./pages/Protected/faculty/section/SectionDashboard";
 import SubjectAssignment from "./pages/Protected/faculty/schedule/SubjectAssignment";
-import ScheduleGenerator from "./pages/Protected/faculty/schedule/ScheduleGenerator";
 import ScheduleViewer from "./pages/Protected/faculty/schedule/ScheduleViewer";
 import Load from "./LoadSpinners/Load";
-import ScheduleDashboard from "./pages/Protected/faculty/sechdule/ScheduleDashboard";
+import ScheduleDashboard from "./pages/Protected/faculty/schedule/ScheduleDashboard";
 import ClassDashboard from "./pages/Protected/faculty/classes/ClassDashboard";
+import ClassDashboardStudent from "./pages/Protected/student/classes/ClassDashboardStudent";
 // import SechduleForSemester from "./pages/Protected/faculty/sechdule/SechduleForSemester";
 // import ScheduleManager from "./pages/Protected/faculty/sechdule/ScheduleManagement";
 // import ScheduleDetailView from "./pages/Protected/faculty/sechdule/ScheduleDetailsView";
@@ -170,7 +170,10 @@ const StudentRoutes: React.FC = () => (
     <StudentLayout>
         <Routes>
             <Route path="/" element={<Dashboard />} />
-            {/* Add student-specific routes here */}
+            <Route
+                path="/classes/:class_id"
+                element={<ClassDashboardStudent    />}
+            />
         </Routes>
     </StudentLayout>
 );
