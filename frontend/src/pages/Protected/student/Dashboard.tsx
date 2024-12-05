@@ -6,12 +6,14 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { userDataAtom } from '@/store/atom';
 import { useAtom } from 'jotai';
 import { domain } from '@/lib/constant';
+import { useNavigate } from 'react-router-dom';
 
 const StudentLMSDashboard = () => {
   const [activeSection, setActiveSection] = useState('courses');
   const {logout,user} = useAuth()
   const [userData,setUserData] = useAtom(userDataAtom)
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
   const fetchStudentData = async () => {
     try {
       const studentResponse = await fetch(`${domain}/api/v1/student/get-student/${user?.user_id}`);
