@@ -113,8 +113,12 @@ const WeeklySchedule: React.FC = () => {
             setLoading(true);
             const response = await fetch(`${domain}/api/v1/schedule/${selectedDept?.department_id}/${academic_year}/${batch_year}/${semester}/${sectionId}`);
             const data = await response.json();
+            if(!response?.ok){
+                console.log("Error fetching schedule:", data);
+                
+            }
             console.log(data);
-            
+            // amar mote tor uchit ekbar redownload kora repo ta  // gi
             setSchedule(data.data);
         } catch (error) {
             console.error("Error fetching schedule:", error);

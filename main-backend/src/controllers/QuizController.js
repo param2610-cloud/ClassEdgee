@@ -92,46 +92,117 @@ class QuizController {
 }
 
 
+  // async submitQuiz(req, res) {
+    // try {
+      // const { quiz_id } = req.params;
+      // const student_id = req.user.id;
+      // const { responses } = req.body;
+
+      // const questions = await prisma.quiz_questions.findMany({
+        // where: { quiz_id: parseInt(quiz_id) }
+      // });
+
+      // const quiz_responses = await Promise.all(
+        // responses.map(async (response) => {
+          // const question = questions.find(q => q.question_id === response.question_id);
+          // const is_correct = question.correct_answer === response.selected_option;
+
+          // return prisma.quiz_responses.create({
+            // data: {
+              // quiz_id: parseInt(quiz_id),
+              // student_id,
+              // question_id: response.question_id,
+              // selected_option: response.selected_option,
+              // is_correct
+            // }
+          // });
+        // })
+      // );
+
+      // res.json({ 
+        // success: true, 
+        // message: 'Quiz submitted successfully', 
+        // data: quiz_responses 
+      // });
+    // } catch (error) {
+      // res.status(500).json({ 
+        // success: false, 
+        // message: 'Error submitting quiz',  
+        // error: error.message 
+      // });
+    // }
+  // }
+
   async submitQuiz(req, res) {
     try {
-      const { quiz_id } = req.params;
-      const student_id = req.user.id;
+      // Extract parameters and user data
+      const quiz_id = parseInt(req.params.quiz_id, 10);
+      if (isNaN(quiz_id)) {
+        return res.status(400).json({ success: false, message: 'Invalid quiz ID' });
+      }
+  
+      const student_id = req.user?.id;
+      if (!student_id) {
+        return res.status(401).json({ success: false, message: 'Unauthorized user' });
+      }
+  
       const { responses } = req.body;
-
+      if (!responses || !Array.isArray(responses) || responses.length === 0) {
+        return res.status(400).json({ success: false, message: 'Invalid responses data' });
+      }
+  
+      // Fetch quiz questions
       const questions = await prisma.quiz_questions.findMany({
-        where: { quiz_id: parseInt(quiz_id) }
+        where: { quiz_id },
       });
-
+  
+      if (!questions || questions.length === 0) {
+        return res.status(404).json({ success: false, message: 'Quiz not found' });
+      }
+  
+      // Process responses
       const quiz_responses = await Promise.all(
         responses.map(async (response) => {
           const question = questions.find(q => q.question_id === response.question_id);
+  
+          // Handle missing question
+          if (!question) {
+            throw new Error(`Question ID ${response.question_id} not found in quiz ${quiz_id}`);
+          }
+  
           const is_correct = question.correct_answer === response.selected_option;
-
+  
           return prisma.quiz_responses.create({
             data: {
-              quiz_id: parseInt(quiz_id),
+              quiz_id,
               student_id,
               question_id: response.question_id,
               selected_option: response.selected_option,
-              is_correct
-            }
+              is_correct,
+            },
           });
         })
       );
-
-      res.json({ 
-        success: true, 
-        message: 'Quiz submitted successfully', 
-        data: quiz_responses 
+  
+      // Success response
+      res.json({
+        success: true,
+        message: 'Quiz submitted successfully',
+        data: quiz_responses,
       });
+  
     } catch (error) {
-      res.status(500).json({ 
-        success: false, 
-        message: 'Error submitting quiz',  
-        error: error.message 
+      // Catch and handle errors
+      console.error(error); // Log for debugging
+      res.status(500).json({
+        success: false,
+        message: 'Error submitting quiz',
+        error: error.message,
       });
     }
   }
+  
+
 
   async getQuizResults(req, res) {
     try {

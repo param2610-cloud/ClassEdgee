@@ -26,16 +26,18 @@ import {
 } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
 import { useAuth } from "@/services/AuthContext";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { domain } from "@/lib/constant";
 import { Class, SyllabusStructure } from "@/interface/general";
 import ResourcesTab from "./resource/Resource";
 import NotesTab from "./notes/Notes";
+//import QuizDashboard from "./resource/QuizDashboard";
 
 const ClassDashboard = () => {
     const {class_id}= useParams()
     const [classData,setClassData] = useState<Class | null>(null);
+    const navigate = useNavigate();
     const [syllabus, setSyllabus] = useState<SyllabusStructure | null>(null)
     useEffect(()=>{
         if(classData?.schedule_details.subject_details?.syllabus_structure){
@@ -100,6 +102,8 @@ const ClassDashboard = () => {
 
     const handleQuizStart = () => {
         setQuizModal(true);
+        navigate('p/classes/:class_id/quiz');
+
     };
     useEffect(()=>{
         const fetchClassDetails = async ()=> {
@@ -149,7 +153,9 @@ const ClassDashboard = () => {
                             <VideoIcon className="mr-2 h-5 w-5" />
                             Take Attendance
                         </Button>
-                        <Button variant="outline" className="bg-blue-100 hover:bg-blue-200">
+                        <Button variant="outline" className="bg-blue-100 hover:bg-blue-200"
+                        onClick={() => navigate(`/p/classes/${class_id}/quiz`)} >
+                        
                             <Clock className="mr-2 h-5 w-5" />
                             Create Quiz
                         </Button>
