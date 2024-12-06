@@ -86,7 +86,7 @@ const StudentLMSDashboard = () => {
       {/* Sidebar Navigation */}
       <div className="w-24 bg-white shadow-md flex flex-col items-center py-8">
         <div className="mb-8">
-          <Avatar>
+          <Avatar onClick={()=>navigate("/p/profile-page")}>
             <AvatarImage src={userData?.profile_picture}/>
             <AvatarFallback className="bg-blue-500 text-white">
               {userData?.first_name?.charAt(0) || ''}{userData?.last_name?.charAt(0) || ''}

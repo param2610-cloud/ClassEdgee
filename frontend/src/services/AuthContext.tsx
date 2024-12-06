@@ -1,6 +1,8 @@
 import {  User } from "@/interface/general";
 import { domain } from "@/lib/constant";
+import { user_idAtom } from "@/store/atom";
 import axios, { AxiosError } from "axios";
+import { useAtom } from "jotai";
 import React, { createContext, useState, useContext, useEffect } from "react";
 
 
@@ -34,6 +36,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
     const [user, setUser] = useState<User | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [ ,setUser_id] = useAtom<number | null>(user_idAtom);
 
     const initializeAuth = async () => {
         const token = enhancedLocalStorage.getItem("accessToken");
@@ -91,6 +94,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
             if (response.status === 200 && response.data.user) {
                 
                 setUser(response.data.user);
+                setUser_id(response?.data?.user?.user_id);
                 setIsLoading(false);
             } else {
                 throw new Error("Invalid token response");

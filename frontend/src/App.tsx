@@ -53,6 +53,7 @@ import ClassDashboard from "./pages/Protected/faculty/classes/ClassDashboard";
 import QuizDashboard from "./pages/Protected/faculty/classes/resource/QuizDashboard";
 import QuizComponent from "./pages/Protected/student/quiz/QuizComponent";
 import ClassDashboardStudent from "./pages/Protected/student/classes/ClassDashboardStudent";
+import StudentProfile from "./pages/Protected/student/profile/ProfilePage";
 // import SechduleForSemester from "./pages/Protected/faculty/sechdule/SechduleForSemester";
 // import ScheduleManager from "./pages/Protected/faculty/sechdule/ScheduleManagement";
 // import ScheduleDetailView from "./pages/Protected/faculty/sechdule/ScheduleDetailsView";
@@ -178,6 +179,7 @@ const StudentRoutes: React.FC = () => (
         <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/take-quiz" element={<QuizComponent />} />
+            <Route path="/profile-page" element={<StudentProfile />} />
             <Route
                 path="/classes/:class_id"
                 element={<ClassDashboardStudent    />}

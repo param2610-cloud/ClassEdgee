@@ -1,17 +1,17 @@
-
 import psycopg2
 from typing import Generator
 import os
+from contextlib import contextmanager
 
 def get_db_settings():
     return {
-        "dbname": os.getenv("DB_NAME", "schooldb"),
-        "user": os.getenv("DB_USER", "postgres"),
+        "dbname": os.getenv("DB_NAME"),
+        "user": os.getenv("DB_USER"),
         "password": os.getenv("DB_PASSWORD"),
-        "host": os.getenv("DB_HOST", "localhost"),
-        "port": os.getenv("DB_PORT", "5432")
+        "host": os.getenv("DB_HOST"),
     }
 
+@contextmanager
 def get_db_connection() -> Generator:
     settings = get_db_settings()
     conn = psycopg2.connect(**settings)
@@ -22,11 +22,11 @@ def get_db_connection() -> Generator:
 
 # Dependency to get DB connection
 async def get_db():
-    conn = next(get_db_connection())
-    try:
-        yield conn
-    finally:
-        conn.close()
+    with get_db_connection() as conn:
+        try:
+            yield conn
+        finally:
+            conn.close()
 
 # Usage in FastAPI endpoints
 # db: Connection = Depends(get_db)

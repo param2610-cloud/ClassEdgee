@@ -583,6 +583,7 @@ export interface User {
     notes: Note[];
     resources: Resource[];
     students?: Student;
+    institutions?: Institution; 
 }
 
 export interface SubjectDetail {

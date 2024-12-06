@@ -385,6 +385,7 @@ const uniqueStudent = async (req, res) => {
                             include:{
                                 departments:true,
                                 notes:true,
+                                
                             }
                         }
                     }
