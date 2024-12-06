@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
 import { useAuth } from "@/services/AuthContext";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { domain } from "@/lib/constant";
 import { Class, SyllabusStructure } from "@/interface/general";
@@ -34,6 +34,7 @@ import ResourcesTab from "./resource/Resource";
 import NotesTab from "./notes/Notes";
 import { useAtom } from "jotai";
 import { classDataAtom } from "@/store/atom";
+import QuizDrawerComponent from "../quiz/QuizComponent";
 
 const ClassDashboardStudent = () => {
     const {class_id}= useParams()
@@ -99,10 +100,6 @@ const ClassDashboardStudent = () => {
     ]);
 
     const [quizModal, setQuizModal] = useState(false);
-
-    const handleQuizStart = () => {
-        setQuizModal(true);
-    };
     useEffect(()=>{
         const fetchClassDetails = async ()=> {
             const response = await axios.get(`${domain}/api/v1/classes/${class_id}`)
@@ -144,6 +141,9 @@ const ClassDashboardStudent = () => {
                                 Faculty: {classData?.faculty?.users?.first_name}{" "}
                                 {classData?.faculty?.users?.last_name}
                             </p>
+                        </div>
+                        <div>
+                        {classData && <QuizDrawerComponent classData={classData} />}
                         </div>
                     </div>
                 </div>

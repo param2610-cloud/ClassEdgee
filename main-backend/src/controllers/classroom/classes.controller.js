@@ -186,6 +186,12 @@ const getUniqueClass = async(req,res)=>{
                         departments:true
                     }
                 },
+                quizzes:{
+                  include:{
+                     quiz_questions:true,
+                     quiz_responses:true
+                  }
+                },
                 timeslots:true,
                 schedule_details:{
                     include:{

@@ -118,12 +118,6 @@ const StudentLMSDashboard = () => {
           >
             <MessageCircle className="w-6 h-6" />
           </button>
-          <button  className="bg-blue-100 hover:bg-blue-200"
- onClick={() => navigate('/p/take-quiz')} >
- 
-    
-    take Quiz
- </button>
 
 
           <button 

@@ -28,7 +28,7 @@ import { Progress } from "@/components/ui/progress";
 import { useAuth } from "@/services/AuthContext";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { domain } from "@/lib/constant";
+import { domain, fastapidomain } from "@/lib/constant";
 import { Class, SyllabusStructure } from "@/interface/general";
 import ResourcesTab from "./resource/Resource";
 import NotesTab from "./notes/Notes";
@@ -120,6 +120,26 @@ const ClassDashboard = () => {
     const handleResourceDownload = (resource:any) => {
         alert(`Downloading ${resource.name}`);
     };
+    const [attendancetaking, setAttendanceTaking] = useState(false);
+    const handleTakingAttendance = () => {
+        try {
+            if(attendancetaking){
+                const response = axios.post(`${fastapidomain}/api/face-recognition/stop-attendance/${classData?.section_id}/${class_id}`)
+                if(response.status === 200){
+                    setAttendanceTaking(false)
+                    console.log("Attendance stopped");
+                }
+            }else{
+                const response = axios.post(`${fastapidomain}/api/face-recognition/start-attendance/${classData?.section_id}/${class_id}`)
+                if(response.status === 200){
+                    setAttendanceTaking(true)
+                    console.log("Attendance started");
+                }
+        }
+        } catch (error) {
+            console.error('Error taking attendance:', error);
+        }   
+    }
 
     return (
         <div className="max-w-5xl mx-auto p-4 bg-white rounded-lg shadow-md">
@@ -149,7 +169,7 @@ const ClassDashboard = () => {
                         </div>
                     </div>
                     <div className="flex flex-col space-y-2">
-                        <Button className="bg-green-500 hover:bg-green-600">
+                        <Button className="bg-green-500 hover:bg-green-600" onClick={handleTakingAttendance}>
                             <VideoIcon className="mr-2 h-5 w-5" />
                             Take Attendance
                         </Button>
