@@ -19,10 +19,10 @@ import QuizResults from './QuizResponse';
 import { useParams } from 'react-router-dom';
 
 const QuizManagement = () => {
-  const {classId} = useParams();
+  const {class_id} = useParams();
   const [quizData, setQuizData] = useState({
     title: '',
-    class_id: classId,
+    class_id: class_id,
     questions: [{
       question_text: '',
       options: ['', '', '', ''],
@@ -45,7 +45,7 @@ const QuizManagement = () => {
         setIsOpen(false);
         setQuizData({
           title: '',
-          class_id: classId,
+          class_id: class_id,
           questions: [{ question_text: '', options: ['', '', '', ''], correct_answer: 0, explanation: '' }]
         });
       }
@@ -164,11 +164,16 @@ const QuizManagement = () => {
               </DialogContent>
             </Dialog>
           </div>
-          <QuizList classId={classId} />
+          {
+            class_id && <QuizList classId={class_id} />
+          }
         </TabsContent>
 
         <TabsContent value="results">
-          <QuizResults classId={classId} />
+          {
+            class_id &&<QuizResults classId={class_id} />
+          }
+          
         </TabsContent>
       </Tabs>
     </div>

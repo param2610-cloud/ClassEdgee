@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Class } from "@/interface/general";
 import {
   Drawer,
@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { userDataAtom } from "@/store/atom";
+import { user_idAtom, userDataAtom } from "@/store/atom";
 import { useAtom } from "jotai";
 import axios from "axios";
 import { domain } from "@/lib/constant";
@@ -32,13 +32,32 @@ interface Quiz {
 
 const QuizDrawerComponent = ({ classData }: { classData: Class }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [user_id] = useAtom(user_idAtom)
   const [currentQuiz, setCurrentQuiz] = useState<Quiz | null>(null);
   const [responses, setResponses] = useState<{ [key: number]: number }>({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
-  const [studentData] = useAtom(userDataAtom);
-
+  const [studentData,setStudentData] = useAtom(userDataAtom);
+  const fetchStudentData = async () => {
+    try {
+      const studentResponse = await fetch(`${domain}/api/v1/student/get-student/${user_id}`);
+      const studentData = await studentResponse.json();
+      console.log("studentData:",studentData);
+      setStudentData(studentData.data);
+      
+      
+      setIsLoading(false);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      setIsLoading(false);
+    }
+  }
+  useEffect(()=>{
+    if(!studentData){
+      fetchStudentData()
+    }
+  },[studentData])
   const handleQuizStart = () => {
     if (classData?.quizzes?.[0]) {
       setCurrentQuiz(classData.quizzes[0]);

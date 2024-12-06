@@ -305,6 +305,12 @@ const createQuiz = async (req, res) => {
         quiz_questions: true,
       },
     });
+    res.status(201).json({
+      success: true,
+      message: 'Quiz created successfully',
+      data: quiz,
+    });
+    
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -313,7 +319,39 @@ const createQuiz = async (req, res) => {
     });
   }
 }
-export {SubmitquizResponse,getQuizResults,createQuiz};
+const getQuiz = async (req, res) => {
+  try {
+    const { class_id } = req.params;
+    
+
+    const quiz = await prisma.quizzes.findMany({
+      where: { class_id: parseInt(class_id) },
+      include: {
+        quiz_questions: true,
+      }
+    });
+
+    if (!quiz) {
+      return res.status(404).json({
+        success: false,
+        message: 'Quiz not found',
+      });
+    }
+
+    res.json({
+      success: true,
+      data: quiz,
+    });
+  } catch (error) {
+    console.error('Error fetching quiz:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching quiz',
+      error: error.message,
+    });
+  }
+}
+export {SubmitquizResponse,getQuizResults,createQuiz,getQuiz};
 
 
 
