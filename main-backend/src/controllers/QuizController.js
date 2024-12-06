@@ -141,7 +141,7 @@ class QuizController {
         return res.status(400).json({ success: false, message: 'Invalid quiz ID' });
       }
   
-      const student_id = req.user?.id;
+      const student_id =req.body.student_id || req.query.student_id
       if (!student_id) {
         return res.status(401).json({ success: false, message: 'Unauthorized user' });
       }
