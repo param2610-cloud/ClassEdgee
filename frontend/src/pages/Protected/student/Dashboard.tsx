@@ -96,7 +96,7 @@ const StudentLMSDashboard = () => {
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar Navigation */}
-      <div className="w-28 bg-white shadow-md flex flex-col items-center py-8">
+      <div className="w-44 bg-white shadow-md flex flex-col items-center py-8">
         <div className="mb-8">
           <Avatar onClick={() => navigate("/p/profile-page")}>
             <AvatarImage src={userData?.profile_picture} />
@@ -106,95 +106,95 @@ const StudentLMSDashboard = () => {
             </AvatarFallback>
           </Avatar>
         </div>
-        <nav className="space-y-6 flex flex-col items-center  ">
+        <nav className="space-y-6 flex flex-col items-start  ">
           <button
             onClick={() => setActiveSection("courses")}
-            className={`p-3 rounded ${
+            className={`p-3 rounded flex flex-row gap-4 ${
               activeSection === "courses"
                 ? "bg-blue-100 text-blue-600"
-                : "text-gray-500 hover:bg-blue-100 hover:text-blue-700 "
+                : "text-gray-500 hover:bg-blue-100 hover:text-blue-700"
             }`}
           >
-            <Book className="w-6 h-6" />
+            <Book className="w-6 h-6" /> Courses
           </button>
           <button
             onClick={() => setActiveSection("calendar")}
-            className={`p-3 rounded ${
+            className={`p-3 rounded flex flex-row gap-4 ${
               activeSection === "calendar"
                 ? "bg-blue-100 text-blue-600"
                 : "text-gray-500 hover:bg-blue-100 hover:text-blue-700"
             }`}
           >
-            <Calendar className="w-6 h-6" />
+            <Calendar className="w-6 h-6" /> Calender
           </button>
           <button
             onClick={() => setActiveSection("assignments")}
-            className={`p-3 rounded ${
+            className={`p-3 rounded flex flex-row gap-4 ${
               activeSection === "assignments"
                 ? "bg-blue-100 text-blue-600"
                 : "text-gray-500 hover:bg-blue-100 hover:text-blue-700"
             }`}
           >
-            <CheckSquare className="w-6 h-6" />
+            <CheckSquare className="w-6 h-6" /> Assignments
           </button>
           <button
             onClick={() => setActiveSection("messages")}
-            className={`p-3 rounded ${
+            className={`p-3 rounded flex flex-row gap-4 ${
               activeSection === "messages"
                 ? "bg-blue-100 text-blue-600"
                 : "text-gray-500 hover:bg-blue-100 hover:text-blue-700"
             }`}
           >
-            <MessageCircle className="w-6 h-6" />
+            <MessageCircle className="w-6 h-6" /> Messages
           </button>
 
           <button
             onClick={() => {
               setActiveSection("chatBot");
             }}
-            className={`p-3 rounded ${
+            className={`p-3 rounded flex flex-row gap-4 ${
               activeSection === "chatBot"
                 ? "bg-yellow-100 text-yellow-700"
                 : "text-gray-500 hover:bg-yellow-100 hover:text-yellow-700"
             }`}
           >
-            <Bot className="w-6 h-6" />
+            <Bot className="w-6 h-6" /> AI Assitance
           </button>
 
           <button
             onClick={() => {
               setActiveSection("feedback");
             }}
-            className={`p-3 rounded ${
+            className={`p-3 rounded flex flex-row gap-4 ${
               activeSection === "feedback"
                 ? "bg-green-100 text-green-700"
                 : "text-gray-500 hover:bg-green-100 hover:text-green-700"
             }`}
           >
-            <FileQuestion className="w-6 h-6" />
+            <FileQuestion className="w-6 h-6" /> Feedback
           </button>
           <button
             onClick={() => {
               setActiveSection("alert");
             }}
-            className={`p-3 rounded ${
+            className={`p-3 rounded flex flex-row gap-4 ${
               activeSection === "alert"
                 ? "bg-red-100 text-red-700"
                 : "text-gray-500 hover:bg-red-100 hover:text-red-700"
             }`}
           >
-            <Siren className="w-6 h-6" />
+            <Siren className="w-6 h-6" /> Alert
           </button>
 
           <button
             onClick={logout}
-            className={`p-3 rounded ${
+            className={`p-3 rounded flex flex-row gap-4 ${
               activeSection === "logout"
                 ? "bg-blue-100 text-blue-600"
                 : "text-gray-500 hover:bg-red-100 hover:text-red-500"
             }`}
           >
-            <LogOut className="w-6 h-6" />
+            <LogOut className="w-6 h-6" /> Logout
           </button>
         </nav>
       </div>

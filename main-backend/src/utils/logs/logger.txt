@@ -5039,3 +5039,288 @@
   Response Data: {"date_of_class":"2024-12-12T00:00:00.000Z","class_id":11042,"courses":{"course_name":"Bachelor of Technology in Computer Science & Engineering","course_code":"B.Tech CSE"},"faculty":{"faculty_id":7,"user_id":18,"department_id":1,"designation":"Professor","expertise":["Data Structures","AI/ML","Networks","Database Systems"],"qualifications":["Ph.D"],"max_weekly_hours":30,"joining_date":"2023-10-03T00:00:00.000Z","contract_end_date":"2033-04-21T00:00:00.000Z","research_interests":["Networks","AI/ML"],"publications":["7"],"created_at":"2024-11-20T18:39:07.054Z","updated_at":null,"preferred_slots":[],"max_classes_per_day":4},"rooms":{"room_number":"261P"},"sections":{"section_name":"CSE-A"},"timeslots":{"start_time":"1970-01-01T15:00:00.000Z","end_time":"1970-01-01T16:00:00.000Z"}}
   -------------------------
   
+  --- Incoming Request ---
+  Timestamp: 2024-12-11T23:14:44.324Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1NzU0MiwiZXhwIjoxNzM0MTMwMzQyfQ.DOT0lRC6GU79GLk3VYcIlJwJrzwCK5sVTgVyo_Xr0Ao","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"institution_id=4; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1NzU0MiwiZXhwIjoxNzM0NTYyMzQyfQ.jS-tqfIy0Om2MthuwH9-cM3iY7wV15L96sllCzS9RsA; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1NzU0MiwiZXhwIjoxNzM0MTMwMzQyfQ.DOT0lRC6GU79GLk3VYcIlJwJrzwCK5sVTgVyo_Xr0Ao","if-none-match":"W/\"2c0-AdKMWQr8qgSIuJ9FHp/MftKH8j8\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-12-11T23:14:45.264Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3285,"uuid":"f157a6e9-1e3b-4bb5-b571-a9f1c9b93f8b","email":"abram.devan5@dsec.com","password_hash":"$2b$12$GVCEt7fRA3rtm2A09lLmz.NrSSRRTsJrJUw/3v4cISl/oIhFXFzDm","role":"student","first_name":"Abram","last_name":"Devan","profile_picture":null,"phone_number":"918878533398","created_at":"2024-11-22T11:34:19.300Z","last_login":"2024-12-11T22:56:45.511Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1NzgwNCwiZXhwIjoxNzM0NTYyNjA0fQ.aFAW0IKAX43pqBtPA8mEXyujiShBqWKtprNCCT05SdA","college_uid":"dsec/student/1/2022/004","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-12-11T23:14:45.277Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1NzU0MiwiZXhwIjoxNzM0MTMwMzQyfQ.DOT0lRC6GU79GLk3VYcIlJwJrzwCK5sVTgVyo_Xr0Ao","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"institution_id=4; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1NzU0MiwiZXhwIjoxNzM0NTYyMzQyfQ.jS-tqfIy0Om2MthuwH9-cM3iY7wV15L96sllCzS9RsA; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1NzU0MiwiZXhwIjoxNzM0MTMwMzQyfQ.DOT0lRC6GU79GLk3VYcIlJwJrzwCK5sVTgVyo_Xr0Ao","if-none-match":"W/\"2c0-FYIQx/s3z0DwzxJL/4HwpSWD+ts\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-12-11T23:14:45.387Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3285,"uuid":"f157a6e9-1e3b-4bb5-b571-a9f1c9b93f8b","email":"abram.devan5@dsec.com","password_hash":"$2b$12$GVCEt7fRA3rtm2A09lLmz.NrSSRRTsJrJUw/3v4cISl/oIhFXFzDm","role":"student","first_name":"Abram","last_name":"Devan","profile_picture":null,"phone_number":"918878533398","created_at":"2024-11-22T11:34:19.300Z","last_login":"2024-12-11T22:56:45.511Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1NzgwNCwiZXhwIjoxNzM0NTYyNjA0fQ.aFAW0IKAX43pqBtPA8mEXyujiShBqWKtprNCCT05SdA","college_uid":"dsec/student/1/2022/004","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-12-11T23:14:45.322Z
+  Method: GET
+  URL: /api/v1/student/get-student/3285
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"aab-5foZVM5qWaZ9Nv+++xGari0/ivU\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-12-11T23:14:47.289Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-12-11T23:14:45.322Z
+  Method: GET
+  URL: /api/v1/student/get-student/3285
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"aab-5foZVM5qWaZ9Nv+++xGari0/ivU\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-12-11T23:14:47.290Z
+  Response Data: {"success":true,"data":{"user_id":3285,"uuid":"f157a6e9-1e3b-4bb5-b571-a9f1c9b93f8b","email":"abram.devan5@dsec.com","password_hash":"$2b$12$GVCEt7fRA3rtm2A09lLmz.NrSSRRTsJrJUw/3v4cISl/oIhFXFzDm","role":"student","first_name":"Abram","last_name":"Devan","profile_picture":null,"phone_number":"918878533398","created_at":"2024-11-22T11:34:19.300Z","last_login":"2024-12-11T22:56:45.511Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1NzgwNCwiZXhwIjoxNzM0NTYyNjA0fQ.aFAW0IKAX43pqBtPA8mEXyujiShBqWKtprNCCT05SdA","college_uid":"dsec/student/1/2022/004","institution_id":4,"students":{"student_id":3231,"user_id":3285,"enrollment_number":"1/2022/004","department_id":1,"batch_year":2022,"current_semester":5,"cgpa":null,"guardian_name":"Dhanuk Gola","guardian_contact":"916634169284","face_encoding":null,"biometric_data":null,"created_at":"2024-11-22T11:34:19.300Z","updated_at":null,"section_id":6,"sections":{"section_id":6,"section_name":"CSE-A","batch_year":2022,"department_id":1,"student_count":60,"max_capacity":60,"is_combined":false,"parent_section_id":null,"academic_year":2024,"semester":5,"created_at":"2024-11-20T21:01:09.079Z","institution_id":4,"face_recognition_model":"https://res.cloudinary.com/diacb8luh/raw/upload/v1733925862/face_recognition/section_6/yrfu9oxum0wlv6giihhf.pkl","departments":{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","hod_user_id":18,"contact_email":"harsh.acharya@dsec.edu","contact_phone":"+91-9857825282","created_at":"2024-11-19T20:16:12.800Z","updated_at":null,"institution_id":4},"notes":[{"note_id":3,"title":"Introduction to Algorithms","content":"This assignment covers basic algorithms.","created_by":12,"section_id":6,"course_id":3,"tags":["algorithms","basics"],"is_private":false,"created_at":"2024-12-04T06:08:02.996Z","updated_at":null},{"note_id":4,"title":"Heisenberg Uncertainty Principle","content":"Font Size: 12 pt Line Spacing: 1.5 Pages: 3-4 Discuss its implications for the determinism of physical laws.","created_by":12,"section_id":6,"course_id":3,"tags":["physics","basics"],"is_private":false,"created_at":"2024-12-04T06:19:02.495Z","updated_at":null}]}},"institutions":{"institution_id":4,"name":"Dr. Sudhir Chandra Sur Institute of Technology and Sports Complex","code":"surtech","address":"540, Dum Dum Rd, near Dum Dum Jn. Station, Surer Math, Melabagan Estate, Basak Bagan, Kolkata, West Bengal 700074","contact_email":"info@dsec.ac.in","contact_phone":null,"license_type":"premium","settings":null,"theme":null,"is_active":true,"created_at":"2024-11-25T11:25:38.192Z","updated_at":null}}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-12-11T23:14:47.296Z
+  Method: GET
+  URL: /api/v1/student/get-student/3285
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"aab-xzwISrX1JC5s4Z9aSlFrYqV29O0\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-12-11T23:14:47.874Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-12-11T23:14:47.296Z
+  Method: GET
+  URL: /api/v1/student/get-student/3285
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"aab-xzwISrX1JC5s4Z9aSlFrYqV29O0\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-12-11T23:14:47.875Z
+  Response Data: {"success":true,"data":{"user_id":3285,"uuid":"f157a6e9-1e3b-4bb5-b571-a9f1c9b93f8b","email":"abram.devan5@dsec.com","password_hash":"$2b$12$GVCEt7fRA3rtm2A09lLmz.NrSSRRTsJrJUw/3v4cISl/oIhFXFzDm","role":"student","first_name":"Abram","last_name":"Devan","profile_picture":null,"phone_number":"918878533398","created_at":"2024-11-22T11:34:19.300Z","last_login":"2024-12-11T22:56:45.511Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1NzgwNCwiZXhwIjoxNzM0NTYyNjA0fQ.aFAW0IKAX43pqBtPA8mEXyujiShBqWKtprNCCT05SdA","college_uid":"dsec/student/1/2022/004","institution_id":4,"students":{"student_id":3231,"user_id":3285,"enrollment_number":"1/2022/004","department_id":1,"batch_year":2022,"current_semester":5,"cgpa":null,"guardian_name":"Dhanuk Gola","guardian_contact":"916634169284","face_encoding":null,"biometric_data":null,"created_at":"2024-11-22T11:34:19.300Z","updated_at":null,"section_id":6,"sections":{"section_id":6,"section_name":"CSE-A","batch_year":2022,"department_id":1,"student_count":60,"max_capacity":60,"is_combined":false,"parent_section_id":null,"academic_year":2024,"semester":5,"created_at":"2024-11-20T21:01:09.079Z","institution_id":4,"face_recognition_model":"https://res.cloudinary.com/diacb8luh/raw/upload/v1733925862/face_recognition/section_6/yrfu9oxum0wlv6giihhf.pkl","departments":{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","hod_user_id":18,"contact_email":"harsh.acharya@dsec.edu","contact_phone":"+91-9857825282","created_at":"2024-11-19T20:16:12.800Z","updated_at":null,"institution_id":4},"notes":[{"note_id":3,"title":"Introduction to Algorithms","content":"This assignment covers basic algorithms.","created_by":12,"section_id":6,"course_id":3,"tags":["algorithms","basics"],"is_private":false,"created_at":"2024-12-04T06:08:02.996Z","updated_at":null},{"note_id":4,"title":"Heisenberg Uncertainty Principle","content":"Font Size: 12 pt Line Spacing: 1.5 Pages: 3-4 Discuss its implications for the determinism of physical laws.","created_by":12,"section_id":6,"course_id":3,"tags":["physics","basics"],"is_private":false,"created_at":"2024-12-04T06:19:02.495Z","updated_at":null}]}},"institutions":{"institution_id":4,"name":"Dr. Sudhir Chandra Sur Institute of Technology and Sports Complex","code":"surtech","address":"540, Dum Dum Rd, near Dum Dum Jn. Station, Surer Math, Melabagan Estate, Basak Bagan, Kolkata, West Bengal 700074","contact_email":"info@dsec.ac.in","contact_phone":null,"license_type":"premium","settings":null,"theme":null,"is_active":true,"created_at":"2024-11-25T11:25:38.192Z","updated_at":null}}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-12-11T23:14:47.879Z
+  Method: GET
+  URL: /api/v1/student/get-student/3285
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"aab-xzwISrX1JC5s4Z9aSlFrYqV29O0\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-12-11T23:14:48.439Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-12-11T23:14:47.879Z
+  Method: GET
+  URL: /api/v1/student/get-student/3285
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"aab-xzwISrX1JC5s4Z9aSlFrYqV29O0\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-12-11T23:14:48.440Z
+  Response Data: {"success":true,"data":{"user_id":3285,"uuid":"f157a6e9-1e3b-4bb5-b571-a9f1c9b93f8b","email":"abram.devan5@dsec.com","password_hash":"$2b$12$GVCEt7fRA3rtm2A09lLmz.NrSSRRTsJrJUw/3v4cISl/oIhFXFzDm","role":"student","first_name":"Abram","last_name":"Devan","profile_picture":null,"phone_number":"918878533398","created_at":"2024-11-22T11:34:19.300Z","last_login":"2024-12-11T22:56:45.511Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1NzgwNCwiZXhwIjoxNzM0NTYyNjA0fQ.aFAW0IKAX43pqBtPA8mEXyujiShBqWKtprNCCT05SdA","college_uid":"dsec/student/1/2022/004","institution_id":4,"students":{"student_id":3231,"user_id":3285,"enrollment_number":"1/2022/004","department_id":1,"batch_year":2022,"current_semester":5,"cgpa":null,"guardian_name":"Dhanuk Gola","guardian_contact":"916634169284","face_encoding":null,"biometric_data":null,"created_at":"2024-11-22T11:34:19.300Z","updated_at":null,"section_id":6,"sections":{"section_id":6,"section_name":"CSE-A","batch_year":2022,"department_id":1,"student_count":60,"max_capacity":60,"is_combined":false,"parent_section_id":null,"academic_year":2024,"semester":5,"created_at":"2024-11-20T21:01:09.079Z","institution_id":4,"face_recognition_model":"https://res.cloudinary.com/diacb8luh/raw/upload/v1733925862/face_recognition/section_6/yrfu9oxum0wlv6giihhf.pkl","departments":{"department_id":1,"department_name":"Computer Science & Engineering","department_code":"CSE","hod_user_id":18,"contact_email":"harsh.acharya@dsec.edu","contact_phone":"+91-9857825282","created_at":"2024-11-19T20:16:12.800Z","updated_at":null,"institution_id":4},"notes":[{"note_id":3,"title":"Introduction to Algorithms","content":"This assignment covers basic algorithms.","created_by":12,"section_id":6,"course_id":3,"tags":["algorithms","basics"],"is_private":false,"created_at":"2024-12-04T06:08:02.996Z","updated_at":null},{"note_id":4,"title":"Heisenberg Uncertainty Principle","content":"Font Size: 12 pt Line Spacing: 1.5 Pages: 3-4 Discuss its implications for the determinism of physical laws.","created_by":12,"section_id":6,"course_id":3,"tags":["physics","basics"],"is_private":false,"created_at":"2024-12-04T06:19:02.495Z","updated_at":null}]}},"institutions":{"institution_id":4,"name":"Dr. Sudhir Chandra Sur Institute of Technology and Sports Complex","code":"surtech","address":"540, Dum Dum Rd, near Dum Dum Jn. Station, Surer Math, Melabagan Estate, Basak Bagan, Kolkata, West Bengal 700074","contact_email":"info@dsec.ac.in","contact_phone":null,"license_type":"premium","settings":null,"theme":null,"is_active":true,"created_at":"2024-11-25T11:25:38.192Z","updated_at":null}}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-12-11T23:14:47.319Z
+  Method: GET
+  URL: /api/v1/student/classes/upcoming-classes/3231/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"315-Pu9dcrLhgGgRoPFrsn9FfU2+/+E\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-12-11T23:14:49.676Z
+  Response Data: {"date_of_class":"2024-12-12T00:00:00.000Z","class_id":11042,"courses":{"course_name":"Bachelor of Technology in Computer Science & Engineering","course_code":"B.Tech CSE"},"faculty":{"faculty_id":7,"user_id":18,"department_id":1,"designation":"Professor","expertise":["Data Structures","AI/ML","Networks","Database Systems"],"qualifications":["Ph.D"],"max_weekly_hours":30,"joining_date":"2023-10-03T00:00:00.000Z","contract_end_date":"2033-04-21T00:00:00.000Z","research_interests":["Networks","AI/ML"],"publications":["7"],"created_at":"2024-11-20T18:39:07.054Z","updated_at":null,"preferred_slots":[],"max_classes_per_day":4},"rooms":{"room_number":"261P"},"sections":{"section_name":"CSE-A"},"timeslots":{"start_time":"1970-01-01T15:00:00.000Z","end_time":"1970-01-01T16:00:00.000Z"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-12-11T23:14:49.682Z
+  Method: GET
+  URL: /api/v1/student/classes/upcoming-classes/3231/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"315-Pu9dcrLhgGgRoPFrsn9FfU2+/+E\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-12-11T23:14:50.458Z
+  Response Data: {"date_of_class":"2024-12-12T00:00:00.000Z","class_id":11042,"courses":{"course_name":"Bachelor of Technology in Computer Science & Engineering","course_code":"B.Tech CSE"},"faculty":{"faculty_id":7,"user_id":18,"department_id":1,"designation":"Professor","expertise":["Data Structures","AI/ML","Networks","Database Systems"],"qualifications":["Ph.D"],"max_weekly_hours":30,"joining_date":"2023-10-03T00:00:00.000Z","contract_end_date":"2033-04-21T00:00:00.000Z","research_interests":["Networks","AI/ML"],"publications":["7"],"created_at":"2024-11-20T18:39:07.054Z","updated_at":null,"preferred_slots":[],"max_classes_per_day":4},"rooms":{"room_number":"261P"},"sections":{"section_name":"CSE-A"},"timeslots":{"start_time":"1970-01-01T15:00:00.000Z","end_time":"1970-01-01T16:00:00.000Z"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-12-11T23:26:20.816Z
+  Method: POST
+  URL: /api/v1/general/logout
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1NzU0MiwiZXhwIjoxNzM0MTMwMzQyfQ.DOT0lRC6GU79GLk3VYcIlJwJrzwCK5sVTgVyo_Xr0Ao","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","content-type":"application/x-www-form-urlencoded","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"institution_id=4; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1NzU0MiwiZXhwIjoxNzM0NTYyMzQyfQ.jS-tqfIy0Om2MthuwH9-cM3iY7wV15L96sllCzS9RsA; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1NzU0MiwiZXhwIjoxNzM0MTMwMzQyfQ.DOT0lRC6GU79GLk3VYcIlJwJrzwCK5sVTgVyo_Xr0Ao"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-12-11T23:26:20.818Z
+  Response Data: {"message":"Invalid refresh token."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-12-11T23:26:29.367Z
+  Method: POST
+  URL: /api/v1/student/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"email":"abram.devan5@dsec.com","password":"classedgee"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"57","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","content-type":"application/json","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"institution_id=4; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1NzU0MiwiZXhwIjoxNzM0NTYyMzQyfQ.jS-tqfIy0Om2MthuwH9-cM3iY7wV15L96sllCzS9RsA; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1NzU0MiwiZXhwIjoxNzM0MTMwMzQyfQ.DOT0lRC6GU79GLk3VYcIlJwJrzwCK5sVTgVyo_Xr0Ao"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-12-11T23:26:29.425Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-12-11T23:26:29.367Z
+  Method: POST
+  URL: /api/v1/student/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"email":"abram.devan5@dsec.com","password":"classedgee"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"57","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","content-type":"application/json","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"institution_id=4; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1NzU0MiwiZXhwIjoxNzM0NTYyMzQyfQ.jS-tqfIy0Om2MthuwH9-cM3iY7wV15L96sllCzS9RsA; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1NzU0MiwiZXhwIjoxNzM0MTMwMzQyfQ.DOT0lRC6GU79GLk3VYcIlJwJrzwCK5sVTgVyo_Xr0Ao"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-12-11T23:26:29.426Z
+  Response Data: {"success":false,"message":"Login failed","error":"\nInvalid `prisma.users.findUnique()` invocation:\n\n\nCan't reach database server at `ep-solitary-glitter-a1078xw4.ap-southeast-1.aws.neon.tech:5432`\n\nPlease make sure your database server is running at `ep-solitary-glitter-a1078xw4.ap-southeast-1.aws.neon.tech:5432`."}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-12-11T23:26:38.207Z
+  Method: POST
+  URL: /api/v1/student/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"email":"abram.devan5@dsec.com","password":"classedgee"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"57","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","content-type":"application/json","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"institution_id=4; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1NzU0MiwiZXhwIjoxNzM0NTYyMzQyfQ.jS-tqfIy0Om2MthuwH9-cM3iY7wV15L96sllCzS9RsA; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1NzU0MiwiZXhwIjoxNzM0MTMwMzQyfQ.DOT0lRC6GU79GLk3VYcIlJwJrzwCK5sVTgVyo_Xr0Ao"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-12-11T23:26:40.636Z
+  Response Data: [object Object]
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-12-11T23:26:38.207Z
+  Method: POST
+  URL: /api/v1/student/login
+  Query Params: {}
+  URL Params: {}
+  Body: {"email":"abram.devan5@dsec.com","password":"classedgee"}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","content-length":"57","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","content-type":"application/json","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"institution_id=4; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1NzU0MiwiZXhwIjoxNzM0NTYyMzQyfQ.jS-tqfIy0Om2MthuwH9-cM3iY7wV15L96sllCzS9RsA; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1NzU0MiwiZXhwIjoxNzM0MTMwMzQyfQ.DOT0lRC6GU79GLk3VYcIlJwJrzwCK5sVTgVyo_Xr0Ao"}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-12-11T23:26:40.636Z
+  Response Data: {"success":true,"message":"Login successful","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1OTU5OSwiZXhwIjoxNzM0MTMyMzk5fQ.mK9eX10fPWmOL6B2eHAB4NoO7QYVugTwTKq91iPHnMw","refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1OTU5OSwiZXhwIjoxNzM0NTY0Mzk5fQ.uwAQEbwzs1_t70Ey4_W1ligKFriOXI8hS3VwLQfxiuI","userData":{"user_id":3285,"first_name":"Abram","last_name":"Devan","email":"abram.devan5@dsec.com","phone_number":"918878533398","profile_picture":null,"institution_id":4,"students":{"student_id":3231,"user_id":3285,"enrollment_number":"1/2022/004","department_id":1,"batch_year":2022,"current_semester":5,"cgpa":null,"guardian_name":"Dhanuk Gola","guardian_contact":"916634169284","face_encoding":null,"biometric_data":null,"created_at":"2024-11-22T11:34:19.300Z","updated_at":null,"section_id":6},"role":"student","departments":[]},"student":{"user_id":3285,"first_name":"Abram","last_name":"Devan","email":"abram.devan5@dsec.com","phone_number":"918878533398","profile_picture":null,"institution_id":4,"students":{"student_id":3231,"user_id":3285,"enrollment_number":"1/2022/004","department_id":1,"batch_year":2022,"current_semester":5,"cgpa":null,"guardian_name":"Dhanuk Gola","guardian_contact":"916634169284","face_encoding":null,"biometric_data":null,"created_at":"2024-11-22T11:34:19.300Z","updated_at":null,"section_id":6},"role":"student","departments":[]}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-12-11T23:26:40.650Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1OTU5OSwiZXhwIjoxNzM0MTMyMzk5fQ.mK9eX10fPWmOL6B2eHAB4NoO7QYVugTwTKq91iPHnMw","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"institution_id=4; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1OTU5OSwiZXhwIjoxNzM0NTY0Mzk5fQ.uwAQEbwzs1_t70Ey4_W1ligKFriOXI8hS3VwLQfxiuI; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1OTU5OSwiZXhwIjoxNzM0MTMyMzk5fQ.mK9eX10fPWmOL6B2eHAB4NoO7QYVugTwTKq91iPHnMw","if-none-match":"W/\"2c0-FYIQx/s3z0DwzxJL/4HwpSWD+ts\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-12-11T23:26:41.568Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3285,"uuid":"f157a6e9-1e3b-4bb5-b571-a9f1c9b93f8b","email":"abram.devan5@dsec.com","password_hash":"$2b$12$GVCEt7fRA3rtm2A09lLmz.NrSSRRTsJrJUw/3v4cISl/oIhFXFzDm","role":"student","first_name":"Abram","last_name":"Devan","profile_picture":null,"phone_number":"918878533398","created_at":"2024-11-22T11:34:19.300Z","last_login":"2024-12-11T23:26:40.439Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1OTU5OSwiZXhwIjoxNzM0NTY0Mzk5fQ.uwAQEbwzs1_t70Ey4_W1ligKFriOXI8hS3VwLQfxiuI","college_uid":"dsec/student/1/2022/004","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-12-11T23:26:41.572Z
+  Method: GET
+  URL: /api/v1/general/validate-token
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1OTU5OSwiZXhwIjoxNzM0MTMyMzk5fQ.mK9eX10fPWmOL6B2eHAB4NoO7QYVugTwTKq91iPHnMw","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","cookie":"institution_id=4; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1OTU5OSwiZXhwIjoxNzM0NTY0Mzk5fQ.uwAQEbwzs1_t70Ey4_W1ligKFriOXI8hS3VwLQfxiuI; accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1OTU5OSwiZXhwIjoxNzM0MTMyMzk5fQ.mK9eX10fPWmOL6B2eHAB4NoO7QYVugTwTKq91iPHnMw","if-none-match":"W/\"2c0-q1bi20wpZPC7sGp8cq36+t4ebpc\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-12-11T23:26:41.671Z
+  Response Data: {"message":"Token is valid","user":{"user_id":3285,"uuid":"f157a6e9-1e3b-4bb5-b571-a9f1c9b93f8b","email":"abram.devan5@dsec.com","password_hash":"$2b$12$GVCEt7fRA3rtm2A09lLmz.NrSSRRTsJrJUw/3v4cISl/oIhFXFzDm","role":"student","first_name":"Abram","last_name":"Devan","profile_picture":null,"phone_number":"918878533398","created_at":"2024-11-22T11:34:19.300Z","last_login":"2024-12-11T23:26:40.439Z","status":"active","mfa_enabled":false,"mfa_secret":null,"refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFicmFtLmRldmFuNUBkc2VjLmNvbSIsImlhdCI6MTczMzk1OTU5OSwiZXhwIjoxNzM0NTY0Mzk5fQ.uwAQEbwzs1_t70Ey4_W1ligKFriOXI8hS3VwLQfxiuI","college_uid":"dsec/student/1/2022/004","institution_id":4}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-12-11T23:26:41.587Z
+  Method: GET
+  URL: /api/v1/student/classes/upcoming-classes/3231/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"315-Pu9dcrLhgGgRoPFrsn9FfU2+/+E\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-12-11T23:26:43.965Z
+  Response Data: {"date_of_class":"2024-12-12T00:00:00.000Z","class_id":11042,"courses":{"course_name":"Bachelor of Technology in Computer Science & Engineering","course_code":"B.Tech CSE"},"faculty":{"faculty_id":7,"user_id":18,"department_id":1,"designation":"Professor","expertise":["Data Structures","AI/ML","Networks","Database Systems"],"qualifications":["Ph.D"],"max_weekly_hours":30,"joining_date":"2023-10-03T00:00:00.000Z","contract_end_date":"2033-04-21T00:00:00.000Z","research_interests":["Networks","AI/ML"],"publications":["7"],"created_at":"2024-11-20T18:39:07.054Z","updated_at":null,"preferred_slots":[],"max_classes_per_day":4},"rooms":{"room_number":"261P"},"sections":{"section_name":"CSE-A"},"timeslots":{"start_time":"1970-01-01T15:00:00.000Z","end_time":"1970-01-01T16:00:00.000Z"}}
+  -------------------------
+  
+  --- Incoming Request ---
+  Timestamp: 2024-12-11T23:26:43.970Z
+  Method: GET
+  URL: /api/v1/student/classes/upcoming-classes/3231/1
+  Query Params: {}
+  URL Params: {}
+  Body: {}
+  Headers: {"host":"localhost:3000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36","sec-ch-ua":"\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9","if-none-match":"W/\"315-Pu9dcrLhgGgRoPFrsn9FfU2+/+E\""}
+  -------------------------
+  
+  --- Outgoing Response ---
+  Timestamp: 2024-12-11T23:26:44.763Z
+  Response Data: {"date_of_class":"2024-12-12T00:00:00.000Z","class_id":11042,"courses":{"course_name":"Bachelor of Technology in Computer Science & Engineering","course_code":"B.Tech CSE"},"faculty":{"faculty_id":7,"user_id":18,"department_id":1,"designation":"Professor","expertise":["Data Structures","AI/ML","Networks","Database Systems"],"qualifications":["Ph.D"],"max_weekly_hours":30,"joining_date":"2023-10-03T00:00:00.000Z","contract_end_date":"2033-04-21T00:00:00.000Z","research_interests":["Networks","AI/ML"],"publications":["7"],"created_at":"2024-11-20T18:39:07.054Z","updated_at":null,"preferred_slots":[],"max_classes_per_day":4},"rooms":{"room_number":"261P"},"sections":{"section_name":"CSE-A"},"timeslots":{"start_time":"1970-01-01T15:00:00.000Z","end_time":"1970-01-01T16:00:00.000Z"}}
+  -------------------------
+  
