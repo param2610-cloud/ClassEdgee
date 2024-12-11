@@ -7,6 +7,7 @@ import {
   LogOut,
   FileQuestion,
   Bot,
+  Siren,
 } from "lucide-react";
 import { useAuth } from "@/services/AuthContext";
 import UpcomingClassComponentStudent from "./classes/UpciomingClassComponentStudent";
@@ -17,6 +18,7 @@ import { domain } from "@/lib/constant";
 import { useNavigate } from "react-router-dom";
 import Feedback from "./feedback/Feedback";
 import ChatBot from "./chatBot/ChatBot";
+import AlertFire from "@/components/AlertFire";
 
 const StudentLMSDashboard = () => {
   const [activeSection, setActiveSection] = useState("courses");
@@ -94,7 +96,7 @@ const StudentLMSDashboard = () => {
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar Navigation */}
-      <div className="w-24 bg-white shadow-md flex flex-col items-center py-8">
+      <div className="w-28 bg-white shadow-md flex flex-col items-center py-8">
         <div className="mb-8">
           <Avatar onClick={() => navigate("/p/profile-page")}>
             <AvatarImage src={userData?.profile_picture} />
@@ -104,13 +106,13 @@ const StudentLMSDashboard = () => {
             </AvatarFallback>
           </Avatar>
         </div>
-        <nav className="space-y-6">
+        <nav className="space-y-6 flex flex-col items-center  ">
           <button
             onClick={() => setActiveSection("courses")}
             className={`p-3 rounded ${
               activeSection === "courses"
                 ? "bg-blue-100 text-blue-600"
-                : "text-gray-500 hover:bg-gray-100"
+                : "text-gray-500 hover:bg-blue-100 hover:text-blue-700 "
             }`}
           >
             <Book className="w-6 h-6" />
@@ -120,7 +122,7 @@ const StudentLMSDashboard = () => {
             className={`p-3 rounded ${
               activeSection === "calendar"
                 ? "bg-blue-100 text-blue-600"
-                : "text-gray-500 hover:bg-gray-100"
+                : "text-gray-500 hover:bg-blue-100 hover:text-blue-700"
             }`}
           >
             <Calendar className="w-6 h-6" />
@@ -130,7 +132,7 @@ const StudentLMSDashboard = () => {
             className={`p-3 rounded ${
               activeSection === "assignments"
                 ? "bg-blue-100 text-blue-600"
-                : "text-gray-500 hover:bg-gray-100"
+                : "text-gray-500 hover:bg-blue-100 hover:text-blue-700"
             }`}
           >
             <CheckSquare className="w-6 h-6" />
@@ -140,12 +142,12 @@ const StudentLMSDashboard = () => {
             className={`p-3 rounded ${
               activeSection === "messages"
                 ? "bg-blue-100 text-blue-600"
-                : "text-gray-500 hover:bg-gray-100"
+                : "text-gray-500 hover:bg-blue-100 hover:text-blue-700"
             }`}
           >
             <MessageCircle className="w-6 h-6" />
           </button>
-          
+
           <button
             onClick={() => {
               setActiveSection("chatBot");
@@ -170,6 +172,18 @@ const StudentLMSDashboard = () => {
             }`}
           >
             <FileQuestion className="w-6 h-6" />
+          </button>
+          <button
+            onClick={() => {
+              setActiveSection("alert");
+            }}
+            className={`p-3 rounded ${
+              activeSection === "alert"
+                ? "bg-red-100 text-red-700"
+                : "text-gray-500 hover:bg-red-100 hover:text-red-700"
+            }`}
+          >
+            <Siren className="w-6 h-6" />
           </button>
 
           <button
@@ -221,6 +235,7 @@ const StudentLMSDashboard = () => {
 
         {/* feedbackform */}
         {activeSection === "feedback" && <Feedback />}
+        {activeSection === "alert" && <AlertFire />}
         {activeSection === "chatBot" && <ChatBot />}
         {activeSection === "assignments" && (
           <div>
