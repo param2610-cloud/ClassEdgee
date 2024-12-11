@@ -62,7 +62,7 @@ const CoordinatorLayout: React.FC<{ children: React.ReactNode }> = ({ children }
                 onClick={() => handleNavigation('/p/roomCreation')} 
                  className="text-lg hover:underline"
                >
-                CreateRoom
+                Room
                 </Button>
               <Button 
                 onClick={() => handleNavigation('/p/department')} 

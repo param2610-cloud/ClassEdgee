@@ -17,8 +17,6 @@ from schedule.scheduler import ScheduleGenerator
 import json
 from typing import Dict, List
 from pydantic import BaseModel
-
-
 load_dotenv()
 
 # Load environment variables

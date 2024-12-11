@@ -36,7 +36,6 @@ import { Department } from "@/interface/general";
 import UploadOnCloudinary from "@/services/Cloudinary";
 import { institutionIdAtom } from "@/store/atom";
 import { useAtom } from "jotai";
-import { useDepartments } from '@/hooks/useDepartments';
 
 // Updated schema to match backend expectations
 const studentSchema = z.object({
@@ -83,9 +82,26 @@ const CreateStudentForm = () => {
     } = useForm<StudentFormData>({
         resolver: zodResolver(studentSchema),
     });
+    const [departments, setDepartments] = useState<Department[]>([]);
 
-    const { departments, loading: departmentsLoading } = useDepartments(institution_id as string);
-    
+    useEffect(()=>{
+        const fetchDepartments = async () => {
+            try {
+                const response = await axios.get(
+                    `${domain}/api/v1/department/list-of-department`,
+                    {
+                        headers: {
+                            "X-Institution-Id": `${institution_id}`,
+                        }
+                    }
+                );
+                setDepartments(response.data.department);
+            } catch (error) {
+                console.error("Error fetching departments:", error);
+            }
+        };
+        fetchDepartments();
+    },[institution_id]);
 
     const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];

@@ -133,7 +133,7 @@ const adminLogin = async (req, res) => {
                 email: finduser.email,
                 firstName: finduser.first_name,
                 lastName: finduser.last_name,
-                institutionId: finduser.institution_id,
+                institution_id: finduser.institution_id,
                 role:finduser.role
                 // Include other non-sensitive user data here
             },

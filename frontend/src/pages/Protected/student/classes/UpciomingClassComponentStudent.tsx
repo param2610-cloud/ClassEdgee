@@ -143,10 +143,10 @@ const UpcomingClassComponentStudent = ({ userData }: { userData: User }) => {
                     <Book className="w-6 h-6 text-blue-500" />
                     <div>
                       <h3 className="font-semibold text-lg">
-                        {upcomingClass.courses.course_name}
+                        {upcomingClass?.courses?.course_name}
                       </h3>
                       <p className="text-sm text-gray-500">
-                        Course Code: {upcomingClass.courses.course_code}
+                        Course Code: {upcomingClass?.courses?.course_code}
                       </p>
                     </div>
                   </div>
@@ -157,7 +157,7 @@ const UpcomingClassComponentStudent = ({ userData }: { userData: User }) => {
                       <div>
                         <p className="text-sm text-gray-500">Section</p>
                         <p className="font-medium">
-                          {upcomingClass.sections.section_name}
+                          {upcomingClass?.sections?.section_name}
                         </p>
                       </div>
                     </div>
@@ -167,7 +167,7 @@ const UpcomingClassComponentStudent = ({ userData }: { userData: User }) => {
                       <div>
                         <p className="text-sm text-gray-500">Room</p>
                         <p className="font-medium">
-                          {upcomingClass.rooms.room_number}
+                          {upcomingClass?.rooms?.room_number}
                         </p>
                       </div>
                     </div>
@@ -178,7 +178,7 @@ const UpcomingClassComponentStudent = ({ userData }: { userData: User }) => {
                         <p className="text-sm text-gray-500">Time</p>
                         <p className="font-medium">
                           {new Date(
-                            upcomingClass.timeslots.start_time
+                            upcomingClass?.timeslots?.start_time
                           ).toLocaleTimeString([], {
                             hour: "2-digit",
                             minute: "2-digit",
@@ -186,7 +186,7 @@ const UpcomingClassComponentStudent = ({ userData }: { userData: User }) => {
                           })}
                           {" - "}
                           {new Date(
-                            upcomingClass.timeslots.end_time
+                            upcomingClass?.timeslots?.end_time
                           ).toLocaleTimeString([], {
                             hour: "2-digit",
                             minute: "2-digit",

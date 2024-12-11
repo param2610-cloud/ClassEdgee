@@ -55,7 +55,7 @@ const DepartmentDetails = () => {
       setInstitutionId(localStorage.getItem('institution_id') as string)
       console.log('after institution id',institution_id);
     }
-    if(!profileData && !id){
+    if(!profileData && id){
       fetchProfile()
     }else{
       fetchDepartmentDetails()
@@ -64,9 +64,11 @@ const DepartmentDetails = () => {
       fetchDepartmentDetailsByID()
     }
   },[institution_id,user,profileData,id])
+  console.log(profileData);
   const fetchProfile = async () => {
     const response = await axios.get(`${domain}/api/v1/faculty/get-faculty/${user?.user_id}`);
   const { data } = response.data; 
+  
   setProfileData(data);
   }
   const {toast} = useToast()
@@ -314,7 +316,7 @@ const DepartmentDetails = () => {
                   <TableCell>{section.max_capacity}</TableCell>
                   <TableCell>{section.semester}</TableCell>
                   <TableCell>
-                    <Button variant="ghost" size="sm" onClick={() => navigate(`/p/department/${profileData?.departments[0].department_id}/section/${section.section_id}`)}>
+                    <Button variant="ghost" size="sm" onClick={() => navigate(`/p/department/${department.department_id}/section/${section.section_id}`)}>
                       View Details
                     </Button>
                   </TableCell>

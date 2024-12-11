@@ -91,6 +91,11 @@ const add_department = async (req, res) => {
 const specific_department_details = async (req, res) => {
     try {
         const { department_id } = req.params;
+        console.log(department_id);
+        if(!department_id){
+            res.status(400).json({message:"department_id is required"})
+        }
+        
         const department = await prisma.departments.findUnique({
             where: {
                 department_id: parseInt(department_id),
