@@ -1,5 +1,5 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
+import ResourceManagement from "../resource/ResourceManagement";
 
 const CoordinatorDashboard = () => {
   const navigate = useNavigate();
@@ -9,9 +9,11 @@ const CoordinatorDashboard = () => {
   return (
     <div>
       Dashboard of Coordinator
-      <button onClick={() => navigateTo("/p/faculty/create")}>
+      <br />
+      <button className="bg-blue-200" onClick={() => navigateTo("/p/faculty/create")}>
         Create Teacher
       </button>
+     < ResourceManagement/>
     </div>
   );
 };

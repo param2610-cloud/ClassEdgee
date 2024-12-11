@@ -50,7 +50,7 @@ import ScheduleViewer from "./pages/Protected/faculty/schedule/ScheduleViewer";
 import Load from "./LoadSpinners/Load";
 import ScheduleDashboard from "./pages/Protected/faculty/schedule/ScheduleDashboard";
 import ClassDashboard from "./pages/Protected/faculty/classes/ClassDashboard";
-import QuizComponent from "./pages/Protected/student/quiz/QuizComponent";
+// import QuizComponent from "./pages/Protected/student/quiz/QuizComponent";
 import ClassDashboardStudent from "./pages/Protected/student/classes/ClassDashboardStudent";
 import StudentProfile from "./pages/Protected/student/profile/ProfilePage";
 import QuizManagement from "./pages/Protected/faculty/classes/quizzes/QuizDashboard";
@@ -93,16 +93,16 @@ const ProtectedRoute: React.FC = () => {
         return <div><Load /></div>;
     }
     
-    if (!user && !user?.role && isLoading === false) {
+    if (!user?.role&&!user   && isLoading === false) {
         console.log(
             "ProtectedRoute - No user or no role, redirecting to signin"
         );
         return <Navigate to="/auth/signin" replace />;
     }
 
-    console.log("ProtectedRoute - Rendering routes for role:", user.role);
+    console.log("ProtectedRoute - Rendering routes for role:", user?.role);
 
-    switch (user.role) {
+    switch (user?.role) {
         case "admin":
             return <SupremeRoutes />;
         case "faculty":
@@ -112,7 +112,7 @@ const ProtectedRoute: React.FC = () => {
         case "coordinator":
             return <CoordinatorRoutes />;
         default:
-            console.log("ProtectedRoute - Invalid role:", user.role);
+            console.log("ProtectedRoute - Invalid role:", user?.role);
             return <Navigate to="/auth/signin" replace />;
     }
 };
