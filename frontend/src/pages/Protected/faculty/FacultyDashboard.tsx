@@ -154,12 +154,7 @@ const FacultyLMSDashboard = () => {
           >
             <Calendar className="w-6 h-6" />
           </button>
-          <button
-            onClick={() => navigate("/p/classes-list")}
-            className={`p-3 rounded `}
-          >
-            Classes
-          </button>
+          
           <button onClick={logout} className={`p-3 rounded `}>
             <LogOut className="w-6 h-6" />
           </button>
@@ -174,13 +169,13 @@ const FacultyLMSDashboard = () => {
               <div className="w-full flex justify-between">
                 <div>My Courses</div>
                 <div>
-                  <button
+                  {/* <button
                     onClick={() => navigate("/p/interactive-classroom")}
                     className={`p-3 flex justify-between items-center gap-2 border-2 rounded-xl border-black`}
                   >
                     <Home className="w-6 h-6" />
                     <span>Room</span>
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </h1>

@@ -2,7 +2,7 @@ import os
 import requests
 from pydantic import BaseModel
 from dotenv import load_dotenv
-from fastapi import APIRouter, HTTPException, Depends, UploadFile, File, BackgroundTasks
+from fastapi import APIRouter, HTTPException, Depends, UploadFile, File, BackgroundTasks, Form
 from typing import List, Optional
 import cv2 
 import numpy as np
@@ -222,44 +222,125 @@ async def register_face(request: FaceRegistrationRequest):
 attendance_states: Dict[str, datetime] = {}
 active_streams: Dict[int, bool] = {}
 
-async def process_video_stream(section_id: int, class_id: int, duration_minutes: int, conn):
-    cursor = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+   
+@face_router.post("/stop-attendance/{class_id}")
+async def stop_attendance(class_id: int):
+    """
+    Stop an active attendance monitoring session for a specific class.
     
-    # Get section and class data
-    cursor.execute("""
-        SELECT s.*, c.class_id, c.class_name
-        FROM sections s
-        JOIN classes c ON s.section_id = c.section_id
-        WHERE s.section_id = %s AND c.class_id = %s
-    """, (section_id, class_id))
-    section_data = cursor.fetchone()
-    
-    if not section_data or not section_data['face_recognition_model']:
-        raise HTTPException(status_code=400, detail="Invalid section or class")
-
-    # Load face recognition model
-    response = requests.get(section_data['face_recognition_model'])
-    known_faces = pickle.loads(response.content)
-
-    # Initialize laptop camera
-    cap = cv2.VideoCapture(0)  # Use laptop camera
-    if not cap.isOpened():
-        raise HTTPException(status_code=400, detail="Unable to access laptop camera")
-
-    start_time = datetime.now()
-    active_streams[class_id] = True
-    
+    Args:
+        class_id (int): The ID of the class to stop attendance monitoring for
+        
+    Returns:
+        dict: A message indicating the attendance monitoring has been stopped
+        
+    Raises:
+        HTTPException: If no active session is found or if the class doesn't exist
+    """
     try:
+        # First verify if the class exists
+        with get_db_connection() as conn:
+            cursor = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+            cursor.execute("""
+                SELECT class_id 
+                FROM classes 
+                WHERE class_id = %s
+            """, (class_id,))
+            
+            if not cursor.fetchone():
+                raise HTTPException(
+                    status_code=404,
+                    detail="Class not found"
+                )
+
+        # Check if there's an active stream for this class
+        if class_id not in active_streams:
+            raise HTTPException(
+                status_code=404,
+                detail="No active attendance session found for this class"
+            )
+        
+        # Stop the stream and remove from active streams
+        active_streams[class_id] = False
+        
+        # Wait a short time to ensure the stream has stopped
+        await asyncio.sleep(0.5)
+        
+        # Remove from active streams if it hasn't been removed by the process
+        active_streams.pop(class_id, None)
+        
+        return {
+            "message": "Attendance monitoring stopped successfully",
+            "class_id": class_id,
+            "status": "stopped"
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Error stopping attendance: {str(e)}")
+        # Clean up the active streams entry in case of error
+        active_streams.pop(class_id, None)
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to stop attendance monitoring: {str(e)}"
+        )
+class AttendanceStart(BaseModel):
+    duration_minutes: int = 60
+async def process_video_stream(section_id: int, class_id: int, duration_minutes: int):
+    try:
+        # Initial database connection to get section and model data
+        with get_db_connection() as conn:
+            cursor = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+            
+            # Updated query removing non-existent class_name column
+            cursor.execute("""
+                SELECT s.*, c.class_id, s.face_recognition_model
+                FROM sections s
+                JOIN classes c ON s.section_id = c.section_id
+                WHERE s.section_id = %s AND c.class_id = %s
+            """, (section_id, class_id))
+            
+            section_data = cursor.fetchone()
+            
+            if not section_data:
+                raise HTTPException(status_code=404, detail="Section or class not found")
+                
+            if not section_data['face_recognition_model']:
+                raise HTTPException(
+                    status_code=400, 
+                    detail="Face recognition model not found for this section. Please register student faces first."
+                )
+
+        # Load face recognition model from URL
+        try:
+            response = requests.get(section_data['face_recognition_model'])
+            response.raise_for_status()
+            known_faces = pickle.loads(response.content)
+        except Exception as e:
+            raise HTTPException(
+                status_code=500,
+                detail=f"Error loading face recognition model: {str(e)}"
+            )
+
+        # Initialize video capture
+        # cap = cv2.VideoCapture("./sample_video.mp4")
+        cap = cv2.VideoCapture("http://192.168.137.209:4747/video")
+        if not cap.isOpened():
+            raise HTTPException(status_code=400, detail="Unable to access video source")
+
+        start_time = datetime.now()
+        active_streams[class_id] = True
+        
         while (datetime.now() - start_time).seconds < (duration_minutes * 60) and active_streams[class_id]:
             ret, frame = cap.read()
             if not ret:
                 continue
 
-            # Process every 30th frame to reduce CPU usage
+            # Process every 30th frame
             if cap.get(cv2.CAP_PROP_POS_FRAMES) % 30 != 0:
                 continue
 
-            # Convert frame to RGB for face_recognition library
             rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             face_locations = face_recognition.face_locations(rgb_frame)
             face_encodings = face_recognition.face_encodings(rgb_frame, face_locations)
@@ -278,102 +359,123 @@ async def process_video_stream(section_id: int, class_id: int, duration_minutes:
                         )[0]
                         matches.append(match)
 
-                    # If face matches, record attendance
                     if any(matches):
                         state_key = f"{enrollment}_{class_id}_{current_date}"
                         
-                        # Skip if attendance was recorded in the last 5 minutes
                         if state_key in attendance_states:
                             if (datetime.now() - attendance_states[state_key]).seconds < 300:
                                 continue
 
-                        # Get student ID
-                        cursor.execute("""
-                            SELECT student_id FROM students 
-                            WHERE enrollment_number = %s
-                        """, (enrollment,))
-                        student = cursor.fetchone()
-
-                        if student:
-                            # Check if attendance already exists
-                            cursor.execute("""
-                                SELECT * FROM attendance 
-                                WHERE class_id = %s 
-                                AND student_id = %s 
-                                AND date = %s
-                            """, (class_id, student['student_id'], current_date))
-
-                            if not cursor.fetchone():
-                                # Record device info
-                                device_info = json.dumps({
-                                    "device_type": "Laptop Camera",
-                                    "recognition_confidence": float(max(matches))
-                                })
-
-                                # Insert attendance record
+                        with get_db_connection() as conn:
+                            cursor = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+                            
+                            try:
+                                # Updated query to include section_id check
                                 cursor.execute("""
-                                    INSERT INTO attendance (
-                                        class_id, student_id, date, status,
-                                        verification_method, device_info, created_at
-                                    ) VALUES (%s, %s, %s, %s, %s, %s, %s)
-                                """, (
-                                    class_id,
-                                    student['student_id'],
-                                    current_date,
-                                    'present',
-                                    'facial',
-                                    device_info,
-                                    datetime.now()
-                                ))
-                                conn.commit()
-                                attendance_states[state_key] = datetime.now()
+                                    SELECT student_id 
+                                    FROM students 
+                                    WHERE enrollment_number = %s 
+                                    AND section_id = %s
+                                """, (enrollment, section_id))
+                                
+                                student = cursor.fetchone()
 
-            # Short sleep to prevent CPU overload
+                                if student:
+                                    cursor.execute("""
+                                        SELECT * FROM attendance 
+                                        WHERE class_id = %s 
+                                        AND student_id = %s 
+                                        AND date = %s
+                                    """, (class_id, student['student_id'], current_date))
+
+                                    if not cursor.fetchone():
+                                        device_info = json.dumps({
+                                            "device_type": "Laptop Camera",
+                                            "recognition_confidence": float(max(matches))
+                                        })
+
+                                        cursor.execute("""
+                                            INSERT INTO attendance (
+                                                class_id, student_id, date, status,
+                                                verification_method, device_info, created_at
+                                            ) VALUES (%s, %s, %s, %s, %s, %s, %s)
+                                        """, (
+                                            class_id,
+                                            student['student_id'],
+                                            current_date,
+                                            'present',
+                                            'facial',
+                                            device_info,
+                                            datetime.now()
+                                        ))
+                                        conn.commit()
+                                        attendance_states[state_key] = datetime.now()
+                            except Exception as e:
+                                print(f"Error recording attendance: {str(e)}")
+                                conn.rollback()
+
             await asyncio.sleep(0.1)
 
+    except Exception as e:
+        print(f"Error in process_video_stream: {str(e)}")
+        raise
     finally:
-        cap.release()
+        if 'cap' in locals():
+            cap.release()
         active_streams.pop(class_id, None)
-@face_router.post("/stop-attendance/{class_id}")
-async def stop_attendance(class_id: int):
-    if class_id not in active_streams:
-        raise HTTPException(status_code=404, detail="No active attendance session")
-    
-    active_streams[class_id] = False
-    return {"message": "Attendance stopped"}
-
-class AttendanceStart(BaseModel):
-    duration_minutes: int = 60
 
 @face_router.post("/start-attendance/{section_id}/{class_id}")
 async def start_attendance(
     section_id: int,
     class_id: int,
     request: AttendanceStart,
-    background_tasks: BackgroundTasks,
-    conn = Depends(get_db_connection)
+    background_tasks: BackgroundTasks
 ):
     try:
-        print(section_id,class_id,request,conn)
         if class_id in active_streams:
             raise HTTPException(status_code=400, detail="Attendance already in progress")
             
+        # Updated query to match schema
+        with get_db_connection() as conn:
+            cursor = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+            cursor.execute("""
+                SELECT s.section_id, s.face_recognition_model 
+                FROM sections s
+                JOIN classes c ON s.section_id = c.section_id
+                WHERE s.section_id = %s AND c.class_id = %s
+            """, (section_id, class_id))
+            
+            result = cursor.fetchone()
+            if not result:
+                raise HTTPException(status_code=404, detail="Invalid section or class ID")
+            
+            if not result['face_recognition_model']:
+                raise HTTPException(
+                    status_code=400, 
+                    detail="Face recognition model not found. Please register student faces first."
+                )
+        
         background_tasks.add_task(
-            process_video_stream, 
-            section_id, 
-            class_id, 
-            request.duration_minutes, 
-            conn
+            process_video_stream,
+            section_id,
+            class_id,
+            request.duration_minutes
         )
-        # process_video_stream(section_id, class_id, request.duration_minutes, conn)
+        
         return {
-            "message": "Attendance monitoring started using laptop camera",
-            "duration_minutes": request.duration_minutes
+            "message": "Attendance monitoring started",
+            "duration_minutes": request.duration_minutes,
+            "section_id": section_id,
+            "class_id": class_id
         }
+        
+    except HTTPException:
+        raise
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-
+        print(f"Error starting attendance: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to start attendance monitoring: {str(e)}")
+        
+        
 @face_router.get("/class-attendance/{class_id}")
 async def get_class_attendance(
     class_id: int,
@@ -415,3 +517,191 @@ async def get_class_attendance(
 
 
 
+@face_router.post("/process-video-attendance/{section_id}/{class_id}")
+async def process_video_attendance(
+    section_id: int,
+    class_id: int,
+    video: UploadFile = File(...),
+    duration_minutes: int = Form(default=60),
+    attendance_date: str = Form(default=None),
+    skip_frames: int = Form(default=30),
+    confidence_threshold: float = Form(default=0.6)
+):
+    try:
+        # Validate video file
+        if not video.content_type.startswith('video/'):
+            raise HTTPException(
+                status_code=400,
+                detail="Invalid file type. Please upload a video file."
+            )
+
+        # Save uploaded video temporarily
+        temp_video_path = os.path.join(TEMP_FOLDER, f"temp_video_{class_id}.mp4")
+        try:
+            with open(temp_video_path, "wb") as buffer:
+                content = await video.read()
+                buffer.write(content)
+        except Exception as e:
+            raise HTTPException(
+                status_code=500,
+                detail=f"Error saving video file: {str(e)}"
+            )
+
+        # Get section and model data
+        with get_db_connection() as conn:
+            cursor = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+            cursor.execute("""
+                SELECT s.*, c.class_id, s.face_recognition_model
+                FROM sections s
+                JOIN classes c ON s.section_id = c.section_id
+                WHERE s.section_id = %s AND c.class_id = %s
+            """, (section_id, class_id))
+            
+            section_data = cursor.fetchone()
+            
+            if not section_data:
+                raise HTTPException(status_code=404, detail="Section or class not found")
+                
+            if not section_data['face_recognition_model']:
+                raise HTTPException(
+                    status_code=400, 
+                    detail="Face recognition model not found for this section. Please register student faces first."
+                )
+
+        # Load face recognition model
+        try:
+            response = requests.get(section_data['face_recognition_model'])
+            response.raise_for_status()
+            known_faces = pickle.loads(response.content)
+        except Exception as e:
+            raise HTTPException(
+                status_code=500,
+                detail=f"Error loading face recognition model: {str(e)}"
+            )
+
+        # Process video
+        attendance_records = []
+        cap = cv2.VideoCapture(temp_video_path)
+        if not cap.isOpened():
+            raise HTTPException(status_code=400, detail="Unable to process video file")
+
+        total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+        fps = cap.get(cv2.CAP_PROP_FPS)
+        video_duration = total_frames / fps  # in seconds
+
+        # Process frames
+        processed_students = set()  # Track processed students
+        current_date = date.today()
+
+        frame_count = 0
+        while True:
+            ret, frame = cap.read()
+            if not ret:
+                break
+
+            # Process every 30th frame for efficiency
+            if frame_count % 30 != 0:
+                frame_count += 1
+                continue
+
+            # Convert frame to RGB
+            rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            face_locations = face_recognition.face_locations(rgb_frame)
+            face_encodings = face_recognition.face_encodings(rgb_frame, face_locations)
+
+            # Process each detected face
+            for encoding in face_encodings:
+                for enrollment, student_encodings in known_faces.items():
+                    # Skip if student already processed
+                    if enrollment in processed_students:
+                        continue
+
+                    matches = []
+                    for stored_encoding in student_encodings:
+                        match = face_recognition.compare_faces(
+                            [stored_encoding['encoding']], 
+                            encoding,
+                            tolerance=0.6
+                        )[0]
+                        matches.append(match)
+
+                    if any(matches):
+                        with get_db_connection() as conn:
+                            cursor = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+                            try:
+                                cursor.execute("""
+                                    SELECT student_id 
+                                    FROM students 
+                                    WHERE enrollment_number = %s 
+                                    AND section_id = %s
+                                """, (enrollment, section_id))
+                                
+                                student = cursor.fetchone()
+
+                                if student:
+                                    # Record attendance
+                                    device_info = json.dumps({
+                                        "device_type": "Uploaded Video",
+                                        "recognition_confidence": float(max(matches)),
+                                        "frame_timestamp": frame_count / fps
+                                    })
+
+                                    cursor.execute("""
+                                        INSERT INTO attendance (
+                                            class_id, student_id, date, status,
+                                            verification_method, device_info, created_at
+                                        ) VALUES (%s, %s, %s, %s, %s, %s, %s)
+                                        ON CONFLICT (class_id, student_id, date) DO NOTHING
+                                        RETURNING *
+                                    """, (
+                                        class_id,
+                                        student['student_id'],
+                                        current_date,
+                                        'present',
+                                        'facial',
+                                        device_info,
+                                        datetime.now()
+                                    ))
+                                    
+                                    attendance_record = cursor.fetchone()
+                                    if attendance_record:
+                                        attendance_records.append(attendance_record)
+                                        processed_students.add(enrollment)
+                                    
+                                    conn.commit()
+
+                            except Exception as e:
+                                print(f"Error recording attendance: {str(e)}")
+                                conn.rollback()
+
+            frame_count += 1
+
+        cap.release()
+
+        # Clean up
+        try:
+            os.remove(temp_video_path)
+        except:
+            pass
+
+        return {
+            "message": "Video attendance processing completed",
+            "video_duration_seconds": video_duration,
+            "processed_frames": frame_count,
+            "students_marked_present": len(processed_students),
+            "attendance_records": attendance_records
+        }
+
+    except Exception as e:
+        print(f"Error processing video attendance: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to process video attendance: {str(e)}"
+        )
+    finally:
+        # Ensure video file is cleaned up
+        if 'temp_video_path' in locals():
+            try:
+                os.remove(temp_video_path)
+            except:
+                pass

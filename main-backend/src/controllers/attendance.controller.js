@@ -54,7 +54,16 @@ export const getAttendanceHistory = async (req, res) => {
     try {
         const history = await prisma.attendance.findMany({
             where: { class_id: parseInt(req.params.classId) },
-            include: { students: true },
+            include: { students: {
+                include:{
+                    users: {
+                        select: { first_name: true, last_name: true,
+                            profile_picture: true, email: true,
+                            college_uid: true,
+                         }
+                    }
+                }
+            } },
             orderBy: { date: 'desc' }
         });
         res.json({ history });

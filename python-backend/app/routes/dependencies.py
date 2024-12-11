@@ -12,9 +12,13 @@ def get_db_settings():
     }
 
 @contextmanager
-def get_db_connection() -> Generator:
-    settings = get_db_settings()
-    conn = psycopg2.connect(**settings)
+def get_db_connection():
+    conn = psycopg2.connect(
+        dbname=os.getenv("DB_NAME"),
+        user=os.getenv("DB_USER"),
+        password= os.getenv("DB_PASSWORD"),
+        host=os.getenv("DB_HOST"),
+    )
     try:
         yield conn
     finally:

@@ -7,6 +7,7 @@ import {
   LogOut,
   FileQuestion,
   Bot,
+  Bell,
 } from "lucide-react";
 import { useAuth } from "@/services/AuthContext";
 import UpcomingClassComponentStudent from "./classes/UpciomingClassComponentStudent";
@@ -16,7 +17,6 @@ import { useAtom } from "jotai";
 import { domain } from "@/lib/constant";
 import { useNavigate } from "react-router-dom";
 import Feedback from "./feedback/Feedback";
-import ChatBot from "./chatBot/ChatBot";
 
 const StudentLMSDashboard = () => {
   const [activeSection, setActiveSection] = useState("courses");
@@ -146,9 +146,10 @@ const StudentLMSDashboard = () => {
             <MessageCircle className="w-6 h-6" />
           </button>
           
+          
           <button
             onClick={() => {
-              setActiveSection("chatBot");
+              navigate("/p/notifications");
             }}
             className={`p-3 rounded ${
               activeSection === "chatBot"
@@ -156,12 +157,12 @@ const StudentLMSDashboard = () => {
                 : "text-gray-500 hover:bg-yellow-100 hover:text-yellow-700"
             }`}
           >
-            <Bot className="w-6 h-6" />
+            <Bell className="w-6 h-6" />
           </button>
 
           <button
             onClick={() => {
-              setActiveSection("feedback");
+              navigate("/p/feedback");
             }}
             className={`p-3 rounded ${
               activeSection === "feedback"
@@ -221,7 +222,6 @@ const StudentLMSDashboard = () => {
 
         {/* feedbackform */}
         {activeSection === "feedback" && <Feedback />}
-        {activeSection === "chatBot" && <ChatBot />}
         {activeSection === "assignments" && (
           <div>
             <h1 className="text-2xl font-bold mb-6">Upcoming Assignments</h1>
