@@ -169,6 +169,10 @@ const FacultyRoutes: React.FC = () => (
                 path="/classes/:class_id/quiz"
                 element={<QuizManagement    />} 
                 />
+            {/* <Route
+                path="/classes-list"
+                element={<List_of_Class    />} 
+                /> */}
 
         </Routes>
     </FacultyLayout>

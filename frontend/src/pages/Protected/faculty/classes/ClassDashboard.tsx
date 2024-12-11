@@ -13,6 +13,7 @@ import {
     BarChart2,
     Calendar,
     CheckCircle,
+    FileQuestion,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -32,6 +33,7 @@ import { domain, fastapidomain } from "@/lib/constant";
 import { Class, SyllabusStructure } from "@/interface/general";
 import ResourcesTab from "./resource/Resource";
 import NotesTab from "./notes/Notes";
+import QuerySystem from "../../query/QuerySystem";
 //import QuizDashboard from "./resource/QuizDashboard";
 
 const ClassDashboard = () => {
@@ -39,6 +41,7 @@ const ClassDashboard = () => {
     const [classData,setClassData] = useState<Class | null>(null);
     const navigate = useNavigate();
     const [syllabus, setSyllabus] = useState<SyllabusStructure | null>(null)
+    const {user} = useAuth()
     useEffect(()=>{
         if(classData?.schedule_details.subject_details?.syllabus_structure){
             setSyllabus(classData.schedule_details.subject_details.syllabus_structure)
@@ -185,7 +188,7 @@ const ClassDashboard = () => {
 
             {/* Tabs Section */}
             <Tabs defaultValue="resources" className="w-full">
-                <TabsList className="grid w-full grid-cols-4">
+                <TabsList className="grid w-full grid-cols-5">
                     <TabsTrigger value="resources">
                         <File className="mr-2 h-4 w-4" />
                         Resources
@@ -201,6 +204,10 @@ const ClassDashboard = () => {
                     <TabsTrigger value="performance">
                         <BarChart2 className="mr-2 h-4 w-4" />
                         Performance
+                    </TabsTrigger>
+                    <TabsTrigger value="query">
+                        <FileQuestion className="mr-2 h-4 w-4" />
+                        Query
                     </TabsTrigger>
                 </TabsList>
 
@@ -341,6 +348,9 @@ const ClassDashboard = () => {
                             </div>
                         </CardContent>
                     </Card>
+                </TabsContent>
+                <TabsContent value="query">
+                    {user && classData?.faculty_id && <QuerySystem userId={user?.user_id} userRole="faculty" facultyId={classData?.faculty_id}  />}
                 </TabsContent>
             </Tabs>
 

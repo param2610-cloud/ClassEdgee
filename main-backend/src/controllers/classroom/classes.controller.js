@@ -234,5 +234,44 @@ const getUniqueClass = async(req,res)=>{
         res.status(500).json({error:error.message});
     }
 }
+const pastClasses_student = async (req, res) => {
+  const { studentId } = req.params;
+  try {
+    const data_ofSection = await prisma.students.findUnique({
+      where: {
+        student_id: parseInt(studentId),
+      },
+      select: {
+        section_id: true,
+      },
+    });
+    const data = await prisma.classes.findMany({
+      where:{
+        is_active:false,
+        section_id:data_ofSection.section_id
+      }
+    })
+    res.json(data);
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ error: error.message });
+  }
+}
+const pastClasses_faculty = async (req, res) => {
+  const { facultyId } = req.params;
+  try {
+    
+    const data = await prisma.classes.findMany({
+      where:{
+        is_active:false,
+        faculty_id:facultyId
+      }
+    })
+    res.json(data);
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ error: error.message });
+  }
+}
 
-export { getUpcomingClassesOfFaculty, getUpcomingClassesOfStudent,getUniqueClass };
+export { getUpcomingClassesOfFaculty, getUpcomingClassesOfStudent,getUniqueClass,pastClasses_student,pastClasses_faculty };

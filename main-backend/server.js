@@ -50,6 +50,7 @@ import quizRouter from "./src/Router/quizRoutes.js";
 import scheduleRouter from "./src/Router/schedule.router.js";
 import  mannualscheduleRouter from "./src/Router/mannualSchedule.router.js";
 import classesRouter from "./src/Router/classes/general.router.js";
+import queryRouter from "./src/Router/query.router.js";
 
 
 //print route
@@ -78,7 +79,7 @@ app.use("/api/v1/institution",institutionRouter)
 app.use("/api/v1/classes",classesRouter)
 app.use("/api/v1/attendance",attendanceRouter)
 app.use("/api/v1/resource",resourceRouter)
-
+app.use("/api/v1/query",queryRouter)
 
 
 

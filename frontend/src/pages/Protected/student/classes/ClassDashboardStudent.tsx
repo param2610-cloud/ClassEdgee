@@ -13,6 +13,7 @@ import {
     BarChart2,
     Calendar,
     CheckCircle,
+    FileQuestion,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -35,11 +36,13 @@ import NotesTab from "./notes/Notes";
 import { useAtom } from "jotai";
 import { classDataAtom } from "@/store/atom";
 import QuizDrawerComponent from "../quiz/QuizComponent";
+import QuerySystem from "../../query/QuerySystem";
 
 const ClassDashboardStudent = () => {
     const {class_id}= useParams()
     const [classData,setClassData] = useAtom<Class | null>(classDataAtom);
     const [syllabus, setSyllabus] = useState<SyllabusStructure | null>(null)
+    const {user} = useAuth()
     useEffect(()=>{
         if(classData?.schedule_details?.subject_details?.syllabus_structure){
             setSyllabus(classData.schedule_details.subject_details.syllabus_structure)
@@ -151,7 +154,7 @@ const ClassDashboardStudent = () => {
 
             {/* Tabs Section */}
             <Tabs defaultValue="resources" className="w-full">
-                <TabsList className="grid w-full grid-cols-4">
+                <TabsList className="grid w-full grid-cols-5">
                     <TabsTrigger value="resources">
                         <File className="mr-2 h-4 w-4" />
                         Resources
@@ -167,6 +170,10 @@ const ClassDashboardStudent = () => {
                     <TabsTrigger value="performance">
                         <BarChart2 className="mr-2 h-4 w-4" />
                         Performance
+                    </TabsTrigger>
+                    <TabsTrigger value="query">
+                        <FileQuestion className="mr-2 h-4 w-4" />
+                        Query
                     </TabsTrigger>
                 </TabsList>
 
@@ -307,6 +314,9 @@ const ClassDashboardStudent = () => {
                             </div>
                         </CardContent>
                     </Card>
+                </TabsContent>
+                <TabsContent value="query">
+                    {classData?.faculty_id && user && <QuerySystem facultyId={classData?.faculty_id} userId={user?.user_id} userRole="student"/>}
                 </TabsContent>
             </Tabs>
 

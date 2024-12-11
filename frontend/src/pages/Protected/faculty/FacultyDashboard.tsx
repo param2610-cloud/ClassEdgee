@@ -154,6 +154,12 @@ const FacultyLMSDashboard = () => {
           >
             <Calendar className="w-6 h-6" />
           </button>
+          <button
+            onClick={() => navigate("/p/classes-list")}
+            className={`p-3 rounded `}
+          >
+            Classes
+          </button>
           <button onClick={logout} className={`p-3 rounded `}>
             <LogOut className="w-6 h-6" />
           </button>

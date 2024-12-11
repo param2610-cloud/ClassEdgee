@@ -304,6 +304,7 @@ model faculty {
   facultyavailability                                          facultyavailability[]
   schedule_details_schedule_details_backup_faculty_idTofaculty schedule_details[]        @relation("schedule_details_backup_faculty_idTofaculty")
   schedule_details_schedule_details_faculty_idTofaculty        schedule_details[]        @relation("schedule_details_faculty_idTofaculty")
+  student_queries                                              student_queries[]
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -480,6 +481,7 @@ model students {
   chatinteractions  chatinteractions[]
   learninganalytics learninganalytics[]
   quiz_responses    quiz_responses[]
+  student_queries   student_queries[]
   studentengagement studentengagement[]
   sections          sections?           @relation(fields: [section_id], references: [section_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_section")
   departments       departments?        @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction)
@@ -533,6 +535,7 @@ model users {
   feedback_feedback_receiver_idTousers feedback[]           @relation("feedback_receiver_idTousers")
   feedback_feedback_sender_idTousers   feedback[]           @relation("feedback_sender_idTousers")
   notes                                notes[]
+  query_messages                       query_messages[]
   resources                            resources[]
   schedule_meta                        schedule_meta[]
   students                             students?
@@ -783,6 +786,31 @@ model schedule_topics {
   units              units            @relation(fields: [unit_id], references: [unit_id], onDelete: Cascade, onUpdate: NoAction)
 
   @@index([schedule_detail_id], map: "idx_schedule_topics_detail")
+}
+
+model query_messages {
+  message_id      Int             @id @default(autoincrement())
+  query_id        Int
+  sender_id       Int
+  message         String
+  created_at      DateTime?       @default(now()) @db.Timestamptz(6)
+  student_queries student_queries @relation(fields: [query_id], references: [query_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_query")
+  users           users           @relation(fields: [sender_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_sender")
+}
+
+model student_queries {
+  query_id       Int              @id @default(autoincrement())
+  student_id     Int
+  faculty_id     Int
+  subject_id     Int?
+  title          String           @db.VarChar(255)
+  description    String
+  status         String?          @default("pending") @db.VarChar(20)
+  created_at     DateTime?        @default(now()) @db.Timestamptz(6)
+  updated_at     DateTime?        @default(now()) @db.Timestamptz(6)
+  query_messages query_messages[]
+  faculty        faculty          @relation(fields: [faculty_id], references: [faculty_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_faculty")
+  students       students         @relation(fields: [student_id], references: [student_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_student")
 }
 
 enum alert_severity {
