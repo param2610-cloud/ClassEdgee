@@ -12,6 +12,7 @@ import {
   User2,
   List,
   Calendar,
+  School,
 } from "lucide-react";
 import { useAuth } from "@/services/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -81,82 +82,116 @@ const FacultyLMSDashboard = () => {
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar Navigation */}
-      <div className="w-24 bg-white shadow-md flex flex-col items-center py-8">
-        <div className="mb-8">
+      <div className="w-52 bg-white shadow-md flex flex-col items-center py-8">
+        <div className="mb-1">
           <img
-            src="/api/placeholder/80/80"
+            src="/faculty.jpg"
             alt="Faculty Profile"
-            className="rounded-full w-16 h-16 object-cover"
+            className="rounded-full w-16 h-16 object-cover my-3"
           />
         </div>
-        <nav className="space-y-6">
+        <nav className="space-y-1 flex flex-col items-start">
           <button
-            onClick={() => setActiveSection("courses")}
-            className={`p-3 rounded ${
-              activeSection === "courses"
+            onClick={() => navigate("/p/profile-page")}
+            className={`p-3 rounded flex flex-row gap-4 ${
+              activeSection === "profile"
                 ? "bg-blue-100 text-blue-600"
-                : "text-gray-500 hover:bg-gray-100"
+                : "text-gray-700 hover:bg-violet-100 hover:text-blue-700"
             }`}
           >
-            <BookOpen className="w-6 h-6" />
+            <User2 className="w-6 h-6" /> Profile
+          </button>
+
+          <button
+            onClick={() => setActiveSection("courses")}
+            className={`p-3 rounded flex flex-row gap-4 ${
+              activeSection === "courses"
+                ? "bg-blue-100 text-blue-600"
+                : "text-gray-700 hover:bg-violet-100 hover:text-blue-700"
+            }`}
+          >
+            <BookOpen className="w-6 h-6" /> Courses
           </button>
           <button
             onClick={() => setActiveSection("students")}
-            className={`p-3 rounded ${
+            className={`p-3 rounded flex flex-row gap-4 ${
               activeSection === "students"
                 ? "bg-blue-100 text-blue-600"
-                : "text-gray-500 hover:bg-gray-100"
+                : "text-gray-700 hover:bg-violet-100 hover:text-blue-700"
             }`}
           >
-            <Users className="w-6 h-6" />
+            <Users className="w-6 h-6" /> Students Details
           </button>
           <button
             onClick={() => setActiveSection("assignments")}
-            className={`p-3 rounded ${
+            className={`p-3 rounded flex flex-row gap-4 ${
               activeSection === "assignments"
                 ? "bg-blue-100 text-blue-600"
-                : "text-gray-500 hover:bg-gray-100"
+                : "text-gray-700 hover:bg-violet-100 hover:text-blue-700"
             }`}
           >
-            <ClipboardList className="w-6 h-6" />
+            <ClipboardList className="w-6 h-6" /> Assingments
           </button>
           <button
             onClick={() => navigate("/p/interactive-classroom")}
-            className={`p-3 rounded ${
+            className={`p-3 rounded flex flex-row gap-4 ${
               activeSection === "analytics"
                 ? "bg-blue-100 text-blue-600"
-                : "text-gray-500 hover:bg-gray-100"
+                : "text-gray-700 hover:bg-violet-100 hover:text-blue-700"
             }`}
           >
-            <Home className="w-6 h-6" />
+            <Home className="w-6 h-6" /> Room
           </button>
-          <button
-            onClick={() => navigate("/p/profile-page")}
-            className={`p-3 rounded `}
-          >
-            <User2 className="w-6 h-6" />
-          </button>
+
           <button
             onClick={() => navigate("/p/department")}
-            className={`p-3 rounded `}
+            className={`p-3 rounded flex flex-row gap-4 ${
+              activeSection === "analytics"
+                ? "bg-blue-100 text-blue-600"
+                : "text-gray-700 hover:bg-violet-100 hover:text-blue-700"
+            }`}
           >
-            <Book className="w-6 h-6" />
+            <Book className="w-6 h-6" /> Department Info
           </button>
           <button
             onClick={() => navigate("/p/department-syllabus")}
-            className={`p-3 rounded `}
+            className={`p-3 rounded flex flex-row gap-4 ${
+              activeSection === "syllabus"
+                ? "bg-blue-100 text-blue-600"
+                : "text-gray-700 hover:bg-violet-100 hover:text-blue-700"
+            }`}
           >
-            <List className="w-6 h-6" />
+            <List className="w-6 h-6" /> Syllabus
           </button>
           <button
             onClick={() => navigate("/p/schedule")}
-            className={`p-3 rounded `}
+            className={`p-3 rounded flex flex-row gap-4 ${
+              activeSection === "schedule"
+                ? "bg-blue-100 text-blue-600"
+                : "text-gray-700 hover:bg-violet-100 hover:text-blue-700"
+            }`}
           >
-            <Calendar className="w-6 h-6" />
+            <Calendar className="w-6 h-6" /> Schedule
           </button>
-          
-          <button onClick={logout} className={`p-3 rounded `}>
-            <LogOut className="w-6 h-6" />
+          <button
+            onClick={() => navigate("/p/classes-list")}
+            className={`p-3 rounded flex flex-row gap-4 ${
+              activeSection === "analytics"
+                ? "bg-blue-100 text-blue-600"
+                : "text-gray-700 hover:bg-green-100 hover:text-green-700"
+            }`}
+          >
+            <School className="w-6 h-6" /> Classes
+          </button>
+          <button
+            onClick={logout}
+            className={`p-3 rounded flex flex-row gap-4 ${
+              activeSection === "analytics"
+                ? "bg-blue-100 text-blue-600"
+                : "text-gray-700 hover:bg-red-100 hover:text-red-700"
+            }`}
+          >
+            <LogOut className="w-6 h-6" /> Logout
           </button>
         </nav>
       </div>
@@ -179,7 +214,7 @@ const FacultyLMSDashboard = () => {
                 </div>
               </div>
             </h1>
-            <UpcomingClassComponent/>
+            <UpcomingClassComponent />
             {courses.map((course) => (
               <div
                 key={course.id}
