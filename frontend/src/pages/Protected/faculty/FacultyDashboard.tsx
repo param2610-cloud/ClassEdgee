@@ -13,6 +13,7 @@ import {
   List,
   Calendar,
   School,
+  Siren,
 } from "lucide-react";
 import { useAuth } from "@/services/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -114,8 +115,8 @@ const FacultyLMSDashboard = () => {
             <BookOpen className="w-6 h-6" />{" "}
             <span className="hidden sm:inline">Courses</span>
           </button>
-          <button
-            onClick={() => setActiveSection("students")}
+          {/* <button
+            onClick={() => navigate("/p/student-details")}
             className={`p-3 rounded flex flex-row gap-4 ${
               activeSection === "students"
                 ? "bg-blue-100 text-blue-600"
@@ -124,19 +125,9 @@ const FacultyLMSDashboard = () => {
           >
             <Users className="w-6 h-6" />{" "}
             <span className="hidden sm:inline">Students Details</span>
-          </button>
-          <button
-            onClick={() => setActiveSection("assignments")}
-            className={`p-3 rounded flex flex-row gap-4 ${
-              activeSection === "assignments"
-                ? "bg-blue-100 text-blue-600"
-                : "text-gray-700 hover:bg-violet-100 hover:text-blue-700"
-            }`}
-          >
-            <ClipboardList className="w-6 h-6" />{" "}
-            <span className="hidden sm:inline">Assingments</span>
-          </button>
-          <button
+          </button> */}
+          
+          {/* <button
             onClick={() => navigate("/p/interactive-classroom")}
             className={`p-3 rounded flex flex-row gap-4 ${
               activeSection === "analytics"
@@ -146,7 +137,7 @@ const FacultyLMSDashboard = () => {
           >
             <Home className="w-6 h-6" />{" "}
             <span className="hidden sm:inline">Room</span>
-          </button>
+          </button> */}
 
           <button
             onClick={() => navigate("/p/department")}
@@ -191,6 +182,19 @@ const FacultyLMSDashboard = () => {
           >
             <School className="w-6 h-6" />{" "}
             <span className="hidden sm:inline">Classes</span>
+          </button>
+          <button
+            onClick={() => {
+              navigate("/p/emergency");
+            }}
+            className={`p-3 rounded flex flex-row gap-4 ${
+              activeSection === "alert"
+                ? "bg-red-100 text-red-700"
+                : "text-gray-500 hover:bg-red-100 hover:text-red-700"
+            }`}
+          >
+            <Siren className="w-6 h-6" />{" "}
+            <span className="hidden sm:inline">Alert</span>
           </button>
           <button
             onClick={logout}

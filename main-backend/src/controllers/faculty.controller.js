@@ -547,9 +547,9 @@ const editFaculty = async (req, res) => {
 const getUniqueFaculty = async (req, res) => {
     try {
         const { id } = req.params;
-
+        
         const faculty = await prisma.users.findUnique({
-            where: { user_id: Number(id) },
+            where: { user_id: parseInt(id) },
             include: {
                 faculty: true,
                 departments:true
@@ -659,6 +659,82 @@ const deleteFacultyExpertise = async (req, res) => {
         });
     }
 };
+ const getFacultyClasses = async (req, res) => {
+    try {
+        const facultyId = parseInt(req.params.facultyId);
+        console.log(facultyId);
+        
+        const classes = await prisma.classes.findMany({
+            where: {
+                faculty_id: facultyId,
+                date_of_class: {
+                    lte: new Date() // Only past classes
+                }
+            },
+            include: {
+                courses: {
+                    select: {
+                        course_name: true,
+                        course_code: true
+                    }
+                },
+                sections: {
+                    select: {
+                        section_name: true,
+                        batch_year: true
+                    }
+                },
+                rooms: {
+                    select: {
+                        room_number: true
+                    }
+                },
+                timeslots: {
+                    select: {
+                        start_time: true,
+                        end_time: true,
+                        day_of_week: true
+                    }
+                },
+                _count: {
+                    select: {
+                        attendance: true
+                    }
+                }
+            },
+            orderBy: {
+                date_of_class: 'desc'
+            }
+        });
+
+        // Process classes to include formatted information
+        const processedClasses = classes.map(cls => ({
+            id: cls.class_id,
+            courseName: cls.courses.course_name,
+            courseCode: cls.courses.course_code,
+            section: cls.sections.section_name,
+            batchYear: cls.sections.batch_year,
+            room: cls.rooms.room_number,
+            dateOfClass: cls.date_of_class,
+            attendanceCount: cls._count.attendance,
+            timeSlot: {
+                start: cls.timeslots.start_time,
+                end: cls.timeslots.end_time,
+                dayOfWeek: cls.timeslots.day_of_week
+            },
+            semester: cls.semester,
+            academicYear: cls.academic_year
+        }));
+
+        res.json({ classes: processedClasses });
+    } catch (error) {
+        console.error('Error in getFacultyClasses:', error);
+        res.status(500).json({ 
+            error: error.message,
+            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined 
+        });
+    }
+};
 
 
 export {
@@ -670,5 +746,6 @@ export {
     getUniqueFaculty,
     deletefaculty,
     updateFacultyExpertise,
-    deleteFacultyExpertise
+    deleteFacultyExpertise,
+    getFacultyClasses
 };

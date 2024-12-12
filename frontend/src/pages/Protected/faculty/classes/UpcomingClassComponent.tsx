@@ -13,22 +13,44 @@ const UpcomingClassComponent = () => {
   const [remainingTime, setRemainingTime] = useState('');
   const [isLive, setIsLive] = useState(false);
   const [loading, setLoading] = useState(true);
-  const { user,logout } = useAuth();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchFacultyData = async () => {
       try {
-        const facultyResponse = await fetch(`${domain}/api/v1/faculty/get-faculty/${user?.user_id}`);
+        if (!user?.user_id) {
+          setLoading(false);
+          return;
+        }
+
+        const facultyResponse = await fetch(`${domain}/api/v1/faculty/get-faculty/${user.user_id}`);
+        if (!facultyResponse.ok) {
+          console.error('Failed to fetch faculty data');
+          setLoading(false);
+          return;
+        }
+
         const facultyData = await facultyResponse.json();
+        if (!facultyData?.data?.faculty?.faculty_id) {
+          setLoading(false);
+          return;
+        }
         
         const classesResponse = await fetch(`${domain}/api/v1/faculty/classes/upcoming-classes/${facultyData.data.faculty.faculty_id}/1`);
-        const classesData = await classesResponse.json();
-        
-        if (classesData) {
-          setUpcomingClass(classesData);
-          
+        if (!classesResponse.ok) {
+          console.error('Failed to fetch classes data');
+          setLoading(false);
+          return;
         }
+
+        const classesData = await classesResponse.json();
+        if (!classesData || Object.keys(classesData).length === 0) {
+          setUpcomingClass(null);
+        } else {
+          setUpcomingClass(classesData);
+        }
+        
         setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -37,19 +59,25 @@ const UpcomingClassComponent = () => {
     };
     
     fetchFacultyData();
-  }, [user.user_id]);
+  }, [user?.user_id]);
 
   useEffect(() => {
-    if (!upcomingClass?.timeslots || !upcomingClass?.date_of_class) return;
+    if (!upcomingClass?.timeslots?.start_time || !upcomingClass?.timeslots?.end_time || !upcomingClass?.date_of_class) {
+      return;
+    }
 
     const updateClassStatus = () => {
       const now = new Date();
       const classDate = new Date(upcomingClass.date_of_class);
       
-      
       // Extract hours and minutes from timeslots
       const startTime = new Date(upcomingClass.timeslots.start_time);
       const endTime = new Date(upcomingClass.timeslots.end_time);
+      
+      if (isNaN(startTime.getTime()) || isNaN(endTime.getTime())) {
+        console.error('Invalid time format');
+        return;
+      }
       
       // Set the class date with the correct time
       const classStartTime = new Date(classDate);
@@ -62,7 +90,7 @@ const UpcomingClassComponent = () => {
       setIsLive(now >= classStartTime && now <= classEndTime);
 
       // Calculate remaining time
-      const timeDiff = classStartTime - now;
+      const timeDiff = classStartTime.getTime() - now.getTime();
       
       if (timeDiff > 0) {
         const hours = Math.floor(timeDiff / (1000 * 60 * 60));
@@ -91,11 +119,8 @@ const UpcomingClassComponent = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      {/* Main Content */}
-      
       <main className="flex-1 p-4 pb-20 md:pb-4 max-w-7xl mx-auto w-full">
-        {/* Upcoming Class Card */}
-        <Card className="w-full mb-4 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer" >
+        <Card className="w-full mb-4 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-xl font-bold flex items-center gap-2">
               <Clock className="w-5 h-5 text-blue-500" />
@@ -113,7 +138,10 @@ const UpcomingClassComponent = () => {
             )}
           </CardHeader>
           <CardContent>
-            {upcomingClass ? (
+            {upcomingClass && 
+             upcomingClass.courses?.course_name && 
+             upcomingClass.sections?.section_name && 
+             upcomingClass.rooms?.room_number ? (
               <div className="space-y-6">
                 <div className="flex items-center gap-2">
                   <Book className="w-6 h-6 text-blue-500" />
@@ -178,7 +206,11 @@ const UpcomingClassComponent = () => {
 
                 {!isLive && (
                   <div className="flex justify-center pt-4">
-                    <Button className="w-full md:w-auto gap-2" size="lg" onClick={()=>navigate(`/p/classes/${upcomingClass.class_id}`)}>
+                    <Button 
+                      className="w-full md:w-auto gap-2" 
+                      size="lg" 
+                      onClick={() => navigate(`/p/classes/${upcomingClass.class_id}`)}
+                    >
                       <Box className="w-5 h-5" />
                       Join Class
                     </Button>
@@ -195,9 +227,6 @@ const UpcomingClassComponent = () => {
           </CardContent>
         </Card>
       </main>
-
-      {/* Mobile Footer */}
-      
     </div>
   );
 };

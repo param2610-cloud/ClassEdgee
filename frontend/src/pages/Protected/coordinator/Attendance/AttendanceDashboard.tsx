@@ -9,43 +9,17 @@ import {
   AlertDescription,
 } from "@/components/ui/alert"
 import { domain } from '@/lib/constant';
-import { useAtom } from 'jotai';
-import { institutionIdAtom } from '@/store/atom';
 
 const AttendanceDashboard = () => {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
-  const [institution_id, setInstitutionId] = useAtom(institutionIdAtom);
   const [filters, setFilters] = useState({
     semester: '',
     department_id: '',
     threshold: 75
   });
-  const [departments, setDepartments] = useState([]);
-
-  // Fetch departments
-  const fetchDepartments = async () => {
-    try {
-      const response = await fetch(`${domain}/api/v1/department/list-of-department`, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
-          'X-Institution-Id': `${institution_id}`
-        }
-      });
-      
-      if (!response.ok) {
-        throw new Error('Failed to fetch departments');
-      }
-      
-      const data = await response.json();
-      setDepartments(data.department);
-    } catch (err) {
-      console.error('Error fetching departments:', err);
-      setError('Failed to load departments');
-    }
-  };
   const [sending, setSending] = useState(false);
 
   // Fetch attendance data
@@ -92,11 +66,6 @@ const AttendanceDashboard = () => {
     fetchAttendanceData();
   }, [filters]);
 
-  // Fetch departments when component mounts
-  useEffect(() => {
-    fetchDepartments();
-  }, []);
-
   // Prepare data for the chart
   const chartData = students.map(student => ({
     name: student.enrollmentNumber,
@@ -113,22 +82,6 @@ const AttendanceDashboard = () => {
 
       {/* Filters */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div>
-          <label className="block text-sm font-medium mb-1">Department</label>
-          <select
-            className="w-full border rounded p-2"
-            value={filters.department_id}
-            onChange={(e) => setFilters(prev => ({ ...prev, department_id: e.target.value }))}
-          >
-            <option value="">All Departments</option>
-            {departments.map(dept => (
-              <option key={dept.department_id} value={dept.department_id}>
-                {dept.department_name}
-              </option>
-            ))}
-          </select>
-        </div>
-
         <div>
           <label className="block text-sm font-medium mb-1">Semester</label>
           <select

@@ -173,7 +173,7 @@ const StudentLMSDashboard = () => {
           </button>
           <button
             onClick={() => {
-              setActiveSection("alert");
+              navigate("/p/emergency");
             }}
             className={`p-3 rounded flex flex-row gap-4 ${
               activeSection === "alert"

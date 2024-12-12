@@ -50,16 +50,16 @@ router.post('/emergency-alerts', async (req, res) => {
         });
 
         // Create notifications for all users
-        const users = await prisma.users.findMany();
+        // const users = await prisma.users.findMany();
         
-        await prisma.alertnotifications.createMany({
-            data: users.map(user => ({
-                alert_id: alert.alert_id,
-                recipient_id: user.user_id,
-                message: `EMERGENCY: ${type.toUpperCase()} alert - ${description}`,
-                delivery_status: 'pending'
-            }))
-        });
+        // await prisma.alertnotifications.createMany({
+        //     data: users.map(user => ({
+        //         alert_id: alert.alert_id,
+        //         recipient_id: user.user_id,
+        //         message: `EMERGENCY: ${type.toUpperCase()} alert - ${description}`,
+        //         delivery_status: 'pending'
+        //     }))
+        // });
 
         return res.status(201).json(alert);
     } catch (error) {

@@ -1,5 +1,5 @@
 import e from "express";
-import { createFaculty, loginfaculty,facultyblukupload,listoffaculty, deletefaculty, editFaculty, getUniqueFaculty, updateFacultyExpertise, deleteFacultyExpertise,  } from "../controllers/faculty.controller.js";
+import { createFaculty, loginfaculty,facultyblukupload,listoffaculty, deletefaculty, editFaculty, getUniqueFaculty, updateFacultyExpertise, deleteFacultyExpertise, getFacultyClasses,  } from "../controllers/faculty.controller.js";
 import classesFacultyRouter from "./classes/facultyClasses.router.js";
 import { upload } from "../utils/multer.js";
 const router = e.Router();
@@ -12,6 +12,7 @@ router.get("/get-faculty/:id",getUniqueFaculty)
 router.delete("/delete-faculty/:id",deletefaculty)
 router.patch("/:faculty_id/:subject_id/expertise", updateFacultyExpertise);
 router.delete("/:faculty_id/:subject_id/expertise", deleteFacultyExpertise);
+router.get("/get-faculty-classes/:facultyId",getFacultyClasses)
 router.use("/classes/",classesFacultyRouter);
 
 export default router

@@ -63,6 +63,9 @@ import { domain } from "./lib/constant";
 import CreateEmergencyForm from "./components/CreateEmergencyForm";
 import { BellElectricIcon } from "lucide-react";
 import ResourceManagement from "./pages/Protected/coordinator/resource/ResourceManagement";
+import FacultyAttendanceDashboard from "./pages/Protected/faculty/Attendance/FacultyAttendance";
+import AttendanceDashboardCoordinator from "./pages/Protected/coordinator/Attendance/AttendanceDashboard";
+import AttendanceDashboard from "./pages/Protected/coordinator/Attendance/AttendanceDashboard";
 // import SechduleForSemester from "./pages/Protected/faculty/sechdule/SechduleForSemester";
 // import ScheduleManager from "./pages/Protected/faculty/sechdule/ScheduleManagement";
 // import ScheduleDetailView from "./pages/Protected/faculty/sechdule/ScheduleDetailsView";
@@ -190,7 +193,7 @@ const FacultyRoutes: React.FC = () =>{
                 element={<QuizManagement    />} 
                 />
             <Route path="/emergency" element={<CreateEmergencyForm />} />
-
+            <Route path="/student-details" element={<FacultyAttendanceDashboard />}/>
             {/* <Route
                 path="/classes-list"
                 element={<List_of_Class    />} 
@@ -257,6 +260,7 @@ const CoordinatorRoutes: React.FC = () => {
       <Route path="/classes" element={<TimeslotManagement />} />
       <Route path="department/:department_id/add-hod" element={<AddHod />} />
             <Route path="/emergency" element={<CreateEmergencyForm />} />
+            <Route path="/attendance" element={<AttendanceDashboard />} />
     </Routes>
   </CoordinatorLayout>
 )};
