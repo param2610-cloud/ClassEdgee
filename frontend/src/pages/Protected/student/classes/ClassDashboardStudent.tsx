@@ -37,6 +37,7 @@ import { useAtom } from "jotai";
 import { classDataAtom } from "@/store/atom";
 import QuizDrawerComponent from "../quiz/QuizComponent";
 import QuerySystem from "../../query/QuerySystem";
+import DialogflowButton from "../Dialogflow/Bot";
 
 const ClassDashboardStudent = () => {
     const {class_id}= useParams()
@@ -344,6 +345,7 @@ const ClassDashboardStudent = () => {
                     </div>
                 </DialogContent>
             </Dialog>
+            <DialogflowButton/>
         </div>
     );
 };

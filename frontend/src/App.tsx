@@ -54,6 +54,10 @@ import ClassDashboard from "./pages/Protected/faculty/classes/ClassDashboard";
 import ClassDashboardStudent from "./pages/Protected/student/classes/ClassDashboardStudent";
 import StudentProfile from "./pages/Protected/student/profile/ProfilePage";
 import QuizManagement from "./pages/Protected/faculty/classes/quizzes/QuizDashboard";
+import TechEventsNotifications from "./pages/Protected/student/TechNotification";
+import Chatbot from "./components/Chatbot";
+import ChatBot from "./pages/Protected/student/chatBot/ChatBot";
+import Feedback from "./pages/Protected/student/feedback/Feedback";
 // import SechduleForSemester from "./pages/Protected/faculty/sechdule/SechduleForSemester";
 // import ScheduleManager from "./pages/Protected/faculty/sechdule/ScheduleManagement";
 // import ScheduleDetailView from "./pages/Protected/faculty/sechdule/ScheduleDetailsView";
@@ -186,6 +190,14 @@ const StudentRoutes: React.FC = () => (
             <Route
                 path="/classes/:class_id"
                 element={<ClassDashboardStudent    />}
+            />
+            <Route
+                path="/notifications"
+                element={<TechEventsNotifications    />}
+            />
+            <Route
+                path="/feedback"
+                element={<Feedback    />}
             />
         </Routes>
     </StudentLayout>

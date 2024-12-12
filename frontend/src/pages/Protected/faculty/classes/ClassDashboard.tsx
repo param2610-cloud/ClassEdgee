@@ -14,6 +14,7 @@ import {
     Calendar,
     CheckCircle,
     FileQuestion,
+    Hand,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -34,6 +35,9 @@ import { Class, SyllabusStructure } from "@/interface/general";
 import ResourcesTab from "./resource/Resource";
 import NotesTab from "./notes/Notes";
 import QuerySystem from "../../query/QuerySystem";
+import AttendanceControls from "@/components/AttendanceComponent";
+import VideoAttendanceUpload from "@/components/AttendanceComponent";
+import AttendanceButton from "@/components/Attendancebutton";
 //import QuizDashboard from "./resource/QuizDashboard";
 
 const ClassDashboard = () => {
@@ -43,7 +47,7 @@ const ClassDashboard = () => {
     const [syllabus, setSyllabus] = useState<SyllabusStructure | null>(null)
     const {user} = useAuth()
     useEffect(()=>{
-        if(classData?.schedule_details.subject_details?.syllabus_structure){
+        if(classData?.schedule_details?.subject_details?.syllabus_structure){
             setSyllabus(classData.schedule_details.subject_details.syllabus_structure)
         }
     },[classData])
@@ -124,18 +128,29 @@ const ClassDashboard = () => {
         alert(`Downloading ${resource.name}`);
     };
     const [attendancetaking, setAttendanceTaking] = useState(false);
-    const handleTakingAttendance = () => {
+    const handleTakingAttendance =async () => {
         try {
             if(attendancetaking){
-                const response = axios.post(`${fastapidomain}/api/face-recognition/stop-attendance/${classData?.section_id}/${class_id}`)
+                const response =await axios.post(`${fastapidomain}/api/face-recognition/stop-attendance/${classData?.section_id}/${class_id}`)
                 if(response.status === 200){
                     setAttendanceTaking(false)
                     console.log("Attendance stopped");
                 }
             }else{
-                const response = axios.post(`${fastapidomain}/api/face-recognition/start-attendance/${classData?.section_id}/${class_id}`)
+                const response = await fetch(`http://127.0.0.1:8000/api/face-recognition/start-attendance/6/9915`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+                // const response = await fetch(`${fastapidomain}/api/face-recognition/start-attendance/${classData?.section_id}/${class_id}`, {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/json',
+                //     },
+                // });
                 if(response.status === 200){
-                    setAttendanceTaking(true)
+                    setAttendanceTaking(true) 
                     console.log("Attendance started");
                 }
         }
@@ -172,10 +187,9 @@ const ClassDashboard = () => {
                         </div>
                     </div>
                     <div className="flex flex-col space-y-2">
-                        <Button className="bg-green-500 hover:bg-green-600" onClick={handleTakingAttendance}>
-                            <VideoIcon className="mr-2 h-5 w-5" />
-                            Take Attendance
-                        </Button>
+                        {/* {
+classData && classData.class_id && classData.section_id && <AttendanceButton sectionId={classData.section_id} classId={classData.class_id} />
+                        } */}
                         <Button variant="outline" className="bg-blue-100 hover:bg-blue-200"
                         onClick={() => navigate(`/p/classes/${class_id}/quiz`)} >
                         
@@ -188,7 +202,7 @@ const ClassDashboard = () => {
 
             {/* Tabs Section */}
             <Tabs defaultValue="resources" className="w-full">
-                <TabsList className="grid w-full grid-cols-5">
+                <TabsList className="grid w-full grid-cols-6">
                     <TabsTrigger value="resources">
                         <File className="mr-2 h-4 w-4" />
                         Resources
@@ -208,6 +222,10 @@ const ClassDashboard = () => {
                     <TabsTrigger value="query">
                         <FileQuestion className="mr-2 h-4 w-4" />
                         Query
+                    </TabsTrigger>
+                    <TabsTrigger value="attendance">
+                        <Hand className="mr-2 h-4 w-4" />
+                        Attendance
                     </TabsTrigger>
                 </TabsList>
 
@@ -351,6 +369,9 @@ const ClassDashboard = () => {
                 </TabsContent>
                 <TabsContent value="query">
                     {user && classData?.faculty_id && <QuerySystem userId={user?.user_id} userRole="faculty" facultyId={classData?.faculty_id}  />}
+                </TabsContent>
+                <TabsContent value="attendance">
+                            <VideoAttendanceUpload classId={class_id} sectionId={classData?.section_id}/> 
                 </TabsContent>
             </Tabs>
 

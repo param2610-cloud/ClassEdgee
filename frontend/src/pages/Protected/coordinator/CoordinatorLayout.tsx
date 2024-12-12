@@ -29,7 +29,7 @@ const CoordinatorLayout: React.FC<{ children: React.ReactNode }> = ({ children }
             {/* Sidebar content */}
             <nav className="flex flex-col space-y-4 mt-8">
               <Button 
-                onClick={() => handleNavigation('/coordinator')} 
+                onClick={() => handleNavigation('/p/')} 
                 className="text-lg hover:underline"
               >
                 Dashboard

@@ -49,6 +49,16 @@ router.get('/queries/student/:studentId', getQueryOfStudent);
       const queryMessages= await prisma.query_messages.findMany({
         where: {
           query_id: parseInt(queryId)
+        },
+        include:{
+          users:{
+            select:{
+              first_name:true,
+              last_name:true,
+              college_uid:true
+            }
+          },
+          student_queries:true
         }
       });
       

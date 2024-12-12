@@ -22,6 +22,8 @@ const QuerySystem = ({ userId, userRole, facultyId }:{userId:number,userRole:str
         `${domain}/api/v1/query/queries${userRole === 'faculty' ? `/faculty/${facultyId}` : `/student/${userId}`}`
       );
       const data = await response.json();
+      console.log("response data:",data);
+      
       setQueries(data);
     } catch (error) {
       console.error('Error fetching queries:', error);
@@ -139,7 +141,10 @@ const QuerySystem = ({ userId, userRole, facultyId }:{userId:number,userRole:str
             </CardHeader>
             <CardContent className="flex-1 overflow-y-auto">
               <div className="space-y-4">
-                {queryMessages.map((message) => (
+                {queryMessages.map((message) => {
+                    console.log("message:",message);
+                    
+                    return (
                   <div
                     key={message.message_id}
                     className={`p-2 rounded ${
@@ -148,12 +153,15 @@ const QuerySystem = ({ userId, userRole, facultyId }:{userId:number,userRole:str
                         : 'bg-gray-100'
                     }`}
                   >
+                    <div className='flex font-bold'>
+                        <p>{message?.users?.first_name}{"  "}{message?.users?.last_name}</p>
+                    </div>
                     <p>{message.message}</p>
                     <span className="text-xs text-gray-500">
                       {new Date(message.created_at).toLocaleString()}
                     </span>
                   </div>
-                ))}
+                )})}
               </div>
             </CardContent>
             <div className="p-4 border-t flex gap-2">

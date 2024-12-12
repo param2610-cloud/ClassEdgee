@@ -204,13 +204,13 @@ const FacultyLMSDashboard = () => {
               <div className="w-full flex justify-between">
                 <div>My Courses</div>
                 <div>
-                  <button
+                  {/* <button
                     onClick={() => navigate("/p/interactive-classroom")}
                     className={`p-3 flex justify-between items-center gap-2 border-2 rounded-xl border-black`}
                   >
                     <Home className="w-6 h-6" />
                     <span>Room</span>
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </h1>
