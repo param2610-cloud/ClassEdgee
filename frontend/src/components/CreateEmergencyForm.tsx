@@ -1,59 +1,103 @@
-import React, { useEffect, useState } from 'react';
-import { Alert, AlertTitle } from '@/components/ui/alert';
-import { AlertCircle, CheckCircle2 } from 'lucide-react';
-import { domain } from '@/lib/constant';
-import { useAuth } from '@/services/AuthContext';
-import { Room } from '@/interface/general';
+import React, { useState, useEffect } from 'react';
+import { useToast } from "@/hooks/use-toast"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { 
+  AlertTriangle, 
+  Building2, 
+  MapPin 
+} from 'lucide-react';
 
-const CreateEmergencyForm = () => {
-    const {user} = useAuth();
-    const [rooms,setrooms] = useState<Room[]>([]);
+interface Building {
+  id: number;
+  name: string;
+  status:string;
+}
 
-    useEffect(() => {
-        const fetchRooms = async () => {
-            try {
-                const response = await fetch(`${domain}/api/v1/room/list-of-rooms`);
-                if (!response.ok) {
-                    throw new Error('Failed to fetch rooms');
-                }
-                const data = await response.json();
-                console.log(data);
-                
-                setrooms(data.data);
-            } catch (error) {
-                console.error('Error fetching rooms:', error);
-            }
-        };
+interface Room {
+  room_id: number;
+  room_number: string;
+  floor_number: number;
+}
 
-        fetchRooms();
-    }, []);
+const CreateEmergencyAlert = () => {
+  const { toast } = useToast();
+  const [buildings, setBuildings] = useState<Building[]>([]);
+  const [rooms, setRooms] = useState<Room[]>([]);
+  const [selectedBuilding, setSelectedBuilding] = useState<string>("");
+  const [loading, setLoading] = useState(false);
+
   const [formData, setFormData] = useState({
-    type: '',
+    type: 'fire',
     severity: 'low',
     location_id: '',
     description: '',
-    reported_by: user?.user_id,
-    status: 'active'
   });
 
-  const [submitStatus, setSubmitStatus] = useState({
-    success: false,
-    error: false,
-    message: ''
-  });
+  useEffect(() => {
+    fetchBuildings();
+  }, []);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
+  useEffect(() => {
+    if (selectedBuilding) {
+      fetchRooms(selectedBuilding);
+    }
+  }, [selectedBuilding]);
+
+  const fetchBuildings = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/api/buildings');
+      const data = await response.json();
+      console.log(data);
+      
+      setBuildings(data);
+    } catch (error) {
+      console.error('Error fetching buildings:', error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to fetch buildings",
+      });
+    }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const fetchRooms = async (buildingId: string) => {
     try {
-      const response = await fetch(`${domain}/api/v1/emergency/create`, {
+      const response = await fetch(`http://localhost:3000/api/buildings/${buildingId}/rooms`);
+      const data = await response.json();
+      setRooms(data);
+    } catch (error) {
+      console.error('Error fetching rooms:', error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to fetch rooms",
+      });
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const response = await fetch('http://localhost:3000/api/emergency-alerts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -62,133 +106,162 @@ const CreateEmergencyForm = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to create emergency alert');
+        throw new Error('Failed to create alert');
       }
 
-      const data = await response.json();
-      setSubmitStatus({
-        success: true,
-        error: false,
-        message: 'Emergency alert created successfully!'
+      toast({
+        title: "Emergency Alert Created",
+        description: "The emergency alert has been successfully created and notifications have been sent.",
       });
 
-      // Reset form after successful submission
+      // Reset form
       setFormData({
-        type: '',
+        type: 'fire',
         severity: 'low',
         location_id: '',
         description: '',
-        reported_by: user?.user_id,
-        status: 'active'
       });
+      setSelectedBuilding("");
 
     } catch (error) {
-      setSubmitStatus({
-        success: false,
-        error: true,
-        message: 'Failed to create emergency alert. Please try again.'
+      console.error('Error creating alert:', error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to create emergency alert",
       });
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-6">Create Emergency Alert</h2>
-
-      {submitStatus.success && (
-        <Alert className="mb-4 bg-green-50 border-green-200">
-          <CheckCircle2 className="h-4 w-4 text-green-600" />
-          <AlertTitle className="text-green-800">{submitStatus.message}</AlertTitle>
-        </Alert>
-      )}
-
-      {submitStatus.error && (
-        <Alert className="mb-4 bg-red-50 border-red-200">
-          <AlertCircle className="h-4 w-4 text-red-600" />
-          <AlertTitle className="text-red-800">{submitStatus.message}</AlertTitle>
-        </Alert>
-      )}
-
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label htmlFor="type" className="block text-sm font-medium text-gray-700">
-            Emergency Type
-          </label>
-          <select
-            id="type"
-            name="type"
-            value={formData.type}
-            onChange={handleInputChange}
-            required
-            className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2"
-          >
-            <option value="">Select Type</option>
-            <option value="fire">Fire</option>
-            <option value="security">Security</option>
-            <option value="medical">Medical</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-
-        <div>
-          <label htmlFor="severity" className="block text-sm font-medium text-gray-700">
-            Severity
-          </label>
-          <select
-            id="severity"
-            name="severity"
-            value={formData.severity}
-            onChange={handleInputChange}
-            className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2"
-          >
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-            <option value="critical">Critical</option>
-          </select>
-        </div>
-
-        <div>
-                <label htmlFor="location_id">Location</label>
-                <select
-                    name="location_id"
-                    value={formData.location_id}
-                    onChange={handleInputChange}
-                >
-                    <option value="">Select a room</option>
-                    {rooms.map(room => (
-                        <option key={room.room_id} value={room.room_id}>
-                            {room.room_number} - {room.room_type}
-                        </option>
-                    ))}
-                </select>
-            </div>
-
-        <div>
-          <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-            Description
-          </label>
-          <textarea
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleInputChange}
-            required
-            rows={4}
-            className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2"
-          />
-        </div>
-
-        
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-        >
+    <Card className="w-full max-w-2xl mx-auto">
+      <CardHeader>
+        <CardTitle className="text-2xl flex items-center gap-2">
+          <AlertTriangle className="h-6 w-6 text-red-500" />
           Create Emergency Alert
-        </button>
-      </form>
-    </div>
+        </CardTitle>
+        <CardDescription>
+          Create an emergency alert to notify all users in the affected area
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="space-y-2">
+            <Label htmlFor="type">Alert Type</Label>
+            <Select
+              value={formData.type}
+              onValueChange={(value) => setFormData({ ...formData, type: value })}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select alert type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="fire">Fire</SelectItem>
+                <SelectItem value="security">Security</SelectItem>
+                <SelectItem value="medical">Medical</SelectItem>
+                <SelectItem value="other">Other</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="severity">Severity Level</Label>
+            <Select
+              value={formData.severity}
+              onValueChange={(value) => setFormData({ ...formData, severity: value })}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select severity level" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="low">Low</SelectItem>
+                <SelectItem value="medium">Medium</SelectItem>
+                <SelectItem value="high">High</SelectItem>
+                <SelectItem value="critical">Critical</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="space-y-2">
+            <Label>Location</Label>
+            <div className="space-y-4">
+              <div>
+                <Label className="text-sm flex items-center gap-2">
+                  <Building2 className="h-4 w-4" />
+                  Building
+                </Label>
+                <Select
+                  value={selectedBuilding}
+                  onValueChange={setSelectedBuilding}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select building" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {buildings.map((building) => (
+                      <SelectItem 
+                        key={building?.id} 
+                        value={building?.id?.toString()}
+                      >
+                        {building.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
+                <Label className="text-sm flex items-center gap-2">
+                  <MapPin className="h-4 w-4" />
+                  Room
+                </Label>
+                <Select
+                  value={formData.location_id}
+                  onValueChange={(value) => setFormData({ ...formData, location_id: value })}
+                  disabled={!selectedBuilding}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder={selectedBuilding ? "Select room" : "Select building first"} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {rooms.map((room) => (
+                      <SelectItem 
+                        key={room.room_id} 
+                        value={room.room_id.toString()}
+                      >
+                        Room {room.room_number} (Floor {room.floor_number})
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="description">Description</Label>
+            <Textarea
+              id="description"
+              placeholder="Provide detailed information about the emergency..."
+              value={formData.description}
+              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              className="h-32"
+            />
+          </div>
+
+          <Button 
+            type="submit" 
+            disabled={loading}
+            className="w-full bg-red-500 hover:bg-red-600"
+          >
+            {loading ? "Creating Alert..." : "Create Emergency Alert"}
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
   );
 };
 
-export default CreateEmergencyForm;
+export default CreateEmergencyAlert;

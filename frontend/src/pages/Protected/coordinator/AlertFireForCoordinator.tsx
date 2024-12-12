@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useAuth } from "@/services/AuthContext";
+import { useToast } from "@/hooks/use-toast";
 import {
   AlertCircle,
   Siren,
@@ -7,6 +8,7 @@ import {
   Phone,
   ArrowRight,
   Building,
+  LogOut,
 } from "lucide-react";
 import {
   Card,
@@ -25,25 +27,69 @@ import { Badge } from "@/components/ui/badge";
 
 const API_BASE_URL = 'http://localhost:3000/api';
 
-const AlertFire = () => {
-  const [activeAlerts, setActiveAlerts] = useState([]);
-  const [buildings, setBuildings] = useState([]);
-  const [selectedBuilding, setSelectedBuilding] = useState(null);
-  const [emergencyContacts, setEmergencyContacts] = useState([]);
-  const [evacuationRoutes, setEvacuationRoutes] = useState(null);
-  const audioRef = useRef(new Audio('/emergency-siren.mp3'));
+interface Building {
+  id: number;
+  name: string;
+  status: string;
+}
 
-  // Function to play emergency sound
+interface Room {
+  room_id: number;
+  room_number: string;
+  floor_number: number;
+}
+
+interface EmergencyContact {
+  title: string;
+  number: string;
+}
+
+interface Alert {
+  alert_id: number;
+  type: string;
+  severity: string;
+  description: string;
+  status: 'active' | 'resolved';
+  reported_at: string;
+  rooms?: {
+    buildings?: {
+      building_name: string;
+    };
+  };
+}
+
+interface EvacuationRoute {
+  building: string;
+  routes: {
+    primary: {
+      steps: string[];
+    };
+    secondary: {
+      steps: string[];
+    };
+  };
+}
+
+const AlertFireCoordinator = () => {
+  const { logout } = useAuth();
+  const { toast } = useToast();
+  const [activeAlerts, setActiveAlerts] = useState<Alert[]>([]);
+  const [buildings, setBuildings] = useState<Building[]>([]);
+  const [selectedBuilding, setSelectedBuilding] = useState<string | null>(null);
+  const [emergencyContacts, setEmergencyContacts] = useState<EmergencyContact[]>([]);
+  const [evacuationRoutes, setEvacuationRoutes] = useState<EvacuationRoute | null>(null);
+  const audioRef = useRef<HTMLAudioElement>(new Audio('/emergency-siren.mp3'));
+  const [loading, setLoading] = useState<boolean>(false);
+
   const playEmergencySound = () => {
     if (audioRef.current) {
-      audioRef.current.loop = true; // Make the sound loop
+      audioRef.current.loop = true;
       audioRef.current.play().catch(error => {
         console.error('Error playing audio:', error);
       });
     }
   };
 
-  // Stop sound when component unmounts or when there are no active alerts
   useEffect(() => {
     return () => {
       if (audioRef.current) {
@@ -53,15 +99,19 @@ const AlertFire = () => {
     };
   }, []);
 
-  // Fetch initial data and set up polling
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const [alertsRes, buildingsRes, contactsRes] = await Promise.all([
           fetch(`${API_BASE_URL}/emergency-alerts`),
           fetch(`${API_BASE_URL}/buildings`),
           fetch(`${API_BASE_URL}/emergency-contacts`)
         ]);
+
+        if (!alertsRes.ok || !buildingsRes.ok || !contactsRes.ok) {
+          throw new Error('Failed to fetch data');
+        }
 
         const alerts = await alertsRes.json();
         const buildings = await buildingsRes.json();
@@ -71,11 +121,9 @@ const AlertFire = () => {
         setBuildings(buildings);
         setEmergencyContacts(contacts);
         
-        // Play sound if there are active alerts
-        if (alerts.length > 0) {
+        if (alerts.some(alert => alert.status === 'active')) {
           playEmergencySound();
         } else {
-          // Stop sound if no active alerts
           if (audioRef.current) {
             audioRef.current.pause();
             audioRef.current.currentTime = 0;
@@ -83,31 +131,106 @@ const AlertFire = () => {
         }
 
         if (buildings.length > 0) {
-          setSelectedBuilding(buildings[0].id);
+          setSelectedBuilding(buildings[0].id.toString());
         }
       } catch (error) {
         console.error('Failed to fetch data:', error);
+        toast({
+          title: "Error",
+          description: "Failed to fetch emergency data",
+          variant: "destructive",
+        });
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
-    
-    // Poll for updates every 10 seconds
     const interval = setInterval(fetchData, 10000);
     return () => clearInterval(interval);
-  }, []);
+  }, [toast]);
 
-  // Fetch evacuation routes when selected building changes
   useEffect(() => {
     if (selectedBuilding) {
       fetch(`${API_BASE_URL}/evacuation-routes/${selectedBuilding}`)
-        .then(res => res.json())
+        .then(res => {
+          if (!res.ok) throw new Error('Failed to fetch evacuation routes');
+          return res.json();
+        })
         .then(data => setEvacuationRoutes(data))
-        .catch(error => console.error('Failed to fetch evacuation routes:', error));
+        .catch(error => {
+          console.error('Failed to fetch evacuation routes:', error);
+          toast({
+            title: "Error",
+            description: "Failed to fetch evacuation routes",
+            variant: "destructive",
+          });
+        });
     }
-  }, [selectedBuilding]);
+  }, [selectedBuilding, toast]);
 
-  const getStatusColor = (status) => {
+  const handleAlertStatusChange = async (alertId: number, newStatus: 'active' | 'resolved') => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/emergency-alerts/${alertId}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ status: newStatus }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update alert status');
+      }
+
+      setActiveAlerts(prevAlerts =>
+        prevAlerts.map(alert =>
+          alert.alert_id === alertId
+            ? { ...alert, status: newStatus }
+            : alert
+        )
+      );
+
+      toast({
+        title: newStatus === 'active' ? "Alert Activated" : "Alert Resolved",
+        description: newStatus === 'active' 
+          ? "Emergency protocols have been reactivated." 
+          : "Emergency has been marked as resolved.",
+        variant: newStatus === 'active' ? "destructive" : "default",
+      });
+
+      if (newStatus === 'resolved' && !activeAlerts.some(alert => 
+        alert.alert_id !== alertId && alert.status === 'active'
+      )) {
+        if (audioRef.current) {
+          audioRef.current.pause();
+          audioRef.current.currentTime = 0;
+        }
+      }
+    } catch (error) {
+      console.error('Failed to update alert status:', error);
+      toast({
+        title: "Error",
+        description: "Failed to update alert status",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error('Failed to logout:', error);
+      toast({
+        title: "Error",
+        description: "Failed to logout",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const getStatusColor = (status: string) => {
     switch (status) {
       case "alert":
         return "bg-red-500";
@@ -120,20 +243,16 @@ const AlertFire = () => {
     }
   };
 
-  // Only render if there are active alerts
+  if (loading) {
+    return <div className="fixed inset-0 bg-white z-50 flex items-center justify-center">
+      <div className="text-2xl font-semibold">Loading emergency data...</div>
+    </div>;
+  }
+
+  // Only render if there are alerts (active or resolved)
   if (activeAlerts.length === 0) {
     return null;
   }
-
-  const { logout } = useAuth();
-
-  const handleLogout = async () => {
-    try {
-      await logout();
-    } catch (error) {
-      console.error('Failed to logout:', error);
-    }
-  };
 
   return (
     <div className="fixed inset-0 bg-white z-50 overflow-auto">
@@ -141,8 +260,9 @@ const AlertFire = () => {
         <Button 
           variant="destructive" 
           onClick={handleLogout}
-          className="font-semibold"
+          className="font-semibold flex items-center gap-2"
         >
+          <LogOut className="h-4 w-4" />
           Emergency Logout
         </Button>
       </div>
@@ -173,7 +293,7 @@ const AlertFire = () => {
                   <div
                     key={building.id}
                     className="p-4 border rounded-lg cursor-pointer hover:shadow-md transition-shadow"
-                    onClick={() => setSelectedBuilding(building.id)}
+                    onClick={() => setSelectedBuilding(building.id.toString())}
                   >
                     <div className="flex items-center justify-between">
                       <span className="font-medium">{building.name}</span>
@@ -275,18 +395,31 @@ const AlertFire = () => {
                 {activeAlerts.map((alert) => (
                   <div
                     key={alert.alert_id}
-                    className="p-3 border rounded-lg bg-red-50 border-red-200"
+                    className={`p-3 border rounded-lg ${
+                      alert.status === 'active' ? 'bg-red-50 border-red-200' : 'bg-gray-50 border-gray-200'
+                    }`}
                   >
                     <div className="flex items-center justify-between mb-1">
-                      <span className="font-medium text-red-600">
+                      <span className={`font-medium ${alert.status === 'active' ? 'text-red-600' : 'text-gray-600'}`}>
                         {alert.type}
                       </span>
-                      <Badge variant="destructive">{alert.severity}</Badge>
+                      <Badge variant={alert.status === 'active' ? "destructive" : "secondary"}>
+                        {alert.severity}
+                      </Badge>
                     </div>
                     <p className="text-sm text-gray-600">{alert.description}</p>
-                    <p className="text-xs text-gray-500 mt-1">
-                      {new Date(alert.reported_at).toLocaleTimeString()}
-                    </p>
+                    <div className="flex justify-between items-center mt-2">
+                      <p className="text-xs text-gray-500">
+                        {new Date(alert.reported_at).toLocaleTimeString()}
+                      </p>
+                      <Button 
+                        variant={alert.status === 'active' ? "destructive" : "outline"}
+                        size="sm"
+                        onClick={() => handleAlertStatusChange(alert.alert_id, alert.status === 'active' ? 'resolved' : 'active')}
+                      >
+                        {alert.status === 'active' ? 'Resolve' : 'Reactivate'}
+                      </Button>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -298,4 +431,4 @@ const AlertFire = () => {
   );
 };
 
-export default AlertFire;
+export default AlertFireCoordinator;
