@@ -55,15 +55,12 @@ const DepartmentDetails = () => {
       setInstitutionId(localStorage.getItem('institution_id') as string)
       console.log('after institution id',institution_id);
     }
-    if(!profileData && id){
-      fetchProfile()
-    }else{
+    if(profileData){
       fetchDepartmentDetails()
+    }else{
+      fetchProfile()
     } 
-    if(!profileData && id){
-      fetchDepartmentDetailsByID()
-    }
-  },[institution_id,user,profileData,id])
+  },[user?.user_id,profileData])
   console.log(profileData);
   const fetchProfile = async () => {
     const response = await axios.get(`${domain}/api/v1/faculty/get-faculty/${user?.user_id}`);

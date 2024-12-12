@@ -137,16 +137,6 @@ const StudentLMSDashboard = () => {
           >
             <CheckSquare className="w-6 h-6" /> Assignments
           </button>
-          <button
-            onClick={() => setActiveSection("messages")}
-            className={`p-3 rounded flex flex-row gap-4 ${
-              activeSection === "messages"
-                ? "bg-blue-100 text-blue-600"
-                : "text-gray-500 hover:bg-blue-100 hover:text-blue-700"
-            }`}
-          >
-            <MessageCircle className="w-6 h-6" /> Messages
-          </button>
           
 
           <button
@@ -159,7 +149,7 @@ const StudentLMSDashboard = () => {
                 : "text-gray-500 hover:bg-yellow-100 hover:text-yellow-700"
             }`}
           >
-            <Bell className="w-6 h-6" /> AI Assitance
+            <Bell className="w-6 h-6" /> Tech Events
           </button>
 
           <button
@@ -202,7 +192,9 @@ const StudentLMSDashboard = () => {
 
       {/* Main Content Area */}
       <div className="flex-1 p-8 overflow-y-auto">
-        <UpcomingClassComponentStudent userData={userData} />
+        
+        {activeSection==='courses' && <UpcomingClassComponentStudent userData={userData} />}
+        {activeSection==='calendar' && <UpcomingClassComponentStudent userData={userData} />}
         {activeSection === "courses" && (
           <div>
             <h1 className="text-2xl font-bold mb-6">My Courses</h1>
