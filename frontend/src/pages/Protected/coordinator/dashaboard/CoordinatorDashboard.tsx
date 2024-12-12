@@ -41,6 +41,13 @@ const CoordinatorDashboard = () => {
       icon: <Calendar className="h-6 w-6" />,
       path: '/p/classes',
       stats: '20+ Classes'
+    },
+    {
+      title: 'Resource Management',
+      description: 'Manage classroom equipments',
+      icon: <Calendar className="h-6 w-6" />,
+      path: '/p/resource',
+      stats: '500+ Resources'
     }
   ];
 
