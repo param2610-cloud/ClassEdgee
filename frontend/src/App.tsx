@@ -58,6 +58,9 @@ import TechEventsNotifications from "./pages/Protected/student/TechNotification"
 import Chatbot from "./components/Chatbot";
 import ChatBot from "./pages/Protected/student/chatBot/ChatBot";
 import Feedback from "./pages/Protected/student/feedback/Feedback";
+import axios from "axios";
+import { domain } from "./lib/constant";
+import CreateEmergencyForm from "./components/CreateEmergencyForm";
 import ResourceManagement from "./pages/Protected/coordinator/resource/ResourceManagement";
 // import SechduleForSemester from "./pages/Protected/faculty/sechdule/SechduleForSemester";
 // import ScheduleManager from "./pages/Protected/faculty/sechdule/ScheduleManagement";
@@ -83,7 +86,7 @@ const App: React.FC = () => {
 
 const ProtectedRoute: React.FC = () => {
     const { user, isLoading } = useAuth();
-
+    
     useEffect(() => {
         console.log("ProtectedRoute - User:", user);
         console.log("ProtectedRoute - IsLoading:", isLoading);
@@ -234,6 +237,7 @@ const CoordinatorRoutes: React.FC = () => (
       />
       <Route path="/classes" element={<TimeslotManagement />} />
       <Route path="department/:department_id/add-hod" element={<AddHod />} />
+            <Route path="/emergency" element={<CreateEmergencyForm />} />
     </Routes>
   </CoordinatorLayout>
 );

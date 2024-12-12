@@ -1,17 +1,11 @@
-import { 
-    createFireAlert,
-    getActiveAlerts,
-    getLatestFireAlert,
-    resolveAlert,
-    getNotifications
-} from '../controllers/Emergency.controller.js';
+import { createEmergency, getEmergencies, listOfAlerts, updateAlertStatus } from "../controllers/Emergency.controller.js";
 
-
+import express from 'express';
 const router = express.Router();
 
-router.post('/', createFireAlert);
 
-router.get('/alerts/active', getActiveAlerts);
-router.get('/alerts/latest-fire', getLatestFireAlert);
-router.put('/alerts/:alert_id/resolve', resolveAlert);
-router.get('/notifications', getNotifications);
+router.post('/create', createEmergency);
+router.get('/get', getEmergencies);
+router.get('/list-of-alert', listOfAlerts);
+router.post('/:alertId', updateAlertStatus);
+export default router;
