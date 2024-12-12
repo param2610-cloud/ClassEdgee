@@ -58,6 +58,7 @@ import TechEventsNotifications from "./pages/Protected/student/TechNotification"
 import Chatbot from "./components/Chatbot";
 import ChatBot from "./pages/Protected/student/chatBot/ChatBot";
 import Feedback from "./pages/Protected/student/feedback/Feedback";
+import ResourceManagement from "./pages/Protected/coordinator/resource/ResourceManagement";
 // import SechduleForSemester from "./pages/Protected/faculty/sechdule/SechduleForSemester";
 // import ScheduleManager from "./pages/Protected/faculty/sechdule/ScheduleManagement";
 // import ScheduleDetailView from "./pages/Protected/faculty/sechdule/ScheduleDetailsView";
@@ -203,40 +204,38 @@ const StudentRoutes: React.FC = () => (
     </StudentLayout>
 );
 const CoordinatorRoutes: React.FC = () => (
-    <CoordinatorLayout>
-        <Routes>
-            <Route path="/" element={<CoordinatorDashboard />} />
-            <Route path="/student" element={<CoordinatorStudent />} />
-            <Route path="/student/create" element={<StudentUploadLayout />} />
-            <Route
-                path="/student/edit/:user_id"
-                element={<EditStudentForm />}
-            />
-            <Route path="/faculty" element={<CoordinatorFaculty />} />
-            <Route path="/faculty/create" element={<TeacherUploadLayout />} />
-            <Route path="/faculty/edit/:id" element={<FacultyEditProfile />} />
-            <Route path="/department" element={<DepartmentLayout />} />
-            <Route path="/department/:id" element={<DetailDepartment />} />
-            <Route path="/department/create" element={<AddDepartmentForm />} />
-            <Route path="/roomCreation" element={<Createroom />} />
-            <Route path="/course" element={<CourseDashboard />} />
-            <Route path="/course/:id" element={<SpecificCourseDashboard />} />
-            <Route
-                path="/course/:course_id/semester/:semester_id/:syllabus_id"
-                element={<SubjectManagement />}
-            />
-            <Route
-                path="department/:department_id/add-syllabus/:course_id"
-                element={<AddBatchSyllabus />}
-            />
-            <Route
-                path="/course/:course_id/semester/:semester_id/syllabus/:syllabus_id/subject/:subject_id"
-                element={<UnitTopicManagement />}
-            />
-            <Route path="/classes" element={<TimeslotManagement/>} />
-            <Route path="department/:department_id/add-hod" element={<AddHod/>} />
-        </Routes>
-    </CoordinatorLayout>
+  <CoordinatorLayout>
+    <Routes>
+      <Route path="/" element={<CoordinatorDashboard />} />
+      <Route path="/student" element={<CoordinatorStudent />} />
+      <Route path="/student/create" element={<StudentUploadLayout />} />
+      <Route path="/student/edit/:user_id" element={<EditStudentForm />} />
+      <Route path="/faculty" element={<CoordinatorFaculty />} />
+      <Route path="/faculty/create" element={<TeacherUploadLayout />} />
+      <Route path="/faculty/edit/:id" element={<FacultyEditProfile />} />
+      <Route path="/department" element={<DepartmentLayout />} />
+      <Route path="/department/:id" element={<DetailDepartment />} />
+      <Route path="/department/create" element={<AddDepartmentForm />} />
+      <Route path="/roomCreation" element={<Createroom />} />
+      <Route path="/course" element={<CourseDashboard />} />
+      <Route path="/course/:id" element={<SpecificCourseDashboard />} />
+      <Route path="/resource" element={<ResourceManagement />} />
+      <Route
+        path="/course/:course_id/semester/:semester_id/:syllabus_id"
+        element={<SubjectManagement />}
+      />
+      <Route
+        path="department/:department_id/add-syllabus/:course_id"
+        element={<AddBatchSyllabus />}
+      />
+      <Route
+        path="/course/:course_id/semester/:semester_id/syllabus/:syllabus_id/subject/:subject_id"
+        element={<UnitTopicManagement />}
+      />
+      <Route path="/classes" element={<TimeslotManagement />} />
+      <Route path="department/:department_id/add-hod" element={<AddHod />} />
+    </Routes>
+  </CoordinatorLayout>
 );
 
 export default App;
