@@ -18,7 +18,7 @@ import { useAtom } from "jotai";
 import { domain } from "@/lib/constant";
 import { useNavigate } from "react-router-dom";
 import Feedback from "./feedback/Feedback";
-import AlertFire from "@/components/AlertFire";
+import  Calender  from "./calender/Calender";
 
 const StudentLMSDashboard = () => {
   const [activeSection, setActiveSection] = useState("courses");
@@ -122,7 +122,9 @@ const StudentLMSDashboard = () => {
             <span className="hidden sm:inline">Courses</span>
           </button>
           <button
-            onClick={() => setActiveSection("calendar")}
+            onClick={() => {
+              navigate("/p/calender");
+            }}
             className={`p-3 rounded flex flex-row gap-4 ${
               activeSection === "calendar"
                 ? "bg-blue-100 text-blue-600"
@@ -170,19 +172,6 @@ const StudentLMSDashboard = () => {
           >
             <FileQuestion className="w-6 h-6" />{" "}
             <span className="hidden sm:inline">Feedback</span>
-          </button>
-          <button
-            onClick={() => {
-              setActiveSection("alert");
-            }}
-            className={`p-3 rounded flex flex-row gap-4 ${
-              activeSection === "alert"
-                ? "bg-red-100 text-red-700"
-                : "text-gray-500 hover:bg-red-100 hover:text-red-700"
-            }`}
-          >
-            <Siren className="w-6 h-6" />{" "}
-            <span className="hidden sm:inline">Alert</span>
           </button>
 
           <button
@@ -240,7 +229,7 @@ const StudentLMSDashboard = () => {
 
         {/* feedbackform */}
         {activeSection === "feedback" && <Feedback />}
-        {activeSection === "alert" && <AlertFire />}
+        {activeSection === "calendar" && <Calender />}
         {activeSection === "assignments" && (
           <div>
             <h1 className="text-2xl font-bold mb-6">Upcoming Assignments</h1>

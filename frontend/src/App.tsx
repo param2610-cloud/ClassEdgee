@@ -63,6 +63,7 @@ import { domain } from "./lib/constant";
 import CreateEmergencyForm from "./components/CreateEmergencyForm";
 import { BellElectricIcon } from "lucide-react";
 import ResourceManagement from "./pages/Protected/coordinator/resource/ResourceManagement";
+import Calender from "./pages/Protected/student/calender/Calender";
 // import SechduleForSemester from "./pages/Protected/faculty/sechdule/SechduleForSemester";
 // import ScheduleManager from "./pages/Protected/faculty/sechdule/ScheduleManagement";
 // import ScheduleDetailView from "./pages/Protected/faculty/sechdule/ScheduleDetailsView";
@@ -203,26 +204,21 @@ const FacultyRoutes: React.FC = () =>{
 const StudentRoutes: React.FC = () => {
     
     return (
-    <StudentLayout>
+      <StudentLayout>
         <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/profile-page" element={<StudentProfile />} />
-            <Route
-                path="/classes/:class_id"
-                element={<ClassDashboardStudent    />}
-            />
-            <Route
-                path="/notifications"
-                element={<TechEventsNotifications    />}
-            />
-            <Route
-                path="/feedback"
-                element={<Feedback    />}
-            />
-            <Route path="/emergency" element={<CreateEmergencyForm />} />
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/profile-page" element={<StudentProfile />} />
+          <Route
+            path="/classes/:class_id"
+            element={<ClassDashboardStudent />}
+          />
+          <Route path="/notifications" element={<TechEventsNotifications />} />
+          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/calender" element={ <Calender /> } />
+          <Route path="/emergency" element={<CreateEmergencyForm />} />
         </Routes>
-    </StudentLayout>
-)};
+      </StudentLayout>
+    );};
 const CoordinatorRoutes: React.FC = () => {
 
     return (
