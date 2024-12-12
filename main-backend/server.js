@@ -59,7 +59,7 @@ app.use((req, res, next) => {
     console.log(`${req.method} ${req.originalUrl}`);
     next();
   });
-app.use(logger)
+// app.use(logger)
 
 
 //router declaration 
