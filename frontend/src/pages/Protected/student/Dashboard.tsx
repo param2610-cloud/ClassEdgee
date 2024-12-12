@@ -96,9 +96,12 @@ const StudentLMSDashboard = () => {
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar Navigation */}
-      <div className="w-44 bg-white shadow-md flex flex-col items-center py-8">
+      <div className="w-20 sm:w-44 bg-white shadow-md flex flex-col items-center py-8">
         <div className="mb-8">
-          <Avatar onClick={() => navigate("/p/profile-page")}>
+          <Avatar
+            className="cursor-pointer"
+            onClick={() => navigate("/p/profile-page")}
+          >
             <AvatarImage src={userData?.profile_picture} />
             <AvatarFallback className="bg-blue-500 text-white">
               {userData?.first_name?.charAt(0) || ""}
@@ -106,16 +109,17 @@ const StudentLMSDashboard = () => {
             </AvatarFallback>
           </Avatar>
         </div>
-        <nav className="space-y-6 flex flex-col items-start  ">
+        <nav className="space-y-6 flex flex-col items-start">
           <button
             onClick={() => setActiveSection("courses")}
-            className={`p-3 rounded flex flex-row gap-4 ${
+            className={`p-3 rounded flex flex-row items-center gap-4 ${
               activeSection === "courses"
                 ? "bg-blue-100 text-blue-600"
                 : "text-gray-500 hover:bg-blue-100 hover:text-blue-700"
             }`}
           >
-            <Book className="w-6 h-6" /> Courses
+            <Book className="w-6 h-6" />
+            <span className="hidden sm:inline">Courses</span>
           </button>
           <button
             onClick={() => setActiveSection("calendar")}
@@ -125,7 +129,8 @@ const StudentLMSDashboard = () => {
                 : "text-gray-500 hover:bg-blue-100 hover:text-blue-700"
             }`}
           >
-            <Calendar className="w-6 h-6" /> Calender
+            <Calendar className="w-6 h-6" />{" "}
+            <span className="hidden sm:inline">Calender</span>
           </button>
           <button
             onClick={() => setActiveSection("assignments")}
@@ -135,9 +140,9 @@ const StudentLMSDashboard = () => {
                 : "text-gray-500 hover:bg-blue-100 hover:text-blue-700"
             }`}
           >
-            <CheckSquare className="w-6 h-6" /> Assignments
+            <CheckSquare className="w-6 h-6" />{" "}
+            <span className="hidden sm:inline">Assignments</span>
           </button>
-          
 
           <button
             onClick={() => {
@@ -149,7 +154,8 @@ const StudentLMSDashboard = () => {
                 : "text-gray-500 hover:bg-yellow-100 hover:text-yellow-700"
             }`}
           >
-            <Bell className="w-6 h-6" /> Tech Events
+            <Bell className="w-6 h-6" />{" "}
+            <span className="hidden sm:inline">Tech Events</span>
           </button>
 
           <button
@@ -162,7 +168,8 @@ const StudentLMSDashboard = () => {
                 : "text-gray-500 hover:bg-green-100 hover:text-green-700"
             }`}
           >
-            <FileQuestion className="w-6 h-6" /> Feedback
+            <FileQuestion className="w-6 h-6" />{" "}
+            <span className="hidden sm:inline">Feedback</span>
           </button>
           <button
             onClick={() => {
@@ -174,7 +181,8 @@ const StudentLMSDashboard = () => {
                 : "text-gray-500 hover:bg-red-100 hover:text-red-700"
             }`}
           >
-            <Siren className="w-6 h-6" /> Alert
+            <Siren className="w-6 h-6" />{" "}
+            <span className="hidden sm:inline">Alert</span>
           </button>
 
           <button
@@ -185,16 +193,20 @@ const StudentLMSDashboard = () => {
                 : "text-gray-500 hover:bg-red-100 hover:text-red-500"
             }`}
           >
-            <LogOut className="w-6 h-6" /> Logout
+            <LogOut className="w-6 h-6" />{" "}
+            <span className="hidden sm:inline">Logout</span>
           </button>
         </nav>
       </div>
 
       {/* Main Content Area */}
       <div className="flex-1 p-8 overflow-y-auto">
-        
-        {activeSection==='courses' && <UpcomingClassComponentStudent userData={userData} />}
-        {activeSection==='calendar' && <UpcomingClassComponentStudent userData={userData} />}
+        {activeSection === "courses" && (
+          <UpcomingClassComponentStudent userData={userData} />
+        )}
+        {activeSection === "calendar" && (
+          <UpcomingClassComponentStudent userData={userData} />
+        )}
         {activeSection === "courses" && (
           <div>
             <h1 className="text-2xl font-bold mb-6">My Courses</h1>

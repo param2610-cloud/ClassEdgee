@@ -82,10 +82,10 @@ const FacultyLMSDashboard = () => {
   return (
     <div className="flex h-auto bg-gray-100">
       {/* Sidebar Navigation */}
-      <div className="w-52 bg-white shadow-md flex flex-col items-center py-8">
+      <div className="w-20 sm:w-52 bg-white shadow-md flex flex-col items-center py-8">
         <div className="mb-1">
           <img
-            src="/faculty.jpg"
+            src="/faculty2.jpg"
             alt="Faculty Profile"
             className="rounded-full w-16 h-16 object-cover my-3"
           />
@@ -99,7 +99,8 @@ const FacultyLMSDashboard = () => {
                 : "text-gray-700 hover:bg-violet-100 hover:text-blue-700"
             }`}
           >
-            <User2 className="w-6 h-6" /> Profile
+            <User2 className="w-6 h-6" />{" "}
+            <span className="hidden sm:inline">Profile</span>
           </button>
 
           <button
@@ -110,7 +111,8 @@ const FacultyLMSDashboard = () => {
                 : "text-gray-700 hover:bg-violet-100 hover:text-blue-700"
             }`}
           >
-            <BookOpen className="w-6 h-6" /> Courses
+            <BookOpen className="w-6 h-6" />{" "}
+            <span className="hidden sm:inline">Courses</span>
           </button>
           <button
             onClick={() => setActiveSection("students")}
@@ -120,7 +122,8 @@ const FacultyLMSDashboard = () => {
                 : "text-gray-700 hover:bg-violet-100 hover:text-blue-700"
             }`}
           >
-            <Users className="w-6 h-6" /> Students Details
+            <Users className="w-6 h-6" />{" "}
+            <span className="hidden sm:inline">Students Details</span>
           </button>
           <button
             onClick={() => setActiveSection("assignments")}
@@ -130,7 +133,8 @@ const FacultyLMSDashboard = () => {
                 : "text-gray-700 hover:bg-violet-100 hover:text-blue-700"
             }`}
           >
-            <ClipboardList className="w-6 h-6" /> Assingments
+            <ClipboardList className="w-6 h-6" />{" "}
+            <span className="hidden sm:inline">Assingments</span>
           </button>
           <button
             onClick={() => navigate("/p/interactive-classroom")}
@@ -140,7 +144,8 @@ const FacultyLMSDashboard = () => {
                 : "text-gray-700 hover:bg-violet-100 hover:text-blue-700"
             }`}
           >
-            <Home className="w-6 h-6" /> Room
+            <Home className="w-6 h-6" />{" "}
+            <span className="hidden sm:inline">Room</span>
           </button>
 
           <button
@@ -151,7 +156,8 @@ const FacultyLMSDashboard = () => {
                 : "text-gray-700 hover:bg-violet-100 hover:text-blue-700"
             }`}
           >
-            <Book className="w-6 h-6" /> Department Info
+            <Book className="w-6 h-6" />{" "}
+            <span className="hidden sm:inline">Department Info</span>
           </button>
           <button
             onClick={() => navigate("/p/department-syllabus")}
@@ -161,7 +167,8 @@ const FacultyLMSDashboard = () => {
                 : "text-gray-700 hover:bg-violet-100 hover:text-blue-700"
             }`}
           >
-            <List className="w-6 h-6" /> Syllabus
+            <List className="w-6 h-6" />{" "}
+            <span className="hidden sm:inline">Syllabus</span>
           </button>
           <button
             onClick={() => navigate("/p/schedule")}
@@ -171,7 +178,8 @@ const FacultyLMSDashboard = () => {
                 : "text-gray-700 hover:bg-violet-100 hover:text-blue-700"
             }`}
           >
-            <Calendar className="w-6 h-6" /> Schedule
+            <Calendar className="w-6 h-6" />{" "}
+            <span className="hidden sm:inline">Schedule</span>
           </button>
           <button
             onClick={() => navigate("/p/classes-list")}
@@ -181,7 +189,8 @@ const FacultyLMSDashboard = () => {
                 : "text-gray-700 hover:bg-green-100 hover:text-green-700"
             }`}
           >
-            <School className="w-6 h-6" /> Classes
+            <School className="w-6 h-6" />{" "}
+            <span className="hidden sm:inline">Classes</span>
           </button>
           <button
             onClick={logout}
@@ -191,7 +200,8 @@ const FacultyLMSDashboard = () => {
                 : "text-gray-700 hover:bg-red-100 hover:text-red-700"
             }`}
           >
-            <LogOut className="w-6 h-6" /> Logout
+            <LogOut className="w-6 h-6" />{" "}
+            <span className="hidden sm:inline">Logout</span>
           </button>
         </nav>
       </div>
