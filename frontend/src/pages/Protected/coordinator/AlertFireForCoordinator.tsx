@@ -78,7 +78,7 @@ const AlertFireCoordinator = () => {
   const [selectedBuilding, setSelectedBuilding] = useState<string | null>(null);
   const [emergencyContacts, setEmergencyContacts] = useState<EmergencyContact[]>([]);
   const [evacuationRoutes, setEvacuationRoutes] = useState<EvacuationRoute | null>(null);
-  const audioRef = useRef<HTMLAudioElement>(new Audio('/emergency-siren.mp3'));
+  const audioRef = useRef<HTMLAudioElement>(new Audio('/siren-alert.mp3'));
   const [loading, setLoading] = useState<boolean>(false);
 
   const playEmergencySound = () => {

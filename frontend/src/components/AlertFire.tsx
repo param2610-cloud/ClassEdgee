@@ -31,7 +31,7 @@ const AlertFire = () => {
   const [selectedBuilding, setSelectedBuilding] = useState(null);
   const [emergencyContacts, setEmergencyContacts] = useState([]);
   const [evacuationRoutes, setEvacuationRoutes] = useState(null);
-  const audioRef = useRef(new Audio('/emergency-siren.mp3'));
+  const audioRef = useRef(new Audio('/siren-alert.mp3'));
 
   // Function to play emergency sound
   const playEmergencySound = () => {
