@@ -4,18 +4,21 @@ import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import {useNavigate } from 'react-router-dom';
 import { useAuth } from '@/services/AuthContext';
+import { useEmergencyAlert } from '@/hooks/useEmergencyAlert';
+import AlertFire from '@/components/AlertFire';
+import AlertFireCoordinator from './AlertFireForCoordinator';
 const CoordinatorLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const {logout} = useAuth();
   const navigate = useNavigate();
-
+  const {hasActiveEmergency} = useEmergencyAlert()
   const handleNavigation = (path: string) => {
     setIsSidebarOpen(false); // Close sidebar after navigation
     navigate(path);
   };
-
   return (
     <div className="flex flex-col min-h-screen">
+      
       {/* Header */}
       <header className="bg-primary text-primary-foreground p-4 flex justify-between items-center">
         <h1 className="text-2xl font-bold">Coordinator Dashboard</h1>
@@ -93,7 +96,14 @@ const CoordinatorLayout: React.FC<{ children: React.ReactNode }> = ({ children }
         </Sheet>
       </header>
       <main className="flex-grow p-4">
-        {children}
+      {hasActiveEmergency ? (
+        <AlertFireCoordinator />
+      ) : (
+        <>
+          {/* Your existing layout content */}
+          {children}
+        </>
+      )}
       </main>
       <footer className="bg-gray-100 p-4 text-center">
         <p>&copy; 2024 Coordinator Dashboard. All rights reserved.</p>

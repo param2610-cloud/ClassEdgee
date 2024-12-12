@@ -1,15 +1,20 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
+import AlertFire from "@/components/AlertFire";
+import { useEmergencyAlert } from "@/hooks/useEmergencyAlert";
 
 const FacultyLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { hasActiveEmergency } = useEmergencyAlert();
+
   return (
-    <div className="Student-layout">
-      {/* Add Student-specific navigation, header, etc. here */}
-      <nav>{/* Student navigation items */}</nav>
-      <main>{children}</main>
-      <footer>{/* Student footer content */}</footer>
+    <div className="relative">
+      {hasActiveEmergency ? (
+        <AlertFire />
+      ) : (
+        <>
+          {/* Your existing layout content */}
+          {children}
+        </>
+      )}
     </div>
   );
 };
-
-export default FacultyLayout;
+export default FacultyLayout

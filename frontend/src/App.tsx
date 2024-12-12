@@ -61,6 +61,7 @@ import Feedback from "./pages/Protected/student/feedback/Feedback";
 import axios from "axios";
 import { domain } from "./lib/constant";
 import CreateEmergencyForm from "./components/CreateEmergencyForm";
+import { BellElectricIcon } from "lucide-react";
 // import SechduleForSemester from "./pages/Protected/faculty/sechdule/SechduleForSemester";
 // import ScheduleManager from "./pages/Protected/faculty/sechdule/ScheduleManagement";
 // import ScheduleDetailView from "./pages/Protected/faculty/sechdule/ScheduleDetailsView";
@@ -124,18 +125,29 @@ const ProtectedRoute: React.FC = () => {
     }
 };
 
-const SupremeRoutes: React.FC = () => (
+const SupremeRoutes: React.FC = () => {
+    
+    return (
     <SupremeLayout>
         <Routes>
             <Route path="/" element={<SupremeDashboard />} />
             <Route path="/idgenerate" element={<Idgenerate />} />
+            <Route path="/emergency" element={<CreateEmergencyForm />} />
+
             {/* Add other supreme routes here */}
         </Routes>
     </SupremeLayout>
-);
+)};
 
-const FacultyRoutes: React.FC = () => (
+const FacultyRoutes: React.FC = () =>{ 
+    
+    return (
     <FacultyLayout>
+        {/* <div className="fixed top-0 left-0 z-10 bg-red-800 w-screen h-screen overflow-hidden text-white flex justify-center items-center">
+            <div className="text-[50px] flex justify-center items-center gap-3 font-bold ">
+                <BellElectricIcon className="w-10 h-10 font-bold"/> Fire Alert
+            </div>
+        </div> */}
         <Routes>
             <Route path="/" element={<FacultyLMSDashboard />} />
             <Route path="/interactive-classroom" element={<VirtualRoom />} />
@@ -176,6 +188,8 @@ const FacultyRoutes: React.FC = () => (
                 path="/classes/:class_id/quiz"
                 element={<QuizManagement    />} 
                 />
+            <Route path="/emergency" element={<CreateEmergencyForm />} />
+
             {/* <Route
                 path="/classes-list"
                 element={<List_of_Class    />} 
@@ -183,9 +197,11 @@ const FacultyRoutes: React.FC = () => (
 
         </Routes>
     </FacultyLayout>
-);
+)};
 
-const StudentRoutes: React.FC = () => (
+const StudentRoutes: React.FC = () => {
+    
+    return (
     <StudentLayout>
         <Routes>
             <Route path="/" element={<Dashboard />} />
@@ -202,10 +218,13 @@ const StudentRoutes: React.FC = () => (
                 path="/feedback"
                 element={<Feedback    />}
             />
+            <Route path="/emergency" element={<CreateEmergencyForm />} />
         </Routes>
     </StudentLayout>
-);
-const CoordinatorRoutes: React.FC = () => (
+)};
+const CoordinatorRoutes: React.FC = () => {
+
+    return (
     <CoordinatorLayout>
         <Routes>
             <Route path="/" element={<CoordinatorDashboard />} />
@@ -241,6 +260,6 @@ const CoordinatorRoutes: React.FC = () => (
             <Route path="/emergency" element={<CreateEmergencyForm />} />
         </Routes>
     </CoordinatorLayout>
-);
+)};
 
 export default App;

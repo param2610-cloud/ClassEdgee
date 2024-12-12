@@ -9,17 +9,6 @@ const SupremeDashboard = () => {
   const handleroute = () => {
     navigate('/p/idgenerate');
   };
-  const fetchEmergencyNotification = async ()=>{
-          try {
-              const response = await axios.get(`${domain}/api/v1/emergency/get`)
-              const data = response.data;
-              if(data.length>0){
-                  return <div>{JSON.stringify(data)}</div>
-              }
-          } catch (error) {
-              console.log(error)
-          }
-      }
   return (
     <div className="flex flex-col items-center justify-center space-y-8 md:flex-row md:space-x-8 md:space-y-0 p-6">
       {/* Admin Dashboard Card */}

@@ -1,3 +1,4 @@
+import ProfilePageComponent from '@/components/ProfilePage'
 import { User } from '@/interface/general'
 import { domain } from '@/lib/constant'
 import { useAuth } from '@/services/AuthContext'
@@ -23,9 +24,7 @@ const Profilepage = () => {
     }
     
   return (
-    <div>
-      
-    </div>
+    <ProfilePageComponent profileData={profileData}/>
   )
 }
 

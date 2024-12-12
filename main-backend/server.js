@@ -81,7 +81,7 @@ app.use("/api/v1/classes",classesRouter)
 app.use("/api/v1/attendance",attendanceRouter)
 app.use("/api/v1/resource",resourceRouter)
 app.use("/api/v1/query",queryRouter)
-app.use("/api/v1/emergency",emergencyRouter)
+app.use("/api",emergencyRouter)
 
 
 
