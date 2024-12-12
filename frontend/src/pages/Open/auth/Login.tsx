@@ -79,85 +79,116 @@ const LoginPage = () => {
   };
 
   return (
-    <div className={`min-h-screen flex items-center justify-center bg-gray-50 px-4 transition-opacity duration-500 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
-      <Card className={`w-full max-w-md transform transition-all duration-700 ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
-        <CardHeader className="space-y-2">
-          <CardTitle className="text-2xl font-bold text-center transition-all duration-700 delay-300">
-            Welcome Back
-          </CardTitle>
-          <CardDescription className="text-center transition-all duration-700 delay-500">
-            Please sign in to continue
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleLogin} className="space-y-4">
-            <div className={`space-y-2 transition-all duration-700 delay-700`}>
-              <Select
-                value={role}
-                onValueChange={(value) => setRole(value as UserRole)}
+    <div className="fixed inset-0 bg-gradient-to-br from-blue-700 via-blue-200 to-green-600 min-h-screen flex items-center justify-center">
+      <div
+        className={`w-full max-w-md px-4 transition-opacity duration-500 ${
+          mounted ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        <Card
+          className={`w-full transform transition-all duration-700 bg-white/80 backdrop-blur-sm ${
+            mounted ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+          }`}
+        >
+          <CardHeader className="space-y-2">
+            <CardTitle className="text-2xl font-bold text-center transition-all duration-700 delay-300">
+              Welcome Back
+            </CardTitle>
+            <CardDescription className="text-center transition-all duration-700 delay-500">
+              Please sign in to continue
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleLogin} className="space-y-4">
+              <div
+                className={`space-y-2 transition-all duration-700 delay-700`}
               >
-                <SelectTrigger className="w-full">
-                  <UserIcon className="w-4 h-4 mr-2" />
-                  <SelectValue placeholder="Select your role" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value={UserRole.FACULTY}>Faculty</SelectItem>
-                  <SelectItem value={UserRole.ADMIN}>Admin</SelectItem>
-                  <SelectItem value={UserRole.STUDENT}>Student</SelectItem>
-                  <SelectItem value={UserRole.COORDINATOR}>Co-ordinator</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className={`space-y-2 transition-all duration-700 delay-1000`}>
-              <div className="relative group">
-                <MailIcon className="absolute left-3 top-3 h-4 w-4 text-gray-400 transition-colors duration-300 group-hover:text-primary" />
-                <Input
-                  type="email"
-                  placeholder="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="pl-10 transition-all duration-300 hover:border-primary focus:ring-2 focus:ring-primary"
-                  required
-                />
+                <Select
+                  value={role}
+                  onValueChange={(value) => setRole(value as UserRole)}
+                >
+                  <SelectTrigger className="w-full">
+                    <UserIcon className="w-4 h-4 mr-2" />
+                    <SelectValue placeholder="Select your role" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value={UserRole.FACULTY}>Faculty</SelectItem>
+                    <SelectItem value={UserRole.ADMIN}>Admin</SelectItem>
+                    <SelectItem value={UserRole.STUDENT}>Student</SelectItem>
+                    <SelectItem value={UserRole.COORDINATOR}>
+                      Co-ordinator
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
-            </div>
 
-            <div className={`space-y-2 transition-all duration-700 delay-1000`}>
-              <div className="relative group">
-                <LockIcon className="absolute left-3 top-3 h-4 w-4 text-gray-400 transition-colors duration-300 group-hover:text-primary" />
-                <Input
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="pl-10 transition-all duration-300 hover:border-primary focus:ring-2 focus:ring-primary"
-                  required
-                />
+              <div
+                className={`space-y-2 transition-all duration-700 delay-1000`}
+              >
+                <div className="relative group">
+                  <MailIcon className="absolute left-3 top-3 h-4 w-4 text-gray-400 transition-colors duration-300 group-hover:text-primary" />
+                  <Input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="pl-10 transition-all duration-300 hover:border-primary focus:ring-2 focus:ring-primary"
+                    required
+                  />
+                </div>
               </div>
-            </div>
 
-            {message && (
-              <Alert variant="destructive" className="animate-in fade-in slide-in-from-top duration-500">
-                <AlertDescription>{message}</AlertDescription>
-              </Alert>
-            )}
+              <div
+                className={`space-y-2 transition-all duration-700 delay-1000`}
+              >
+                <div className="relative group">
+                  <LockIcon className="absolute left-3 top-3 h-4 w-4 text-gray-400 transition-colors duration-300 group-hover:text-primary" />
+                  <Input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="pl-10 transition-all duration-300 hover:border-primary focus:ring-2 focus:ring-primary"
+                    required
+                  />
+                </div>
+              </div>
 
-            <Button 
-              type="submit" 
-              className={`w-full transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
-              disabled={isLoading}
+              {message && (
+                <Alert
+                  variant="destructive"
+                  className="animate-in fade-in slide-in-from-top duration-500"
+                >
+                  <AlertDescription>{message}</AlertDescription>
+                </Alert>
+              )}
+
+              <Button
+                type="submit"
+                className={`w-full transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${
+                  mounted
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-4 opacity-0"
+                }`}
+                disabled={isLoading}
+              >
+                {isLoading ? "Signing in..." : "Sign in"}
+              </Button>
+            </form>
+          </CardContent>
+          <CardFooter className="flex justify-center">
+            <p
+              className={`text-sm text-gray-500 transition-all duration-700 delay-1000 ${
+                mounted
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-4 opacity-0"
+              }`}
             >
-              {isLoading ? "Signing in..." : "Sign in"}
-            </Button>
-          </form>
-        </CardContent>
-        <CardFooter className="flex justify-center">
-          <p className={`text-sm text-gray-500 transition-all duration-700 delay-1000 ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
-            Need help? Contact your administrator
-          </p>
-        </CardFooter>
-      </Card>
+              Need help? Contact your administrator
+            </p>
+          </CardFooter>
+        </Card>
+      </div>
     </div>
   );
 };
