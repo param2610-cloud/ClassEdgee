@@ -80,7 +80,7 @@ const FacultyLMSDashboard = () => {
   ];
 
   return (
-    <div className="flex h-auto bg-gray-100">
+    <div className="flex h-screen bg-gray-100">
       {/* Sidebar Navigation */}
       <div className="w-20 sm:w-52 bg-white shadow-md flex flex-col items-center py-8">
         <div className="mb-1">
