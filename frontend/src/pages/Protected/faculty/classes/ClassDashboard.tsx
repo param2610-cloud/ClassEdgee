@@ -1,291 +1,400 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer 
-} from 'recharts';
-import { Mail, AlertTriangle, Check, RefreshCw, Filter, Download } from 'lucide-react';
+import React, { useState, useEffect } from "react";
 import {
-  Alert,
-  AlertTitle,
-  AlertDescription,
-} from "@/components/ui/alert"
-import { domain } from '@/lib/constant';
-import { useAtom } from 'jotai';
-import { institutionIdAtom } from '@/store/atom';
+    Download,
+    File,
+    BookOpen,
+    ClipboardList,
+    Users,
+    Clock,
+    MessageCircle,
+    VideoIcon,
+    Bell,
+    Activity,
+    BarChart2,
+    Calendar,
+    CheckCircle,
+    FileQuestion,
+    Hand,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog";
+import { Progress } from "@/components/ui/progress";
+import { useAuth } from "@/services/AuthContext";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+import { domain, fastapidomain } from "@/lib/constant";
+import { Class, SyllabusStructure } from "@/interface/general";
+import ResourcesTab from "./resource/Resource";
+import NotesTab from "./notes/Notes";
+import QuerySystem from "../../query/QuerySystem";
+import AttendanceControls from "@/components/AttendanceComponent";
+import VideoAttendanceUpload from "@/components/AttendanceComponent";
+import AttendanceButton from "@/components/Attendancebutton";
+import { Skeleton } from "@/components/ui/skeleton";
+//import QuizDashboard from "./resource/QuizDashboard";
 
-const AttendanceDashboard = () => {
-  const [students, setStudents] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState('');
-  const [institution_id, setInstitutionId] = useAtom(institutionIdAtom);
-  const [filters, setFilters] = useState({
-    semester: '',
-    department_id: '',
-    threshold: 75
-  });
-  const [departments, setDepartments] = useState([]);
-
-  // Fetch departments
-  const fetchDepartments = async () => {
-    try {
-      const response = await fetch(`${domain}/api/v1/department/list-of-department`, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
-          'X-Institution-Id': `${institution_id}`
+const ClassDashboard = () => {
+    const {class_id}= useParams()
+    const [classData,setClassData] = useState<Class | null>(null);
+    const navigate = useNavigate();
+    const [syllabus, setSyllabus] = useState<SyllabusStructure | null>(null)
+    const {user} = useAuth()
+    useEffect(()=>{
+        if(classData?.schedule_details?.subject_details?.syllabus_structure){
+            setSyllabus(classData.schedule_details.subject_details.syllabus_structure)
         }
-      });
-      
-      if (!response.ok) {
-        throw new Error('Failed to fetch departments');
-      }
-      
-      const data = await response.json();
-      setDepartments(data.department);
-    } catch (err) {
-      console.error('Error fetching departments:', err);
-      setError('Failed to load departments');
+    },[classData])
+
+    const [resources, setResources] = useState([
+        {
+            id: 1,
+            name: "Lecture Slides",
+            type: "pdf",
+            size: "5.2 MB",
+            uploadDate: "2024-03-15",
+            description: "Comprehensive slides covering OOP concepts",
+        },
+        {
+            id: 2,
+            name: "Assignment Guidelines",
+            type: "docx",
+            size: "2.1 MB",
+            uploadDate: "2024-03-10",
+            description: "Detailed instructions for semester project",
+        },
+    ]);
+
+    const [assignments, setAssignments] = useState([
+        {
+            id: 1,
+            title: "Design Patterns Implementation",
+            deadline: "2024-04-05",
+            status: "In Progress",
+            progress: 60,
+            maxScore: 100,
+        },
+        {
+            id: 2,
+            title: "Advanced Algorithms Analysis",
+            deadline: "2024-04-20",
+            status: "Not Started",
+            progress: 0,
+            maxScore: 100,
+        },
+    ]);
+
+    const [notifications, setNotifications] = useState([
+        {
+            id: 1,
+            type: "Assignment",
+            message: "New assignment uploaded: Design Patterns",
+            date: "2024-03-18",
+        },
+        {
+            id: 2,
+            type: "Class",
+            message: "Next lecture on Advanced Programming postponed",
+            date: "2024-03-17",
+        },
+    ]);
+
+    const [quizModal, setQuizModal] = useState(false);
+
+    useEffect(()=>{
+        const fetchClassDetails = async ()=> {
+            const response = await axios.get(`${domain}/api/v1/classes/${class_id}`)
+            console.log(response.data)
+            setClassData(response.data)
+        }
+        if(class_id && !classData){
+            fetchClassDetails()
+            
+        }
+    },[class_id,classData])
+
+    const [attendancetaking, setAttendanceTaking] = useState(false);
+    const handleTakingAttendance =async () => {
+        try {
+            if(attendancetaking){
+                const response =await axios.post(`${fastapidomain}/api/face-recognition/stop-attendance/${classData?.section_id}/${class_id}`)
+                if(response.status === 200){
+                    setAttendanceTaking(false)
+                    console.log("Attendance stopped");
+                }
+            }else{
+                const response = await fetch(`http://127.0.0.1:8000/api/face-recognition/start-attendance/6/9915`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+                // const response = await fetch(`${fastapidomain}/api/face-recognition/start-attendance/${classData?.section_id}/${class_id}`, {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/json',
+                //     },
+                // });
+                if(response.status === 200){
+                    setAttendanceTaking(true) 
+                    console.log("Attendance started");
+                }
+        }
+        } catch (error) {
+            console.error('Error taking attendance:', error);
+        }   
     }
-  };
-  const [sending, setSending] = useState(false);
-
-  // Fetch attendance data
-  const fetchAttendanceData = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const queryParams = new URLSearchParams(filters);
-      const response = await fetch(`${domain}/api/v1/attendance/low-attendance-report?${queryParams}`);
-      const data = await response.json();
-      
-      if (!response.ok) throw new Error(data.message || 'Failed to fetch data');
-      
-      setStudents(data.data);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Send emails to students with low attendance
-  const sendEmails = async () => {
-    setSending(true);
-    setError(null);
-    try {
-      const response = await fetch(`${domain}/api/v1/attendance/send-attendance-emails`, {
-        method: 'POST'
-      });
-      const data = await response.json();
-      
-      if (!response.ok) throw new Error(data.message || 'Failed to send emails');
-      
-      setSuccessMessage(`Successfully sent emails to ${data.affectedStudents.length} students`);
-      setTimeout(() => setSuccessMessage(''), 5000);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setSending(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchAttendanceData();
-  }, [filters]);
-
-  // Fetch departments when component mounts
-  useEffect(() => {
-    fetchDepartments();
-  }, []);
-
-  // Prepare data for the chart
-  const chartData = students.map(student => ({
-    name: student.enrollmentNumber,
-    attendance: parseFloat(student.attendancePercentage),
-    required: 75
-  }));
-
-  return (
-    <div className="p-6 max-w-7xl mx-auto">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold mb-2">Attendance Dashboard</h1>
-        <p className="text-gray-600">Monitor and manage student attendance</p>
-      </div>
-
-      {/* Filters */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div>
-          <label className="block text-sm font-medium mb-1">Department</label>
-          <select
-            className="w-full border rounded p-2"
-            value={filters.department_id}
-            onChange={(e) => setFilters(prev => ({ ...prev, department_id: e.target.value }))}
-          >
-            <option value="">All Departments</option>
-            {departments.map(dept => (
-              <option key={dept.department_id} value={dept.department_id}>
-                {dept.department_name}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium mb-1">Semester</label>
-          <select
-            className="w-full border rounded p-2"
-            value={filters.semester}
-            onChange={(e) => setFilters(prev => ({ ...prev, semester: e.target.value }))}
-          >
-            <option value="">All Semesters</option>
-            {[1, 2, 3, 4, 5, 6, 7, 8].map(sem => (
-              <option key={sem} value={sem}>Semester {sem}</option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium mb-1">Attendance Threshold (%)</label>
-          <input
-            type="number"
-            className="w-full border rounded p-2"
-            value={filters.threshold}
-            onChange={(e) => setFilters(prev => ({ ...prev, threshold: e.target.value }))}
-            min="0"
-            max="100"
-          />
-        </div>
-
-        <div className="md:col-span-2 flex items-end gap-2">
-          <button
-            className="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-            onClick={fetchAttendanceData}
-            disabled={loading}
-          >
-            <Filter size={16} />
-            Apply Filters
-          </button>
-          
-          <button
-            className="flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-            onClick={sendEmails}
-            disabled={sending || loading || students.length === 0}
-          >
-            <Mail size={16} />
-            {sending ? 'Sending...' : 'Send Notifications'}
-          </button>
-        </div>
-      </div>
-
-      {/* Messages */}
-      {error && (
-        <Alert variant="destructive" className="mb-6">
-          <AlertTriangle className="h-4 w-4" />
-          <AlertTitle>Error</AlertTitle>
-          <AlertDescription>{error}</AlertDescription>
-        </Alert>
-      )}
-
-      {successMessage && (
-        <Alert className="mb-6 bg-green-50 border-green-500">
-          <Check className="h-4 w-4 text-green-500" />
-          <AlertTitle>Success</AlertTitle>
-          <AlertDescription>{successMessage}</AlertDescription>
-        </Alert>
-      )}
-
-      {/* Loading State */}
-      {loading && (
-        <div className="flex justify-center items-center py-12">
-          <RefreshCw className="h-8 w-8 animate-spin text-blue-500" />
-        </div>
-      )}
-
-      {/* Data Display */}
-      {!loading && students.length > 0 && (
-        <>
-          {/* Attendance Chart */}
-          <div className="mb-6 bg-white p-4 rounded shadow">
-            <h2 className="text-lg font-semibold mb-4">Attendance Overview</h2>
-            <div className="h-96">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="attendance" fill="#3B82F6" name="Current Attendance %" />
-                  <Bar dataKey="required" fill="#EF4444" name="Required Attendance %" />
-                </BarChart>
-              </ResponsiveContainer>
+ 
+    return (
+        <div className="max-w-5xl mx-auto p-4 bg-white rounded-lg shadow-md">
+            {/* Room Header */}
+            
+            <div className="mb-4 bg-blue-50 p-4 rounded-lg">
+                <div className="flex justify-between items-center">
+                    <div>
+                        <h1 className="text-2xl font-bold text-blue-800">
+                            Virtual Classroom: {classData?.courses?.course_name}
+                        </h1>
+                        <div className="text-sm text-gray-600 mt-2">
+                            <p className="flex items-center">
+                                <Users className="mr-2 h-4 w-4" />
+                                Batch: {classData?.sections?.batch_year} | Stream:{" "}
+                                {classData?.sections?.departments?.department_name}
+                            </p>
+                            <p className="flex items-center">
+                                <BookOpen className="mr-2 h-4 w-4" />
+                                Section: {classData?.sections?.section_name} | Semester:{" "}
+                                {classData?.semester}
+                            </p>
+                            <p className="flex items-center">
+                                <VideoIcon className="mr-2 h-4 w-4" />
+                                Faculty: {classData?.faculty?.users?.first_name}{" "}
+                                {classData?.faculty?.users?.last_name}
+                            </p>
+                        </div>
+                    </div>
+                    <div className="flex flex-col space-y-2">
+                        {/* {
+classData && classData.class_id && classData.section_id && <AttendanceButton sectionId={classData.section_id} classId={classData.class_id} />
+                        } */}
+                        <Button variant="outline" className="bg-blue-100 hover:bg-blue-200"
+                        onClick={() => navigate(`/p/classes/${class_id}/quiz`)} >
+                        
+                            <Clock className="mr-2 h-5 w-5" />
+                            Create Quiz
+                        </Button>
+                    </div>
+                </div>
             </div>
-          </div>
 
-          {/* Students Table */}
-          <div className="bg-white rounded shadow overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Student
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Enrollment No.
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Department
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Semester
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Attendance %
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {students.map((student) => (
-                  <tr key={student.studentId}>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div>
-                        <div className="font-medium">{student.name}</div>
-                        <div className="text-sm text-gray-500">{student.email}</div>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      {student.enrollmentNumber}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      {student.department}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      {student.semester}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                        parseFloat(student.attendancePercentage) < 75
-                          ? 'bg-red-100 text-red-800'
-                          : 'bg-green-100 text-green-800'
-                      }`}>
-                        {student.attendancePercentage}%
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </>
-      )}
+            {/* Tabs Section */}
+            <Tabs defaultValue="resources" className="w-full">
+                <TabsList className="grid w-full grid-cols-6">
+                    <TabsTrigger value="resources">
+                        <File className="mr-2 h-4 w-4" />
+                        Resources
+                    </TabsTrigger>
+                    <TabsTrigger value="notes">
+                        <BookOpen className="mr-2 h-4 w-4" />
+                        Notes
+                    </TabsTrigger>
+                    <TabsTrigger value="assignments">
+                        <CheckCircle className="mr-2 h-4 w-4" />
+                        Assignments
+                    </TabsTrigger>
+                    <TabsTrigger value="performance">
+                        <BarChart2 className="mr-2 h-4 w-4" />
+                        Performance
+                    </TabsTrigger>
+                    <TabsTrigger value="query">
+                        <FileQuestion className="mr-2 h-4 w-4" />
+                        Query
+                    </TabsTrigger>
+                    <TabsTrigger value="attendance">
+                        <Hand className="mr-2 h-4 w-4" />
+                        Attendance
+                    </TabsTrigger>
+                </TabsList>
 
-      {/* No Data State */}
-      {!loading && students.length === 0 && (
-        <div className="text-center py-12 bg-white rounded shadow">
-          <p className="text-gray-500">No students found with attendance below threshold.</p>
+                {/* Resources Tab */}
+                <TabsContent value="resources">
+                    <ResourcesTab courseId={Number(class_id)} />
+                </TabsContent>
+
+                <TabsContent value="notes">
+                    <NotesTab courseId={Number(class_id)} />
+                </TabsContent>
+
+
+                {/* Assignments Tab */}
+                <TabsContent value="assignments">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle className="flex items-center">
+                                <Activity className="mr-2 h-6 w-6" />
+                                Current Assignments
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            {assignments.map((assignment) => (
+                                <div
+                                    key={assignment.id}
+                                    className="p-3 bg-gray-100 rounded-lg mb-2"
+                                >
+                                    <div className="flex justify-between items-center mb-2">
+                                        <div>
+                                            <p className="font-medium">
+                                                {assignment.title}
+                                            </p>
+                                            <p className="text-sm text-gray-500">
+                                                <Calendar className="inline mr-1 h-4 w-4" />
+                                                Deadline: {assignment.deadline}
+                                            </p>
+                                        </div>
+                                        <span
+                                            className={`text-sm font-semibold ${
+                                                assignment.status ===
+                                                "In Progress"
+                                                    ? "text-yellow-600"
+                                                    : "text-red-600"
+                                            }`}
+                                        >
+                                            {assignment.status}
+                                        </span>
+                                    </div>
+                                    <Progress
+                                        value={assignment.progress}
+                                        className="w-full"
+                                    />
+                                </div>
+                            ))}
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+
+                {/* Notifications Tab */}
+                <TabsContent value="notifications">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle className="flex items-center">
+                                <Bell className="mr-2 h-6 w-6" />
+                                Recent Notifications
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            {notifications.map((notification) => (
+                                <div
+                                    key={notification.id}
+                                    className="p-3 bg-gray-100 rounded-lg mb-2 flex items-center"
+                                >
+                                    <div className="mr-3">
+                                        {notification.type === "Assignment" ? (
+                                            <ClipboardList className="h-6 w-6 text-blue-500" />
+                                        ) : (
+                                            <VideoIcon className="h-6 w-6 text-green-500" />
+                                        )}
+                                    </div>
+                                    <div>
+                                        <p className="font-medium">
+                                            {notification.message}
+                                        </p>
+                                        <p className="text-sm text-gray-500">
+                                            {notification.date}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+
+                {/* Performance Tab */}
+                <TabsContent value="performance">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle className="flex items-center">
+                                <BarChart2 className="mr-2 h-6 w-6" />
+                                Academic Performance
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                    <h3 className="text-lg font-semibold mb-2">
+                                        Overall Grades
+                                    </h3>
+                                    <div className="space-y-2">
+                                        <div>
+                                            <p>Current GPA: 3.7</p>
+                                            <Progress
+                                                value={74}
+                                                className="w-full"
+                                            />
+                                        </div>
+                                        <div>
+                                            <p>Semester Progress: 65%</p>
+                                            <Progress
+                                                value={65}
+                                                className="w-full"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 className="text-lg font-semibold mb-2">
+                                        Recent Assessments
+                                    </h3>
+                                    <ul className="space-y-1">
+                                        <li>Midterm Exam: A (92%)</li>
+                                        <li>Coding Assignment: B+ (88%)</li>
+                                        <li>Quiz 2: A- (90%)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+                <TabsContent value="query">
+                    {user && classData?.faculty_id && <QuerySystem userId={user?.user_id} userRole="faculty" facultyId={classData?.faculty_id}  />}
+                </TabsContent>
+                <TabsContent value="attendance">
+                            <VideoAttendanceUpload classId={class_id} sectionId={classData?.section_id}/> 
+                </TabsContent>
+            </Tabs>
+
+            {/* Quiz Modal */}
+            <Dialog open={quizModal} onOpenChange={setQuizModal}>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>
+                            Start Quiz: Advanced Programming Concepts
+                        </DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-4">
+                        <p>Quiz Details:</p>
+                        <ul className="list-disc pl-5">
+                            <li>Total Questions: 20</li>
+                            <li>Time Limit: 30 minutes</li>
+                            <li>Passing Score: 70%</li>
+                        </ul>
+                        <Button
+                            className="w-full bg-green-500 hover:bg-green-600"
+                            onClick={() => alert("Quiz Started!")}
+                        >
+                            Confirm and Start Quiz
+                        </Button>
+                    </div>
+                </DialogContent>
+            </Dialog>
         </div>
-      )}
-    </div>
-  );
+    );
 };
 
-export default AttendanceDashboard;
+export default ClassDashboard;

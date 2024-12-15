@@ -195,6 +195,8 @@ const FacultyRoutes: React.FC = () =>{
                 />
             <Route path="/emergency" element={<CreateEmergencyForm />} />
             <Route path="/student-details" element={<FacultyAttendanceDashboard />}/>
+      <Route path="/resource" element={<ResourceManagement />} />
+
             {/* <Route
                 path="/classes-list"
                 element={<List_of_Class    />} 
