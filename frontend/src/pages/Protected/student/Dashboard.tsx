@@ -186,6 +186,19 @@ const StudentLMSDashboard = () => {
             <Siren className="w-6 h-6" />{" "}
             <span className="hidden sm:inline">Alert</span>
           </button>
+          <button
+            onClick={() => {
+              navigate("/p/resource");
+            }}
+            className={`p-3 rounded flex flex-row gap-4 ${
+              activeSection === "alert"
+                ? "bg-red-100 text-red-700"
+                : "text-gray-500 hover:bg-red-100 hover:text-red-700"
+            }`}
+          >
+            <Siren className="w-6 h-6" />{" "}
+            <span className="hidden sm:inline">Alert</span>
+          </button>
 
           <button
             onClick={logout}
@@ -241,7 +254,7 @@ const StudentLMSDashboard = () => {
         )}
 
         {/* feedbackform */}
-        {activeSection === "feedback" && <Feedback />}
+        {/* {activeSection === "feedback" && <Feedback />}
         {activeSection === "calendar" && <Calender />}
         {activeSection === "assignments" && (
           <div>
@@ -272,7 +285,7 @@ const StudentLMSDashboard = () => {
               </div>
             ))}
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
