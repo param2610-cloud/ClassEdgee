@@ -107,7 +107,7 @@ const AlertFire = () => {
     }
   }, [selectedBuilding]);
 
-  const getStatusColor = (status) => {
+  const getStatusColor = (status:string) => {
     switch (status) {
       case "alert":
         return "bg-red-500";

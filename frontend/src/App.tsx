@@ -55,16 +55,10 @@ import ClassDashboardStudent from "./pages/Protected/student/classes/ClassDashbo
 import StudentProfile from "./pages/Protected/student/profile/ProfilePage";
 import QuizManagement from "./pages/Protected/faculty/classes/quizzes/QuizDashboard";
 import TechEventsNotifications from "./pages/Protected/student/TechNotification";
-import Chatbot from "./components/Chatbot";
-import ChatBot from "./pages/Protected/student/chatBot/ChatBot";
 import Feedback from "./pages/Protected/student/feedback/Feedback";
-import axios from "axios";
-import { domain } from "./lib/constant";
 import CreateEmergencyForm from "./components/CreateEmergencyForm";
-import { BellElectricIcon } from "lucide-react";
 import ResourceManagement from "./pages/Protected/coordinator/resource/ResourceManagement";
 import FacultyAttendanceDashboard from "./pages/Protected/faculty/Attendance/FacultyAttendance";
-import AttendanceDashboardCoordinator from "./pages/Protected/coordinator/Attendance/AttendanceDashboard";
 import AttendanceDashboard from "./pages/Protected/coordinator/Attendance/AttendanceDashboard";
 import Calender from "./pages/Protected/student/calender/Calender";
 // import SechduleForSemester from "./pages/Protected/faculty/sechdule/SechduleForSemester";
