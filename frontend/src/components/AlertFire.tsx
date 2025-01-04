@@ -25,13 +25,44 @@ import { Badge } from "@/components/ui/badge";
 
 const API_BASE_URL = 'http://localhost:3000/api';
 
+interface Alert {
+  alert_id: string;
+  type: string;
+  severity: string;
+  description: string;
+  reported_at: string;
+}
+
+interface Building {
+  id: string;
+  name: string;
+  status: string;
+}
+
+interface Contact {
+  title: string;
+  number: string;
+}
+
+interface EvacuationRoutes {
+  building: string;
+  routes: {
+    primary: {
+      steps: string[];
+    };
+    secondary: {
+      steps: string[];
+    };
+  };
+}
+
 const AlertFire = () => {
-  const [activeAlerts, setActiveAlerts] = useState([]);
-  const [buildings, setBuildings] = useState([]);
-  const [selectedBuilding, setSelectedBuilding] = useState(null);
-  const [emergencyContacts, setEmergencyContacts] = useState([]);
-  const [evacuationRoutes, setEvacuationRoutes] = useState(null);
-  const audioRef = useRef(new Audio('/siren-alert.mp3'));
+  const [activeAlerts, setActiveAlerts] = useState<Alert[]>([]);
+  const [buildings, setBuildings] = useState<Building[]>([]);
+  const [selectedBuilding, setSelectedBuilding] = useState<string | null>(null);
+  const [emergencyContacts, setEmergencyContacts] = useState<Contact[]>([]);
+  const [evacuationRoutes, setEvacuationRoutes] = useState<EvacuationRoutes | null>(null);
+  const audioRef = useRef<HTMLAudioElement>(new Audio('/siren-alert.mp3'));
 
   // Function to play emergency sound
   const playEmergencySound = () => {
@@ -107,7 +138,7 @@ const AlertFire = () => {
     }
   }, [selectedBuilding]);
 
-  const getStatusColor = (status:string) => {
+  const getStatusColor = (status: string) => {
     switch (status) {
       case "alert":
         return "bg-red-500";
