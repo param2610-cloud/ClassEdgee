@@ -106,26 +106,26 @@ export const exportScheduleToExcel = (
 };
 
 // Usage in component
-const handleExportSchedule = async (scheduleId: number) => {
-  try {
-    // Fetch formatted schedule data
-    const response = await axios.get(`${domain}/api/v1/mannual-schedule/${scheduleId}/export`);
-    const scheduleData = response.data;
+// const handleExportSchedule = async (scheduleId: number) => {
+//   try {
+//     // Fetch formatted schedule data
+//     const response = await axios.get(`${domain}/api/v1/mannual-schedule/${scheduleId}/export`);
+//     const scheduleData = response.data;
 
-    // Format data for Excel
-    const excelData = scheduleData.map(item => ({
-      Day: item.day,
-      Time: `${item.startTime}-${item.endTime}`,
-      Subject: item.subject,
-      Faculty: item.faculty,
-      Room: item.room,
-      Section: item.section
-    }));
+//     // Format data for Excel
+//     const excelData = scheduleData.map(item => ({
+//       Day: item.day,
+//       Time: `${item.startTime}-${item.endTime}`,
+//       Subject: item.subject,
+//       Faculty: item.faculty,
+//       Room: item.room,
+//       Section: item.section
+//     }));
 
-    // Export to Excel
-    exportScheduleToExcel(excelData, `schedule-${scheduleId}`);
-  } catch (error) {
-    console.error('Error exporting schedule:', error);
-    // Handle error (show notification, etc.)
-  }
-};
+//     // Export to Excel
+//     exportScheduleToExcel(excelData, `schedule-${scheduleId}`);
+//   } catch (error) {
+//     console.error('Error exporting schedule:', error);
+//     // Handle error (show notification, etc.)
+//   }
+// };
