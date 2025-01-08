@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Video, Loader2, Upload, Users, UserCheck, UserX, Clock } from 'lucide-react';
+import { Video, Loader2, Upload} from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -14,7 +14,6 @@ import {
   AlertTitle,
 } from "@/components/ui/alert";
 import { Progress } from "@/components/ui/progress";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { domain, fastapidomain } from '@/lib/constant';
 
 interface AttendanceRecord {
@@ -104,7 +103,7 @@ const VideoAttendanceUpload: React.FC<VideoAttendanceUploadProps> = ({ sectionId
       const data = await response.json();
       setResult(data);
       await fetchAttendanceStudentList();
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message);
     } finally {
       setLoading(false);
@@ -112,25 +111,25 @@ const VideoAttendanceUpload: React.FC<VideoAttendanceUploadProps> = ({ sectionId
     }
   };
 
-  const getAttendanceStats = () => {
-    const today = new Date().toISOString().split('T')[0];
-    console.log(studentList);
+  // const getAttendanceStats = () => {
+  //   const today = new Date().toISOString().split('T')[0];
+  //   console.log(studentList);
     
-    const todayAttendance = studentList.filter(record => 
-      record.date?.startsWith(today)
-    );
+  //   const todayAttendance = studentList.filter(record => 
+  //     record.date?.startsWith(today)
+  //   );
     
-    const present = todayAttendance.filter(record => 
-      record.status?.toLowerCase() === 'present'
-    ).length;
+  //   const present = todayAttendance.filter(record => 
+  //     record.status?.toLowerCase() === 'present'
+  //   ).length;
     
-    const total = todayAttendance.length;
-    const percentage = total ? ((present / total) * 100).toFixed(1) : '0';
+  //   const total = todayAttendance.length;
+  //   const percentage = total ? ((present / total) * 100).toFixed(1) : '0';
 
-    return { present, total, percentage };
-  };
+  //   return { present, total, percentage };
+  // };
 
-  const stats = getAttendanceStats();
+  // const stats = getAttendanceStats();
 
   return (
     <div className="w-full max-w-7xl mx-auto p-4 space-y-6">

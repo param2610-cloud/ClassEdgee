@@ -1,10 +1,9 @@
-import { useState } from "react";
 import axios from "axios";
 
 interface UploadOnCloudinaryProps {
     mediaFiles: File[];
-    setuploadedImageMediaLinks: React.Dispatch<React.SetStateAction<string[]>>;
-    setuploadedVideoMediaLinks: React.Dispatch<React.SetStateAction<string[]>>;
+    setuploadedImageMediaLinks: (links: string[]) => void;
+    setuploadedVideoMediaLinks: (links: string[]) => void;
 }
 
 const UploadOnCloudinary = async ({
@@ -21,6 +20,8 @@ const UploadOnCloudinary = async ({
         console.error("Cloudinary environment variables are not set properly.");
         return;
     }
+
+    const uploadedUrls: string[] = [];
 
     for (const file of mediaFiles) {
         try {
@@ -44,15 +45,11 @@ const UploadOnCloudinary = async ({
                 console.log(`Uploaded URL: ${uploadedUrl}`);
 
                 if (resourceType === "image") {
-                    setuploadedImageMediaLinks(prevLinks => {
-                        console.log("Updating image links:", [...prevLinks, uploadedUrl]);
-                        return [...prevLinks, uploadedUrl];
-                    });
+                    uploadedUrls.push(uploadedUrl);
+                    setuploadedImageMediaLinks([...uploadedUrls]);
                 } else if (resourceType === "video") {
-                    setuploadedVideoMediaLinks(prevLinks => {
-                        console.log("Updating video links:", [...prevLinks, uploadedUrl]);
-                        return [...prevLinks, uploadedUrl];
-                    });
+                    uploadedUrls.push(uploadedUrl);
+                    setuploadedVideoMediaLinks([...uploadedUrls]);
                 } 
             } else {
                 console.error("Failed to upload file:", response.statusText);

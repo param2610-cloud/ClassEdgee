@@ -1,20 +1,42 @@
-import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { User, Building2, GraduationCap, Book, CalendarDays, Phone, Mail, School } from 'lucide-react';
 
-const ProfilePageComponent = ({ profileData }) => {
+interface ProfileData {
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone_number: string;
+  college_uid: string;
+  faculty: {
+    designation?: string;
+    expertise?: string[];
+    qualifications?: string[];
+    joining_date?: string;
+    contract_end_date?: string;
+    research_interests?: string[];
+  };
+  departments: {
+    department_id: string;
+    department_name: string;
+    department_code: string;
+    contact_email: string;
+    contact_phone: string;
+  }[];
+}
+
+const ProfilePageComponent = ({ profileData }: { profileData: ProfileData }) => {
   if (!profileData) {
     return <div className="flex items-center justify-center h-screen">Loading...</div>;
   }
 
   const {
-    first_name,
-    last_name,
-    email,
-    phone_number,
-    college_uid,
-    faculty,
-    departments
+    first_name = '',
+    last_name = '',
+    email = '',
+    phone_number = '',
+    college_uid = '',
+    faculty = {},
+    departments = []
   } = profileData;
 
   return (
@@ -105,7 +127,7 @@ const ProfilePageComponent = ({ profileData }) => {
                     Expertise
                   </h3>
                   <div className="mt-1 flex flex-wrap gap-2">
-                    {faculty?.expertise.map((exp, index) => (
+                    {faculty?.expertise?.map((exp: string, index: number) => (
                       <span key={index} className="px-2 py-1 bg-blue-100 text-blue-800 rounded-md text-sm">
                         {exp}
                       </span>
@@ -118,7 +140,7 @@ const ProfilePageComponent = ({ profileData }) => {
                     Qualifications
                   </h3>
                   <div className="mt-1 flex flex-wrap gap-2">
-                    {faculty?.qualifications.map((qual, index) => (
+                    {faculty?.qualifications?.map((qual: string, index: number) => (
                       <span key={index} className="px-2 py-1 bg-green-100 text-green-800 rounded-md text-sm">
                         {qual}
                       </span>
@@ -132,8 +154,8 @@ const ProfilePageComponent = ({ profileData }) => {
                     <CalendarDays className="h-4 w-4" />
                     Joining Details
                   </h3>
-                  <p className="mt-1">Joined: {new Date(faculty?.joining_date).toLocaleDateString()}</p>
-                  <p>Contract End: {new Date(faculty?.contract_end_date).toLocaleDateString()}</p>
+                  <p className="mt-1">Joined: {new Date(faculty?.joining_date ?? '').toLocaleDateString()}</p>
+                  <p>Contract End: {new Date(faculty?.contract_end_date ?? '').toLocaleDateString()}</p>
                 </div>
                 <div>
                   <h3 className="font-semibold flex items-center gap-2">
@@ -141,7 +163,7 @@ const ProfilePageComponent = ({ profileData }) => {
                     Research Interests
                   </h3>
                   <div className="mt-1 flex flex-wrap gap-2">
-                    {faculty?.research_interests.map((interest, index) => (
+                    {faculty?.research_interests?.map((interest: string, index: number) => (
                       <span key={index} className="px-2 py-1 bg-purple-100 text-purple-800 rounded-md text-sm">
                         {interest}
                       </span>
