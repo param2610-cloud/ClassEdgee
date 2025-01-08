@@ -11,6 +11,21 @@ const prisma = new PrismaClient();
 const registerInstitution = async (req, res) => {
     try {
         const { user_user_id, user_password_hash,user_email,user_role="admin",user_firstname,user_lastname,user_profile_picture,user_phone_number,institution_name,institution_code,institution_address,institution_contact_email,institution_contact_phone,institution_license_type="premium" } = req.body;
+        console.log("Registering institution with data:", {
+            user_user_id,
+            user_email,
+            user_role,
+            user_firstname,
+            user_lastname,
+            user_profile_picture,
+            user_phone_number,
+            institution_name,
+            institution_code,
+            institution_address,
+            institution_contact_email,
+            institution_contact_phone,
+            institution_license_type
+        });
         if (!user_user_id || !user_password_hash || !user_email  || !user_firstname || !user_lastname || !user_profile_picture || !user_phone_number || !institution_name || !institution_code || !institution_address || !institution_contact_email || !institution_contact_phone || !institution_license_type) {
             return res.status(400).send({
                 message: "All fields are required",

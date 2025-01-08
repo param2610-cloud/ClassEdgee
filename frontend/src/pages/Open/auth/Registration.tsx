@@ -20,6 +20,12 @@ import { useToast } from "@/hooks/use-toast";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import UploadOnCloudinary from "@/services/Cloudinary";
 import { domain } from "@/lib/constant";
+import { useNavigate } from 'react-router-dom';
+import { MultiStepLoader } from "@/components/ui/multi-step-loader";
+import { useAtom } from 'jotai';
+import { institutionIdAtom, roleAtom } from '@/store/atom';
+import { enhancedLocalStorage } from '@/services/AuthContext';
+import { UserRole } from '@/interface/general';  // Add this import
 
 // Define an interface for form data to provide type safety
 interface RegistrationFormData {
@@ -67,7 +73,18 @@ const Registration: React.FC = () => {
     const { toast } = useToast();
     const [profilePicturePreview, setProfilePicturePreview] = useState<string>("");
     const [uploadingImage, setUploadingImage] = useState(false);
-    const [imageLinks, setImageLinks] = useState<string[]>([]);
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+    const [, setRoleAtom] = useAtom(roleAtom);
+    const [, setInstitutionId] = useAtom(institutionIdAtom);
+
+    const loadingStates = [
+        { text: "Creating Institution..." },
+        { text: "Setting up database..." },
+        { text: "Registering admin account..." },
+        { text: "Logging in..." },
+        { text: "Almost there..." },
+    ];
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -103,6 +120,11 @@ const Registration: React.FC = () => {
             newErrors.user_password_hash = "Password must be at least 8 characters";
         }
 
+        // Add profile picture validation
+        if (!formData.user_profile_picture) {
+            newErrors.user_profile_picture = "Profile picture is required";
+        }
+
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -114,19 +136,24 @@ const Registration: React.FC = () => {
                 setUploadingImage(true);
                 setProfilePicturePreview(URL.createObjectURL(file));
 
+                // Upload image to Cloudinary
                 await UploadOnCloudinary({
                     mediaFiles: [file],
-                    setuploadedImageMediaLinks: setImageLinks,
-                    setuploadedVideoMediaLinks: () => {}, // Added empty function
+                    setuploadedImageMediaLinks: (links) => {
+                        if (links && links.length > 0) {
+                            setFormData(prev => ({
+                                ...prev,
+                                user_profile_picture: links[0],
+                            }));
+                        }
+                    },
+                    setuploadedVideoMediaLinks: () => {}, 
                 });
 
-                // Set the first uploaded image URL as the profile picture URL
-                if (imageLinks.length > 0) {
-                    setFormData(prev => ({
-                        ...prev,
-                        user_profile_picture: imageLinks[0],
-                    }));
-                }
+                toast({
+                    title: "Success",
+                    description: "Profile picture uploaded successfully!",
+                });
             } catch (error) {
                 console.error("Image upload error:", error);
                 toast({
@@ -140,24 +167,86 @@ const Registration: React.FC = () => {
         }
     };
 
+    const handleAdminLogin = async (email: string, password: string) => {
+        try {
+            const response = await axios.post(
+                `${domain}/api/v1/admin/login`,
+                { email, password },
+                { withCredentials: true }
+            );
+
+            if (response.status === 200) {
+                setRoleAtom(UserRole.ADMIN);  // Fix: Use UserRole enum instead of string literal
+                setInstitutionId(response.data.userData.institution_id);
+                localStorage.setItem('institution_id', response.data.userData.institution_id.toString());
+                enhancedLocalStorage.setItem('accessToken', response.data.accessToken);
+                enhancedLocalStorage.setItem('refreshToken', response.data.refreshToken);
+                return true;
+            }
+        } catch (error) {
+            console.error("Admin login error:", error);
+            return false;
+        }
+    };
+
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        if (uploadingImage) {
+            toast({
+                title: "Please wait",
+                description: "Profile picture is still uploading...",
+                variant: "destructive",
+            });
+            return;
+        }
+
+        if (!formData.user_profile_picture) {
+            toast({
+                title: "Error",
+                description: "Please upload a profile picture before submitting",
+                variant: "destructive",
+            });
+            return;
+        }
 
         if (!validateForm()) return;
 
         try {
+            setLoading(true);
             const response = await axios.post<any>(
                 `${domain}/api/v1/supreme/register`,
                 formData
             );
 
             if (response.data) {
-                toast({
-                    title: "Success",
-                    description: "Institution registered successfully!",
-                });
+                // Wait for 2 seconds to show loading states
+                await new Promise(resolve => setTimeout(resolve, 2000));
+
+                // Attempt to login
+                const loginSuccess = await handleAdminLogin(
+                    formData.user_email,
+                    formData.user_password_hash
+                );
+
+                if (loginSuccess) {
+                    toast({
+                        title: "Success",
+                        description: "Registration successful and logged in!",
+                    });
+                    // Wait for final loading state
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    navigate("/p/");
+                } else {
+                    toast({
+                        title: "Registration Success",
+                        description: "Please login with your credentials",
+                    });
+                    navigate("/login");
+                }
             }
         } catch (error: unknown) {
+            setLoading(false);
             console.error("Registration error:", error);
             if (axios.isAxiosError(error)) {
                 toast({
@@ -172,353 +261,363 @@ const Registration: React.FC = () => {
                     variant: "destructive",
                 });
             }
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 p-4">
-            <Card className="w-full max-w-2xl shadow-2xl">
-                <CardHeader>
-                    <CardTitle className="text-3xl text-blue-800 flex items-center">
-                        <Building2 className="mr-3 text-blue-600" />
-                        Institution Registration
-                    </CardTitle>
-                    <CardDescription>
-                        Create your institution and admin account
-                    </CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <form
-                        onSubmit={handleSubmit}
-                        className="grid grid-cols-2 gap-6"
-                    >
-                        {/* User Section */}
-                        <div className="space-y-4 col-span-2 md:col-span-1">
-                            <h3 className="text-xl font-semibold text-blue-700 mb-4 flex items-center">
-                                <User className="mr-2 text-blue-500" /> Admin
-                                Details
-                            </h3>
-                            <div className="flex flex-col items-center space-y-4">
-                                <Avatar className="h-32 w-32">
-                                    <AvatarImage
-                                        src={profilePicturePreview}
-                                        alt="Profile preview"
-                                    />
-                                    <AvatarFallback>
-                                        <User className="h-16 w-16" />
-                                    </AvatarFallback>
-                                </Avatar>
-                                <div className="flex flex-col items-center">
-                                    <Label
-                                        htmlFor="profilePicture"
-                                        className="cursor-pointer"
-                                    >
-                                        <div className="flex items-center space-x-2 bg-secondary p-2 rounded-md">
-                                            <Upload className="h-4 w-4" />
-                                            <span>
-                                                {uploadingImage
-                                                    ? "Uploading..."
-                                                    : "Upload Photo"}
-                                            </span>
-                                        </div>
-                                        <input
-                                            type="file"
-                                            id="profilePicture"
-                                            className="hidden"
-                                            accept="image/*"
-                                            onChange={handleImageUpload}
-                                            disabled={uploadingImage}
+        <>
+            <MultiStepLoader
+                loadingStates={loadingStates}
+                loading={loading}
+                duration={2000}
+                loop={false}
+            />
+            <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 p-4">
+                <Card className="w-full max-w-2xl shadow-2xl">
+                    <CardHeader>
+                        <CardTitle className="text-3xl text-blue-800 flex items-center">
+                            <Building2 className="mr-3 text-blue-600" />
+                            Institution Registration
+                        </CardTitle>
+                        <CardDescription>
+                            Create your institution and admin account
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <form
+                            onSubmit={handleSubmit}
+                            className="grid grid-cols-2 gap-6"
+                        >
+                            {/* User Section */}
+                            <div className="space-y-4 col-span-2 md:col-span-1">
+                                <h3 className="text-xl font-semibold text-blue-700 mb-4 flex items-center">
+                                    <User className="mr-2 text-blue-500" /> Admin
+                                    Details
+                                </h3>
+                                <div className="flex flex-col items-center space-y-4">
+                                    <Avatar className="h-32 w-32">
+                                        <AvatarImage
+                                            src={profilePicturePreview}
+                                            alt="Profile preview"
                                         />
+                                        <AvatarFallback>
+                                            <User className="h-16 w-16" />
+                                        </AvatarFallback>
+                                    </Avatar>
+                                    <div className="flex flex-col items-center">
+                                        <Label
+                                            htmlFor="profilePicture"
+                                            className="cursor-pointer"
+                                        >
+                                            <div className="flex items-center space-x-2 bg-secondary p-2 rounded-md">
+                                                <Upload className="h-4 w-4" />
+                                                <span>
+                                                    {uploadingImage
+                                                        ? "Uploading..."
+                                                        : "Upload Photo"}
+                                                </span>
+                                            </div>
+                                            <input
+                                                type="file"
+                                                id="profilePicture"
+                                                className="hidden"
+                                                accept="image/*"
+                                                onChange={handleImageUpload}
+                                                disabled={uploadingImage}
+                                            />
+                                        </Label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <Label htmlFor="user_user_id">College ID</Label>
+                                    <Input
+                                        id="user_user_id"
+                                        name="user_user_id"
+                                        value={formData.user_user_id}
+                                        onChange={handleChange}
+                                        placeholder="Enter College ID"
+                                        className={
+                                            errors.user_user_id
+                                                ? "border-red-500"
+                                                : ""
+                                        }
+                                    />
+                                    {errors.user_user_id && (
+                                        <p className="text-red-500 text-sm mt-1">
+                                            {errors.user_user_id}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div>
+                                    <Label htmlFor="user_firstname">
+                                        First Name
                                     </Label>
+                                    <Input
+                                        id="user_firstname"
+                                        name="user_firstname"
+                                        value={formData.user_firstname}
+                                        onChange={handleChange}
+                                        placeholder="First Name"
+                                        className={
+                                            errors.user_firstname
+                                                ? "border-red-500"
+                                                : ""
+                                        }
+                                    />
+                                    {errors.user_firstname && (
+                                        <p className="text-red-500 text-sm mt-1">
+                                            {errors.user_firstname}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div>
+                                    <Label htmlFor="user_lastname">Last Name</Label>
+                                    <Input
+                                        id="user_lastname"
+                                        name="user_lastname"
+                                        value={formData.user_lastname}
+                                        onChange={handleChange}
+                                        placeholder="Last Name"
+                                        className={
+                                            errors.user_lastname
+                                                ? "border-red-500"
+                                                : ""
+                                        }
+                                    />
+                                    {errors.user_lastname && (
+                                        <p className="text-red-500 text-sm mt-1">
+                                            {errors.user_lastname}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div>
+                                    <Label htmlFor="user_email">Email</Label>
+                                    <Input
+                                        type="email"
+                                        id="user_email"
+                                        name="user_email"
+                                        value={formData.user_email}
+                                        onChange={handleChange}
+                                        placeholder="admin@institution.com"
+                                        className={
+                                            errors.user_email
+                                                ? "border-red-500"
+                                                : ""
+                                        }
+                                    />
+                                    {errors.user_email && (
+                                        <p className="text-red-500 text-sm mt-1">
+                                            {errors.user_email}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div>
+                                    <Label htmlFor="user_password_hash">
+                                        Password
+                                    </Label>
+                                    <Input
+                                        type="password"
+                                        id="user_password_hash"
+                                        name="user_password_hash"
+                                        value={formData.user_password_hash}
+                                        onChange={handleChange}
+                                        placeholder="Strong password"
+                                        className={
+                                            errors.user_password_hash
+                                                ? "border-red-500"
+                                                : ""
+                                        }
+                                    />
+                                    {errors.user_password_hash && (
+                                        <p className="text-red-500 text-sm mt-1">
+                                            {errors.user_password_hash}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div>
+                                    <Label htmlFor="user_phone_number">
+                                        Phone Number
+                                    </Label>
+                                    <Input
+                                        type="tel"
+                                        id="user_phone_number"
+                                        name="user_phone_number"
+                                        value={formData.user_phone_number}
+                                        onChange={handleChange}
+                                        placeholder="Phone number"
+                                        className={
+                                            errors.user_phone_number
+                                                ? "border-red-500"
+                                                : ""
+                                        }
+                                    />
+                                    {errors.user_phone_number && (
+                                        <p className="text-red-500 text-sm mt-1">
+                                            {errors.user_phone_number}
+                                        </p>
+                                    )}
                                 </div>
                             </div>
-                            <div>
-                                <Label htmlFor="user_user_id">College ID</Label>
-                                <Input
-                                    id="user_user_id"
-                                    name="user_user_id"
-                                    value={formData.user_user_id}
-                                    onChange={handleChange}
-                                    placeholder="Enter College ID"
-                                    className={
-                                        errors.user_user_id
-                                            ? "border-red-500"
-                                            : ""
-                                    }
-                                />
-                                {errors.user_user_id && (
-                                    <p className="text-red-500 text-sm mt-1">
-                                        {errors.user_user_id}
-                                    </p>
-                                )}
+
+                            {/* Institution Section */}
+                            <div className="space-y-4 col-span-2 md:col-span-1">
+                                <h3 className="text-xl font-semibold text-blue-700 mb-4 flex items-center">
+                                    <Building2 className="mr-2 text-blue-500" />{" "}
+                                    Institution Details
+                                </h3>
+
+                                <div>
+                                    <Label htmlFor="institution_name">
+                                        Institution Name
+                                    </Label>
+                                    <Input
+                                        id="institution_name"
+                                        name="institution_name"
+                                        value={formData.institution_name}
+                                        onChange={handleChange}
+                                        placeholder="Full institution name"
+                                        className={
+                                            errors.institution_name
+                                                ? "border-red-500"
+                                                : ""
+                                        }
+                                    />
+                                    {errors.institution_name && (
+                                        <p className="text-red-500 text-sm mt-1">
+                                            {errors.institution_name}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div>
+                                    <Label htmlFor="institution_code">
+                                        Institution Code
+                                    </Label>
+                                    <Input
+                                        id="institution_code"
+                                        name="institution_code"
+                                        value={formData.institution_code}
+                                        onChange={handleChange}
+                                        placeholder="Unique institution code"
+                                        className={
+                                            errors.institution_code
+                                                ? "border-red-500"
+                                                : ""
+                                        }
+                                    />
+                                    {errors.institution_code && (
+                                        <p className="text-red-500 text-sm mt-1">
+                                            {errors.institution_code}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div>
+                                    <Label htmlFor="institution_address">
+                                        Address
+                                    </Label>
+                                    <Input
+                                        id="institution_address"
+                                        name="institution_address"
+                                        value={formData.institution_address}
+                                        onChange={handleChange}
+                                        placeholder="Full institution address"
+                                        className={
+                                            errors.institution_address
+                                                ? "border-red-500"
+                                                : ""
+                                        }
+                                    />
+                                    {errors.institution_address && (
+                                        <p className="text-red-500 text-sm mt-1">
+                                            {errors.institution_address}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div>
+                                    <Label htmlFor="institution_contact_email">
+                                        Contact Email
+                                    </Label>
+                                    <Input
+                                        type="email"
+                                        id="institution_contact_email"
+                                        name="institution_contact_email"
+                                        value={formData.institution_contact_email}
+                                        onChange={handleChange}
+                                        placeholder="institution@email.com"
+                                        className={
+                                            errors.institution_contact_email
+                                                ? "border-red-500"
+                                                : ""
+                                        }
+                                    />
+                                    {errors.institution_contact_email && (
+                                        <p className="text-red-500 text-sm mt-1">
+                                            {errors.institution_contact_email}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div>
+                                    <Label htmlFor="institution_contact_phone">
+                                        Contact Phone
+                                    </Label>
+                                    <Input
+                                        type="tel"
+                                        id="institution_contact_phone"
+                                        name="institution_contact_phone"
+                                        value={formData.institution_contact_phone}
+                                        onChange={handleChange}
+                                        placeholder="Institution contact number"
+                                        className={
+                                            errors.institution_contact_phone
+                                                ? "border-red-500"
+                                                : ""
+                                        }
+                                    />
+                                    {errors.institution_contact_phone && (
+                                        <p className="text-red-500 text-sm mt-1">
+                                            {errors.institution_contact_phone}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div>
+                                    <Label htmlFor="institution_license_type">
+                                        License Type
+                                    </Label>
+                                    <Input
+                                        id="institution_license_type"
+                                        name="institution_license_type"
+                                        value={formData.institution_license_type}
+                                        onChange={handleChange}
+                                        placeholder="Premium (default)"
+                                        disabled
+                                    />
+                                </div>
                             </div>
 
-                            <div>
-                                <Label htmlFor="user_firstname">
-                                    First Name
-                                </Label>
-                                <Input
-                                    id="user_firstname"
-                                    name="user_firstname"
-                                    value={formData.user_firstname}
-                                    onChange={handleChange}
-                                    placeholder="First Name"
-                                    className={
-                                        errors.user_firstname
-                                            ? "border-red-500"
-                                            : ""
-                                    }
-                                />
-                                {errors.user_firstname && (
-                                    <p className="text-red-500 text-sm mt-1">
-                                        {errors.user_firstname}
-                                    </p>
-                                )}
+                            <div className="col-span-2 flex justify-center mt-6">
+                                <Button
+                                    type="submit"
+                                    className="w-full max-w-md bg-blue-600 hover:bg-blue-700 transition-colors"
+                                >
+                                    <Shield className="mr-2" /> Register Institution
+                                </Button>
                             </div>
-
-                            <div>
-                                <Label htmlFor="user_lastname">Last Name</Label>
-                                <Input
-                                    id="user_lastname"
-                                    name="user_lastname"
-                                    value={formData.user_lastname}
-                                    onChange={handleChange}
-                                    placeholder="Last Name"
-                                    className={
-                                        errors.user_lastname
-                                            ? "border-red-500"
-                                            : ""
-                                    }
-                                />
-                                {errors.user_lastname && (
-                                    <p className="text-red-500 text-sm mt-1">
-                                        {errors.user_lastname}
-                                    </p>
-                                )}
-                            </div>
-
-                            <div>
-                                <Label htmlFor="user_email">Email</Label>
-                                <Input
-                                    type="email"
-                                    id="user_email"
-                                    name="user_email"
-                                    value={formData.user_email}
-                                    onChange={handleChange}
-                                    placeholder="admin@institution.com"
-                                    className={
-                                        errors.user_email
-                                            ? "border-red-500"
-                                            : ""
-                                    }
-                                />
-                                {errors.user_email && (
-                                    <p className="text-red-500 text-sm mt-1">
-                                        {errors.user_email}
-                                    </p>
-                                )}
-                            </div>
-
-                            <div>
-                                <Label htmlFor="user_password_hash">
-                                    Password
-                                </Label>
-                                <Input
-                                    type="password"
-                                    id="user_password_hash"
-                                    name="user_password_hash"
-                                    value={formData.user_password_hash}
-                                    onChange={handleChange}
-                                    placeholder="Strong password"
-                                    className={
-                                        errors.user_password_hash
-                                            ? "border-red-500"
-                                            : ""
-                                    }
-                                />
-                                {errors.user_password_hash && (
-                                    <p className="text-red-500 text-sm mt-1">
-                                        {errors.user_password_hash}
-                                    </p>
-                                )}
-                            </div>
-
-                            <div>
-                                <Label htmlFor="user_phone_number">
-                                    Phone Number
-                                </Label>
-                                <Input
-                                    type="tel"
-                                    id="user_phone_number"
-                                    name="user_phone_number"
-                                    value={formData.user_phone_number}
-                                    onChange={handleChange}
-                                    placeholder="Phone number"
-                                    className={
-                                        errors.user_phone_number
-                                            ? "border-red-500"
-                                            : ""
-                                    }
-                                />
-                                {errors.user_phone_number && (
-                                    <p className="text-red-500 text-sm mt-1">
-                                        {errors.user_phone_number}
-                                    </p>
-                                )}
-                            </div>
-                        </div>
-
-                        {/* Institution Section */}
-                        <div className="space-y-4 col-span-2 md:col-span-1">
-                            <h3 className="text-xl font-semibold text-blue-700 mb-4 flex items-center">
-                                <Building2 className="mr-2 text-blue-500" />{" "}
-                                Institution Details
-                            </h3>
-
-                            <div>
-                                <Label htmlFor="institution_name">
-                                    Institution Name
-                                </Label>
-                                <Input
-                                    id="institution_name"
-                                    name="institution_name"
-                                    value={formData.institution_name}
-                                    onChange={handleChange}
-                                    placeholder="Full institution name"
-                                    className={
-                                        errors.institution_name
-                                            ? "border-red-500"
-                                            : ""
-                                    }
-                                />
-                                {errors.institution_name && (
-                                    <p className="text-red-500 text-sm mt-1">
-                                        {errors.institution_name}
-                                    </p>
-                                )}
-                            </div>
-
-                            <div>
-                                <Label htmlFor="institution_code">
-                                    Institution Code
-                                </Label>
-                                <Input
-                                    id="institution_code"
-                                    name="institution_code"
-                                    value={formData.institution_code}
-                                    onChange={handleChange}
-                                    placeholder="Unique institution code"
-                                    className={
-                                        errors.institution_code
-                                            ? "border-red-500"
-                                            : ""
-                                    }
-                                />
-                                {errors.institution_code && (
-                                    <p className="text-red-500 text-sm mt-1">
-                                        {errors.institution_code}
-                                    </p>
-                                )}
-                            </div>
-
-                            <div>
-                                <Label htmlFor="institution_address">
-                                    Address
-                                </Label>
-                                <Input
-                                    id="institution_address"
-                                    name="institution_address"
-                                    value={formData.institution_address}
-                                    onChange={handleChange}
-                                    placeholder="Full institution address"
-                                    className={
-                                        errors.institution_address
-                                            ? "border-red-500"
-                                            : ""
-                                    }
-                                />
-                                {errors.institution_address && (
-                                    <p className="text-red-500 text-sm mt-1">
-                                        {errors.institution_address}
-                                    </p>
-                                )}
-                            </div>
-
-                            <div>
-                                <Label htmlFor="institution_contact_email">
-                                    Contact Email
-                                </Label>
-                                <Input
-                                    type="email"
-                                    id="institution_contact_email"
-                                    name="institution_contact_email"
-                                    value={formData.institution_contact_email}
-                                    onChange={handleChange}
-                                    placeholder="institution@email.com"
-                                    className={
-                                        errors.institution_contact_email
-                                            ? "border-red-500"
-                                            : ""
-                                    }
-                                />
-                                {errors.institution_contact_email && (
-                                    <p className="text-red-500 text-sm mt-1">
-                                        {errors.institution_contact_email}
-                                    </p>
-                                )}
-                            </div>
-
-                            <div>
-                                <Label htmlFor="institution_contact_phone">
-                                    Contact Phone
-                                </Label>
-                                <Input
-                                    type="tel"
-                                    id="institution_contact_phone"
-                                    name="institution_contact_phone"
-                                    value={formData.institution_contact_phone}
-                                    onChange={handleChange}
-                                    placeholder="Institution contact number"
-                                    className={
-                                        errors.institution_contact_phone
-                                            ? "border-red-500"
-                                            : ""
-                                    }
-                                />
-                                {errors.institution_contact_phone && (
-                                    <p className="text-red-500 text-sm mt-1">
-                                        {errors.institution_contact_phone}
-                                    </p>
-                                )}
-                            </div>
-
-                            <div>
-                                <Label htmlFor="institution_license_type">
-                                    License Type
-                                </Label>
-                                <Input
-                                    id="institution_license_type"
-                                    name="institution_license_type"
-                                    value={formData.institution_license_type}
-                                    onChange={handleChange}
-                                    placeholder="Premium (default)"
-                                    disabled
-                                />
-                            </div>
-                        </div>
-
-                        <div className="col-span-2 flex justify-center mt-6">
-                            <Button
-                                type="submit"
-                                className="w-full max-w-md bg-blue-600 hover:bg-blue-700 transition-colors"
-                            >
-                                <Shield className="mr-2" /> Register Institution
-                            </Button>
-                        </div>
-                    </form>
-                </CardContent>
-            </Card>
-        </div>
+                        </form>
+                    </CardContent>
+                </Card>
+            </div>
+        </>
     );
 };
 
