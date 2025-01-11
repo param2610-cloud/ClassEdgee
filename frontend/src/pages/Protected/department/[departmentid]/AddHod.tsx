@@ -4,7 +4,7 @@ import axios from "axios";
 import { useAtom } from "jotai";
 import { institutionIdAtom } from "@/store/atom";
 import { domain } from "@/lib/constant";
-import { Department, User, Faculty } from "@/interface/general";
+import { Department,  Faculty } from "@/interface/general";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";

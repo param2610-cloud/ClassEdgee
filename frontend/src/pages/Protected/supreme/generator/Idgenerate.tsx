@@ -462,7 +462,7 @@
 
 // export default Idgenerate;
 
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import axios from 'axios';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
