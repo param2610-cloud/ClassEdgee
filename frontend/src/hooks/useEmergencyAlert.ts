@@ -1,4 +1,5 @@
 // src/hooks/useEmergencyAlert.ts
+import { domain } from '@/lib/constant';
 import { useState, useEffect } from 'react';
 
 interface EmergencyAlert {
@@ -15,7 +16,7 @@ export const useEmergencyAlert = () => {
   useEffect(() => {
     const checkAlerts = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/emergency-alerts');
+        const response = await fetch(`${domain}/api/emergency-alerts`);
         const alerts = await response.json();
         setActiveAlerts(alerts);    
       } catch (error) {
@@ -27,7 +28,7 @@ export const useEmergencyAlert = () => {
     checkAlerts();
 
     // Poll every 10 seconds
-    const interval = setInterval(checkAlerts, 10000);
+    const interval = setInterval(checkAlerts, 60000);
 
     return () => clearInterval(interval);
   }, []);

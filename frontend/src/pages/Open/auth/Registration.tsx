@@ -194,18 +194,18 @@ const Registration: React.FC = () => {
 
         if (uploadingImage) {
             toast({
-                title: "Please wait",
-                description: "Profile picture is still uploading...",
                 variant: "destructive",
+                title: "Upload in Progress",
+                description: "Profile picture is still uploading..."
             });
             return;
         }
 
         if (!formData.user_profile_picture) {
             toast({
-                title: "Error",
-                description: "Please upload a profile picture before submitting",
                 variant: "destructive",
+                title: "Missing Profile Picture",
+                description: "Please upload a profile picture before submitting"
             });
             return;
         }
@@ -231,16 +231,17 @@ const Registration: React.FC = () => {
 
                 if (loginSuccess) {
                     toast({
-                        title: "Success",
-                        description: "Registration successful and logged in!",
+                        variant: "success",
+                        title: "Registration Successful",
+                        description: "Welcome to your new institution dashboard!"
                     });
-                    // Wait for final loading state
                     await new Promise(resolve => setTimeout(resolve, 1000));
                     navigate("/p/");
                 } else {
                     toast({
-                        title: "Registration Success",
-                        description: "Please login with your credentials",
+                        variant: "success",
+                        title: "Registration Complete",
+                        description: "Please login with your credentials"
                     });
                     navigate("/login");
                 }
@@ -250,15 +251,15 @@ const Registration: React.FC = () => {
             console.error("Registration error:", error);
             if (axios.isAxiosError(error)) {
                 toast({
-                    title: "Error",
-                    description: error.response?.data?.message || "An error occurred during registration",
                     variant: "destructive",
+                    title: "Registration Failed",
+                    description: error.response?.data?.message || "An error occurred during registration"
                 });
             } else {
                 toast({
-                    title: "Error",
-                    description: "An unexpected error occurred",
                     variant: "destructive",
+                    title: "Registration Failed",
+                    description: "An unexpected error occurred"
                 });
             }
         } finally {
@@ -286,10 +287,7 @@ const Registration: React.FC = () => {
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <form
-                            onSubmit={handleSubmit}
-                            className="grid grid-cols-2 gap-6"
-                        >
+                        <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6">
                             {/* User Section */}
                             <div className="space-y-4 col-span-2 md:col-span-1">
                                 <h3 className="text-xl font-semibold text-blue-700 mb-4 flex items-center">

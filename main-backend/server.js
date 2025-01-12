@@ -102,6 +102,9 @@ app.use("/api/v1/quizzes", quizRouter)
 app.get("/", (req, res) => {
     res.sendFile("interface.html", { root: path.join(__dirname,'public') });
 })
+app.get("/health", (req, res) => {
+    res.send("The App is Healthy")
+})
 
-
-app.listen(port, () => console.log(`The App is Listening on port ${port}`));
+const LOCALIP = "192.168.0.158"
+app.listen(port,LOCALIP, () => console.log(`The App is Listening on port ${port} \n health check at http://${LOCALIP}:${port}/health`));
