@@ -43,14 +43,16 @@ const add_department = async (req, res) => {
             contact_phone,
             contact_email,
             hod_college_uid,
-            institute_id,
         } = req.body;
+        
+        // Fix: Access institution_id from headers correctly
+        const institution_id = req.headers["x-institution-id"]; // Header names are case-insensitive
 
-        if (!department_name || !department_code || !institute_id) {
+        if (!department_name || !department_code || !institution_id) {
             return res
                 .status(400)
                 .json({
-                    message: "department_name and department_code are required",
+                    message: "department_name, department_code and institution_id are required",
                 });
         }
         if (!contact_phone || !contact_email || !hod_college_uid) {
@@ -58,7 +60,7 @@ const add_department = async (req, res) => {
                 data: {
                     department_name: department_name,
                     department_code: department_code,
-                    institution_id: institute_id,
+                    institution_id: parseInt(institution_id), // Convert to integer
                 },
             });
         } else {
@@ -79,7 +81,7 @@ const add_department = async (req, res) => {
                     contact_phone: hod_data.phone_number,
                     contact_email: hod_data.email,
                     hod_user_id: hod_data.user_id,
-                    institution_id: institute_id,
+                    institution_id: parseInt(institution_id), // Convert to integer
                 },
             });
         }

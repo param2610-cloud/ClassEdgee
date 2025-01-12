@@ -309,7 +309,7 @@ const listOfCoordinators = async (req, res) => {
         // Optional filtering parameters
         const filters = {
             role: 'coordinator',
-            institution_id: req.query.institution_id, // Optional: filter by institution
+            institution_id: parseInt(req.query.institution_id), // Optional: filter by institution
             // Add more filter options as needed
         };
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -25,6 +25,7 @@ import { Faculty } from "@/interface/general";
 import { domain } from "@/lib/constant";
 import { useAtom } from "jotai";
 import { institutionIdAtom } from "@/store/atom";
+import { useNavigate } from "react-router-dom";
 
 // Zod validation schema
 const departmentSchema = z.object({
@@ -38,6 +39,7 @@ const departmentSchema = z.object({
 });
 
 const AddDepartmentForm = () => {
+    const navigate = useNavigate();
     const [facultyList, setFacultyList] = useState<Faculty[]>([]);
     const {toast} = useToast()
     // Fetch faculty list on component mount
@@ -75,7 +77,7 @@ const AddDepartmentForm = () => {
     // Form submission handler
     const onSubmit = async (data: z.infer<typeof departmentSchema>) => {
         try {
-            const response = await fetch(`${domain}/api/v1/coordinator/add-department`, {
+            const response = await fetch(`${domain}/api/v1/department/add-department`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -92,6 +94,7 @@ const AddDepartmentForm = () => {
                 });
                 // Reset form after successful submission
                 form.reset();
+                navigate('/p/department');
             } else {
                 const errorData = await response.json();
                 toast({

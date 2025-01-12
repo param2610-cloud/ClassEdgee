@@ -55,12 +55,15 @@ const DepartmentDetails = () => {
       setInstitutionId(localStorage.getItem('institution_id') as string)
       console.log('after institution id',institution_id);
     }
+    if(id){
+      fetchDepartmentDetailsByID()
+    }
     if(profileData){
       fetchDepartmentDetails()
     }else{
       fetchProfile()
     } 
-  },[user?.user_id,profileData])
+  },[user?.user_id,profileData,id])
   console.log(profileData);
   const fetchProfile = async () => {
     const response = await axios.get(`${domain}/api/v1/faculty/get-faculty/${user?.user_id}`);
@@ -76,10 +79,19 @@ const DepartmentDetails = () => {
     semester: 1,
     student_count: 0,
     academic_year: new Date().getFullYear(),
-    department_id:department?.department_id,
-    institution_id:institution_id
+    department_id: null as number | null, // Changed to handle proper initialization
+    institution_id: institution_id
   });
 
+  useEffect(() => {
+    // Update department_id in newSection when department data is loaded
+    if (department?.department_id) {
+      setNewSection(prev => ({
+        ...prev,
+        department_id: department.department_id
+      }));
+    }
+  }, [department]);
 
   const fetchDepartmentDetails = async () => {
     try {
@@ -113,24 +125,52 @@ const DepartmentDetails = () => {
   };
 
   const handleCreateSection = async () => {
-    // Implementation for creating new section
     try {
-      const response = await axios.post(`${domain}/api/v1/section/add-section`, newSection);
-      if(response.status === 200){
+      // Validate required fields
+      if (!newSection.department_id || !institution_id) {
+        toast({
+          variant: 'destructive',
+          title: 'Error',
+          description: 'Department and Institution information is required',
+        });
+        return;
+      }
+
+      const response = await axios.post(`${domain}/api/v1/section/add-section`, {
+        ...newSection,
+        department_id: parseInt(newSection.department_id.toString()),
+        institution_id: parseInt(institution_id)
+      });
+
+      if (response.status === 200) {
+        if(id){
+          fetchDepartmentDetailsByID();
+        }
         fetchDepartmentDetails();
         toast({
           title: 'Success',
           description: 'Section created successfully',
-        })
+        });
+
+        // Reset form
+        setNewSection({
+          section_name: '',
+          batch_year: new Date().getFullYear(),
+          max_capacity: 60,
+          semester: 1,
+          student_count: 0,
+          academic_year: new Date().getFullYear(),
+          department_id: department?.department_id || null,
+          institution_id: institution_id
+        });
       }
-    } catch (error) {
+    } catch (error: any) {
       toast({
         variant: 'destructive',
         title: 'Error',
-        description: 'Error creating section',
-      })
+        description: error.response?.data?.message || 'Error creating section',
+      });
     }
-    console.log('Creating new section:', newSection);
   };
 
   if (loading) {

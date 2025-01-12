@@ -10,7 +10,19 @@ const specific_section_details = async (req, res) => {
             },
             include: {
                 departments: true,
-                students: true,
+                students: {
+                    include:{
+                        users:{
+                            select:{
+                                first_name:true,
+                                last_name:true,
+                                email:true,
+                                phone_number:true,
+                            }
+                        }
+                    }
+                },
+                
             },
         });
         res.status(200).send({
@@ -60,20 +72,53 @@ const add_section = async (req, res) => {
             semester,
             institution_id,
         } = req.body;
+
+        // Enhanced validation
+        if (!section_name || !department_id || !institution_id || !academic_year || !semester) {
+            return res.status(400).send({
+                success: false,
+                message: "Missing required fields. Please check all required information is provided.",
+                required: {
+                    section_name: !!section_name,
+                    department_id: !!department_id,
+                    institution_id: !!institution_id,
+                    academic_year: !!academic_year,
+                    semester: !!semester
+                }
+            });
+        }
+
+        // Validate department exists
+        const departmentExists = await prisma.departments.findUnique({
+            where: {
+                department_id: parseInt(department_id),
+            }
+        });
+
+        if (!departmentExists) {
+            return res.status(404).send({
+                success: false,
+                message: "Department not found"
+            });
+        }
+
+        // Create section with validated data
         const section = await prisma.sections.create({
             data: {
-                section_name: section_name,
-                batch_year,
+                section_name,
+                batch_year: parseInt(batch_year),
                 department_id: parseInt(department_id),
-                student_count,
-                max_capacity,
-                academic_year,
-                semester,
-                institution_id: institution_id,
+                student_count: student_count || 0,
+                max_capacity: parseInt(max_capacity),
+                academic_year: parseInt(academic_year),
+                semester: parseInt(semester),
+                institution_id: parseInt(institution_id),
             },
         });
+
         res.status(200).send({
             success: true,
+            message: "Section created successfully",
             data: section,
         });
     } catch (error) {

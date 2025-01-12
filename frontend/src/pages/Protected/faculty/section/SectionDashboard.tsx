@@ -20,15 +20,8 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
+
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
 
 import { Section, Student } from "@/interface/general";
 import { domain } from "@/lib/constant";
@@ -61,6 +54,8 @@ const SectionDashboard: React.FC = () => {
                 `${domain}/api/v1/section/${section_id}`
             );
             setSectionDetails(response.data.data);
+            console.log(response.data.data);
+            
         } catch (error) {
             console.error("Error fetching section details:", error);
         }
@@ -73,6 +68,8 @@ const SectionDashboard: React.FC = () => {
             const response = await axios.get(
                 `${domain}/api/v1/student/list-of-students-of-department/${sectionDetails.department_id}`
             );
+            console.log(response.data.students);
+            
             setStudents(response.data.students);
         } catch (error) {
             console.error("Error fetching students:", error);
@@ -213,7 +210,7 @@ const SectionDashboard: React.FC = () => {
                                                         <TableBody>
                                                             {students.map(
                                                                 (student) => {
-                                                                    if(student.batch_year === sectionDetails.batch_year){
+                                                                    if(student.batch_year === sectionDetails.batch_year && !student?.sections){
 
                                                                     return (
                                                                     <TableRow
@@ -279,6 +276,8 @@ const SectionDashboard: React.FC = () => {
                                     <TableHead>Name</TableHead>
                                     <TableHead>Enrollment Number</TableHead>
                                     <TableHead>Batch Year</TableHead>
+                                    <TableHead>Email</TableHead>
+                                    <TableHead>Phone Number</TableHead>
                                     <TableHead>Current Semester</TableHead>
                                 </TableRow>
                             </TableHeader>
@@ -294,6 +293,12 @@ const SectionDashboard: React.FC = () => {
                                         </TableCell>
                                         <TableCell>
                                             {student.batch_year}
+                                        </TableCell>
+                                        <TableCell>
+                                            {student.users?.email}
+                                        </TableCell>
+                                        <TableCell>
+                                            {student.users?.phone_number}
                                         </TableCell>
                                         <TableCell>
                                             {student.current_semester}

@@ -36,6 +36,7 @@ import { Department } from "@/interface/general";
 import UploadOnCloudinary from "@/services/Cloudinary";
 import { useAtom } from "jotai";
 import { institutionIdAtom } from "@/store/atom";
+import { useNavigate } from "react-router-dom";
 
 // Add your Cloudinary configuration
 // const CLOUDINARY_UPLOAD_PRESET = process.env.CLOUDINARY_UPLOAD_PRESET || "";
@@ -75,6 +76,7 @@ const CreateFacultyForm = () => {
     const [imageLinks, setImageLinks] = useState<string[]>([]);
     const [videoLinks, setVideoLinks] = useState<string[]>([]);
     const [institution_id] = useAtom(institutionIdAtom);
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -182,7 +184,9 @@ const CreateFacultyForm = () => {
                     description: "Faculty member has been created successfully.",
                     duration: 5000,
                 });
-                // Optional: Reset form or redirect
+                // Redirect to faculty list page
+                navigate("/p/faculty");
+
             } else {
                 throw new Error(response.data.message || "Failed to create faculty member");
             }

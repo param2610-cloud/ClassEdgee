@@ -1,9 +1,11 @@
+import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Department } from "@/interface/general";
 import { domain } from "@/lib/constant";
 import { institutionIdAtom } from "@/store/atom";
 import axios from "axios";
 import { useAtom } from "jotai";
+import { Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -38,9 +40,18 @@ const DepartmentLayout = () => {
     }, []);
     return (
         <div className="container mx-auto px-4 py-8">
-            <div className="mb-8">
-                <h1 className="text-3xl font-bold text-gray-800">Departments</h1>
-                <p className="text-gray-600 mt-2">Select a department to view details</p>
+            <div className="mb-8 flex justify-between items-center">
+                <div>
+                    <h1 className="text-3xl font-bold text-gray-800">Departments</h1>
+                    <p className="text-gray-600 mt-2">Select a department to view details</p>
+                </div>
+                <Button 
+                    onClick={() => router('/p/department/create')}
+                    className="flex items-center gap-2"
+                >
+                    <Plus className="h-4 w-4" />
+                    Create Department
+                </Button>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
