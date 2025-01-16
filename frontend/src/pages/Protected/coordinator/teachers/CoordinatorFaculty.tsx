@@ -275,7 +275,7 @@ const CoordinatorFaculty = () => {
             {faculty.map((member) => (
               <TableRow key={member.faculty_id}>
                 <TableCell className="font-medium">
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-4">
                     <Avatar className="h-8 w-8">
                       <AvatarImage src={member.users?.profile_picture} />
                       <AvatarFallback>
@@ -287,7 +287,7 @@ const CoordinatorFaculty = () => {
                 </TableCell>
                 <TableCell>
                   <div className="flex flex-col">
-                    <span>{member.users?.first_name} {member.users?.last_name}</span>
+                    <span className="p-2 whitespace-nowrap">{member.users?.first_name} {member.users?.last_name}</span>
                     <Badge variant="secondary" className="w-fit">
                       {member.designation}
                     </Badge>
@@ -295,7 +295,9 @@ const CoordinatorFaculty = () => {
                 </TableCell>
                 <TableCell>
                   <Badge variant="outline">
+                  <span className="p-2 whitespace-nowrap">
                     {member.departments?.department_name || 'N/A'}
+                    </span>
                   </Badge>
                 </TableCell>
                 <TableCell>
