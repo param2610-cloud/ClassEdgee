@@ -15,6 +15,7 @@ import {
   Bell,
   School,
   User,
+  Building,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -127,11 +128,38 @@ const navigationConfig = {
       url: "/p/",
       icon: LayoutDashboard,
       items: [
-        { title: "Overview", url: "/p/" },
-        { title: "Department", url: "/p/department" },
-        { title: "Faculty", url: "/p/faculty" },
+      { title: "Overview", url: "/p/" },
+      { title: "Emergency Alerts", url: "/p/emergency" }
       ]
     },
+    {
+      title: "Academic Management",
+      url: "/p/academics",
+      icon: GraduationCap,
+      items: [
+      { title: "Teachers", url: "/p/faculty" },
+      { title: "Students", url: "/p/student" },
+      { title: "Classes", url: "/p/classes" },
+      { title: "Courses", url: "/p/course" }
+      ]
+    },
+    {
+      title: "Infrastructure",
+      url: "/p/infrastructure", 
+      icon: Building,
+      items: [
+      { title: "Departments", url: "/p/department" },
+      { title: "Rooms", url: "/p/rooms" }
+      ]
+    },
+    {
+      title: "Monitoring",
+      url: "/p/monitoring",
+      icon: ClipboardList, 
+      items: [
+      { title: "Attendance", url: "/p/attendance" }
+      ]
+    }
     // Add more coordinator navigation items
   ]
 }
