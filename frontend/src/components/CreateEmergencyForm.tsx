@@ -104,6 +104,9 @@ const CreateEmergencyAlert = () => {
         },
         body: JSON.stringify(formData),
       });
+      console.log(formData);
+      console.log( await response.json());
+      
 
       if (!response.ok) {
         throw new Error('Failed to create alert');

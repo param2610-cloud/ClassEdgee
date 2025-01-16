@@ -140,6 +140,8 @@ const SupremeRoutes: React.FC = () => {
 const FacultyRoutes: React.FC = () =>{ 
     
     return (
+        <FacultyLayout>
+
         <Routes>
             <Route path="/" element={<FacultyLMSDashboard />} />
             <Route path="/interactive-classroom" element={<VirtualRoom />} />
@@ -190,6 +192,8 @@ const FacultyRoutes: React.FC = () =>{
                 /> */}
 
         </Routes>
+        </FacultyLayout>
+
 )};
 
 const StudentRoutes: React.FC = () => {

@@ -28,7 +28,7 @@ export const useEmergencyAlert = () => {
     checkAlerts();
 
     // Poll every 10 seconds
-    const interval = setInterval(checkAlerts, 60000);
+    const interval = setInterval(checkAlerts, 10000);
 
     return () => clearInterval(interval);
   }, []);

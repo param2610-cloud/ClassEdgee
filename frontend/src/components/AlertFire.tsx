@@ -22,8 +22,9 @@ import {
 } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { domain } from "@/lib/constant";
 
-const API_BASE_URL = 'http://localhost:3000/api';
+const API_BASE_URL = `${domain}/api`;
 
 interface Alert {
   alert_id: string;

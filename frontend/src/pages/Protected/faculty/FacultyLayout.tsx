@@ -13,7 +13,7 @@ const FacultyLayout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
       ) : (
         <SidebarProvider>
           <AppSidebar/>
-          <main>
+          <main className="flex-1 p-4 md:p-8">
           {children}
           </main>
         </SidebarProvider>
