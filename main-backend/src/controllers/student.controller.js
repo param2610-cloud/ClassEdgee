@@ -26,6 +26,7 @@ const createStudent = async (req, res) => {
             guardianContact,
             collegeUid,
             profilePictureUrl,
+            institution_id
         } = req.body;
 
         // Check for existing email
@@ -79,6 +80,7 @@ const createStudent = async (req, res) => {
                 college_uid: collegeUid,
                 status: "active",
                 profile_picture: profilePictureUrl,
+                institution_id: institution_id
             },
         });
 
@@ -143,70 +145,66 @@ const createStudent = async (req, res) => {
 const loginStudent = async (req, res) => {
     try {
         const { email, password } = req.body;
+
+        // Input validation
         if (!email || !password) {
-            return res.status(400).send({
-                message: "email and password are required",
+            return res.status(400).send({ 
+                message: "Email and password are required" 
             });
         }
-        // Find user by college_uid
-        const user = await prismaClient.users.findUnique({
+
+        // Find student by email
+        const student = await prismaClient.users.findUnique({
             where: {
                 email: email,
-                role: "student",
+                role: "student", 
             },
-        });
-
-        if (!user) {
-            return res.status(404).send({
-                success: false,
-                message: "Student not found",
-            });
-        }
-
-        // Verify password
-        const validPassword = await bcrypt.compare(
-            password,
-            user.password_hash
-        );
-        if (!validPassword) {
-            return res.status(401).send({
-                success: false,
-                message: "Invalid credentials",
-            });
-        }
-
-        const { accessToken, refreshToken } = generateTokens(
-            user.email,
-            "2d",
-            "7d"
-        );
-        const userData = await prismaClient.users.update({
-            where: {
-                email: user.email,
-            },
-            data: {
-                refreshtoken: refreshToken,
-                last_login : new Date()
-            },
-            select:{
-                user_id:true,
-                first_name:true,
-                last_name:true,
-                email:true,
-                phone_number:true,
-                profile_picture:true,
-                institution_id:true,
-                students : true,
-                role:true,
-                departments:true
+            include: {
+                students: true,
+                departments: true
             }
         });
 
-        // Update last login
-        await prismaClient.users.update({
-            where: { user_id: user.user_id },
-            data: { last_login: new Date(), refreshtoken: refreshToken },
+        if (!student || student.role !== "student") {
+            return res.status(401).send({ message: "Invalid credentials" });
+        }
+
+        // Verify password
+        const isMatch = await bcrypt.compare(password, student.password_hash);
+        if (!isMatch) {
+            return res.status(401).send({ message: "Invalid credentials" });
+        }
+
+        // Generate JWT tokens
+        const { accessToken, refreshToken } = generateTokens(
+            student.email,
+            "2d",
+            "7d"
+        );
+
+        // Update student's refresh token and last login
+        const userData = await prismaClient.users.update({
+            where: {
+                email: student.email,
+            },
+            data: {
+                refreshtoken: refreshToken,
+                last_login: new Date()
+            },
+            select: {
+                user_id: true,
+                first_name: true,
+                last_name: true,
+                email: true,
+                phone_number: true,
+                profile_picture: true,
+                institution_id: true,
+                students: true,
+                role: true
+            }
         });
+
+        // Set HTTP-only cookies
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
@@ -218,30 +216,27 @@ const loginStudent = async (req, res) => {
             secure: process.env.NODE_ENV === "production",
             sameSite: "strict",
         });
-        res.cookie("institution_id", user.institution_id, {
+
+        res.cookie("institution_id", student.institution_id, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             sameSite: "strict",
         });
 
-        res.status(200).send({
-            success: true,
-            message: "Login successful",
-            accessToken,
-            refreshToken,
+        // Send response
+        return res.status(200).send({
+            message: "Student logged in successfully",
+            student,
             userData,
-            student:userData,
+            accessToken,
+            refreshToken
         });
+
     } catch (error) {
-        console.error("Error in student login:", error);
-        res.status(500).send({
-            success: false,
-            message: "Login failed",
-            error: error.message,
-        });
+        console.error("Login error:", error);
+        res.status(500).send({ message: "An error occurred during login" });
     }
 };
-
 // List all students
 const listOfStudents = async (req, res) => {
     try {

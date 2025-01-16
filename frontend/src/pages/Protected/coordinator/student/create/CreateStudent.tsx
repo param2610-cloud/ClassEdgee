@@ -171,6 +171,7 @@ const CreateStudentForm = () => {
                 batchYear: data.batchYear,
                 currentSemester: data.currentSemester,
                 departmentId: Number(data.departmentId),
+                institution_id: institution_id,
             };
             console.log(payload);
             

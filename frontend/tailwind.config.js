@@ -7,7 +7,7 @@ export default {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
     	extend: {
-    		'spin': {
+    		spin: {
     			'0%': {
     				transform: 'rotate(0deg)'
     			},

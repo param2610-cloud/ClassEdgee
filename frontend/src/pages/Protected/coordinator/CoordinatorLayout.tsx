@@ -34,7 +34,7 @@ const CoordinatorLayout = ({ children }) => {
     { icon: Users, label: 'Teachers', path: '/p/faculty' },
     { icon: GraduationCap, label: 'Students', path: '/p/student' },
     { icon: BookOpen, label: 'Classes', path: '/p/classes' },
-    { icon: Building2, label: 'Room', path: '/p/roomCreation' },
+    { icon: Building2, label: 'Room', path: '/p/rooms' },
     { icon: Building, label: 'Department', path: '/p/department' },
     { icon: BookmarkPlus, label: 'Course', path: '/p/course' },
     { icon: AlertTriangle, label: 'Emergency', path: '/p/emergency' },

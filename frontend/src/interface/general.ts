@@ -162,6 +162,7 @@ export interface Building {
     location_coordinates?: any; // point type
     created_at?: Date;
     rooms: Room[];
+    institution_id?: number;
 }
 
 export interface ChatInteraction {
@@ -684,3 +685,17 @@ export interface faculty_subject_mapping {
     subject_details?: SubjectDetail; 
   }
   
+  export interface APIResponse<T> {
+    success: boolean;
+    data?: T;
+    error?: string;
+    message?: string;
+  }
+type RoomStatus = 'available' | 'in_use' | 'maintenance';
+
+export interface MaintenanceFormData {
+    status: RoomStatus;
+    last_maintenance_date: string;
+    next_maintenance_date: string;
+    maintenance_notes: string;
+  }
