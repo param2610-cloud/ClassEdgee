@@ -1,123 +1,80 @@
-
-import React from "react";
+import { ArrowRight } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Home: React.FC = () => {
-  const technologies = [
-    {
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-12 h-12 text-cyan-400"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-          />
-        </svg>
-      ),
-      title: "Adaptive Learning AI",
-      description:
-        "Intelligent algorithms that personalize learning paths for each student based on individual performance and learning styles.",
-      color: "bg-gradient-to-br from-cyan-900 to-blue-900",
-    },
-    {
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-12 h-12 text-green-400"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-          />
-        </svg>
-      ),
-      title: "Real-Time Analytics",
-      description:
-        "Comprehensive performance tracking with instant insights into student engagement, comprehension, and learning progress.",
-      color: "bg-gradient-to-br from-green-900 to-teal-900",
-    },
-    {
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-12 h-12 text-purple-400"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-          />
-        </svg>
-      ),
-      title: "Interactive Collaboration",
-      description:
-        "Advanced communication tools enabling seamless interaction between educators, students, and learning resources.",
-      color: "bg-gradient-to-br from-purple-900 to-indigo-900",
-    },
-    {
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-12 h-12 text-yellow-400"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-          />
-        </svg>
-      ),
-      title: "Smart Content Management",
-      description:
-        "Dynamic content distribution and resource sharing platform with intelligent organization and accessibility.",
-      color: "bg-gradient-to-br from-yellow-900 to-orange-900",
-    },
-  ];
+  const navigate = useNavigate();
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  const handleGetStartedClick = () => {
+    navigate('/auth/signin');
+  };
 
   return (
-    <div
-      className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 
-                    flex items-center justify-center p-6 overflow-hidden relative"
-    >
-      {/* Futuristic Grid Background */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none">
-        <div
-          className="absolute inset-0 bg-[linear-gradient(45deg,rgba(17,24,39,0.9)_0%,rgba(30,41,59,0.5)_100%)] 
-                        opacity-50"
-        ></div>
-        <div className="absolute inset-0 bg-grid-white/5 opacity-50"></div>
+    <div className="min-h-screen bg-white flex items-center justify-center p-6 overflow-hidden relative">
+      {/* Background Shapes with increased contrast */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Large circular gradients */}
+        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-gradient-to-br from-blue-200/40 to-cyan-200/40 rounded-full blur-2xl" />
+        <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-gradient-to-tr from-purple-200/40 to-blue-200/40 rounded-full blur-2xl" />
+        
+        {/* Geometric patterns */}
+        <div className="absolute top-0 left-0 w-full h-full">
+          {/* Top-right decorative corner */}
+          <div className="absolute top-20 right-20">
+            <div className="w-32 h-32 border-4 border-blue-300/30 rounded-xl transform rotate-45" />
+            <div className="w-32 h-32 border-4 border-cyan-300/30 rounded-xl transform rotate-12 translate-x-10 -translate-y-10" />
+          </div>
+
+          {/* Bottom-left decorative corner */}
+          <div className="absolute bottom-20 left-20">
+            <div className="w-32 h-32 border-4 border-purple-300/30 rounded-xl transform -rotate-45" />
+            <div className="w-32 h-32 border-4 border-blue-300/30 rounded-xl transform -rotate-12 -translate-x-10 translate-y-10" />
+          </div>
+        </div>
+
+        {/* Animated lines */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 left-20 w-40 h-1.5 bg-gradient-to-r from-blue-300/40 to-transparent transform rotate-45" />
+          <div className="absolute top-1/4 right-20 w-40 h-1.5 bg-gradient-to-l from-cyan-300/40 to-transparent transform -rotate-45" />
+          <div className="absolute bottom-1/4 left-20 w-40 h-1.5 bg-gradient-to-r from-purple-300/40 to-transparent transform -rotate-45" />
+          <div className="absolute bottom-1/4 right-20 w-40 h-1.5 bg-gradient-to-l from-blue-300/40 to-transparent transform rotate-45" />
+        </div>
+
+        {/* Dot patterns */}
+        <div className="absolute top-40 left-40 grid grid-cols-3 gap-6">
+          {[...Array(9)].map((_, i) => (
+            <div
+              key={i}
+              className="w-3 h-3 bg-blue-400/40 rounded-full animate-pulse"
+              style={{ animationDelay: `${i * 200}ms` }}
+            />
+          ))}
+        </div>
+        <div className="absolute bottom-40 right-40 grid grid-cols-3 gap-6">
+          {[...Array(9)].map((_, i) => (
+            <div
+              key={i}
+              className="w-3 h-3 bg-purple-400/40 rounded-full animate-pulse"
+              style={{ animationDelay: `${i * 200}ms` }}
+            />
+          ))}
+        </div>
       </div>
 
-      <div className="relative z-10 w-full max-w-6xl">
+      {/* Content */}
+      <div className={`relative z-10 w-full max-w-6xl transform transition-all duration-1000 ${
+        isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+      }`}>
         <div className="text-center mb-16">
-          <h1
-            className="text-5xl font-bold mb-6 
-                         text-transparent bg-clip-text 
-                         bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 
-                         animate-gradient-x"
-          >
+          <h1 className="text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 animate-gradient-x p-5">
             Smart Classroom Management System
           </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-blue-700 max-w-3xl mx-auto mb-8 transform transition-all duration-700 delay-300">
             Revolutionizing education through advanced technology, our
             intelligent platform transforms classroom experiences by providing
             comprehensive tools for personalized learning, real-time insights,
@@ -125,42 +82,32 @@ const Home: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {technologies.map((tech, index) => (
-            <div
-              key={index}
-              className={`${tech.color} p-8 rounded-3xl shadow-2xl 
-                          transform transition duration-500 
-                          hover:scale-105 hover:rotate-3 
-                          hover:shadow-[0_0_30px_rgba(0,255,255,0.3)]`}
-            >
-              <div className="mb-6">{tech.icon}</div>
-              <h3 className="text-3xl font-bold text-white mb-4">
-                {tech.title}
-              </h3>
-              <p className="text-gray-200 opacity-80">{tech.description}</p>
-              <div className="mt-6 border-t border-white/20 pt-4">
-                <span className="text-sm text-cyan-300 uppercase tracking-wider">
-                  Next-Generation Education Technology
-                </span>
-              </div>
-            </div>
-          ))}
+        <div className="text-center transform transition-all duration-700 delay-500">
+          <button 
+            className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-lg text-lg font-medium inline-flex items-center transform transition-all duration-300 hover:scale-105 hover:shadow-lg"
+            onClick={handleGetStartedClick}
+          >
+            Get Started
+            <ArrowRight className="ml-2 animate-bounce-x" />
+          </button>
         </div>
       </div>
 
-      {/* Animated Tech Particles */}
-      <div className="absolute inset-0 pointer-events-none opacity-30">
-        {[...Array(50)].map((_, i) => (
+      {/* Enhanced floating particles */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[...Array(40)].map((_, i) => (
           <div
             key={i}
-            className="absolute bg-cyan-500 rounded-full animate-pulse"
+            className={`absolute rounded-full animate-float-random ${
+              i % 3 === 0 ? 'bg-blue-400/50' : i % 3 === 1 ? 'bg-cyan-400/50' : 'bg-purple-400/50'
+            }`}
             style={{
-              width: `${Math.random() * 4 + 2}px`,
-              height: `${Math.random() * 4 + 2}px`,
+              width: `${Math.random() * 6 + 3}px`,
+              height: `${Math.random() * 6 + 3}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
               animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${Math.random() * 10 + 10}s`,
             }}
           />
         ))}
@@ -168,5 +115,46 @@ const Home: React.FC = () => {
     </div>
   );
 };
+
+// Add required keyframes and animations
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes float-random {
+    0% {
+      transform: translate(0, 0);
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translate(
+        ${Math.random() * 200 - 100}px,
+        ${Math.random() * 200 - 100}px
+      );
+      opacity: 0;
+    }
+  }
+  
+  @keyframes bounce-x {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(4px); }
+  }
+  
+  .animate-float-random {
+    animation: float-random 20s linear infinite;
+  }
+  
+  .animate-bounce-x {
+    animation: bounce-x 1s ease-in-out infinite;
+  }
+
+  @keyframes gradient-x {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+`;
+document.head.appendChild(style);
 
 export default Home;
