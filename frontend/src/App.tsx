@@ -101,7 +101,7 @@ const ProtectedRoute: React.FC = () => {
         return <div>loading</div>
     }
     
-    if (!user?.role&&!user   && isLoading === false) {
+    if (!user?.role &&!user   && isLoading === false) {
         console.log(
             "ProtectedRoute - No user or no role, redirecting to signin"
         );

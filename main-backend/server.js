@@ -94,7 +94,6 @@ app.use('/api/v1/activities', activityRoutes);
 app.use('/api/v1/sessions', sessionRoutes);
 app.use('/api/v1/analogistics',analogisticRouters)
 
-
 app.use("/api/v1/quizzes", quizRouter)
 
 
@@ -106,5 +105,5 @@ app.get("/health", (req, res) => {
     res.send("The App is Healthy")
 })
 
-const LOCALIP = "192.168.1.101"
+const LOCALIP = process.env.LOCAL_IP || 'localhost';
 app.listen(port,LOCALIP, () => console.log(`The App is Listening on port ${port} \n health check at http://${LOCALIP}:${port}/health`));

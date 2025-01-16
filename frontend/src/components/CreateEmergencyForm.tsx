@@ -22,6 +22,7 @@ import {
   Building2, 
   MapPin 
 } from 'lucide-react';
+import { domain } from '@/lib/constant';
 
 interface Building {
   id: number;
@@ -61,7 +62,7 @@ const CreateEmergencyAlert = () => {
 
   const fetchBuildings = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/buildings');
+      const response = await fetch(`${domain}/api/buildings`);
       const data = await response.json();
       console.log(data);
       
@@ -78,7 +79,7 @@ const CreateEmergencyAlert = () => {
 
   const fetchRooms = async (buildingId: string) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/buildings/${buildingId}/rooms`);
+      const response = await fetch(`${domain}/api/buildings/${buildingId}/rooms`);
       const data = await response.json();
       setRooms(data);
     } catch (error) {
@@ -96,7 +97,7 @@ const CreateEmergencyAlert = () => {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:3000/api/emergency-alerts', {
+      const response = await fetch(`${domain}/api/emergency-alerts`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

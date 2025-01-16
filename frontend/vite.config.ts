@@ -4,6 +4,17 @@ import { defineConfig } from "vite";
 import { VitePWA, VitePWAOptions } from "vite-plugin-pwa";
 import jotaiDebugLabel from 'jotai/babel/plugin-debug-label'
 import jotaiReactRefresh from 'jotai/babel/plugin-react-refresh'
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+interface ImportMetaEnv {
+  readonly VITE_LOCAL_IP: string;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}
 
 const manifestForPlugin: Partial<VitePWAOptions> = {
   registerType: 'autoUpdate',
@@ -57,6 +68,6 @@ export default defineConfig({
   },
   server: {
     port: 5173,
-    host: '192.168.1.101',
+    host: process.env.VITE_LOCAL_IP,
   },
 });
