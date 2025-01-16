@@ -2,7 +2,7 @@ import React from 'react'
 
 const FacultyDashboard = () => {
   return (
-    <div className='bg-black w-full h-full'>
+    <div className=''>
       Faculty Dashboard
     </div>
   )

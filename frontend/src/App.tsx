@@ -66,7 +66,7 @@ import BuildingManagement from "./pages/Protected/coordinator/buildings/Building
 // import SechduleForSemester from "./pages/Protected/faculty/sechdule/SechduleForSemester";
 // import ScheduleManager from "./pages/Protected/faculty/sechdule/ScheduleManagement";
 // import ScheduleDetailView from "./pages/Protected/faculty/sechdule/ScheduleDetailsView";
-import { MainLayout } from './layouts/MainLayout';
+import { MainLayout } from "./layouts/MainLayout";
 
 const App: React.FC = () => {
     return (
@@ -86,7 +86,7 @@ const App: React.FC = () => {
 
 const ProtectedRoute: React.FC = () => {
     const { user, isLoading } = useAuth();
-    
+
     useEffect(() => {
         console.log("ProtectedRoute - User:", user);
         console.log("ProtectedRoute - IsLoading:", isLoading);
@@ -98,10 +98,10 @@ const ProtectedRoute: React.FC = () => {
     if (isLoading) {
         console.log("ProtectedRoute - Still loading...");
         // return <div><Load /></div>;
-        return <div>loading</div>
+        return <div>loading</div>;
     }
-    
-    if (!user?.role &&!user   && isLoading === false) {
+
+    if (!user?.role && !user && isLoading === false) {
         console.log(
             "ProtectedRoute - No user or no role, redirecting to signin"
         );
@@ -126,7 +126,6 @@ const ProtectedRoute: React.FC = () => {
 };
 
 const SupremeRoutes: React.FC = () => {
-    
     return (
         <Routes>
             <Route path="/" element={<SupremeDashboard />} />
@@ -135,69 +134,75 @@ const SupremeRoutes: React.FC = () => {
 
             {/* Add other supreme routes here */}
         </Routes>
-)};
+    );
+};
 
-const FacultyRoutes: React.FC = () =>{ 
-    
+const FacultyRoutes: React.FC = () => {
     return (
         <FacultyLayout>
-
-        <Routes>
-            <Route path="/" element={<FacultyLMSDashboard />} />
-            <Route path="/interactive-classroom" element={<VirtualRoom />} />
-            <Route path="/settings/profile" element={<Profilepage />} />
-            <Route path="/department" element={<DepartmentDetails />} />
-            <Route path="/department/:department_id/section/:section_id" element={<SectionDashboard />} />
-            <Route path="/department-syllabus" element={<CourseDashboardForFaculty />} />
-            <Route path="/course/:id" element={<SpecificCourseDashboard />} />
-            <Route
-                path="/course/:course_id/semester/:semester_id/:syllabus_id"
-                element={<SubjectManagement />}
-            />
-            <Route
-                path="department/:department_id/add-syllabus/:course_id"
-                element={<AddBatchSyllabus />}
-            />                                                       
-            <Route
-                path="/course/:course_id/semester/:semester_id/syllabus/:syllabus_id/subject/:subject_id"
-                element={<UnitTopicManagement />}
-            />
-            <Route
-                path="/schedule/course/:course_id/semester/:semester_id/:syllabus_id/subject-assignment"
-                element={<SubjectAssignment    />}
-            />
-            <Route
-                path="/schedule"
-                element={<ScheduleDashboard    />}
-            />
-            <Route
-                path="/schedule/:section_id"
-                element={<ScheduleViewer    />}
-            />
-            <Route
-                path="/classes/:class_id"
-                element={<ClassDashboard    />}
-            />
-            <Route
-                path="/classes/:class_id/quiz"
-                element={<QuizManagement    />} 
+            <Routes>
+                <Route path="/" element={<FacultyLMSDashboard />} />
+                <Route
+                    path="/interactive-classroom"
+                    element={<VirtualRoom />}
                 />
-            <Route path="/emergency" element={<CreateEmergencyForm />} />
-            <Route path="/student-details" element={<FacultyAttendanceDashboard />}/>
-      <Route path="/resource" element={<ResourceManagement />} />
+                <Route path="/settings/profile" element={<Profilepage />} />
+                <Route path="/department" element={<DepartmentDetails />} />
+                <Route
+                    path="/department/:department_id/section/:section_id"
+                    element={<SectionDashboard />}
+                />
+                <Route
+                    path="/department-syllabus"
+                    element={<CourseDashboardForFaculty />}
+                />
+                <Route
+                    path="/course/:id"
+                    element={<SpecificCourseDashboard />}
+                />
+                <Route
+                    path="/course/:course_id/semester/:semester_id/:syllabus_id"
+                    element={<SubjectManagement />}
+                />
+                <Route
+                    path="department/:department_id/add-syllabus/:course_id"
+                    element={<AddBatchSyllabus />}
+                />
+                <Route
+                    path="/course/:course_id/semester/:semester_id/syllabus/:syllabus_id/subject/:subject_id"
+                    element={<UnitTopicManagement />}
+                />
+                <Route
+                    path="/schedule/course/:course_id/semester/:semester_id/:syllabus_id/subject-assignment"
+                    element={<SubjectAssignment />}
+                />
+                <Route path="/schedule" element={<ScheduleDashboard />} />
+                <Route
+                    path="/schedule/:section_id"
+                    element={<ScheduleViewer />}
+                />
+                <Route path="/classes/:class_id" element={<ClassDashboard />} />
+                <Route
+                    path="/classes/:class_id/quiz"
+                    element={<QuizManagement />}
+                />
+                <Route path="/emergency" element={<CreateEmergencyForm />} />
+                <Route
+                    path="/student-details"
+                    element={<FacultyAttendanceDashboard />}
+                />
+                <Route path="/resource" element={<ResourceManagement />} />
 
-            {/* <Route
+                {/* <Route
                 path="/classes-list"
                 element={<List_of_Class    />} 
                 /> */}
-
-        </Routes>
+            </Routes>
         </FacultyLayout>
-
-)};
+    );
+};
 
 const StudentRoutes: React.FC = () => {
-    
     return (
         <StudentLayout>
             <Routes>
@@ -207,31 +212,52 @@ const StudentRoutes: React.FC = () => {
                     path="/classes/:class_id"
                     element={<ClassDashboardStudent />}
                 />
-                <Route path="/notifications" element={<TechEventsNotifications />} />
+                <Route
+                    path="/notifications"
+                    element={<TechEventsNotifications />}
+                />
                 <Route path="/feedback" element={<Feedback />} />
-                <Route path="/calender" element={ <Calender /> } />
+                <Route path="/calender" element={<Calender />} />
                 <Route path="/emergency" element={<CreateEmergencyForm />} />
             </Routes>
         </StudentLayout>
-    );};
+    );
+};
 const CoordinatorRoutes: React.FC = () => {
-
     return (
         <CoordinatorLayout>
             <Routes>
                 <Route path="/" element={<CoordinatorDashboard />} />
                 <Route path="/student" element={<CoordinatorStudent />} />
-                <Route path="/student/create" element={<StudentUploadLayout />} />
-                <Route path="/student/edit/:user_id" element={<EditStudentForm />} />
+                <Route
+                    path="/student/create"
+                    element={<StudentUploadLayout />}
+                />
+                <Route
+                    path="/student/edit/:user_id"
+                    element={<EditStudentForm />}
+                />
                 <Route path="/faculty" element={<CoordinatorFaculty />} />
-                <Route path="/faculty/create" element={<TeacherUploadLayout />} />
-                <Route path="/faculty/edit/:id" element={<FacultyEditProfile />} />
+                <Route
+                    path="/faculty/create"
+                    element={<TeacherUploadLayout />}
+                />
+                <Route
+                    path="/faculty/edit/:id"
+                    element={<FacultyEditProfile />}
+                />
                 <Route path="/department" element={<DepartmentLayout />} />
                 <Route path="/department/:id" element={<DetailDepartment />} />
-                <Route path="/department/create" element={<AddDepartmentForm />} />
+                <Route
+                    path="/department/create"
+                    element={<AddDepartmentForm />}
+                />
                 <Route path="/roomCreation" element={<Createroom />} />
                 <Route path="/course" element={<CourseDashboard />} />
-                <Route path="/course/:id" element={<SpecificCourseDashboard />} />
+                <Route
+                    path="/course/:id"
+                    element={<SpecificCourseDashboard />}
+                />
                 <Route path="/resource" element={<ResourceManagement />} />
                 <Route
                     path="/course/:course_id/semester/:semester_id/:syllabus_id"
@@ -246,13 +272,17 @@ const CoordinatorRoutes: React.FC = () => {
                     element={<UnitTopicManagement />}
                 />
                 <Route path="/classes" element={<TimeslotManagement />} />
-                <Route path="department/:department_id/add-hod" element={<AddHod />} />
+                <Route
+                    path="department/:department_id/add-hod"
+                    element={<AddHod />}
+                />
                 <Route path="/emergency" element={<CreateEmergencyForm />} />
                 <Route path="/attendance" element={<AttendanceDashboard />} />
                 <Route path="/rooms" element={<RoomManagement />} />
                 <Route path="/buildings" element={<BuildingManagement />} />
             </Routes>
         </CoordinatorLayout>
-)};
+    );
+};
 
 export default App;

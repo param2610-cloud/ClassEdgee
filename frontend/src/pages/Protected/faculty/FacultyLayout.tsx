@@ -1,24 +1,20 @@
 import AlertFire from "@/components/AlertFire";
-import { AppSidebar } from "@/components/app-sidebar";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { useEmergencyAlert } from "@/hooks/useEmergencyAlert";
 
 const FacultyLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { hasActiveEmergency } = useEmergencyAlert();
 
   return (
-    <div className="relative">
+    <div className="p-4 md:p-6 lg:p-8">
       {hasActiveEmergency ? (
         <AlertFire />
       ) : (
-        <SidebarProvider>
-          <AppSidebar/>
-          <main className="flex-1 p-4 md:p-8">
+        <div className="space-y-4 w-full">
           {children}
-          </main>
-        </SidebarProvider>
+        </div>
       )}
     </div>
   );
 };
-export default FacultyLayout
+
+export default FacultyLayout;
