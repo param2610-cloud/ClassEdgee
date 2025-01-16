@@ -1,4 +1,6 @@
 import AlertFire from "@/components/AlertFire";
+import { AppSidebar } from "@/components/app-sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { useEmergencyAlert } from "@/hooks/useEmergencyAlert";
 
 const FacultyLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -9,10 +11,12 @@ const FacultyLayout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
       {hasActiveEmergency ? (
         <AlertFire />
       ) : (
-        <>
-          {/* Your existing layout content */}
+        <SidebarProvider>
+          <AppSidebar/>
+          <main>
           {children}
-        </>
+          </main>
+        </SidebarProvider>
       )}
     </div>
   );

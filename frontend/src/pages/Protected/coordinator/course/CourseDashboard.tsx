@@ -32,6 +32,7 @@ import { Course, Department } from "@/interface/general";
 import { domain } from "@/lib/constant";
 import { useAtom } from "jotai";
 import { institutionIdAtom } from "@/store/atom";
+import axios from "axios";
 
 const CourseDashboard = () => {
     const [courses, setCourses] = useState<Course[]>([]);
@@ -53,6 +54,24 @@ const CourseDashboard = () => {
     }, []);
 
 
+    useEffect(()=>{
+        const fetchDepartments = async () => {
+            try {
+                const response = await axios.get(
+                    `${domain}/api/v1/department/list-of-department`,
+                    {
+                        headers: {
+                            "X-Institution-Id": `${institution_id}`,
+                        }
+                    }
+                );
+                setDepartments(response.data.department);
+            } catch (error) {
+                console.error("Error fetching departments:", error);
+            }
+        };
+        fetchDepartments();
+    },[institution_id]);
  
     const fetchCourses = async () => {
         try {

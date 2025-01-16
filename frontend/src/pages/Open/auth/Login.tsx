@@ -12,7 +12,6 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { LockIcon, MailIcon, UserIcon } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
 
 const LoginPage = () => {
   const { user, isLoading } = useAuth();
