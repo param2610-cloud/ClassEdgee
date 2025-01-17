@@ -142,11 +142,42 @@ const navigationConfig = {
       icon: LayoutDashboard,
       items: [
         { title: "Overview", url: "/p/" },
-        { title: "Classes", url: "/p/classes" },
-        { title: "Calendar", url: "/p/calendar" },
+        { title: "Profile", url: "/p/profile-page" },
       ]
     },
-    // Add more student navigation items
+    {
+      title: "Academics",
+      url: "/p/classes",
+      icon: School,
+      items: [
+        { title: "Classes", url: "/p/classes" }
+      ]
+    },
+    {
+      title: "Communications",
+      url: "/p/notifications",
+      icon: Bell,
+      items: [
+        { title: "Notifications", url: "/p/notifications" },
+        { title: "Feedback", url: "/p/feedback" }
+      ]
+    },
+    {
+      title: "Schedule",
+      url: "/p/calender",
+      icon: Calendar,
+      items: [
+        { title: "Calendar", url: "/p/calender" }
+      ]
+    },
+    {
+      title: "Emergency",
+      url: "/p/emergency",
+      icon: Siren,
+      items: [
+        { title: "Report Emergency", url: "/p/emergency" }
+      ]
+    }
   ],
   coordinator: [
     {

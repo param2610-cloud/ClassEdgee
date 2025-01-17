@@ -217,6 +217,7 @@ const StudentRoutes: React.FC = () => {
             <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/profile-page" element={<StudentProfile />} />
+                <Route path="/classes/past-classes" element={<ListOfClass/>}/>
                 <Route
                     path="/classes/:class_id"
                     element={<ClassDashboardStudent />}

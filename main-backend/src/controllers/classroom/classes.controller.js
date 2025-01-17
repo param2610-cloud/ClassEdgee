@@ -200,29 +200,29 @@ const getUniqueClass = async(req,res)=>{
     }
 }
 const pastClasses_student = async (req, res) => {
-  const { studentId } = req.params;
+  const { userId } = req.params;
   try {
-    if (!studentId) {
-      return res.status(400).json({ error: "Student ID is required" });
+    if (!userId) {
+      return res.status(400).json({ error: "User ID is required" });
     }
 
-    const data_ofSection = await prisma.students.findUnique({
+    const studentData = await prisma.students.findUnique({
       where: {
-        student_id: parseInt(studentId),
+        user_id: parseInt(userId),
       },
       select: {
         section_id: true,
       },
     });
 
-    if (!data_ofSection) {
+    if (!studentData) {
       return res.status(404).json({ error: "Student not found" });
     }
 
     const data = await prisma.classes.findMany({
       where: {
         is_active: false,
-        section_id: data_ofSection.section_id
+        section_id: studentData.section_id
       },
       include: {
         courses: true,
