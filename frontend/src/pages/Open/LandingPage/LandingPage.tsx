@@ -112,10 +112,10 @@ const LandingPage = () => {
                   {item}
                 </a>
               ))}
-              <button className="w-full text-white text-lg bg-blue-500 hover:bg-blue-400 px-4 py-2 rounded mt-4">
+              <button className="w-full text-white text-lg bg-blue-500 hover:bg-blue-400 px-4 py-2 rounded mt-4" onClick={handleLoginClick}>
                 Login
               </button>
-              <button className="w-full text-white text-lg bg-blue-500 hover:bg-blue-400 px-4 py-2 rounded mt-2">
+              <button className="w-full text-white text-lg bg-blue-500 hover:bg-blue-400 px-4 py-2 rounded mt-2" onClick={handleRegisterationClick}>
                 Register
               </button>
             </div>
