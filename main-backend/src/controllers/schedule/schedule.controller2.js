@@ -129,38 +129,55 @@ export const fetchData = async () => {
 
 const generateSchedule = async (req, res) => {
     try {
-        const {created_by} = req.body;
+        const { created_by } = req.body;
+        if (!created_by) {
+            return res.status(400).json({
+                success: false,
+                message: "Created by is required",
+            });
+        }
+
         // Fetch data using existing function
         const data = await fetchData();
-        const user_id = created_by;
-        if (
-            !data ||
-            !data.departments ||
-            Object.keys(data.departments).length === 0
-        ) {
+
+        // Validate fetched data
+        if (!data || !data.departments || Object.keys(data.departments).length === 0) {
             return res.status(400).json({
                 success: false,
                 message: "No data available for schedule generation",
             });
         }
 
-        // Send data to Python FastAPI backend
-        const response = await axios.post(
-            `${fastapidomain}/generate-schedule`,
-            data
-        );
-        const schedule = response.data;
+        try {
+            // Send data to Python FastAPI backend
+            const response = await axios.post(
+                `${fastapidomain}/generate-schedule`,
+                data
+            );
 
-        // Save schedule to database
-        const savedSchedule = await saveScheduleToDatabase(schedule,user_id);
+            // Validate response from FastAPI
+            if (!response.data) {
+                throw new Error("Invalid response from schedule generator");
+            }
 
-        return res.status(200).send({
-            success: true,
-            message: "Schedule generated successfully",
-            data: savedSchedule,
-        });
+            // Save schedule to database
+            const savedSchedule = await saveScheduleToDatabase(response.data, created_by);
+
+            return res.status(200).send({
+                success: true,
+                message: "Schedule generated successfully",
+                data: savedSchedule,
+            });
+        } catch (error) {
+            console.error("Error in schedule generation process:", error);
+            return res.status(500).send({
+                success: false,
+                message: "Error in schedule generation process",
+                error: error.message,
+            });
+        }
     } catch (error) {
-        console.error("Error generating schedule:", error);
+        console.error("Error in overall schedule generation:", error);
         return res.status(500).send({
             success: false,
             message: "Error generating schedule",
@@ -398,63 +415,172 @@ const saveScheduleToDatabase = async (schedule, user_id) => {
 
 const getLatestSchedule = async (req, res) => {
     try {
-        console.log(req.params);
-        
-        const {department_id,academic_year,batch_year,semester,section_id} = req.params;
-        console.log(section_id);
-        
+        const { department_id, academic_year, batch_year, semester, section_id } = req.params;
+
+        // Validate required parameters
+        if (!department_id || !academic_year || !batch_year || !semester || !section_id) {
+            return res.status(400).json({
+                success: false,
+                message: "Missing required parameters",
+            });
+        }
+
+        // Get schedule metadata with proper filtering
         const schedule_meta_details = await prisma.schedule_meta.findMany({
             where: {
-                section_id:parseInt(section_id),
+                department_id: parseInt(department_id),
+                academic_year: parseInt(academic_year),
+                batch_year: parseInt(batch_year),
+                semester: parseInt(semester),
+                sections: {
+                    section_id: parseInt(section_id)
+                }
+            },
+            orderBy: {
+                created_at: 'desc'
+            },
+            take: 1,
+            include: {
+                sections: true
             }
         });
-        console.log(schedule_meta_details);
-        
-        if(!schedule_meta_details[0].schedule_id){
+
+        if (!schedule_meta_details?.length) {
             return res.status(404).json({
                 success: false,
                 message: "No schedule found",
+                debug: {
+                    department_id,
+                    academic_year,
+                    batch_year,
+                    semester,
+                    section_id
+                }
             });
         }
+
+        // Get schedule details with related data
         const schedule_details = await prisma.schedule_details.findMany({
             where: {
-                schedule_id:schedule_meta_details[0].schedule_id
+                schedule_id: schedule_meta_details[0].schedule_id,
             },
-            include:{
-                faculty_schedule_details_faculty_idTofaculty:{
-                    include:{
-                        users:true
+            include: {
+                faculty_schedule_details_faculty_idTofaculty: {
+                    include: {
+                        users: {
+                            select: {
+                                first_name: true,
+                                last_name: true,
+                            }
+                        }
                     }
                 },
-                rooms_schedule_details_room_idTorooms:true,
-                timeslots:true,
-
+                rooms_schedule_details_room_idTorooms: true,
+                timeslots: true,
+                subject_details: {
+                    select: {
+                        subject_name: true,
+                        subject_code: true
+                    }
+                }
             }
         });
-
-        if (!schedule_details || schedule_details.length === 0) {
-            return res.status(404).json({
-                success: false,
-                message: "No schedule found",
-            });
-        }
-        
-
 
         return res.status(200).json({
             success: true,
             data: schedule_details,
+            meta: schedule_meta_details[0]
         });
     } catch (error) {
-        console.error("Error fetching latest schedule:", error);
+        console.error("Error fetching schedule:", error);
         return res.status(500).json({
             success: false,
             message: "Error fetching schedule",
             error: error.message,
+            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
         });
     }
 };
 
+// Add this new function
+const getAllSchedules = async (req, res) => {
+    try {
+        const schedules = await prisma.schedule_meta.findMany({
+            include: {
+                departments: {
+                    select: {
+                        department_name: true,
+                        department_code: true
+                    }
+                },
+                sections: {
+                    select: {
+                        section_name: true,
+                        batch_year: true
+                    }
+                },
+                schedule_details: {
+                    include: {
+                        faculty_schedule_details_faculty_idTofaculty: {
+                            include: {
+                                users: {
+                                    select: {
+                                        first_name: true,
+                                        last_name: true
+                                    }
+                                }
+                            }
+                        },
+                        rooms_schedule_details_room_idTorooms: true,
+                        timeslots: true,
+                        subject_details: {
+                            select: {
+                                subject_name: true,
+                                subject_code: true
+                            }
+                        }
+                    }
+                },
+                users: {
+                    select: {
+                        first_name: true,
+                        last_name: true
+                    }
+                }
+            },
+            orderBy: {
+                created_at: 'desc'
+            }
+        });
 
+        // Group schedules by department and academic year
+        const groupedSchedules = schedules.reduce((acc, schedule) => {
+            const deptCode = schedule.departments.department_code;
+            const academicYear = schedule.academic_year;
+            
+            if (!acc[deptCode]) {
+                acc[deptCode] = {};
+            }
+            if (!acc[deptCode][academicYear]) {
+                acc[deptCode][academicYear] = [];
+            }
+            
+            acc[deptCode][academicYear].push(schedule);
+            return acc;
+        }, {});
 
-export { generateSchedule, getLatestSchedule };
+        return res.status(200).json({
+            success: true,
+            data: groupedSchedules
+        });
+    } catch (error) {
+        console.error("Error fetching schedules:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Error fetching schedules",
+            error: error.message
+        });
+    }
+};
+
+export { generateSchedule, getLatestSchedule, getAllSchedules };

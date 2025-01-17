@@ -4,14 +4,15 @@ const prisma = new PrismaClient();
 
 const getUpcomingClassesOfFaculty = async (req, res) => {
   try {
-    const { facultyId,number_of_class } = req.params;
+    const { facultyId, number_of_class } = req.params;
     const currentDate = new Date();
     
-    // Get all active classes for the faculty
+    // Get all active classes for the faculty on Jan 17th 2025
     const upcomingClasses = await prisma.classes.findMany({
       where: {
         faculty_id: parseInt(facultyId),
         is_active: true,
+        date_of_class: new Date('2025-01-17')
       },
       include: {
         courses: true,
@@ -25,40 +26,21 @@ const getUpcomingClassesOfFaculty = async (req, res) => {
       },
     });
 
-    // Filter and update classes
-    const processedClasses = await Promise.all(
-      upcomingClasses.map(async (classItem) => {
-        if (!classItem.date_of_class || !classItem.timeslots) {
-          return null;
-        }
+    // Filter upcoming classes based on current time
+    const processedClasses = upcomingClasses.filter(classItem => {
+      if (!classItem.date_of_class || !classItem.timeslots) {
+        return false;
+      }
 
-        // Create class datetime by combining date and time
-        const classDate = new Date(classItem.date_of_class);
-        const slotStartTime = new Date(classItem.timeslots.start_time);
-        
-        const classDateTime = new Date(classDate);
-        classDateTime.setHours(
-          slotStartTime.getHours(),
-          slotStartTime.getMinutes(),
-          0,
-          0
-        );
+      const classDate = new Date(classItem.date_of_class);
+      const slotStartTime = new Date(classItem.timeslots.start_time);
+      const classDateTime = new Date(classDate);
+      classDateTime.setHours(slotStartTime.getHours(), slotStartTime.getMinutes(), 0, 0);
+      
+      return classDateTime > currentDate;
+    });
 
-        // If class is in the past, update status and filter it out
-        if (classDateTime < currentDate) {
-          await prisma.classes.update({
-            where: { class_id: classItem.class_id },
-            data: { is_active: false },
-          });
-          return null;
-        }
-
-        return classItem;
-      })
-    );
-
-    const activeClasses = processedClasses.filter(Boolean);
-    res.json(activeClasses[number_of_class] || {});
+    res.json(processedClasses[number_of_class] || {});
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -144,13 +126,28 @@ const getUpcomingClassesOfStudent = async (req, res) => {
           0
         );
 
-        // If class is in the past, update status and filter it out
+        // If class is in the past and in December 2024, update to January 2025
         if (classDateTime < currentDate) {
+          let newYear = classDate.getFullYear();
+          let newMonth = classDate.getMonth() + 1;
+
+          if (newMonth > 12) {
+            newMonth = 1;
+            newYear += 1;
+          }
+          if (newYear === 2024) {
+            newYear = 2025;
+          }
+
+          const newDate = new Date(classDate);
+          newDate.setFullYear(newYear);
+          newDate.setMonth(newMonth - 1); // setMonth is 0-based
+
           await prisma.classes.update({
             where: { class_id: classItem.class_id },
-            data: { is_active: false },
+            data: { date_of_class: newDate },
           });
-          return null;
+          classItem.date_of_class = newDate;
         }
 
         return classItem;
@@ -192,51 +189,23 @@ const getUniqueClass = async(req,res)=>{
                      quiz_responses:true
                   }
                 },
-                timeslots:true,
-                schedule_details:{
-                    include:{
-                        subject_details:{
-                            select:{
-                                subject_name:true,
-                                subject_code:true,
-                                syllabus_structure:{
-                                    include:{
-                                        subject_details:{
-                                            select:{
-                                                subject_name:true,
-                                                subject_code:true,
-                                                subject_id:true,
-                                                units:{
-                                                    select:{
-                                                        unit_id:true,
-                                                        unit_name:true,
-                                                        topics:{
-                                                            select:{
-                                                                topic_id:true,
-                                                                topic_name:true,
-                                                                topic_description:true,
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                timeslots:true
             }
         });
         res.json(classData);
     } catch (error) {
+      console.log(error);
+      
         res.status(500).json({error:error.message});
     }
 }
 const pastClasses_student = async (req, res) => {
   const { studentId } = req.params;
   try {
+    if (!studentId) {
+      return res.status(400).json({ error: "Student ID is required" });
+    }
+
     const data_ofSection = await prisma.students.findUnique({
       where: {
         student_id: parseInt(studentId),
@@ -245,31 +214,68 @@ const pastClasses_student = async (req, res) => {
         section_id: true,
       },
     });
+
+    if (!data_ofSection) {
+      return res.status(404).json({ error: "Student not found" });
+    }
+
     const data = await prisma.classes.findMany({
-      where:{
-        is_active:false,
-        section_id:data_ofSection.section_id
+      where: {
+        is_active: false,
+        section_id: data_ofSection.section_id
+      },
+      include: {
+        courses: true,
+        faculty: true,
+        rooms: true,
+        timeslots: true
+      },
+      orderBy: {
+        date_of_class: 'desc'
       }
-    })
+    });
     res.json(data);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(500).json({ error: error.message });
   }
 }
+
 const pastClasses_faculty = async (req, res) => {
-  const { facultyId } = req.params;
+  const { userId } = req.params;
   try {
+    if (!userId) {
+      return res.status(400).json({ error: "Faculty ID is required" });
+    }
+    console.log(userId);
     
+    const facultyData = await prisma.faculty.findUnique({
+      where: {
+        user_id: parseInt(userId),
+      },
+      select: {
+        faculty_id: true,
+      },
+    });
     const data = await prisma.classes.findMany({
-      where:{
-        is_active:false,
-        faculty_id:facultyId
+      where: {
+        // is_active: false,
+        faculty_id: parseInt(facultyData.faculty_id)
+
+      },
+      include: {
+        courses: true,
+        sections: true,
+        rooms: true,
+        timeslots: true
+      },
+      orderBy: {
+        date_of_class: 'desc'
       }
-    })
+    });
     res.json(data);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(500).json({ error: error.message });
   }
 }

@@ -15,6 +15,7 @@ import {
     CheckCircle,
     FileQuestion,
     Hand,
+    PenSquare,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -130,7 +131,7 @@ const ClassDashboard = () => {
                     console.log("Attendance stopped");
                 }
             }else{
-                const response = await fetch(`http://127.0.0.1:8000/api/face-recognition/start-attendance/6/9915`, {
+                const response = await fetch(`http://${import.meta.env.VITE_FASTAPI_HOST}:8000/api/face-recognition/start-attendance/6/9915`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -187,7 +188,8 @@ classData && classData.class_id && classData.section_id && <AttendanceButton sec
                         <Button variant="outline" className="bg-blue-100 hover:bg-blue-200"
                         onClick={() => navigate(`/p/classes/${class_id}/quiz`)} >
                         
-                            <Clock className="mr-2 h-5 w-5" />
+                            <PenSquare className="mr-2 h-5 w-5" />
+                            
                             Create Quiz
                         </Button>
                     </div>

@@ -79,12 +79,12 @@ const UpcomingClassComponent = () => {
         return;
       }
       
-      // Set the class date with the correct time
+      // Set the class date with the correct time and subtract 5 hours
       const classStartTime = new Date(classDate);
       const classEndTime = new Date(classDate);
       
-      classStartTime.setHours(startTime.getUTCHours(), startTime.getUTCMinutes(), 0);
-      classEndTime.setHours(endTime.getUTCHours(), endTime.getUTCMinutes(), 0);
+      classStartTime.setHours(startTime.getUTCHours() - 5, startTime.getUTCMinutes(), 0);
+      classEndTime.setHours(endTime.getUTCHours() - 5, endTime.getUTCMinutes(), 0);
 
       // Check if current time is between start and end time
       setIsLive(now >= classStartTime && now <= classEndTime);
@@ -177,13 +177,17 @@ const UpcomingClassComponent = () => {
                           hour: '2-digit', 
                           minute: '2-digit',
                           hour12: false 
-                        })}
+                        }).split(':').map((part, index) => 
+                          index === 0 ? String(Number(part) - 5).padStart(2, '0') : part
+                        ).join(':')}
                         {' - '}
                         {new Date(upcomingClass.timeslots.end_time).toLocaleTimeString([], { 
                           hour: '2-digit', 
                           minute: '2-digit',
                           hour12: false
-                        })}
+                        }).split(':').map((part, index) => 
+                          index === 0 ? String(Number(part) - 5).padStart(2, '0') : part
+                        ).join(':')}
                       </p>
                     </div>
                   </div>

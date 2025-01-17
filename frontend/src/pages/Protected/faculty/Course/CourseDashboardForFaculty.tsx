@@ -18,7 +18,7 @@ const CourseDashboardForFaculty = () => {
 
   useEffect(() => {
     if (!department_id && profileData) {
-      setDepartmentId(profileData?.departments[0].department_id)
+      setDepartmentId(profileData?.departments[0]?.department_id)
     }
     if (department_id) {
       console.log("department id",department_id);

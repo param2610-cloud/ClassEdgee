@@ -204,7 +204,7 @@ const CoordinatorFaculty = () => {
   }
 
   return (
-    <div className="p-6 " id='faculty'>
+    <div className="flex flex-col flex-1 overflow-hidden w-full" id='faculty'>
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Faculty Management</h1>
         <Button onClick={() => navigate('/p/faculty/create')}>

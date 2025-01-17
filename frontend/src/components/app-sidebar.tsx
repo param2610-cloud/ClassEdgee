@@ -16,6 +16,7 @@ import {
   School,
   User,
   Building,
+  Siren,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -49,9 +50,9 @@ const navigationConfig = {
       icon: LayoutDashboard,
       isActive: true,
       items: [
-        { title: "Overview", url: "/p/dashboard" },
-        { title: "Activities", url: "/p/dashboard/activities" },
-        { title: "Announcements", url: "/p/dashboard/announcements" },
+        { title: "Overview", url: "/p/" },
+        // { title: "Activities", url: "/p/dashboard/activities" },
+        // { title: "Announcements", url: "/p/dashboard/announcements" },
       ]
     },
     {
@@ -59,12 +60,13 @@ const navigationConfig = {
       url: "/p/classes",
       icon: School,
       items: [
-        { title: "Today's Classes", url: "/p/classes/today" },
-        { title: "Class List", url: "/p/classes/list" },
-        { title: "Attendance", url: "/p/classes/attendance" },
-        { title: "Course Materials", url: "/p/classes/materials" },
-        { title: "Student Queries", url: "/p/classes/queries" },
-        { title: "Assessments", url: "/p/classes/assessments" },
+        { title: "Today's Classes", url: "/p/classes/upcoming-class" },
+        { title: "Class List", url: "/p/classes/past-classes" },
+        { title: "Syllabus", url: "/p/classes/department-syllabus" },
+        // { title: "Attendance", url: "/p/classes/attendance" },
+        // { title: "Course Materials", url: "/p/classes/materials" },
+        // { title: "Student Queries", url: "/p/classes/queries" },
+        // { title: "Assessments", url: "/p/classes/assessments" },
       ]
     },
     {
@@ -72,20 +74,21 @@ const navigationConfig = {
       url: "/p/schedule",
       icon: Calendar,
       items: [
-        { title: "Weekly View", url: "/p/schedule/weekly" },
-        { title: "Manage Schedule", url: "/p/schedule/manage" },
-        { title: "Subject Assignments", url: "/p/schedule/subjects" },
+        { title: "Overview", url: "/p/schedule" },
+        // { title: "Weekly View", url: "/p/schedule/weekly" },
+        // { title: "Manage Schedule", url: "/p/schedule/manage" },
+        // { title: "Subject Assignments", url: "/p/schedule/subjects" },
       ]
     },
     {
       title: "Academic Resources",
-      url: "/p/resources",
+      url: "/p/resource",
       icon: BookOpen,
       items: [
-        { title: "Course Dashboard", url: "/p/resources/courses" },
-        { title: "Department Syllabus", url: "/p/resources/syllabus" },
-        { title: "Teaching Resources", url: "/p/resources/teaching" },
-        { title: "Notes Management", url: "/p/resources/notes" },
+        { title: "Overview", url: "/p/resource" },
+        // { title: "Department Syllabus", url: "/p/resources/syllabus" },
+        // { title: "Teaching Resources", url: "/p/resources/teaching" },
+        // { title: "Notes Management", url: "/p/resources/notes" },
       ]
     },
     {
@@ -93,9 +96,22 @@ const navigationConfig = {
       url: "/p/admin",
       icon: Database,
       items: [
-        { title: "Section Management", url: "/p/admin/sections" },
-        { title: "Attendance Reports", url: "/p/admin/attendance" },
-        { title: "Performance Analytics", url: "/p/admin/analytics" },
+        { title: "Student Details", url: "/p/student-details" },
+        // { title: "Department", url: "/p/department" },
+        // { title: "Attendance Reports", url: "/p/admin/attendance" },
+        // { title: "Performance Analytics", url: "/p/admin/analytics" },
+      ]
+    },
+    {
+      title: "Department",
+      url: "/p/admin",
+      icon: Building,
+      items: [
+        // { title: "Student Details", url: "/p/student-details" },
+        { title: "Department", url: "/p/department" },
+        { title: "Courses", url: "/p/course" },
+        // { title: "Attendance Reports", url: "/p/admin/attendance" },
+        // { title: "Performance Analytics", url: "/p/admin/analytics" },
       ]
     },
     {
@@ -104,8 +120,18 @@ const navigationConfig = {
       icon: Settings,
       items: [
         { title: "Personal Information", url: "/p/settings/profile" },
-        { title: "Expertise Settings", url: "/p/settings/expertise" },
-        { title: "Preferences", url: "/p/settings/preferences" },
+        // { title: "Expertise Settings", url: "/p/settings/expertise" },
+        // { title: "Preferences", url: "/p/settings/preferences" },
+      ]
+    },
+    {
+      title: "Emergency Alerts",
+      url: "/p/emergency",
+      icon: Siren,
+      items: [
+        { title: "Emergency Alert", url: "/p/emergency" },
+        // { title: "Expertise Settings", url: "/p/settings/expertise" },
+        // { title: "Preferences", url: "/p/settings/preferences" },
       ]
     },
   ],

@@ -361,11 +361,13 @@ const SubjectManagement: React.FC = () => {
                                 <TableHead>Type</TableHead>
                                 <TableHead>Resources</TableHead>
                                 <TableHead>Specializations</TableHead>
+                                <TableHead>Action</TableHead>
+
                             </TableRow>
                         </TableHeader>
                         <TableBody>
                             {subjects.map((subject) => (
-                                <TableRow key={subject.subject_id} onClick={()=>navigate(`/p/course/${course_id}/semester/${semester_id}/syllabus/${syllabus_id}/subject/${subject.subject_id}`)}>
+                                <TableRow key={subject.subject_id} onClick={()=>navigate(`/p/course/${course_id}/semester/${semester_id}/syllabus/${syllabus_id}/subject/${subject.subject_id}`)} className="cursor-pointer">
                                     <TableCell>{subject.subject_code}</TableCell>
                                     <TableCell className="capitalize">
                                         {subject.subject_name}
@@ -378,6 +380,17 @@ const SubjectManagement: React.FC = () => {
                                         {subject.preferred_faculty_specializations.join(
                                             ", "
                                         )}
+                                    </TableCell>
+                                    <TableCell>
+                                        <Button
+                                            variant="outline"
+                                            size="icon"
+                                            onClick={() => {
+                                               navigate(`/p/schedule/course/${course_id}/semester/${semester_id}/${syllabus_id}/subject-assignment`)
+                                            }}
+                                        >
+                                            Assign
+                                        </Button>
                                     </TableCell>
                                 </TableRow>
                             ))}

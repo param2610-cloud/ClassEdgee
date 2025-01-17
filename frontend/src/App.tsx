@@ -67,6 +67,8 @@ import BuildingManagement from "./pages/Protected/coordinator/buildings/Building
 // import ScheduleManager from "./pages/Protected/faculty/sechdule/ScheduleManagement";
 // import ScheduleDetailView from "./pages/Protected/faculty/sechdule/ScheduleDetailsView";
 import { MainLayout } from "./layouts/MainLayout";
+import UpcomingClassComponent from "./pages/Protected/faculty/classes/UpcomingClassComponent";
+import ListOfClass from "./pages/Protected/faculty/classes/List_of_class";
 
 const App: React.FC = () => {
     return (
@@ -141,10 +143,18 @@ const FacultyRoutes: React.FC = () => {
     return (
         <FacultyLayout>
             <Routes>
+                {/* dashaboard */}
                 <Route path="/" element={<FacultyLMSDashboard />} />
+                {/* <Route path="/dashboard/announcements" element={<Anouncement />} /> */}
+                {/* <Route path="/dashboard/activities" element={<Activites />} /> */}
+        {/* class and teaching */}
                 <Route
                     path="/interactive-classroom"
                     element={<VirtualRoom />}
+                />
+                <Route
+                    path="/classes/department-syllabus"
+                    element={<CourseDashboardForFaculty />}
                 />
                 <Route path="/settings/profile" element={<Profilepage />} />
                 <Route path="/department" element={<DepartmentDetails />} />
@@ -152,10 +162,7 @@ const FacultyRoutes: React.FC = () => {
                     path="/department/:department_id/section/:section_id"
                     element={<SectionDashboard />}
                 />
-                <Route
-                    path="/department-syllabus"
-                    element={<CourseDashboardForFaculty />}
-                />
+                <Route path="/course" element={<CourseDashboard />} />
                 <Route
                     path="/course/:id"
                     element={<SpecificCourseDashboard />}
@@ -191,7 +198,9 @@ const FacultyRoutes: React.FC = () => {
                     path="/student-details"
                     element={<FacultyAttendanceDashboard />}
                 />
-                <Route path="/resource" element={<ResourceManagement />} />
+                <Route path="/resource" element={<ResourceManagement />} />\
+                <Route path="/classes/upcoming-class" element={<UpcomingClassComponent/>}/>
+                <Route path="/classes/past-classes" element={<ListOfClass/>}/>
 
                 {/* <Route
                 path="/classes-list"
@@ -266,6 +275,10 @@ const CoordinatorRoutes: React.FC = () => {
                 <Route
                     path="department/:department_id/add-syllabus/:course_id"
                     element={<AddBatchSyllabus />}
+                />
+                <Route
+                    path="/department/:department_id/section/:section_id"
+                    element={<SectionDashboard />}
                 />
                 <Route
                     path="/course/:course_id/semester/:semester_id/syllabus/:syllabus_id/subject/:subject_id"
