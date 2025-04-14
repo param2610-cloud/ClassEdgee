@@ -106,4 +106,4 @@ app.get("/health", (req, res) => {
 })
 
 const LOCALIP = process.env.LOCAL_IP || 'localhost';
-app.listen(port,LOCALIP, () => console.log(`The App is Listening on port ${port} \n health check at http://${LOCALIP}:${port}/health`));
+app.listen(port, () => console.log(`The App is Listening on port ${port} \n health check at http://${LOCALIP}:${port}/health`));
