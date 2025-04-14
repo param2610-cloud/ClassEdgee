@@ -145,13 +145,9 @@ const testimonials: Testimonial[] = [
                           <Quote size={48} />
                         </div>
                         
-                        {/* Profile image */}
-                        <div className="relative z-10">
-                          <img 
-                            src={testimonial.image} 
-                            alt={testimonial.name}
-                            className="w-32 h-32 md:w-48 md:h-48 rounded-full object-cover border-4 border-white shadow-lg" 
-                          />
+                        {/* Placeholder for profile initials */}
+                        <div className="relative z-10 flex items-center justify-center w-32 h-32 md:w-48 md:h-48 rounded-full bg-blue-200 text-blue-900 text-3xl md:text-5xl font-bold border-4 border-white shadow-lg">
+                          {testimonial.name.split(' ').map((n) => n[0]).join('')}
                         </div>
                         
                         {/* Stats callout */}
@@ -226,21 +222,13 @@ const testimonials: Testimonial[] = [
         </div>
         
         {/* Additional case studies link */}
-        <div className="text-center mt-12">
-          <a 
-            href="#case-studies"
-            className="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors font-medium"
-          >
-            View all case studies
-            <ChevronRight size={20} className="ml-1" />
-          </a>
-        </div>
+       
       </div>
       
       {/* Decoration */}
       <div className="absolute bottom-0 left-0 right-0 h-32 overflow-hidden z-0 opacity-20">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="absolute bottom-0">
-          <path fill="#60A5FA" fillOpacity="0.3" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,250.7C960,235,1056,181,1152,165.3C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          <path fill="#60A5FA" fillOpacity="0.3" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,250.7C960,235,1056,181,1152,165.3C1248,149,1344,171,1392,181.3L1440,192L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
         </svg>
       </div>
     </section>
