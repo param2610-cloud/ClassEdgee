@@ -29,7 +29,7 @@ const DemoRequestForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     setError(null);
     
     // Replace with your actual EmailJS details
-    const serviceId = 'service_irh51yfs';
+    const serviceId = 'service_jdzjilq';
     const templateId = 'template_paugtli';
     const publicKey = '8atCVOOl1THkM_Pof';
     
