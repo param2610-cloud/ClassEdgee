@@ -105,5 +105,5 @@ app.get("/health", (req, res) => {
     res.send("The App is Healthy")
 })
 
-const LOCALIP = process.env.LOCAL_IP || 'localhost';
+const LOCALIP = process.env.LOCAL_IP || 'localhost'
 app.listen(port, () => console.log(`The App is Listening on port ${port} \n health check at http://${LOCALIP}:${port}/health`));
