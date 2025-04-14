@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAuth } from '../services/AuthContext';
-import { SidebarProvider, SidebarTrigger, SidebarInset } from '../components/ui/sidebar';
+import { SidebarProvider, SidebarTrigger } from '../components/ui/sidebar';
 import { AppSidebar } from '../components/app-sidebar';
 import { Separator } from '../components/ui/separator';
 import { BreadcrumbNav } from '../components/BreadcrumbNav';

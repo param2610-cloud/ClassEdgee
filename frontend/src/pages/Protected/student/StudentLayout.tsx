@@ -1,8 +1,6 @@
 import AlertFire from '@/components/AlertFire';
 import { useEmergencyAlert } from '@/hooks/useEmergencyAlert';
 import React from 'react';
-import { Outlet } from 'react-router-dom';
-
 const StudentLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { hasActiveEmergency } = useEmergencyAlert();
   

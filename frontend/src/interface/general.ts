@@ -187,7 +187,7 @@ export interface Class {
     slot_id?: number;
     semester: number;
     academic_year: number;
-    date_of_class:Date
+    date_of_class: Date;
     is_active?: boolean;
     created_at?: Date;
     updated_at?: Date;
@@ -202,7 +202,22 @@ export interface Class {
     studentengagement: StudentEngagement[];
     detail_id?: number;
     schedule_details: ScheduleDetails;
+    quizzes?: Quiz[];
 }
+
+export interface Quiz {
+    quiz_id: number;
+    title: string;
+    description: string;
+    quiz_questions: QuizQuestion[];
+}
+
+export interface QuizQuestion {
+    question_id: number;
+    question_text: string;
+    options: string[];
+}
+
 export interface ScheduleDetails {
     detail_id: number;
     schedule_id: number;
@@ -600,6 +615,8 @@ export interface SubjectDetail {
     syllabus_structure?: SyllabusStructure;
     units: Unit[];
     faculty_subject_mapping: faculty_subject_mapping[];
+    subject_name: string;
+    weekly_classes?: number;
 }
 
 export interface SyllabusStructure {
@@ -698,4 +715,4 @@ export interface MaintenanceFormData {
     last_maintenance_date: string;
     next_maintenance_date: string;
     maintenance_notes: string;
-  }
+}

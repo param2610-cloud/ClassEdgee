@@ -1,16 +1,10 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import {
   Clock,
   Book,
   Users,
   DoorOpen,
   Calendar,
-  Home,
-  BookOpen,
-  Bell,
-  UserCircle,
-  Video,
-  HomeIcon,
   Box,
 } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
@@ -18,13 +12,12 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { domain } from "@/lib/constant";
 import { useNavigate } from "react-router-dom";
-import { Class, Student, User } from "@/interface/general";
+import { Class, User } from "@/interface/general";
 
 const UpcomingClassComponentStudent = ({ userData }: { userData: User }) => {
   const [upcomingClass, setUpcomingClass] = useState<Class | null>(null);
   const [remainingTime, setRemainingTime] = useState("");
   const [isLive, setIsLive] = useState(false);
-  const [studentData, setStudentData] = useState<Student | null>(null);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
@@ -53,15 +46,15 @@ const UpcomingClassComponentStudent = ({ userData }: { userData: User }) => {
   }, []);
 
   useEffect(() => {
-    if (!upcomingClass?.timeslots || !upcomingClass?.date_of_class) return;
+    if (!upcomingClass?.timeslots?.start_time || !upcomingClass?.timeslots?.end_time || !upcomingClass?.date_of_class) return;
 
     const updateClassStatus = () => {
       const now = new Date();
       const classDate = new Date(upcomingClass.date_of_class);
 
       // Extract hours and minutes from timeslots
-      const startTime = new Date(upcomingClass.timeslots.start_time);
-      const endTime = new Date(upcomingClass.timeslots.end_time);
+      const startTime = new Date(upcomingClass.timeslots?.start_time || '');
+      const endTime = new Date(upcomingClass.timeslots?.end_time || '');
 
       // Set the class date with the correct time
       const classStartTime = new Date(classDate);
@@ -78,7 +71,7 @@ const UpcomingClassComponentStudent = ({ userData }: { userData: User }) => {
       setIsLive(now >= classStartTime && now <= classEndTime);
 
       // Calculate remaining time
-      const timeDiff = classStartTime - now;
+      const timeDiff = classStartTime.getTime() - now.getTime(); // Ensure arithmetic operations are on numbers
 
       if (timeDiff > 0) {
         const hours = Math.floor(timeDiff / (1000 * 60 * 60));
@@ -177,21 +170,19 @@ const UpcomingClassComponentStudent = ({ userData }: { userData: User }) => {
                       <div>
                         <p className="text-sm text-gray-500">Time</p>
                         <p className="font-medium">
-                          {new Date(
-                            upcomingClass?.timeslots?.start_time
-                          ).toLocaleTimeString([], {
-                            hour: "2-digit",
-                            minute: "2-digit",
-                            hour12: false,
-                          })}
+                          {upcomingClass?.timeslots?.start_time &&
+                            new Date(upcomingClass.timeslots.start_time).toLocaleTimeString([], {
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              hour12: false,
+                            })}
                           {" - "}
-                          {new Date(
-                            upcomingClass?.timeslots?.end_time
-                          ).toLocaleTimeString([], {
-                            hour: "2-digit",
-                            minute: "2-digit",
-                            hour12: false,
-                          })}
+                          {upcomingClass?.timeslots?.end_time &&
+                            new Date(upcomingClass.timeslots.end_time).toLocaleTimeString([], {
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              hour12: false,
+                            })}
                         </p>
                       </div>
                     </div>
@@ -201,14 +192,13 @@ const UpcomingClassComponentStudent = ({ userData }: { userData: User }) => {
                       <div>
                         <p className="text-sm text-gray-500">Date</p>
                         <p className="font-medium">
-                          {new Date(
-                            upcomingClass.date_of_class
-                          ).toLocaleDateString([], {
-                            weekday: "long",
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                          })}
+                          {upcomingClass?.date_of_class &&
+                            new Date(upcomingClass.date_of_class).toLocaleDateString([], {
+                              weekday: "long",
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            })}
                         </p>
                       </div>
                     </div>

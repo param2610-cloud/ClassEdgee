@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Class } from "@/interface/general";
 import {
   Drawer,
@@ -32,32 +32,35 @@ interface Quiz {
 
 const QuizDrawerComponent = ({ classData }: { classData: Class }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [user_id] = useAtom(user_idAtom)
+  const [user_id] = useAtom(user_idAtom);
   const [currentQuiz, setCurrentQuiz] = useState<Quiz | null>(null);
   const [responses, setResponses] = useState<{ [key: number]: number }>({});
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
-  const [studentData,setStudentData] = useAtom(userDataAtom);
+  const [studentData, setStudentData] = useAtom(userDataAtom);
+
   const fetchStudentData = async () => {
     try {
-      const studentResponse = await fetch(`${domain}/api/v1/student/get-student/${user_id}`);
+      const studentResponse = await fetch(
+        `${domain}/api/v1/student/get-student/${user_id}`
+      );
       const studentData = await studentResponse.json();
-      console.log("studentData:",studentData);
+      console.log("studentData:", studentData);
       setStudentData(studentData.data);
-      
-      
+
       setIsLoading(false);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
       setIsLoading(false);
     }
-  }
-  useEffect(()=>{
-    if(!studentData){
-      fetchStudentData()
+  };
+
+  useEffect(() => {
+    if (!studentData) {
+      fetchStudentData();
     }
-  },[studentData])
+  }, [studentData]);
+
   const handleQuizStart = () => {
     if (classData?.quizzes?.[0]) {
       setCurrentQuiz(classData.quizzes[0]);
@@ -91,8 +94,6 @@ const QuizDrawerComponent = ({ classData }: { classData: Class }) => {
       );
 
       setSubmitted(true);
-    } catch (err) {
-      setError("Failed to submit quiz");
     } finally {
       setIsLoading(false);
     }
@@ -155,7 +156,7 @@ const QuizDrawerComponent = ({ classData }: { classData: Class }) => {
           disabled={!classData?.quizzes?.length}
         >
           Start Quiz
-          {classData?.quizzes?.length > 0 && (
+          {classData?.quizzes && classData.quizzes.length > 0 && (
             <Badge variant="secondary" className="ml-2">
               {classData.quizzes.length}
             </Badge>

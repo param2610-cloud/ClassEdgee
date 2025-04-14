@@ -19,8 +19,8 @@ export const BreadcrumbNav = () => {
         <Breadcrumb>
             <BreadcrumbList>
                 <BreadcrumbItem>
-                    <BreadcrumbLink as={Link} to="/">
-                        Home
+                    <BreadcrumbLink>
+                        <Link to="/">Home</Link>
                     </BreadcrumbLink>
                 </BreadcrumbItem>
                 {pathSegments.map((segment, index) => {
@@ -39,9 +39,11 @@ export const BreadcrumbNav = () => {
                                             segment.slice(1)}
                                     </BreadcrumbPage>
                                 ) : (
-                                    <BreadcrumbLink as={Link} to={path}>
-                                        {segment.charAt(0).toUpperCase() +
-                                            segment.slice(1)}
+                                    <BreadcrumbLink>
+                                        <Link to={path}>
+                                            {segment.charAt(0).toUpperCase() +
+                                                segment.slice(1)}
+                                        </Link>
                                     </BreadcrumbLink>
                                 )}
                             </BreadcrumbItem>

@@ -34,11 +34,7 @@ interface Building {
   status: string;
 }
 
-interface Room {
-  room_id: number;
-  room_number: string;
-  floor_number: number;
-}
+
 
 interface EmergencyContact {
   title: string;
@@ -122,7 +118,7 @@ const AlertFireCoordinator = () => {
         setBuildings(buildings);
         setEmergencyContacts(contacts);
         
-        if (alerts.some(alert => alert.status === 'active')) {
+        if (alerts.some((alert: Alert) => alert.status === 'active')) {
           playEmergencySound();
         } else {
           if (audioRef.current) {

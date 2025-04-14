@@ -1,7 +1,6 @@
-import { AlertCircle, ArrowRight, LightbulbIcon, RocketIcon, TargetIcon } from "lucide-react";
+import { AlertCircle, LightbulbIcon, TargetIcon } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 
 const cardVariants = {
   initial: { opacity: 0, y: 50 },
@@ -21,16 +20,13 @@ const cardVariants = {
 };
 
 const About: React.FC = () => {
-  const navigate = useNavigate();
-  const [isLoaded, setIsLoaded] = useState(false);
+  // const navigate = useNavigate();
+  const [, setIsLoaded] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);
   }, []);
 
-  const handleGetStartedClick = () => {
-    navigate('/auth/signin');
-  };
 
   return (
     <div className="min-h-screen bg-white flex items-center justify-center p-6 overflow-hidden relative">

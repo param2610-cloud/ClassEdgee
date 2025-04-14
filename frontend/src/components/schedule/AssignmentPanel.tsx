@@ -28,7 +28,6 @@ const AssignmentPanel: React.FC<AssignmentPanelProps> = ({
   const [selectedSubject, setSelectedSubject] = useState<number | null>(null);
   const [selectedFaculty, setSelectedFaculty] = useState<number | null>(null);
   const [selectedRoom, setSelectedRoom] = useState<number | null>(null);
-  const [selectedSlot, setSelectedSlot] = useState<number | null>(slotId);
 
   const handleAssignment = async () => {
     if (!selectedSubject || !selectedFaculty || !selectedRoom) {
@@ -39,7 +38,7 @@ const AssignmentPanel: React.FC<AssignmentPanelProps> = ({
     try {
       await scheduleService.assignSchedule({
         scheduleId,
-        slotId: selectedSlot,
+        slotId, // Use slotId directly instead of selectedSlot
         facultyId: selectedFaculty,
         roomId: selectedRoom,
         subjectId: selectedSubject,
@@ -50,7 +49,6 @@ const AssignmentPanel: React.FC<AssignmentPanelProps> = ({
       setSelectedSubject(null);
       setSelectedFaculty(null);
       setSelectedRoom(null);
-      setSelectedSlot(null);
 
       // Refresh grid data through parent component
       onRefresh();
@@ -108,13 +106,17 @@ const AssignmentPanel: React.FC<AssignmentPanelProps> = ({
     }, [departmentId, semester]);
    
     return (
-      <div>
-        <label>Select Subject</label>
-        <select onChange={e => onChange(Number(e.target.value))}>
+      <div className="flex flex-col">
+        <label className="mb-1 font-medium">Select Subject</label>
+        <select 
+          onChange={e => onChange(Number(e.target.value))}
+          className="border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          <option value="">-- Select a subject --</option>
           {subjects.map(subject => (
-            <option key={subject.id} value={subject.id}>
-              {subject.name} ({subject.weeklyClasses} classes/week)
-            </option>
+        <option key={subject.subject_id} value={subject.subject_id}>
+          {subject.subject_name || "Unnamed Subject"} ({subject.weekly_classes || "N/A"} classes/week)
+        </option>
           ))}
         </select>
       </div>

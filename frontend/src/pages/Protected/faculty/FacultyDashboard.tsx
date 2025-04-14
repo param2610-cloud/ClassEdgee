@@ -1,14 +1,3 @@
-// import React from 'react'
-
-// const FacultyLMSDashboard = () => {
-//   return (
-//     <div className=''>
-//       Faculty Dashboard
-//     </div>
-//   )
-// }
-
-// export default FacultyLMSDashboard
 import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useNavigate } from 'react-router-dom';
@@ -18,10 +7,19 @@ import { BookOpen, Calendar, Users, Clock, FileQuestion, Activity } from 'lucide
 import { Progress } from '@/components/ui/progress';
 import UpcomingClassComponent from './classes/UpcomingClassComponent';
 
+// Define the interface for facultyData
+interface FacultyData {
+  first_name: string;
+  last_name: string;
+  classes_count: number;
+  departments: { department_name: string }[];
+  // Add other properties as needed
+}
+
 const FacultyLMSDashboard = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
-  const [facultyData, setFacultyData] = useState(null);
+  const [facultyData, setFacultyData] = useState<FacultyData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

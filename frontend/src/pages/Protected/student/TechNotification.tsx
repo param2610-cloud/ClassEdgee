@@ -1,11 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Bell, Calendar, ExternalLink, TrendingUp } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
+// Define a type for stories
+type Story = {
+  id: number;
+  title: string;
+  url: string;
+  score: number;
+  date: string;
+  author: string;
+  commentCount: number;
+};
+
 const TechNewsNotifications = () => {
-  const [stories, setStories] = useState([]);
+  const [stories, setStories] = useState<Story[]>([]); // Explicitly type stories state
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null); // Allow error to be a string or null
   const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
@@ -15,10 +26,10 @@ const TechNewsNotifications = () => {
         // Fetch top stories IDs
         const response = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json');
         if (!response.ok) throw new Error('Failed to fetch stories');
-        const storyIds = await response.json();
+        const storyIds: number[] = await response.json(); // Explicitly type storyIds
         
         // Fetch details for top 15 stories
-        const storyPromises = storyIds.slice(0, 15).map(id =>
+        const storyPromises = storyIds.slice(0, 15).map((id: number) =>
           fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
             .then(res => res.json())
         );
@@ -26,7 +37,7 @@ const TechNewsNotifications = () => {
         const storiesData = await Promise.all(storyPromises);
         
         // Transform and filter stories
-        const transformedStories = storiesData
+        const transformedStories: Story[] = storiesData
           .filter(story => story && story.url) // Only stories with URLs
           .map(story => ({
             id: story.id,

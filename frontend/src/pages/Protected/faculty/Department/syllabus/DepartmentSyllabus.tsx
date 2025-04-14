@@ -21,17 +21,15 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Course, Department, User } from "@/interface/general";
+import { Course, User } from "@/interface/general";
 import { domain } from "@/lib/constant";
-import { useAtom } from "jotai";
-import { institutionIdAtom } from "@/store/atom";
 import axios from "axios";
 import { useAuth } from "@/services/AuthContext";
 
 const CourseDashboard = () => {
     const [courses, setCourses] = useState<Course[]>([]);
     const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
-    const [institution_id] = useAtom(institutionIdAtom)
+    // const [institution_id] = useAtom(institutionIdAtom)
     const [profileData,setProfileData] = useState<User | null>(null)
     const {user} = useAuth()
     const [newCourse, setNewCourse] = useState({

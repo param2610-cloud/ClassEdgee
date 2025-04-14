@@ -9,23 +9,23 @@ import { Info, Upload, Loader2 } from "lucide-react";
 import axios from 'axios';
 import { domain } from '@/lib/constant';
 
-interface SubjectData {
-    subject_name: string;
-    subject_code: string;
-    subject_type: string;
-    preferred_faculty_specializations?: string[];
-    resources_required?: string[];
-    units: {
-        unit_number: number;
-        unit_name: string;
-        required_hours: number;
-        unit_type?: string;
-        topics: {
-            topic_name: string;
-            topic_description?: string;
-        }[];
-    }[];
-}
+// interface SubjectData {
+//     subject_name: string;
+//     subject_code: string;
+//     subject_type: string;
+//     preferred_faculty_specializations?: string[];
+//     resources_required?: string[];
+//     units: {
+//         unit_number: number;
+//         unit_name: string;
+//         required_hours: number;
+//         unit_type?: string;
+//         topics: {
+//             topic_name: string;
+//             topic_description?: string;
+//         }[];
+//     }[];
+// }
 
 const BatchUploadComponent: React.FC = () => {
     const { course_id, department_id } = useParams<{ course_id: string; department_id: string }>();
@@ -98,7 +98,7 @@ const BatchUploadComponent: React.FC = () => {
             };
 
             // Send request to backend
-            const response = await axios.post(`${domain}/api/v1/curriculum/batch`, payload);
+            await axios.post(`${domain}/api/v1/curriculum/batch`, payload);
             
             // Handle successful upload
             setUploadSuccess(true);

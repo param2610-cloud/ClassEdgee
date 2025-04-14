@@ -5,7 +5,7 @@ import { domain } from "@/lib/constant";
 import { institutionIdAtom } from "@/store/atom";
 import axios from "axios";
 import { useAtom } from "jotai";
-import { Plus, Building2, Loader2, Users, BarChart, ArrowLeft } from "lucide-react";
+import { Plus, Building2, ArrowLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 

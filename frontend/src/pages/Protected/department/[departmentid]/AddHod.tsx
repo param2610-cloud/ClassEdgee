@@ -53,7 +53,7 @@ const AddHod: React.FC = () => {
             fetchInitialData();
         }else{
             
-            setInstitutionId(localStorage.getItem("institution_id") as string);
+            setInstitutionId(Number(localStorage.getItem("institution_id")) || null);
         }
     }, [department_id, institution_id]);
 

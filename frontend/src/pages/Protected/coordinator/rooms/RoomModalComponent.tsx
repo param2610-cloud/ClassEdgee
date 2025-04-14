@@ -36,7 +36,8 @@ export default function RoomModal({ isOpen, onClose, room, buildings, onSubmit }
     area_sqft: 0,
     features: {},
   });
-
+  console.log(isOpen);
+  
   useEffect(() => {
     if (room) {
       setFormData(room);

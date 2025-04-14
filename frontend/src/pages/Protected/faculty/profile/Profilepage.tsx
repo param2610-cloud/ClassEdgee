@@ -1,29 +1,36 @@
-import { AppSidebar } from "@/components/app-sidebar"
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar"
+
 import ProfilePageComponent from '@/components/ProfilePage'
-import { User } from '@/interface/general'
 import { domain } from '@/lib/constant'
 import { useAuth } from '@/services/AuthContext'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 
+interface ProfileData {
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone_number?: string; // Make phone_number optional
+  college_uid: string;
+  faculty?: { // Make faculty optional
+    designation?: string;
+    expertise?: string[];
+    qualifications?: string[];
+    joining_date?: string;
+    contract_end_date?: string;
+    research_interests?: string[];
+  };
+  departments: {
+    department_id: string;
+    department_name: string;
+    department_code: string;
+    contact_email: string;
+    contact_phone: string;
+  }[];
+}
 const Profilepage = () => {
   const { user } = useAuth()
-  const [profileData, setProfileData] = useState<User | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [profileData, setProfileData] = useState<ProfileData | null>(null)
+  const [, setIsLoading] = useState(true)
 
   useEffect(() => {
     fetchFaculty()
@@ -42,7 +49,7 @@ const Profilepage = () => {
   }
 
   return (
-            <ProfilePageComponent profileData={profileData} />
+            profileData ? <ProfilePageComponent profileData={profileData} /> : <div>Loading profile data...</div>
 
   )
 }

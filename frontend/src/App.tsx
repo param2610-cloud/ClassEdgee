@@ -11,7 +11,6 @@ import LoginPage from "./pages/Open/auth/Login";
 import Registration from "./pages/Open/auth/Registration";
 
 // Import layouts
-import SupremeLayout from "./pages/Protected/supreme/SupremeLayout";
 import StudentLayout from "./pages/Protected/student/StudentLayout";
 
 // Import pages
@@ -47,7 +46,6 @@ import CourseDashboardForFaculty from "./pages/Protected/faculty/Course/CourseDa
 import SectionDashboard from "./pages/Protected/faculty/section/SectionDashboard";
 import SubjectAssignment from "./pages/Protected/faculty/schedule/SubjectAssignment";
 import ScheduleViewer from "./pages/Protected/faculty/schedule/ScheduleViewer";
-import Load from "./LoadSpinners/Load";
 import ScheduleDashboard from "./pages/Protected/faculty/schedule/ScheduleDashboard";
 import ClassDashboard from "./pages/Protected/faculty/classes/ClassDashboard";
 // import QuizComponent from "./pages/Protected/student/quiz/QuizComponent";
@@ -172,7 +170,7 @@ const FacultyRoutes: React.FC = () => {
                     element={<SubjectManagement />}
                 />
                 <Route
-                    path="department/:department_id/add-syllabus/:course_id"
+                    path="/department/:department_id/add-syllabus/:course_id"
                     element={<AddBatchSyllabus />}
                 />
                 <Route
@@ -274,7 +272,7 @@ const CoordinatorRoutes: React.FC = () => {
                     element={<SubjectManagement />}
                 />
                 <Route
-                    path="department/:department_id/add-syllabus/:course_id"
+                    path="/department/:department_id/add-syllabus/:course_id"
                     element={<AddBatchSyllabus />}
                 />
                 <Route

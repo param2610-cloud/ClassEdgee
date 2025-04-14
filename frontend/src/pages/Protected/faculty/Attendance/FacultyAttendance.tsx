@@ -5,13 +5,54 @@ import { useAuth } from "@/services/AuthContext";
 import { BookOpen, School, Users } from "lucide-react";
 import { useEffect, useState } from "react";
 
+// Define interfaces for the data structures
+interface ClassInfo {
+  id: number;
+  courseCode: string;
+  courseName: string;
+  section: string;
+  room: string;
+  dateOfClass: string; // Assuming date is a string initially
+}
+
+interface StudentInfo {
+  id: number;
+  name: string;
+  college_uid: string;
+  profile_picture?: string;
+}
+
+interface AttendanceRecord {
+  present: number;
+  absent: number;
+  percentage: string; // Assuming percentage is a string
+}
+
+interface StudentAttendance {
+  student: StudentInfo;
+  attendance: AttendanceRecord;
+}
+
+interface AttendanceStats {
+  averageAttendance: number;
+  totalStudents: number;
+  totalClasses: number;
+}
+
+interface AttendanceData {
+  stats: AttendanceStats;
+  history: StudentAttendance[];
+}
+
 const FacultyAttendanceDashboard = () => {
-  const [classes, setClasses] = useState([]);
-  const [selectedClass, setSelectedClass] = useState(null);
-  const [attendanceData, setAttendanceData] = useState(null);
+  const [classes, setClasses] = useState<ClassInfo[]>([]); // Type the classes state
+  const [selectedClass, setSelectedClass] = useState<number | null>(null); // Type the selectedClass state
+  const [attendanceData, setAttendanceData] = useState<AttendanceData | null>(
+    null // Type the attendanceData state
+  );
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [facultyId, setFacultyId] = useState(null);
+  const [error, setError] = useState<string | null>(null); // Type the error state
+  const [facultyId, setFacultyId] = useState<number | null>(null); // Type the facultyId state
   const { user } = useAuth();
 
   useEffect(() => {
@@ -29,7 +70,11 @@ const FacultyAttendanceDashboard = () => {
           setFacultyId(data.faculty_id);
         }
       } catch (err) {
-        setError(err.message);
+        if (err instanceof Error) {
+          setError(err.message); // Type the error variable
+        } else {
+          setError("An unknown error occurred");
+        }
       } finally {
         setLoading(false);
       }
@@ -53,7 +98,11 @@ const FacultyAttendanceDashboard = () => {
         const data = await response.json();
         setClasses(data.classes || []);
       } catch (err) {
-        setError(err.message);
+        if (err instanceof Error) {
+          setError(err.message); // Type the error variable
+        } else {
+          setError("An unknown error occurred");
+        }
       } finally {
         setLoading(false);
       }
@@ -64,7 +113,7 @@ const FacultyAttendanceDashboard = () => {
     }
   }, [facultyId]);
 
-  const handleClassSelect = async (classId) => {
+  const handleClassSelect = async (classId: number) => { // Type the classId parameter
     try {
       setLoading(true);
       const response = await fetch(`${domain}/api/v1/attendance/history/${classId}`);
@@ -75,7 +124,11 @@ const FacultyAttendanceDashboard = () => {
       setAttendanceData(data);
       setSelectedClass(classId);
     } catch (err) {
-      setError(err.message);
+      if (err instanceof Error) {
+        setError(err.message); // Type the error variable
+      } else {
+        setError("An unknown error occurred");
+      }
     } finally {
       setLoading(false);
     }
@@ -112,7 +165,7 @@ const FacultyAttendanceDashboard = () => {
       <h2 className="text-2xl font-bold mb-6">Past Classes</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-        {classes.map((cls) => (
+        {classes.map((cls) => ( // cls is now typed as ClassInfo
           <Card
             key={cls.id}
             className={`cursor-pointer hover:shadow-lg transition-shadow ${
@@ -148,7 +201,7 @@ const FacultyAttendanceDashboard = () => {
         ))}
       </div>
       {/* Attendance Statistics */}
-      {loading ? (
+      {loading && selectedClass ? ( // Show loading only when fetching attendance for a selected class
         <div className="text-center py-8">Loading attendance data...</div>
       ) : (
         attendanceData && (
@@ -206,7 +259,7 @@ const FacultyAttendanceDashboard = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {attendanceData.history.map((student) => (
+                      {attendanceData.history.map((student: StudentAttendance) => ( // Type the student parameter
                         <tr key={student.student.id} className="border-b">
                           <td className="p-2">
                             <div className="flex items-center gap-2">

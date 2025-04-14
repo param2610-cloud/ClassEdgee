@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../store/store';
 import { 
   setUser, 
-  setInstitution, 
   clearAuth,
   fetchInstitutionDetails 
 } from '../store/slices/authSlice';

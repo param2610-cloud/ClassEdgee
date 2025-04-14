@@ -1,4 +1,3 @@
-import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Users, BookOpen, Calendar, Building2, Bell } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';

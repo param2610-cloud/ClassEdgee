@@ -1,14 +1,9 @@
 // Types for the grid
 import React, { useMemo } from 'react';
-interface GridCell {
-    slotId: number;
-    subject?: string;
-    faculty?: string;
-    room?: string;
-  }
+
   
   interface TimeTableProps {
-    slots: TimeSlot[];
+    slots: any[];
     assignments?: {
       [key: string]: {
         subject: string;
@@ -22,7 +17,7 @@ interface GridCell {
   const TimeTable: React.FC<TimeTableProps> = ({ slots, assignments, onSlotClick }) => {
     // Group slots by day and sort by time
     const groupedSlots = useMemo(() => {
-      const days: { [key: number]: TimeSlot[] } = {};
+      const days: { [key: number]: any[] } = {};
       slots.forEach(slot => {
         if (!days[slot.dayOfWeek]) {
           days[slot.dayOfWeek] = [];

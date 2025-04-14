@@ -10,7 +10,7 @@ import UpcomingClassComponentStudent from "./classes/UpciomingClassComponentStud
 const StudentLMSDashboard = () => {
   const { user } = useAuth();
   const [userData, setUserData] = useAtom(userDataAtom);
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const fetchStudentData = async () => {
