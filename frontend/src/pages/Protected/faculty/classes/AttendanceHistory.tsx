@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Calendar, Clock } from 'lucide-react';
 import {
   Card,
@@ -18,10 +18,24 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { domain } from '@/lib/constant';
 
-const AttendanceHistory = ({ classId }:{classId:string}) => {
-  const [attendanceData, setAttendanceData] = useState([]);
+interface AttendanceRecord {
+  attendance_id: number;
+  date: string;
+  created_at: string;
+  status: 'present' | 'absent'; // Add other statuses if applicable
+  verification_method: 'facial' | 'manual' | 'mobile' | 'biometric' | string; // Allow other strings if needed
+  students?: {
+    users?: {
+      first_name?: string;
+      last_name?: string;
+    }
+  }
+}
+
+const AttendanceHistory = ({ classId }: { classId: string }) => {
+  const [attendanceData, setAttendanceData] = useState<AttendanceRecord[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchAttendance = async () => {
@@ -33,7 +47,11 @@ const AttendanceHistory = ({ classId }:{classId:string}) => {
         const data = await response.json();
         setAttendanceData(data.history);
       } catch (err) {
-        setError(err.message);
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError('An unknown error occurred');
+        }
       } finally {
         setLoading(false);
       }
@@ -42,8 +60,8 @@ const AttendanceHistory = ({ classId }:{classId:string}) => {
     fetchAttendance();
   }, [classId]);
 
-  const getVerificationBadge = (method) => {
-    const colors = {
+  const getVerificationBadge = (method: string) => {
+    const colors: { [key: string]: string } = {
       facial: "bg-green-100 text-green-800",
       manual: "bg-yellow-100 text-yellow-800",
       mobile: "bg-blue-100 text-blue-800",
@@ -57,7 +75,7 @@ const AttendanceHistory = ({ classId }:{classId:string}) => {
     );
   };
 
-  const formatDate = (dateStr) => {
+  const formatDate = (dateStr: string) => {
     return new Date(dateStr).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'short',
@@ -65,7 +83,7 @@ const AttendanceHistory = ({ classId }:{classId:string}) => {
     });
   };
 
-  const formatTime = (dateStr) => {
+  const formatTime = (dateStr: string) => {
     return new Date(dateStr).toLocaleTimeString('en-US', {
       hour: '2-digit',
       minute: '2-digit'
@@ -115,10 +133,17 @@ const AttendanceHistory = ({ classId }:{classId:string}) => {
               </TableRow>
             </TableHeader>
             <TableBody>
+              {attendanceData.length === 0 && !loading && (
+                <TableRow>
+                  <TableCell colSpan={5} className="h-24 text-center">
+                    No attendance records found.
+                  </TableCell>
+                </TableRow>
+              )}
               {attendanceData.map((record) => (
                 <TableRow key={`${record.attendance_id}-${record.date}`}>
                   <TableCell className="font-medium">
-                    {record.students?.users?.first_name} {record.students?.users?.last_name}
+                    {record.students?.users?.first_name || 'N/A'} {record.students?.users?.last_name || ''}
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">
@@ -133,8 +158,8 @@ const AttendanceHistory = ({ classId }:{classId:string}) => {
                     </div>
                   </TableCell>
                   <TableCell>
-                    <Badge 
-                      variant={record.status === 'present' ? 'success' : 'destructive'}
+                    <Badge
+                      variant={record.status === 'present' ? 'default' : 'destructive'}
                     >
                       {record.status}
                     </Badge>

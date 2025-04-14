@@ -13,7 +13,6 @@ import { useAtom } from "jotai";
 import { institutionIdAtom } from "@/store/atom";
 import { domain } from "@/lib/constant";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 
 interface ScheduleDetail {
@@ -100,13 +99,28 @@ interface ClassSchedule {
     faculty: Faculty;
     rooms: Room;
     timeslots: TimeSlot;
-}
-
-interface GroupedSchedule {
-    [department: string]: {
-        [academicYear: string]: ScheduleMeta[];
+    faculty_schedule_details_faculty_idTofaculty: {
+        users: {
+            first_name: string;
+            last_name: string;
+        };
+    };
+    rooms_schedule_details_room_idTorooms: {
+        room_number: string;
+        wing: string;
+        room_type: string;
+    };
+    subject_details: {
+        subject_name: string;
+        subject_code: string;
     };
 }
+
+// interface GroupedSchedule {
+//     [department: string]: {
+//         [academicYear: string]: ScheduleMeta[];
+//     };
+// }
 
 interface ScheduleMeta {
     schedule_id: number;
@@ -131,7 +145,7 @@ interface ScheduleMeta {
 
 // Component
 const WeeklySchedule: React.FC = () => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [departments, setDepartments] = useState<Department[]>([]);
     const [selectedDept, setSelectedDept] = useState<Department | null>(null);
     const [selectedSection, setSelectedSection] = useState<string | null>(null);
@@ -147,7 +161,7 @@ const WeeklySchedule: React.FC = () => {
         if (institution_id) {
             fetchDepartments();
         } else {
-            setInstituteId(localStorage.getItem("institution_id"));
+            setInstituteId(localStorage.getItem("institution_id") ? Number(localStorage.getItem("institution_id")) : null);
         }
     }, [institution_id]);
 
@@ -198,7 +212,7 @@ const WeeklySchedule: React.FC = () => {
             // Validate and transform schedule data with better error handling
             const validScheduleData =
                 data.data
-                    ?.map((item) => {
+                    ?.map((item: any) => {
                         try {
                             return {
                                 ...item,
@@ -522,7 +536,7 @@ const WeeklySchedule: React.FC = () => {
 const ScheduleViewer: React.FC = () => {
     const navigate = useNavigate();
     const [filteredSchedules, setFilteredSchedules] = useState<ScheduleMeta[]>([]);
-    const [loading, setLoading] = useState(false);
+    // const [loading, setLoading] = useState(false);
     const [selectedDepartment, setSelectedDepartment] = useState<string>("");
     const [selectedAcademicYear, setSelectedAcademicYear] = useState<string>("");
     const [searchTerm, setSearchTerm] = useState<string>("");
@@ -581,13 +595,15 @@ const ScheduleViewer: React.FC = () => {
                 <CardContent>
                     <div className="flex flex-col md:flex-row gap-4 mb-6">
                         <div className="flex-1">
-                            <Input
-                                placeholder="Search schedules..."
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full"
-                                icon={<Search className="w-4 h-4" />}
-                            />
+                            <div className="relative">
+                                <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                                <Input
+                                    placeholder="Search schedules..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    className="w-full pl-8"
+                                />
+                            </div>
                         </div>
                         <Select
                             value={selectedDepartment}

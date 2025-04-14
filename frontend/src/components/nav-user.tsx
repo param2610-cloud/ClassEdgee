@@ -1,7 +1,6 @@
 import { useAuth } from "@/services/AuthContext";
 import { useEffect, useState } from "react";
 import { domain } from "@/lib/constant";
-import React from 'react';
 import {
   Bell,
   ChevronsUpDown,

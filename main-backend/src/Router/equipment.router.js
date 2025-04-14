@@ -12,10 +12,10 @@ import {
 const router = express.Router();
 
 router.get('/', getAllEquipment);
-router.get('//:id', getEquipmentById);
+router.get('/:id', getEquipmentById);
 router.post('/', createEquipment);
-router.patch('//:id/status', updateEquipmentStatus);
-router.post('//:id/maintenance', scheduleMaintenance);
+router.patch('/:id/status', updateEquipmentStatus);
+router.post('/:id/maintenance', scheduleMaintenance);
 router.get('/room/:room_id/equipment', getEquipmentByRoom);
 router.patch('/:id', updateEquipment);
 

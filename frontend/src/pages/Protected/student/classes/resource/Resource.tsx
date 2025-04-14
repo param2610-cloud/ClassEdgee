@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Download, File, Plus, Trash2, Edit2, X } from 'lucide-react';
+import { Download, File, Trash2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -8,7 +8,6 @@ import {
     DialogContent,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
 } from "@/components/ui/dialog";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import axios from 'axios';

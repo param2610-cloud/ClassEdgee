@@ -1,24 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Button } from "@/components/ui/button";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { 
   User, Mail, Phone, School, GraduationCap, 
-  Users, BookOpen, Building2, Camera,
-  Loader2, CheckCircle2, AlertCircle
+  Users, BookOpen, Building2
 } from 'lucide-react';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { useAtom } from 'jotai';
 import { user_idAtom, userDataAtom } from '@/store/atom';
 import { domain } from '@/lib/constant';
@@ -32,7 +21,7 @@ const StudentProfile = () => {
   // State Management
   const [user_id] = useAtom(user_idAtom)
   const [studentData,setStudentData] = useAtom(userDataAtom)
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
   console.log("studentData:",studentData);
   
   const fetchStudentData = async () => {
@@ -189,7 +178,11 @@ const StudentProfile = () => {
   );
 
   // Utility Component: Info Field
-  const InfoField = ({ icon, label, value }) => (
+  const InfoField = ({ icon, label, value }:{
+    icon: React.ReactNode;
+    label: string;
+    value: string | number | undefined;
+  }) => (
     <div className="flex items-center gap-2">
       <span className="text-muted-foreground">{icon}</span>
       <span className="text-sm text-muted-foreground">{label}:</span>

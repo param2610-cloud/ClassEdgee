@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAtom } from 'jotai';
 import {
@@ -48,7 +48,7 @@ const FacultyExpertiseManager = () => {
     const fetchData = async () => {
       if (!department_id || !instituteId) {
         setdepartment_id(localStorage.getItem('department_id'));
-        setInstituteId(localStorage.getItem('institution_id'));
+        setInstituteId(localStorage.getItem('institution_id') ? Number(localStorage.getItem('institution_id')) : null);
         return;
       }
 
@@ -186,7 +186,7 @@ const FacultyExpertiseManager = () => {
               <TableBody>
                 {subjects.map((subject:SubjectDetail) => (
                   <TableRow key={subject.subject_id}>
-                    <TableCell>{subject.subject_code}</TableCell>
+                    <TableCell>{subject.subject_id}</TableCell>
                     <TableCell>{subject.subject_name}</TableCell>
                     <TableCell>{subject.subject_type}</TableCell>
                     <TableCell className="text-right">

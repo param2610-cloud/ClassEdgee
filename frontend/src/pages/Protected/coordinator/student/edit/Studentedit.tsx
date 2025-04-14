@@ -64,7 +64,7 @@ const EditStudentForm = () => {
     const { user_id } = useParams();
     const [previewUrl, setPreviewUrl] = useState<string>("");
     const [imageMediaLinks, setImageMediaLinks] = useState<string[]>([]);
-    const [videoMediaLinks, setVideoMediaLinks] = useState<string[]>([]);
+    const [, setVideoMediaLinks] = useState<string[]>([]);
     const [institution_id] = useAtom(institutionIdAtom)
 
     const {
@@ -79,7 +79,7 @@ const EditStudentForm = () => {
     });
 
     // Watch profilePictureUrl to update preview
-    const profilePictureUrl = watch("profilePictureUrl");
+    watch("profilePictureUrl");
 
     useEffect(() => {
         // When imageMediaLinks changes and has items, update the form
@@ -179,7 +179,7 @@ const EditStudentForm = () => {
         setError("");
 
         try {
-            const response = await axios.put(
+            await axios.put(
                 `${domain}/api/v1/student/edit/${user_id}`,
                 data,
                 {

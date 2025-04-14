@@ -5,9 +5,9 @@ interface ProfileData {
   first_name: string;
   last_name: string;
   email: string;
-  phone_number: string;
+  phone_number?: string; // Make phone_number optional
   college_uid: string;
-  faculty: {
+  faculty?: { // Make faculty optional
     designation?: string;
     expertise?: string[];
     qualifications?: string[];
@@ -33,7 +33,7 @@ const ProfilePageComponent = ({ profileData }: { profileData: ProfileData }) => 
     first_name = '',
     last_name = '',
     email = '',
-    phone_number = '',
+    phone_number = '', // Default to empty string if undefined
     college_uid = '',
     faculty = {},
     departments = []

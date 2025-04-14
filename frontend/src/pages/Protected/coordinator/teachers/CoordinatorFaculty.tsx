@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import  { useEffect, useState, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -74,7 +74,7 @@ const CoordinatorFaculty = () => {
   const [faculty, setFaculty] = useState<Faculty[]>([]);
   const [departments, setDepartments] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [, setError] = useState<string | null>(null);
   const [pagination, setPagination] = useState({
     page: 1,
     pageSize: 8, // Smaller page size since faculty count is typically lower
@@ -86,8 +86,8 @@ const CoordinatorFaculty = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [departmentFilter, setDepartmentFilter] = useState('');
   const [designationFilter, setDesignationFilter] = useState('');
-  const [sortBy, setSortBy] = useState('joining_date');
-  const [sortOrder, setSortOrder] = useState('desc');
+  const [sortBy, ] = useState('joining_date');
+  const [sortOrder, ] = useState('desc');
   const [institution_id,] = useAtom(institutionIdAtom)
 
   // Predefined designation options

@@ -1,4 +1,4 @@
-import React from 'react'
+
 import FacultyExpertiseManager from './FacultyExpertiseManager'
 import { Button } from '@/components/ui/button'
 import { useNavigate, useParams } from 'react-router-dom'

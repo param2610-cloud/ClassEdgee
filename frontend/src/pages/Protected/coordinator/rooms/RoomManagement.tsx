@@ -32,12 +32,12 @@ interface Building {
   floors: number;
 }
 
-interface Feature {
-  feature_id: number;
-  feature_name: string;
-  quantity: number;
-  status: 'functional' | 'maintenance';
-}
+// interface Feature {
+//   feature_id: number;
+//   feature_name: string;
+//   quantity: number;
+//   status: 'functional' | 'maintenance';
+// }
 
 const RoomForm = ({ onSubmit, onCancel, initialData, buildings, selectedRoom }: {
   onSubmit: (formData: Room) => void;
@@ -159,7 +159,7 @@ const RoomManagement = () => {
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [error, setError] = useState<string>('');
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
 
   const initialFormState: Room = {
     room_id: 0,

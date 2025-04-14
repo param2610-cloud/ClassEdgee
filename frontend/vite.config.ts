@@ -8,13 +8,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-interface ImportMetaEnv {
-  readonly VITE_LOCAL_IP: string;
-}
-
-interface ImportMeta {
-  readonly env: ImportMetaEnv;
-}
 
 const manifestForPlugin: Partial<VitePWAOptions> = {
   registerType: 'autoUpdate',

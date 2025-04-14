@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
-    Download,
     File,
     BookOpen,
     ClipboardList,
     Users,
-    Clock,
-    MessageCircle,
     VideoIcon,
     Bell,
     Activity,
@@ -25,28 +22,24 @@ import {
     DialogContent,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
 } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
 import { useAuth } from "@/services/AuthContext";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { domain, fastapidomain } from "@/lib/constant";
+import { domain } from "@/lib/constant";
 import { Class, SyllabusStructure } from "@/interface/general";
 import ResourcesTab from "./resource/Resource";
 import NotesTab from "./notes/Notes";
 import QuerySystem from "../../query/QuerySystem";
-import AttendanceControls from "@/components/AttendanceComponent";
 import VideoAttendanceUpload from "@/components/AttendanceComponent";
-import AttendanceButton from "@/components/Attendancebutton";
-import { Skeleton } from "@/components/ui/skeleton";
 //import QuizDashboard from "./resource/QuizDashboard";
 
 const ClassDashboard = () => {
     const {class_id}= useParams()
     const [classData,setClassData] = useState<Class | null>(null);
     const navigate = useNavigate();
-    const [syllabus, setSyllabus] = useState<SyllabusStructure | null>(null)
+    const [, setSyllabus] = useState<SyllabusStructure | null>(null)
     const {user} = useAuth()
     useEffect(()=>{
         if(classData?.schedule_details?.subject_details?.syllabus_structure){
@@ -54,26 +47,26 @@ const ClassDashboard = () => {
         }
     },[classData])
 
-    const [resources, setResources] = useState([
-        {
-            id: 1,
-            name: "Lecture Slides",
-            type: "pdf",
-            size: "5.2 MB",
-            uploadDate: "2024-03-15",
-            description: "Comprehensive slides covering OOP concepts",
-        },
-        {
-            id: 2,
-            name: "Assignment Guidelines",
-            type: "docx",
-            size: "2.1 MB",
-            uploadDate: "2024-03-10",
-            description: "Detailed instructions for semester project",
-        },
-    ]);
+    // const [resources, setResources] = useState([
+    //     {
+    //         id: 1,
+    //         name: "Lecture Slides",
+    //         type: "pdf",
+    //         size: "5.2 MB",
+    //         uploadDate: "2024-03-15",
+    //         description: "Comprehensive slides covering OOP concepts",
+    //     },
+    //     {
+    //         id: 2,
+    //         name: "Assignment Guidelines",
+    //         type: "docx",
+    //         size: "2.1 MB",
+    //         uploadDate: "2024-03-10",
+    //         description: "Detailed instructions for semester project",
+    //     },
+    // ]);
 
-    const [assignments, setAssignments] = useState([
+    const [assignments,] = useState([
         {
             id: 1,
             title: "Design Patterns Implementation",
@@ -92,7 +85,7 @@ const ClassDashboard = () => {
         },
     ]);
 
-    const [notifications, setNotifications] = useState([
+    const [notifications,] = useState([
         {
             id: 1,
             type: "Assignment",
@@ -121,37 +114,37 @@ const ClassDashboard = () => {
         }
     },[class_id,classData])
 
-    const [attendancetaking, setAttendanceTaking] = useState(false);
-    const handleTakingAttendance =async () => {
-        try {
-            if(attendancetaking){
-                const response =await axios.post(`${fastapidomain}/api/face-recognition/stop-attendance/${classData?.section_id}/${class_id}`)
-                if(response.status === 200){
-                    setAttendanceTaking(false)
-                    console.log("Attendance stopped");
-                }
-            }else{
-                const response = await fetch(`http://${import.meta.env.VITE_FASTAPI_HOST}:8000/api/face-recognition/start-attendance/6/9915`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-                // const response = await fetch(`${fastapidomain}/api/face-recognition/start-attendance/${classData?.section_id}/${class_id}`, {
-                //     method: 'POST',
-                //     headers: {
-                //         'Content-Type': 'application/json',
-                //     },
-                // });
-                if(response.status === 200){
-                    setAttendanceTaking(true) 
-                    console.log("Attendance started");
-                }
-        }
-        } catch (error) {
-            console.error('Error taking attendance:', error);
-        }   
-    }
+    // const [attendancetaking, setAttendanceTaking] = useState(false);
+    // const handleTakingAttendance =async () => {
+    //     try {
+    //         if(attendancetaking){
+    //             const response =await axios.post(`${fastapidomain}/api/face-recognition/stop-attendance/${classData?.section_id}/${class_id}`)
+    //             if(response.status === 200){
+    //                 setAttendanceTaking(false)
+    //                 console.log("Attendance stopped");
+    //             }
+    //         }else{
+    //             const response = await fetch(`http://${import.meta.env.VITE_FASTAPI_HOST}:8000/api/face-recognition/start-attendance/6/9915`, {
+    //                 method: 'POST',
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                 },
+    //             });
+    //             // const response = await fetch(`${fastapidomain}/api/face-recognition/start-attendance/${classData?.section_id}/${class_id}`, {
+    //             //     method: 'POST',
+    //             //     headers: {
+    //             //         'Content-Type': 'application/json',
+    //             //     },
+    //             // });
+    //             if(response.status === 200){
+    //                 setAttendanceTaking(true) 
+    //                 console.log("Attendance started");
+    //             }
+    //     }
+    //     } catch (error) {
+    //         console.error('Error taking attendance:', error);
+    //     }   
+    // }
  
     return (
         <div className="max-w-5xl mx-auto p-4 bg-white rounded-lg shadow-md">
@@ -367,7 +360,9 @@ classData && classData.class_id && classData.section_id && <AttendanceButton sec
                     {user && classData?.faculty_id && <QuerySystem userId={user?.user_id} userRole="faculty" facultyId={classData?.faculty_id}  />}
                 </TabsContent>
                 <TabsContent value="attendance">
-                            <VideoAttendanceUpload classId={class_id} sectionId={classData?.section_id}/> 
+                            {class_id && classData?.section_id && 
+                                <VideoAttendanceUpload classId={Number(class_id)} sectionId={Number(classData.section_id)}/>
+                            }
                 </TabsContent>
             </Tabs>
 

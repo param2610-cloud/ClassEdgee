@@ -1,12 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { formatDistanceToNow } from 'date-fns';
 import { domain } from '@/lib/constant';
 import axios from 'axios';
 
-const QuizList = ({ classId }:{classId:string}) => {
-  const [quizzes, setQuizzes] = useState([]);
+// Define the structure of a quiz object
+interface Quiz {
+  quiz_id: number;
+  title: string;
+  quiz_questions: any[]; // Use a more specific type if the structure of questions is known
+  created_at: string; // Or Date if you parse it immediately
+}
+
+const QuizList = ({ classId }: { classId: string }) => {
+  const [quizzes, setQuizzes] = useState<Quiz[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

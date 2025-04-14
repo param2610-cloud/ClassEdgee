@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -35,7 +35,7 @@ const QuerySystem = ({ userId, userRole, facultyId }: { userId: number; userRole
   const [newMessage, setNewMessage] = useState('');
   const [newQuery, setNewQuery] = useState({ title: '', description: '' });
   const [queryMessages, setQueryMessages] = useState<QueryMessage[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {

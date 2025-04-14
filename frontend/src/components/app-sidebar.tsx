@@ -4,17 +4,13 @@ import { useAuth } from "@/services/AuthContext"
 import {
   LayoutDashboard,
   BookOpen,
-  Users,
   Calendar,
   GraduationCap,
   Settings,
   ClipboardList,
-  FileText,
   Database,
-  UserCog,
   Bell,
   School,
-  User,
   Building,
   Siren,
 } from "lucide-react"

@@ -1,8 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import Listofcoordinator from './Listofcoordinator';
-import axios from 'axios';
-import { domain } from '@/lib/constant';
-
 const SupremeDashboard = () => {
   const navigate = useNavigate();
 

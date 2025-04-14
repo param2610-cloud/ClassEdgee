@@ -1,12 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { domain } from '@/lib/constant';
 import axios from 'axios';
 
-const QuizResults = ({ classId }:{classId:string}) => {
-  const [quizResults, setQuizResults] = useState([]);
+interface QuizResponseData {
+  student_id: number;
+  first_name: string;
+  last_name: string;
+  college_uid: string;
+  is_correct: boolean;
+}
+
+interface QuizResult {
+  quiz_id: number;
+  title: string;
+  quiz_responses: QuizResponseData[];
+}
+
+const QuizResults = ({ classId }: { classId: string }) => {
+  const [quizResults, setQuizResults] = useState<QuizResult[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -55,7 +69,7 @@ const QuizResults = ({ classId }:{classId:string}) => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {quiz.quiz_responses.map((response) => (
+                    {quiz.quiz_responses.map((response: QuizResponseData) => (
                       <TableRow key={`${quiz.quiz_id}-${response.student_id}`}>
                         <TableCell>{response.student_id}</TableCell>
                         <TableCell>{`${response.first_name} ${response.last_name}`}</TableCell>

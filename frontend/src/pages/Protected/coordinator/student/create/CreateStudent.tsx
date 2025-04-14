@@ -72,8 +72,8 @@ const CreateStudentForm = () => {
     const [profilePicturePreview, setProfilePicturePreview] = useState<string>("");
     const [uploadingImage, setUploadingImage] = useState(false);
     const [imageLinks, setImageLinks] = useState<string[]>([]);
-    const [videoLinks, setVideoLinks] = useState<string[]>([]);
-    const [institution_id,setInstitutionId] = useAtom(institutionIdAtom);
+    const [, setVideoLinks] = useState<string[]>([]);
+    const [institution_id,] = useAtom(institutionIdAtom);
     const navigate = useNavigate()
     const {
         register,

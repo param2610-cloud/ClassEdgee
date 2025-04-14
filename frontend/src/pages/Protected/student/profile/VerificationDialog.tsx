@@ -1,5 +1,5 @@
 import React, { useRef, useState, useCallback } from 'react';
-import { Camera, Check, AlertCircle, CameraIcon } from 'lucide-react';
+import { Camera, AlertCircle, CameraIcon } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import UploadOnCloudinary from '@/services/Cloudinary';
 import { fastapidomain } from '@/lib/constant';
@@ -17,13 +17,12 @@ const CAPTURE_INSTRUCTIONS = [
   { id: 10, pose: "Natural Expression", description: "Make a natural, relaxed expression" }
 ];
 
-const FaceVerification = ({user_id}:{user_id:number}) => {
-  const videoRef = useRef(null);
-  const [stream, setStream] = useState(null);
+const FaceVerification = ({ user_id }: { user_id: number }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [stream, setStream] = useState<MediaStream | null>(null);
   const [currentStep, setCurrentStep] = useState(0);
-  const [capturedImages, setCapturedImages] = useState([]);
-  const [uploadedImageMediaLinks, setUploadedImageMediaLinks] = useState([]);
-  const [uploadedVideoMediaLinks, setUploadedVideoMediaLinks] = useState([]);
+  const [capturedImages, setCapturedImages] = useState<File[]>([]);
+  const [uploadedImageMediaLinks, setUploadedImageMediaLinks] = useState<string[]>([]);
   const [isCapturing, setIsCapturing] = useState(false);
   const [showPreparationAlert, setShowPreparationAlert] = useState(false);
 
@@ -31,11 +30,11 @@ const FaceVerification = ({user_id}:{user_id:number}) => {
     try {
       const mediaStream = await navigator.mediaDevices.getUserMedia({
         video: { facingMode: 'user' },
-        audio: false
+        audio: false,
       });
       setStream(mediaStream);
       if (videoRef.current) {
-        videoRef.current.srcObject = mediaStream;
+        videoRef.current.srcObject = mediaStream as MediaStream;
       }
       setShowPreparationAlert(true);
       setTimeout(() => setShowPreparationAlert(false), 5000);
@@ -46,7 +45,7 @@ const FaceVerification = ({user_id}:{user_id:number}) => {
 
   const stopCamera = useCallback(() => {
     if (stream) {
-      stream.getTracks().forEach(track => track.stop());
+      stream.getTracks().forEach((track) => track.stop());
       setStream(null);
       if (videoRef.current) {
         videoRef.current.srcObject = null;
@@ -61,32 +60,43 @@ const FaceVerification = ({user_id}:{user_id:number}) => {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
 
+    if (!context) {
+      console.error('Failed to get canvas context');
+      setIsCapturing(false);
+      return;
+    }
+
     canvas.width = videoRef.current.videoWidth;
     canvas.height = videoRef.current.videoHeight;
     context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
 
-    const blob = await new Promise(resolve => {
+    const blob = await new Promise<Blob | null>((resolve) => {
       canvas.toBlob(resolve, 'image/jpeg', 0.8);
     });
 
+    if (!blob) {
+      console.error('Failed to create blob');
+      setIsCapturing(false);
+      return;
+    }
+
     const file = new File([blob], `${user_id}-face-${CAPTURE_INSTRUCTIONS[currentStep].pose}.jpg`, { type: 'image/jpeg' });
-    setCapturedImages(prev => [...prev, file]);
+    setCapturedImages((prev) => [...prev, file]);
 
     setIsCapturing(false);
-    
+
     if (currentStep < CAPTURE_INSTRUCTIONS.length - 1) {
-      setCurrentStep(prev => prev + 1);
+      setCurrentStep((prev) => prev + 1);
     } else {
-      // All images captured, proceed to upload
       uploadImages([...capturedImages, file]);
     }
   };
 
-  const uploadImages = async (images) => {
+  const uploadImages = async (images: File[]) => {
     await UploadOnCloudinary({
       mediaFiles: images,
-      setuploadedImageMediaLinks: setUploadedImageMediaLinks,
-      setuploadedVideoMediaLinks: setUploadedVideoMediaLinks
+      setuploadedImageMediaLinks: (links) => setUploadedImageMediaLinks(links),
+      setuploadedVideoMediaLinks: () => {}, // Not using video uploads for face verification
     });
     stopCamera();
   };
@@ -103,7 +113,7 @@ const FaceVerification = ({user_id}:{user_id:number}) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ imageUrls: uploadedImageMediaLinks,user_id }),
+        body: JSON.stringify({ imageUrls: uploadedImageMediaLinks, user_id }),
       });
 
       if (!response.ok) {

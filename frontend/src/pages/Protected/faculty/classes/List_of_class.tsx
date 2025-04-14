@@ -107,7 +107,7 @@ const ListOfClass: React.FC = () => {
                                     {new Date(classItem.date_of_class).toLocaleDateString()}
                                 </TableCell>
                                 <TableCell>
-                                    {classItem.timeslots?.start_time} - {classItem.timeslots?.end_time}
+                                    {classItem.timeslots?.start_time?.toString()} - {classItem.timeslots?.end_time?.toString()}
                                 </TableCell>
                                 <TableCell>
                                     {classItem.rooms?.room_number}

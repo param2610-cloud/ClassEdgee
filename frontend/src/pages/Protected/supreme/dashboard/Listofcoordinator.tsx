@@ -64,7 +64,6 @@ import {
   TableBody,
   TableCell,
 } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
 import { domain } from "@/lib/constant";
 import { useAtom } from "jotai";
 import { institutionIdAtom } from "@/store/atom";
@@ -86,18 +85,18 @@ interface CoordinatorsResponse {
 }
 
 // Interface for Filters
-interface CoordinatorFilters {
-  institution_id?: string;
-}
+// interface CoordinatorFilters {
+//   institution_id?: string;
+// }
 
 const Listofcoordinator: React.FC = () => {
   // State to manage coordinators data
   const [coordinators, setCoordinators] = useState<Coordinator[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [filters, setFilters] = useState<CoordinatorFilters>({
-    institution_id: "",
-  });
+  // const [filters, setFilters] = useState<CoordinatorFilters>({
+  //   institution_id: "",
+  // });
   const [institution_id] = useAtom(institutionIdAtom);
   // Fetch coordinators data
 

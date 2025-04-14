@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
+import  { useState } from "react";
 import {
     Download,
     File,
     BookOpen,
     ClipboardList,
     Users,
-    Clock,
-    MessageCircle,
     VideoIcon,
     Bell,
     Activity,
@@ -22,7 +20,6 @@ import {
     DialogContent,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
 } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
 
@@ -36,7 +33,7 @@ const VirtualRoom = () => {
         faculty: "Dr. Elena Rodriguez",
     });
 
-    const [resources, setResources] = useState([
+    const [resources, ] = useState([
         {
             id: 1,
             name: "Lecture Slides",
@@ -55,7 +52,7 @@ const VirtualRoom = () => {
         },
     ]);
 
-    const [assignments, setAssignments] = useState([
+    const [assignments, ] = useState([
         {
             id: 1,
             title: "Design Patterns Implementation",
@@ -74,7 +71,7 @@ const VirtualRoom = () => {
         },
     ]);
 
-    const [notifications, setNotifications] = useState([
+    const [notifications, ] = useState([
         {
             id: 1,
             type: "Assignment",

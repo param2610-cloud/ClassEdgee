@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer 
 } from 'recharts';
-import { Mail, AlertTriangle, Check, RefreshCw, Filter, Download } from 'lucide-react';
+import { Mail, AlertTriangle, Check, RefreshCw, Filter } from 'lucide-react';
 import {
   Alert,
   AlertTitle,
@@ -10,12 +10,32 @@ import {
 } from "@/components/ui/alert"
 import { domain } from '@/lib/constant';
 
+// Define proper types for the student data
+interface Student {
+  studentId: number;
+  name: string;
+  email: string;
+  enrollmentNumber: string;
+  department: string;
+  semester: number;
+  attendancePercentage: string;
+  totalClasses: number;
+  attendedClasses: number;
+}
+
+// Define type for filters
+interface AttendanceFilters {
+  semester: string;
+  department_id: string;
+  threshold: number;
+}
+
 const AttendanceDashboard = () => {
-  const [students, setStudents] = useState([]);
+  const [students, setStudents] = useState<Student[]>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState('');
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState<AttendanceFilters>({
     semester: '',
     department_id: '',
     threshold: 75
@@ -27,7 +47,13 @@ const AttendanceDashboard = () => {
     setLoading(true);
     setError(null);
     try {
-      const queryParams = new URLSearchParams(filters);
+      // Convert all values to strings for URLSearchParams
+      const queryParams = new URLSearchParams({
+        ...(filters.semester && { semester: filters.semester }),
+        ...(filters.department_id && { department_id: filters.department_id }),
+        threshold: filters.threshold.toString()
+      });
+      
       const response = await fetch(`${domain}/api/v1/attendance/low-attendance-report?${queryParams}`);
       const data = await response.json();
       
@@ -35,7 +61,7 @@ const AttendanceDashboard = () => {
       
       setStudents(data.data);
     } catch (err) {
-      setError(err.message);
+      setError(err instanceof Error ? err.message : 'An unknown error occurred');
     } finally {
       setLoading(false);
     }
@@ -47,7 +73,14 @@ const AttendanceDashboard = () => {
     setError(null);
     try {
       const response = await fetch(`${domain}/api/v1/attendance/send-attendance-emails`, {
-        method: 'POST'
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          filters,
+          studentIds: students.map(student => student.studentId)
+        })
       });
       const data = await response.json();
       
@@ -56,7 +89,7 @@ const AttendanceDashboard = () => {
       setSuccessMessage(`Successfully sent emails to ${data.affectedStudents.length} students`);
       setTimeout(() => setSuccessMessage(''), 5000);
     } catch (err) {
-      setError(err.message);
+      setError(err instanceof Error ? err.message : 'An unknown error occurred');
     } finally {
       setSending(false);
     }
@@ -91,7 +124,7 @@ const AttendanceDashboard = () => {
           >
             <option value="">All Semesters</option>
             {[1, 2, 3, 4, 5, 6, 7, 8].map(sem => (
-              <option key={sem} value={sem}>Semester {sem}</option>
+              <option key={sem} value={sem.toString()}>Semester {sem}</option>
             ))}
           </select>
         </div>
@@ -102,7 +135,7 @@ const AttendanceDashboard = () => {
             type="number"
             className="w-full border rounded p-2"
             value={filters.threshold}
-            onChange={(e) => setFilters(prev => ({ ...prev, threshold: e.target.value }))}
+            onChange={(e) => setFilters(prev => ({ ...prev, threshold: Number(e.target.value) }))}
             min="0"
             max="100"
           />

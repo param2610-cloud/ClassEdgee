@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Building, APIResponse } from '@/interface/general';
+import { Building } from '@/interface/general';
 import { roomAPI } from '../rooms/API';
 import { PlusCircle, Edit2, Building as BuildingIcon } from 'lucide-react';
 import { useAtom } from 'jotai';
@@ -20,6 +20,8 @@ const BuildingModal: React.FC<BuildingModalProps> = ({
     floors: 1,
     location_coordinates: { x: 0, y: 0 }
   });
+  console.log(isOpen);
+  
 
   useEffect(() => {
     if (building) {
