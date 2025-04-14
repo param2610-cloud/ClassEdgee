@@ -1,19 +1,27 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { 
   Building, 
   Plus, 
   Edit, 
-  Trash2, 
-  Info, 
-  Search 
+  Trash2 
 } from 'lucide-react';
 import { domain } from '@/lib/constant';
+import { useEffect, useState } from 'react';
+
+interface Room {
+  room_number: string;
+  room_type: string;
+  capacity: number;
+  floor_number: number;
+  wing: string | null;
+  area_sqft: number | null;
+  features: any;
+}
 
 const Createroom = () => {
-  const [rooms, setRooms] = useState([]);
+  const [rooms, setRooms] = useState<Room[]>([]);
   const [selectedFloor, setSelectedFloor] = useState(1);
-  const [selectedRoom, setSelectedRoom] = useState(null);
+  const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [roomForm, setRoomForm] = useState({
     room_number: '',
@@ -45,7 +53,7 @@ const Createroom = () => {
     fetchRooms();
   }, [selectedFloor]);
 
-  const handleCreateRoom = async (e) => {
+  const handleCreateRoom = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       // Prepare data for backend
@@ -79,13 +87,25 @@ const Createroom = () => {
         area_sqft: '',
         features: null
       });
-    } catch (error) {
-      console.error('Failed to create/update room:', error.response ? error.response.data : error);
-      alert(error.response ? error.response.data.message : 'An error occurred');
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        console.error('Failed to create/update room:', error.response ? error.response.data : error.message);
+        alert(error.response ? error.response.data.message : 'An error occurred');
+      } else {
+        console.error('An unexpected error occurred:', error);
+      }
     }
   };
 
-  const handleEditRoom = (room) => {
+  const handleEditRoom = (room: {
+    room_number: string;
+    room_type: string;
+    capacity: number;
+    floor_number: number;
+    wing: string | null;
+    area_sqft: number | null;
+    features: any;
+  }) => {
     setSelectedRoom(room);
     setRoomForm({
       room_number: room.room_number,
@@ -99,17 +119,29 @@ const Createroom = () => {
     setIsModalOpen(true);
   };
 
-  const handleDeleteRoom = async (roomNumber) => {
+  const handleDeleteRoom = async (roomNumber: string) => {
     try {
       await axios.delete(`${domain}/api/v1/room/${roomNumber}`);
       fetchRooms();
-    } catch (error) {
-      console.error('Failed to delete room:', error);
-      alert(error.response ? error.response.data.message : 'An error occurred');
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        console.error('Failed to delete room:', error.response ? error.response.data : error.message);
+        alert(error.response ? error.response.data.message : 'An error occurred');
+      } else {
+        console.error('An unexpected error occurred:', error);
+      }
     }
   };
 
-  const renderRoomCard = (room) => (
+  const renderRoomCard = (room: {
+    room_number: string;
+    room_type: string;
+    capacity: number;
+    floor_number: number;
+    wing: string | null;
+    area_sqft: number | null;
+    features: any;
+  }) => (
     <div 
       key={room.room_number} 
       className="bg-white shadow-md rounded-lg p-4 hover:shadow-xl transition-all"
