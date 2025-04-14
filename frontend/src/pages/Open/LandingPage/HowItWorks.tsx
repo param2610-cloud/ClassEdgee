@@ -31,7 +31,7 @@ const DemoRequestForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     // Replace with your actual EmailJS details
     const serviceId = import.meta.env.SERVICE_ID;
     const templateId = import.meta.env.TEMPLATE_ID;
-    const publicKey = import.meta.env.PUBLIC_KEY;
+    const publicKey = '8atCVOOl1THkM_Pof';
     
     // Format current date for the email
     const today = new Date();
