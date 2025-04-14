@@ -21,40 +21,65 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
     {
         id: 1,
-        quote: "ClassEdgee has transformed our campus attendance management. We've seen a 35% reduction in administration time and virtually eliminated attendance fraud.",
-        name: "Dr. Sarah Johnson",
-        title: "Dean of Technology, Pacific University",
-        image: "https://randomuser.me/api/portraits/women/32.jpg",
+        quote: "The technical implementation of the real-time alert system demonstrates exceptional understanding of critical response requirements in educational environments",
+        name: "Karan Kumar",
+        title: "Senior Developer,Salesforce",
+        image: "",
         stars: 5,
         stats: {
-            label: "Attendance accuracy improved",
+            label: "Robust Architecture Implemented",
             value: "98%"
         }
     },
     {
         id: 2,
-        quote: "The resource management system has streamlined our content distribution. Students now access materials instantly, and we've reduced paper usage by over 70%.",
-        name: "Prof. Michael Chen",
-        title: "Department Head, Eastwood College",
-        image: "https://randomuser.me/api/portraits/men/45.jpg",
+        quote: "I'm impressed by the robust architecture and seamless integration of this platform's core systems - it handles complex data processing while maintaining an intuitive user experience.",
+        name: "Priyanshu Jain",
+        title: "Software Engineer, Productive",
+        image: "",
         stars: 5,
         stats: {
-            label: "Paper reduction",
+            label: "Seamless System Integration",
             value: "70%"
         }
     },
     {
         id: 3,
-        quote: "During our campus-wide emergency drill, the alert system notified everyone within 30 seconds. The integration with our existing infrastructure was seamless.",
-        name: "Linda Rodriguez",
-        title: "Campus Safety Director, Westfield Institute",
-        image: "https://randomuser.me/api/portraits/women/68.jpg",
+        quote: " The analytics engine's ability to process diverse learning patterns and deliver actionable insights shows remarkable algorithmic efficiency",
+        name: "Himanshu Jain",
+        title: "MI/ML Engineer,Meta",
+        image: "",
         stars: 4,
         stats: {
-            label: "Emergency response time reduced",
+            label: "Exceptional Algorithm Performance",
             value: "87%"
         }
+    },
+    {
+      id: 4,
+      quote: "This system increased my classroom efficiency by 40% - I no longer waste time on manual attendance or searching for resources when I need them most",
+      name: "Amrut Ranjan Jana",
+      title: "Head Of Department, DSCIT",
+      image: "",
+      stars: 4,
+      stats: {
+          label: "Efficiency increase",
+          value: "40%"
+      }
+  },
+  {
+    id: 5,
+    quote: "The personalized analytics transformed my teaching approach completely - my students' test scores improved by 27% this semester because I could finally target specific learning gaps.",
+    name: "Madhusmita Mishra",
+    title: "Professor, DSCIT",
+    image: "",
+    stars: 4,
+    stats: {
+        label: "Scores improved ",
+        value: "47%"
     }
+}
+
 ];
 
   useEffect(() => {
