@@ -126,12 +126,12 @@ const LandingPage = () => {
               >
                 Login
               </button>
-              <button 
+              {/* <button 
                 className="text-white bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 px-5 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all duration-200 transform hover:translate-y-[-1px] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2" 
                 onClick={handleRegisterationClick}
               >
                 Register
-              </button>
+              </button> */}
             </div>
 
             {/* Mobile menu button */}
@@ -178,12 +178,12 @@ const LandingPage = () => {
               >
                 Login
               </button>
-              <button 
+              {/* <button 
                 className="w-full text-white bg-gradient-to-r from-blue-600 to-blue-500 px-4 py-3 rounded-md shadow-sm transition-all duration-200 hover:from-blue-700 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400" 
                 onClick={handleRegisterationClick}
               >
                 Register
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
