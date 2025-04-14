@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { string, z } from "zod";
+import {  z } from "zod";
 import axios from "axios";
 import {
     Card,
@@ -36,6 +36,7 @@ import { Department } from "@/interface/general";
 import UploadOnCloudinary from "@/services/Cloudinary";
 import { useAtom } from "jotai";
 import { institutionIdAtom } from "@/store/atom";
+import { useNavigate } from "react-router-dom";
 
 // Add your Cloudinary configuration
 // const CLOUDINARY_UPLOAD_PRESET = process.env.CLOUDINARY_UPLOAD_PRESET || "";
@@ -68,19 +69,19 @@ const CreateFacultyForm = () => {
     const { toast } = useToast();
     const [isLoading, setIsLoading] = useState(false);
     const [uploadingImage, setUploadingImage] = useState(false);
-    const [profileFile, setProfileFile] = useState<File | null>(null);
+    const [, setProfileFile] = useState<File | null>(null);
     const [profilePicturePreview, setProfilePicturePreview] = useState<string>("");
     const [error, setError] = useState<string>("");
     const [departmentList, setDepartmentList] = useState<Department[]>([]);
     const [imageLinks, setImageLinks] = useState<string[]>([]);
-    const [videoLinks, setVideoLinks] = useState<string[]>([]);
+    const [, setVideoLinks] = useState<string[]>([]);
     const [institution_id] = useAtom(institutionIdAtom);
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
         formState: { errors },
         setValue,
-        watch,
     } = useForm<FacultyFormData>({
         resolver: zodResolver(facultySchema),
         defaultValues: {
@@ -182,7 +183,9 @@ const CreateFacultyForm = () => {
                     description: "Faculty member has been created successfully.",
                     duration: 5000,
                 });
-                // Optional: Reset form or redirect
+                // Redirect to faculty list page
+                navigate("/p/faculty");
+
             } else {
                 throw new Error(response.data.message || "Failed to create faculty member");
             }

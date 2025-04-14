@@ -2,7 +2,7 @@ import { Course, User } from '@/interface/general'
 import { domain } from '@/lib/constant'
 import { useAuth } from '@/services/AuthContext'
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CourseCard } from '@/components/course/CourseCard'
 import { AddCourseDialog } from '@/components/course/AddCourseDialog'
 
@@ -18,7 +18,7 @@ const CourseDashboardForFaculty = () => {
 
   useEffect(() => {
     if (!department_id && profileData) {
-      setDepartmentId(profileData?.departments[0].department_id)
+      setDepartmentId(profileData?.departments[0]?.department_id)
     }
     if (department_id) {
       console.log("department id",department_id);

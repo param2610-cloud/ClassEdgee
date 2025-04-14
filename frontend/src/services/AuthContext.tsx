@@ -1,7 +1,7 @@
 import {  User } from "@/interface/general";
 import { domain } from "@/lib/constant";
 import { user_idAtom } from "@/store/atom";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { useAtom } from "jotai";
 import React, { createContext, useState, useContext, useEffect } from "react";
 

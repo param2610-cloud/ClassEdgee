@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -15,12 +15,27 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { domain } from '@/lib/constant';
 import axios from 'axios';
 import QuizList from './QuizList';
-import QuizResults from './QuizResponse';   
+import QuizResults from './QuizResponse';
 import { useParams } from 'react-router-dom';
+
+// Define the type for a single question
+interface Question {
+  question_text: string;
+  options: string[];
+  correct_answer: number;
+  explanation: string;
+}
+
+// Define the type for the quiz data
+interface QuizData {
+  title: string;
+  class_id: string | undefined;
+  questions: Question[];
+}
 
 const QuizManagement = () => {
   const {class_id} = useParams();
-  const [quizData, setQuizData] = useState({
+  const [quizData, setQuizData] = useState<QuizData>({
     title: '',
     class_id: class_id,
     questions: [{
@@ -68,13 +83,13 @@ const QuizManagement = () => {
     }));
   };
 
-  const updateQuestion = (index, field, value) => {
+  const updateQuestion = (index: number, field: keyof Question, value: string | number) => {
     const newQuestions = [...quizData.questions];
-    newQuestions[index][field] = value;
+    (newQuestions[index] as any)[field] = value;
     setQuizData(prev => ({ ...prev, questions: newQuestions }));
   };
 
-  const updateOption = (questionIndex, optionIndex, value) => {
+  const updateOption = (questionIndex: number, optionIndex: number, value: string) => {
     const newQuestions = [...quizData.questions];
     newQuestions[questionIndex].options[optionIndex] = value;
     setQuizData(prev => ({ ...prev, questions: newQuestions }));

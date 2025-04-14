@@ -1,12 +1,11 @@
 import {
-    
     generateTokens
 } from "../utils/generate.js";
 import bcrypt from "bcrypt";
 import { PrismaClient } from "@prisma/client";
+import { getDepartments } from "../utils/departments.js"; // Import the utility function
+
 const prisma = new PrismaClient();
-
-
 
 const registerInstitution = async (req, res) => {
     try {
@@ -57,13 +56,24 @@ const registerInstitution = async (req, res) => {
             }
         })
 
+        const departments = await getDepartments(); // Use the utility function
+
         res.status(200).send({
             message: "Institution and Instituition's admin created successfully",
             newAdminUser,
         });
     } catch (error) {
         console.log(error);
-        res.status(500).send( error);
+        if (error.code === 'P2002') {
+            const target = error.meta.target.join(', ');
+            return res.status(400).send({
+                message: `Unique constraint failed on the fields: (${target})`,
+            });
+        }
+        res.status(500).send({
+            message: "An error occurred during registration",
+            error: error.message,
+        });
     }
 };
 const adminLogin = async (req, res) => {
@@ -140,6 +150,8 @@ const adminLogin = async (req, res) => {
             secure: process.env.NODE_ENV === "production",
             sameSite: "strict",
         })
+
+        const departments = await getDepartments(); // Use the utility function
         
         // Send response
         return res.status(200).send({
@@ -157,36 +169,90 @@ const adminLogin = async (req, res) => {
         });
     } catch (error) {
         console.error("Login error:", error);
-        res.status(500).send({ message: "An error occurred during login" });
+        res.status(500).send({
+            message: "An error occurred during login",
+            error: error.message,
+        });
     }
 };
 const coordinatorcreate = async (req, res) => {
     try {
         const { password, ...coordinatorData } = req.body;
 
-        // Validate password strength
-        if (password && password.length < 8) {
-            return res
-                .status(400)
-                .send({
-                    message: "Password must be at least 8 characters long",
-                });
+        // Input validation
+        if (!coordinatorData.firstName || !coordinatorData.lastName) {
+            return res.status(400).send({
+                message: "First name and last name are required",
+                errorType: "VALIDATION_ERROR"
+            });
         }
 
-        // Check if college_uid or email already exists
-        const existingcoordinator = await prisma.users.findUnique(
-            {
-                where: {
-                    email: coordinatorData.email,
-                    college_uid: coordinatorData.college_uid,
-                    institution_id: coordinatorData.institution_id,
-                },
+        if (!coordinatorData.email) {
+            return res.status(400).send({
+                message: "Email is required",
+                errorType: "VALIDATION_ERROR"
+            });
+        }
+
+        if (!coordinatorData.college_uid) {
+            return res.status(400).send({
+                message: "College UID is required",
+                errorType: "VALIDATION_ERROR"
+            });
+        }
+
+        if (!password) {
+            return res.status(400).send({
+                message: "Password is required",
+                errorType: "VALIDATION_ERROR"
+            });
+        }
+
+        // Password strength validation
+        if (password.length < 8) {
+            return res.status(400).send({
+                message: "Password must be at least 8 characters long",
+                errorType: "PASSWORD_STRENGTH_ERROR"
+            });
+        }
+
+        // Check if email already exists
+        const existingEmail = await prisma.users.findUnique({
+            where: { email: coordinatorData.email }
+        });
+
+        if (existingEmail) {
+            return res.status(409).send({
+                message: "Email address is already registered",
+                errorType: "DUPLICATE_EMAIL"
+            });
+        }
+
+        // Check if college_uid already exists
+        const existingUid = await prisma.users.findFirst({
+            where: { 
+                college_uid: coordinatorData.college_uid,
+                institution_id: coordinatorData.institution_id
             }
-        );
-        if (existingcoordinator) {
-            return res
-                .status(409)
-                .send({ message: "college_uid or email already exists" });
+        });
+
+        if (existingUid) {
+            return res.status(409).send({
+                message: "College UID is already in use at this institution",
+                errorType: "DUPLICATE_UID"
+            });
+        }
+
+        // Verify institution exists
+        const institution = await prisma.institutions.findUnique({
+            where: { institution_id: coordinatorData.institution_id }
+        });
+
+        if (!institution) {
+            return res.status(404).send({
+                message: "Institution not found",
+                errorType: "INVALID_INSTITUTION"
+            });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -203,18 +269,32 @@ const coordinatorcreate = async (req, res) => {
             },
         });
 
-        
+        const departments = await getDepartments(); // Use the utility function
+
         res.status(201).send({
-            message: "coordinator created successfully",
-            newcoordinator,
+            message: "Coordinator created successfully",
+            coordinator: {
+                email: newcoordinator.email,
+                firstName: newcoordinator.first_name,
+                lastName: newcoordinator.last_name,
+                collegeUid: newcoordinator.college_uid
+            }
         });
     } catch (error) {
         console.error("Error in createcoordinator:", error);
 
-        // Generic error handler
+        if (error.code === 'P2002') {
+            return res.status(409).send({
+                message: "A unique constraint violation occurred",
+                errorType: "DATABASE_CONSTRAINT_ERROR",
+                field: error.meta?.target?.[0]
+            });
+        }
+
         res.status(500).send({
-            message: "Internal server error",
-            error: error.message,
+            message: "An unexpected error occurred while creating the coordinator",
+            errorType: "SERVER_ERROR",
+            error: process.env.NODE_ENV === 'development' ? error.message : undefined
         });
     }
 };
@@ -229,7 +309,7 @@ const listOfCoordinators = async (req, res) => {
         // Optional filtering parameters
         const filters = {
             role: 'coordinator',
-            institution_id: req.query.institution_id, // Optional: filter by institution
+            institution_id: parseInt(req.query.institution_id), // Optional: filter by institution
             // Add more filter options as needed
         };
 
@@ -264,6 +344,8 @@ const listOfCoordinators = async (req, res) => {
 
         // Calculate total pages
         const totalPages = Math.ceil(totalCoordinators / limit);
+
+        const departments = await getDepartments(); // Use the utility function
 
         // Prepare response
         res.status(200).json({

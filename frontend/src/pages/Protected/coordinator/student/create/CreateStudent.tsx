@@ -36,6 +36,7 @@ import { Department } from "@/interface/general";
 import UploadOnCloudinary from "@/services/Cloudinary";
 import { institutionIdAtom } from "@/store/atom";
 import { useAtom } from "jotai";
+import { useNavigate } from "react-router-dom";
 
 // Updated schema to match backend expectations
 const studentSchema = z.object({
@@ -71,8 +72,9 @@ const CreateStudentForm = () => {
     const [profilePicturePreview, setProfilePicturePreview] = useState<string>("");
     const [uploadingImage, setUploadingImage] = useState(false);
     const [imageLinks, setImageLinks] = useState<string[]>([]);
-    const [videoLinks, setVideoLinks] = useState<string[]>([]);
-    const [institution_id,setInstitutionId] = useAtom(institutionIdAtom);
+    const [, setVideoLinks] = useState<string[]>([]);
+    const [institution_id,] = useAtom(institutionIdAtom);
+    const navigate = useNavigate()
     const {
         register,
         handleSubmit,
@@ -169,6 +171,7 @@ const CreateStudentForm = () => {
                 batchYear: data.batchYear,
                 currentSemester: data.currentSemester,
                 departmentId: Number(data.departmentId),
+                institution_id: institution_id,
             };
             console.log(payload);
             
@@ -183,6 +186,7 @@ const CreateStudentForm = () => {
                     description: "Student has been created successfully.",
                 });
                 // Optional: Reset form or redirect
+                navigate('/p/student');
             }
         } catch (error) {
             handleApiError(error);

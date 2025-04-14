@@ -5,6 +5,6 @@ const router = express.Router();
 
 // Route to get upcoming classes of a faculty
 router.get('/upcoming-classes/:studentId/:number_of_class', getUpcomingClassesOfStudent);
-router.get("/list-of-past-classes/:studentId",pastClasses_student)
+router.get("/list-of-past-classes/:userId",pastClasses_student)
 
 export default router;

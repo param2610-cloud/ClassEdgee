@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import  { useEffect, useState, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -74,7 +74,7 @@ const CoordinatorFaculty = () => {
   const [faculty, setFaculty] = useState<Faculty[]>([]);
   const [departments, setDepartments] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [, setError] = useState<string | null>(null);
   const [pagination, setPagination] = useState({
     page: 1,
     pageSize: 8, // Smaller page size since faculty count is typically lower
@@ -86,8 +86,8 @@ const CoordinatorFaculty = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [departmentFilter, setDepartmentFilter] = useState('');
   const [designationFilter, setDesignationFilter] = useState('');
-  const [sortBy, setSortBy] = useState('joining_date');
-  const [sortOrder, setSortOrder] = useState('desc');
+  const [sortBy, ] = useState('joining_date');
+  const [sortOrder, ] = useState('desc');
   const [institution_id,] = useAtom(institutionIdAtom)
 
   // Predefined designation options
@@ -204,7 +204,7 @@ const CoordinatorFaculty = () => {
   }
 
   return (
-    <div className="p-6">
+    <div className="flex flex-col flex-1 overflow-hidden w-full" id='faculty'>
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Faculty Management</h1>
         <Button onClick={() => navigate('/p/faculty/create')}>
@@ -275,7 +275,7 @@ const CoordinatorFaculty = () => {
             {faculty.map((member) => (
               <TableRow key={member.faculty_id}>
                 <TableCell className="font-medium">
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-4">
                     <Avatar className="h-8 w-8">
                       <AvatarImage src={member.users?.profile_picture} />
                       <AvatarFallback>
@@ -287,7 +287,7 @@ const CoordinatorFaculty = () => {
                 </TableCell>
                 <TableCell>
                   <div className="flex flex-col">
-                    <span>{member.users?.first_name} {member.users?.last_name}</span>
+                    <span className="p-2 whitespace-nowrap">{member.users?.first_name} {member.users?.last_name}</span>
                     <Badge variant="secondary" className="w-fit">
                       {member.designation}
                     </Badge>
@@ -295,7 +295,9 @@ const CoordinatorFaculty = () => {
                 </TableCell>
                 <TableCell>
                   <Badge variant="outline">
+                  <span className="p-2 whitespace-nowrap">
                     {member.departments?.department_name || 'N/A'}
+                    </span>
                   </Badge>
                 </TableCell>
                 <TableCell>

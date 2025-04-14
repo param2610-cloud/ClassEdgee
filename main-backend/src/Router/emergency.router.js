@@ -31,7 +31,7 @@ router.post('/emergency-alerts', async (req, res) => {
         const { type, location_id, description, severity } = req.body;
 
         // Input validation
-        if (!location_id || !description || !severity) {
+        if ( !description || !severity) {
             return res.status(400).json({ 
                 error: 'Missing required fields' 
             });

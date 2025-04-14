@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { getDepartments } from "../utils/departments.js"; // Import the utility function
 
 const prisma = new PrismaClient();
 
@@ -20,7 +21,7 @@ const list_of_department = async (req, res) => {
                         college_uid: true,
                     },
                 },
-                sections:true
+                sections: true
             },
         });
         res.status(200).send({
@@ -33,6 +34,7 @@ const list_of_department = async (req, res) => {
         });
     }
 };
+
 const add_department = async (req, res) => {
     try {
         const {
@@ -92,10 +94,10 @@ const specific_department_details = async (req, res) => {
     try {
         const { department_id } = req.params;
         console.log(department_id);
-        if(!department_id){
-            res.status(400).json({message:"department_id is required"})
+        if (!department_id) {
+            res.status(400).json({ message: "department_id is required" })
         }
-        
+
         const department = await prisma.departments.findUnique({
             where: {
                 department_id: parseInt(department_id),
@@ -119,6 +121,7 @@ const specific_department_details = async (req, res) => {
         });
     }
 };
+
 const list_of_faculty = async (req, res) => {
     try {
         const { department_id, institute_id } = req.params;
@@ -143,10 +146,11 @@ const list_of_faculty = async (req, res) => {
         });
     }
 };
+
 const add_hod_to_department = async (req, res) => {
     try {
         console.log(req.body);
-        
+
         const { department_id, institute_id } = req.params;
         const { hod_user_id } = req.body;
         const hod_data = await prisma.users.findUnique({
@@ -182,7 +186,7 @@ const list_of_faculty_for_department = async (req, res) => {
         const { department_id, institute_id } = req.params;
         const faculty = await prisma.faculty.findMany({
             where: {
-                department_id:parseInt(department_id),
+                department_id: parseInt(department_id),
                 users: {
                     institution_id: parseInt(institute_id),
                 },
@@ -190,9 +194,9 @@ const list_of_faculty_for_department = async (req, res) => {
             include: {
                 users: true,
                 departments: true,
-                faculty_subject_mapping:{
-                    include:{
-                        subject_details:true
+                faculty_subject_mapping: {
+                    include: {
+                        subject_details: true
                     }
                 }
             },
@@ -207,8 +211,6 @@ const list_of_faculty_for_department = async (req, res) => {
         });
     }
 };
-//head of department controller 
-
 
 export {
     list_of_department,

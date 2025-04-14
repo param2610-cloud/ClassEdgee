@@ -1,7 +1,5 @@
+import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
 
-const {
-  default: flattenColorPalette,
-} = require("tailwindcss/lib/util/flattenColorPalette");
  
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -9,7 +7,7 @@ export default {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
     	extend: {
-    		'spin': {
+    		spin: {
     			'0%': {
     				transform: 'rotate(0deg)'
     			},

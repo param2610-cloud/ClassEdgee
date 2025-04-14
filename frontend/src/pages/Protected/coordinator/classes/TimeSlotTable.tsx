@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -7,12 +7,39 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { domain } from '@/lib/constant';
 
+// Define interfaces for our data types
+interface Timeslot {
+  slot_id: string | number;
+  start_time: string;
+  end_time: string;
+  day_of_week: string | number;
+  slot_type: string;
+}
+
+interface NewTimeslot {
+  start_time: string;
+  end_time: string;
+  day_of_week: string;
+  slot_type: string;
+}
+
+interface BatchTimeslot {
+  start_time: string;
+  end_time: string;
+  break_start_time: string;
+  break_end_time: string;
+  period_duration: string;
+  days: string[];
+  academic_year: string;
+  semester: string;
+}
+
 const TimeslotManagement = () => {
-  const [timeslots, setTimeslots] = useState([]);
-  const [error, setError] = useState(null);
+  const [timeslots, setTimeslots] = useState<Timeslot[]>([]);
+  const [error, setError] = useState<string | null>(null);
   
   // State for manual creation
-  const [newTimeslot, setNewTimeslot] = useState({
+  const [newTimeslot, setNewTimeslot] = useState<NewTimeslot>({
     start_time: '',
     end_time: '',
     day_of_week: '',
@@ -20,7 +47,7 @@ const TimeslotManagement = () => {
   });
 
   // State for batch creation
-  const [batchTimeslot, setBatchTimeslot] = useState({
+  const [batchTimeslot, setBatchTimeslot] = useState<BatchTimeslot>({
     start_time: '',
     end_time: '',
     break_start_time: '',
@@ -46,7 +73,7 @@ const TimeslotManagement = () => {
     }
   };
 
-  const handleManualInputChange = (e) => {
+  const handleManualInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setNewTimeslot(prev => ({
       ...prev,
@@ -54,7 +81,7 @@ const TimeslotManagement = () => {
     }));
   };
 
-  const handleBatchInputChange = (e) => {
+  const handleBatchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setBatchTimeslot(prev => ({
       ...prev,
@@ -62,7 +89,7 @@ const TimeslotManagement = () => {
     }));
   };
 
-  const handleDaySelection = (day) => {
+  const handleDaySelection = (day: string) => {
     setBatchTimeslot(prev => {
       const currentDays = [...prev.days];
       const dayIndex = currentDays.indexOf(day);
@@ -80,7 +107,7 @@ const TimeslotManagement = () => {
     });
   };
 
-  const createManualTimeslot = async (e) => {
+  const createManualTimeslot = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       await axios.post(`${domain}/api/v1/timeslots`, newTimeslot);
@@ -92,13 +119,18 @@ const TimeslotManagement = () => {
         slot_type: 'regular'
       });
       setError(null);
-    } catch (err) {
-      setError(err.response?.data?.message || 'Failed to create timeslot');
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error 
+        ? err.message 
+        : 'Failed to create timeslot';
+      setError(typeof err === 'object' && err !== null && 'response' in err 
+        ? (err.response as any)?.data?.message || errorMessage
+        : errorMessage);
       console.error(err);
     }
   };
 
-  const createBatchTimeslots = async (e) => {
+  const createBatchTimeslots = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       await axios.post(`${domain}/api/v1/timeslots/batch`, batchTimeslot);
@@ -114,19 +146,29 @@ const TimeslotManagement = () => {
         semester: ''
       });
       setError(null);
-    } catch (err) {
-      setError(err.response?.data?.message || 'Failed to create batch timeslots');
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error 
+        ? err.message 
+        : 'Failed to create batch timeslots';
+      setError(typeof err === 'object' && err !== null && 'response' in err 
+        ? (err.response as any)?.data?.message || errorMessage
+        : errorMessage);
       console.error(err);
     }
   };
 
-  const deleteTimeslot = async (id) => {
+  const deleteTimeslot = async (id: string | number) => {
     try {
       await axios.delete(`${domain}/api/v1/timeslots/${id}`);
       fetchTimeslots();
       setError(null);
-    } catch (err) {
-      setError(err.response?.data?.message || 'Failed to delete timeslot');
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error 
+        ? err.message 
+        : 'Failed to delete timeslot';
+      setError(typeof err === 'object' && err !== null && 'response' in err 
+        ? (err.response as any)?.data?.message || errorMessage
+        : errorMessage);
       console.error(err);
     }
   };
@@ -359,7 +401,7 @@ const TimeslotManagement = () => {
                 >
                   <div>
                     <span className="font-medium">
-                      {daysOfWeek[slot.day_of_week]}: 
+                      {daysOfWeek[slot.day_of_week as number]}: 
                     </span>
                     {` ${slot.start_time} - ${slot.end_time}`}
                     {slot.slot_type !== 'regular' && (

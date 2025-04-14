@@ -1,5 +1,4 @@
 import { fetchFaculty } from '@/api/scheduling-api/fetch';
-import { Faculty } from '@/interface/general';
 import React, { useEffect, useState } from 'react';
 
 const FacultySelector: React.FC<{
@@ -7,7 +6,7 @@ const FacultySelector: React.FC<{
   slotId: number;
   onChange: (id: number) => void;
 }> = ({ subjectId, slotId, onChange }) => {
-  const [faculty, setFaculty] = useState<Faculty[]>([]);
+  const [faculty, setFaculty] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {

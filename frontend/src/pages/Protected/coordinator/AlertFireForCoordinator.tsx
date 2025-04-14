@@ -24,8 +24,9 @@ import {
 } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { domain } from "@/lib/constant";
 
-const API_BASE_URL = 'http://localhost:3000/api';
+const API_BASE_URL = `${domain}/api`;
 
 interface Building {
   id: number;
@@ -33,11 +34,7 @@ interface Building {
   status: string;
 }
 
-interface Room {
-  room_id: number;
-  room_number: string;
-  floor_number: number;
-}
+
 
 interface EmergencyContact {
   title: string;
@@ -121,7 +118,7 @@ const AlertFireCoordinator = () => {
         setBuildings(buildings);
         setEmergencyContacts(contacts);
         
-        if (alerts.some(alert => alert.status === 'active')) {
+        if (alerts.some((alert: Alert) => alert.status === 'active')) {
           playEmergencySound();
         } else {
           if (audioRef.current) {

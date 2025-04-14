@@ -1,4 +1,3 @@
-import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Users, BookOpen, Calendar, Building2, Bell } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +11,7 @@ const CoordinatorDashboard = () => {
       description: 'Manage student profiles, enrollments, and academic records',
       icon: <Users className="h-6 w-6" />,
       path: '/p/student',
-      stats: '250+ Students'
+      stats: '500+ Students'
     },
     {
       title: 'Faculty Management',
@@ -139,16 +138,16 @@ const CoordinatorDashboard = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg">
+              <button className="w-full text-left border-gray-600 border px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg">
                 Create New Student Account
               </button>
-              <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg">
+              <button className="w-full text-left border-gray-600 border px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg">
                 Assign Faculty to Courses
               </button>
-              <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg">
+              <button className="w-full text-left border-gray-600 border px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg">
                 Update Class Schedule
               </button>
-              <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg">
+              <button className="w-full text-left border-gray-600 border px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg">
                 View Department Reports
               </button>
             </div>
@@ -162,7 +161,7 @@ const CoordinatorDashboard = () => {
           <CardContent>
             <div className="space-y-4">
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Student Portal</span>
+                <span className="text-sm  text-gray-600">Student Portal</span>
                 <span className="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">Active</span>
               </div>
               <div className="flex justify-between items-center">

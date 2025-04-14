@@ -1,11 +1,10 @@
 import { fetchRooms } from '@/api/scheduling-api/fetch';
-import { Room } from '@/interface/general';
 import React, { useEffect, useMemo, useState } from 'react';
 const RoomSelector: React.FC<{
     slotId: number;
     onChange: (id: number) => void;
   }> = ({ slotId, onChange }) => {
-    const [rooms, setRooms] = useState<Room[]>([]);
+    const [rooms, setRooms] = useState<any[]>([]);
     const [selectedBuilding, setSelectedBuilding] = useState<number | null>(null);
     const [isLoading, setIsLoading] = useState(false);
   
@@ -13,7 +12,7 @@ const RoomSelector: React.FC<{
       const loadRooms = async () => {
         setIsLoading(true);
         try {
-          const data = await fetchRooms(slotId, selectedBuilding);
+          const data = await fetchRooms(slotId, selectedBuilding ?? undefined);
           setRooms(data);
         } catch (error) {
           console.error('Error loading rooms:', error);

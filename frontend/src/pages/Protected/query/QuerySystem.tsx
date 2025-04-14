@@ -1,77 +1,121 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { MessageSquare, Send } from 'lucide-react';
 import { domain } from '@/lib/constant';
 
-const QuerySystem = ({ userId, userRole, facultyId }:{userId:number,userRole:string,facultyId:number}) => {
-  const [queries, setQueries] = useState([]);
-  const [selectedQuery, setSelectedQuery] = useState(null);
+interface Query {
+  query_id: number;
+  title: string;
+  description: string;
+  status: string;
+  student_id: number;
+  faculty_id: number;
+  created_at: string;
+  updated_at: string;
+}
+
+interface QueryMessage {
+  message_id: number;
+  query_id: number;
+  sender_id: number;
+  message: string;
+  created_at: string;
+  users?: {
+    first_name: string;
+    last_name: string;
+    college_uid: string;
+  };
+}
+
+const QuerySystem = ({ userId, userRole, facultyId }: { userId: number; userRole: string; facultyId: number }) => {
+  const [queries, setQueries] = useState<Query[]>([]);
+  const [selectedQuery, setSelectedQuery] = useState<Query | null>(null);
   const [newMessage, setNewMessage] = useState('');
   const [newQuery, setNewQuery] = useState({ title: '', description: '' });
-  const [queryMessages, setQueryMessages] = useState([]);
+  const [queryMessages, setQueryMessages] = useState<QueryMessage[]>([]);
+  const [, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchQueries();
-  }, [userId, userRole]);
+  }, [userId, userRole, facultyId]);
 
   const fetchQueries = async () => {
     try {
-      const response = await fetch(
-        `${domain}/api/v1/query/queries${userRole === 'faculty' ? `/faculty/${facultyId}` : `/student/${userId}`}`
-      );
-      const data = await response.json();
-      console.log("response data:",data);
+      setLoading(true);
+      setError(null);
+      const endpoint = userRole === 'faculty' 
+        ? `${domain}/api/v1/query/queries/faculty/${facultyId}`
+        : `${domain}/api/v1/query/queries/student/${userId}`;
+
+      const response = await fetch(endpoint);
+      if (!response.ok) throw new Error('Failed to fetch queries');
       
+      const data = await response.json();
       setQueries(data);
     } catch (error) {
       console.error('Error fetching queries:', error);
+      setError(error instanceof Error ? error.message : 'Failed to fetch queries');
+    } finally {
+      setLoading(false);
     }
   };
 
-  const fetchQueryMessages = async (queryId) => {
+  const fetchQueryMessages = async (queryId: number) => {
     try {
+      setLoading(true);
       const response = await fetch(`${domain}/api/v1/query/queries/${queryId}/messages`);
-    //   console.log("response:",response);
+      if (!response.ok) throw new Error('Failed to fetch messages');
       
       const data = await response.json();
-      console.log("data:",data);
-      
       setQueryMessages(data);
     } catch (error) {
       console.error('Error fetching messages:', error);
+      setError(error instanceof Error ? error.message : 'Failed to fetch messages');
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleNewQuery = async () => {
+    if (!newQuery.title || !newQuery.description) {
+      setError('Please fill in both title and description');
+      return;
+    }
+
     try {
-      await fetch(`${domain}/api/v1/query/queries`, {
+      setLoading(true);
+      const response = await fetch(`${domain}/api/v1/query/queries`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ...newQuery,
+          title: newQuery.title,
+          description: newQuery.description,
           studentId: userId,
-          facultyId: facultyId,
+          facultyId,
         }),
       });
+
+      if (!response.ok) throw new Error('Failed to create query');
+
       setNewQuery({ title: '', description: '' });
-      fetchQueries();
+      await fetchQueries();
     } catch (error) {
       console.error('Error creating query:', error);
+      setError(error instanceof Error ? error.message : 'Failed to create query');
+    } finally {
+      setLoading(false);
     }
   };
-  useEffect(()=>{
-    if(selectedQuery){
-      fetchQueryMessages(selectedQuery.query_id)
-    }
-  },[selectedQuery])
 
   const sendMessage = async () => {
-    if (!newMessage.trim()) return;
+    if (!newMessage.trim() || !selectedQuery) return;
 
     try {
-      await fetch(`${domain}/api/v1/query/queries/${selectedQuery.query_id}/messages`, {
+      setLoading(true);
+      const response = await fetch(`${domain}/api/v1/query/queries/${selectedQuery.query_id}/messages`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -79,12 +123,28 @@ const QuerySystem = ({ userId, userRole, facultyId }:{userId:number,userRole:str
           senderId: userId,
         }),
       });
+
+      if (!response.ok) throw new Error('Failed to send message');
+
       setNewMessage('');
-      fetchQueryMessages(selectedQuery.query_id);
+      await fetchQueryMessages(selectedQuery.query_id);
     } catch (error) {
       console.error('Error sending message:', error);
+      setError(error instanceof Error ? error.message : 'Failed to send message');
+    } finally {
+      setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (selectedQuery) {
+      fetchQueryMessages(selectedQuery.query_id);
+    }
+  }, [selectedQuery]);
+
+  if (error) {
+    return <div className="text-red-500 p-4">{error}</div>;
+  }
 
   return (
     <div className="flex h-screen">

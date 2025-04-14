@@ -25,7 +25,6 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { domain } from "@/lib/constant";
 
 const formSchema = z.object({
@@ -87,7 +86,7 @@ const CreateCoordinatorForm: React.FC = () => {
     const onSubmit = async (data: FormData) => {
         setIsLoading(true);
         try {
-            const response = await axios.post(
+            await axios.post(
                 `${domain}/api/v1/coordinator/createcoordinator`,
                 data
             );
@@ -137,7 +136,7 @@ const CreateCoordinatorForm: React.FC = () => {
                 <FormField
                     control={form.control}
                     name="dateOfBirth"
-                    render={({ field }) => (
+                    render={() => (
                         <FormItem className="space-x-2">
                             <FormLabel>Date of Birth</FormLabel>
                             <FormControl>
@@ -301,7 +300,7 @@ const CreateCoordinatorForm: React.FC = () => {
                 <FormField
                     control={form.control}
                     name="dateOfJoining"
-                    render={({ field }) => (
+                    render={() => (
                         <FormItem className="space-x-2">
                             <FormLabel>Date of Joining</FormLabel>
                             <FormControl>

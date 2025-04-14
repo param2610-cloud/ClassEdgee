@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";

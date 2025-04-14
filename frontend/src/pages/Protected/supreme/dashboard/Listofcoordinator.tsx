@@ -11,7 +11,7 @@
 
 // const PrincipalList = () => {
 //     const [principals, setPrincipals] = useState([]);
-   
+
 //     useEffect(() => {
 //         const fetchPrincipals = async () => {
 //             const response = await axios.get(
@@ -53,13 +53,20 @@
 // };
 // export default PrincipalList;
 
-
-import React, { useState, useEffect } from 'react';
-import axios, { AxiosResponse } from 'axios';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
-import { Button } from '@/components/ui/button';
-import { domain } from '@/lib/constant';
+import React, { useState, useEffect } from "react";
+import axios, { AxiosResponse } from "axios";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import {
+  Table,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
+} from "@/components/ui/table";
+import { domain } from "@/lib/constant";
+import { useAtom } from "jotai";
+import { institutionIdAtom } from "@/store/atom";
 
 // Interface for Coordinator data
 interface Coordinator {
@@ -78,28 +85,31 @@ interface CoordinatorsResponse {
 }
 
 // Interface for Filters
-interface CoordinatorFilters {
-  institution_id?: string;
-}
+// interface CoordinatorFilters {
+//   institution_id?: string;
+// }
 
 const Listofcoordinator: React.FC = () => {
   // State to manage coordinators data
   const [coordinators, setCoordinators] = useState<Coordinator[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [filters, setFilters] = useState<CoordinatorFilters>({
-    institution_id: '' 
-  });
-
+  // const [filters, setFilters] = useState<CoordinatorFilters>({
+  //   institution_id: "",
+  // });
+  const [institution_id] = useAtom(institutionIdAtom);
   // Fetch coordinators data
 
- 
-  const fetchCoordinators = async (): Promise<void> => {            
+  const fetchCoordinators = async (): Promise<void> => {
     setIsLoading(true);
     try {
       const response: AxiosResponse<CoordinatorsResponse> = await axios.get(
-        `${domain}/api/v1/supreme/coordinators`, 
-           
+        `${domain}/api/v1/supreme/coordinators`,
+        {
+          params: {
+            institution_id: institution_id,
+          },
+        }
       );
 
       // Type-safe data assignment
@@ -109,8 +119,8 @@ const Listofcoordinator: React.FC = () => {
       // Improved error handling
       const errorMessage = axios.isAxiosError(err)
         ? err.response?.data?.message || err.message
-        : 'An unexpected error occurred';
-      
+        : "An unexpected error occurred";
+
       setError(errorMessage);
       setIsLoading(false);
     }
@@ -118,8 +128,12 @@ const Listofcoordinator: React.FC = () => {
 
   // Initial data fetch
   useEffect(() => {
-    fetchCoordinators();
-  }, []);
+    if (institution_id) {
+      console.log(institution_id);
+
+      fetchCoordinators();
+    }
+  }, [institution_id]);
 
   // Render loading state
   if (isLoading) {
@@ -154,8 +168,6 @@ const Listofcoordinator: React.FC = () => {
       <CardHeader>
         <div className="flex justify-between items-center">
           <CardTitle>Coordinators</CardTitle>
-         
-         
         </div>
       </CardHeader>
       <CardContent>
@@ -191,284 +203,3 @@ const Listofcoordinator: React.FC = () => {
 };
 
 export default Listofcoordinator;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

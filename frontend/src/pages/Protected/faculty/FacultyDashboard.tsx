@@ -1,335 +1,154 @@
-import React, { useState } from "react";
-import {
-  Book,
-  Users,
-  ClipboardList,
-  BarChart2,
-  MessageCircle,
-  FileText,
-  BookOpen,
-  LogOut,
-  Home,
-  User2,
-  List,
-  Calendar,
-  School,
-  Siren,
-} from "lucide-react";
-import { useAuth } from "@/services/AuthContext";
-import { useNavigate } from "react-router-dom";
-import UpcomingClassComponent from "./classes/UpcomingClassComponent";
+import { useEffect, useState } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/services/AuthContext';
+import { domain } from '@/lib/constant';
+import { BookOpen, Calendar, Users, Clock, FileQuestion, Activity } from 'lucide-react';
+import { Progress } from '@/components/ui/progress';
+import UpcomingClassComponent from './classes/UpcomingClassComponent';
+
+// Define the interface for facultyData
+interface FacultyData {
+  first_name: string;
+  last_name: string;
+  classes_count: number;
+  departments: { department_name: string }[];
+  // Add other properties as needed
+}
 
 const FacultyLMSDashboard = () => {
-  const [activeSection, setActiveSection] = useState("courses");
-  const { logout } = useAuth();
   const navigate = useNavigate();
-  const courses = [
+  const { user } = useAuth();
+  const [facultyData, setFacultyData] = useState<FacultyData | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchFacultyData = async () => {
+      try {
+        const response = await fetch(`${domain}/api/v1/faculty/get-faculty/${user?.user_id}`);
+        const data = await response.json();
+        console.log(data);
+        
+        setFacultyData(data.data);
+      } catch (error) {
+        console.error('Error fetching faculty data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (user?.user_id) {
+      fetchFacultyData();
+    }
+  }, [user]);
+
+  const dashboardItems = [
     {
-      id: 1,
-      title: "Introduction to Computer Science",
-      semester: "Fall 2024",
-      students: 45,
-      assignments: 6,
-      averageGrade: 85.5,
+      title: 'My Classes',
+      description: 'Manage your current classes and schedules',
+      icon: <BookOpen className="h-6 w-6 text-blue-500" />,
+      path: '/p/classes',
+      stats: facultyData?.classes_count || '0 Classes'
     },
     {
-      id: 2,
-      title: "Advanced Mathematics",
-      semester: "Fall 2024",
-      students: 30,
-      assignments: 4,
-      averageGrade: 78.3,
+      title: 'Attendance',
+      description: 'Track and manage student attendance',
+      icon: <Users className="h-6 w-6 text-green-500" />,
+      path: '/p/attendance',
+      stats: 'View Records'
     },
+    {
+      title: 'Schedule',
+      description: 'View your teaching schedule',
+      icon: <Calendar className="h-6 w-6 text-purple-500" />,
+      path: '/p/schedule',
+      stats: 'Weekly View'
+    },
+    {
+      title: 'Student Queries',
+      description: 'Respond to student questions',
+      icon: <FileQuestion className="h-6 w-6 text-orange-500" />,
+      path: '/p/queries',
+      stats: 'Pending Queries'
+    }
   ];
 
-  const students = [
-    {
-      id: 1,
-      name: "Emily Rodriguez",
-      course: "Computer Science",
-      grade: 92,
-      progress: 75,
-      attendance: "95%",
-    },
-    {
-      id: 2,
-      name: "Jason Kim",
-      course: "Advanced Mathematics",
-      grade: 85,
-      progress: 60,
-      attendance: "88%",
-    },
-  ];
-
-  const assignments = [
-    {
-      id: 1,
-      title: "Data Structures Project",
-      course: "Computer Science",
-      dueDate: "2024-12-15",
-      submitted: 35,
-      total: 45,
-    },
-    {
-      id: 2,
-      title: "Calculus Problem Set",
-      course: "Advanced Mathematics",
-      dueDate: "2024-12-20",
-      submitted: 25,
-      total: 30,
-    },
-  ];
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="text-lg">Loading...</div>
+      </div>
+    );
+  }
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      {/* Sidebar Navigation */}
-      <div className="w-20 sm:w-52 bg-white shadow-md flex flex-col items-center py-8">
-        <div className="mb-1">
-          <img
-            src="/faculty2.jpg"
-            alt="Faculty Profile"
-            className="rounded-full w-16 h-16 object-cover my-3"
-          />
+    <div className="p-6 space-y-6">
+      <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-2xl font-bold">Welcome, {facultyData?.first_name}{" "}{facultyData?.last_name}</h1>
+          <p className="text-gray-600">{facultyData?.departments[0]?.department_name} Department</p>
         </div>
-        <nav className="space-y-1 flex flex-col items-start">
-          <button
-            onClick={() => navigate("/p/profile-page")}
-            className={`p-3 rounded flex flex-row gap-4 ${
-              activeSection === "profile"
-                ? "bg-blue-100 text-blue-600"
-                : "text-gray-700 hover:bg-violet-100 hover:text-blue-700"
-            }`}
-          >
-            <User2 className="w-6 h-6" />{" "}
-            <span className="hidden sm:inline">Profile</span>
-          </button>
-
-          <button
-            onClick={() => setActiveSection("courses")}
-            className={`p-3 rounded flex flex-row gap-4 ${
-              activeSection === "courses"
-                ? "bg-blue-100 text-blue-600"
-                : "text-gray-700 hover:bg-violet-100 hover:text-blue-700"
-            }`}
-          >
-            <BookOpen className="w-6 h-6" />{" "}
-            <span className="hidden sm:inline">Courses</span>
-          </button>
-          {/* <button
-            onClick={() => navigate("/p/student-details")}
-            className={`p-3 rounded flex flex-row gap-4 ${
-              activeSection === "students"
-                ? "bg-blue-100 text-blue-600"
-                : "text-gray-700 hover:bg-violet-100 hover:text-blue-700"
-            }`}
-          >
-            <Users className="w-6 h-6" />{" "}
-            <span className="hidden sm:inline">Students Details</span>
-          </button> */}
-          
-          {/* <button
-            onClick={() => navigate("/p/interactive-classroom")}
-            className={`p-3 rounded flex flex-row gap-4 ${
-              activeSection === "analytics"
-                ? "bg-blue-100 text-blue-600"
-                : "text-gray-700 hover:bg-violet-100 hover:text-blue-700"
-            }`}
-          >
-            <Home className="w-6 h-6" />{" "}
-            <span className="hidden sm:inline">Room</span>
-          </button> */}
-
-          <button
-            onClick={() => navigate("/p/department")}
-            className={`p-3 rounded flex flex-row gap-4 ${
-              activeSection === "analytics"
-                ? "bg-blue-100 text-blue-600"
-                : "text-gray-700 hover:bg-violet-100 hover:text-blue-700"
-            }`}
-          >
-            <Book className="w-6 h-6" />{" "}
-            <span className="hidden sm:inline">Department Info</span>
-          </button>
-          <button
-            onClick={() => navigate("/p/department-syllabus")}
-            className={`p-3 rounded flex flex-row gap-4 ${
-              activeSection === "syllabus"
-                ? "bg-blue-100 text-blue-600"
-                : "text-gray-700 hover:bg-violet-100 hover:text-blue-700"
-            }`}
-          >
-            <List className="w-6 h-6" />{" "}
-            <span className="hidden sm:inline">Syllabus</span>
-          </button>
-          <button
-            onClick={() => navigate("/p/schedule")}
-            className={`p-3 rounded flex flex-row gap-4 ${
-              activeSection === "schedule"
-                ? "bg-blue-100 text-blue-600"
-                : "text-gray-700 hover:bg-violet-100 hover:text-blue-700"
-            }`}
-          >
-            <Calendar className="w-6 h-6" />{" "}
-            <span className="hidden sm:inline">Schedule</span>
-          </button>
-          <button
-            onClick={() => navigate("/p/classes-list")}
-            className={`p-3 rounded flex flex-row gap-4 ${
-              activeSection === "analytics"
-                ? "bg-blue-100 text-blue-600"
-                : "text-gray-700 hover:bg-green-100 hover:text-green-700"
-            }`}
-          >
-            <School className="w-6 h-6" />{" "}
-            <span className="hidden sm:inline">Classes</span>
-          </button>
-          <button
-            onClick={() => {
-              navigate("/p/emergency");
-            }}
-            className={`p-3 rounded flex flex-row gap-4 ${
-              activeSection === "alert"
-                ? "bg-red-100 text-red-700"
-                : "text-gray-500 hover:bg-red-100 hover:text-red-700"
-            }`}
-          >
-            <Siren className="w-6 h-6" />{" "}
-            <span className="hidden sm:inline">Alert</span>
-          </button>
-          <button
-            onClick={logout}
-            className={`p-3 rounded flex flex-row gap-4 ${
-              activeSection === "analytics"
-                ? "bg-blue-100 text-blue-600"
-                : "text-gray-700 hover:bg-red-100 hover:text-red-700"
-            }`}
-          >
-            <LogOut className="w-6 h-6" />{" "}
-            <span className="hidden sm:inline">Logout</span>
-          </button>
-        </nav>
+        <div className="flex gap-2">
+          <Clock className="h-5 w-5" />
+          <span>{new Date().toLocaleDateString()}</span>
+        </div>
       </div>
 
-      {/* Main Content Area */}
-      <div className="flex-1 p-8 overflow-y-auto">
-        {activeSection === "courses" && (
-          <div>
-            <h1 className="text-2xl font-bold mb-6">
-              <div className="w-full flex justify-between">
-                <div>My Courses</div>
-                <div>
-                  {/* <button
-                    onClick={() => navigate("/p/interactive-classroom")}
-                    className={`p-3 flex justify-between items-center gap-2 border-2 rounded-xl border-black`}
-                  >
-                    <Home className="w-6 h-6" />
-                    <span>Room</span>
-                  </button> */}
-                </div>
-              </div>
-            </h1>
-            <UpcomingClassComponent />
-            {courses.map((course) => (
-              <div
-                key={course.id}
-                className="bg-white p-6 rounded-lg shadow-md mb-4 flex items-center justify-between"
-              >
-                <div>
-                  <h2 className="text-xl font-semibold">{course.title}</h2>
-                  <p className="text-gray-500">{course.semester}</p>
-                </div>
-                <div className="flex items-center space-x-6">
-                  <div className="text-center">
-                    <div className="font-bold text-lg">{course.students}</div>
-                    <div className="text-gray-500 text-sm">Students</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="font-bold text-lg">
-                      {course.assignments}
-                    </div>
-                    <div className="text-gray-500 text-sm">Assignments</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="font-bold text-lg">
-                      {course.averageGrade}%
-                    </div>
-                    <div className="text-gray-500 text-sm">Avg Grade</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {dashboardItems.map((item, index) => (
+          <Card 
+            key={index} 
+            className="hover:shadow-lg transition-shadow cursor-pointer"
+            onClick={() => navigate(item.path)}
+          >
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-lg font-medium">{item.title}</CardTitle>
+              {item.icon}
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-gray-500">{item.description}</p>
+              <p className="mt-2 text-sm font-medium text-blue-600">{item.stats}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
 
-        {activeSection === "students" && (
-          <div>
-            <h1 className="text-2xl font-bold mb-6">Student Performance</h1>
-            {students.map((student) => (
-              <div
-                key={student.id}
-                className="bg-white p-6 rounded-lg shadow-md mb-4 flex items-center justify-between"
-              >
-                <div>
-                  <h2 className="text-xl font-semibold">{student.name}</h2>
-                  <p className="text-gray-500">{student.course}</p>
-                </div>
-                <div className="flex items-center space-x-6">
-                  <div className="text-center">
-                    <div className="font-bold text-lg">{student.grade}%</div>
-                    <div className="text-gray-500 text-sm">Grade</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="font-bold text-lg">{student.progress}%</div>
-                    <div className="text-gray-500 text-sm">Progress</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="font-bold text-lg">
-                      {student.attendance}
-                    </div>
-                    <div className="text-gray-500 text-sm">Attendance</div>
-                  </div>
-                </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Activity className="h-5 w-5" />
+              Recent Activity
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div>
+                <p className="text-sm font-medium">Class Completion</p>
+                <Progress value={75} className="mt-2" />
               </div>
-            ))}
-          </div>
-        )}
+              <div>
+                <p className="text-sm font-medium">Attendance Updates</p>
+                <Progress value={90} className="mt-2" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
-        {activeSection === "assignments" && (
-          <div>
-            <h1 className="text-2xl font-bold mb-6">Assignment Management</h1>
-            {assignments.map((assignment) => (
-              <div
-                key={assignment.id}
-                className="bg-white p-6 rounded-lg shadow-md mb-4 flex items-center justify-between"
-              >
-                <div>
-                  <h2 className="text-xl font-semibold">{assignment.title}</h2>
-                  <p className="text-gray-500">{assignment.course}</p>
-                </div>
-                <div className="flex items-center space-x-6">
-                  <div className="text-center">
-                    <div className="font-bold text-lg">
-                      Due {assignment.dueDate}
-                    </div>
-                    <div className="text-gray-500 text-sm">Deadline</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="font-bold text-lg">
-                      {assignment.submitted}/{assignment.total}
-                    </div>
-                    <div className="text-gray-500 text-sm">Submissions</div>
-                  </div>
-                  <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
-                    Manage
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
+        <Card>
+          <CardHeader>
+            <CardTitle>Upcoming Schedule</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {/* Add upcoming classes/events here */}
+              <UpcomingClassComponent/>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
+
   );
 };
-
 export default FacultyLMSDashboard;

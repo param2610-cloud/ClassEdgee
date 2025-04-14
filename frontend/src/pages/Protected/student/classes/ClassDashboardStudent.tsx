@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import {
-    Download,
     File,
     BookOpen,
     ClipboardList,
     Users,
-    Clock,
-    MessageCircle,
     VideoIcon,
     Bell,
     Activity,
@@ -23,11 +20,10 @@ import {
     DialogContent,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
 } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
 import { useAuth } from "@/services/AuthContext";
-import { useNavigate, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import axios from "axios";
 import { domain } from "@/lib/constant";
 import { Class, SyllabusStructure } from "@/interface/general";
@@ -42,7 +38,7 @@ import DialogflowButton from "../Dialogflow/Bot";
 const ClassDashboardStudent = () => {
     const {class_id}= useParams()
     const [classData,setClassData] = useAtom<Class | null>(classDataAtom);
-    const [syllabus, setSyllabus] = useState<SyllabusStructure | null>(null)
+    const [, setSyllabus] = useState<SyllabusStructure | null>(null)
     const {user} = useAuth()
     useEffect(()=>{
         if(classData?.schedule_details?.subject_details?.syllabus_structure){
@@ -50,26 +46,26 @@ const ClassDashboardStudent = () => {
         }
     },[classData])
 
-    const [resources, setResources] = useState([
-        {
-            id: 1,
-            name: "Lecture Slides",
-            type: "pdf",
-            size: "5.2 MB",
-            uploadDate: "2024-03-15",
-            description: "Comprehensive slides covering OOP concepts",
-        },
-        {
-            id: 2,
-            name: "Assignment Guidelines",
-            type: "docx",
-            size: "2.1 MB",
-            uploadDate: "2024-03-10",
-            description: "Detailed instructions for semester project",
-        },
-    ]);
+    // const [resources, setResources] = useState([
+    //     {
+    //         id: 1,
+    //         name: "Lecture Slides",
+    //         type: "pdf",
+    //         size: "5.2 MB",
+    //         uploadDate: "2024-03-15",
+    //         description: "Comprehensive slides covering OOP concepts",
+    //     },
+    //     {
+    //         id: 2,
+    //         name: "Assignment Guidelines",
+    //         type: "docx",
+    //         size: "2.1 MB",
+    //         uploadDate: "2024-03-10",
+    //         description: "Detailed instructions for semester project",
+    //     },
+    // ]);
 
-    const [assignments, setAssignments] = useState([
+    const [assignments, ] = useState([
         {
             id: 1,
             title: "Design Patterns Implementation",
@@ -88,7 +84,7 @@ const ClassDashboardStudent = () => {
         },
     ]);
 
-    const [notifications, setNotifications] = useState([
+    const [notifications,] = useState([
         {
             id: 1,
             type: "Assignment",
@@ -116,9 +112,9 @@ const ClassDashboardStudent = () => {
         }
     },[class_id,classData])
 
-    const handleResourceDownload = (resource:any) => {
-        alert(`Downloading ${resource.name}`);
-    };
+    // const handleResourceDownload = (resource:any) => {
+    //     alert(`Downloading ${resource.name}`);
+    // };
 
     return (
         <div className="max-w-5xl mx-auto p-4 bg-white rounded-lg shadow-md">

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Clock, Book, Users, DoorOpen, Calendar, Home, BookOpen, Bell, UserCircle, Video, HomeIcon, Box } from 'lucide-react';
+import  { useState, useEffect } from 'react';
+import { Clock, Book, Users, DoorOpen, Calendar, Box } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -13,7 +13,7 @@ const UpcomingClassComponent = () => {
   const [remainingTime, setRemainingTime] = useState('');
   const [isLive, setIsLive] = useState(false);
   const [loading, setLoading] = useState(true);
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -71,20 +71,20 @@ const UpcomingClassComponent = () => {
       const classDate = new Date(upcomingClass.date_of_class);
       
       // Extract hours and minutes from timeslots
-      const startTime = new Date(upcomingClass.timeslots.start_time);
-      const endTime = new Date(upcomingClass.timeslots.end_time);
+      const startTime = new Date(upcomingClass.timeslots?.start_time || '');
+      const endTime = new Date(upcomingClass.timeslots?.end_time || '');
       
       if (isNaN(startTime.getTime()) || isNaN(endTime.getTime())) {
         console.error('Invalid time format');
         return;
       }
       
-      // Set the class date with the correct time
+      // Set the class date with the correct time and subtract 5 hours
       const classStartTime = new Date(classDate);
       const classEndTime = new Date(classDate);
       
-      classStartTime.setHours(startTime.getUTCHours(), startTime.getUTCMinutes(), 0);
-      classEndTime.setHours(endTime.getUTCHours(), endTime.getUTCMinutes(), 0);
+      classStartTime.setHours(startTime.getUTCHours() - 5, startTime.getUTCMinutes(), 0);
+      classEndTime.setHours(endTime.getUTCHours() - 5, endTime.getUTCMinutes(), 0);
 
       // Check if current time is between start and end time
       setIsLive(now >= classStartTime && now <= classEndTime);
@@ -173,17 +173,21 @@ const UpcomingClassComponent = () => {
                     <div>
                       <p className="text-sm text-gray-500">Time</p>
                       <p className="font-medium">
-                        {new Date(upcomingClass.timeslots.start_time).toLocaleTimeString([], { 
+                        {upcomingClass?.timeslots?.start_time && new Date(upcomingClass.timeslots.start_time).toLocaleTimeString([], { 
                           hour: '2-digit', 
                           minute: '2-digit',
                           hour12: false 
-                        })}
+                        }).split(':').map((part, index) => 
+                          index === 0 ? String(Number(part) - 5).padStart(2, '0') : part
+                        ).join(':')}
                         {' - '}
-                        {new Date(upcomingClass.timeslots.end_time).toLocaleTimeString([], { 
+                        {upcomingClass?.timeslots?.end_time && new Date(upcomingClass.timeslots.end_time).toLocaleTimeString([], { 
                           hour: '2-digit', 
                           minute: '2-digit',
                           hour12: false
-                        })}
+                        }).split(':').map((part, index) => 
+                          index === 0 ? String(Number(part) - 5).padStart(2, '0') : part
+                        ).join(':')}
                       </p>
                     </div>
                   </div>
