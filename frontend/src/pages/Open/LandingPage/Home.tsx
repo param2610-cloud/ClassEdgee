@@ -20,6 +20,9 @@ const DemoRequestForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
+
+
+  
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
