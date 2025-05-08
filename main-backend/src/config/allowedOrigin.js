@@ -7,5 +7,6 @@ export const allowedOrigins = [
     'http://192.168.0.103:5173',
     'http://192.168.1.100:5173',
     'http://192.168.0.193:5173',
+    'https://classedgee.vercel.app'
 
 ]
