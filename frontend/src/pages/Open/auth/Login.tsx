@@ -11,15 +11,16 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Briefcase, GraduationCap, LockIcon, MailIcon, School, ShieldCheck, UserIcon } from 'lucide-react';
+import { Briefcase, GraduationCap, LockIcon, MailIcon, School, ShieldCheck, UserIcon, Loader2 } from 'lucide-react';
 
 const LoginPage = () => {
-  const { user, isLoading } = useAuth();
+  const { user, isLoading: isAuthLoading } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState(UserRole.STUDENT);
   const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [, setRoleAtom] = useAtom(roleAtom);
   const [, setInstitutionId] = useAtom(institutionIdAtom);
@@ -45,10 +46,10 @@ const LoginPage = () => {
   }, []);
 
   useEffect(() => {
-    if (!isLoading && user) {
+    if (!isAuthLoading && user) {
       navigate("/p/", { replace: true });
     }
-  }, [user, isLoading, navigate]);
+  }, [user, isAuthLoading, navigate]);
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -57,6 +58,8 @@ const LoginPage = () => {
       setMessage("Email and password are required");
       return;
     }
+    setIsSubmitting(true);
+    setMessage('');
 
     try {
       const endpoint = `${domain}/api/v1/${role}/login`;
@@ -91,6 +94,8 @@ const LoginPage = () => {
       } else {
         setMessage("An unexpected error occurred. Please try again.");
       }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -186,9 +191,14 @@ const LoginPage = () => {
                     ? "translate-y-0 opacity-100"
                     : "translate-y-4 opacity-0"
                 }`}
-                disabled={isLoading}
+                disabled={isSubmitting || isAuthLoading}
               >
-                {isLoading ? "Signing in..." : "Sign in"}
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Signing in...
+                  </>
+                ) : "Sign in"}
               </Button>
             </form>
             <div className="relative mt-6">
