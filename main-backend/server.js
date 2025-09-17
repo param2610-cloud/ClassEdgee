@@ -28,7 +28,6 @@ app.use('/',express.static(path.join(__dirname,'public')));
 //router import 
 import adminRouter from "./src/Router/supreme.router.js"
 import generalRouter from './src/Router/general.router.js'
-import logger from "./src/middlewares/logger.js";
 import coordinatorRouter from './src/Router/coordinator.router.js'
 import studentRouter from './src/Router/student.route.js'
 import facultyRouter from './src/Router/faculty.router.js'
@@ -107,3 +106,6 @@ app.get("/health", (req, res) => {
 
 const LOCALIP = process.env.LOCAL_IP || 'localhost'
 app.listen(port, () => console.log(`The App is Listening on port ${port} \n health check at http://${LOCALIP}:${port}/health`));
+
+
+export default app;
