@@ -52,7 +52,7 @@ import classesRouter from "./src/Router/classes/general.router.js";
 import queryRouter from "./src/Router/query.router.js";
 import emergencyRouter from './src/Router/emergency.router.js'
 import equipmentRouter from './src/Router/equipment.router.js'
-
+ 
 
 //print route
 app.use((req, res, next) => {
@@ -98,7 +98,7 @@ app.use("/api/v1/quizzes", quizRouter)
 
 
 app.get("/", (req, res) => {
-    res.sendFile("interface.html", { root: path.join(__dirname,'public') });
+    res.sendFile("Interface.html", { root: path.join(__dirname,'public') });
 })
 app.get("/health", (req, res) => {
     res.send("The App is Healthy")

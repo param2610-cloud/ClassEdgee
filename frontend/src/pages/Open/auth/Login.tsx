@@ -63,6 +63,7 @@ const LoginPage = () => {
         navigate("/p/");
       }
     } catch (error: any) {
+      console.log(error)
       if (axios.isAxiosError(error)) {
         if (error.response) {
           setMessage(error.response.data.message || "An error occurred. Please try again later.");
