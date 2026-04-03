@@ -3,4 +3,6 @@
 .vercel
 
 python-backend/.venv/
+__pycache__/
+*.pyc
 docs/brainstorming_new_face_reco.txt

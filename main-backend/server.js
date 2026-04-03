@@ -39,7 +39,9 @@ import supremeRouter from './src/Router/supreme.router.js';
 import roomRouter from './src/Router/room.router.js'
 import institutionRouter from './src/Router/institution.router.js'
 import attendanceRouter from "./src/Router/attendance.router.js";
+import faceRouter from "./src/Router/face.router.js";
 import resourceRouter from "./src/Router/resource/resource.router.js";
+import { startFaceInfrastructure } from "./src/lib/faceBootstrap.js";
 //interactive classroom routes
 import feedbackRoutes from './src/Router/InteractiveClassroom/feedback.router.js'
 import activityRoutes from './src/Router/InteractiveClassroom/activity.router.js'
@@ -79,6 +81,7 @@ app.use("/api/v1/mannual-schedule",mannualscheduleRouter)
 app.use("/api/v1/institution",institutionRouter)
 app.use("/api/v1/classes",classesRouter)
 app.use("/api/v1/attendance",attendanceRouter)
+app.use("/api/v1/face", faceRouter)
 app.use("/api/v1/resource",resourceRouter)
 app.use("/api/v1/query",queryRouter)
 app.use("/api/v1/equipment",equipmentRouter)
@@ -106,6 +109,14 @@ app.get("/health", (req, res) => {
 
 const LOCALIP = process.env.LOCAL_IP || 'localhost'
 app.listen(port, () => console.log(`The App is Listening on port ${port} \n health check at http://${LOCALIP}:${port}/health`));
+
+startFaceInfrastructure()
+    .then(() => {
+        console.log("Face queue infrastructure initialized");
+    })
+    .catch((error) => {
+        console.error("Face queue infrastructure failed to initialize:", error.message);
+    });
 
 
 export default app;

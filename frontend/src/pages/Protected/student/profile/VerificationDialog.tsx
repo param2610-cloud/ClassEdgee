@@ -2,7 +2,7 @@ import React, { useRef, useState, useCallback } from 'react';
 import { Camera, AlertCircle, CameraIcon } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import UploadOnCloudinary from '@/services/Cloudinary';
-import { fastapidomain } from '@/lib/constant';
+import { domain } from '@/lib/constant';
 
 const CAPTURE_INSTRUCTIONS = [
   { id: 1, pose: "Neutral", description: "Look straight at the camera with a neutral expression" },
@@ -25,6 +25,9 @@ const FaceVerification = ({ user_id }: { user_id: number }) => {
   const [uploadedImageMediaLinks, setUploadedImageMediaLinks] = useState<string[]>([]);
   const [isCapturing, setIsCapturing] = useState(false);
   const [showPreparationAlert, setShowPreparationAlert] = useState(false);
+  const [jobId, setJobId] = useState<string | null>(null);
+  const [jobStatus, setJobStatus] = useState<string | null>(null);
+  const [jobMessage, setJobMessage] = useState<string | null>(null);
 
   const startCamera = async () => {
     try {
@@ -108,24 +111,68 @@ const FaceVerification = ({ user_id }: { user_id: number }) => {
     }
 
     try {
-      const response = await fetch(`${fastapidomain}/api/face-recognition/register-face`, {
+      const response = await fetch(`${domain}/api/v1/face/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify({ imageUrls: uploadedImageMediaLinks, user_id }),
       });
 
+      const data = await response.json();
       if (!response.ok) {
-        throw new Error('Failed to send URLs to backend');
+        throw new Error(data?.message || 'Failed to queue face registration');
       }
 
-      const data = await response.json();
-      console.log('Backend response:', data);
+      setJobId(data?.job_id || null);
+      setJobStatus('queued');
+      setJobMessage('Face registration queued. Processing in background...');
     } catch (error) {
       console.error('Error sending URLs to backend:', error);
+      setJobStatus('failed');
+      setJobMessage(error instanceof Error ? error.message : 'Failed to send URLs to backend');
     }
   };
+
+  React.useEffect(() => {
+    if (!jobId) {
+      return;
+    }
+
+    const interval = setInterval(async () => {
+      try {
+        const response = await fetch(`${domain}/api/v1/face/job/${jobId}`, {
+          credentials: 'include',
+        });
+        const data = await response.json();
+
+        if (!response.ok || !data?.data) {
+          throw new Error(data?.message || 'Failed to check job status');
+        }
+
+        const status = data.data.status;
+        setJobStatus(status);
+
+        if (status === 'completed') {
+          setJobMessage('Face registration completed successfully.');
+          clearInterval(interval);
+          return;
+        }
+
+        if (status === 'failed') {
+          setJobMessage(data.data.error || 'Face registration failed.');
+          clearInterval(interval);
+        }
+      } catch (error) {
+        setJobStatus('failed');
+        setJobMessage(error instanceof Error ? error.message : 'Job status polling failed');
+        clearInterval(interval);
+      }
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [jobId]);
 
   React.useEffect(() => {
     return () => {
@@ -206,6 +253,14 @@ const FaceVerification = ({ user_id }: { user_id: number }) => {
           <p className="text-sm text-gray-600">
             {uploadedImageMediaLinks.length} images uploaded successfully
           </p>
+          {jobStatus && (
+            <p className="text-sm text-gray-700 mt-2">
+              Job status: <span className="font-semibold">{jobStatus}</span>
+            </p>
+          )}
+          {jobMessage && (
+            <p className="text-sm text-gray-700 mt-1">{jobMessage}</p>
+          )}
         </div>
       )}
     </div>

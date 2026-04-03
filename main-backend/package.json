@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
+    "amqplib": "^1.0.3",
     "axios": "^1.7.7",
     "bcrypt": "^5.1.1",
     "bull": "^4.16.4",

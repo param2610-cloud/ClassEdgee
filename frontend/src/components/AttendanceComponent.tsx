@@ -14,7 +14,8 @@ import {
   AlertTitle,
 } from "@/components/ui/alert";
 import { Progress } from "@/components/ui/progress";
-import { domain, fastapidomain } from '@/lib/constant';
+import { domain } from '@/lib/constant';
+import UploadOnCloudinary from '@/services/Cloudinary';
 
 interface AttendanceRecord {
   attendance_id: number;
@@ -36,8 +37,10 @@ interface VideoAttendanceUploadProps {
 }
 
 interface ProcessingResult {
-  video_duration_seconds: number;
+  processed_captures: number;
+  processed_frames: number;
   students_marked_present: number;
+  unmatched_faces: number;
 }
 
 const VideoAttendanceUpload: React.FC<VideoAttendanceUploadProps> = ({ sectionId, classId }) => {
@@ -47,6 +50,9 @@ const VideoAttendanceUpload: React.FC<VideoAttendanceUploadProps> = ({ sectionId
   const [result, setResult] = useState<ProcessingResult | null>(null);
   const [progress, setProgress] = useState<number>(0);
   const [studentList, setStudentList] = useState<AttendanceRecord[]>([]);
+  const [jobId, setJobId] = useState<string | null>(null);
+  const [jobStatus, setJobStatus] = useState<string | null>(null);
+  const [jobMessage, setJobMessage] = useState<string | null>(null);
 
   useEffect(() => {
     fetchAttendanceStudentList();
@@ -65,7 +71,9 @@ const VideoAttendanceUpload: React.FC<VideoAttendanceUploadProps> = ({ sectionId
 
   const fetchAttendanceStudentList = async () => {
     try {
-      const response = await fetch(`${domain}/api/v1/attendance/history/${classId}`);
+      const response = await fetch(`${domain}/api/v1/attendance/history/${classId}`, {
+        credentials: 'include',
+      });
       const data = await response.json();
       setStudentList(data.history);
     } catch (error) {
@@ -81,35 +89,113 @@ const VideoAttendanceUpload: React.FC<VideoAttendanceUploadProps> = ({ sectionId
 
     setLoading(true);
     setError(null);
+    setResult(null);
+    setJobId(null);
+    setJobStatus(null);
+    setJobMessage(null);
     setProgress(0);
 
-    const formData = new FormData();
-    formData.append('video', selectedFile);
-
     try {
-      const response = await fetch(
-        `${fastapidomain}/api/face-recognition/process-video-attendance/${sectionId}/${classId}`,
-        {
-          method: 'POST',
-          body: formData,
-        }
-      );
+      let uploadedVideoUrls: string[] = [];
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.detail || 'Failed to process video');
+      await UploadOnCloudinary({
+        mediaFiles: [selectedFile],
+        setuploadedImageMediaLinks: () => {},
+        setuploadedVideoMediaLinks: (links) => {
+          uploadedVideoUrls = links;
+        },
+      });
+
+      if (!uploadedVideoUrls.length) {
+        throw new Error('Video upload failed');
       }
 
+      setProgress(40);
+
+      const response = await fetch(`${domain}/api/v1/face/process-class`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+          class_id: classId,
+          section_id: sectionId,
+          capture_urls: uploadedVideoUrls,
+        }),
+      });
+
       const data = await response.json();
-      setResult(data);
-      await fetchAttendanceStudentList();
+
+      if (!response.ok) {
+        throw new Error(data?.message || 'Failed to queue attendance processing');
+      }
+
+      setJobId(data?.job_id || null);
+      setJobStatus('queued');
+      setJobMessage('Attendance processing queued. Waiting for worker result...');
+      setProgress(65);
     } catch (err: any) {
       setError(err.message);
-    } finally {
       setLoading(false);
-      setProgress(100);
+      setProgress(0);
     }
   };
+
+  useEffect(() => {
+    if (!jobId) {
+      return;
+    }
+
+    const pollInterval = setInterval(async () => {
+      try {
+        const response = await fetch(`${domain}/api/v1/face/job/${jobId}`, {
+          credentials: 'include',
+        });
+        const data = await response.json();
+
+        if (!response.ok || !data?.data) {
+          throw new Error(data?.message || 'Failed to check job status');
+        }
+
+        const status = data.data.status;
+        setJobStatus(status);
+
+        if (status === 'completed') {
+          const workerResult = data.data.result || {};
+          setResult({
+            processed_captures: Number(workerResult.processed_captures || 0),
+            processed_frames: Number(workerResult.processed_frames || 0),
+            students_marked_present: Array.isArray(workerResult.matches)
+              ? workerResult.matches.length
+              : 0,
+            unmatched_faces: Number(workerResult.unmatched_faces || 0),
+          });
+          setJobMessage('Attendance processing completed.');
+          setProgress(100);
+          setLoading(false);
+          await fetchAttendanceStudentList();
+          clearInterval(pollInterval);
+          return;
+        }
+
+        if (status === 'failed') {
+          setJobMessage(data.data.error || 'Attendance processing failed.');
+          setError(data.data.error || 'Attendance processing failed.');
+          setLoading(false);
+          setProgress(100);
+          clearInterval(pollInterval);
+        }
+      } catch (err: any) {
+        setError(err.message || 'Job status polling failed');
+        setJobStatus('failed');
+        setLoading(false);
+        clearInterval(pollInterval);
+      }
+    }, 3000);
+
+    return () => clearInterval(pollInterval);
+  }, [jobId]);
 
   // const getAttendanceStats = () => {
   //   const today = new Date().toISOString().split('T')[0];
@@ -201,8 +287,22 @@ const VideoAttendanceUpload: React.FC<VideoAttendanceUploadProps> = ({ sectionId
                 <AlertTitle>Processing Complete</AlertTitle>
                 <AlertDescription>
                   <div className="space-y-2">
-                    <p>Video Duration: {Math.round(result.video_duration_seconds)}s</p>
+                    <p>Media Processed: {result.processed_captures}</p>
+                    <p>Frames Analyzed: {result.processed_frames}</p>
                     <p>Students Marked Present: {result.students_marked_present}</p>
+                    <p>Unmatched Faces: {result.unmatched_faces}</p>
+                  </div>
+                </AlertDescription>
+              </Alert>
+            )}
+
+            {jobStatus && (
+              <Alert>
+                <AlertTitle>Job Status</AlertTitle>
+                <AlertDescription>
+                  <div className="space-y-1">
+                    <p>Status: {jobStatus}</p>
+                    {jobMessage ? <p>{jobMessage}</p> : null}
                   </div>
                 </AlertDescription>
               </Alert>
