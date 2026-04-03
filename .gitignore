@@ -1,2 +1,4 @@
 /node_modules
 .env
+python-backend/.venv/
+docs/brainstorming_new_face_reco.txt
