@@ -33,13 +33,19 @@ python-dateutil>=2.8.2
 # Face Recognition and Image Processing
 opencv-python>=4.8.0
 numpy>=1.24.0
-face-recognition>=1.3.0
-dlib>=19.24.0
 cloudinary>=1.33.0
 
-# Machine Learning and Deep Learning
-tensorflow>=2.13.0  # For advanced face recognition models
-scikit-learn>=1.3.0  # For machine learning utilities
+# InsightFace - State-of-the-art face recognition (replaces face_recognition/dlib)
+insightface>=0.7.3
+onnxruntime>=1.16.0  # CPU-only runtime for free tier deployment
+
+# Legacy (keeping for gradual migration, can be removed later)
+# face-recognition>=1.3.0
+# dlib>=19.24.0
+# tensorflow>=2.13.0
+
+# Machine Learning Utilities
+scikit-learn>=1.3.0
 
 # # API Documentation
 # python-markdown>=3.4.0

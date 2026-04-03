@@ -21,6 +21,10 @@ from routes.attendance import (
 from typing import Dict
 import asyncio
 import json
+import pickle
+
+# Import InsightFace service (replaces face_recognition library)
+from routes.insightface_service import InsightFaceService, release_face_app
 
 face_router = APIRouter(
     prefix="/api/face-recognition",
@@ -35,13 +39,7 @@ cloudinary.config(
     api_key=os.getenv('CLOUDINARY_API_KEY'),
     api_secret=os.getenv('CLOUDINARY_API_SECRET')
 )
-HAAR_CASCADE_URL = "https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_frontalface_default.xml"
-HAAR_CASCADE_PATH = "haarcascade_frontalface_default.xml"
 
-if not os.path.exists(HAAR_CASCADE_PATH):
-    response = requests.get(HAAR_CASCADE_URL)
-    with open(HAAR_CASCADE_PATH, "wb") as f:
-        f.write(response.content)
 # Define paths
 TEMP_FOLDER = "temp_images"
 TRAINING_FOLDER = "training_images"
@@ -73,57 +71,36 @@ async def upload_to_cloudinary(file_path: str, folder: str) -> str:
         print(f"Error uploading to Cloudinary: {str(e)}")
         raise
 
-import face_recognition
-import numpy as np
-import pickle
-import os
-import requests
-from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel
-from typing import List
-import cloudinary
-import cloudinary.uploader
-from datetime import datetime
 
 class AttendanceSystem:
-    def process_images(self, image_paths, enrollment):
-        all_encodings = []
+    """
+    Attendance system using InsightFace for face recognition.
+    Replaces the old face_recognition library implementation.
+    """
+    
+    def __init__(self):
+        self.face_service = InsightFaceService()
+    
+    def process_images(self, image_paths: List[str], enrollment: str) -> List[Dict]:
+        """
+        Process images and extract face embeddings using InsightFace.
         
-        for image_path in image_paths:
-            # Load image
-            image = face_recognition.load_image_file(image_path)
+        Args:
+            image_paths: List of image file paths
+            enrollment: Student enrollment number
             
-            # Find face locations
-            face_locations = face_recognition.face_locations(image)
-            
-            if not face_locations:
-                continue
-                
-            # Get face encodings
-            face_encodings = face_recognition.face_encodings(image, face_locations)
-            
-            if face_encodings:
-                all_encodings.append({
-                    'enrollment': enrollment,
-                    'encoding': face_encodings[0]
-                })
-                
-        return all_encodings
+        Returns:
+            List of dicts with enrollment and embedding
+        """
+        return self.face_service.process_images_for_registration(image_paths, enrollment)
 
-    async def load_section_model(self, model_url):
-        if not model_url:
-            return {}
-            
-        try:
-            response = requests.get(model_url)
-            response.raise_for_status()
-            return pickle.loads(response.content)
-        except:
-            return {}
+    async def load_section_model(self, model_url: str) -> Dict:
+        """Load face recognition model from Cloudinary URL."""
+        return await self.face_service.load_model_from_url(model_url)
 
-    def save_model(self, model_path, encodings):
-        with open(model_path, 'wb') as f:
-            pickle.dump(encodings, f)
+    def save_model(self, model_path: str, encodings: Dict) -> None:
+        """Save face recognition model to file."""
+        self.face_service.save_model(model_path, encodings)
 
 
 @face_router.post("/register-face")
@@ -211,12 +188,14 @@ async def register_face(request: FaceRegistrationRequest):
             raise HTTPException(status_code=500, detail=str(e))
             
         finally:
-            # Cleanup
+            # Cleanup temp files and release memory
             for path in image_paths:
                 try:
                     os.remove(path)
                 except:
                     pass
+            # Release face app to free memory after registration
+            release_face_app()
     
 
 attendance_states: Dict[str, datetime] = {}
@@ -313,14 +292,12 @@ async def process_video_stream(section_id: int, class_id: int, duration_minutes:
                 )
 
         # Load face recognition model from URL
-        try:
-            response = requests.get(section_data['face_recognition_model'])
-            response.raise_for_status()
-            known_faces = pickle.loads(response.content)
-        except Exception as e:
+        face_service = InsightFaceService()
+        known_faces = await face_service.load_model_from_url(section_data['face_recognition_model'])
+        if not known_faces:
             raise HTTPException(
                 status_code=500,
-                detail=f"Error loading face recognition model: {str(e)}"
+                detail="Error loading face recognition model"
             )
 
         # Initialize video capture
@@ -341,78 +318,73 @@ async def process_video_stream(section_id: int, class_id: int, duration_minutes:
             if cap.get(cv2.CAP_PROP_POS_FRAMES) % 30 != 0:
                 continue
 
-            rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            face_locations = face_recognition.face_locations(rgb_frame)
-            face_encodings = face_recognition.face_encodings(rgb_frame, face_locations)
-
+            # Use InsightFace for detection (frame is already BGR from OpenCV)
+            faces = face_service.detect_faces(frame)
             current_date = date.today()
 
             # Process each detected face
-            for encoding in face_encodings:
-                for enrollment, student_encodings in known_faces.items():
-                    matches = []
-                    for stored_encoding in student_encodings:
-                        match = face_recognition.compare_faces(
-                            [stored_encoding['encoding']], 
-                            encoding,
-                            tolerance=0.6
-                        )[0]
-                        matches.append(match)
+            for face_data in faces:
+                query_embedding = face_data['embedding']
+                
+                # Find matching face using InsightFace
+                match_result = face_service.find_matching_face(query_embedding, known_faces)
+                
+                if match_result:
+                    enrollment, confidence = match_result
+                    state_key = f"{enrollment}_{class_id}_{current_date}"
+                    
+                    if state_key in attendance_states:
+                        if (datetime.now() - attendance_states[state_key]).seconds < 300:
+                            continue
 
-                    if any(matches):
-                        state_key = f"{enrollment}_{class_id}_{current_date}"
+                    with get_db_connection() as conn:
+                        cursor = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
                         
-                        if state_key in attendance_states:
-                            if (datetime.now() - attendance_states[state_key]).seconds < 300:
-                                continue
-
-                        with get_db_connection() as conn:
-                            cursor = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+                        try:
+                            # Updated query to include section_id check
+                            cursor.execute("""
+                                SELECT student_id 
+                                FROM students 
+                                WHERE enrollment_number = %s 
+                                AND section_id = %s
+                            """, (enrollment, section_id))
                             
-                            try:
-                                # Updated query to include section_id check
+                            student = cursor.fetchone()
+
+                            if student:
                                 cursor.execute("""
-                                    SELECT student_id 
-                                    FROM students 
-                                    WHERE enrollment_number = %s 
-                                    AND section_id = %s
-                                """, (enrollment, section_id))
-                                
-                                student = cursor.fetchone()
+                                    SELECT * FROM attendance 
+                                    WHERE class_id = %s 
+                                    AND student_id = %s 
+                                    AND date = %s
+                                """, (class_id, student['student_id'], current_date))
 
-                                if student:
+                                if not cursor.fetchone():
+                                    device_info = json.dumps({
+                                        "device_type": "Laptop Camera",
+                                        "recognition_confidence": confidence,
+                                        "detection_score": face_data['det_score']
+                                    })
+
                                     cursor.execute("""
-                                        SELECT * FROM attendance 
-                                        WHERE class_id = %s 
-                                        AND student_id = %s 
-                                        AND date = %s
-                                    """, (class_id, student['student_id'], current_date))
-
-                                    if not cursor.fetchone():
-                                        device_info = json.dumps({
-                                            "device_type": "Laptop Camera",
-                                            "recognition_confidence": float(max(matches))
-                                        })
-
-                                        cursor.execute("""
-                                            INSERT INTO attendance (
-                                                class_id, student_id, date, status,
-                                                verification_method, device_info, created_at
-                                            ) VALUES (%s, %s, %s, %s, %s, %s, %s)
-                                        """, (
-                                            class_id,
-                                            student['student_id'],
-                                            current_date,
-                                            'present',
-                                            'facial',
-                                            device_info,
-                                            datetime.now()
-                                        ))
-                                        conn.commit()
-                                        attendance_states[state_key] = datetime.now()
-                            except Exception as e:
-                                print(f"Error recording attendance: {str(e)}")
-                                conn.rollback()
+                                        INSERT INTO attendance (
+                                            class_id, student_id, date, status,
+                                            verification_method, device_info, created_at
+                                        ) VALUES (%s, %s, %s, %s, %s, %s, %s)
+                                    """, (
+                                        class_id,
+                                        student['student_id'],
+                                        current_date,
+                                        'present',
+                                        'facial',
+                                        device_info,
+                                        datetime.now()
+                                    ))
+                                    conn.commit()
+                                    attendance_states[state_key] = datetime.now()
+                        except Exception as e:
+                            print(f"Error recording attendance: {str(e)}")
+                            conn.rollback()
 
             await asyncio.sleep(0.1)
 
@@ -423,6 +395,8 @@ async def process_video_stream(section_id: int, class_id: int, duration_minutes:
         if 'cap' in locals():
             cap.release()
         active_streams.pop(class_id, None)
+        # Release face app to free memory
+        release_face_app()
 
 @face_router.post("/start-attendance/{section_id}/{class_id}")
 async def start_attendance(
@@ -568,15 +542,14 @@ async def process_video_attendance(
                     detail="Face recognition model not found for this section. Please register student faces first."
                 )
 
-        # Load face recognition model
-        try:
-            response = requests.get(section_data['face_recognition_model'])
-            response.raise_for_status()
-            known_faces = pickle.loads(response.content)
-        except Exception as e:
+        # Load face recognition model using InsightFace service
+        face_service = InsightFaceService()
+        face_service.similarity_threshold = confidence_threshold
+        known_faces = await face_service.load_model_from_url(section_data['face_recognition_model'])
+        if not known_faces:
             raise HTTPException(
                 status_code=500,
-                detail=f"Error loading face recognition model: {str(e)}"
+                detail="Error loading face recognition model"
             )
 
         # Process video
@@ -599,84 +572,83 @@ async def process_video_attendance(
             if not ret:
                 break
 
-            # Process every 30th frame for efficiency
-            if frame_count % 30 != 0:
+            # Process every Nth frame for efficiency
+            if frame_count % skip_frames != 0:
                 frame_count += 1
                 continue
 
-            # Convert frame to RGB
-            rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            face_locations = face_recognition.face_locations(rgb_frame)
-            face_encodings = face_recognition.face_encodings(rgb_frame, face_locations)
+            # Use InsightFace for detection (frame is BGR from OpenCV)
+            faces = face_service.detect_faces(frame)
 
             # Process each detected face
-            for encoding in face_encodings:
-                for enrollment, student_encodings in known_faces.items():
+            for face_data in faces:
+                query_embedding = face_data['embedding']
+                
+                # Find matching face
+                match_result = face_service.find_matching_face(query_embedding, known_faces)
+                
+                if match_result:
+                    enrollment, confidence = match_result
+                    
                     # Skip if student already processed
                     if enrollment in processed_students:
                         continue
 
-                    matches = []
-                    for stored_encoding in student_encodings:
-                        match = face_recognition.compare_faces(
-                            [stored_encoding['encoding']], 
-                            encoding,
-                            tolerance=0.6
-                        )[0]
-                        matches.append(match)
+                    with get_db_connection() as conn:
+                        cursor = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+                        try:
+                            cursor.execute("""
+                                SELECT student_id 
+                                FROM students 
+                                WHERE enrollment_number = %s 
+                                AND section_id = %s
+                            """, (enrollment, section_id))
+                            
+                            student = cursor.fetchone()
 
-                    if any(matches):
-                        with get_db_connection() as conn:
-                            cursor = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
-                            try:
+                            if student:
+                                # Record attendance
+                                device_info = json.dumps({
+                                    "device_type": "Uploaded Video",
+                                    "recognition_confidence": confidence,
+                                    "detection_score": face_data['det_score'],
+                                    "frame_timestamp": frame_count / fps
+                                })
+
                                 cursor.execute("""
-                                    SELECT student_id 
-                                    FROM students 
-                                    WHERE enrollment_number = %s 
-                                    AND section_id = %s
-                                """, (enrollment, section_id))
+                                    INSERT INTO attendance (
+                                        class_id, student_id, date, status,
+                                        verification_method, device_info, created_at
+                                    ) VALUES (%s, %s, %s, %s, %s, %s, %s)
+                                    ON CONFLICT (class_id, student_id, date) DO NOTHING
+                                    RETURNING *
+                                """, (
+                                    class_id,
+                                    student['student_id'],
+                                    current_date,
+                                    'present',
+                                    'facial',
+                                    device_info,
+                                    datetime.now()
+                                ))
                                 
-                                student = cursor.fetchone()
+                                attendance_record = cursor.fetchone()
+                                if attendance_record:
+                                    attendance_records.append(attendance_record)
+                                    processed_students.add(enrollment)
+                                
+                                conn.commit()
 
-                                if student:
-                                    # Record attendance
-                                    device_info = json.dumps({
-                                        "device_type": "Uploaded Video",
-                                        "recognition_confidence": float(max(matches)),
-                                        "frame_timestamp": frame_count / fps
-                                    })
-
-                                    cursor.execute("""
-                                        INSERT INTO attendance (
-                                            class_id, student_id, date, status,
-                                            verification_method, device_info, created_at
-                                        ) VALUES (%s, %s, %s, %s, %s, %s, %s)
-                                        ON CONFLICT (class_id, student_id, date) DO NOTHING
-                                        RETURNING *
-                                    """, (
-                                        class_id,
-                                        student['student_id'],
-                                        current_date,
-                                        'present',
-                                        'facial',
-                                        device_info,
-                                        datetime.now()
-                                    ))
-                                    
-                                    attendance_record = cursor.fetchone()
-                                    if attendance_record:
-                                        attendance_records.append(attendance_record)
-                                        processed_students.add(enrollment)
-                                    
-                                    conn.commit()
-
-                            except Exception as e:
-                                print(f"Error recording attendance: {str(e)}")
-                                conn.rollback()
+                        except Exception as e:
+                            print(f"Error recording attendance: {str(e)}")
+                            conn.rollback()
 
             frame_count += 1
 
         cap.release()
+        
+        # Release face app to free memory
+        release_face_app()
 
         # Clean up
         try:
@@ -699,7 +671,8 @@ async def process_video_attendance(
             detail=f"Failed to process video attendance: {str(e)}"
         )
     finally:
-        # Ensure video file is cleaned up
+        # Ensure video file is cleaned up and memory released
+        release_face_app()
         if 'temp_video_path' in locals():
             try:
                 os.remove(temp_video_path)

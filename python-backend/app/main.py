@@ -28,10 +28,21 @@ app = FastAPI(
     version="0.1.0"
 )
 
+# CORS Configuration for production and development
+ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "http://localhost:3000",
+    "https://classedgee.vercel.app",
+    os.getenv("FRONTEND_URL", ""),
+]
+# Filter out empty strings
+ALLOWED_ORIGINS = [origin for origin in ALLOWED_ORIGINS if origin]
+
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*","http://localhost:5173/"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

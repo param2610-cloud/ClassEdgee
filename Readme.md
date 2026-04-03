@@ -1,52 +1,186 @@
-Introduction to ClassEdgee
-Overview
+# ClassEdgee - Smart Classroom Management System
+
+![Status](https://img.shields.io/badge/Status-In%20Development-yellow)
+![React](https://img.shields.io/badge/React-18.3-blue)
+![Node.js](https://img.shields.io/badge/Node.js-18+-green)
+![Python](https://img.shields.io/badge/Python-3.10+-blue)
+![InsightFace](https://img.shields.io/badge/InsightFace-0.7.3-purple)
+
+## 🚀 Live Demo
+- **Frontend**: [Vercel Deployment](#) *(Coming Soon)*
+- **API Docs**: [Swagger UI](#) *(Coming Soon)*
+
+## Overview
 ClassEdgee is a comprehensive Smart Classroom Management System designed to revolutionize education through advanced technology. The platform provides a suite of tools for personalized learning, real-time insights, and seamless educational interactions. It aims to enhance the classroom experience for students, faculty, and administrators by offering features such as attendance tracking, schedule management, resource sharing, and performance analytics.
 
-Key Features
-Face Recognition for Attendance: Utilizes facial recognition technology to automate attendance tracking.
-Interactive Classroom: Facilitates real-time interactions between students and faculty, including quizzes, assignments, and feedback.
-Schedule Management: Automates the creation and management of class schedules, ensuring optimal utilization of resources.
-Resource Sharing: Allows faculty to share lecture slides, assignment guidelines, and other educational resources with students.
-Performance Analytics: Provides detailed insights into student performance, including grades, attendance, and engagement metrics.
-Notifications: Keeps students and faculty informed about important updates, assignments, and class schedules.
-Project Structure
-The project is divided into three main components:
+## ✨ Key Features
+- **🔍 AI Face Recognition**: State-of-the-art attendance tracking using **InsightFace** (~99.86% accuracy on LFW benchmark)
+- **📚 Interactive Classroom**: Real-time quizzes, assignments, and feedback
+- **📅 Smart Scheduling**: Automated schedule generation and conflict resolution
+- **📤 Resource Sharing**: Faculty can share lecture slides, assignments, and materials
+- **📊 Performance Analytics**: Detailed insights into student performance and engagement
+- **🔔 Real-time Notifications**: Important updates delivered instantly
 
-Frontend: Built with modern web technologies, the frontend provides an intuitive user interface for students, faculty, and administrators.
-Main Backend: The core API service that handles business logic, database interactions, and integrations with external services.
-Python Backend: Handles specialized tasks such as face recognition and other machine learning-based functionalities.
-Technologies Used
-Frontend: React, TypeScript, Tailwind CSS, Vite
-Backend: Node.js, Express, Prisma, PostgreSQL
-Python Backend: FastAPI, OpenCV, Pydantic, Cloudinary
-Requirements
-Functional Requirements
-User Authentication:
+## 🏗️ Architecture
 
-Users must be able to register and log in.
-Different roles (students, faculty, administrators) should have different access levels.
-Dashboard:
+```
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│    Frontend     │     │  Main Backend   │     │ Python Backend  │
+│   (Vercel)      │────▶│   (Railway)     │────▶│   (Railway)     │
+│   React/Vite    │     │  Express/Prisma │     │ FastAPI/AI      │
+└─────────────────┘     └────────┬────────┘     └────────┬────────┘
+                                 │                       │
+                                 ▼                       ▼
+                        ┌─────────────────┐     ┌─────────────────┐
+                        │   PostgreSQL    │     │   Cloudinary    │
+                        │   (Neon Free)   │     │   (Free Tier)   │
+                        └─────────────────┘     └─────────────────┘
+```
 
-Provide a personalized dashboard for students, faculty, and administrators.
-Display relevant information such as upcoming classes, assignments, and notifications.
-Course Management:
+## 🛠️ Tech Stack
 
-Faculty should be able to create, update, and delete courses.
-Faculty should be able to add syllabus details and manage course content.
-Interactive Classroom:
+| Layer | Technologies |
+|-------|--------------|
+| **Frontend** | React 18, TypeScript, Tailwind CSS, Vite, Redux Toolkit |
+| **Main Backend** | Node.js, Express, Prisma ORM, PostgreSQL |
+| **AI Backend** | Python 3.10, FastAPI, InsightFace, OpenCV, ONNX Runtime |
+| **Database** | PostgreSQL (Neon - Free Tier) |
+| **Storage** | Cloudinary (Free Tier) |
+| **Deployment** | Vercel (Frontend), Railway (Backends) |
 
-Enable real-time interactions between students and faculty.
-Support quizzes, assignments, and feedback mechanisms.
-Attendance Tracking:
+## 🚦 Getting Started
 
-Implement face recognition technology to automate attendance tracking.
-Resource Sharing:
+### Prerequisites
+- Node.js 18+
+- Python 3.10+
+- PostgreSQL 14+ (or Neon account)
+- Git
 
-Allow faculty to upload and share educational resources with students.
-Students should be able to download shared resources.
-Performance Analytics:
+### Local Development
 
-Provide detailed insights into student performance, including grades, attendance, and engagement metrics.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/classedgee.git
+   cd classedgee
+   ```
+
+2. **Setup Environment Variables**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your credentials
+   ```
+
+3. **Frontend Setup**
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
+
+4. **Main Backend Setup**
+   ```bash
+   cd main-backend
+   npm install
+   npx prisma generate
+   npx prisma db push
+   npm run dev
+   ```
+
+5. **Python Backend Setup**
+   ```bash
+   cd python-backend/app
+   pip install -r requirements.txt
+   uvicorn main:app --reload --port 8000
+   ```
+
+### 🐳 Docker Deployment
+
+```bash
+# Build and run all services
+docker-compose up --build
+```
+
+## 📁 Project Structure
+
+```
+classedgee/
+├── frontend/           # React + TypeScript + Vite
+│   ├── src/
+│   │   ├── components/ # Reusable UI components
+│   │   ├── pages/      # Page components
+│   │   ├── services/   # API services
+│   │   └── store/      # Redux store
+│   └── package.json
+├── main-backend/       # Node.js + Express + Prisma
+│   ├── src/
+│   │   ├── controllers/
+│   │   ├── models/
+│   │   ├── Router/
+│   │   └── middlewares/
+│   ├── prisma/
+│   └── package.json
+├── python-backend/     # FastAPI + InsightFace
+│   └── app/
+│       ├── routes/
+│       │   ├── face_recognition.py
+│       │   └── insightface_service.py
+│       └── requirements.txt
+└── docker-compose.yml
+```
+
+## 🤖 Face Recognition System
+
+### InsightFace Integration
+The system uses **InsightFace** with the `buffalo_s` model for:
+- **Face Detection**: RetinaFace with 320x320 input resolution
+- **Face Recognition**: ArcFace with 512-dimensional embeddings
+- **Performance**: ~99.86% accuracy on LFW benchmark
+- **Optimized for CPU**: Works on free-tier cloud (512MB RAM)
+
+### How It Works
+1. **Registration**: Students upload 3-5 photos
+2. **Embedding Extraction**: InsightFace extracts 512-D face vectors
+3. **Model Storage**: Embeddings stored in Cloudinary as pickle files
+4. **Attendance**: Real-time video stream matching against registered faces
+
+## ☁️ Free Tier Deployment Guide
+
+### 1. Database (Neon PostgreSQL)
+```bash
+# Sign up at neon.tech and create a project
+# Copy the connection string to your .env
+```
+
+### 2. Frontend (Vercel)
+```bash
+cd frontend
+vercel --prod
+```
+
+### 3. Backends (Railway)
+```bash
+# Install Railway CLI
+npm install -g @railway/cli
+
+# Deploy Main Backend
+cd main-backend
+railway up
+
+# Deploy Python Backend
+cd python-backend
+railway up
+```
+
+## 📋 Requirements
+
+### Functional Requirements
+- **User Authentication**: Role-based access (student, faculty, admin)
+- **Dashboard**: Personalized views for each role
+- **Course Management**: CRUD operations for courses and content
+- **Interactive Classroom**: Quizzes, assignments, feedback
+- **Attendance Tracking**: AI-powered face recognition
+- **Resource Sharing**: File upload and download
+- **Performance Analytics**: Grades, attendance, engagement metrics
 Schedule Management:
 
 Automate the creation and management of class schedules.
