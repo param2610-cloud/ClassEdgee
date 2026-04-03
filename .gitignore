@@ -1,4 +1,6 @@
 /node_modules
 .env
+.vercel
+
 python-backend/.venv/
 docs/brainstorming_new_face_reco.txt

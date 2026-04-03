@@ -61,6 +61,6 @@ export default defineConfig({
   },
   server: {
     port: 5173,
-    host: process.env.VITE_LOCAL_IP,
+    // host: process.env.VITE_LOCAL_IP,
   },
 });
