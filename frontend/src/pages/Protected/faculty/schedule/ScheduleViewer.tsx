@@ -39,20 +39,32 @@ const ScheduleViewer: React.FC = () => {
 
   useEffect(() => {
     const fetchSchedule = async () => {
+      if (!section_id) {
+        setLoading(false);
+        return;
+      }
+
       try {
         setLoading(true);
         const response = await fetch(
-          `${domain}/api/v1/schedule/section/12`
+          `${domain}/api/v1/schedule/section/${section_id}`
         );
         const data = await response.json();
-        
-        const formattedSchedule = data.classes.map((item: any) => ({
-          subject_name: item.course_id,
-          faculty_name: item.faculty.designation,
-          room_number: item?.rooms?.room_number,
-          start_time: item.timeslots.start_time.split('T')[1].substring(0, 5),
-          end_time: item.timeslots.end_time.split('T')[1].substring(0, 5),
-          day_of_week: item.timeslots.day_of_week,
+
+        const source = data?.classes || data?.data || [];
+        const formattedSchedule = source.map((item: any) => ({
+          subject_name: item?.subject_details?.subject_name || item?.course_id?.toString() || 'Unknown Subject',
+          faculty_name:
+            item?.faculty?.designation ||
+            `${item?.faculty_schedule_details_faculty_idTofaculty?.users?.first_name || ''} ${item?.faculty_schedule_details_faculty_idTofaculty?.users?.last_name || ''}`.trim() ||
+            'Unknown Faculty',
+          room_number:
+            item?.rooms?.room_number ||
+            item?.rooms_schedule_details_room_idTorooms?.room_number ||
+            'TBD',
+          start_time: item?.timeslots?.start_time?.split('T')[1]?.substring(0, 5) || '00:00',
+          end_time: item?.timeslots?.end_time?.split('T')[1]?.substring(0, 5) || '00:00',
+          day_of_week: Number(item?.timeslots?.day_of_week || 1),
         }));
         
         setScheduleData(formattedSchedule);
@@ -90,7 +102,13 @@ const ScheduleViewer: React.FC = () => {
     setDayFilter(null);
   };
 
-  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const weekdayLabels: Record<number, string> = {
+    1: 'Monday',
+    2: 'Tuesday',
+    3: 'Wednesday',
+    4: 'Thursday',
+    5: 'Friday',
+  };
 
   return (
     <Card className="w-full border shadow-md">
@@ -114,14 +132,14 @@ const ScheduleViewer: React.FC = () => {
           </div>
           
           <div className="flex gap-2 flex-wrap">
-            {days.map((day, index) => (
+            {[1, 2, 3, 4, 5].map((day) => (
               <Button
-                key={index}
-                variant={dayFilter === index ? "default" : "outline"}
+                key={day}
+                variant={dayFilter === day ? "default" : "outline"}
                 size="sm"
-                onClick={() => setDayFilter(dayFilter === index ? null : index)}
+                onClick={() => setDayFilter(dayFilter === day ? null : day)}
               >
-                {day.slice(0, 3)}
+                {weekdayLabels[day].slice(0, 3)}
               </Button>
             ))}
             
@@ -172,7 +190,7 @@ const ScheduleViewer: React.FC = () => {
                     </TableCell>
                     <TableCell>
                       <span className="font-medium">
-                        {days[item.day_of_week]}
+                        {weekdayLabels[item.day_of_week] || 'Unknown'}
                       </span>
                     </TableCell>
                   </TableRow>

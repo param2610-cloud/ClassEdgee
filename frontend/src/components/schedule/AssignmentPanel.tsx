@@ -10,6 +10,7 @@ interface AssignmentPanelProps {
   slotId: number;
   departmentId: number;
   semester: number;
+  academicYear: number;
   scheduleId: number;
   sectionId: number;
   onRefresh: () => void;
@@ -20,6 +21,7 @@ const AssignmentPanel: React.FC<AssignmentPanelProps> = ({
   slotId,
   departmentId,
   semester,
+  academicYear,
   scheduleId,
   sectionId,
   onRefresh,
@@ -42,7 +44,9 @@ const AssignmentPanel: React.FC<AssignmentPanelProps> = ({
         facultyId: selectedFaculty,
         roomId: selectedRoom,
         subjectId: selectedSubject,
-        sectionId
+        sectionId,
+        semester,
+        academicYear,
       });
 
       // Reset selections

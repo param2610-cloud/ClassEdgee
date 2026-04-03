@@ -65,6 +65,8 @@ export const scheduleService = {
     roomId: number;
     subjectId: number;
     sectionId: number;
+    semester: number;
+    academicYear: number;
   }) {
     const response = await axios.post(`${domain}/api/v1/mannual-schedule/assign`, params);
     return response.data;

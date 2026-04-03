@@ -52,12 +52,12 @@ const createTimeSlot = async (req, res) => {
             });
         }
 
-     //  Validate day_of_week (0-6, where 0 is Sunday)
+     //  Validate day_of_week (1-5 for Monday-Friday)
         const dayNum = Number(day_of_week);
-        if (!Number.isInteger(dayNum) || dayNum < 1 || dayNum > 6) {
+        if (!Number.isInteger(dayNum) || dayNum < 1 || dayNum > 5) {
             return res.status(400).json({
                 success: false,
-                message: "day_of_week must be an integer between 0 and 6"
+                message: "day_of_week must be an integer between 1 and 5"
             });
         }
 
@@ -243,10 +243,10 @@ const getTimeSlotsByDay = async (req, res) => {
     try {
         const { dayOfWeek } = req.params;
         
-        if (!dayOfWeek || isNaN(parseInt(dayOfWeek)) || parseInt(dayOfWeek) < 0 || parseInt(dayOfWeek) > 6) {
+        if (!dayOfWeek || isNaN(parseInt(dayOfWeek)) || parseInt(dayOfWeek) < 1 || parseInt(dayOfWeek) > 5) {
             return res.status(400).json({
                 success: false,
-                message: "Invalid day of week. Must be a number between 0 and 6"
+                message: "Invalid day of week. Must be a number between 1 and 5"
             });
         }
 

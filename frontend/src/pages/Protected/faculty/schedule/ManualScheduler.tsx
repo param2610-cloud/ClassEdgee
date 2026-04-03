@@ -124,7 +124,8 @@ const SchedulePlanner: React.FC = () => {
           {scheduleParams.departmentId && 
            scheduleParams.semester && 
            scheduleParams.scheduleId && 
-           scheduleParams.academicYear && (
+           scheduleParams.academicYear &&
+           scheduleParams.sectionId && (
             <Card className="border shadow-md">
               <CardContent className="p-0">
                 <ScheduleGrid 
