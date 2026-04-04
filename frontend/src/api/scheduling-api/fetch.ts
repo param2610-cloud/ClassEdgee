@@ -26,7 +26,7 @@ import axios from "axios";
   };
   const fetchFaculty = async (subjectId: number, slotId: number) => {
     try {
-      const response = await axios.get(`${domain}/api/v1/schedule/faculty`, {
+      const response = await axios.get(`${domain}/api/v1/mannual-schedule/faculty`, {
         params: { subjectId, slotId }
       });
       return response.data;

@@ -117,29 +117,26 @@ const get_available_faculty =  async (req, res) => {
       }
     });
 
-    // Check availability for the given slot
-    const timeSlot = await prisma.timeslots.findUnique({
-      where: { slot_id: Number(slotId) }
+    const bookedFaculty = await prisma.schedule_details.findMany({
+      where: {
+        faculty_id: {
+          in: mappedFaculty.map((mapping) => mapping.faculty_id)
+        },
+        timeslot_id: Number(slotId)
+      },
+      select: {
+        faculty_id: true
+      }
     });
 
-    const facultyWithAvailability = await Promise.all(
-      mappedFaculty.map(async (mapping) => {
-        // Check if faculty is already scheduled in this slot
-        const existing = await prisma.schedule_details.findFirst({
-          where: {
-            faculty_id: mapping.faculty_id,
-            timeslot_id: Number(slotId)
-          }
-        });
+    const bookedSet = new Set(bookedFaculty.map((faculty) => faculty.faculty_id));
 
-        return {
-          id: mapping.faculty_id,
-          name: `${mapping.faculty.users.first_name} ${mapping.faculty.users.last_name}`,
-          isAvailable: !existing && 
-            mapping.faculty.preferred_slots.includes(Number(slotId))
-        };
-      })
-    );
+    const facultyWithAvailability = mappedFaculty.map((mapping) => ({
+      id: mapping.faculty_id,
+      name: `${mapping.faculty.users.first_name} ${mapping.faculty.users.last_name}`,
+      isAvailable: !bookedSet.has(mapping.faculty_id),
+      isPreferred: (mapping.faculty.preferred_slots || []).includes(Number(slotId))
+    }));
     
     res.json(facultyWithAvailability);
   } catch (error) {
@@ -162,27 +159,29 @@ const get_available_rooms =  async (req, res) => {
       }
     });
 
-    // Check room availability for the slot
-    const roomsWithAvailability = await Promise.all(
-      rooms.map(async (room) => {
-        const existing = await prisma.schedule_details.findFirst({
-          where: {
-            room_id: room.room_id,
-            timeslot_id: Number(slotId)
-          }
-        });
+    const bookedRooms = await prisma.schedule_details.findMany({
+      where: {
+        room_id: {
+          in: rooms.map((room) => room.room_id)
+        },
+        timeslot_id: Number(slotId)
+      },
+      select: {
+        room_id: true
+      }
+    });
 
-        return {
-          id: room.room_id,
-          roomNumber: room.room_number,
-          type: room.room_type,
-          capacity: room.capacity,
-          buildingId: room.building_id,
-          buildingName: room.buildings?.building_name,
-          isAvailable: !existing
-        };
-      })
-    );
+    const bookedSet = new Set(bookedRooms.map((room) => room.room_id));
+
+    const roomsWithAvailability = rooms.map((room) => ({
+      id: room.room_id,
+      roomNumber: room.room_number,
+      type: room.room_type,
+      capacity: room.capacity,
+      buildingId: room.building_id,
+      buildingName: room.buildings?.building_name,
+      isAvailable: !bookedSet.has(room.room_id)
+    }));
     
     res.json(roomsWithAvailability);
   } catch (error) {
@@ -195,13 +194,33 @@ const assignSchedule = async (req, res) => {
   const { scheduleId, slotId, facultyId, roomId, subjectId, sectionId } = req.body;
   
   try {
+    const subject = await prisma.subject_details.findUnique({
+      where: {
+        subject_id: Number(subjectId)
+      },
+      select: {
+        course_id: true
+      }
+    });
+
+    const scheduleMeta = await prisma.schedule_meta.findUnique({
+      where: {
+        schedule_id: Number(scheduleId)
+      },
+      select: {
+        semester: true,
+        academic_year: true
+      }
+    });
+
     // Create schedule detail
     const scheduleDetail = await prisma.schedule_details.create({
       data: {
-        schedule_id: scheduleId,
-        faculty_id: facultyId,
-        room_id: roomId,
-        timeslot_id: slotId
+        schedule_id: Number(scheduleId),
+        faculty_id: Number(facultyId),
+        room_id: Number(roomId),
+        timeslot_id: Number(slotId),
+        subject_id: Number(subjectId)
       }
     });
 
@@ -209,13 +228,15 @@ const assignSchedule = async (req, res) => {
     const classEntry = await prisma.classes.create({
       data: {
         detail_id: scheduleDetail.detail_id,
-        faculty_id: facultyId,
-        room_id: roomId,
-        slot_id: slotId,
-        section_id: sectionId,
-        semester: Number(req.body.semester),
-        academic_year: Number(req.body.academicYear),
-        is_active: true
+        faculty_id: Number(facultyId),
+        room_id: Number(roomId),
+        slot_id: Number(slotId),
+        section_id: Number(sectionId),
+        semester: Number(req.body.semester || scheduleMeta?.semester),
+        academic_year: Number(req.body.academicYear || scheduleMeta?.academic_year),
+        is_active: true,
+        course_id: subject?.course_id || null,
+        date_of_class: new Date()
       }
     });
     
@@ -252,7 +273,7 @@ const export_schedule =  async (req, res) => {
     });
 
     const formattedSchedule = scheduleDetails.map(detail => ({
-      day: detail.day_of_week,
+      day: detail.timeslots.day_of_week,
       startTime: detail.timeslots.start_time,
       endTime: detail.timeslots.end_time,
       subject: detail.classes[0]?.courses?.course_name,

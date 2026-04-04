@@ -33,6 +33,7 @@ python-dateutil>=2.8.2
 # Face Recognition and Image Processing
 opencv-python>=4.8.0
 numpy>=1.24.0
+ortools>=9.8
 cloudinary>=1.33.0
 
 # InsightFace - State-of-the-art face recognition (replaces face_recognition/dlib)

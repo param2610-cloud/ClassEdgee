@@ -1,8 +1,8 @@
 
-import ScheduleGenerator from './SechduleGenerator'; 
+import ScheduleGenerator from './ScheduleGenerator'; 
 import ScheduleViewer from './ScheduleViewer'; // Fixed import name
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import SchedulePlanner from './MannualScheduler';
+import SchedulePlanner from './ManualScheduler';
 import { Calendar, PlusCircle, Eye } from 'lucide-react'; // Added icons
 
 export default function ScheduleDashboard() {

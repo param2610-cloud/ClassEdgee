@@ -11,6 +11,7 @@ export const fetchData = async () => {
                 faculty: {
                     include: {
                         users: true,
+                        facultyavailability: true,
                         faculty_subject_mapping: {
                             include: {
                                 subject_details: true,
@@ -42,15 +43,23 @@ export const fetchData = async () => {
         });
 
         const Rooms = await prisma.rooms.findMany();
-        const timeSlots = await prisma.timeslots.findMany();
+        const timeSlots = await prisma.timeslots.findMany({
+            where: {
+                day_of_week: {
+                    gte: 1,
+                    lte: 5,
+                },
+            },
+            orderBy: [
+                { day_of_week: "asc" },
+                { start_time: "asc" },
+            ],
+        });
 
         const result = {
             departments: {},
             rooms: [],
-            time_slots: {
-                days: [],
-                times: [],
-            },
+            time_slots: [],
         };
 
         Department.forEach((department) => {
@@ -63,24 +72,40 @@ export const fetchData = async () => {
                     department: deptCode,
                     specializations: fac.faculty_subject_mapping.map(
                         (mapping) => mapping.subject_details.subject_code
-                    ),
-                    preferred_times: null,
-                    max_hours_per_day: fac.max_weekly_hours / 5,
-                    unavailable_days: null,
+                    ).filter(Boolean),
+                    max_hours_per_day:
+                        fac.max_classes_per_day ||
+                        Math.ceil((fac.max_weekly_hours || 40) / 5),
+                    max_weekly_hours: fac.max_weekly_hours || 40,
+                    availability_windows: fac.facultyavailability
+                        .filter((availability) => availability.day_of_week !== null)
+                        .map((availability) => ({
+                            day_of_week: Number(availability.day_of_week),
+                            start_time: availability.start_time
+                                .toISOString()
+                                .split("T")[1]
+                                .split(".")[0],
+                            end_time: availability.end_time
+                                .toISOString()
+                                .split("T")[1]
+                                .split(".")[0],
+                            is_preferred: Boolean(availability.is_preferred),
+                        })),
+                    preferred_slots: fac.preferred_slots || [],
                 })),
                 subjects: department.courses.flatMap((course) =>
                     course.subject_details.map((subject) => ({
                         code: subject.subject_code,
                         name: subject.subject_name,
+                        subject_id: subject.subject_id.toString(),
+                        course_id: course.course_id.toString(),
                         department: deptCode,
                         semester: subject.syllabus_structure.semester,
                         credits: course.credits,
                         requires_lab: subject.subject_type === "lab",
-                        preferred_faculty_specializations:
-                            subject.faculty_subject_mapping.map((mapping) =>
-                                mapping.faculty.faculty_id.toString()
-                            ),
-                        course_id: course.course_id.toString(),
+                        preferred_faculty: subject.faculty_subject_mapping.map(
+                            (mapping) => mapping.faculty.faculty_id.toString()
+                        ),
                         total_hours: subject.units.reduce(
                             (acc, unit) => acc + unit.required_hours,
                             0
@@ -114,9 +139,11 @@ export const fetchData = async () => {
         });
 
         timeSlots.forEach((slot) => {
-            result.time_slots.days.push(slot.day_of_week.toString());
-            const time = new Date(slot.start_time).toISOString().split("T")[1];
-            result.time_slots.times.push(time);
+            result.time_slots.push({
+                slot_id: slot.slot_id.toString(),
+                day: Number(slot.day_of_week),
+                time: slot.start_time.toISOString().split("T")[1].split(".")[0],
+            });
         });
 
         return result;
@@ -129,7 +156,7 @@ export const fetchData = async () => {
 
 const generateSchedule = async (req, res) => {
     try {
-        const { created_by } = req.body;
+        const { created_by, semester_weeks } = req.body;
         if (!created_by) {
             return res.status(400).json({
                 success: false,
@@ -139,6 +166,10 @@ const generateSchedule = async (req, res) => {
 
         // Fetch data using existing function
         const data = await fetchData();
+        data.semester_weeks =
+            Number.isFinite(Number(semester_weeks)) && Number(semester_weeks) > 0
+                ? Number(semester_weeks)
+                : 16;
 
         // Validate fetched data
         if (!data || !data.departments || Object.keys(data.departments).length === 0) {
@@ -160,12 +191,42 @@ const generateSchedule = async (req, res) => {
                 throw new Error("Invalid response from schedule generator");
             }
 
+            const solverStatus = response.data.status || "feasible";
+            const solverMessage = response.data.message || null;
+
+            if (solverStatus === "infeasible") {
+                return res.status(422).json({
+                    success: false,
+                    message: solverMessage || "No feasible schedule could be generated for the given constraints.",
+                    solver_status: "infeasible",
+                });
+            }
+
+            const generatedSchedule = response.data.schedule || response.data;
+
+            if (
+                !generatedSchedule ||
+                typeof generatedSchedule !== "object" ||
+                Object.keys(generatedSchedule).length === 0
+            ) {
+                return res.status(422).send({
+                    success: false,
+                    message: "Schedule solver returned an empty result.",
+                    solver_status: solverStatus,
+                });
+            }
+
             // Save schedule to database
-            const savedSchedule = await saveScheduleToDatabase(response.data, created_by);
+            const savedSchedule = await saveScheduleToDatabase(
+                generatedSchedule,
+                Number(created_by),
+                data.semester_weeks
+            );
 
             return res.status(200).send({
                 success: true,
                 message: "Schedule generated successfully",
+                solver_status: solverStatus,
                 data: savedSchedule,
             });
         } catch (error) {
@@ -245,12 +306,11 @@ const getFirstOccurrence = (startDate, targetDay) => {
     return date;
 };
 
-// Helper function to generate 4 weekly dates
-const generateWeeklyDates = (startDate, dayOfWeek) => {
+const generateWeeklyDates = (startDate, dayOfWeek, totalWeeks = 16) => {
     const dates = [];
     const firstOccurrence = getFirstOccurrence(startDate, dayOfWeek);
     
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < totalWeeks; i++) {
         const classDate = new Date(firstOccurrence);
         classDate.setDate(classDate.getDate() + (i * 7));
         dates.push(classDate);
@@ -259,44 +319,47 @@ const generateWeeklyDates = (startDate, dayOfWeek) => {
     return dates;
 };
 
-const saveScheduleToDatabase = async (schedule, user_id) => {
+const saveScheduleToDatabase = async (schedule, user_id, semesterWeeks = 16) => {
     try {
         const startDate = new Date();
         const batchSize = 100; // Process in smaller batches
         let allClasses = [];
 
-        // Pre-fetch time slots outside the transaction
-        const timeSlotMap = new Map();
-        const uniqueTimeSlots = new Set();
-        
-        Object.entries(schedule).forEach(([_, timeSlots]) => {
-            Object.keys(timeSlots).forEach(timeSlot => {
-                const [day, time] = timeSlot.split(" ");
-                uniqueTimeSlots.add(`${day}-${time}`);
-            });
+        const allTimeSlots = await prisma.timeslots.findMany({
+            select: {
+                slot_id: true,
+                day_of_week: true,
+                start_time: true,
+            },
         });
 
-        // Fetch all required time slots at once
-        for (const timeSlotKey of uniqueTimeSlots) {
-            const [day, time] = timeSlotKey.split("-");
-            const startTime = new Date(`1970-01-01T${time}`);
-            const timeSlot = await prisma.timeslots.findFirst({
-                where: {
-                    day_of_week: parseInt(day),
-                    start_time: startTime,
-                },
-                select: {
-                    slot_id: true
-                }
+        const timeSlotById = new Map();
+        const timeSlotByKey = new Map();
+
+        allTimeSlots.forEach((slot) => {
+            const normalizedTime = slot.start_time
+                .toISOString()
+                .split("T")[1]
+                .split(".")[0];
+
+            timeSlotById.set(slot.slot_id, {
+                slot_id: slot.slot_id,
+                day_of_week: slot.day_of_week,
             });
-            if (timeSlot) {
-                timeSlotMap.set(timeSlotKey, timeSlot.slot_id);
-            }
-        }
+            timeSlotByKey.set(`${slot.day_of_week}-${normalizedTime}`, {
+                slot_id: slot.slot_id,
+                day_of_week: slot.day_of_week,
+            });
+        });
 
         // Process each section in separate transactions
         for (const [sectionKey, timeSlots] of Object.entries(schedule)) {
             const [dept, batch, section] = sectionKey.split("_");
+            const firstClassInfo = Object.values(timeSlots)[0];
+
+            if (!firstClassInfo) {
+                continue;
+            }
             
             // Get department info outside transaction
             const department = await prisma.departments.findFirst({
@@ -317,8 +380,8 @@ const saveScheduleToDatabase = async (schedule, user_id) => {
                     where: {
                         department_id: department.department_id,
                         batch_year: parseInt(batch),
-                        semester: parseInt(Object.values(timeSlots)[0].semester),
-                        academic_year: Object.values(timeSlots)[0].academic_year,
+                        semester: parseInt(firstClassInfo.semester),
+                        academic_year: Number(firstClassInfo.academic_year),
                         section_id: parseInt(section)
                     }
                 });
@@ -328,8 +391,8 @@ const saveScheduleToDatabase = async (schedule, user_id) => {
                         data: {
                             department_id: department.department_id,
                             batch_year: parseInt(batch),
-                            semester: parseInt(Object.values(timeSlots)[0].semester),
-                            academic_year: Object.values(timeSlots)[0].academic_year,
+                            semester: parseInt(firstClassInfo.semester),
+                            academic_year: Number(firstClassInfo.academic_year),
                             created_by: user_id,
                             section_id: parseInt(section)
                         }
@@ -339,15 +402,41 @@ const saveScheduleToDatabase = async (schedule, user_id) => {
                 // Process time slots in batches
                 const timeSlotEntries = Object.entries(timeSlots);
                 for (let i = 0; i < timeSlotEntries.length; i += batchSize) {
-                    const batch = timeSlotEntries.slice(i, i + batchSize);
+                    const batchEntries = timeSlotEntries.slice(i, i + batchSize);
                     
-                    for (const [timeSlot, classInfo] of batch) {
+                    for (const [timeSlot, classInfo] of batchEntries) {
                         const [day, time] = timeSlot.split(" ");
-                        const timeSlotKey = `${day}-${time}`;
-                        const slotId = timeSlotMap.get(timeSlotKey);
+                        const parsedSlotId = classInfo.slot_id
+                            ? Number(classInfo.slot_id)
+                            : null;
 
-                        if (!slotId) {
-                            console.warn(`Time slot not found for ${timeSlotKey}`);
+                        let slotInfo =
+                            (parsedSlotId && timeSlotById.get(parsedSlotId)) ||
+                            timeSlotByKey.get(`${parseInt(day)}-${time}`);
+
+                        if (!slotInfo) {
+                            console.warn(`Time slot not found for ${timeSlot}`);
+                            continue;
+                        }
+
+                        const slotId = slotInfo.slot_id;
+                        const resolvedDayOfWeek = Number(slotInfo.day_of_week || parseInt(day));
+
+                        if (!Number.isFinite(resolvedDayOfWeek)) {
+                            console.warn(`Invalid day_of_week resolved for ${timeSlot}`);
+                            continue;
+                        }
+
+                        const facultyId = Number(classInfo.faculty_id);
+                        const roomId = Number(classInfo.room_id);
+                        const sectionId = Number(classInfo.section_id);
+
+                        if (
+                            !Number.isFinite(facultyId) ||
+                            !Number.isFinite(roomId) ||
+                            !Number.isFinite(sectionId)
+                        ) {
+                            console.warn(`Invalid schedule payload for ${timeSlot}`);
                             continue;
                         }
 
@@ -355,36 +444,52 @@ const saveScheduleToDatabase = async (schedule, user_id) => {
                         let schedule_details = await tx.schedule_details.findFirst({
                             where: {
                                 schedule_id: schedule_meta.schedule_id,
-                                faculty_id: parseInt(classInfo.faculty_id),
-                                room_id: parseInt(classInfo.room_id),
+                                faculty_id: facultyId,
+                                room_id: roomId,
                                 timeslot_id: slotId,
                             }
                         });
 
                         if (!schedule_details) {
+                            const parsedSubjectId = classInfo.subject_id
+                                ? Number(classInfo.subject_id)
+                                : null;
+
                             schedule_details = await tx.schedule_details.create({
                                 data: {
                                     schedule_id: schedule_meta.schedule_id,
-                                    faculty_id: parseInt(classInfo.faculty_id),
-                                    room_id: parseInt(classInfo.room_id),
+                                    faculty_id: facultyId,
+                                    room_id: roomId,
                                     timeslot_id: slotId,
+                                    subject_id: Number.isFinite(parsedSubjectId)
+                                        ? parsedSubjectId
+                                        : null,
                                 }
                             });
                         }
 
-                        // Generate weekly dates
-                        const classDates = generateWeeklyDates(startDate, parseInt(day));
+                        const classDates = generateWeeklyDates(
+                            startDate,
+                            resolvedDayOfWeek,
+                            semesterWeeks
+                        );
+
+                        const parsedCourseId = classInfo.course_id
+                            ? Number(classInfo.course_id)
+                            : null;
 
                         // Create classes in bulk
                         const classCreations = classDates.map(classDate => ({
-                            academic_year: classInfo.academic_year,
-                            semester: classInfo.semester,
-                            section_id: parseInt(classInfo.section_id),
-                            faculty_id: parseInt(classInfo.faculty_id),
-                            room_id: parseInt(classInfo.room_id),
+                            academic_year: Number(classInfo.academic_year),
+                            semester: Number(classInfo.semester),
+                            section_id: sectionId,
+                            faculty_id: facultyId,
+                            room_id: roomId,
                             slot_id: slotId,
                             is_active: true,
-                            course_id: parseInt(classInfo.course_id),
+                            course_id: Number.isFinite(parsedCourseId)
+                                ? parsedCourseId
+                                : null,
                             detail_id: schedule_details.detail_id,
                             date_of_class: classDate
                         }));

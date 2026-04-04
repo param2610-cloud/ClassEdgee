@@ -2,14 +2,15 @@ import { useState } from 'react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Loader2, Zap, CheckCircle, AlertCircle } from 'lucide-react';
+import { Loader2, Zap, CheckCircle, AlertCircle, Info } from 'lucide-react';
 import { domain } from '@/lib/constant';
 import { useAuth } from '@/services/AuthContext';
 
 export default function ScheduleGenerator() {
   const { user } = useAuth();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
+  const [solverStatus, setSolverStatus] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
   const generateSchedule = async () => {
@@ -17,6 +18,7 @@ export default function ScheduleGenerator() {
       setLoading(true);
       setError(null);
       setSuccess(false);
+      setSolverStatus(null);
 
       const response = await fetch(`${domain}/api/v1/schedule/generate`, {
         method: 'POST',
@@ -25,16 +27,20 @@ export default function ScheduleGenerator() {
         }),
         headers: {
           'Content-Type': 'application/json',
-        }
+        },
+        credentials: 'include',
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error('Failed to generate schedule');
+        setSolverStatus(data?.solver_status || null);
+        throw new Error(data?.message || 'Failed to generate schedule');
       }
 
-       await response.json();
+      setSolverStatus(data?.solver_status || null);
       setSuccess(true);
-    } catch (err:any) {
+    } catch (err: any) {
       setError(err.message);
     } finally {
       setLoading(false);
@@ -55,22 +61,38 @@ export default function ScheduleGenerator() {
         </CardHeader>
         <CardContent className="space-y-6 pt-4">
           {error && (
-            <Alert variant="destructive" className="flex items-center">
-              <AlertCircle className="h-5 w-5 mr-2" />
+            <Alert variant="destructive">
+              <AlertCircle className="h-5 w-5" />
               <div>
-                <AlertTitle className="font-medium">Error</AlertTitle>
-                <AlertDescription>{error}</AlertDescription>
+                <AlertTitle className="font-medium">
+                  {solverStatus === 'infeasible' ? 'Schedule Not Feasible' : 'Generation Failed'}
+                </AlertTitle>
+                <AlertDescription className="mt-1">
+                  {error}
+                  {solverStatus === 'infeasible' && (
+                    <p className="mt-2 text-sm opacity-80">
+                      Check that faculty have availability set, subjects have preferred faculty assigned, and rooms with sufficient capacity exist.
+                    </p>
+                  )}
+                </AlertDescription>
               </div>
             </Alert>
           )}
-          
+
           {success && (
-            <Alert className="bg-green-50 border-green-200 flex items-center">
-              <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
+            <Alert className="bg-green-50 border-green-200">
+              <CheckCircle className="h-5 w-5 text-green-500" />
               <div>
-                <AlertTitle className="font-medium text-green-800">Success</AlertTitle>
+                <AlertTitle className="font-medium text-green-800">
+                  Schedule Generated {solverStatus === 'optimal' ? '(Optimal)' : '(Feasible)'}
+                </AlertTitle>
                 <AlertDescription className="text-green-700">
-                  Schedule generated successfully! You can now view it in the schedule viewer.
+                  Schedule saved successfully. You can now view it in the schedule viewer.
+                  {solverStatus === 'feasible' && (
+                    <span className="block mt-1 text-xs flex items-center gap-1">
+                      <Info className="h-3 w-3 inline" /> A feasible (not fully optimal) solution was found. Re-generating may produce a better result.
+                    </span>
+                  )}
                 </AlertDescription>
               </div>
             </Alert>

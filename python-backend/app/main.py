@@ -13,10 +13,8 @@ from psycopg2.extras import execute_values
 from datetime import datetime, date
 import bcrypt
 from student.studentRouter import student_router
-from schedule.scheduler import ScheduleGenerator
-import json
-from typing import Dict, List
-from pydantic import BaseModel
+from schedule.models import ScheduleRequest
+from schedule.scheduler import generate_schedule as solve_schedule
 load_dotenv()
 
 # Load environment variables
@@ -164,29 +162,13 @@ def get_db_connection():
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Database connection error: {str(e)}")
 
-
-
-
-class ScheduleRequest(BaseModel):
-    departments: Dict
-    rooms: List[Dict]
-    time_slots: Dict
-
 @app.post("/generate-schedule")
-async def generate_schedule(request: ScheduleRequest):
+async def generate_schedule_endpoint(request: ScheduleRequest):
     try:
-        # Save incoming data to JSON file for scheduler
-        with open("data.json", "w") as f:
-            json.dump(request.dict(), f, indent=2)
-        
-        # Initialize scheduler and generate schedule
-        scheduler = ScheduleGenerator("data.json")
-        schedule = scheduler.generate_schedule()
-        
-        # Convert schedule to JSON-friendly format
-        json_schedule = scheduler._convert_schedule_for_json(schedule)
-        
-        return json_schedule
+        solved = solve_schedule(request)
+        if hasattr(solved, "model_dump"):
+            return solved.model_dump()
+        return solved.dict()
         
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
