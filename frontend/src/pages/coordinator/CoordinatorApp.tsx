@@ -18,7 +18,7 @@ import UnitTopicManagement from "@/pages/Protected/coordinator/course/semester/s
 import TimetableManagement from "@/pages/coordinator/timetable/TimetableManagement";
 import RoomManagement from "@/pages/coordinator/rooms/RoomManagement";
 import BuildingManagement from "@/pages/coordinator/buildings/BuildingManagement";
-import AttendanceDashboard from "@/pages/Protected/coordinator/Attendance/AttendanceDashboard";
+import AttendanceDashboard from "@/pages/coordinator/attendance/AttendanceDashboard";
 import ResourceManagement from "@/pages/Protected/coordinator/resource/ResourceManagement";
 import CreateEmergencyForm from "@/components/CreateEmergencyForm";
 

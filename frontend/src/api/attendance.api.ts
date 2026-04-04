@@ -1,6 +1,6 @@
 import api from "@/api/axios";
 import { getCurrentStudent } from "@/api/student.api";
-import { Student } from "@/interface/general";
+import { Department, Section, Student } from "@/interface/general";
 
 export type ManualAttendanceStatus = "present" | "absent";
 
@@ -39,6 +39,49 @@ export interface StudentAttendanceSummary {
   atRisk: boolean;
 }
 
+export interface AttendanceDashboardFilters {
+  departmentId?: number;
+  sectionId?: number;
+  startDate?: string;
+  endDate?: string;
+  threshold?: number;
+}
+
+export interface CoordinatorAttendanceRecord {
+  classId: number;
+  className: string;
+  section: string;
+  department: string;
+  date: string;
+  presentCount: number;
+  absentCount: number;
+  method: string;
+}
+
+export interface CoordinatorAttendanceStats {
+  overallAttendancePercentage: number;
+  studentsBelowThreshold: number;
+  classesWithoutAttendanceToday: number;
+  totalClasses: number;
+}
+
+export interface CoordinatorAttendanceDashboardResponse {
+  stats: CoordinatorAttendanceStats;
+  records: CoordinatorAttendanceRecord[];
+}
+
+export interface LowAttendanceStudent {
+  studentId: number;
+  enrollmentNumber: string;
+  name: string;
+  email: string;
+  department: string;
+  semester: number;
+  attendancePercentage: string;
+  totalClasses: number;
+  attendedClasses: number;
+}
+
 export const getSectionStudents = async (sectionId: number): Promise<Student[]> => {
   const response = await api.get(`/api/v1/student/list-of-student-of-section/${sectionId}`);
   const payload = response.data?.students;
@@ -63,6 +106,72 @@ export const markManualAttendance = async (
   });
 
   return response.data as { success?: boolean };
+};
+
+export const getAttendanceSections = async (): Promise<Section[]> => {
+  const response = await api.get("/api/v1/section/list-of-section");
+  const payload = response.data?.data;
+  return Array.isArray(payload) ? (payload as Section[]) : [];
+};
+
+export const getAttendanceDepartments = async (
+  institutionId?: number
+): Promise<Department[]> => {
+  if (!institutionId) return [];
+
+  const response = await api.get("/api/v1/department/list-of-department", {
+    headers: {
+      "X-Institution-Id": String(institutionId),
+    },
+  });
+
+  const payload = response.data?.department;
+  return Array.isArray(payload) ? (payload as Department[]) : [];
+};
+
+export const getCoordinatorAttendanceDashboard = async (
+  filters: AttendanceDashboardFilters
+): Promise<CoordinatorAttendanceDashboardResponse> => {
+  const params = {
+    ...(filters.departmentId ? { department_id: String(filters.departmentId) } : {}),
+    ...(filters.sectionId ? { section_id: String(filters.sectionId) } : {}),
+    ...(filters.startDate ? { start_date: filters.startDate } : {}),
+    ...(filters.endDate ? { end_date: filters.endDate } : {}),
+    ...(typeof filters.threshold === "number" ? { threshold: String(filters.threshold) } : {}),
+  };
+
+  const response = await api.get("/api/v1/attendance/dashboard", { params });
+
+  const stats = response.data?.stats;
+  const records = response.data?.records;
+
+  return {
+    stats: {
+      overallAttendancePercentage: Number(stats?.overallAttendancePercentage ?? 0),
+      studentsBelowThreshold: Number(stats?.studentsBelowThreshold ?? 0),
+      classesWithoutAttendanceToday: Number(stats?.classesWithoutAttendanceToday ?? 0),
+      totalClasses: Number(stats?.totalClasses ?? 0),
+    },
+    records: Array.isArray(records) ? (records as CoordinatorAttendanceRecord[]) : [],
+  };
+};
+
+export const getLowAttendanceReport = async (
+  filters: AttendanceDashboardFilters
+): Promise<LowAttendanceStudent[]> => {
+  const params = {
+    ...(filters.departmentId ? { department_id: String(filters.departmentId) } : {}),
+    ...(typeof filters.threshold === "number" ? { threshold: String(filters.threshold) } : {}),
+  };
+
+  const response = await api.get("/api/v1/attendance/low-attendance-report", { params });
+  const payload = response.data?.data;
+  return Array.isArray(payload) ? (payload as LowAttendanceStudent[]) : [];
+};
+
+export const sendLowAttendanceEmails = async (): Promise<{ message?: string; affectedStudents?: unknown[] }> => {
+  const response = await api.post("/api/v1/attendance/send-attendance-emails");
+  return response.data as { message?: string; affectedStudents?: unknown[] };
 };
 
 const toNumber = (value: unknown) => {
