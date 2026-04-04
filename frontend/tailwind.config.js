@@ -45,6 +45,22 @@ export default {
     				DEFAULT: 'hsl(var(--primary))',
     				foreground: 'hsl(var(--primary-foreground))'
     			},
+				danger: {
+					DEFAULT: '#dc2626',
+					foreground: '#ffffff'
+				},
+				warning: {
+					DEFAULT: '#d97706',
+					foreground: '#ffffff'
+				},
+				success: {
+					DEFAULT: '#16a34a',
+					foreground: '#ffffff'
+				},
+				surface: {
+					DEFAULT: '#f1f5f9',
+					foreground: '#64748b'
+				},
     			secondary: {
     				DEFAULT: 'hsl(var(--secondary))',
     				foreground: 'hsl(var(--secondary-foreground))'
