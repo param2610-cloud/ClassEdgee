@@ -189,7 +189,10 @@ const ClassDashboard = () => {
                 </TabsContent>
 
                 <TabsContent value="notes">
-                    <NotesTab courseId={Number(class_id)} />
+                    <NotesTab
+                        courseId={Number(class_id)}
+                        sectionId={classData?.section_id ? Number(classData.section_id) : undefined}
+                    />
                 </TabsContent>
 
 

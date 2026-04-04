@@ -19,6 +19,7 @@ app.use(cookieParser());
 const filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(filename);
 app.use('/',express.static(path.join(__dirname,'public')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 //database connection
