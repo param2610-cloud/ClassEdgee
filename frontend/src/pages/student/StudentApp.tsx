@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import AppShell from "@/layouts/AppShell";
 import { roleNavigation } from "@/lib/navigation";
-import Dashboard from "@/pages/Protected/student/Dashboard";
+import Dashboard from "@/pages/student/Dashboard";
 import ClassDashboardStudent from "@/pages/Protected/student/classes/ClassDashboardStudent";
 import ListOfClass from "@/pages/Protected/faculty/classes/List_of_class";
 import TechEventsNotifications from "@/pages/Protected/student/TechNotification";
