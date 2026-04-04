@@ -114,38 +114,6 @@ const ClassDashboard = () => {
         }
     },[class_id,classData])
 
-    // const [attendancetaking, setAttendanceTaking] = useState(false);
-    // const handleTakingAttendance =async () => {
-    //     try {
-    //         if(attendancetaking){
-    //             const response =await axios.post(`${fastapidomain}/api/face-recognition/stop-attendance/${classData?.section_id}/${class_id}`)
-    //             if(response.status === 200){
-    //                 setAttendanceTaking(false)
-    //                 console.log("Attendance stopped");
-    //             }
-    //         }else{
-    //             const response = await fetch(`http://${import.meta.env.VITE_FASTAPI_HOST}:8000/api/face-recognition/start-attendance/6/9915`, {
-    //                 method: 'POST',
-    //                 headers: {
-    //                     'Content-Type': 'application/json',
-    //                 },
-    //             });
-    //             // const response = await fetch(`${fastapidomain}/api/face-recognition/start-attendance/${classData?.section_id}/${class_id}`, {
-    //             //     method: 'POST',
-    //             //     headers: {
-    //             //         'Content-Type': 'application/json',
-    //             //     },
-    //             // });
-    //             if(response.status === 200){
-    //                 setAttendanceTaking(true) 
-    //                 console.log("Attendance started");
-    //             }
-    //     }
-    //     } catch (error) {
-    //         console.error('Error taking attendance:', error);
-    //     }   
-    // }
- 
     return (
         <div className="max-w-5xl mx-auto p-4 bg-white rounded-lg shadow-md">
             {/* Room Header */}
