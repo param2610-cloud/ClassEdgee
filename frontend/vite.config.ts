@@ -12,6 +12,9 @@ dotenv.config();
 const manifestForPlugin: Partial<VitePWAOptions> = {
   registerType: 'autoUpdate',
   includeAssets: ['favicon.ico', "apple-touch-icon.png", "masked-icon.svg"],
+  workbox: {
+    maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
+  },
   manifest: {
     name: "ClassEdgee",
     short_name: "classedge",
