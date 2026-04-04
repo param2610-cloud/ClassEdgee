@@ -1,4 +1,5 @@
 export { default as BreadcrumbNav } from "./BreadcrumbNav";
+export { default as AttendanceMarker } from "./AttendanceMarker";
 export { default as DataTable } from "./DataTable";
 export { default as EmptyState } from "./EmptyState";
 export { default as ErrorState } from "./ErrorState";
