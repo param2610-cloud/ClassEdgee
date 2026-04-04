@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   Dialog,
   DialogContent,
@@ -12,11 +13,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Plus, Save } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { domain } from '@/lib/constant';
-import axios from 'axios';
 import QuizList from './QuizList';
 import QuizResults from './QuizResponse';
 import { useParams } from 'react-router-dom';
+import { createQuiz } from '@/api/quiz.api';
+import { useToast } from '@/hooks/use-toast';
 
 // Define the type for a single question
 interface Question {
@@ -33,43 +34,44 @@ interface QuizData {
   questions: Question[];
 }
 
-const QuizManagement = () => {
-  const {class_id} = useParams();
-  const [quizData, setQuizData] = useState<QuizData>({
-    title: '',
-    class_id: class_id,
-    questions: [{
-      question_text: '',
-      options: ['', '', '', ''],
-      correct_answer: 0,
-      explanation: ''
-    }]
-  });
-  const [isOpen, setIsOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
+const emptyQuizData = (class_id: string | undefined): QuizData => ({
+  title: '',
+  class_id,
+  questions: [{ question_text: '', options: ['', '', '', ''], correct_answer: 0, explanation: '' }],
+});
 
-  const handleCreateQuiz = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.post(`${domain}/api/v1/quizzes/create`, {
-        ...quizData,
-        class_id: Number(quizData.class_id)
+const QuizManagement = () => {
+  const { toast } = useToast();
+  const { class_id } = useParams();
+  const queryClient = useQueryClient();
+  const [quizData, setQuizData] = useState<QuizData>(emptyQuizData(class_id));
+  const [isOpen, setIsOpen] = useState(false);
+
+  const createMutation = useMutation({
+    mutationFn: () =>
+      createQuiz({
+        title: quizData.title,
+        class_id: Number(quizData.class_id),
+        questions: quizData.questions,
+      }),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['class-quizzes', class_id] });
+      setIsOpen(false);
+      setQuizData(emptyQuizData(class_id));
+      toast({
+        title: 'Quiz created',
+        description: 'The quiz has been published for this class.',
       });
-      
-      if (response.data.success) {
-        setIsOpen(false);
-        setQuizData({
-          title: '',
-          class_id: class_id,
-          questions: [{ question_text: '', options: ['', '', '', ''], correct_answer: 0, explanation: '' }]
-        });
-      }
-    } catch (error) {
-      console.error('Error creating quiz:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    },
+    onError: (error) => {
+      const message = error instanceof Error ? error.message : 'Unable to create quiz';
+      toast({
+        title: 'Create failed',
+        description: message,
+        variant: 'destructive',
+      });
+    },
+  });
 
   const addQuestion = () => {
     setQuizData(prev => ({
@@ -84,9 +86,20 @@ const QuizManagement = () => {
   };
 
   const updateQuestion = (index: number, field: keyof Question, value: string | number) => {
-    const newQuestions = [...quizData.questions];
-    (newQuestions[index] as any)[field] = value;
-    setQuizData(prev => ({ ...prev, questions: newQuestions }));
+    setQuizData((prev) => {
+      const questions = prev.questions.map((question, questionIndex) => {
+        if (questionIndex !== index) return question;
+        return {
+          ...question,
+          [field]: value,
+        } as Question;
+      });
+
+      return {
+        ...prev,
+        questions,
+      };
+    });
   };
 
   const updateOption = (questionIndex: number, optionIndex: number, value: string) => {
@@ -170,18 +183,19 @@ const QuizManagement = () => {
                     <Button onClick={addQuestion} variant="outline">
                       <Plus className="mr-2 h-4 w-4" /> Add Question
                     </Button>
-                    <Button onClick={handleCreateQuiz} disabled={loading}>
-                      <Save className="mr-2 h-4 w-4" /> 
-                      {loading ? 'Creating...' : 'Create Quiz'}
+                    <Button
+                      onClick={() => { createMutation.mutate(); }}
+                      disabled={createMutation.isPending || !quizData.title.trim() || !quizData.class_id}
+                    >
+                      <Save className="mr-2 h-4 w-4" />
+                      {createMutation.isPending ? 'Creating...' : 'Create Quiz'}
                     </Button>
                   </div>
                 </div>
               </DialogContent>
             </Dialog>
           </div>
-          {
-            class_id && <QuizList classId={class_id} />
-          }
+          {class_id && <QuizList classId={class_id} />}
         </TabsContent>
 
         <TabsContent value="results">

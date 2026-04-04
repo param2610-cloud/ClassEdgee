@@ -11,7 +11,7 @@ import FacultyAttendanceDashboard from "@/pages/Protected/faculty/Attendance/Fac
 import ResourceManagement from "@/pages/Protected/coordinator/resource/ResourceManagement";
 import DepartmentDetails from "@/pages/Protected/department/[departmentid]/DetailDepartment";
 import CourseDashboardForFaculty from "@/pages/Protected/faculty/Course/CourseDashboardForFaculty";
-import Profilepage from "@/pages/Protected/faculty/profile/Profilepage";
+import ProfileSettings from "@/pages/faculty/profile/ProfileSettings";
 import CreateEmergencyForm from "@/components/CreateEmergencyForm";
 
 const FacultyApp = () => {
@@ -28,7 +28,7 @@ const FacultyApp = () => {
         <Route path="resources" element={<ResourceManagement />} />
         <Route path="department" element={<DepartmentDetails />} />
         <Route path="courses" element={<CourseDashboardForFaculty />} />
-        <Route path="profile" element={<Profilepage />} />
+        <Route path="profile" element={<ProfileSettings />} />
         <Route path="emergency" element={<CreateEmergencyForm />} />
         <Route path="*" element={<Navigate to="/faculty" replace />} />
       </Routes>

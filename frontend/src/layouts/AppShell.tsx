@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { useNavigate } from "react-router-dom";
+import { ReactNode, useMemo } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { LogOut } from "lucide-react";
 import AppSidebar from "@/components/AppSidebar";
 import BreadcrumbNav from "@/components/shared/BreadcrumbNav";
@@ -19,6 +19,7 @@ import {
 import { logout } from "@/api/auth.api";
 import { useAuth } from "@/hooks/useAuth";
 import { useEmergency } from "@/hooks/useEmergency";
+import { usePageTitle } from "@/hooks/usePageTitle";
 import { NavItem } from "@/lib/navigation";
 
 interface AppShellProps {
@@ -28,8 +29,35 @@ interface AppShellProps {
 
 const AppShell = ({ nav, children }: AppShellProps) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { user } = useAuth();
   const emergency = useEmergency();
+
+  const pageTitle = useMemo(() => {
+    const segments = location.pathname.split("/").filter(Boolean);
+    const role = segments[0] || "app";
+    const roleTitle = role.charAt(0).toUpperCase() + role.slice(1);
+
+    if (segments.length <= 1) {
+      return `${roleTitle} Dashboard`;
+    }
+
+    if (segments[1] === "classes" && segments[2]) {
+      return `${roleTitle} Class Room`;
+    }
+
+    if (segments[1] === "profile") {
+      return `${roleTitle} Profile`;
+    }
+
+    const sectionTitle = segments[1]
+      .replace(/-/g, " ")
+      .replace(/\b\w/g, (letter) => letter.toUpperCase());
+
+    return `${roleTitle} ${sectionTitle}`;
+  }, [location.pathname]);
+
+  usePageTitle(pageTitle);
 
   const displayName =
     user?.name || [user?.first_name, user?.last_name].filter(Boolean).join(" ") || user?.email || "User";

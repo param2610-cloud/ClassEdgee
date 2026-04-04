@@ -6,6 +6,8 @@ import cors from "cors";
 import { corsOptions } from "./src/config/corsOptions.js";
 import path from "path";
 import { fileURLToPath } from "url";
+import { createServer } from "http";
+import { initSocket } from "./src/socket.js";
 configDotenv();
 const app = express();
 const port = process.env.PORT || 3000;
@@ -109,7 +111,12 @@ app.get("/health", (req, res) => {
 })
 
 const LOCALIP = process.env.LOCAL_IP || 'localhost'
-app.listen(port, () => console.log(`The App is Listening on port ${port} \n health check at http://${LOCALIP}:${port}/health`));
+const httpServer = createServer(app);
+initSocket(httpServer);
+
+httpServer.listen(port, () =>
+    console.log(`The App is Listening on port ${port} \n health check at http://${LOCALIP}:${port}/health`)
+);
 
 startFaceInfrastructure()
     .then(() => {

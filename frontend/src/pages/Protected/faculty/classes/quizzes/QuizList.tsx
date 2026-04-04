@@ -1,40 +1,44 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { formatDistanceToNow } from 'date-fns';
-import { domain } from '@/lib/constant';
-import axios from 'axios';
-
-// Define the structure of a quiz object
-interface Quiz {
-  quiz_id: number;
-  title: string;
-  quiz_questions: any[]; // Use a more specific type if the structure of questions is known
-  created_at: string; // Or Date if you parse it immediately
-}
+import { getClassQuizzes } from '@/api/quiz.api';
+import { ErrorState, EmptyState, LoadingSkeleton } from '@/components/shared';
+import { BookOpen } from 'lucide-react';
 
 const QuizList = ({ classId }: { classId: string }) => {
-  const [quizzes, setQuizzes] = useState<Quiz[]>([]);
-  const [loading, setLoading] = useState(true);
+  const quizzesQuery = useQuery({
+    queryKey: ['class-quizzes', classId],
+    queryFn: () => getClassQuizzes(classId),
+    enabled: Boolean(classId),
+  });
 
-  useEffect(() => {
-    const fetchQuizzes = async () => {
-      try {
-        const response = await axios.get(`${domain}/api/v1/quizzes/${classId}`);
-        if (response.data.success) {
-          setQuizzes(response.data.data);
-        }
-      } catch (error) {
-        console.error('Error fetching quizzes:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  if (quizzesQuery.isLoading) return <LoadingSkeleton variant="table" rows={3} />;
 
-    fetchQuizzes();
-  }, [classId]);
+  if (quizzesQuery.isError) {
+    const message =
+      quizzesQuery.error instanceof Error
+        ? quizzesQuery.error.message
+        : 'Failed to load quizzes';
+    return (
+      <ErrorState
+        message={message}
+        onRetry={() => { quizzesQuery.refetch(); }}
+      />
+    );
+  }
 
-  if (loading) return <div>Loading quizzes...</div>;
+  const quizzes = quizzesQuery.data ?? [];
+
+  if (!quizzes.length) {
+    return (
+      <EmptyState
+        icon={BookOpen}
+        title="No quizzes published"
+        description="Create the first quiz for this class to start assessments."
+      />
+    );
+  }
 
   return (
     <Card>
@@ -56,7 +60,9 @@ const QuizList = ({ classId }: { classId: string }) => {
                 <TableCell className="font-medium">{quiz.title}</TableCell>
                 <TableCell>{quiz.quiz_questions.length}</TableCell>
                 <TableCell>
-                  {formatDistanceToNow(new Date(quiz.created_at), { addSuffix: true })}
+                  {quiz.created_at
+                    ? formatDistanceToNow(new Date(quiz.created_at), { addSuffix: true })
+                    : "-"}
                 </TableCell>
               </TableRow>
             ))}

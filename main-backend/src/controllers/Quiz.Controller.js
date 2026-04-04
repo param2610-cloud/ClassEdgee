@@ -170,34 +170,72 @@ class QuizController {
 const SubmitquizResponse =   async (req, res)=> {
   try {
     const {student_id,quizResponses} =req.body 
-    console.log("body",req.body);
-    
+
     const {quiz_id} = req.params;
+    const parsedQuizId = Number.parseInt(quiz_id, 10);
+    const parsedStudentId = Number.parseInt(String(student_id), 10);
+
+    if (Number.isNaN(parsedQuizId) || Number.isNaN(parsedStudentId)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid quiz_id or student_id",
+      });
+    }
+
+    if (!Array.isArray(quizResponses) || quizResponses.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Quiz responses are required",
+      });
+    }
+
+    const existingSubmission = await prisma.quiz_responses.findFirst({
+      where: {
+        quiz_id: parsedQuizId,
+        student_id: parsedStudentId,
+      },
+    });
+
+    if (existingSubmission) {
+      return res.status(409).json({
+        success: false,
+        message: "Quiz already submitted. Re-submission is not allowed.",
+      });
+    }
+
     const questionsData = await prisma.quiz_questions.findMany({
-      where: { quiz_id: parseInt(quiz_id) },
+      where: { quiz_id: parsedQuizId },
       select:{
         question_id:true,
         correct_answer:true
       }
     });
-    console.log(questionsData);
+
+    if (!questionsData.length) {
+      return res.status(404).json({
+        success: false,
+        message: "Quiz questions not found",
+      });
+    }
     
     const quiz_responses = await Promise.all(
       quizResponses.map(async (response) => {
         const question = questionsData.find(q => q.question_id === response.question_id);
+        if (!question) {
+          throw new Error(`Question not found: ${response.question_id}`);
+        }
         const is_correct = question.correct_answer === response.selected_option;
-        console.log(is_correct);
-        
+
         return prisma.quiz_responses.create({
           data: {
             question_id: response.question_id,
             selected_option: response.selected_option,
             is_correct,
             quizzes: {
-              connect: { quiz_id: parseInt(quiz_id) } 
+              connect: { quiz_id: parsedQuizId } 
             },
             students: {
-              connect: { student_id: student_id }
+              connect: { student_id: parsedStudentId }
             },
           }
         });
