@@ -7,12 +7,14 @@ import {
     markAttendance,
     getAttendanceHistory,
     getCoordinatorAttendanceDashboard,
+    getStudentAttendanceSummary,
 } from '../controllers/attendance.controller.js';
 
 router.get('/active-class/:facultyId', getActiveClass);
 router.post('/mark-attendance', markAttendance);
 router.get('/history/:classId', getAttendanceHistory);
 router.get('/dashboard', getCoordinatorAttendanceDashboard);
+router.get('/student-summary/:studentId', getStudentAttendanceSummary);
 
 router.post('/send-attendance-emails', attendanceEmailController.sendLowAttendanceEmails);
 router.get('/low-attendance-report', attendanceEmailController.getLowAttendanceReport);
