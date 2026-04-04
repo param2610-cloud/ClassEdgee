@@ -1,6 +1,5 @@
 // api/services.ts
-import { domain } from '@/lib/constant';
-import axios from 'axios';
+import api from '@/api/axios';
 import * as XLSX from 'xlsx';
 import { useAuthStore } from '@/store/auth.store';
 
@@ -14,20 +13,20 @@ export const scheduleService = {
     semester: number;
     totalWeeks: number;
     userId: number | undefined;
-    sectionId: number | undefined;  
+    sectionId: number | undefined;
   }) {
     const user = useAuthStore.getState().user;
     params['userId'] = user?.user_id
     if (!params.userId) {
       throw new Error('User ID not found');
     }
-    const response = await axios.post(`${domain}/api/v1/mannual-schedule/init`, params);
+    const response = await api.post('/api/v1/mannual-schedule/init', params);
     return response.data;
   },
 
   // Get Time Slots
   async getTimeSlots(departmentId: number, semester: number) {
-    const response = await axios.get(`${domain}/api/v1/mannual-schedule/grid`, {
+    const response = await api.get('/api/v1/mannual-schedule/grid', {
       params: { departmentId, semester }
     });
     return response.data;
@@ -35,7 +34,7 @@ export const scheduleService = {
 
   // Get Subjects
   async getSubjects(departmentId: number, semester: number) {
-    const response = await axios.get(`${domain}/api/v1/mannual-schedule/subjects`, {
+    const response = await api.get('/api/v1/mannual-schedule/subjects', {
       params: { departmentId, semester }
     });
     return response.data;
@@ -43,7 +42,7 @@ export const scheduleService = {
 
   // Get Available Faculty
   async getFaculty(subjectId: number, slotId: number) {
-    const response = await axios.get(`${domain}/api/v1/mannual-schedule/faculty`, {
+    const response = await api.get('/api/v1/mannual-schedule/faculty', {
       params: { subjectId, slotId }
     });
     return response.data;
@@ -51,7 +50,7 @@ export const scheduleService = {
 
   // Get Available Rooms
   async getRooms(slotId: number, buildingId?: number) {
-    const response = await axios.get(`${domain}/api/v1/mannual-schedule/rooms`, {
+    const response = await api.get('/api/v1/mannual-schedule/rooms', {
       params: { slotId, buildingId }
     });
     return response.data;
@@ -68,7 +67,7 @@ export const scheduleService = {
     semester: number;
     academicYear: number;
   }) {
-    const response = await axios.post(`${domain}/api/v1/mannual-schedule/assign`, params);
+    const response = await api.post('/api/v1/mannual-schedule/assign', params);
     return response.data;
   },
 };
