@@ -143,9 +143,6 @@ const ClassDashboard = () => {
                         </div>
                     </div>
                     <div className="flex flex-col space-y-2">
-                        {/* {
-classData && classData.class_id && classData.section_id && <AttendanceButton sectionId={classData.section_id} classId={classData.class_id} />
-                        } */}
                         <Button variant="outline" className="bg-blue-100 hover:bg-blue-200"
                         onClick={() => navigate(`/faculty/classes/${class_id}/quiz`)} >
                         
