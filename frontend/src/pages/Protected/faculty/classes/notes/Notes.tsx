@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { BookOpen, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,7 +12,7 @@ import {
     DialogTitle,
 } from "@/components/ui/dialog";
 import { EmptyState, ErrorState, LoadingSkeleton } from "@/components/shared";
-import { ClassNote, getNotes, uploadNote } from "@/api/classes.api";
+import { getNotes, uploadNote } from "@/api/classes.api";
 import { useAuth } from "@/hooks/useAuth";
 
 interface NotesTabProps {
@@ -26,83 +27,52 @@ const parseTags = (value: string): string[] =>
         .map((tag) => tag.trim())
         .filter(Boolean);
 
+const emptyForm = { title: "", content: "", tags: "", isPrivate: false };
+
 const NotesTab = ({ courseId, sectionId, readOnly = false }: NotesTabProps) => {
     const { user } = useAuth();
-    const [notes, setNotes] = useState<ClassNote[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [isSaving, setIsSaving] = useState(false);
-    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const queryClient = useQueryClient();
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-    const [newNote, setNewNote] = useState({
-        title: "",
-        content: "",
-        tags: "",
-        isPrivate: false,
+    const [newNote, setNewNote] = useState(emptyForm);
+
+    const notesQuery = useQuery({
+        queryKey: ["class-notes", courseId],
+        queryFn: () => getNotes(courseId),
+        enabled: Boolean(courseId),
     });
 
-    const fetchNotes = useCallback(async () => {
-        setIsLoading(true);
-        setErrorMessage(null);
-
-        try {
-            const data = await getNotes(courseId);
-            setNotes(data);
-        } catch {
-            setErrorMessage("Failed to load class notes.");
-        } finally {
-            setIsLoading(false);
-        }
-    }, [courseId]);
-
-    useEffect(() => {
-        void fetchNotes();
-    }, [fetchNotes]);
-
-    const resetCreateForm = () => {
-        setNewNote({
-            title: "",
-            content: "",
-            tags: "",
-            isPrivate: false,
-        });
-    };
-
-    const handleCreateNote = async () => {
-        if (!user?.user_id || !newNote.title.trim() || !newNote.content.trim()) {
-            return;
-        }
-
-        setIsSaving(true);
-        setErrorMessage(null);
-
-        try {
-            const created = await uploadNote({
+    const createMutation = useMutation({
+        mutationFn: () =>
+            uploadNote({
                 title: newNote.title,
                 content: newNote.content,
                 courseId,
-                createdBy: user.user_id,
+                createdBy: user!.user_id!,
                 sectionId,
                 tags: parseTags(newNote.tags),
                 isPrivate: newNote.isPrivate,
-            });
-
-            setNotes((prev) => [created, ...prev]);
-            resetCreateForm();
+            }),
+        onSuccess: async () => {
+            await queryClient.invalidateQueries({ queryKey: ["class-notes", courseId] });
+            setNewNote(emptyForm);
             setIsCreateModalOpen(false);
-        } catch {
-            setErrorMessage("Failed to create note.");
-        } finally {
-            setIsSaving(false);
-        }
-    };
+        },
+    });
+
+    const notes = notesQuery.data ?? [];
 
     const renderContent = () => {
-        if (isLoading) {
+        if (notesQuery.isLoading) {
             return <LoadingSkeleton variant="card" rows={4} />;
         }
 
-        if (errorMessage) {
-            return <ErrorState message={errorMessage} onRetry={fetchNotes} />;
+        if (notesQuery.isError) {
+            return (
+                <ErrorState
+                    message="Failed to load class notes."
+                    onRetry={() => { notesQuery.refetch(); }}
+                />
+            );
         }
 
         if (notes.length === 0) {
@@ -176,9 +146,7 @@ const NotesTab = ({ courseId, sectionId, readOnly = false }: NotesTabProps) => {
                     open={isCreateModalOpen}
                     onOpenChange={(open) => {
                         setIsCreateModalOpen(open);
-                        if (!open) {
-                            resetCreateForm();
-                        }
+                        if (!open) setNewNote(emptyForm);
                     }}
                 >
                     <DialogContent>
@@ -189,54 +157,32 @@ const NotesTab = ({ courseId, sectionId, readOnly = false }: NotesTabProps) => {
                             <Input
                                 placeholder="Title"
                                 value={newNote.title}
-                                onChange={(e) =>
-                                    setNewNote((prev) => ({
-                                        ...prev,
-                                        title: e.target.value,
-                                    }))
-                                }
+                                onChange={(e) => setNewNote((prev) => ({ ...prev, title: e.target.value }))}
                             />
                             <Textarea
                                 placeholder="Content"
                                 value={newNote.content}
-                                onChange={(e) =>
-                                    setNewNote((prev) => ({
-                                        ...prev,
-                                        content: e.target.value,
-                                    }))
-                                }
+                                onChange={(e) => setNewNote((prev) => ({ ...prev, content: e.target.value }))}
                             />
                             <Input
                                 placeholder="Tags (comma-separated)"
                                 value={newNote.tags}
-                                onChange={(e) =>
-                                    setNewNote((prev) => ({
-                                        ...prev,
-                                        tags: e.target.value,
-                                    }))
-                                }
+                                onChange={(e) => setNewNote((prev) => ({ ...prev, tags: e.target.value }))}
                             />
                             <label className="flex items-center gap-2 text-sm">
                                 <input
                                     type="checkbox"
                                     checked={newNote.isPrivate}
-                                    onChange={(e) =>
-                                        setNewNote((prev) => ({
-                                            ...prev,
-                                            isPrivate: e.target.checked,
-                                        }))
-                                    }
+                                    onChange={(e) => setNewNote((prev) => ({ ...prev, isPrivate: e.target.checked }))}
                                 />
                                 Private note
                             </label>
                             <Button
                                 className="w-full"
-                                disabled={isSaving || !newNote.title.trim() || !newNote.content.trim()}
-                                onClick={() => {
-                                    void handleCreateNote();
-                                }}
+                                disabled={createMutation.isPending || !newNote.title.trim() || !newNote.content.trim()}
+                                onClick={() => { createMutation.mutate(); }}
                             >
-                                {isSaving ? "Saving..." : "Create Note"}
+                                {createMutation.isPending ? "Saving..." : "Create Note"}
                             </Button>
                         </div>
                     </DialogContent>

@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Download, FileText, Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,7 +13,6 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { EmptyState, ErrorState, LoadingSkeleton } from "@/components/shared";
 import {
-    ClassResource,
     deleteResource,
     getResources,
     uploadResource,
@@ -38,96 +38,61 @@ const resolveResourceUrl = (fileUrl?: string): string | null => {
     return `${domain}/${fileUrl}`;
 };
 
+const emptyForm = { title: "", description: "", tags: "", visibility: "section" };
+
 const ResourcesTab = ({ courseId, readOnly = false }: ResourcesTabProps) => {
     const { user } = useAuth();
-    const [resources, setResources] = useState<ClassResource[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [isSaving, setIsSaving] = useState(false);
-    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const queryClient = useQueryClient();
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
-    const [newResource, setNewResource] = useState({
-        title: "",
-        description: "",
-        tags: "",
-        visibility: "section",
+    const [newResource, setNewResource] = useState(emptyForm);
+
+    const resourcesQuery = useQuery({
+        queryKey: ["class-resources", courseId],
+        queryFn: () => getResources(courseId),
+        enabled: Boolean(courseId),
     });
 
-    const fetchResources = useCallback(async () => {
-        setIsLoading(true);
-        setErrorMessage(null);
-
-        try {
-            const data = await getResources(courseId);
-            setResources(data);
-        } catch {
-            setErrorMessage("Failed to load class resources.");
-        } finally {
-            setIsLoading(false);
-        }
-    }, [courseId]);
-
-    useEffect(() => {
-        void fetchResources();
-    }, [fetchResources]);
-
-    const resetCreateForm = () => {
-        setNewResource({
-            title: "",
-            description: "",
-            tags: "",
-            visibility: "section",
-        });
-        setSelectedFile(null);
-    };
-
-    const handleCreateResource = async () => {
-        if (!selectedFile || !user?.user_id) {
-            return;
-        }
-
-        setIsSaving(true);
-        setErrorMessage(null);
-
-        try {
-            const created = await uploadResource({
+    const uploadMutation = useMutation({
+        mutationFn: () =>
+            uploadResource({
                 title: newResource.title,
                 description: newResource.description,
                 courseId,
-                uploadedBy: user.user_id,
-                file: selectedFile,
+                uploadedBy: user!.user_id!,
+                file: selectedFile!,
                 tags: parseTags(newResource.tags),
                 visibility: newResource.visibility,
-            });
-
-            setResources((prev) => [created, ...prev]);
-            resetCreateForm();
+            }),
+        onSuccess: async () => {
+            await queryClient.invalidateQueries({ queryKey: ["class-resources", courseId] });
+            setNewResource(emptyForm);
+            setSelectedFile(null);
             setIsCreateModalOpen(false);
-        } catch {
-            setErrorMessage("Failed to upload resource.");
-        } finally {
-            setIsSaving(false);
-        }
-    };
+        },
+    });
 
-    const handleDeleteResource = async (resourceId: number) => {
-        setErrorMessage(null);
+    const deleteMutation = useMutation({
+        mutationFn: deleteResource,
+        onSuccess: async () => {
+            await queryClient.invalidateQueries({ queryKey: ["class-resources", courseId] });
+        },
+    });
 
-        try {
-            await deleteResource(resourceId);
-            setResources((prev) => prev.filter((item) => item.resource_id !== resourceId));
-        } catch {
-            setErrorMessage("Failed to delete resource.");
-        }
-    };
+    const resources = resourcesQuery.data ?? [];
 
     const renderContent = () => {
-        if (isLoading) {
+        if (resourcesQuery.isLoading) {
             return <LoadingSkeleton variant="list" rows={4} />;
         }
 
-        if (errorMessage) {
-            return <ErrorState message={errorMessage} onRetry={fetchResources} />;
+        if (resourcesQuery.isError) {
+            return (
+                <ErrorState
+                    message="Failed to load class resources."
+                    onRetry={() => { resourcesQuery.refetch(); }}
+                />
+            );
         }
 
         if (resources.length === 0) {
@@ -195,9 +160,8 @@ const ResourcesTab = ({ courseId, readOnly = false }: ResourcesTabProps) => {
                                 {!readOnly ? (
                                     <Button
                                         variant="outline"
-                                        onClick={() => {
-                                            void handleDeleteResource(resource.resource_id);
-                                        }}
+                                        disabled={deleteMutation.isPending}
+                                        onClick={() => { deleteMutation.mutate(resource.resource_id); }}
                                     >
                                         <Trash2 className="h-4 w-4 text-red-500" />
                                     </Button>
@@ -232,7 +196,8 @@ const ResourcesTab = ({ courseId, readOnly = false }: ResourcesTabProps) => {
                     onOpenChange={(open) => {
                         setIsCreateModalOpen(open);
                         if (!open) {
-                            resetCreateForm();
+                            setNewResource(emptyForm);
+                            setSelectedFile(null);
                         }
                     }}
                 >
@@ -244,61 +209,38 @@ const ResourcesTab = ({ courseId, readOnly = false }: ResourcesTabProps) => {
                             <Input
                                 placeholder="Title"
                                 value={newResource.title}
-                                onChange={(e) =>
-                                    setNewResource((prev) => ({
-                                        ...prev,
-                                        title: e.target.value,
-                                    }))
-                                }
+                                onChange={(e) => setNewResource((prev) => ({ ...prev, title: e.target.value }))}
                             />
                             <Textarea
                                 placeholder="Description"
                                 value={newResource.description}
-                                onChange={(e) =>
-                                    setNewResource((prev) => ({
-                                        ...prev,
-                                        description: e.target.value,
-                                    }))
-                                }
+                                onChange={(e) => setNewResource((prev) => ({ ...prev, description: e.target.value }))}
                             />
                             <Input
                                 placeholder="Tags (comma-separated)"
                                 value={newResource.tags}
-                                onChange={(e) =>
-                                    setNewResource((prev) => ({
-                                        ...prev,
-                                        tags: e.target.value,
-                                    }))
-                                }
+                                onChange={(e) => setNewResource((prev) => ({ ...prev, tags: e.target.value }))}
                             />
                             <Input
                                 type="file"
                                 onChange={(event) => {
-                                    const file = event.target.files?.[0] ?? null;
-                                    setSelectedFile(file);
+                                    setSelectedFile(event.target.files?.[0] ?? null);
                                 }}
                             />
                             <select
                                 className="w-full rounded-md border p-2"
                                 value={newResource.visibility}
-                                onChange={(e) =>
-                                    setNewResource((prev) => ({
-                                        ...prev,
-                                        visibility: e.target.value,
-                                    }))
-                                }
+                                onChange={(e) => setNewResource((prev) => ({ ...prev, visibility: e.target.value }))}
                             >
                                 <option value="section">Section Only</option>
                                 <option value="public">Public</option>
                             </select>
                             <Button
                                 className="w-full"
-                                disabled={isSaving || !selectedFile || !newResource.title.trim()}
-                                onClick={() => {
-                                    void handleCreateResource();
-                                }}
+                                disabled={uploadMutation.isPending || !selectedFile || !newResource.title.trim()}
+                                onClick={() => { uploadMutation.mutate(); }}
                             >
-                                {isSaving ? "Uploading..." : "Upload Resource"}
+                                {uploadMutation.isPending ? "Uploading..." : "Upload Resource"}
                             </Button>
                         </div>
                     </DialogContent>
