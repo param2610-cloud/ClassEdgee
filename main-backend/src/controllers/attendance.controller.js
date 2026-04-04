@@ -1,6 +1,32 @@
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
+const toDateBounds = (startDateInput, endDateInput) => {
+    const today = new Date();
+    const fallbackStart = new Date(today);
+    fallbackStart.setDate(fallbackStart.getDate() - 30);
+
+    const startDate = startDateInput ? new Date(startDateInput) : fallbackStart;
+    const endDate = endDateInput ? new Date(endDateInput) : today;
+
+    if (Number.isNaN(startDate.getTime()) || Number.isNaN(endDate.getTime())) {
+        return null;
+    }
+
+    startDate.setHours(0, 0, 0, 0);
+    endDate.setHours(23, 59, 59, 999);
+
+    return { startDate, endDate };
+};
+
+const toDateKey = (value) => {
+    const date = new Date(value);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+};
+
 export const getActiveClass = async (req, res) => {
     try {
         const currentTime = new Date();
@@ -157,6 +183,229 @@ export const getAttendanceHistory = async (req, res) => {
         res.status(500).json({ 
             error: error.message,
             stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        });
+    }
+};
+
+export const getCoordinatorAttendanceDashboard = async (req, res) => {
+    try {
+        const {
+            department_id,
+            section_id,
+            start_date,
+            end_date,
+            threshold = 75,
+        } = req.query;
+
+        const bounds = toDateBounds(start_date, end_date);
+        if (!bounds) {
+            return res.status(400).json({
+                success: false,
+                message: 'Invalid date range provided',
+            });
+        }
+
+        const parsedDepartmentId = department_id ? parseInt(department_id) : null;
+        const parsedSectionId = section_id ? parseInt(section_id) : null;
+        const parsedThreshold = Number(threshold);
+
+        if ((department_id && Number.isNaN(parsedDepartmentId)) || (section_id && Number.isNaN(parsedSectionId))) {
+            return res.status(400).json({
+                success: false,
+                message: 'Invalid department_id or section_id',
+            });
+        }
+
+        const classWhere = {
+            date_of_class: {
+                gte: bounds.startDate,
+                lte: bounds.endDate,
+            },
+            ...(parsedSectionId ? { section_id: parsedSectionId } : {}),
+            ...(parsedDepartmentId
+                ? {
+                    sections: {
+                        department_id: parsedDepartmentId,
+                    },
+                }
+                : {}),
+        };
+
+        const classes = await prisma.classes.findMany({
+            where: classWhere,
+            select: {
+                class_id: true,
+                date_of_class: true,
+                section_id: true,
+                sections: {
+                    select: {
+                        section_id: true,
+                        section_name: true,
+                        department_id: true,
+                        departments: {
+                            select: {
+                                department_name: true,
+                            },
+                        },
+                    },
+                },
+                courses: {
+                    select: {
+                        course_name: true,
+                    },
+                },
+            },
+        });
+
+        const classIds = classes.map((classItem) => classItem.class_id);
+
+        if (!classIds.length) {
+            return res.status(200).json({
+                success: true,
+                stats: {
+                    overallAttendancePercentage: 0,
+                    studentsBelowThreshold: 0,
+                    classesWithoutAttendanceToday: 0,
+                    totalClasses: 0,
+                },
+                records: [],
+            });
+        }
+
+        const attendanceRows = await prisma.attendance.findMany({
+            where: {
+                class_id: {
+                    in: classIds,
+                },
+                date: {
+                    gte: bounds.startDate,
+                    lte: bounds.endDate,
+                },
+            },
+            select: {
+                class_id: true,
+                student_id: true,
+                date: true,
+                status: true,
+                verification_method: true,
+            },
+        });
+
+        const classById = new Map(classes.map((classItem) => [classItem.class_id, classItem]));
+        const recordMap = new Map();
+
+        attendanceRows.forEach((row) => {
+            if (!row.class_id) return;
+
+            const classMeta = classById.get(row.class_id);
+            if (!classMeta) return;
+
+            const dateKey = toDateKey(row.date);
+            const method = String(row.verification_method || 'manual').toLowerCase();
+            const key = `${row.class_id}|${dateKey}|${method}`;
+            const existing = recordMap.get(key) || {
+                classId: row.class_id,
+                className: classMeta.courses?.course_name || 'Class',
+                section: classMeta.sections?.section_name || 'N/A',
+                department: classMeta.sections?.departments?.department_name || 'N/A',
+                date: dateKey,
+                presentCount: 0,
+                absentCount: 0,
+                method,
+            };
+
+            const status = String(row.status || '').toLowerCase();
+            if (status === 'present') {
+                existing.presentCount += 1;
+            } else {
+                existing.absentCount += 1;
+            }
+
+            recordMap.set(key, existing);
+        });
+
+        const records = Array.from(recordMap.values()).sort((left, right) => {
+            if (left.date === right.date) return right.classId - left.classId;
+            return left.date < right.date ? 1 : -1;
+        });
+
+        const totalPresent = attendanceRows.filter(
+            (row) => String(row.status || '').toLowerCase() === 'present'
+        ).length;
+        const totalAttendanceRows = attendanceRows.length;
+        const overallAttendancePercentage = totalAttendanceRows
+            ? Number(((totalPresent / totalAttendanceRows) * 100).toFixed(2))
+            : 0;
+
+        const todayKey = toDateKey(new Date());
+        const todayClassIds = new Set(
+            classes
+                .filter((classItem) => classItem.date_of_class && toDateKey(classItem.date_of_class) === todayKey)
+                .map((classItem) => classItem.class_id)
+        );
+        const classesWithAttendanceToday = new Set(
+            attendanceRows
+                .filter((row) => toDateKey(row.date) === todayKey)
+                .map((row) => row.class_id)
+        );
+
+        const classesWithoutAttendanceToday = Array.from(todayClassIds).filter(
+            (classId) => !classesWithAttendanceToday.has(classId)
+        ).length;
+
+        const studentWhere = {
+            ...(parsedDepartmentId ? { department_id: parsedDepartmentId } : {}),
+            ...(parsedSectionId ? { section_id: parsedSectionId } : {}),
+        };
+
+        const students = await prisma.students.findMany({
+            where: studentWhere,
+            select: {
+                student_id: true,
+                section_id: true,
+            },
+        });
+
+        const classesBySection = classes.reduce((accumulator, classItem) => {
+            const sectionId = classItem.section_id;
+            if (!sectionId) return accumulator;
+            accumulator[sectionId] = (accumulator[sectionId] || 0) + 1;
+            return accumulator;
+        }, {});
+
+        const presentByStudent = attendanceRows.reduce((accumulator, row) => {
+            if (!row.student_id) return accumulator;
+            if (String(row.status || '').toLowerCase() !== 'present') return accumulator;
+            accumulator[row.student_id] = (accumulator[row.student_id] || 0) + 1;
+            return accumulator;
+        }, {});
+
+        const studentsBelowThreshold = students.reduce((count, student) => {
+            const sectionClassCount = student.section_id ? classesBySection[student.section_id] || 0 : 0;
+            if (!sectionClassCount) return count;
+
+            const presentCount = presentByStudent[student.student_id] || 0;
+            const attendancePercentage = (presentCount / sectionClassCount) * 100;
+
+            return attendancePercentage < parsedThreshold ? count + 1 : count;
+        }, 0);
+
+        return res.status(200).json({
+            success: true,
+            stats: {
+                overallAttendancePercentage,
+                studentsBelowThreshold,
+                classesWithoutAttendanceToday,
+                totalClasses: classes.length,
+            },
+            records,
+        });
+    } catch (error) {
+        console.error('Error in getCoordinatorAttendanceDashboard:', error);
+        return res.status(500).json({
+            success: false,
+            message: 'Failed to load coordinator attendance dashboard',
+            error: error.message,
         });
     }
 };

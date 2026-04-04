@@ -5,12 +5,14 @@ const router = e.Router();
 import { 
     getActiveClass,
     markAttendance,
-    getAttendanceHistory
+    getAttendanceHistory,
+    getCoordinatorAttendanceDashboard,
 } from '../controllers/attendance.controller.js';
 
 router.get('/active-class/:facultyId', getActiveClass);
 router.post('/mark-attendance', markAttendance);
 router.get('/history/:classId', getAttendanceHistory);
+router.get('/dashboard', getCoordinatorAttendanceDashboard);
 
 router.post('/send-attendance-emails', attendanceEmailController.sendLowAttendanceEmails);
 router.get('/low-attendance-report', attendanceEmailController.getLowAttendanceReport);
