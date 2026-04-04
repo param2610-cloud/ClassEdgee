@@ -4,4 +4,4 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 
 export const fastapidomain = isDevelopment 
     ? `http://${process.env.FASTAPI_HOST}:8000`  // Development FastAPI server
-    : process.env.F
+    : (process.env.FASTAPI_PROD_URL || `http://${process.env.FASTAPI_HOST}:8000`);

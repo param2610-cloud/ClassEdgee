@@ -57,6 +57,7 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
 
 export default defineConfig({
   plugins: [react({ babel: { plugins: [jotaiDebugLabel, jotaiReactRefresh] } }), VitePWA(manifestForPlugin)],
+  appType: "spa",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
