@@ -15,7 +15,7 @@ import CourseDashboard from "@/pages/Protected/coordinator/course/CourseDashboar
 import SpecificCourseDashboard from "@/pages/Protected/coordinator/course/SpecificCourseDashboard";
 import SubjectManagement from "@/pages/Protected/coordinator/course/semester/SemesterSyllabusCreate";
 import UnitTopicManagement from "@/pages/Protected/coordinator/course/semester/subject/SpecificSubjectManagement";
-import ScheduleDashboard from "@/pages/Protected/faculty/schedule/ScheduleDashboard";
+import TimetableManagement from "@/pages/coordinator/timetable/TimetableManagement";
 import RoomManagement from "@/pages/Protected/coordinator/rooms/RoomManagement";
 import BuildingManagement from "@/pages/Protected/coordinator/buildings/BuildingManagement";
 import AttendanceDashboard from "@/pages/Protected/coordinator/Attendance/AttendanceDashboard";
@@ -51,7 +51,7 @@ const CoordinatorApp = () => {
           element={<UnitTopicManagement />}
         />
 
-        <Route path="timetable" element={<ScheduleDashboard />} />
+        <Route path="timetable" element={<TimetableManagement />} />
         <Route path="rooms" element={<RoomManagement />} />
         <Route path="buildings" element={<BuildingManagement />} />
         <Route path="attendance" element={<AttendanceDashboard />} />
