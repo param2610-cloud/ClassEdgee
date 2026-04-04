@@ -5,9 +5,9 @@ import CoordinatorDashboard from "@/pages/coordinator/Dashboard";
 import StudentList from "@/pages/coordinator/students/StudentList";
 import StudentCreate from "@/pages/coordinator/students/StudentCreate";
 import StudentEdit from "@/pages/coordinator/students/StudentEdit";
-import CoordinatorFaculty from "@/pages/Protected/coordinator/teachers/CoordinatorFaculty";
-import TeacherUploadLayout from "@/pages/Protected/coordinator/teachers/create/CreateTeacherLayout";
-import FacultyEditProfile from "@/pages/Protected/coordinator/teachers/edit/Teacheredit";
+import FacultyList from "@/pages/coordinator/faculty/FacultyList";
+import CreateFaculty from "@/pages/coordinator/faculty/CreateFaculty";
+import EditFaculty from "@/pages/coordinator/faculty/EditFaculty";
 import DepartmentLayout from "@/pages/Protected/department/DepartmentLayout";
 import DetailDepartment from "@/pages/Protected/department/[departmentid]/DetailDepartment";
 import AddHod from "@/pages/Protected/department/[departmentid]/AddHod";
@@ -32,9 +32,9 @@ const CoordinatorApp = () => {
         <Route path="students/new" element={<StudentCreate />} />
         <Route path="students/:id/edit" element={<StudentEdit />} />
 
-        <Route path="faculty" element={<CoordinatorFaculty />} />
-        <Route path="faculty/new" element={<TeacherUploadLayout />} />
-        <Route path="faculty/:id/edit" element={<FacultyEditProfile />} />
+        <Route path="faculty" element={<FacultyList />} />
+        <Route path="faculty/new" element={<CreateFaculty />} />
+        <Route path="faculty/:id/edit" element={<EditFaculty />} />
 
         <Route path="departments" element={<DepartmentLayout />} />
         <Route path="departments/:id" element={<DetailDepartment />} />
