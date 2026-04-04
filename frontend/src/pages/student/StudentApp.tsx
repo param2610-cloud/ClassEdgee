@@ -9,7 +9,7 @@ import Feedback from "@/pages/Protected/student/feedback/Feedback";
 import Calender from "@/pages/Protected/student/calender/Calender";
 import StudentProfile from "@/pages/Protected/student/profile/ProfilePage";
 import CreateEmergencyForm from "@/components/CreateEmergencyForm";
-import ComingSoon from "@/pages/shared/ComingSoon";
+import AttendanceSummary from "@/pages/student/attendance/AttendanceSummary";
 
 const StudentApp = () => {
   return (
@@ -18,7 +18,7 @@ const StudentApp = () => {
         <Route index element={<Dashboard />} />
         <Route path="classes" element={<ListOfClass />} />
         <Route path="classes/:class_id" element={<ClassDashboardStudent />} />
-        <Route path="attendance" element={<ComingSoon title="Student Attendance" />} />
+        <Route path="attendance" element={<AttendanceSummary />} />
         <Route path="calendar" element={<Calender />} />
         <Route path="notifications" element={<TechEventsNotifications />} />
         <Route path="feedback" element={<Feedback />} />

@@ -39,6 +39,23 @@ export interface StudentAttendanceSummary {
   atRisk: boolean;
 }
 
+export interface StudentSubjectAttendance {
+  subjectId: number;
+  subjectName: string;
+  totalClasses: number;
+  attendedClasses: number;
+  attendancePercentage: number;
+  status: "good" | "at-risk";
+}
+
+export interface StudentAttendanceDetail {
+  overallPercentage: number;
+  totalClasses: number;
+  attendedClasses: number;
+  atRisk: boolean;
+  subjects: StudentSubjectAttendance[];
+}
+
 export interface AttendanceDashboardFilters {
   departmentId?: number;
   sectionId?: number;
@@ -174,14 +191,7 @@ export const sendLowAttendanceEmails = async (): Promise<{ message?: string; aff
   return response.data as { message?: string; affectedStudents?: unknown[] };
 };
 
-const toNumber = (value: unknown) => {
-  const parsed = Number(value);
-  return Number.isFinite(parsed) ? parsed : 0;
-};
-
-export const getStudentAttendanceSummary = async (
-  userId: number
-): Promise<StudentAttendanceSummary> => {
+export const getStudentAttendanceDetail = async (userId: number): Promise<StudentAttendanceDetail> => {
   const student = await getCurrentStudent(userId);
   const studentId = student?.students?.student_id;
 
@@ -189,28 +199,28 @@ export const getStudentAttendanceSummary = async (
     throw new Error("Student record is missing student_id");
   }
 
-  const reportResponse = await api.get("/api/v1/attendance/low-attendance-report", {
-    params: { threshold: 101 },
-  });
-
-  const rows = Array.isArray(reportResponse.data?.data) ? reportResponse.data.data : [];
-  const match = rows.find((row: { studentId?: number }) => toNumber(row?.studentId) === toNumber(studentId));
-
-  if (!match) {
-    return {
-      overallPercentage: 0,
-      totalClasses: 0,
-      attendedClasses: 0,
-      atRisk: true,
-    };
-  }
-
-  const overallPercentage = toNumber(match.attendancePercentage);
+  const response = await api.get(`/api/v1/attendance/student-summary/${studentId}`);
+  const summary = response.data?.summary;
+  const subjects = response.data?.subjects;
 
   return {
-    overallPercentage,
-    totalClasses: toNumber(match.totalClasses),
-    attendedClasses: toNumber(match.attendedClasses),
-    atRisk: overallPercentage < 75,
+    overallPercentage: Number(summary?.overallPercentage ?? 0),
+    totalClasses: Number(summary?.totalClasses ?? 0),
+    attendedClasses: Number(summary?.attendedClasses ?? 0),
+    atRisk: Boolean(summary?.atRisk),
+    subjects: Array.isArray(subjects) ? (subjects as StudentSubjectAttendance[]) : [],
+  };
+};
+
+export const getStudentAttendanceSummary = async (
+  userId: number
+): Promise<StudentAttendanceSummary> => {
+  const detail = await getStudentAttendanceDetail(userId);
+
+  return {
+    overallPercentage: detail.overallPercentage,
+    totalClasses: detail.totalClasses,
+    attendedClasses: detail.attendedClasses,
+    atRisk: detail.atRisk,
   };
 };

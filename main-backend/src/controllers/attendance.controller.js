@@ -409,3 +409,115 @@ export const getCoordinatorAttendanceDashboard = async (req, res) => {
         });
     }
 };
+
+export const getStudentAttendanceSummary = async (req, res) => {
+    try {
+        const { studentId } = req.params;
+        const parsedStudentId = parseInt(studentId);
+
+        if (!parsedStudentId || Number.isNaN(parsedStudentId)) {
+            return res.status(400).json({
+                success: false,
+                message: 'Invalid studentId provided',
+            });
+        }
+
+        const records = await prisma.attendance.findMany({
+            where: {
+                student_id: parsedStudentId,
+            },
+            select: {
+                status: true,
+                class_id: true,
+                classes: {
+                    select: {
+                        course_id: true,
+                        courses: {
+                            select: {
+                                course_name: true,
+                                course_code: true,
+                            },
+                        },
+                    },
+                },
+            },
+        });
+
+        if (!records.length) {
+            return res.status(200).json({
+                success: true,
+                summary: {
+                    overallPercentage: 0,
+                    totalClasses: 0,
+                    attendedClasses: 0,
+                    atRisk: true,
+                },
+                subjects: [],
+            });
+        }
+
+        const subjectMap = new Map();
+
+        records.forEach((record) => {
+            const courseId = record.classes?.course_id || 0;
+            const fallbackClassId = record.class_id || 0;
+            const key = courseId ? `course-${courseId}` : `class-${fallbackClassId}`;
+            const subjectName =
+                record.classes?.courses?.course_name ||
+                record.classes?.courses?.course_code ||
+                (fallbackClassId ? `Class ${fallbackClassId}` : 'Unknown Subject');
+
+            const subjectData = subjectMap.get(key) || {
+                subjectId: courseId || fallbackClassId,
+                subjectName,
+                totalClasses: 0,
+                attendedClasses: 0,
+            };
+
+            subjectData.totalClasses += 1;
+            if (String(record.status || '').toLowerCase() === 'present') {
+                subjectData.attendedClasses += 1;
+            }
+
+            subjectMap.set(key, subjectData);
+        });
+
+        const subjects = Array.from(subjectMap.values())
+            .map((subject) => {
+                const percentage = subject.totalClasses
+                    ? Number(((subject.attendedClasses / subject.totalClasses) * 100).toFixed(2))
+                    : 0;
+
+                return {
+                    ...subject,
+                    attendancePercentage: percentage,
+                    status: percentage < 75 ? 'at-risk' : 'good',
+                };
+            })
+            .sort((left, right) => left.subjectName.localeCompare(right.subjectName));
+
+        const totalClasses = subjects.reduce((sum, subject) => sum + subject.totalClasses, 0);
+        const attendedClasses = subjects.reduce((sum, subject) => sum + subject.attendedClasses, 0);
+        const overallPercentage = totalClasses
+            ? Number(((attendedClasses / totalClasses) * 100).toFixed(2))
+            : 0;
+
+        return res.status(200).json({
+            success: true,
+            summary: {
+                overallPercentage,
+                totalClasses,
+                attendedClasses,
+                atRisk: overallPercentage < 75,
+            },
+            subjects,
+        });
+    } catch (error) {
+        console.error('Error in getStudentAttendanceSummary:', error);
+        return res.status(500).json({
+            success: false,
+            message: 'Failed to fetch student attendance summary',
+            error: error.message,
+        });
+    }
+};
