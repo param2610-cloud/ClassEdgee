@@ -1,23 +1,58 @@
-
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
+
+const parseOptionalInt = (value) => {
+    if (value === undefined || value === null || value === '') {
+        return undefined;
+    }
+
+    const parsed = Number.parseInt(String(value), 10);
+    return Number.isNaN(parsed) ? undefined : parsed;
+};
+
+const normalizeTags = (rawTags) => {
+    if (Array.isArray(rawTags)) {
+        return rawTags.map((tag) => String(tag).trim()).filter(Boolean);
+    }
+
+    if (typeof rawTags === 'string') {
+        const value = rawTags.trim();
+        if (!value) return [];
+
+        try {
+            const parsed = JSON.parse(value);
+            if (Array.isArray(parsed)) {
+                return parsed.map((tag) => String(tag).trim()).filter(Boolean);
+            }
+        } catch {
+            // Fallback to comma-separated tags.
+        }
+
+        return value.split(',').map((tag) => tag.trim()).filter(Boolean);
+    }
+
+    return [];
+};
 
 // controllers/resourceController.js
 export const createResource = async (req, res) => {
     try {
-        const { title, description, course_id, uploaded_by, tags, visibility, resource_type } = req.body;
-        const file_url = req.file ? req.file.path : null;
+        const { title, description, course_id, uploaded_by, tags, visibility, resource_type, file_url } = req.body;
+        const uploadedFileUrl = req.file ? `/uploads/${req.file.filename}` : null;
+
+        const parsedCourseId = parseOptionalInt(course_id);
+        const parsedUploadedBy = parseOptionalInt(uploaded_by);
 
         const resource = await prisma.resources.create({
             data: {
                 title,
                 description,
-                file_url,
-                resource_type,
-                course_id: parseInt(course_id),
-                uploaded_by : parseInt(uploaded_by),
-                tags,
-                visibility
+                file_url: uploadedFileUrl || file_url || null,
+                resource_type: resource_type || req.file?.mimetype || 'application/octet-stream',
+                course_id: parsedCourseId,
+                uploaded_by: parsedUploadedBy,
+                tags: normalizeTags(tags),
+                visibility: visibility || 'section'
             }
         });
         res.json(resource);
@@ -57,19 +92,26 @@ export const getResources = async (req, res) => {
 export const updateResource = async (req, res) => {
     try {
         const { id } = req.params;
-        const { title, description, course_id, tags, visibility, resource_type } = req.body;
+        const { title, description, course_id, tags, visibility, resource_type, file_url } = req.body;
+        const parsedCourseId = parseOptionalInt(course_id);
+
         const updateData = {
             title,
             description,
-            resource_type,
-            course_id: parseInt(course_id),
-            tags,
+            resource_type: resource_type || req.file?.mimetype,
+            tags: normalizeTags(tags),
             visibility,
             version: { increment: 1 }
         };
 
+        if (parsedCourseId !== undefined) {
+            updateData.course_id = parsedCourseId;
+        }
+
         if (req.file) {
-            updateData.file_url = req.file.path;
+            updateData.file_url = `/uploads/${req.file.filename}`;
+        } else if (typeof file_url === 'string' && file_url.trim()) {
+            updateData.file_url = file_url.trim();
         }
 
         const resource = await prisma.resources.update({

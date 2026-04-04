@@ -192,7 +192,10 @@ classData && classData.class_id && classData.section_id && <AttendanceButton sec
                 </TabsContent>
 
                 <TabsContent value="notes">
-                    <NotesTab courseId={Number(class_id)} />
+                    <NotesTab
+                        courseId={Number(class_id)}
+                        sectionId={classData?.section_id ? Number(classData.section_id) : undefined}
+                    />
                 </TabsContent>
 
 
