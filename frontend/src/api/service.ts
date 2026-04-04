@@ -1,8 +1,8 @@
 // api/services.ts
 import { domain } from '@/lib/constant';
-import { useAuth } from '@/services/AuthContext';
 import axios from 'axios';
 import * as XLSX from 'xlsx';
+import { useAuthStore } from '@/store/auth.store';
 
 // API Services
 export const scheduleService = {
@@ -16,7 +16,7 @@ export const scheduleService = {
     userId: number | undefined;
     sectionId: number | undefined;  
   }) {
-    const {user} = useAuth()
+    const user = useAuthStore.getState().user;
     params['userId'] = user?.user_id
     if (!params.userId) {
       throw new Error('User ID not found');

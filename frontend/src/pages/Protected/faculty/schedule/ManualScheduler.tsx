@@ -2,7 +2,7 @@ import { scheduleService } from "@/api/service";
 import InitialForm from "@/components/schedule/InitialForm";
 import ScheduleGrid from "@/components/schedule/ScheduleGrid";
 import { useToast } from "@/hooks/use-toast";
-import { useAuth } from "@/services/AuthContext";
+import { useAuth } from "@/hooks/useAuth";
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { PencilRuler, AlertCircle, ArrowLeft } from "lucide-react";

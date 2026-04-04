@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Loader2, Zap, CheckCircle, AlertCircle, Info } from 'lucide-react';
 import { domain } from '@/lib/constant';
-import { useAuth } from '@/services/AuthContext';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function ScheduleGenerator() {
   const { user } = useAuth();

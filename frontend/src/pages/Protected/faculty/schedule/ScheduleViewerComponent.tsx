@@ -9,11 +9,10 @@ import {
 } from "@/components/ui/select";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Loader2, Search } from "lucide-react";
-import { useAtom } from "jotai";
-import { institutionIdAtom } from "@/store/atom";
 import { domain } from "@/lib/constant";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useAuth } from "@/hooks/useAuth";
 
 interface ScheduleDetail {
     timeslots: {
@@ -154,16 +153,18 @@ const WeeklySchedule: React.FC = () => {
     const [academic_year, setAcademicYear] = useState<number | null>(null);
     const [semester, setSemester] = useState<number | null>(null);
     const [batch_year, setBatchYear] = useState<number | null>(null);
+    const { user } = useAuth();
 
-    const [institution_id, setInstituteId] = useAtom(institutionIdAtom);
+    const institutionId =
+        user?.institution_id ||
+        Number(localStorage.getItem("institution_id") || 0) ||
+        null;
 
     useEffect(() => {
-        if (institution_id) {
+        if (institutionId) {
             fetchDepartments();
-        } else {
-            setInstituteId(localStorage.getItem("institution_id") ? Number(localStorage.getItem("institution_id")) : null);
         }
-    }, [institution_id]);
+    }, [institutionId]);
 
     const fetchDepartments = async (): Promise<void> => {
         try {
@@ -172,7 +173,7 @@ const WeeklySchedule: React.FC = () => {
                 `${domain}/api/v1/department/list-of-department`,
                 {
                     headers: {
-                        "X-Institution-Id": `${institution_id}`,
+                        "X-Institution-Id": `${institutionId}`,
                     },
                 }
             );
