@@ -1,7 +1,31 @@
 import {PrismaClient} from '@prisma/client'
 import e from "express";
+import { emitEmergencyNew, emitEmergencyResolved } from "../socket.js";
 const prisma = new PrismaClient()
 const router = e.Router()
+
+const getAlertWithInstitution = async (alertId) => {
+    const alert = await prisma.emergencyalerts.findUnique({
+        where: { alert_id: alertId },
+        include: {
+            rooms: {
+                include: {
+                    buildings: {
+                        select: {
+                            institution_id: true,
+                            building_name: true
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    return {
+        alert,
+        institutionId: alert?.rooms?.buildings?.institution_id || undefined,
+    };
+};
 router.get('/emergency-alerts', async (req, res) => {
     try {
         const alerts = await prisma.emergencyalerts.findMany({
@@ -49,6 +73,9 @@ router.post('/emergency-alerts', async (req, res) => {
             }
         });
 
+        const { alert: alertWithInstitution, institutionId } = await getAlertWithInstitution(alert.alert_id);
+        emitEmergencyNew(alertWithInstitution || alert, institutionId);
+
         // Create notifications for all users
         // const users = await prisma.users.findMany();
         
@@ -61,7 +88,7 @@ router.post('/emergency-alerts', async (req, res) => {
         //     }))
         // });
 
-        return res.status(201).json(alert);
+        return res.status(201).json(alertWithInstitution || alert);
     } catch (error) {
         console.error('Error creating alert:', error);
         return res.status(500).json({ 
@@ -143,6 +170,20 @@ router.patch('/emergency-alerts/:id', async (req, res) => {
                 resolved_at: status === 'resolved' ? new Date() : null
             }
         });
+
+        const { institutionId } = await getAlertWithInstitution(alert.alert_id);
+
+        if (status === 'resolved') {
+            emitEmergencyResolved(
+                {
+                    alert_id: alert.alert_id,
+                    status: 'resolved'
+                },
+                institutionId
+            );
+        } else {
+            emitEmergencyNew(alert, institutionId);
+        }
 
         return res.status(200).json(alert);
     } catch (error) {

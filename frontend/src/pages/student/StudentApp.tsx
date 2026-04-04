@@ -7,7 +7,7 @@ import ListOfClass from "@/pages/Protected/faculty/classes/List_of_class";
 import TechEventsNotifications from "@/pages/Protected/student/TechNotification";
 import Feedback from "@/pages/Protected/student/feedback/Feedback";
 import Calender from "@/pages/Protected/student/calender/Calender";
-import StudentProfile from "@/pages/Protected/student/profile/ProfilePage";
+import StudentProfile from "@/pages/student/profile/StudentProfile";
 import CreateEmergencyForm from "@/components/CreateEmergencyForm";
 import AttendanceSummary from "@/pages/student/attendance/AttendanceSummary";
 

@@ -12,11 +12,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Plus, Save } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { domain } from '@/lib/constant';
-import axios from 'axios';
 import QuizList from './QuizList';
 import QuizResults from './QuizResponse';
 import { useParams } from 'react-router-dom';
+import { createQuiz } from '@/api/quiz.api';
+import { useToast } from '@/hooks/use-toast';
 
 // Define the type for a single question
 interface Question {
@@ -34,6 +34,7 @@ interface QuizData {
 }
 
 const QuizManagement = () => {
+  const { toast } = useToast();
   const {class_id} = useParams();
   const [quizData, setQuizData] = useState<QuizData>({
     title: '',
@@ -47,25 +48,37 @@ const QuizManagement = () => {
   });
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [refreshVersion, setRefreshVersion] = useState(0);
 
   const handleCreateQuiz = async () => {
+    if (!quizData.class_id) return;
+
     try {
       setLoading(true);
-      const response = await axios.post(`${domain}/api/v1/quizzes/create`, {
-        ...quizData,
-        class_id: Number(quizData.class_id)
+      await createQuiz({
+        title: quizData.title,
+        class_id: Number(quizData.class_id),
+        questions: quizData.questions,
       });
-      
-      if (response.data.success) {
-        setIsOpen(false);
-        setQuizData({
-          title: '',
-          class_id: class_id,
-          questions: [{ question_text: '', options: ['', '', '', ''], correct_answer: 0, explanation: '' }]
-        });
-      }
+
+      setIsOpen(false);
+      setQuizData({
+        title: '',
+        class_id: class_id,
+        questions: [{ question_text: '', options: ['', '', '', ''], correct_answer: 0, explanation: '' }]
+      });
+      setRefreshVersion((value) => value + 1);
+      toast({
+        title: 'Quiz created',
+        description: 'The quiz has been published for this class.',
+      });
     } catch (error) {
-      console.error('Error creating quiz:', error);
+      const message = error instanceof Error ? error.message : 'Unable to create quiz';
+      toast({
+        title: 'Create failed',
+        description: message,
+        variant: 'destructive',
+      });
     } finally {
       setLoading(false);
     }
@@ -84,9 +97,20 @@ const QuizManagement = () => {
   };
 
   const updateQuestion = (index: number, field: keyof Question, value: string | number) => {
-    const newQuestions = [...quizData.questions];
-    (newQuestions[index] as any)[field] = value;
-    setQuizData(prev => ({ ...prev, questions: newQuestions }));
+    setQuizData((prev) => {
+      const questions = prev.questions.map((question, questionIndex) => {
+        if (questionIndex !== index) return question;
+        return {
+          ...question,
+          [field]: value,
+        } as Question;
+      });
+
+      return {
+        ...prev,
+        questions,
+      };
+    });
   };
 
   const updateOption = (questionIndex: number, optionIndex: number, value: string) => {
@@ -180,7 +204,7 @@ const QuizManagement = () => {
             </Dialog>
           </div>
           {
-            class_id && <QuizList classId={class_id} />
+            class_id && <QuizList classId={class_id} refreshVersion={refreshVersion} />
           }
         </TabsContent>
 

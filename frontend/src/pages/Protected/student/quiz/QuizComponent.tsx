@@ -12,10 +12,10 @@ import {
 } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { user_idAtom, userDataAtom } from "@/store/atom";
-import { useAtom } from "jotai";
-import axios from "axios";
-import { domain } from "@/lib/constant";
+import { getCurrentStudent } from "@/api/student.api";
+import { submitQuizResponse } from "@/api/quiz.api";
+import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
 
 interface QuizQuestion {
   question_id: number;
@@ -31,39 +31,37 @@ interface Quiz {
 }
 
 const QuizDrawerComponent = ({ classData }: { classData: Class }) => {
+  const { user } = useAuth();
+  const { toast } = useToast();
   const [isOpen, setIsOpen] = useState(false);
-  const [user_id] = useAtom(user_idAtom);
   const [currentQuiz, setCurrentQuiz] = useState<Quiz | null>(null);
   const [responses, setResponses] = useState<{ [key: number]: number }>({});
   const [isLoading, setIsLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [studentData, setStudentData] = useAtom(userDataAtom);
-
-  const fetchStudentData = async () => {
-    try {
-      const studentResponse = await fetch(
-        `${domain}/api/v1/student/get-student/${user_id}`
-      );
-      const studentData = await studentResponse.json();
-      console.log("studentData:", studentData);
-      setStudentData(studentData.data);
-
-      setIsLoading(false);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setIsLoading(false);
-    }
-  };
+  const [studentId, setStudentId] = useState<number | null>(null);
+  const [alreadySubmitted, setAlreadySubmitted] = useState(false);
 
   useEffect(() => {
-    if (!studentData) {
-      fetchStudentData();
-    }
-  }, [studentData]);
+    const fetchStudentData = async () => {
+      if (!user?.user_id) return;
+
+      try {
+        const profile = await getCurrentStudent(user.user_id);
+        setStudentId(profile.students?.student_id ?? null);
+      } catch {
+        setStudentId(null);
+      }
+    };
+
+    void fetchStudentData();
+  }, [user?.user_id]);
 
   const handleQuizStart = () => {
     if (classData?.quizzes?.[0]) {
       setCurrentQuiz(classData.quizzes[0]);
+      setSubmitted(false);
+      setAlreadySubmitted(false);
+      setResponses({});
       setIsOpen(true);
     }
   };
@@ -76,6 +74,8 @@ const QuizDrawerComponent = ({ classData }: { classData: Class }) => {
   };
 
   const handleSubmit = async () => {
+    if (!currentQuiz?.quiz_id || !studentId) return;
+
     try {
       setIsLoading(true);
       const quizResponses = Object.entries(responses).map(
@@ -84,16 +84,28 @@ const QuizDrawerComponent = ({ classData }: { classData: Class }) => {
           selected_option,
         })
       );
-      if (!studentData?.students?.student_id) return;
-      await axios.post(
-        `${domain}/api/v1/quizzes/${currentQuiz?.quiz_id}/submit`,
-        {
-          student_id: studentData?.students?.student_id,
-          quizResponses,
-        }
-      );
+
+      await submitQuizResponse(currentQuiz.quiz_id, {
+        student_id: studentId,
+        quizResponses,
+      });
 
       setSubmitted(true);
+      toast({
+        title: "Quiz submitted",
+        description: "Your responses have been recorded.",
+      });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Failed to submit quiz";
+      const duplicateSubmission = /already submitted/i.test(message);
+      if (duplicateSubmission) {
+        setAlreadySubmitted(true);
+      }
+      toast({
+        title: duplicateSubmission ? "Already submitted" : "Submission failed",
+        description: message,
+        variant: duplicateSubmission ? "default" : "destructive",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -101,6 +113,15 @@ const QuizDrawerComponent = ({ classData }: { classData: Class }) => {
 
   const renderContent = () => {
     if (!currentQuiz) return null;
+    if (alreadySubmitted) {
+      return (
+        <div className="p-6 text-center">
+          <h3 className="text-xl font-semibold mb-4">Quiz Already Submitted</h3>
+          <p className="text-gray-600">You can submit each quiz only once.</p>
+        </div>
+      );
+    }
+
     if (submitted) {
       return (
         <div className="p-6 text-center">
@@ -177,11 +198,12 @@ const QuizDrawerComponent = ({ classData }: { classData: Class }) => {
           <DrawerClose asChild>
             <Button variant="outline">Close</Button>
           </DrawerClose>
-          {!submitted && currentQuiz && (
+          {!submitted && !alreadySubmitted && currentQuiz && (
             <Button
               onClick={handleSubmit}
               disabled={
                 isLoading ||
+                !studentId ||
                 Object.keys(responses).length !==
                   currentQuiz.quiz_questions.length
               }

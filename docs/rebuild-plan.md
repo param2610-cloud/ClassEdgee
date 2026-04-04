@@ -4,13 +4,13 @@
 
 ---
 
-## Implementation Status (Last updated: 2026-04-04)
+## Implementation Status (Last updated: 2026-04-05)
 
 Quick reference — what is Done vs Remaining.
 
 | Phase | Story | Title | Status |
 |-------|-------|-------|--------|
-| 0 | STORY-001 | Remove dual backend from frontend env | **Partial** — AttendanceComponent fixed; `fastapidomain` still exported in `constant.ts` |
+| 0 | STORY-001 | Remove dual backend from frontend env | **Done** — frontend FastAPI env references removed (`fastapidomain`, `VITE_FASTAPI_HOST`) |
 | 0 | STORY-002 | Add auth middleware to Python backend | **Superseded** — new ml-worker uses RabbitMQ, no HTTP; Python is no longer called by Node over HTTP |
 | 0 | STORY-003 | Node proxy route for ML operations | **Done** — `POST /api/v1/face/process-class`, `POST /api/v1/face/register`, `GET /api/v1/face/job/:jobId` |
 | 0 | STORY-004 | Move attendance DB writes from Python to Node | **Done** — `faceResultProcessor.js` owns all attendance writes; ml-worker returns results only |
@@ -35,12 +35,12 @@ Quick reference — what is Done vs Remaining.
 | 4 | STORY-042 | Attendance dashboard (coordinator) | Not started |
 | 4 | STORY-043 | Student attendance view | Not started |
 | 5 | STORY-050 | Class room (notes + resources tab) | Not started |
-| 5 | STORY-051 | Quiz system | Not started |
-| 5 | STORY-052 | Real-time emergency alerts (Socket.io) | Not started |
+| 5 | STORY-051 | Quiz system | **Done** — faculty create/list + per-student score view + one-time student submission guard |
+| 5 | STORY-052 | Real-time emergency alerts (Socket.io) | **Done** — JWT-authenticated Socket.io with institution rooms + live emergency hooks |
 | 5 | STORY-053 | Async face attendance with job polling | **Done** — RabbitMQ queues + in-memory job store + 3s polling in frontend |
-| 6 | STORY-060 | Dynamic page titles | Not started |
-| 6 | STORY-061 | Low attendance email notifications | Not started |
-| 6 | STORY-062 | Profile pages | Not started |
+| 6 | STORY-060 | Dynamic page titles | **Done** — `usePageTitle` integrated in app/public layouts |
+| 6 | STORY-061 | Low attendance email notifications | **Done** — coordinator attendance dashboard includes send-warnings flow |
+| 6 | STORY-062 | Profile pages | **Done** — role-namespaced faculty/student profile settings with RHF + Zod |
 
 ### What was actually built (face recognition revamp — April 2026)
 
@@ -627,17 +627,17 @@ Each story follows this format:
 ---
 
 #### STORY-001 — Remove dual backend from frontend env
-**Status**: `Partial — finish this before starting Phase 1`
+**Status**: `Done ✅`
 
 **Why**: The frontend has `VITE_FASTAPI_HOST` which exposes the Python service URL in the browser bundle.
 
 **What was done**: `AttendanceComponent.tsx` now calls `${domain}/api/v1/face/process-class` (Node only). ✅
 
-**What remains**:
-- [ ] `fastapidomain` export removed from `frontend/src/lib/constant.ts`
-- [ ] `VITE_FASTAPI_HOST` removed from `frontend/.env` and `frontend/.env.example`
-- [ ] `ClassDashboard.tsx` commented-out code referencing `fastapidomain`/`VITE_FASTAPI_HOST` cleaned up (delete the dead comments, not just comment them out)
-- [ ] Confirm zero `grep` matches for `fastapidomain` or `VITE_FASTAPI_HOST` across `frontend/src/`
+**What was completed**:
+- [x] `fastapidomain` export removed from `frontend/src/lib/constant.ts`
+- [x] `VITE_FASTAPI_HOST` removed from frontend env references (`.env.example` and source usage)
+- [x] Dead FastAPI comments removed from `ClassDashboard.tsx`
+- [x] Verified zero `grep` matches for `fastapidomain` and `VITE_FASTAPI_HOST` in `frontend/src/`
 
 **Files**:
 - `frontend/src/lib/constant.ts` — remove `fastapidomain` line
@@ -1228,7 +1228,7 @@ The old `python-backend/` FastAPI service still runs for two remaining functions
 ---
 
 #### STORY-051 — Quiz system (faculty create, student submit)
-**Status**: `Draft`
+**Status**: `Done ✅`
 
 **Why**: Faculty creates quizzes per class. Students submit answers. Existing quiz components exist but have broken state management and no student-side flow.
 
@@ -1250,7 +1250,7 @@ The old `python-backend/` FastAPI service still runs for two remaining functions
 ---
 
 #### STORY-052 — Real-time emergency alerts (Socket.io)
-**Status**: `Draft`
+**Status**: `Done ✅`
 
 **Why**: Emergency alerts currently require page refresh to see. Socket.io gives instant delivery. Node already has the infrastructure (`bull` queue installed, `socket.io` is a natural add).
 
@@ -1305,7 +1305,7 @@ The old `python-backend/` FastAPI service still runs for two remaining functions
 ---
 
 #### STORY-060 — Dynamic page titles
-**Status**: `Draft`
+**Status**: `Done ✅`
 
 **Why**: All browser tabs currently show the same title. Makes multi-tab usage confusing.
 
@@ -1325,7 +1325,7 @@ The old `python-backend/` FastAPI service still runs for two remaining functions
 ---
 
 #### STORY-061 — Low attendance email notifications
-**Status**: `Draft`
+**Status**: `Done ✅`
 
 **Why**: Coordinator needs to send warning emails to students below 75% attendance. Node already has `nodemailer` configured.
 
@@ -1344,7 +1344,7 @@ The old `python-backend/` FastAPI service still runs for two remaining functions
 ---
 
 #### STORY-062 — Profile pages (faculty + student)
-**Status**: `Draft`
+**Status**: `Done ✅`
 
 **Why**: Profile pages exist but are inconsistently styled and don't use the design system.
 

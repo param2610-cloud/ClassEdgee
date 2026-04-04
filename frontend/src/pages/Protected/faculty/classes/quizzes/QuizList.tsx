@@ -2,39 +2,46 @@ import { useEffect, useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { formatDistanceToNow } from 'date-fns';
-import { domain } from '@/lib/constant';
-import axios from 'axios';
+import { getClassQuizzes, Quiz } from '@/api/quiz.api';
+import { ErrorState, EmptyState, LoadingSkeleton } from '@/components/shared';
+import { BookOpen } from 'lucide-react';
 
-// Define the structure of a quiz object
-interface Quiz {
-  quiz_id: number;
-  title: string;
-  quiz_questions: any[]; // Use a more specific type if the structure of questions is known
-  created_at: string; // Or Date if you parse it immediately
-}
-
-const QuizList = ({ classId }: { classId: string }) => {
+const QuizList = ({ classId, refreshVersion = 0 }: { classId: string; refreshVersion?: number }) => {
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string>('');
 
   useEffect(() => {
     const fetchQuizzes = async () => {
+      setLoading(true);
+      setError('');
+
       try {
-        const response = await axios.get(`${domain}/api/v1/quizzes/${classId}`);
-        if (response.data.success) {
-          setQuizzes(response.data.data);
-        }
+        const data = await getClassQuizzes(classId);
+        setQuizzes(data);
       } catch (error) {
-        console.error('Error fetching quizzes:', error);
+        const message = error instanceof Error ? error.message : 'Failed to load quizzes';
+        setError(message);
       } finally {
         setLoading(false);
       }
     };
 
     fetchQuizzes();
-  }, [classId]);
+  }, [classId, refreshVersion]);
 
-  if (loading) return <div>Loading quizzes...</div>;
+  if (loading) return <LoadingSkeleton variant="table" rows={3} />;
+  if (error) return <ErrorState message={error} />;
+
+  if (!quizzes.length) {
+    return (
+      <EmptyState
+        icon={BookOpen}
+        title="No quizzes published"
+        description="Create the first quiz for this class to start assessments."
+      />
+    );
+  }
 
   return (
     <Card>
@@ -56,7 +63,9 @@ const QuizList = ({ classId }: { classId: string }) => {
                 <TableCell className="font-medium">{quiz.title}</TableCell>
                 <TableCell>{quiz.quiz_questions.length}</TableCell>
                 <TableCell>
-                  {formatDistanceToNow(new Date(quiz.created_at), { addSuffix: true })}
+                  {quiz.created_at
+                    ? formatDistanceToNow(new Date(quiz.created_at), { addSuffix: true })
+                    : "-"}
                 </TableCell>
               </TableRow>
             ))}

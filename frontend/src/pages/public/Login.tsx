@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { AuthRole } from "@/store/auth.store";
 import { useAuth } from "@/hooks/useAuth";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 const loginSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -29,6 +30,8 @@ const roleRootMap: Record<AuthRole, string> = {
 };
 
 const Login = () => {
+  usePageTitle("Sign In");
+
   const navigate = useNavigate();
   const { user } = useAuth();
   const [submitError, setSubmitError] = useState<string>("");
