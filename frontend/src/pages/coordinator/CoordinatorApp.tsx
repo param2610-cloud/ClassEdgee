@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import AppShell from "@/layouts/AppShell";
 import { roleNavigation } from "@/lib/navigation";
-import CoordinatorDashboard from "@/pages/Protected/coordinator/dashaboard/CoordinatorDashboard";
+import CoordinatorDashboard from "@/pages/coordinator/Dashboard";
 import CoordinatorStudent from "@/pages/Protected/coordinator/student/CoordinatorStudent";
 import StudentUploadLayout from "@/pages/Protected/coordinator/student/create/StudentCreateLayout";
 import EditStudentForm from "@/pages/Protected/coordinator/student/edit/Studentedit";
