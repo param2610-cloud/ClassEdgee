@@ -192,6 +192,16 @@ const generateSchedule = async (req, res) => {
             }
 
             const solverStatus = response.data.status || "feasible";
+            const solverMessage = response.data.message || null;
+
+            if (solverStatus === "infeasible") {
+                return res.status(422).json({
+                    success: false,
+                    message: solverMessage || "No feasible schedule could be generated for the given constraints.",
+                    solver_status: "infeasible",
+                });
+            }
+
             const generatedSchedule = response.data.schedule || response.data;
 
             if (
@@ -201,7 +211,7 @@ const generateSchedule = async (req, res) => {
             ) {
                 return res.status(422).send({
                     success: false,
-                    message: "No feasible schedule generated",
+                    message: "Schedule solver returned an empty result.",
                     solver_status: solverStatus,
                 });
             }
