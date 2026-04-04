@@ -250,6 +250,21 @@ The async flow (upload → job_id → poll) is fully implemented:
 
 **Single API base URL**: `VITE_API_URL` → Node.js backend only. Remove `VITE_FASTAPI_HOST` from frontend env.
 
+**API call rule (enforced from Phase 3 onward)**: Every HTTP call in `src/api/*.ts` **must** use the shared `api` instance from `@/api/axios`, never raw `axios` directly. The shared instance has the auth token interceptor (injects `Authorization: Bearer <token>`) and the 401 → token refresh handler. Using raw `axios` bypasses both and will silently fail when the token expires.
+
+```ts
+// CORRECT
+import api from "@/api/axios";
+const response = await api.get("/api/v1/some/endpoint");
+
+// WRONG — do not do this
+import axios from "axios";
+import { domain } from "@/lib/constant";
+const response = await axios.get(`${domain}/api/v1/some/endpoint`);
+```
+
+Any existing file that violates this (e.g. `service.ts` pre-phase3) must be migrated when touched.
+
 ### Backend (Node.js — `main-backend/`)
 
 | Concern | Package | Notes |
