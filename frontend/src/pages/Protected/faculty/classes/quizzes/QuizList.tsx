@@ -1,37 +1,34 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { formatDistanceToNow } from 'date-fns';
-import { getClassQuizzes, Quiz } from '@/api/quiz.api';
+import { getClassQuizzes } from '@/api/quiz.api';
 import { ErrorState, EmptyState, LoadingSkeleton } from '@/components/shared';
 import { BookOpen } from 'lucide-react';
 
-const QuizList = ({ classId, refreshVersion = 0 }: { classId: string; refreshVersion?: number }) => {
-  const [quizzes, setQuizzes] = useState<Quiz[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string>('');
+const QuizList = ({ classId }: { classId: string }) => {
+  const quizzesQuery = useQuery({
+    queryKey: ['class-quizzes', classId],
+    queryFn: () => getClassQuizzes(classId),
+    enabled: Boolean(classId),
+  });
 
-  useEffect(() => {
-    const fetchQuizzes = async () => {
-      setLoading(true);
-      setError('');
+  if (quizzesQuery.isLoading) return <LoadingSkeleton variant="table" rows={3} />;
 
-      try {
-        const data = await getClassQuizzes(classId);
-        setQuizzes(data);
-      } catch (error) {
-        const message = error instanceof Error ? error.message : 'Failed to load quizzes';
-        setError(message);
-      } finally {
-        setLoading(false);
-      }
-    };
+  if (quizzesQuery.isError) {
+    const message =
+      quizzesQuery.error instanceof Error
+        ? quizzesQuery.error.message
+        : 'Failed to load quizzes';
+    return (
+      <ErrorState
+        message={message}
+        onRetry={() => { quizzesQuery.refetch(); }}
+      />
+    );
+  }
 
-    fetchQuizzes();
-  }, [classId, refreshVersion]);
-
-  if (loading) return <LoadingSkeleton variant="table" rows={3} />;
-  if (error) return <ErrorState message={error} />;
+  const quizzes = quizzesQuery.data ?? [];
 
   if (!quizzes.length) {
     return (

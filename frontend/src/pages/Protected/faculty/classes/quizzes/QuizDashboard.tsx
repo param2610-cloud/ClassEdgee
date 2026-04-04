@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   Dialog,
   DialogContent,
@@ -33,56 +34,44 @@ interface QuizData {
   questions: Question[];
 }
 
+const emptyQuizData = (class_id: string | undefined): QuizData => ({
+  title: '',
+  class_id,
+  questions: [{ question_text: '', options: ['', '', '', ''], correct_answer: 0, explanation: '' }],
+});
+
 const QuizManagement = () => {
   const { toast } = useToast();
-  const {class_id} = useParams();
-  const [quizData, setQuizData] = useState<QuizData>({
-    title: '',
-    class_id: class_id,
-    questions: [{
-      question_text: '',
-      options: ['', '', '', ''],
-      correct_answer: 0,
-      explanation: ''
-    }]
-  });
+  const { class_id } = useParams();
+  const queryClient = useQueryClient();
+  const [quizData, setQuizData] = useState<QuizData>(emptyQuizData(class_id));
   const [isOpen, setIsOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [refreshVersion, setRefreshVersion] = useState(0);
 
-  const handleCreateQuiz = async () => {
-    if (!quizData.class_id) return;
-
-    try {
-      setLoading(true);
-      await createQuiz({
+  const createMutation = useMutation({
+    mutationFn: () =>
+      createQuiz({
         title: quizData.title,
         class_id: Number(quizData.class_id),
         questions: quizData.questions,
-      });
-
+      }),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['class-quizzes', class_id] });
       setIsOpen(false);
-      setQuizData({
-        title: '',
-        class_id: class_id,
-        questions: [{ question_text: '', options: ['', '', '', ''], correct_answer: 0, explanation: '' }]
-      });
-      setRefreshVersion((value) => value + 1);
+      setQuizData(emptyQuizData(class_id));
       toast({
         title: 'Quiz created',
         description: 'The quiz has been published for this class.',
       });
-    } catch (error) {
+    },
+    onError: (error) => {
       const message = error instanceof Error ? error.message : 'Unable to create quiz';
       toast({
         title: 'Create failed',
         description: message,
         variant: 'destructive',
       });
-    } finally {
-      setLoading(false);
-    }
-  };
+    },
+  });
 
   const addQuestion = () => {
     setQuizData(prev => ({
@@ -194,18 +183,19 @@ const QuizManagement = () => {
                     <Button onClick={addQuestion} variant="outline">
                       <Plus className="mr-2 h-4 w-4" /> Add Question
                     </Button>
-                    <Button onClick={handleCreateQuiz} disabled={loading}>
-                      <Save className="mr-2 h-4 w-4" /> 
-                      {loading ? 'Creating...' : 'Create Quiz'}
+                    <Button
+                      onClick={() => { createMutation.mutate(); }}
+                      disabled={createMutation.isPending || !quizData.title.trim() || !quizData.class_id}
+                    >
+                      <Save className="mr-2 h-4 w-4" />
+                      {createMutation.isPending ? 'Creating...' : 'Create Quiz'}
                     </Button>
                   </div>
                 </div>
               </DialogContent>
             </Dialog>
           </div>
-          {
-            class_id && <QuizList classId={class_id} refreshVersion={refreshVersion} />
-          }
+          {class_id && <QuizList classId={class_id} />}
         </TabsContent>
 
         <TabsContent value="results">
