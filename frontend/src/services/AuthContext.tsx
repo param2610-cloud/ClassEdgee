@@ -1,160 +1,56 @@
-import {  User } from "@/interface/general";
-import { domain } from "@/lib/constant";
-import { user_idAtom } from "@/store/atom";
-import axios from "axios";
-import { useAtom } from "jotai";
-import React, { createContext, useState, useContext, useEffect } from "react";
+import { ReactNode, useMemo } from "react";
+import { useAuthStore } from "@/store/auth.store";
 
-
-interface AuthContextType {
-    user: User | null;
-    isLoading: boolean;
-    logout: () => void;
-    reinitializeAuth: () => void;
+interface CompatAuthContextType {
+  user: ReturnType<typeof useAuthStore.getState>["user"];
+  token: string | null;
+  isLoading: boolean;
+  logout: () => void;
+  reinitializeAuth: () => void;
 }
 
-// Create a custom event name
-const AUTH_REVALIDATE_EVENT = 'auth-revalidate';
+const syncLegacyTokenToStore = (key: string, value: string | null) => {
+  const state = useAuthStore.getState();
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+  if (key === "accessToken") {
+    state.setToken(value);
+  }
+
+  if (key === "refreshToken") {
+    state.setRefreshToken(value);
+  }
+};
 
 export const enhancedLocalStorage = {
-    setItem: (key: string, value: string) => {
-        localStorage.setItem(key, value);
-        if (key === 'accessToken' || key === 'refreshToken') {
-            window.dispatchEvent(new CustomEvent(AUTH_REVALIDATE_EVENT));
-        }
-    },
-    removeItem: (key: string) => {
-        localStorage.removeItem(key);
-    },
-    getItem: (key: string) => localStorage.getItem(key),
+  setItem: (key: string, value: string) => {
+    localStorage.setItem(key, value);
+    syncLegacyTokenToStore(key, value);
+  },
+  removeItem: (key: string) => {
+    localStorage.removeItem(key);
+    syncLegacyTokenToStore(key, null);
+  },
+  getItem: (key: string) => localStorage.getItem(key),
 };
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
-    children,
-}) => {
-    const [user, setUser] = useState<User | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
-    const [ ,setUser_id] = useAtom<number | null>(user_idAtom);
-
-    const initializeAuth = async () => {
-        const token = enhancedLocalStorage.getItem("accessToken");
-        console.log("adada",token);
-        
-        if (token) {
-            console.log("AuthProvider - Token found, validating...");
-            await validateToken(token);
-        } else {
-            console.log("AuthProvider - No token found");
-            setIsLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        initializeAuth();
-
-        const handleRevalidate = () => {
-            console.log("AuthProvider - Revalidation triggered");
-            initializeAuth();
-        };
-
-        window.addEventListener(AUTH_REVALIDATE_EVENT, handleRevalidate);
-
-        return () => {
-            window.removeEventListener(AUTH_REVALIDATE_EVENT, handleRevalidate);
-        };
-    }, []);
-
-    const logout = async () => {
-        const accessToken = enhancedLocalStorage.getItem("accessToken");
-        if (accessToken) {
-            try {
-                await axios.post(`${domain}/api/v1/general/logout`, null, {
-                    headers: { Authorization: `Bearer ${accessToken}` },
-                    withCredentials: true
-                });
-            } catch (error) {
-                console.error("Logout error:", error);
-            }
-        }
-        setUser(null);
-        enhancedLocalStorage.removeItem("accessToken");
-        enhancedLocalStorage.removeItem("refreshToken");
-        setIsLoading(false);
-    };
-    const validateToken = async (token: string) => {
-        try {
-            const response = await axios.get(`${domain}/api/v1/general/validate-token`, {
-                headers: { Authorization: `Bearer ${token}` },
-                withCredentials: true
-            });
-            
-            console.log(response);
-            if (response.status === 200 && response.data.user) {
-                
-                setUser(response.data.user);
-                setUser_id(response?.data?.user?.user_id);
-                setIsLoading(false);
-            } else {
-                throw new Error("Invalid token response");
-            }
-        } catch (error) {
-            if (axios.isAxiosError(error) && error.response?.status === 401) {
-                await refreshToken();
-            } else {
-                console.error("Token validation error:", error);
-                logout();
-            }
-        }
-    };
-
-    const refreshToken = async () => {
-        const refreshToken = enhancedLocalStorage.getItem("refreshToken");
-        if (!refreshToken) {
-            logout();
-            return;
-        }
-    
-        try {
-            const response = await axios.post(`${domain}/api/v1/general/refresh-token`, null, {
-                headers: { Authorization: `Bearer ${refreshToken}` },
-                withCredentials: true
-            });
-            
-            if (response.status === 200 && response.data.accessToken && response.data.refreshToken) {
-                enhancedLocalStorage.setItem("accessToken", response.data.accessToken);
-                enhancedLocalStorage.setItem("refreshToken", response.data.refreshToken);
-                await validateToken(response.data.accessToken);
-            } else {
-                throw new Error("Invalid refresh token response");
-            }
-        } catch (error) {
-            console.error("Token refresh error:", error);
-            logout();
-        }
-    };
-
-    const contextValue: AuthContextType = {
-        user,
-        isLoading,
-        logout,
-        reinitializeAuth: initializeAuth,
-    };
-
-    return (
-        <AuthContext.Provider value={contextValue}>
-            {children}
-        </AuthContext.Provider>
-    );
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  return <>{children}</>;
 };
 
-export const useAuth = (): AuthContextType => {
-    const context = useContext(AuthContext);
-    console.log(context);
-    
-    if (context === undefined) {
-        throw new Error("useAuth must be used within an AuthProvider");
-    }
-    return context;
+export const useAuth = (): CompatAuthContextType => {
+  const user = useAuthStore((state) => state.user);
+  const token = useAuthStore((state) => state.token);
+  const isHydrated = useAuthStore((state) => state.isHydrated);
+  const clearAuth = useAuthStore((state) => state.clearAuth);
+
+  return useMemo(
+    () => ({
+      user,
+      token,
+      isLoading: !isHydrated,
+      logout: clearAuth,
+      reinitializeAuth: () => undefined,
+    }),
+    [clearAuth, isHydrated, token, user]
+  );
 };
