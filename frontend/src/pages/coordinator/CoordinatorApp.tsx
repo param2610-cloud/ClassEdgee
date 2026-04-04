@@ -16,8 +16,8 @@ import SpecificCourseDashboard from "@/pages/Protected/coordinator/course/Specif
 import SubjectManagement from "@/pages/Protected/coordinator/course/semester/SemesterSyllabusCreate";
 import UnitTopicManagement from "@/pages/Protected/coordinator/course/semester/subject/SpecificSubjectManagement";
 import TimetableManagement from "@/pages/coordinator/timetable/TimetableManagement";
-import RoomManagement from "@/pages/Protected/coordinator/rooms/RoomManagement";
-import BuildingManagement from "@/pages/Protected/coordinator/buildings/BuildingManagement";
+import RoomManagement from "@/pages/coordinator/rooms/RoomManagement";
+import BuildingManagement from "@/pages/coordinator/buildings/BuildingManagement";
 import AttendanceDashboard from "@/pages/Protected/coordinator/Attendance/AttendanceDashboard";
 import ResourceManagement from "@/pages/Protected/coordinator/resource/ResourceManagement";
 import CreateEmergencyForm from "@/components/CreateEmergencyForm";
