@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Video, Loader2, Upload} from 'lucide-react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { Video, Loader2, Upload, Camera, Circle, Square } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -53,15 +53,137 @@ const VideoAttendanceUpload: React.FC<VideoAttendanceUploadProps> = ({ sectionId
   const [jobId, setJobId] = useState<string | null>(null);
   const [jobStatus, setJobStatus] = useState<string | null>(null);
   const [jobMessage, setJobMessage] = useState<string | null>(null);
+  const [cameraStream, setCameraStream] = useState<MediaStream | null>(null);
+  const [isRecording, setIsRecording] = useState<boolean>(false);
+  const [recordedVideoUrl, setRecordedVideoUrl] = useState<string | null>(null);
+
+  const liveVideoRef = useRef<HTMLVideoElement | null>(null);
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const recordedChunksRef = useRef<Blob[]>([]);
 
   useEffect(() => {
     fetchAttendanceStudentList();
   }, [classId]);
 
+  const clearRecordedPreview = useCallback(() => {
+    setRecordedVideoUrl((previous) => {
+      if (previous) {
+        URL.revokeObjectURL(previous);
+      }
+      return null;
+    });
+  }, []);
+
+  useEffect(() => {
+    if (liveVideoRef.current) {
+      liveVideoRef.current.srcObject = cameraStream;
+    }
+  }, [cameraStream]);
+
+  const stopCamera = useCallback(() => {
+    if (cameraStream) {
+      cameraStream.getTracks().forEach((track) => track.stop());
+      setCameraStream(null);
+    }
+  }, [cameraStream]);
+
+  const startCamera = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: 'user' },
+        audio: false,
+      });
+      setCameraStream(stream);
+      setError(null);
+    } catch {
+      setError('Unable to access camera. Check permissions and try again.');
+    }
+  };
+
+  const startRecording = () => {
+    if (!cameraStream) {
+      setError('Start camera before recording.');
+      return;
+    }
+
+    if (typeof MediaRecorder === 'undefined') {
+      setError('Media recording is not supported in this browser.');
+      return;
+    }
+
+    const mimeCandidates = [
+      'video/webm;codecs=vp9',
+      'video/webm;codecs=vp8',
+      'video/webm',
+    ];
+
+    const selectedMimeType = mimeCandidates.find((candidate) =>
+      MediaRecorder.isTypeSupported(candidate)
+    );
+
+    const recorder = selectedMimeType
+      ? new MediaRecorder(cameraStream, { mimeType: selectedMimeType })
+      : new MediaRecorder(cameraStream);
+
+    recordedChunksRef.current = [];
+
+    recorder.ondataavailable = (event) => {
+      if (event.data && event.data.size > 0) {
+        recordedChunksRef.current.push(event.data);
+      }
+    };
+
+    recorder.onstop = () => {
+      if (!recordedChunksRef.current.length) {
+        return;
+      }
+
+      const blob = new Blob(recordedChunksRef.current, {
+        type: recorder.mimeType || 'video/webm',
+      });
+      const extension = blob.type.includes('mp4') ? 'mp4' : 'webm';
+      const file = new File([blob], `attendance_${classId}_${Date.now()}.${extension}`, {
+        type: blob.type || 'video/webm',
+      });
+
+      setSelectedFile(file);
+      setRecordedVideoUrl((previous) => {
+        if (previous) {
+          URL.revokeObjectURL(previous);
+        }
+        return URL.createObjectURL(blob);
+      });
+      setError(null);
+    };
+
+    mediaRecorderRef.current = recorder;
+    recorder.start(1000);
+    setIsRecording(true);
+    setError(null);
+  };
+
+  const stopRecording = () => {
+    if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
+      mediaRecorderRef.current.stop();
+    }
+    setIsRecording(false);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
+        mediaRecorderRef.current.stop();
+      }
+      stopCamera();
+      clearRecordedPreview();
+    };
+  }, [stopCamera, clearRecordedPreview]);
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file && file.type.startsWith('video/')) {
       setSelectedFile(file);
+      clearRecordedPreview();
       setError(null);
     } else {
       setError("Please select a valid video file");
@@ -82,6 +204,11 @@ const VideoAttendanceUpload: React.FC<VideoAttendanceUploadProps> = ({ sectionId
   };
 
   const handleUpload = async () => {
+    if (isRecording) {
+      setError('Stop recording before processing attendance.');
+      return;
+    }
+
     if (!selectedFile) {
       setError("Please select a video file first");
       return;
@@ -236,6 +363,71 @@ const VideoAttendanceUpload: React.FC<VideoAttendanceUploadProps> = ({ sectionId
           )}
 
           <div className="space-y-4">
+            <div className="rounded-lg border p-4 space-y-3 bg-slate-50">
+              <p className="text-sm font-medium">Record from camera (optional)</p>
+              <video
+                ref={liveVideoRef}
+                autoPlay
+                muted
+                playsInline
+                className="w-full h-56 rounded-md bg-black object-cover"
+              />
+
+              <div className="flex flex-wrap gap-2">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={startCamera}
+                  disabled={Boolean(cameraStream) || loading}
+                >
+                  <Camera className="mr-2 h-4 w-4" />
+                  Start Camera
+                </Button>
+
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={stopCamera}
+                  disabled={!cameraStream || loading}
+                >
+                  <Square className="mr-2 h-4 w-4" />
+                  Stop Camera
+                </Button>
+
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={startRecording}
+                  disabled={!cameraStream || isRecording || loading}
+                >
+                  <Circle className="mr-2 h-4 w-4" />
+                  Start Recording
+                </Button>
+
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={stopRecording}
+                  disabled={!isRecording || loading}
+                >
+                  <Square className="mr-2 h-4 w-4" />
+                  Stop Recording
+                </Button>
+              </div>
+
+              <p className="text-xs text-gray-500">
+                After you stop recording, the recorded file is auto-selected for processing.
+              </p>
+
+              {recordedVideoUrl && (
+                <video
+                  src={recordedVideoUrl}
+                  controls
+                  className="w-full rounded-md border"
+                />
+              )}
+            </div>
+
             <input
               type="file"
               accept="video/*"

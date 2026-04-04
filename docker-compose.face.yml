@@ -1,18 +1,26 @@
-version: "3.9"
-
 services:
   rabbitmq:
     image: rabbitmq:3-management
+    restart: unless-stopped
     ports:
       - "5672:5672"
       - "15672:15672"
     environment:
       RABBITMQ_DEFAULT_USER: classedgee
       RABBITMQ_DEFAULT_PASS: classedgee
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
 
   ml-worker:
     build:
       context: ./ml-worker
+    restart: unless-stopped
+    env_file:
+      - ./.env
     environment:
       RABBITMQ_URL: amqp://classedgee:classedgee@rabbitmq:5672
       FACE_REGISTER_QUEUE: face.register
@@ -22,4 +30,5 @@ services:
       CLOUDINARY_API_KEY: ${CLOUDINARY_API_KEY}
       CLOUDINARY_API_SECRET: ${CLOUDINARY_API_SECRET}
     depends_on:
-      - rabbitmq
+      rabbitmq:
+        condition: service_healthy

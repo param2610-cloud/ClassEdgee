@@ -16,7 +16,8 @@ const assertFaceQueues = async (channel) => {
 export const getFaceQueueChannel = async () => {
   if (!channelPromise) {
     channelPromise = (async () => {
-      const rabbitUrl = process.env.RABBITMQ_URL || "amqp://localhost:5672";
+      const rabbitUrl =
+        process.env.RABBITMQ_URL || "amqp://classedgee:classedgee@localhost:5672";
       const connection = await amqp.connect(rabbitUrl);
       const channel = await connection.createChannel();
 

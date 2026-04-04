@@ -167,6 +167,7 @@ export const queueFaceClassProcessing = async (req, res) => {
       select: {
         class_id: true,
         section_id: true,
+        date_of_class: true,
       },
     });
 
@@ -200,7 +201,7 @@ export const queueFaceClassProcessing = async (req, res) => {
       model_url: section.face_recognition_model,
       capture_urls: captureUrls,
       confidence_threshold: Number(req.body.confidence_threshold ?? 0.6),
-      attendance_date: req.body.attendance_date || null,
+      attendance_date: req.body.attendance_date || cls.date_of_class || null,
     };
 
     createFaceJob({

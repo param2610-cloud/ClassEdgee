@@ -124,11 +124,18 @@ def load_npz_model_from_url(model_url):
         return [], np.empty((0, 512), dtype=np.float32)
 
     model_bytes = download_bytes(model_url)
-    with np.load(io.BytesIO(model_bytes), allow_pickle=False) as data:
-        enrollments = data["enrollments"].astype(str).tolist()
-        embeddings = data["embeddings"].astype(np.float32)
-        if embeddings.ndim == 1:
-            embeddings = embeddings.reshape(1, -1)
+    try:
+        with np.load(io.BytesIO(model_bytes), allow_pickle=False) as data:
+            enrollments = data["enrollments"].astype(str).tolist()
+            embeddings = data["embeddings"].astype(np.float32)
+            if embeddings.ndim == 1:
+                embeddings = embeddings.reshape(1, -1)
+    except ValueError as error:
+        if "pickled" in str(error).lower():
+            raise ValueError(
+                "Legacy .pkl face models are not supported. Please migrate section model to .npz."
+            ) from error
+        raise
 
     if len(enrollments) != len(embeddings):
         raise ValueError("Model file is corrupted: enrollments and embeddings length mismatch")
@@ -422,9 +429,13 @@ def publish_result(channel, result_payload):
 
 def process_message(channel, method, properties, body):
     payload = {}
+    started_at = time.time()
     try:
         payload = json.loads(body.decode("utf-8"))
         job_type = payload.get("job_type")
+        job_id = payload.get("job_id")
+
+        print(f"Received job: id={job_id} type={job_type}")
 
         if job_type == "register":
             result = handle_register_job(payload)
@@ -438,6 +449,13 @@ def process_message(channel, method, properties, body):
 
     try:
         publish_result(channel, result)
+        elapsed_ms = int((time.time() - started_at) * 1000)
+        print(f"Worker response payload: {json.dumps(result)}")
+        print(
+            "Published result: "
+            f"id={result.get('job_id')} type={result.get('job_type')} "
+            f"status={result.get('status')} elapsed_ms={elapsed_ms}"
+        )
         channel.basic_ack(delivery_tag=method.delivery_tag)
     except Exception:
         traceback.print_exc()
@@ -448,7 +466,14 @@ def main():
     configure_cloudinary()
 
     params = pika.URLParameters(RABBITMQ_URL)
-    connection = pika.BlockingConnection(params)
+    connection = None
+    while connection is None:
+        try:
+            connection = pika.BlockingConnection(params)
+        except pika.exceptions.AMQPConnectionError:
+            print("RabbitMQ not ready yet. Retrying in 5 seconds...")
+            time.sleep(5)
+
     channel = connection.channel()
 
     channel.queue_declare(queue=FACE_REGISTER_QUEUE, durable=True)

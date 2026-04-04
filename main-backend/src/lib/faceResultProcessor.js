@@ -14,6 +14,25 @@ const toNumber = (value, fallback = 0) => {
   return Number.isFinite(parsed) ? parsed : fallback;
 };
 
+const resolveAttendanceDate = async (incoming, classId) => {
+  if (incoming) {
+    return toDateOnly(incoming);
+  }
+
+  if (Number.isFinite(classId)) {
+    const cls = await prisma.classes.findUnique({
+      where: { class_id: classId },
+      select: { date_of_class: true },
+    });
+
+    if (cls?.date_of_class) {
+      return toDateOnly(cls.date_of_class);
+    }
+  }
+
+  return toDateOnly(new Date());
+};
+
 const decideAttendance = (match) => {
   const minFrames = toNumber(process.env.FACE_PRESENT_MIN_FRAMES, 2);
   const highConfidenceThreshold = Number(process.env.FACE_SINGLE_FRAME_HIGH_CONF || 0.8);
@@ -80,7 +99,7 @@ const handleRecognizeResult = async (payload) => {
     return;
   }
 
-  const attendanceDate = toDateOnly(payload.attendance_date);
+  const attendanceDate = await resolveAttendanceDate(payload.attendance_date, classId);
 
   for (const match of matches) {
     const enrollment = match.enrollment;
@@ -139,19 +158,31 @@ export const processFaceResultMessage = async (payload) => {
   const jobId = payload.job_id || payload.jobId;
   const jobType = payload.job_type || payload.jobType;
 
-  if (jobType === "register") {
-    await handleRegisterResult(payload);
-  }
+  try {
+    if (jobType === "register") {
+      await handleRegisterResult(payload);
+    }
 
-  if (jobType === "recognize") {
-    await handleRecognizeResult(payload);
-  }
+    if (jobType === "recognize") {
+      await handleRecognizeResult(payload);
+    }
 
-  if (jobId) {
-    updateFaceJob(jobId, {
-      status: payload.status === "success" ? "completed" : "failed",
-      result: payload.status === "success" ? payload : null,
-      error: payload.status === "success" ? null : payload.error || "Worker job failed",
-    });
+    if (jobId) {
+      updateFaceJob(jobId, {
+        status: payload.status === "success" ? "completed" : "failed",
+        result: payload.status === "success" ? payload : null,
+        error: payload.status === "success" ? null : payload.error || "Worker job failed",
+      });
+    }
+  } catch (error) {
+    if (jobId) {
+      updateFaceJob(jobId, {
+        status: "failed",
+        result: payload || null,
+        error: error?.message || "Result processing failed",
+      });
+    }
+
+    throw error;
   }
 };

@@ -6,7 +6,11 @@ import cors from "cors";
 import { corsOptions } from "./src/config/corsOptions.js";
 import path from "path";
 import { fileURLToPath } from "url";
-configDotenv();
+
+const filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(filename);
+configDotenv({ path: path.join(__dirname, ".env") });
+
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -16,8 +20,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-const filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(filename);
 app.use('/',express.static(path.join(__dirname,'public')));
 
 
