@@ -2,9 +2,9 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import AppShell from "@/layouts/AppShell";
 import { roleNavigation } from "@/lib/navigation";
 import CoordinatorDashboard from "@/pages/coordinator/Dashboard";
-import CoordinatorStudent from "@/pages/Protected/coordinator/student/CoordinatorStudent";
-import StudentUploadLayout from "@/pages/Protected/coordinator/student/create/StudentCreateLayout";
-import EditStudentForm from "@/pages/Protected/coordinator/student/edit/Studentedit";
+import StudentList from "@/pages/coordinator/students/StudentList";
+import StudentCreate from "@/pages/coordinator/students/StudentCreate";
+import StudentEdit from "@/pages/coordinator/students/StudentEdit";
 import CoordinatorFaculty from "@/pages/Protected/coordinator/teachers/CoordinatorFaculty";
 import TeacherUploadLayout from "@/pages/Protected/coordinator/teachers/create/CreateTeacherLayout";
 import FacultyEditProfile from "@/pages/Protected/coordinator/teachers/edit/Teacheredit";
@@ -28,9 +28,9 @@ const CoordinatorApp = () => {
       <Routes>
         <Route index element={<CoordinatorDashboard />} />
 
-        <Route path="students" element={<CoordinatorStudent />} />
-        <Route path="students/new" element={<StudentUploadLayout />} />
-        <Route path="students/:id/edit" element={<EditStudentForm />} />
+        <Route path="students" element={<StudentList />} />
+        <Route path="students/new" element={<StudentCreate />} />
+        <Route path="students/:id/edit" element={<StudentEdit />} />
 
         <Route path="faculty" element={<CoordinatorFaculty />} />
         <Route path="faculty/new" element={<TeacherUploadLayout />} />
