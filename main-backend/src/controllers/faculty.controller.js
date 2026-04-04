@@ -1,6 +1,4 @@
 //import {facultyprofileSchema} from '../models/facultyprofile.schema.js'
-
-import facultyprofileSchema from "../models/facultyprofile.schema.js";
 import bcrypt from "bcrypt";
 import { generateTokens } from "../utils/generate.js";
 import { fastapidomain } from "../lib/domain.js";
@@ -582,19 +580,57 @@ const getUniqueFaculty = async (req, res) => {
 
 const deletefaculty = async (req, res) => {
     try {
-        const facultyId = req.params.id;
-        const deletedfaculty =
-            await facultyprofileSchema.findByIdAndDelete(facultyId);
-        if (!deletedfaculty) {
+        const { id } = req.params;
+        let userId = Number(id);
+
+        if (!Number.isFinite(userId)) {
+            const user = await prisma.users.findFirst({
+                where: {
+                    college_uid: id,
+                    role: "faculty",
+                },
+                select: {
+                    user_id: true,
+                },
+            });
+
+            if (!user) {
+                return res.status(404).send({
+                    success: false,
+                    message: "faculty not found",
+                });
+            }
+
+            userId = user.user_id;
+        }
+
+        const faculty = await prisma.faculty.findFirst({
+            where: {
+                user_id: userId,
+            },
+        });
+
+        if (!faculty) {
             return res.status(404).send({
                 success: false,
                 message: "faculty not found",
             });
         }
+
+        await prisma.$transaction(async (tx) => {
+            await tx.faculty.deleteMany({
+                where: { user_id: userId },
+            });
+
+            await tx.users.delete({
+                where: { user_id: userId },
+            });
+        });
+
         return res.status(200).send({
             success: true,
             message: "faculty deleted successfully",
-            data: deletedfaculty,
+            data: { user_id: userId },
         });
     } catch (error) {
         return res.status(500).send({
