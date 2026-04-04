@@ -24,15 +24,15 @@ import {
     DialogTitle,
 } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
-import { useAuth } from "@/services/AuthContext";
+import { useAuth } from "@/hooks/useAuth";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
-import { domain } from "@/lib/constant";
+import api from "@/api/axios";
 import { Class, SyllabusStructure } from "@/interface/general";
 import ResourcesTab from "./resource/Resource";
 import NotesTab from "./notes/Notes";
 import QuerySystem from "../../query/QuerySystem";
 import VideoAttendanceUpload from "@/components/AttendanceComponent";
+import { AttendanceMarker } from "@/components/shared";
 //import QuizDashboard from "./resource/QuizDashboard";
 
 const ClassDashboard = () => {
@@ -104,7 +104,7 @@ const ClassDashboard = () => {
 
     useEffect(()=>{
         const fetchClassDetails = async ()=> {
-            const response = await axios.get(`${domain}/api/v1/classes/${class_id}`)
+            const response = await api.get(`/api/v1/classes/${class_id}`)
             console.log(response.data)
             setClassData(response.data)
         }
@@ -147,7 +147,7 @@ const ClassDashboard = () => {
 classData && classData.class_id && classData.section_id && <AttendanceButton sectionId={classData.section_id} classId={classData.class_id} />
                         } */}
                         <Button variant="outline" className="bg-blue-100 hover:bg-blue-200"
-                        onClick={() => navigate(`/p/classes/${class_id}/quiz`)} >
+                        onClick={() => navigate(`/faculty/classes/${class_id}/quiz`)} >
                         
                             <PenSquare className="mr-2 h-5 w-5" />
                             
@@ -328,9 +328,18 @@ classData && classData.class_id && classData.section_id && <AttendanceButton sec
                     {user && classData?.faculty_id && <QuerySystem userId={user?.user_id} userRole="faculty" facultyId={classData?.faculty_id}  />}
                 </TabsContent>
                 <TabsContent value="attendance">
-                            {class_id && classData?.section_id && 
-                                <VideoAttendanceUpload classId={Number(class_id)} sectionId={Number(classData.section_id)}/>
-                            }
+                                        {class_id && classData?.section_id && (
+                                            <div className="space-y-6">
+                                                <AttendanceMarker
+                                                    classId={Number(class_id)}
+                                                    sectionId={Number(classData.section_id)}
+                                                />
+                                                <VideoAttendanceUpload
+                                                    classId={Number(class_id)}
+                                                    sectionId={Number(classData.section_id)}
+                                                />
+                                            </div>
+                                        )}
                 </TabsContent>
             </Tabs>
 
