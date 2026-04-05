@@ -114,17 +114,19 @@ const LOCALIP = process.env.LOCAL_IP || 'localhost'
 const httpServer = createServer(app);
 initSocket(httpServer);
 
-httpServer.listen(port, () =>
-    console.log(`The App is Listening on port ${port} \n health check at http://${LOCALIP}:${port}/health`)
-);
+if (process.env.NODE_ENV !== "test") {
+    httpServer.listen(port, () =>
+        console.log(`The App is Listening on port ${port} \n health check at http://${LOCALIP}:${port}/health`)
+    );
 
-startFaceInfrastructure()
-    .then(() => {
-        console.log("Face queue infrastructure initialized");
-    })
-    .catch((error) => {
-        console.error("Face queue infrastructure failed to initialize:", error.message);
-    });
+    startFaceInfrastructure()
+        .then(() => {
+            console.log("Face queue infrastructure initialized");
+        })
+        .catch((error) => {
+            console.error("Face queue infrastructure failed to initialize:", error.message);
+        });
+}
 
 
 export default app;

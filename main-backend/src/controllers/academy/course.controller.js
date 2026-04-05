@@ -199,7 +199,7 @@ const getCoursebyDepartmentId = async (req,res)=>{
         console.log(req.params);
         
         
-        const {department_id} = req.params;
+        const {department_id} = req.params; 
         console.log(department_id);
         
         const response = await prisma.courses.findMany({

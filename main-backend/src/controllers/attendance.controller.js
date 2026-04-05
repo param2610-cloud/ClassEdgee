@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
-const toDateBounds = (startDateInput, endDateInput) => {
+export const toDateBounds = (startDateInput, endDateInput) => {
     const today = new Date();
     const fallbackStart = new Date(today);
     fallbackStart.setDate(fallbackStart.getDate() - 30);
@@ -55,15 +55,42 @@ export const getActiveClass = async (req, res) => {
 export const markAttendance = async (req, res) => {
     try {
         const { class_id, attendance_data } = req.body;
-        const currentDate = new Date().toISOString();
+
+        if (!class_id) {
+            return res.status(400).json({
+                success: false,
+                message: 'class_id is required',
+            });
+        }
+
+        if (!Array.isArray(attendance_data) || attendance_data.length === 0) {
+            return res.status(400).json({
+                success: false,
+                message: 'attendance_data must be a non-empty array',
+            });
+        }
+
+        const currentDate = new Date();
+        currentDate.setHours(0, 0, 0, 0);
         
         const records = await Promise.all(
             attendance_data.map(record => 
-                prisma.attendance.create({
-                    data: {
+                prisma.attendance.upsert({
+                    where: {
+                        class_id_student_id_date: {
+                            class_id,
+                            student_id: record.student_id,
+                            date: currentDate,
+                        },
+                    },
+                    create: {
                         class_id,
                         student_id: record.student_id,
                         date: currentDate,
+                        status: record.status,
+                        verification_method: 'manual'
+                    },
+                    update: {
                         status: record.status,
                         verification_method: 'manual'
                     }

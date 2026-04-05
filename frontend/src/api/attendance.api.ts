@@ -202,12 +202,16 @@ export const getStudentAttendanceDetail = async (userId: number): Promise<Studen
   const response = await api.get(`/api/v1/attendance/student-summary/${studentId}`);
   const summary = response.data?.summary;
   const subjects = response.data?.subjects;
+  const overallPercentage = Number(summary?.overallPercentage ?? 0);
 
   return {
-    overallPercentage: Number(summary?.overallPercentage ?? 0),
+    overallPercentage,
     totalClasses: Number(summary?.totalClasses ?? 0),
     attendedClasses: Number(summary?.attendedClasses ?? 0),
-    atRisk: Boolean(summary?.atRisk),
+    atRisk:
+      typeof summary?.atRisk === "boolean"
+        ? summary.atRisk
+        : overallPercentage < 75,
     subjects: Array.isArray(subjects) ? (subjects as StudentSubjectAttendance[]) : [],
   };
 };

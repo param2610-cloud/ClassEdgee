@@ -46,7 +46,7 @@ export interface SystemCounts {
 
 const toArray = <T>(value: unknown): T[] => (Array.isArray(value) ? (value as T[]) : []);
 
-const sameDay = (value?: string) => {
+export const sameDay = (value?: string) => {
   if (!value) return false;
   const date = new Date(value);
   const now = new Date();
